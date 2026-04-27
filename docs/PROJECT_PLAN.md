@@ -249,6 +249,7 @@ These are smaller items intentionally deferred during the alignment interview. T
 - Custom domain name for the proof checker and truth table checker.
 - Final naming of the book, the project, and the GitHub organization.
 - Whether the book absorbs the weekly writing assignments through richer end-of-chapter writing prompts, or whether the weekly writing track stays separate from the textbook. Decide after the Chapter 1 vertical slice gives us evidence about how end-of-chapter writing prompts feel in practice.
+- HTML rendering of `<term>` elements: the LaTeX override in `book/xsl/custom-latex.xsl` strips the italic from terminology in the PDF; the HTML build needs an equivalent CSS override (target: `dfn.terminology { font-style: normal; }`). Defer to Phase 2 when the HTML theme work begins in earnest. Source still uses `<term>` for indexing/cross-referencing regardless.
 
 ## 17. Forward Dependencies (chapter-level)
 

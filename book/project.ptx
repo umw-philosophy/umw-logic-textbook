@@ -14,6 +14,7 @@
             format="pdf"
             source="main.ptx"
             publication="publication.ptx"
+            xsl="../xsl/custom-latex.xsl"
             output-filename="umw-logic.pdf"/>
   </targets>
 </project>
