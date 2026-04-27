@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  Chapter 1 — What is an argument?
+  This file is a STRUCTURAL PLACEHOLDER demonstrating the chapter template
+  agreed in PROJECT_PLAN.md §13. Real content will be drafted in the
+  Chapter 1 vertical slice in our next session.
+
+  Template elements demonstrated:
+    - chapter opener (one paragraph, no formal learning-outcomes box, no epigraph)
+    - sections with prose intro, definitions in callouts, worked examples in callouts
+    - practice problems with reveal-on-click solutions
+    - chapter summary
+    - key terms (alphabetized)
+    - end-of-chapter exercises with selected solutions
+-->
+<chapter xmlns:xi="http://www.w3.org/2001/XInclude" xml:id="ch-what-is-an-argument">
+
+  <title>What Is an Argument?</title>
+
+  <introduction xml:id="ch-arguments-intro">
+    <p>
+      [Placeholder chapter opener — one paragraph framing why arguments
+      matter and what is coming. To be drafted in the vertical slice.]
+    </p>
+  </introduction>
+
+  <section xml:id="sec-statements">
+    <title>Statements</title>
+    <introduction>
+      <p>
+        [Placeholder section intro.]
+      </p>
+    </introduction>
+
+    <definition xml:id="def-statement">
+      <title>Statement</title>
+      <statement>
+        <p>
+          [Placeholder definition.]
+        </p>
+      </statement>
+    </definition>
+
+    <example xml:id="ex-statement-vs-non">
+      <title>Recognizing statements</title>
+      <statement>
+        <p>
+          [Placeholder worked example.]
+        </p>
+      </statement>
+    </example>
+
+    <exercises xml:id="practice-statements">
+      <title>Practice problems</title>
+      <exercise xml:id="prac-statements-1">
+        <statement>
+          <p>[Placeholder practice problem.]</p>
+        </statement>
+        <solution>
+          <p>[Placeholder solution.]</p>
+        </solution>
+      </exercise>
+    </exercises>
+  </section>
+
+  <!-- Additional sections: sec-arguments, sec-premises-conclusions,
+       sec-recognizing-arguments-in-the-wild, sec-diagramming -->
+
+  <conclusion xml:id="ch-arguments-summary">
+    <title>Chapter Summary</title>
+    <p>[Placeholder summary list of key concepts.]</p>
+  </conclusion>
+
+  <exercises xml:id="end-ch-arguments">
+    <title>End-of-Chapter Exercises</title>
+    <exercise xml:id="eoc-arguments-1">
+      <statement>
+        <p>[Placeholder end-of-chapter exercise.]</p>
+      </statement>
+    </exercise>
+  </exercises>
+
+</chapter>

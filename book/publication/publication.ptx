@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  PreTeXt publication file.
+  Controls rendering decisions: numbering style, theme, accessibility settings.
+  Accessibility commitments from PROJECT_PLAN.md §7 enforced here where
+  PreTeXt provides knobs for them.
+-->
+<publication>
+
+  <common>
+    <!-- combined per-section numbering: Item 1.2.1 = chapter 1, section 2, item 1 -->
+    <chunking level="2"/>
+  </common>
+
+  <numbering>
+    <theorems level="2"/>
+    <projects level="2"/>
+    <equations level="2"/>
+    <footnotes level="2"/>
+    <divisions chapter-start="1"/>
+  </numbering>
+
+  <html>
+    <!-- Accessible color theme; no color-only information conveyance -->
+    <css colors="blue_grey" style="default"/>
+    <calculator model="none"/>
+    <search variant="default"/>
+    <knowl exercise-inline="yes" exercise-sectional="no"
+           example="no" definition="no" theorem="no"
+           project="no" task="no"/>
+    <!-- Reveal solutions on click for inline practice problems; static for end-of-chapter (with solutions in appendix) -->
+  </html>
+
+  <latex>
+    <!-- Standard accessible PDF output -->
+    <page paper="letterpaper"/>
+  </latex>
+
+  <source>
+    <!-- Shared assets for figures generated via PreTeXt's diagram element -->
+    <directories external="../source/external" generated="../generated-assets"/>
+  </source>
+
+</publication>

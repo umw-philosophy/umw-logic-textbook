@@ -1,0 +1,34 @@
+# PreTeXt build outputs
+output/
+*.aux
+*.log
+*.out
+*.toc
+*.pdf
+!book/published/*.pdf
+generated-assets/
+
+# Python
+__pycache__/
+*.pyc
+*.pyo
+.venv/
+venv/
+
+# Node
+node_modules/
+npm-debug.log
+package-lock.json
+
+# Editor / OS
+.DS_Store
+.vscode/
+.idea/
+*.swp
+*.swo
+Thumbs.db
+
+# Local-only
+.env
+.env.local
+*.local

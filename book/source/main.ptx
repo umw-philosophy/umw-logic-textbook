@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  Root document for the UMW Logic Textbook.
+  Each chapter is included from its own file under source/chapters/.
+  Examples are included from source/examples/ via xinclude inside each chapter.
+
+  The structure mirrors the four-part outline in PROJECT_PLAN.md §3.
+  Part V (Predicate Logic) is included by default but adopters who do not
+  teach predicate logic can comment it out without breaking other parts.
+-->
+<pretext xmlns:xi="http://www.w3.org/2001/XInclude">
+
+  <docinfo>
+    <brandlogo url="https://www.umw.edu" source="umw-logo.png"/>
+    <macros>
+      \newcommand{\true}{\mathsf{T}}
+      \newcommand{\false}{\mathsf{F}}
+    </macros>
+    <math-package latex-name="amsmath" pretext-name="amsmath"/>
+  </docinfo>
+
+  <book xml:id="book-umw-logic">
+
+    <title>Logic</title>
+    <subtitle>An Introduction</subtitle>
+
+    <frontmatter xml:id="frontmatter">
+
+      <titlepage>
+        <author>
+          <personname>Michael Reno</personname>
+          <department>Department of Classics, Philosophy, and Religion</department>
+          <institution>University of Mary Washington</institution>
+        </author>
+        <!-- Co-author personname added when she formally joins the project -->
+        <date><today/></date>
+      </titlepage>
+
+      <colophon>
+        <copyright>
+          <year>2026<ndash/>2027</year>
+          <holder>Michael Reno and contributors</holder>
+          <shortlicense>
+            This work is licensed under a
+            <url href="https://creativecommons.org/licenses/by-sa/4.0/"
+                 visual="creativecommons.org/licenses/by-sa/4.0">
+              Creative Commons Attribution-ShareAlike 4.0 International License
+            </url>.
+          </shortlicense>
+        </copyright>
+      </colophon>
+
+      <preface xml:id="preface">
+        <title>Preface</title>
+        <p>
+          Placeholder for the preface. To be drafted after the Chapter 1
+          vertical slice settles voice and tone.
+        </p>
+      </preface>
+
+    </frontmatter>
+
+    <!--
+      Part I — Arguments and Reasoning (Informal Logic)
+      Maps to Baronett Ch. 1, 3 in the current PHIL 151B course; here treated
+      as a unified treatment of argument identification, structure, language,
+      and informal fallacies.
+    -->
+    <part xml:id="part-arguments">
+      <title>Arguments and Reasoning</title>
+      <xi:include href="chapters/ch-what-is-an-argument.ptx"/>
+      <!-- Future: ch-argument-structure.ptx, ch-language-and-meaning.ptx, ch-informal-fallacies.ptx -->
+    </part>
+
+    <!--
+      Part II — Categorical Logic (Venn-first)
+      Mood and Figure de-emphasized in favor of Venn diagram method.
+    -->
+    <!--
+    <part xml:id="part-categorical">
+      <title>Categorical Logic</title>
+      <xi:include href="chapters/ch-categorical-statements.ptx"/>
+    </part>
+    -->
+
+    <!--
+      Part III — Sentential Logic
+      Copi notation. 18-rule natural deduction system. CP and IP taught but
+      assessment problems solvable using only the 18 rules.
+    -->
+    <!--
+    <part xml:id="part-sentential">
+      <title>Sentential Logic</title>
+      <xi:include href="chapters/ch-symbolizing.ptx"/>
+    </part>
+    -->
+
+    <!--
+      Part IV — Inductive and Statistical Reasoning
+      Goes deeper than typical intro texts; Hacking-flavored without being
+      Hacking-deep.
+    -->
+    <!--
+    <part xml:id="part-statistical">
+      <title>Inductive and Statistical Reasoning</title>
+      <xi:include href="chapters/ch-inductive-reasoning.ptx"/>
+    </part>
+    -->
+
+    <!--
+      Part V — Predicate Logic (optional adopter chapters)
+      Not taught in PHIL 151B but included so adopters can teach it.
+    -->
+    <!--
+    <part xml:id="part-predicate">
+      <title>Predicate Logic</title>
+      <xi:include href="chapters/ch-quantifiers.ptx"/>
+    </part>
+    -->
+
+    <backmatter xml:id="backmatter">
+      <appendix xml:id="appendix-solutions">
+        <title>Selected Solutions</title>
+        <p>Placeholder for selected end-of-chapter solutions.</p>
+      </appendix>
+      <colophon xml:id="back-colophon">
+        <p>
+          This book was authored in <url href="https://pretextbook.org">PreTeXt</url>.
+          The source is openly available at the project repository.
+        </p>
+      </colophon>
+    </backmatter>
+
+  </book>
+
+</pretext>

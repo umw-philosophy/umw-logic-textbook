@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  PreTeXt project manifest.
+  Define build targets here. Each target compiles source/main.ptx to a different format.
+  See https://pretextbook.org for full documentation.
+-->
+<project ptx-version="2">
+  <targets>
+    <target name="web"
+            format="html"
+            source="main.ptx"
+            publication="publication.ptx"/>
+    <target name="print"
+            format="pdf"
+            source="main.ptx"
+            publication="publication.ptx"
+            output-filename="umw-logic.pdf"/>
+  </targets>
+</project>
