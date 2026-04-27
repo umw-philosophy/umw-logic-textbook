@@ -248,3 +248,11 @@ These are smaller items intentionally deferred during the alignment interview. T
 - Specifics of the online/hybrid teaching mode beyond "paper exams scanned and uploaded."
 - Custom domain name for the proof checker and truth table checker.
 - Final naming of the book, the project, and the GitHub organization.
+- Whether the book absorbs the weekly writing assignments through richer end-of-chapter writing prompts, or whether the weekly writing track stays separate from the textbook. Decide after the Chapter 1 vertical slice gives us evidence about how end-of-chapter writing prompts feel in practice.
+
+## 17. Forward Dependencies (chapter-level)
+
+Items planted in earlier chapters that *must* be paid off in later chapters. Add to this list whenever a chapter previews a topic it does not fully treat.
+
+- **Chapter 1 §1.1** plants the explanation-vs-argument distinction with a one-line preview ("we'll come back to that resemblance later"). This requires a dedicated subsection in the later chapter on *recognizing arguments in the wild*. The subsection should make the contrast precise: an argument tries to get the audience to *accept* a claim by giving reasons for it; an explanation assumes the claim is already accepted and gives reasons *why it is true*. Same shape, different work.
+- **Chapter 1 §1.1** previews *valid* and *sound* as labels, with a note that they apply to argument structure and not content. Definitions come in Chapter 2.

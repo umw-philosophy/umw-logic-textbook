@@ -1,17 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
-  Chapter 1 — What is an argument?
-  This file is a STRUCTURAL PLACEHOLDER demonstrating the chapter template
-  agreed in PROJECT_PLAN.md §13. Real content will be drafted in the
-  Chapter 1 vertical slice in our next session.
-
-  Template elements demonstrated:
-    - chapter opener (one paragraph, no formal learning-outcomes box, no epigraph)
-    - sections with prose intro, definitions in callouts, worked examples in callouts
-    - practice problems with reveal-on-click solutions
-    - chapter summary
-    - key terms (alphabetized)
-    - end-of-chapter exercises with selected solutions
+  Chapter 1 — What Is an Argument?
+  Section 1.1 ported from book/drafts/ch01-sec01-language.md (rev. 2).
+  Sections 1.2 onward remain placeholders.
 -->
 <chapter xmlns:xi="http://www.w3.org/2001/XInclude" xml:id="ch-what-is-an-argument">
 
@@ -19,65 +10,334 @@
 
   <introduction xml:id="ch-arguments-intro">
     <p>
-      [Placeholder chapter opener — one paragraph framing why arguments
-      matter and what is coming. To be drafted in the vertical slice.]
+      Spend ten minutes listening in any public space and you will see people
+      doing all sorts of things with language. They are telling stories,
+      ordering food, complaining about traffic, complimenting each other's
+      shoes, explaining how the parking app works, confessing crushes, lying
+      about their weekends, asking for directions, and, even, on occasion,
+      trying to convince someone of something using actual reasons.
+    </p>
+    <p>
+      That last activity, the giving-reasons one, is what we'll call
+      <term>making an argument</term>, and it is the subject of this book.
+      The other activities are largely where we find and make meaning with
+      each other, but arguments are special in their own way as well.
+      Arguments let us ask: <em>is this any good?</em> You can't ask that of
+      <q>good morning</q> or <q>could you pass the salt?</q> You can ask it
+      of <q>Since data centers demand immense power, we must expand the
+      electrical grid,</q> and the answer is not obvious until you stop and
+      look closely (and might not be obvious even then).
+    </p>
+    <p>
+      This book is about how to look closely.
     </p>
   </introduction>
 
-  <section xml:id="sec-statements">
-    <title>Statements</title>
-    <introduction>
+  <section xml:id="sec-language">
+    <title>What We Do With Language</title>
+
+    <paragraphs xml:id="paragraphs-catalog">
+      <title>A short list of things we do with language</title>
       <p>
-        [Placeholder section intro.]
+        Take all the things people do with language — every overheard
+        sentence, every text, every email — and you can sort them, loosely,
+        into a handful of types. The list isn't exact; many sentences do
+        more than one thing at once, and philosophers of language have
+        argued for a long time about exactly how the categories work. But
+        for our purposes, a working list looks something like this.
       </p>
-    </introduction>
+      <dl>
+        <li>
+          <title>Stating</title>
+          <p>
+            <q>It's raining.</q> <q>The library closes at nine.</q>
+            <q>Data centers consume a lot of power.</q> Statements assert
+            that something is the case. They can be true or false, and that
+            is the property we are going to care about most.
+          </p>
+        </li>
+        <li>
+          <title>Asking</title>
+          <p>
+            <q>What time is it?</q> <q>Did you eat already?</q> Questions
+            request information. They aren't true or false themselves, even
+            though their answers might be.
+          </p>
+        </li>
+        <li>
+          <title>Commanding</title>
+          <p>
+            <q>Close the door.</q> <q>Show your ID.</q> Commands and
+            requests try to get someone to do something. They're not true or
+            false either, though there are good and bad ones.
+          </p>
+        </li>
+        <li>
+          <title>Promising</title>
+          <p>
+            <q>I'll be there by seven.</q> <q>We'll consider your
+            application by the fifteenth.</q> A promise commits the speaker
+            to some future action. It's evaluable in its own way — promises
+            are kept or broken — but not as true or false at the moment of
+            speaking.
+          </p>
+        </li>
+        <li>
+          <title>Expressing</title>
+          <p>
+            <q>Ouch.</q> <q>What a beautiful day.</q> Expressions report or
+            perform an inner state. They're sincere or insincere, fitting
+            or off-key, but again, not really true or false.
+          </p>
+        </li>
+        <li>
+          <title>Performing</title>
+          <p>
+            Some sentences make something happen just by being said in the
+            right circumstances. <q>I now pronounce you married.</q>
+            <q>I name this ship the <em>Enterprise</em>.</q>
+            <q>I apologize.</q> The philosopher J. L. Austin called these
+            <term>performative</term> sentences and noticed they're a
+            strange beast: they don't describe a marriage, a naming, or an
+            apology — they constitute one.
+          </p>
+        </li>
+        <li>
+          <title>Greeting</title>
+          <p>
+            <q>Good morning.</q> <q>Hey.</q> <q>How's it going.</q> A great
+            deal of human conversation is just acknowledging that other
+            humans exist and are not strangers. The semantic content of
+            <q>How's it going</q> is roughly zero. The social work it does
+            is enormous.
+          </p>
+        </li>
+        <li>
+          <title>Explaining</title>
+          <p>
+            <q>The reason your phone is hot is that you've been on it for
+            two hours.</q> <q>I'm late because there was an accident on
+            Route 17.</q> Explanations look a lot like arguments — they
+            offer reasons connected to a claim — and we'll come back to
+            that resemblance later.
+          </p>
+        </li>
+        <li>
+          <title>Arguing</title>
+          <p>
+            <q>You shouldn't take Route 17 — there was an accident, and
+            traffic is backed up to the next exit.</q> <q>We need to expand
+            the grid because data centers are coming online faster than we
+            can power them.</q> An argument offers reasons in support of a
+            claim. The reasons are called <term>premises</term>, the
+            supported claim is called the <term>conclusion</term>, and the
+            relationship between them is mostly what the rest of this book
+            is about.
+          </p>
+        </li>
+      </dl>
+    </paragraphs>
 
-    <definition xml:id="def-statement">
-      <title>Statement</title>
+    <paragraphs xml:id="paragraphs-two-senses">
+      <title>Two senses of <q>argument</q></title>
+      <p>
+        The word <term>argument</term> is ambiguous in everyday English. It
+        often refers to a verbal disagreement — two people exchanging
+        insults, or yelling at each other about whether the runner was
+        safe: <q>He was out!</q> <q>No way! He was safe!</q> That kind of
+        dispute is not what we'll mean by <em>argument</em> in this book.
+        We'll be using the word in the more specialized sense from the
+        catalog above: an offering of reasons in support of a claim. From
+        here on, when you see <em>argument</em>, that's the meaning to
+        assume.
+      </p>
+    </paragraphs>
+
+    <paragraphs xml:id="paragraphs-persuading">
+      <title>Persuading and arguing</title>
+      <p>
+        One thing you might notice in the list above is that I haven't said
+        anything about <em>persuading</em>. That's deliberate. Persuasion
+        isn't really a separate category — it's something a person can be
+        trying to do across many of the categories at once. Importantly,
+        you can persuade someone <em>without</em> arguing.
+      </p>
+      <p>
+        Advertising is the cleanest example. Most ads don't make arguments.
+        They show you a beautiful person enjoying a beautiful product in
+        beautiful light, and they hope that you, watching, will associate
+        the product with the feeling of beauty. There's no premise, no
+        conclusion, no reasoning offered. There's just an emotional
+        pairing. If you walk away from the ad wanting the product, the ad
+        has succeeded — but it did not argue.
+      </p>
+      <p>
+        Politicians do this too. So do friends, parents, salespeople,
+        professors, and AI chatbots. A great deal of persuasion happens
+        through repetition, charm, fear, social pressure, identity, and
+        the sheer confidence with which a claim is delivered. None of this
+        is arguing. None of it requires reasons.
+      </p>
+      <p>
+        The reverse is also true. You can make a careful, airtight argument
+        and persuade exactly nobody. Anyone who has tried to talk an
+        unwilling family member out of a strongly held belief knows the
+        experience.
+      </p>
+      <p>
+        Logic is about the <em>reasoning</em> embedded in argumentative
+        speech, not about whether the reasoning works on its audience.
+        Whether arguments persuade is mostly a question of human
+        psychology, and humans are persuaded by all sorts of things that
+        have nothing to do with reasons. Whether arguments are
+        <em>good</em> is a different question — a logical question — and
+        it is the one we will spend the rest of this book learning to
+        answer.
+      </p>
+    </paragraphs>
+
+    <paragraphs xml:id="paragraphs-good-argument">
+      <title>What makes an argument good?</title>
+      <p>
+        The central observation of the opening was that arguments are the
+        kind of language use about which we can ask, <q>is this any good?</q>
+        You can ask other questions of other kinds of speech: whether a
+        promise was kept, whether a question was relevant, whether an
+        explanation was satisfying, whether a greeting was warm. But
+        <q>is this argument any good?</q> is a question that implies a
+        specific structure, and the structure implied by that question is
+        what the rest of the book is for.
+      </p>
+      <p>
+        What does it actually mean for an argument to be good?
+      </p>
+      <p>
+        A first answer: a good argument is one whose conclusion really does
+        follow from its premises. If the premises support the conclusion,
+        then accepting the premises gives you reason to accept the
+        conclusion. If the premises do not support the conclusion, the
+        argument is bad — even if every sentence in it happens to be true.
+        Bad reasoning can land on a true conclusion by accident; good
+        reasoning can sometimes land on a false conclusion if the premises
+        were false. Both happen all the time. This is because a good
+        argument isn't just about truth and falsity.
+      </p>
+      <p>
+        Logicians have a specific vocabulary for these properties. The word
+        <term>valid</term> means roughly <q>the conclusion really does
+        follow from the premises,</q> and it applies to the structure of
+        an argument, not its content. And the word <term>sound</term> means
+        <q>valid, and the premises are also actually true.</q> For now,
+        treat those as labels; we will fill in their precise meanings in
+        the next chapter. The point is that those are the questions you
+        can ask of an argument and not of <q>good morning.</q>
+      </p>
+    </paragraphs>
+
+    <paragraphs xml:id="paragraphs-two-kinds">
+      <title>Two kinds of arguing</title>
+      <p>
+        Arguments come in two broad kinds, and we'll discuss both in this
+        book.
+      </p>
+      <p>
+        Some arguments are <term>deductive</term>. In a deductive argument,
+        the premises are supposed to <em>guarantee</em> the conclusion — if
+        the premises are true, the conclusion has to be true too, no
+        exceptions. <q>All humans are mortal. Socrates is human. Therefore
+        Socrates is mortal.</q> If you accept the premises, you can't dodge
+        the conclusion without contradicting yourself. Most of Parts I, II,
+        and III of this book are about deductive reasoning.
+      </p>
+      <p>
+        Other arguments are <term>inductive</term>. In an inductive
+        argument, the premises don't guarantee the conclusion, but they
+        make it more <em>likely</em> than it would have been otherwise.
+        <q>The last hundred swans I saw were white. So the next swan I see
+        will probably be white too.</q> The conclusion isn't forced; it's
+        supported. Inductive arguments are the workhorses of science,
+        statistics, medicine, and most everyday reasoning. Part IV of this
+        book is about inductive reasoning, with statistical inference as
+        its centerpiece.
+      </p>
+      <p>
+        Both kinds count as arguing. Both can be done well or badly. The
+        standards of <q>good</q> are different in each case — what makes a
+        deductive argument good is not the same as what makes an inductive
+        one good — but in both cases we can ask the same question we asked
+        above: <em>is this argument any good?</em>
+      </p>
+    </paragraphs>
+
+    <paragraphs xml:id="paragraphs-where-headed">
+      <title>Where we're headed</title>
+      <p>
+        To talk about arguments precisely, we need vocabulary for their
+        parts. Arguments are built out of <term>statements</term> — claims
+        that are either true or false — combined in particular ways. Some
+        statements serve as premises, some as conclusions, and in compound
+        arguments some serve as both. Not all sentences are statements,
+        though: greetings, questions, and commands aren't, as the list
+        above suggests. The next section gets specific about what
+        statements are and how to recognize them, because we can't say
+        much about arguments without first saying what they're made of.
+      </p>
+    </paragraphs>
+
+    <exploration xml:id="field-1-1-1">
+      <title>Field Exercise: Listen for ten minutes</title>
       <statement>
         <p>
-          [Placeholder definition.]
+          Find a public space — a coffee shop, a hallway between classes,
+          a bus stop, a dorm common area — and listen for ten minutes
+          without participating. (You can pretend to be on your phone.
+          Nobody will notice.)
         </p>
-      </statement>
-    </definition>
-
-    <example xml:id="ex-statement-vs-non">
-      <title>Recognizing statements</title>
-      <statement>
         <p>
-          [Placeholder worked example.]
+          While you listen, try to spot the different kinds of language
+          use from the catalog above. You don't have to be exact, and many
+          things you hear will fit more than one category at once. Notice
+          especially:
+        </p>
+        <ul>
+          <li>
+            <p>
+              How often you hear someone making an actual argument — that
+              is, giving reasons in support of a claim.
+            </p>
+          </li>
+          <li>
+            <p>
+              Where the arguments tend to appear (between strangers, close
+              friends, parents and kids, strangers with strong opinions
+              about parking).
+            </p>
+          </li>
+          <li>
+            <p>
+              Whether anything you heard <em>sounded</em> like an argument
+              but, on second thought, was doing a different job — an
+              explanation, a complaint, a vent, a recital of grievances.
+            </p>
+          </li>
+        </ul>
+        <p>
+          You don't have to write any of this down right now. The point is
+          just to start noticing the difference. We'll come back to it in
+          an end-of-chapter writing prompt, where you'll be asked to
+          report and reflect on what you heard.
         </p>
       </statement>
-    </example>
+    </exploration>
 
-    <exercises xml:id="practice-statements">
-      <title>Practice problems</title>
-      <exercise xml:id="prac-statements-1">
-        <statement>
-          <p>[Placeholder practice problem.]</p>
-        </statement>
-        <solution>
-          <p>[Placeholder solution.]</p>
-        </solution>
-      </exercise>
-    </exercises>
   </section>
 
-  <!-- Additional sections: sec-arguments, sec-premises-conclusions,
-       sec-recognizing-arguments-in-the-wild, sec-diagramming -->
-
-  <conclusion xml:id="ch-arguments-summary">
-    <title>Chapter Summary</title>
-    <p>[Placeholder summary list of key concepts.]</p>
-  </conclusion>
-
-  <exercises xml:id="end-ch-arguments">
-    <title>End-of-Chapter Exercises</title>
-    <exercise xml:id="eoc-arguments-1">
-      <statement>
-        <p>[Placeholder end-of-chapter exercise.]</p>
-      </statement>
-    </exercise>
-  </exercises>
+  <!--
+    Sections 1.2 onward will follow once drafted.
+    §1.2: Statements
+    §1.3: Premises and conclusions
+    §1.4: Recognizing arguments in the wild
+    (Plus: chapter summary, key terms, end-of-chapter exercises)
+  -->
 
 </chapter>
