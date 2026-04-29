@@ -16,12 +16,21 @@
   <xsl:import href="./core/pretext-latex.xsl"/>
 
   <!--
-    Redefine \terminology to be the identity (no italic).
-    The default in PreTeXt's preamble is \newcommand{\terminology}[1]{\textit{#1}}.
-    This \renewcommand fires after that, in the late preamble.
+    Custom LaTeX overrides for the UMW Logic textbook:
+
+    1. \terminology: render <term> as plain prose (not italic).
+       PreTeXt default is \newcommand{\terminology}[1]{\textit{#1}}.
+
+    2. \ptxdiamond: suppress the end-of-definition marker (◇).
+       PreTeXt's default tcolorbox style for <definition> appends a
+       Zapf Dingbat diamond (\ding{117}) after the upper content.
+       Renewing \ptxdiamond to empty removes the marker for
+       definitions while leaving other tombstones (\ptxsquare for
+       theorems, \ptxtriangle for examples) untouched.
   -->
   <xsl:param name="latex.preamble.late">
 \renewcommand{\terminology}[1]{#1}
+\renewcommand{\ptxdiamond}{}
   </xsl:param>
 
 </xsl:stylesheet>

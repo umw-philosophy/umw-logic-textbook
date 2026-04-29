@@ -404,8 +404,7 @@
         </statement>
       </definition>
       <p>
-        Mapping back to the catalog from <xref ref="paragraphs-catalog"/>:
-        only sentences in the <em>stating</em> category produce
+        Only sentences in the <em>stating</em> category produce
         assertions. The other categories don't. Questions don't make
         claims about how things are; commands don't either; expressions
         and greetings and performatives are doing other work. None of

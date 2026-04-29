@@ -14,7 +14,7 @@
 
 ## 1.2 Statements
 
-We can't talk carefully about arguments without being clear about what they are built out of. An argument is a structure — one or more statements offered in support of another statement — and every piece of that structure is a particular kind of sentence. Before we can do any actual logic, we need to be clear about what statements are and, just as importantly, what they are not.
+We can't talk carefully about arguments without being clear about what they are built out of. An argument is a structure — one or more statements offered in support of another statement — and every piece of that structure is a particular kind of sentence. Before we can do any actual logic, we need to be clear about what statements are. 
 
 ### What a statement is
 
@@ -24,7 +24,7 @@ That definition is short, and we'll spend the rest of this section unpacking wha
 
 > **Definition.** A statement is an assertoric sentence — a sentence that says something is the case. Every statement is either true or false.
 
-Mapping back to the catalog from §1.1: only sentences in the *stating* category produce assertions. The other categories don't. Questions don't make claims about how things are; commands don't either; expressions and greetings and performatives are doing other work. None of those produce sentences that are true or false.
+Only sentences in the *stating* category produce assertions. The other categories don't. Questions don't make claims about how things are; commands don't either; expressions and greetings and performatives are doing other work. None of those produce sentences that are true or false.
 
 A few examples of statements:
 
@@ -56,7 +56,7 @@ The short answer is yes. The longer answer requires getting clear on what is act
 
 ### Truth, knowledge, and consensus are different things
 
-What is the case is one thing. Whether anyone knows what is the case is another thing. Whether everyone agrees about what is the case is yet a third. These three are easy to run together in everyday speech, but they are genuinely separate, and statementhood depends only on the first.
+What is the case is one thing. Whether anyone knows what is the case is another thing. Whether everyone agrees about what is the case is yet a third. These three are easy to run together in everyday speech, but they are genuinely separate, and statementhood depends only on being a sentence that says something about the first.
 
 Consider a few examples in turn.
 
@@ -70,21 +70,21 @@ The one-millionth digit of π is 7. Almost nobody has computed this. (For what i
 
 Caesar walked under a particular fig tree on the Ides of March, 44 BCE. The world has not preserved that information for us. We can't recover it. The sentence is still either true or false; the world either was or wasn't arranged that way at that moment even though we don't know if it was or not. 
 
-In each of these cases, the sentence is a statement, and for the same reason: there is a way the world was, or is, that the sentence makes a claim about. Whether *we* have access to that way the world was or is — whether anyone has computed it, recovered it from history, observed it, or proven it — is a different question. Statementhood depends on the first; knowledge is a question on top of it.
+In each of these cases, the sentence is in fact a statement, and for the same reason: there is a way the world was, or is, that the sentence makes a claim about. Whether *we* have access to that way the world was or is — whether anyone has computed it, recovered it from history, observed it, or proven it — is a different question. Statementhood depends on the first; knowledge is a question on top of it.
 
 **Things that are true or false even if we don't agree about which it is.**
 
-Now consider a different kind of difficulty. *God exists.* Humans have been arguing about this sentence for as long as they've been arguing about anything. We have not settled it. The sentence is still either true or false. Whichever it is, the disagreement among humans does not change it. 
+Now consider a different kind of difficulty. *God exists.* Humans have been arguing about this sentence for as long as they've been arguing about anything. We have not settled it. The sentence is still either true or false. Whichever it is, the disagreement among humans does not change God's existence or non-existence.  
 
 The same goes for *slavery is wrong*, *capital punishment is unjust*, *abortion is morally permissible in the first trimester*, and many other claims people have strong, divergent views about. These sentences make claims about how things are — about what is moral, what is just, what the world contains. Each is either true or false. Whether reasonable people agree is a separate question. Whether anyone can settle the disagreement is a third question. Neither is the same as whether the sentence is a statement. It is.
 
-This is the part that you might resist even if you buy the rest of this discussion. *Surely* if smart people disagree about a sentence, it must be that the sentence isn't really true or false — it must be that there's no fact of the matter, just a clash of preferences. That's not the assumption of classical logic, and it's not the assumption of this book. The assumption here is that disagreement and truth are different things. People can disagree about what's true. People can be wrong about what's true. None of that changes whether there's a fact of the matter, neither does it change that people are asserting something about the world when they utter these sorts of sentences. 
+This is the part that you might resist even if you buy the rest of this discussion. *Surely* if smart people disagree about a sentence, it must be that the sentence isn't really true or false — it must be that there's no fact of the matter, just a clash of preferences. None of that changes whether there's a fact of the matter, neither does the disagreement change that people are asserting something about the world when they utter these sorts of sentences. This understanding of statement is also the assumption of classical logic, and it's the assumption of this book. The assumption here is that disagreement and truth are different things. People can disagree about what's true. People can be wrong about what's true; an assertion can be true even if no one believes it. 
 
-**Why this matters for what comes later.** This isn't a philosophical sidebar. It's load-bearing structure for everything in the rest of the book. Truth tables work because every row has a definite truth value, regardless of what we happen to know about that row. Validity is a relationship between truth values. The reasoning we're going to teach you depends, all the way down, on the assumption that statements are either true or false — no matter who knows what, and no matter who agrees with whom.
+**Why this matters for what comes later.** This isn't a philosophical sidebar. It's load-bearing structure for everything in the rest of the book. Statements are the building blocks of arguments and the assumption moving forward is that the elements within the arguments are <em>all</em> statements. So, the apparatus we build out from here will require we start with this assumption about the truth and falsity of statements. The reasoning we're going to teach you depends, all the way down, on the assumption that statements are either true or false — no matter who knows what, and no matter who agrees with whom.
 
 ### The fact-vs-opinion taxonomy doesn't help
 
-Many of you were taught somewhere along the way to sort sentences into two bins: *facts* (which are true and provable) and *opinions* (which are subjective, debatable, and somehow not really claims about how things are). That taxonomy is not useful for logic. It is, in fact, actively in the way. This subsection is about why.
+Many of you were taught somewhere along the way to sort sentences into two bins: *facts* (which are true and provable) and *opinions* (which are subjective, debatable, and somehow not really claims about how things are). That taxonomy is not useful for most purposes and especially not useful for logic. It is, in fact, actively in the way. This subsection is about why.
 
 Try a quick test on the distinction. Can there be false facts?
 
@@ -92,13 +92,15 @@ Most people, asked cold, will say no. *Fact* in ordinary speech already means "t
 
 There's a second problem. Even sentences that everyone agrees with become *opinions* the moment somebody asserts them. If I say *"two plus two equals four,"* that's my belief — my opinion about how arithmetic works. It is also a fact. The same sentence is in both categories at once, depending on how you frame it. The categories don't pick out two different kinds of sentences; they collapse into each other on contact.
 
-A third problem. People sometimes use *opinion* in a looser sense — meaning something like *"a claim that hasn't been settled."* On that usage, *opinion* names not a kind of sentence but a feature of how the conversation is going. That doesn't help us either. From the perfectly settled premises *"2 + 5 = 7"* and *"3 + 4 = 7"* you can build the argument *"therefore (2 + 5) = (3 + 4)."* It's a boring argument, but unmistakably an argument. Settled premises do not make a piece of reasoning stop being reasoning. And we already saw above that *unsettled* sentences — *God exists*, *slavery is wrong*, and the rest — are still statements. Settledness and statementhood have nothing to do with each other.
+A third problem. People sometimes use *opinion* in a looser sense — meaning something like *"a claim that hasn't been settled."* On that usage, *opinion* names not a kind of sentence but a feature of how the conversation is going. That doesn't help us either. You can build an argument for the claim *"therefore (2 + 5) = (3 + 4)"* from the perfectly settled premises *"2 + 5 = 7"* and *"3 + 4 = 7."* It's a boring argument, but unmistakably an argument. Settled premises do not make a piece of reasoning stop being reasoning. Similarly, we can make an argument from quite opinionated claims: *If there's no God, then life would be meaningless. But, life is not meaningless.* And, *therefore, God must exist.* That the premises here are unsettled does not undermine that there is reasoning going on of a particular sort. 
 
-So here is the replacement we want.
+So here's how we'll be thinking of this:
 
-> The criterion for whether a sentence is a statement is not whether it is a "fact" or an "opinion." It is whether the sentence is assertoric — whether it says that something is the case. If yes, it is a statement; it has a truth value; logic can operate on it. If no, it is some other kind of speech, and logic operates on it only indirectly, if at all.
+> The criterion for whether a sentence is a statement is not whether it is a fact or an opinion. It is whether the sentence is assertoric — whether it says that something is the case. If yes, it is a statement; it has a truth value; logic can operate on it. If no, it is some other kind of speech, and logic operates on it only indirectly, if at all.
 
-And, looking ahead one section, a related replacement: the criterion for whether something is an *argument* is also not whether the statements involved are facts or opinions. It is purely structural: some statements offered in support of another. We'll get to the details of that structure in §1.3.
+And, looking ahead one section: 
+
+>the criterion for whether something is an *argument* is also not whether the statements involved are facts or opinions. It is purely structural: some statement(s) offered in support of another. We'll begin to get to the details of that structure in §1.3.
 
 ### Where we're headed
 
