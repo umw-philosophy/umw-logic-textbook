@@ -366,9 +366,350 @@
 
   </section>
 
+  <section xml:id="sec-statements">
+    <title>Statements</title>
+
+    <introduction>
+      <p>
+        We can't talk carefully about arguments without being clear about
+        what they are built out of. An argument is a structure — one or
+        more statements offered in support of another statement — and
+        every piece of that structure is a particular kind of sentence.
+        Before we can do any actual logic, we need to be clear about what
+        statements are and, just as importantly, what they are not.
+      </p>
+    </introduction>
+
+    <paragraphs xml:id="paragraphs-what-is-statement">
+      <title>What a statement is</title>
+      <p>
+        A statement is an <term>assertoric</term> sentence — a sentence
+        that says something is the case. The word <em>assertoric</em>
+        comes from <em>assert</em>; an assertoric sentence is one that
+        makes a claim about how things are. Every statement is either
+        true or false.
+      </p>
+      <p>
+        That definition is short, and we'll spend the rest of this
+        section unpacking what it does and does not mean. But it is
+        worth saying directly first.
+      </p>
+      <definition xml:id="def-statement">
+        <statement>
+          <p>
+            A <term>statement</term> is an assertoric sentence — a
+            sentence that says something is the case. Every statement
+            is either true or false.
+          </p>
+        </statement>
+      </definition>
+      <p>
+        Mapping back to the catalog from <xref ref="paragraphs-catalog"/>:
+        only sentences in the <em>stating</em> category produce
+        assertions. The other categories don't. Questions don't make
+        claims about how things are; commands don't either; expressions
+        and greetings and performatives are doing other work. None of
+        those produce sentences that are true or false.
+      </p>
+      <p>
+        A few examples of statements:
+      </p>
+      <ul>
+        <li><p><q>The library closes at nine.</q></p></li>
+        <li><p><q>Snow is white.</q></p></li>
+        <li><p><q>Carthage was destroyed in 146 BCE.</q></p></li>
+        <li><p><q>Two plus two equals four.</q></p></li>
+        <li><p><q>Data centers consume a great deal of electricity.</q></p></li>
+      </ul>
+      <p>
+        Each of these sentences claims that something is the case. Each
+        is true or false. Most of them are also things almost nobody
+        would push back on, and that's deliberate — we're starting with
+        the easy cases.
+      </p>
+      <p>
+        A few examples of sentences that are <em>not</em> statements:
+      </p>
+      <ul>
+        <li><p><q>What time is it?</q> (a question)</p></li>
+        <li><p><q>Close the door.</q> (a command)</p></li>
+        <li><p><q>Ouch.</q> (an expression)</p></li>
+        <li><p><q>Good morning.</q> (a greeting)</p></li>
+        <li><p><q>I now pronounce you married.</q> (a performative)</p></li>
+      </ul>
+      <p>
+        None of these are statements, because none of them say that
+        something is the case. None of them is true or false. They are
+        doing other things with language, and those other things are
+        valuable, but they aren't what arguments are built out of.
+      </p>
+    </paragraphs>
+
+    <paragraphs xml:id="paragraphs-harder-cases">
+      <title>What about the harder cases?</title>
+      <p>
+        So far, so good. The examples above were chosen to be easy:
+        nobody is going to fight you about whether the library closes
+        at nine. But you may have already started to notice that real
+        life isn't always like that. Sentences like <q>there is
+        intelligent life somewhere else in the universe,</q> <q>slavery
+        is wrong,</q> <q>there were exactly 27,891 people living in
+        Fredericksburg in 1856,</q> and <q>the one-millionth digit of
+        <m>\pi</m> is 7</q> all <em>seem</em> to be saying that
+        something is the case. By the definition above, they should
+        all be statements. But they don't feel like the library
+        example. Some of them are deeply contested. Others involve
+        facts nobody alive knows or can easily find out.
+      </p>
+      <p>
+        Are they still statements?
+      </p>
+      <p>
+        The short answer is yes. The longer answer requires getting
+        clear on what is actually being asked. To handle the harder
+        cases — the contested ones, the ones we can't easily, if at
+        all, verify — we need to separate three things that often get
+        smushed together: what is the case, what we <em>know</em>
+        about what is the case, and what we <em>agree about</em> about
+        what is the case. Once those three are pulled apart, the
+        harder cases are no harder to classify than the library
+        example.
+      </p>
+    </paragraphs>
+
+    <paragraphs xml:id="paragraphs-truth-knowledge-consensus">
+      <title>Truth, knowledge, and consensus are different things</title>
+      <p>
+        What is the case is one thing. Whether anyone knows what is the
+        case is another thing. Whether everyone agrees about what is
+        the case is yet a third. These three are easy to run together
+        in everyday speech, but they are genuinely separate, and
+        statementhood depends only on the first.
+      </p>
+      <p>
+        Consider a few examples in turn.
+      </p>
+      <p>
+        <alert>Things that are true or false even if we don't know which.</alert>
+      </p>
+      <p>
+        There were exactly 27,891 people living in Fredericksburg on
+        January 26th, 1856. Nobody alive knows whether that's true.
+        The historical record isn't fine-grained enough to settle it.
+        The sentence is still either true or false. The population of
+        Fredericksburg, VA on January 26th, 1856 is a fact about the
+        world; the sentence asserts that the number of people living
+        here on that date was 27,891; the sentence is true if that was
+        the number and false if it wasn't.
+      </p>
+      <p>
+        There is intelligent life elsewhere in the universe. We don't
+        know. We may never know. The sentence is still either true or
+        false right now, today, regardless of what humans manage to
+        find out in the next century or the next ten thousand years.
+      </p>
+      <p>
+        The one-millionth digit of <m>\pi</m> is 7. Almost nobody has
+        computed this. (For what it's worth, it's possible to look up;
+        I haven't.) The sentence has a definite truth value at this
+        moment, even for those of us who haven't checked.
+      </p>
+      <p>
+        Caesar walked under a particular fig tree on the Ides of March,
+        44 BCE. The world has not preserved that information for us.
+        We can't recover it. The sentence is still either true or
+        false; the world either was or wasn't arranged that way at
+        that moment even though we don't know if it was or not.
+      </p>
+      <p>
+        In each of these cases, the sentence is a statement, and for
+        the same reason: there is a way the world was, or is, that the
+        sentence makes a claim about. Whether <em>we</em> have access
+        to that way the world was or is — whether anyone has computed
+        it, recovered it from history, observed it, or proven it — is
+        a different question. Statementhood depends on the first;
+        knowledge is a question on top of it.
+      </p>
+      <p>
+        <alert>Things that are true or false even if we don't agree about which it is.</alert>
+      </p>
+      <p>
+        Now consider a different kind of difficulty. <q>God exists.</q>
+        Humans have been arguing about this sentence for as long as
+        they've been arguing about anything. We have not settled it.
+        The sentence is still either true or false. Whichever it is,
+        the disagreement among humans does not change it.
+      </p>
+      <p>
+        The same goes for <q>slavery is wrong,</q> <q>capital punishment
+        is unjust,</q> <q>abortion is morally permissible in the first
+        trimester,</q> and many other claims people have strong,
+        divergent views about. These sentences make claims about how
+        things are — about what is moral, what is just, what the world
+        contains. Each is either true or false. Whether reasonable
+        people agree is a separate question. Whether anyone can settle
+        the disagreement is a third question. Neither is the same as
+        whether the sentence is a statement. It is.
+      </p>
+      <p>
+        This is the part that you might resist even if you buy the rest
+        of this discussion. <em>Surely</em> if smart people disagree
+        about a sentence, it must be that the sentence isn't really
+        true or false — it must be that there's no fact of the matter,
+        just a clash of preferences. That's not the assumption of
+        classical logic, and it's not the assumption of this book.
+        The assumption here is that disagreement and truth are
+        different things. People can disagree about what's true.
+        People can be wrong about what's true. None of that changes
+        whether there's a fact of the matter, neither does it change
+        that people are asserting something about the world when they
+        utter these sorts of sentences.
+      </p>
+      <p>
+        <alert>Why this matters for what comes later.</alert>
+        This isn't a philosophical sidebar. It's load-bearing structure
+        for everything in the rest of the book. Truth tables work
+        because every row has a definite truth value, regardless of
+        what we happen to know about that row. Validity is a
+        relationship between truth values. The reasoning we're going
+        to teach you depends, all the way down, on the assumption that
+        statements are either true or false — no matter who knows
+        what, and no matter who agrees with whom.
+      </p>
+    </paragraphs>
+
+    <paragraphs xml:id="paragraphs-fact-vs-opinion">
+      <title>The fact-vs-opinion taxonomy doesn't help</title>
+      <p>
+        Many of you were taught somewhere along the way to sort
+        sentences into two bins: <em>facts</em> (which are true and
+        provable) and <em>opinions</em> (which are subjective,
+        debatable, and somehow not really claims about how things
+        are). That taxonomy is not useful for logic. It is, in fact,
+        actively in the way. This subsection is about why.
+      </p>
+      <p>
+        Try a quick test on the distinction. Can there be false facts?
+      </p>
+      <p>
+        Most people, asked cold, will say no. <em>Fact</em> in
+        ordinary speech already means <q>true claim.</q> That's the
+        whole point of saying <q>it's a fact</q> instead of just
+        saying the thing. But notice what that concession costs the
+        taxonomy. If the word <em>fact</em> already builds truth into
+        itself, then <em>fact</em> cannot help us sort sentences
+        before we have figured out what is true. The fact-vs-opinion
+        taxonomy is asking us to grade the answers before we have
+        read the questions.
+      </p>
+      <p>
+        There's a second problem. Even sentences that everyone agrees
+        with become <em>opinions</em> the moment somebody asserts
+        them. If I say <q>two plus two equals four,</q> that's my
+        belief — my opinion about how arithmetic works. It is also a
+        fact. The same sentence is in both categories at once,
+        depending on how you frame it. The categories don't pick out
+        two different kinds of sentences; they collapse into each
+        other on contact.
+      </p>
+      <p>
+        A third problem. People sometimes use <em>opinion</em> in a
+        looser sense — meaning something like <q>a claim that hasn't
+        been settled.</q> On that usage, <em>opinion</em> names not a
+        kind of sentence but a feature of how the conversation is
+        going. That doesn't help us either. From the perfectly
+        settled premises <q>2 + 5 = 7</q> and <q>3 + 4 = 7</q> you
+        can build the argument <q>therefore (2 + 5) = (3 + 4).</q>
+        It's a boring argument, but unmistakably an argument. Settled
+        premises do not make a piece of reasoning stop being
+        reasoning. And we already saw above that <em>unsettled</em>
+        sentences — <q>God exists,</q> <q>slavery is wrong,</q> and
+        the rest — are still statements. Settledness and statementhood
+        have nothing to do with each other.
+      </p>
+      <p>
+        So here is the replacement we want.
+      </p>
+      <principle xml:id="principle-statement-criterion">
+        <statement>
+          <p>
+            The criterion for whether a sentence is a statement is not
+            whether it is a <q>fact</q> or an <q>opinion.</q> It is
+            whether the sentence is assertoric — whether it says that
+            something is the case. If yes, it is a statement; it has
+            a truth value; logic can operate on it. If no, it is some
+            other kind of speech, and logic operates on it only
+            indirectly, if at all.
+          </p>
+        </statement>
+      </principle>
+      <p>
+        And, looking ahead one section, a related replacement: the
+        criterion for whether something is an argument is also not
+        whether the statements involved are facts or opinions. It is
+        purely structural: some statements offered in support of
+        another. We'll get to the details of that structure in the
+        next section.
+      </p>
+    </paragraphs>
+
+    <paragraphs xml:id="paragraphs-where-headed-1-2">
+      <title>Where we're headed</title>
+      <p>
+        Statements are the building blocks. The next section is about
+        how those blocks fit together. What is a premise, technically
+        speaking? What is a conclusion? What does it mean for one
+        statement to support another? Once we have named those parts,
+        we can start asking the question that drives the rest of the
+        book: what makes one arrangement of statements a good argument
+        and another arrangement a bad one. <em>Is this any good?</em>
+      </p>
+    </paragraphs>
+
+    <exploration xml:id="field-1-2-1">
+      <title>Field Exercise: Sort the sentences</title>
+      <statement>
+        <p>
+          Below is a list of sentences. For each one, decide whether
+          it is a statement (an assertoric sentence — one that says
+          something is the case, and is therefore either true or
+          false) or not.
+        </p>
+        <p>
+          Use the definition from this section. Do not use the
+          fact-vs-opinion taxonomy. Some of these sentences will
+          tempt you to mis-sort them as <q>just opinions</q> or
+          <q>not really statements.</q> Resist that temptation.
+          Trust the definition.
+        </p>
+        <ol>
+          <li><p>The library closes at nine.</p></li>
+          <li><p>What time does the library close?</p></li>
+          <li><p>Slavery is wrong.</p></li>
+          <li><p>Pass the salt.</p></li>
+          <li><p>There were exactly 27,891 people living in Fredericksburg in 1856.</p></li>
+          <li><p>God exists.</p></li>
+          <li><p>Chocolate ice cream is better than vanilla.</p></li>
+          <li><p>Hey.</p></li>
+          <li><p>There is no such thing as a false fact.</p></li>
+          <li><p>The one-millionth digit of <m>\pi</m> is 7.</p></li>
+          <li><p>We need to expand the electrical grid to keep up with new data centers.</p></li>
+          <li><p>Ouch.</p></li>
+        </ol>
+        <p>
+          For at least three of the sentences you sorted as
+          statements, write a one-sentence explanation of why someone
+          might mistakenly think they are <em>not</em> statements.
+          We'll come back to this in the end-of-chapter writing
+          prompt.
+        </p>
+      </statement>
+    </exploration>
+
+  </section>
+
   <!--
-    Sections 1.2 onward will follow once drafted.
-    §1.2: Statements
+    Sections 1.3 onward will follow once drafted.
     §1.3: Premises and conclusions
     §1.4: Recognizing arguments in the wild
     (Plus: chapter summary, key terms, end-of-chapter exercises)
