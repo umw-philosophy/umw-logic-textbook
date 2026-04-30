@@ -707,9 +707,414 @@
 
   </section>
 
+  <section xml:id="sec-premises-conclusions">
+    <title>Premises and Conclusions</title>
+
+    <introduction>
+      <p>
+        In the previous section we said that arguments are built out of
+        statements. Now we name the structural roles those statements
+        play, and the relationship that makes a collection of statements
+        an argument rather than just a list.
+      </p>
+    </introduction>
+
+    <paragraphs xml:id="paragraphs-premise-conclusion-defs">
+      <title>What a premise is, what a conclusion is</title>
+      <p>
+        Every argument has two kinds of statement in it. There is the
+        statement being argued for — the claim the argument is
+        <em>for</em>. There are also the statements offered as reason
+        to accept that claim. The first is the <term>conclusion</term>.
+        The others are the <term>premises</term>.
+      </p>
+      <definition xml:id="def-premise-conclusion">
+        <statement>
+          <p>
+            A <term>premise</term> is a statement offered in support of
+            another statement.
+          </p>
+          <p>
+            A <term>conclusion</term> is the statement being supported.
+          </p>
+        </statement>
+      </definition>
+      <p>
+        A small example.
+      </p>
+      <example xml:id="ex-library-argument">
+        <title>The library is closed</title>
+        <statement>
+          <p>P1: The library closes at nine.</p>
+          <p>P2: It is now ten past nine.</p>
+          <p><m>\therefore</m> C: The library is closed.</p>
+        </statement>
+      </example>
+      <p>
+        The symbol <m>\therefore</m> is read <q>therefore.</q> We won't
+        use it constantly in prose, but you'll see it whenever an
+        argument is laid out cleanly, and it's the symbol the proof
+        checker we'll use later uses to mark the conclusion line.
+      </p>
+      <p>
+        Two things to notice. First, an argument can have one premise
+        or many. Most have several. Second, the conclusion is just
+        another statement — there is nothing about its grammar or
+        content that announces it as the conclusion. What makes it the
+        conclusion is the <em>role</em> it plays in the argument: it's
+        the claim the others are aiming at. The same sentence could be
+        a premise in one argument and a conclusion in another,
+        depending on what the arguer is trying to do.
+      </p>
+    </paragraphs>
+
+    <paragraphs xml:id="paragraphs-support-relation">
+      <title>The support relation: intent and actuality</title>
+      <p>
+        When we say premises <em>support</em> a conclusion, we are
+        saying two things at once, and it pays to keep them straight.
+      </p>
+      <p>
+        The first is about the <alert>intent</alert> of the arguer.
+        When somebody offers an argument, they are saying: <em>here are
+        reasons; you should believe the conclusion because of them</em>.
+        The premise/conclusion structure is built out of intent. If I
+        say <q>It is ten past nine, so the library is closed,</q> I am
+        claiming that the first sentence is reason to believe the
+        second. Whether anyone <em>should</em> be persuaded is a
+        different question.
+      </p>
+      <p>
+        The second is about whether the support actually
+        <alert>succeeds</alert>. The premises might genuinely give you
+        reason to believe the conclusion (a good argument), or they
+        might not (a bad argument). An argument can have its premises
+        and its conclusion in their proper places, follow the rules of
+        grammar, sound entirely persuasive — and still be a bad
+        argument because the premises don't actually support the
+        conclusion. A bad argument is still an argument. It's an
+        argument whose support fails.
+      </p>
+      <p>
+        This is the question we promised in <xref ref="sec-language"/>.
+        <em>Is this any good?</em> Once we have premises and a
+        conclusion in front of us, we can finally ask the question
+        with an object in mind. Then, we can start to draw out some
+        general properties from these specific arguments.
+      </p>
+    </paragraphs>
+
+    <paragraphs xml:id="paragraphs-indicator-words">
+      <title>Indicator words</title>
+      <p>
+        In real texts, premises and conclusions are frequently flagged
+        by short signal words. There's a small set of them that show
+        up over and over, and recognizing them is half the work of
+        recognizing arguments.
+      </p>
+      <p>
+        <alert>Conclusion indicators</alert> — words and phrases that
+        flag what comes next as a conclusion:
+      </p>
+      <ul>
+        <li><p><em>therefore</em></p></li>
+        <li><p><em>thus</em></p></li>
+        <li><p><em>hence</em></p></li>
+        <li><p><em>so</em> (when used inferentially)</p></li>
+        <li><p><em>consequently</em></p></li>
+        <li><p><em>it follows that</em></p></li>
+        <li><p><em>which means that</em></p></li>
+        <li><p><em>because</em></p></li>
+      </ul>
+      <p>
+        <alert>Premise indicators</alert> — words and phrases that
+        flag what comes next as a premise:
+      </p>
+      <ul>
+        <li><p><em>because</em></p></li>
+        <li><p><em>since</em></p></li>
+        <li><p><em>for</em> (when used inferentially)</p></li>
+        <li><p><em>given that</em></p></li>
+        <li><p><em>as</em></p></li>
+        <li><p><em>the reason being</em></p></li>
+      </ul>
+      <p>
+        A short example with both kinds of indicator:
+      </p>
+      <p>
+        <q><em>Since</em> the library closes at nine, <em>and since</em>
+        it is now ten past nine, the library is closed.</q>
+      </p>
+      <p>
+        Two premise indicators (both <em>since</em>) flag the two
+        premises. The unmarked sentence at the end is the conclusion.
+      </p>
+      <p>
+        A caveat worth taking seriously. Indicator words play other
+        roles or dual roles. <em>Because</em> often introduces a
+        premise, but it can also introduce a <em>causal explanation</em>
+        — a different kind of speech that can sound similar and which
+        we'll work on distinguishing in the next section.
+        <em>Because</em>, when it's used as a premise indicator, also
+        tells you what the conclusion is that's being supported by
+        that premise. For example, <q>You should support data center
+        construction, because they are the most efficient way to fund
+        public schools.</q> <em>Because</em> tells you both that
+        <q>they are the most efficient way to fund public schools</q>
+        is a premise and that <q>You should support data center
+        construction</q> is the conclusion. <em>So</em> can introduce
+        a conclusion (<q>It's late, so we should go home</q>) or it
+        can be filler (<q>So, anyway, the cat got out</q>) without
+        doing inferential work. Don't take an indicator as proof an
+        argument is happening. Take it as a strong hint, then read
+        carefully.
+      </p>
+      <p>
+        And one more case. Sometimes there are no indicator words at
+        all. A passage can have a perfectly clear argument without a
+        single <em>therefore</em> or <em>because</em>. You then have
+        to identify premise and conclusion by content and intent:
+        which sentence is the claim the writer is asking you to
+        accept, and which sentences are the reasons offered? That's
+        a skill that takes practice. We'll begin that practice in
+        the next section.
+      </p>
+    </paragraphs>
+
+    <paragraphs xml:id="paragraphs-standard-form">
+      <title>Standard form</title>
+      <p>
+        Once we've picked premises and conclusion out of a passage, we
+        lay them out cleanly. The convention we'll call
+        <term>standard form</term> in this book goes like this:
+      </p>
+      <ul>
+        <li><p>Each statement is on its own line.</p></li>
+        <li><p>Premises are labeled P1, P2, P3, <ellipsis/> in the order they appear.</p></li>
+        <li><p>The conclusion is labeled C.</p></li>
+      </ul>
+      <p>
+        When an argument has more than one conclusion (which happens
+        often in real texts — see the section below on sub-conclusions),
+        each conclusion gets a number (C1, C2, <ellipsis/>) and a
+        parenthetical note saying which premises and earlier
+        conclusions it follows from.
+      </p>
+      <p>
+        Two worked examples now, both about the same general topic.
+        They're worth pausing on, because together they make a point
+        we'll return to throughout the book.
+      </p>
+      <p>
+        Before we look at them, we need one piece of vocabulary that
+        both examples use. Conditional sentences — sentences of the
+        form <q>If [something], then [something else]</q> — have two
+        named parts. The part following <em>if</em> is called the
+        <term>antecedent</term>. The part following <em>then</em> is
+        called the <term>consequent</term>. (In real text the
+        <em>then</em> is often left implicit, but the structure is
+        the same: <q>If it rains, the streets are wet</q> is doing
+        the same work as <q>If it rains, then the streets are
+        wet.</q>) We'll work with conditionals in much more detail in
+        Part III; for now the labels are enough to follow the examples
+        below.
+      </p>
+      <example xml:id="ex-antecedent-consequent">
+        <title>Identifying antecedent and consequent</title>
+        <statement>
+          <p>
+            In each of the following conditional sentences, the
+            antecedent and consequent are labeled.
+          </p>
+          <ul>
+            <li>
+              <p>
+                <q>If it is raining, then the streets are wet.</q>
+                <mdash/> Antecedent: <q>it is raining.</q>
+                Consequent: <q>the streets are wet.</q>
+              </p>
+            </li>
+            <li>
+              <p>
+                <q>If there is no God, then life is meaningless.</q>
+                <mdash/> Antecedent: <q>there is no God.</q>
+                Consequent: <q>life is meaningless.</q>
+              </p>
+            </li>
+            <li>
+              <p>
+                <q>If there is evil in the world, then God does not exist.</q>
+                <mdash/> Antecedent: <q>there is evil in the world.</q>
+                Consequent: <q>God does not exist.</q>
+              </p>
+            </li>
+          </ul>
+        </statement>
+      </example>
+      <p>
+        The first is the argument we met at the end of
+        <xref ref="sec-statements"/>:
+      </p>
+      <example xml:id="ex-modus-tollens-god">
+        <title>An argument for God's existence</title>
+        <statement>
+          <p>P1: If there is no God, then life is meaningless.</p>
+          <p>P2: Life is not meaningless.</p>
+          <p><m>\therefore</m> C: God exists.</p>
+        </statement>
+      </example>
+      <p>
+        This argument has the structure logicians call
+        <term>modus tollens</term>: from a conditional and the denial
+        of its consequent, we conclude the denial of its antecedent.
+        We'll meet this and other named argument forms in detail in
+        Part III.
+      </p>
+      <p>
+        The second argument draws the <em>opposite</em> conclusion
+        from the same general territory:
+      </p>
+      <example xml:id="ex-modus-ponens-evil">
+        <title>An argument against God's existence</title>
+        <statement>
+          <p>P1: If there is evil in the world, then God does not exist.</p>
+          <p>P2: There is evil in the world.</p>
+          <p><m>\therefore</m> C: God does not exist.</p>
+        </statement>
+      </example>
+      <p>
+        This argument has the structure called
+        <term>modus ponens</term>: from a conditional and the
+        affirmation of its antecedent, we conclude the affirmation of
+        its consequent. Like modus tollens, we'll come back to it.
+      </p>
+      <p>
+        These two arguments make opposite claims. They take opposite
+        sides of one of the deepest, longest-running disputes in
+        human thought. Yet structurally, both are perfectly fine
+        argument <em>forms</em> — meaning that <em>if</em> their
+        premises were true, their conclusions would have to be true
+        too. The disagreement between them isn't a disagreement about
+        logic. It's a disagreement about whether the premises hold:
+        whether life is meaningful, whether evil exists in a sense
+        that's incompatible with God. Settling those is hard work,
+        much harder than checking the structure. But notice what the
+        structural framing does for us: it makes it perfectly clear
+        <em>where</em> the disagreement lies. The arguer who accepts
+        the first argument and rejects the second is committed to
+        defending <q>life is not meaningless</q> and challenging
+        <q>if evil exists, God does not.</q> That's a real position
+        to hold; it's also one a critic can engage with by attacking
+        exactly those premises.
+      </p>
+      <p>
+        Structure first. Then we can ask what's good about an
+        argument and what isn't, and have a productive disagreement
+        when we disagree.
+      </p>
+    </paragraphs>
+
+    <paragraphs xml:id="paragraphs-subconclusions-seed">
+      <title>Many arguments have sub-conclusions</title>
+      <p>
+        Most real-world arguments are messier than P1, P2,
+        <m>\therefore</m> C. Often a passage argues for an
+        intermediate claim and then uses that claim as a premise for
+        a further conclusion. When you see an argument laid out with
+        C1, C2, and parenthetical notes like <em>(from P1 and P2)</em>
+        or <em>(from C1 and P3)</em>, that's what's going on.
+        Conclusions can themselves serve as premises for later
+        conclusions, and complex arguments are stacks of inferences.
+        We'll work with these explicitly in the next section and
+        later. For now: don't be surprised when a real argument has
+        more than one conclusion in it.
+      </p>
+    </paragraphs>
+
+    <paragraphs xml:id="paragraphs-where-headed-1-3">
+      <title>Where we're headed</title>
+      <p>
+        We now have the parts (statements), the roles those parts
+        play (premises, conclusions), the relationship between them
+        (support, intended and actual), and the standard layout
+        (standard form, with sub-conclusions where the argument is
+        layered). What we don't yet have is much practice extracting
+        all that from real text — text where the indicator words
+        might be missing or misleading, where multiple things are
+        happening at once, and where a passage that <em>looks</em>
+        like an argument is sometimes really an <em>explanation</em>
+        — a different kind of speech that uses the same shape.
+        That's the next section. The eavesdropping field exercise
+        from <xref ref="sec-language"/> is about to start paying off.
+      </p>
+    </paragraphs>
+
+    <exploration xml:id="field-1-3-1">
+      <title>Field Exercise: Lay out the arguments in standard form</title>
+      <statement>
+        <p>
+          For each passage below, identify the premises and the
+          conclusion. Then write the argument in standard form (P1,
+          P2, <ellipsis/> <m>\therefore</m> C). If a passage has
+          indicator words, note which ones helped you. If it doesn't,
+          write a one-sentence explanation of how you decided which
+          statement was the conclusion.
+        </p>
+        <ol>
+          <li>
+            <p>
+              <q>Since data centers are coming online faster than we
+              can power them, and since rolling blackouts are
+              unacceptable in a modern economy, we need to expand the
+              electrical grid.</q>
+            </p>
+          </li>
+          <li>
+            <p>
+              <q>Either we stop subsidizing oil or we accept that our
+              climate goals are political theater. We are not going
+              to accept that our climate goals are political theater.
+              Therefore, we should stop subsidizing oil.</q>
+            </p>
+          </li>
+          <li>
+            <p>
+              <q>I shouldn't take the elective in graphic design. The
+              course meets at eight in the morning. I have soccer
+              practice that runs late on Mondays.</q>
+            </p>
+          </li>
+          <li>
+            <p>
+              <q>If the death penalty deterred crime, we would expect
+              murder rates to be lower in states that have it than in
+              states that don't. Murder rates are not lower in those
+              states. So the death penalty does not deter crime.</q>
+            </p>
+          </li>
+          <li>
+            <p>
+              <q>We can't simply redesign assignments to prevent lazy
+              AI use. If you ask students to use AI but critique what
+              it spits out, they can generate the critique with AI.
+              If you give them AI tutors trained only to guide them,
+              they can still use tools that just supply the answers.
+              And detectors are too prone to false accusations of
+              cheating and too poor at catching lightly edited output
+              for professors to rely on them.</q>
+              (From Clay Shirky, <q>Students Hate Them. Universities
+              Need Them. The Only Real Solution to the A.I. Cheating
+              Crisis,</q> <em>The New York Times</em>, August 2025.)
+            </p>
+          </li>
+        </ol>
+      </statement>
+    </exploration>
+
+  </section>
+
   <!--
-    Sections 1.3 onward will follow once drafted.
-    §1.3: Premises and conclusions
+    Sections 1.4 onward will follow once drafted.
     §1.4: Recognizing arguments in the wild
     (Plus: chapter summary, key terms, end-of-chapter exercises)
   -->
