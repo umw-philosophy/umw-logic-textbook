@@ -283,14 +283,32 @@
     }
 
     .floating-target {
+      cursor: pointer;
+      pointer-events: all;
+    }
+
+    .x-slot-hit {
       fill: transparent;
       stroke: transparent;
-      stroke-width: 16;
-      cursor: pointer;
+      stroke-width: 24;
+      pointer-events: all;
+    }
+
+    .x-slot-guide {
+      fill: none;
+      stroke: var(--blue-mid);
+      stroke-width: 2;
+      stroke-dasharray: 4 3;
+      opacity: .8;
       pointer-events: none;
     }
 
-    .three-key-target {
+    .x-slot-ring {
+      fill: white;
+      fill-opacity: .7;
+      stroke: var(--blue-mid);
+      stroke-width: 1.6;
+      stroke-dasharray: 4 3;
       pointer-events: none;
     }
 
@@ -306,10 +324,11 @@
     }
 
     .shade-mark {
-      fill: url(#shadePattern);
-      stroke: #6f7785;
-      stroke-width: 1;
-      opacity: .9;
+      fill: #cbd5e1;
+      fill-opacity: .82;
+      stroke: #334155;
+      stroke-width: 1.4;
+      opacity: 1;
       pointer-events: none;
     }
 
@@ -657,22 +676,22 @@
     ];
 
     const FLOATING_TARGETS = [
-      { id: 'S|SP', cx: 156, cy: 248, angle: 90 },
-      { id: 'P|SP', cx: 244, cy: 248, angle: 90 },
-      { id: 'SM|SPM', cx: 170, cy: 175, angle: 58 },
-      { id: 'PM|SPM', cx: 230, cy: 175, angle: -58 },
-      { id: 'M|SM', cx: 170, cy: 122, angle: 28 },
-      { id: 'M|PM', cx: 230, cy: 122, angle: -28 },
+      { id: 'S|SP', cx: 156, cy: 248, angle: 90, kind: 'line' },
+      { id: 'P|SP', cx: 244, cy: 248, angle: 90, kind: 'line' },
+      { id: 'SM|SPM', cx: 170, cy: 188, angle: 58, kind: 'line' },
+      { id: 'PM|SPM', cx: 230, cy: 188, angle: -58, kind: 'line' },
+      { id: 'M|SM', cx: 170, cy: 140, angle: 28, kind: 'line' },
+      { id: 'M|PM', cx: 230, cy: 140, angle: -28, kind: 'line' },
     ];
 
     const THREE_X_TARGETS = [
-      { id: 'M', cx: 200, cy: 94 },
-      { id: 'SM', cx: 154, cy: 165 },
-      { id: 'PM', cx: 246, cy: 165 },
-      { id: 'SPM', cx: 200, cy: 184 },
-      { id: 'S', cx: 112, cy: 246 },
-      { id: 'SP', cx: 200, cy: 248 },
-      { id: 'P', cx: 288, cy: 246 },
+      { id: 'M', cx: 200, cy: 94, kind: 'area' },
+      { id: 'SM', cx: 154, cy: 165, kind: 'area' },
+      { id: 'PM', cx: 246, cy: 165, kind: 'area' },
+      { id: 'SPM', cx: 200, cy: 184, kind: 'area' },
+      { id: 'S', cx: 112, cy: 246, kind: 'area' },
+      { id: 'SP', cx: 200, cy: 248, kind: 'area' },
+      { id: 'P', cx: 288, cy: 246, kind: 'area' },
       ...FLOATING_TARGETS,
     ];
 
@@ -717,6 +736,7 @@
       $('tool-shade').setAttribute('aria-pressed', tool === MARK.SHADE ? 'true' : 'false');
       $('tool-x').setAttribute('aria-pressed', tool === MARK.X ? 'true' : 'false');
       $('tool-erase').setAttribute('aria-pressed', tool === MARK.ERASE ? 'true' : 'false');
+      renderAll();
     }
 
     function sentenceText(form, subject, predicate) {
@@ -1010,6 +1030,14 @@
       }
     }
 
+    function showThreeXSlots() {
+      return app.mode === MODE.THREE && (app.tool === MARK.X || app.tool === MARK.ERASE);
+    }
+
+    function showThreeRegionControls() {
+      return app.mode === MODE.THREE && (app.tool === MARK.SHADE || app.tool === MARK.ERASE);
+    }
+
     function projectToConclusion(solution) {
       const map = {
         S: 'S',
@@ -1150,17 +1178,24 @@
         <text class="term-label" x="98" y="326">${esc(terms.S)} (S/minor)</text>
         <text class="term-label" x="302" y="326">${esc(terms.P)} (P/major)</text>
         ${boundedRegions.map(r => `<text class="region-label" x="${r.cx}" y="${r.cy - 18}">${r.id}</text>`).join('')}
+        ${showThreeXSlots() ? THREE_X_TARGETS.map(target => floatingTargetControl(target)).join('') : ''}
         ${THREE_X_TARGETS.map(target => marks[target.id] === MARK.X ? xMark(target.cx, target.cy) : '').join('')}
-        ${boundedRegions.map(r => regionControl(hit[r.id], DIAGRAM.THREE, r)).join('')}
-        ${THREE_X_TARGETS.map(target => floatingTargetControl(target)).join('')}
+        ${showThreeRegionControls() ? boundedRegions.map(r => regionControl(hit[r.id], DIAGRAM.THREE, r)).join('') : ''}
       </svg>`;
     }
 
     function floatingTargetControl(target) {
       const state = app.marks[DIAGRAM.THREE][target.id] || MARK.BLANK;
       const label = `${labelForRegion(THREE_REGIONS, target.id)}, currently ${state}. Use selected tool: ${app.tool}.`;
+      if (target.kind === 'line') {
+        return `<g class="floating-target" role="button" tabindex="0" data-diagram="${DIAGRAM.THREE}" data-region="${target.id}" aria-label="${esc(label)}">
+          <line class="x-slot-hit" x1="${target.cx - 15}" y1="${target.cy}" x2="${target.cx + 15}" y2="${target.cy}" transform="rotate(${target.angle || 0} ${target.cx} ${target.cy})"></line>
+          <line class="x-slot-guide" x1="${target.cx - 13}" y1="${target.cy}" x2="${target.cx + 13}" y2="${target.cy}" transform="rotate(${target.angle || 0} ${target.cx} ${target.cy})"></line>
+        </g>`;
+      }
       return `<g class="floating-target" role="button" tabindex="0" data-diagram="${DIAGRAM.THREE}" data-region="${target.id}" aria-label="${esc(label)}">
-        <line x1="${target.cx - 12}" y1="${target.cy}" x2="${target.cx + 12}" y2="${target.cy}" transform="rotate(${target.angle || 0} ${target.cx} ${target.cy})"></line>
+        <circle class="x-slot-hit" cx="${target.cx}" cy="${target.cy}" r="15"></circle>
+        <circle class="x-slot-ring" cx="${target.cx}" cy="${target.cy}" r="11"></circle>
       </g>`;
     }
 
