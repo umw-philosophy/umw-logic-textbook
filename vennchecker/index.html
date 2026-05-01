@@ -966,6 +966,45 @@
       </defs>`;
     }
 
+    function makeThreeDefs() {
+      return `<defs>
+        <pattern id="shadePattern" width="8" height="8" patternUnits="userSpaceOnUse" patternTransform="rotate(45)">
+          <rect width="8" height="8" fill="#d9dde5"></rect>
+          <line x1="0" y1="0" x2="0" y2="8" stroke="#667085" stroke-width="3"></line>
+        </pattern>
+        <clipPath id="clip-three-s"><circle cx="150" cy="230" r="82"></circle></clipPath>
+        <clipPath id="clip-three-p"><circle cx="250" cy="230" r="82"></circle></clipPath>
+        <clipPath id="clip-three-m"><circle cx="200" cy="130" r="82"></circle></clipPath>
+        <mask id="mask-three-not-s" maskUnits="userSpaceOnUse">
+          <rect x="0" y="0" width="400" height="350" fill="white"></rect>
+          <circle cx="150" cy="230" r="82" fill="black"></circle>
+        </mask>
+        <mask id="mask-three-not-p" maskUnits="userSpaceOnUse">
+          <rect x="0" y="0" width="400" height="350" fill="white"></rect>
+          <circle cx="250" cy="230" r="82" fill="black"></circle>
+        </mask>
+        <mask id="mask-three-not-m" maskUnits="userSpaceOnUse">
+          <rect x="0" y="0" width="400" height="350" fill="white"></rect>
+          <circle cx="200" cy="130" r="82" fill="black"></circle>
+        </mask>
+        <mask id="mask-three-not-s-not-p" maskUnits="userSpaceOnUse">
+          <rect x="0" y="0" width="400" height="350" fill="white"></rect>
+          <circle cx="150" cy="230" r="82" fill="black"></circle>
+          <circle cx="250" cy="230" r="82" fill="black"></circle>
+        </mask>
+        <mask id="mask-three-not-s-not-m" maskUnits="userSpaceOnUse">
+          <rect x="0" y="0" width="400" height="350" fill="white"></rect>
+          <circle cx="150" cy="230" r="82" fill="black"></circle>
+          <circle cx="200" cy="130" r="82" fill="black"></circle>
+        </mask>
+        <mask id="mask-three-not-p-not-m" maskUnits="userSpaceOnUse">
+          <rect x="0" y="0" width="400" height="350" fill="white"></rect>
+          <circle cx="250" cy="230" r="82" fill="black"></circle>
+          <circle cx="200" cy="130" r="82" fill="black"></circle>
+        </mask>
+      </defs>`;
+    }
+
     function renderTwoSvg(container, marks, terms, interactive, diagramId) {
       const regions = TWO_REGIONS;
       const hit = {
@@ -1006,15 +1045,23 @@
         PM: '<circle cx="250" cy="157" r="32">',
         M: '<circle cx="200" cy="88" r="36">',
       };
-      const shade = Object.fromEntries(regions.map(r => [r.id, `<circle class="shade-mark" cx="${r.cx}" cy="${r.cy}" r="${r.id === 'O' ? 24 : 30}"></circle>`]));
-      shade.O = '<path class="shade-mark" d="M 12 12 H388 V58 H12 Z M12 292 H388 V338 H12 Z M12 58 H52 V292 H12 Z M348 58 H388 V292 H348 Z"></path>';
+      const shade = {
+        S: '<circle class="shade-mark" cx="150" cy="230" r="82" mask="url(#mask-three-not-p-not-m)"></circle>',
+        SP: '<g clip-path="url(#clip-three-p)" mask="url(#mask-three-not-m)"><circle class="shade-mark" cx="150" cy="230" r="82"></circle></g>',
+        P: '<circle class="shade-mark" cx="250" cy="230" r="82" mask="url(#mask-three-not-s-not-m)"></circle>',
+        SM: '<g clip-path="url(#clip-three-m)" mask="url(#mask-three-not-p)"><circle class="shade-mark" cx="150" cy="230" r="82"></circle></g>',
+        SPM: '<g clip-path="url(#clip-three-p)"><g clip-path="url(#clip-three-m)"><circle class="shade-mark" cx="150" cy="230" r="82"></circle></g></g>',
+        PM: '<g clip-path="url(#clip-three-m)" mask="url(#mask-three-not-s)"><circle class="shade-mark" cx="250" cy="230" r="82"></circle></g>',
+        M: '<circle class="shade-mark" cx="200" cy="130" r="82" mask="url(#mask-three-not-s-not-p)"></circle>',
+        O: '<path class="shade-mark" d="M 12 12 H388 V58 H12 Z M12 292 H388 V338 H12 Z M12 58 H52 V292 H12 Z M348 58 H388 V292 H348 Z"></path>',
+      };
       container.innerHTML = `<svg viewBox="0 0 400 350" role="img" aria-label="Interactive three-circle Venn diagram">
-        ${makePattern()}
+        ${makeThreeDefs()}
         <rect class="universe" x="12" y="12" width="376" height="326"></rect>
+        ${regions.map(r => marks[r.id] === MARK.SHADE ? shade[r.id] : '').join('')}
         <circle class="circle" cx="200" cy="130" r="82"></circle>
         <circle class="circle" cx="150" cy="230" r="82"></circle>
         <circle class="circle" cx="250" cy="230" r="82"></circle>
-        ${regions.map(r => marks[r.id] === MARK.SHADE ? shade[r.id] : '').join('')}
         <text class="term-label" x="200" y="40">${esc(terms.M)} (M)</text>
         <text class="term-label" x="98" y="326">${esc(terms.S)} (S/minor)</text>
         <text class="term-label" x="302" y="326">${esc(terms.P)} (P/major)</text>
