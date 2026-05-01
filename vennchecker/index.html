@@ -261,6 +261,13 @@
       stroke-width: 2.2;
     }
 
+    .circle-outline {
+      fill: none;
+      stroke: var(--blue);
+      stroke-width: 2.2;
+      pointer-events: none;
+    }
+
     .region-hit {
       fill: transparent;
       stroke: transparent;
@@ -280,7 +287,11 @@
       stroke: transparent;
       stroke-width: 16;
       cursor: pointer;
-      pointer-events: all;
+      pointer-events: none;
+    }
+
+    .three-key-target {
+      pointer-events: none;
     }
 
     .floating-target:focus {
@@ -654,6 +665,17 @@
       { id: 'M|PM', cx: 230, cy: 122, angle: -28 },
     ];
 
+    const THREE_X_TARGETS = [
+      { id: 'M', cx: 200, cy: 94 },
+      { id: 'SM', cx: 154, cy: 165 },
+      { id: 'PM', cx: 246, cy: 165 },
+      { id: 'SPM', cx: 200, cy: 184 },
+      { id: 'S', cx: 112, cy: 246 },
+      { id: 'SP', cx: 200, cy: 248 },
+      { id: 'P', cx: 288, cy: 246 },
+      ...FLOATING_TARGETS,
+    ];
+
     const app = {
       mode: MODE.TWO,
       tool: MARK.SHADE,
@@ -929,6 +951,65 @@
       return app.showConclusionModel ? conclusionExpectedMarks() : {};
     }
 
+    function distance(x1, y1, x2, y2) {
+      return Math.hypot(x1 - x2, y1 - y2);
+    }
+
+    function insideCircle(x, y, cx, cy, r) {
+      return distance(x, y, cx, cy) <= r;
+    }
+
+    function threeRegionAt(x, y) {
+      const inS = insideCircle(x, y, 150, 230, 82);
+      const inP = insideCircle(x, y, 250, 230, 82);
+      const inM = insideCircle(x, y, 200, 130, 82);
+      if (!inS && !inP && !inM) return 'O';
+      if (inS && inP && inM) return 'SPM';
+      if (inS && inP) return 'SP';
+      if (inS && inM) return 'SM';
+      if (inP && inM) return 'PM';
+      if (inS) return 'S';
+      if (inP) return 'P';
+      return 'M';
+    }
+
+    function nearestThreeXTarget(x, y) {
+      let best = null;
+      for (const target of THREE_X_TARGETS) {
+        const d = distance(x, y, target.cx, target.cy);
+        if (!best || d < best.distance) best = { ...target, distance: d };
+      }
+      return best && best.distance <= 28 ? best : null;
+    }
+
+    function svgPointFromEvent(svg, event) {
+      const point = svg.createSVGPoint();
+      point.x = event.clientX;
+      point.y = event.clientY;
+      return point.matrixTransform(svg.getScreenCTM().inverse());
+    }
+
+    function handleThreeSvgClick(event) {
+      const point = svgPointFromEvent(event.currentTarget, event);
+      if (app.tool === MARK.SHADE) {
+        const regionId = threeRegionAt(point.x, point.y);
+        if (regionId === 'O') {
+          setFeedback('Click inside one of the circles to shade a syllogism region.', 'note');
+          return;
+        }
+        markRegion(DIAGRAM.THREE, regionId);
+        return;
+      }
+      if (app.tool === MARK.X || app.tool === MARK.ERASE) {
+        const target = nearestThreeXTarget(point.x, point.y);
+        if (!target) {
+          setFeedback('Click closer to one of the standard X positions.', 'note');
+          return;
+        }
+        markRegion(DIAGRAM.THREE, target.id);
+      }
+    }
+
     function projectToConclusion(solution) {
       const map = {
         S: 'S',
@@ -960,8 +1041,8 @@
     function makePattern() {
       return `<defs>
         <pattern id="shadePattern" width="8" height="8" patternUnits="userSpaceOnUse" patternTransform="rotate(45)">
-          <rect width="8" height="8" fill="#d9dde5"></rect>
-          <line x1="0" y1="0" x2="0" y2="8" stroke="#667085" stroke-width="3"></line>
+        <rect width="8" height="8" fill="#cbd5e1"></rect>
+        <line x1="0" y1="0" x2="0" y2="8" stroke="#475569" stroke-width="4"></line>
         </pattern>
       </defs>`;
     }
@@ -969,35 +1050,35 @@
     function makeThreeDefs() {
       return `<defs>
         <pattern id="shadePattern" width="8" height="8" patternUnits="userSpaceOnUse" patternTransform="rotate(45)">
-          <rect width="8" height="8" fill="#d9dde5"></rect>
-          <line x1="0" y1="0" x2="0" y2="8" stroke="#667085" stroke-width="3"></line>
+          <rect width="8" height="8" fill="#cbd5e1"></rect>
+          <line x1="0" y1="0" x2="0" y2="8" stroke="#475569" stroke-width="4"></line>
         </pattern>
         <clipPath id="clip-three-s"><circle cx="150" cy="230" r="82"></circle></clipPath>
         <clipPath id="clip-three-p"><circle cx="250" cy="230" r="82"></circle></clipPath>
         <clipPath id="clip-three-m"><circle cx="200" cy="130" r="82"></circle></clipPath>
-        <mask id="mask-three-not-s" maskUnits="userSpaceOnUse">
+        <mask id="mask-three-not-s" x="0" y="0" width="400" height="350" maskUnits="userSpaceOnUse">
           <rect x="0" y="0" width="400" height="350" fill="white"></rect>
           <circle cx="150" cy="230" r="82" fill="black"></circle>
         </mask>
-        <mask id="mask-three-not-p" maskUnits="userSpaceOnUse">
+        <mask id="mask-three-not-p" x="0" y="0" width="400" height="350" maskUnits="userSpaceOnUse">
           <rect x="0" y="0" width="400" height="350" fill="white"></rect>
           <circle cx="250" cy="230" r="82" fill="black"></circle>
         </mask>
-        <mask id="mask-three-not-m" maskUnits="userSpaceOnUse">
+        <mask id="mask-three-not-m" x="0" y="0" width="400" height="350" maskUnits="userSpaceOnUse">
           <rect x="0" y="0" width="400" height="350" fill="white"></rect>
           <circle cx="200" cy="130" r="82" fill="black"></circle>
         </mask>
-        <mask id="mask-three-not-s-not-p" maskUnits="userSpaceOnUse">
+        <mask id="mask-three-not-s-not-p" x="0" y="0" width="400" height="350" maskUnits="userSpaceOnUse">
           <rect x="0" y="0" width="400" height="350" fill="white"></rect>
           <circle cx="150" cy="230" r="82" fill="black"></circle>
           <circle cx="250" cy="230" r="82" fill="black"></circle>
         </mask>
-        <mask id="mask-three-not-s-not-m" maskUnits="userSpaceOnUse">
+        <mask id="mask-three-not-s-not-m" x="0" y="0" width="400" height="350" maskUnits="userSpaceOnUse">
           <rect x="0" y="0" width="400" height="350" fill="white"></rect>
           <circle cx="150" cy="230" r="82" fill="black"></circle>
           <circle cx="200" cy="130" r="82" fill="black"></circle>
         </mask>
-        <mask id="mask-three-not-p-not-m" maskUnits="userSpaceOnUse">
+        <mask id="mask-three-not-p-not-m" x="0" y="0" width="400" height="350" maskUnits="userSpaceOnUse">
           <rect x="0" y="0" width="400" height="350" fill="white"></rect>
           <circle cx="250" cy="230" r="82" fill="black"></circle>
           <circle cx="200" cy="130" r="82" fill="black"></circle>
@@ -1040,36 +1121,38 @@
         S: '<circle cx="112" cy="246" r="34">',
         SP: '<circle cx="200" cy="248" r="32">',
         P: '<circle cx="288" cy="246" r="34">',
-        SM: '<circle cx="150" cy="157" r="32">',
-        SPM: '<circle cx="200" cy="178" r="30">',
-        PM: '<circle cx="250" cy="157" r="32">',
-        M: '<circle cx="200" cy="88" r="36">',
+        SM: '<circle cx="154" cy="165" r="32">',
+        SPM: '<circle cx="200" cy="184" r="30">',
+        PM: '<circle cx="246" cy="165" r="32">',
+        M: '<circle cx="200" cy="94" r="36">',
       };
       const shade = {
-        S: '<circle class="shade-mark" cx="150" cy="230" r="82" mask="url(#mask-three-not-p-not-m)"></circle>',
-        SP: '<g clip-path="url(#clip-three-p)" mask="url(#mask-three-not-m)"><circle class="shade-mark" cx="150" cy="230" r="82"></circle></g>',
-        P: '<circle class="shade-mark" cx="250" cy="230" r="82" mask="url(#mask-three-not-s-not-m)"></circle>',
-        SM: '<g clip-path="url(#clip-three-m)" mask="url(#mask-three-not-p)"><circle class="shade-mark" cx="150" cy="230" r="82"></circle></g>',
-        SPM: '<g clip-path="url(#clip-three-p)"><g clip-path="url(#clip-three-m)"><circle class="shade-mark" cx="150" cy="230" r="82"></circle></g></g>',
-        PM: '<g clip-path="url(#clip-three-m)" mask="url(#mask-three-not-s)"><circle class="shade-mark" cx="250" cy="230" r="82"></circle></g>',
-        M: '<circle class="shade-mark" cx="200" cy="130" r="82" mask="url(#mask-three-not-s-not-p)"></circle>',
+        S: '<path class="shade-mark" d="M 72 230 C 72 188 94 164 122 153 C 127 185 145 210 171 207 C 160 232 161 268 200 295 C 160 311 116 302 91 275 C 79 262 72 247 72 230 Z"></path>',
+        SP: '<path class="shade-mark" d="M 171 207 C 188 213 212 213 229 207 C 248 244 238 278 200 295 C 162 278 152 244 171 207 Z"></path>',
+        P: '<path class="shade-mark" d="M 328 230 C 328 188 306 164 278 153 C 273 185 255 210 229 207 C 240 232 239 268 200 295 C 240 311 284 302 309 275 C 321 262 328 247 328 230 Z"></path>',
+        SM: '<path class="shade-mark" d="M 122 153 C 146 141 176 145 200 165 C 190 177 181 192 171 207 C 149 196 133 178 122 153 Z"></path>',
+        SPM: '<path class="shade-mark" d="M 200 165 C 216 177 225 192 229 207 C 211 214 189 214 171 207 C 175 192 184 177 200 165 Z"></path>',
+        PM: '<path class="shade-mark" d="M 278 153 C 254 141 224 145 200 165 C 210 177 219 192 229 207 C 251 196 267 178 278 153 Z"></path>',
+        M: '<path class="shade-mark" d="M 122 153 C 132 92 162 48 200 48 C 238 48 268 92 278 153 C 254 141 225 145 200 165 C 175 145 146 141 122 153 Z"></path>',
         O: '<path class="shade-mark" d="M 12 12 H388 V58 H12 Z M12 292 H388 V338 H12 Z M12 58 H52 V292 H12 Z M348 58 H388 V292 H348 Z"></path>',
       };
       container.innerHTML = `<svg viewBox="0 0 400 350" role="img" aria-label="Interactive three-circle Venn diagram">
         ${makeThreeDefs()}
         <rect class="universe" x="12" y="12" width="376" height="326"></rect>
-        ${regions.map(r => marks[r.id] === MARK.SHADE ? shade[r.id] : '').join('')}
         <circle class="circle" cx="200" cy="130" r="82"></circle>
         <circle class="circle" cx="150" cy="230" r="82"></circle>
         <circle class="circle" cx="250" cy="230" r="82"></circle>
+        ${regions.map(r => marks[r.id] === MARK.SHADE ? shade[r.id] : '').join('')}
+        <circle class="circle-outline" cx="200" cy="130" r="82"></circle>
+        <circle class="circle-outline" cx="150" cy="230" r="82"></circle>
+        <circle class="circle-outline" cx="250" cy="230" r="82"></circle>
         <text class="term-label" x="200" y="40">${esc(terms.M)} (M)</text>
         <text class="term-label" x="98" y="326">${esc(terms.S)} (S/minor)</text>
         <text class="term-label" x="302" y="326">${esc(terms.P)} (P/major)</text>
         ${boundedRegions.map(r => `<text class="region-label" x="${r.cx}" y="${r.cy - 18}">${r.id}</text>`).join('')}
-        ${boundedRegions.map(r => marks[r.id] === MARK.X ? xMark(r.cx, r.cy) : '').join('')}
-        ${FLOATING_TARGETS.map(target => marks[target.id] === MARK.X ? xMark(target.cx, target.cy) : '').join('')}
+        ${THREE_X_TARGETS.map(target => marks[target.id] === MARK.X ? xMark(target.cx, target.cy) : '').join('')}
         ${boundedRegions.map(r => regionControl(hit[r.id], DIAGRAM.THREE, r)).join('')}
-        ${FLOATING_TARGETS.map(target => floatingTargetControl(target)).join('')}
+        ${THREE_X_TARGETS.map(target => floatingTargetControl(target)).join('')}
       </svg>`;
     }
 
@@ -1077,14 +1160,15 @@
       const state = app.marks[DIAGRAM.THREE][target.id] || MARK.BLANK;
       const label = `${labelForRegion(THREE_REGIONS, target.id)}, currently ${state}. Use selected tool: ${app.tool}.`;
       return `<g class="floating-target" role="button" tabindex="0" data-diagram="${DIAGRAM.THREE}" data-region="${target.id}" aria-label="${esc(label)}">
-        <line x1="${target.cx - 12}" y1="${target.cy}" x2="${target.cx + 12}" y2="${target.cy}" transform="rotate(${target.angle} ${target.cx} ${target.cy})"></line>
+        <line x1="${target.cx - 12}" y1="${target.cy}" x2="${target.cx + 12}" y2="${target.cy}" transform="rotate(${target.angle || 0} ${target.cx} ${target.cy})"></line>
       </g>`;
     }
 
     function regionControl(shape, diagram, region) {
       const state = app.marks[diagram][region.id] || MARK.BLANK;
       const label = `${region.label}, currently ${state}. Use selected tool: ${app.tool}.`;
-      return `<g class="region-hit" role="button" tabindex="0" data-diagram="${diagram}" data-region="${region.id}" aria-label="${esc(label)}">${shape}</g>`;
+      const extraClass = diagram === DIAGRAM.THREE ? ' three-key-target' : '';
+      return `<g class="region-hit${extraClass}" role="button" tabindex="0" data-diagram="${diagram}" data-region="${region.id}" aria-label="${esc(label)}">${shape}</g>`;
     }
 
     function xMark(cx, cy) {
@@ -1122,7 +1206,10 @@
 
     function wireRegionControls() {
       document.querySelectorAll('.region-hit, .floating-target').forEach(el => {
-        el.addEventListener('click', () => markRegion(el.dataset.diagram, el.dataset.region));
+        el.addEventListener('click', (event) => {
+          event.stopPropagation();
+          markRegion(el.dataset.diagram, el.dataset.region);
+        });
         el.addEventListener('keydown', (event) => {
           if (event.key === 'Enter' || event.key === ' ') {
             event.preventDefault();
@@ -1130,6 +1217,8 @@
           }
         });
       });
+      const threeSvg = document.querySelector('#three-diagram svg');
+      if (threeSvg) threeSvg.addEventListener('click', handleThreeSvgClick);
     }
 
     function loadSyllogismExample() {
