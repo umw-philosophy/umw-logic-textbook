@@ -1,0 +1,1121 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Venn Diagram Checker</title>
+  <style>
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+    }
+
+    :root {
+      --blue: #1e3a5f;
+      --blue-mid: #2d5a8e;
+      --blue-light: #e8eef8;
+      --green: #17633a;
+      --green-bg: #effaf3;
+      --red: #b91c1c;
+      --red-bg: #fff5f5;
+      --amber: #9a5b00;
+      --amber-bg: #fff8e8;
+      --gray-100: #f7f8fa;
+      --gray-200: #edf0f4;
+      --gray-300: #d1d9e0;
+      --gray-500: #65758a;
+      --gray-700: #354256;
+      --text: #172033;
+      --shadow: 0 2px 10px rgba(0, 0, 0, .10);
+      --radius: 8px;
+    }
+
+    html,
+    body {
+      margin: 0;
+      min-height: 100%;
+      font-family: system-ui, -apple-system, "Segoe UI", Helvetica, Arial, sans-serif;
+      background: var(--gray-100);
+      color: var(--text);
+      font-size: 15px;
+      line-height: 1.5;
+    }
+
+    header {
+      background: var(--blue);
+      color: white;
+      padding: 14px 22px;
+      display: flex;
+      gap: 12px;
+      align-items: baseline;
+      flex-wrap: wrap;
+    }
+
+    header h1 {
+      margin: 0;
+      font-size: 1.15rem;
+    }
+
+    header p {
+      margin: 0;
+      opacity: .76;
+      font-size: .86rem;
+    }
+
+    main {
+      width: min(1180px, calc(100% - 28px));
+      margin: 22px auto 36px;
+      display: grid;
+      gap: 16px;
+    }
+
+    .panel {
+      background: white;
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      padding: 18px;
+    }
+
+    h2,
+    h3 {
+      margin: 0 0 12px;
+      color: var(--blue);
+    }
+
+    h2 {
+      font-size: 1rem;
+    }
+
+    h3 {
+      font-size: .88rem;
+      text-transform: uppercase;
+      letter-spacing: .05em;
+    }
+
+    .mode-tabs,
+    .tool-row,
+    .example-row,
+    .action-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      align-items: center;
+    }
+
+    .mode-tabs {
+      margin-bottom: 14px;
+    }
+
+    button,
+    input,
+    select {
+      font: inherit;
+    }
+
+    .tab-btn,
+    .tool-btn,
+    .btn {
+      border: 1px solid var(--gray-300);
+      border-radius: 6px;
+      background: white;
+      color: var(--gray-700);
+      padding: 8px 12px;
+      cursor: pointer;
+      font-weight: 650;
+    }
+
+    .tab-btn[aria-pressed="true"],
+    .tool-btn[aria-pressed="true"] {
+      background: var(--blue-light);
+      border-color: var(--blue-mid);
+      color: var(--blue);
+    }
+
+    .btn-primary {
+      background: var(--blue);
+      color: white;
+      border-color: var(--blue);
+    }
+
+    .btn-secondary {
+      background: var(--gray-200);
+    }
+
+    .btn-danger {
+      color: var(--red);
+      border-color: #f0a2a2;
+    }
+
+    .form-grid {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(120px, 1fr));
+      gap: 12px;
+      align-items: end;
+    }
+
+    .term-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(160px, 1fr));
+      gap: 12px;
+      margin-bottom: 14px;
+    }
+
+    .sentence-row {
+      border-top: 1px solid var(--gray-200);
+      padding-top: 14px;
+      margin-top: 14px;
+    }
+
+    label,
+    .group-label {
+      display: block;
+      color: var(--gray-500);
+      font-size: .78rem;
+      font-weight: 700;
+      letter-spacing: .04em;
+      text-transform: uppercase;
+      margin-bottom: 5px;
+    }
+
+    input,
+    select {
+      width: 100%;
+      border: 1px solid var(--gray-300);
+      border-radius: 6px;
+      padding: 8px 10px;
+      background: white;
+      color: var(--text);
+    }
+
+    input:focus,
+    select:focus,
+    button:focus {
+      outline: none;
+      border-color: var(--blue-mid);
+      box-shadow: 0 0 0 3px rgba(45, 90, 142, .16);
+    }
+
+    .workspace {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) 330px;
+      gap: 16px;
+    }
+
+    .diagram-grid {
+      display: grid;
+      gap: 16px;
+      grid-template-columns: minmax(0, 1fr);
+    }
+
+    .syllogism-layout {
+      display: grid;
+      grid-template-columns: minmax(0, 1.1fr) minmax(280px, .9fr);
+      gap: 16px;
+      align-items: start;
+    }
+
+    .diagram-card {
+      border: 1px solid var(--gray-200);
+      border-radius: var(--radius);
+      padding: 14px;
+      background: #fff;
+    }
+
+    .diagram-title {
+      display: flex;
+      justify-content: space-between;
+      gap: 10px;
+      align-items: baseline;
+      margin-bottom: 8px;
+    }
+
+    .diagram-title h3 {
+      margin-bottom: 0;
+    }
+
+    .sentence-preview {
+      color: var(--gray-700);
+      font-size: .9rem;
+    }
+
+    svg {
+      width: 100%;
+      height: auto;
+      display: block;
+      background: #fbfcfe;
+      border: 1px solid var(--gray-200);
+      border-radius: 7px;
+    }
+
+    .universe {
+      fill: white;
+      stroke: var(--gray-300);
+      stroke-width: 1.5;
+    }
+
+    .circle {
+      fill: rgba(232, 238, 248, .35);
+      stroke: var(--blue);
+      stroke-width: 2.2;
+    }
+
+    .region-hit {
+      fill: transparent;
+      stroke: transparent;
+      cursor: pointer;
+    }
+
+    .region-hit:focus {
+      outline: none;
+      stroke: var(--blue-mid);
+      stroke-width: 3;
+      stroke-dasharray: 6 4;
+    }
+
+    .floating-target {
+      fill: rgba(255, 255, 255, .74);
+      stroke: var(--gray-500);
+      stroke-width: 1.5;
+      stroke-dasharray: 4 3;
+      cursor: pointer;
+    }
+
+    .floating-target:focus {
+      outline: none;
+      stroke: var(--blue-mid);
+      stroke-width: 3;
+    }
+
+    .floating-target-label {
+      fill: var(--gray-700);
+      font-size: 10px;
+      font-weight: 800;
+      text-anchor: middle;
+      pointer-events: none;
+    }
+
+    .shade-mark {
+      fill: url(#shadePattern);
+      stroke: #6f7785;
+      stroke-width: 1;
+      opacity: .9;
+      pointer-events: none;
+    }
+
+    .x-mark {
+      fill: none;
+      stroke: #111827;
+      stroke-width: 3.4;
+      stroke-linecap: round;
+      pointer-events: none;
+    }
+
+    .region-label {
+      fill: var(--gray-500);
+      font-size: 13px;
+      font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+      text-anchor: middle;
+      pointer-events: none;
+    }
+
+    .term-label {
+      fill: var(--blue);
+      font-weight: 800;
+      font-size: 16px;
+      text-anchor: middle;
+      pointer-events: none;
+    }
+
+    .caption {
+      color: var(--gray-500);
+      font-size: .82rem;
+      margin-top: 8px;
+    }
+
+    .status {
+      border-radius: 6px;
+      padding: 10px 12px;
+      margin-top: 12px;
+      font-weight: 650;
+    }
+
+    .status.ok {
+      background: var(--green-bg);
+      border: 1px solid #8ed6aa;
+      color: var(--green);
+    }
+
+    .status.err {
+      background: var(--red-bg);
+      border: 1px solid #f2aaaa;
+      color: var(--red);
+    }
+
+    .status.note {
+      background: var(--amber-bg);
+      border: 1px solid #f3d08b;
+      color: var(--amber);
+    }
+
+    .side-panel {
+      display: grid;
+      gap: 14px;
+      align-content: start;
+    }
+
+    .state-list {
+      display: grid;
+      gap: 6px;
+      font-size: .86rem;
+      color: var(--gray-700);
+    }
+
+    .state-list code {
+      background: var(--gray-200);
+      padding: 1px 5px;
+      border-radius: 4px;
+    }
+
+    .sr-only {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      padding: 0;
+      margin: -1px;
+      overflow: hidden;
+      clip: rect(0, 0, 0, 0);
+      white-space: nowrap;
+      border: 0;
+    }
+
+    [hidden] {
+      display: none !important;
+    }
+
+    @media (max-width: 860px) {
+      .workspace,
+      .syllogism-layout {
+        grid-template-columns: 1fr;
+      }
+
+      .form-grid,
+      .term-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <header>
+    <h1>Venn Diagram Checker</h1>
+    <p>Modern interpretation, categorical propositions and syllogisms</p>
+  </header>
+
+  <main>
+    <section class="panel" aria-labelledby="setup-heading">
+      <h2 id="setup-heading">Setup</h2>
+      <div class="mode-tabs" role="group" aria-label="Diagram mode">
+        <button class="tab-btn" id="mode-two" type="button" aria-pressed="true">Two-circle proposition</button>
+        <button class="tab-btn" id="mode-three" type="button" aria-pressed="false">Three-circle syllogism</button>
+      </div>
+
+      <div id="two-setup">
+        <div class="form-grid">
+          <div>
+            <label for="two-quantity">Quantity</label>
+            <select id="two-quantity">
+              <option value="all">All</option>
+              <option value="no">No</option>
+              <option value="some">Some</option>
+              <option value="some-not">Some ... are not</option>
+            </select>
+          </div>
+          <div>
+            <label for="two-subject">Subject term</label>
+            <input id="two-subject" value="S" autocomplete="off">
+          </div>
+          <div>
+            <label for="two-predicate">Predicate term</label>
+            <input id="two-predicate" value="P" autocomplete="off">
+          </div>
+          <div>
+            <label for="two-example">Examples</label>
+            <select id="two-example">
+              <option value="">Choose an example</option>
+              <option value="all">All S are P</option>
+              <option value="no">No S are P</option>
+              <option value="some">Some S are P</option>
+              <option value="some-not">Some S are not P</option>
+            </select>
+          </div>
+        </div>
+      </div>
+
+      <div id="three-setup" hidden>
+        <div class="term-grid">
+          <div>
+            <label for="term-s">Minor term: S</label>
+            <input id="term-s" value="S" autocomplete="off">
+          </div>
+          <div>
+            <label for="term-p">Major term: P</label>
+            <input id="term-p" value="P" autocomplete="off">
+          </div>
+          <div>
+            <label for="term-m">Middle term: M</label>
+            <input id="term-m" value="M" autocomplete="off">
+          </div>
+        </div>
+
+        <div class="example-row">
+          <label class="sr-only" for="syllogism-example">Syllogism examples</label>
+          <select id="syllogism-example">
+            <option value="">Choose a built-in example</option>
+            <option value="valid">Valid: Some S are M; All M are P; therefore Some S are P</option>
+            <option value="invalid">Invalid: Some M are S; Some P are M; therefore Some S are P</option>
+            <option value="barbara">Barbara: All M are P; All S are M; therefore All S are P</option>
+            <option value="floating">Floating X: Some S are M; No P are M; therefore Some S are not P</option>
+          </select>
+          <button class="btn btn-secondary" id="load-syllogism" type="button">Load Example</button>
+        </div>
+
+        <div class="sentence-row">
+          <h3>Major Premise</h3>
+          <div class="form-grid">
+            <div>
+              <label for="major-form">Form</label>
+              <select id="major-form">
+                <option value="all">All</option>
+                <option value="no">No</option>
+                <option value="some">Some</option>
+                <option value="some-not">Some ... are not</option>
+              </select>
+            </div>
+            <div>
+              <label for="major-subject">Subject</label>
+              <select id="major-subject">
+                <option value="M">M / middle</option>
+                <option value="P">P / major</option>
+              </select>
+            </div>
+            <div>
+              <label for="major-predicate">Predicate</label>
+              <select id="major-predicate">
+                <option value="P">P / major</option>
+                <option value="M">M / middle</option>
+              </select>
+            </div>
+          </div>
+        </div>
+
+        <div class="sentence-row">
+          <h3>Minor Premise</h3>
+          <div class="form-grid">
+            <div>
+              <label for="minor-form">Form</label>
+              <select id="minor-form">
+                <option value="all">All</option>
+                <option value="no">No</option>
+                <option value="some">Some</option>
+                <option value="some-not">Some ... are not</option>
+              </select>
+            </div>
+            <div>
+              <label for="minor-subject">Subject</label>
+              <select id="minor-subject">
+                <option value="S">S / minor</option>
+                <option value="M">M / middle</option>
+              </select>
+            </div>
+            <div>
+              <label for="minor-predicate">Predicate</label>
+              <select id="minor-predicate">
+                <option value="M">M / middle</option>
+                <option value="S">S / minor</option>
+              </select>
+            </div>
+          </div>
+        </div>
+
+        <div class="sentence-row">
+          <h3>Conclusion</h3>
+          <div class="form-grid">
+            <div>
+              <label for="conclusion-form">Form</label>
+              <select id="conclusion-form">
+                <option value="all">All</option>
+                <option value="no">No</option>
+                <option value="some">Some</option>
+                <option value="some-not">Some ... are not</option>
+              </select>
+            </div>
+            <div>
+              <label>Subject</label>
+              <input value="S / minor" disabled>
+            </div>
+            <div>
+              <label>Predicate</label>
+              <input value="P / major" disabled>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="workspace">
+      <div class="panel">
+        <div class="tool-row" role="group" aria-label="Diagram marking tool">
+          <span class="group-label">Tool</span>
+          <button class="tool-btn" id="tool-shade" type="button" aria-pressed="true">Shade</button>
+          <button class="tool-btn" id="tool-x" type="button" aria-pressed="false">X</button>
+          <button class="tool-btn" id="tool-erase" type="button" aria-pressed="false">Erase</button>
+        </div>
+        <div class="caption">Choose a tool, then click a region. Keyboard users can tab to a region and press Enter or Space.</div>
+
+        <div class="diagram-grid" id="two-workspace">
+          <article class="diagram-card">
+            <div class="diagram-title">
+              <h3>Student Diagram</h3>
+              <span class="sentence-preview" id="two-preview"></span>
+            </div>
+            <div id="two-diagram"></div>
+          </article>
+        </div>
+
+        <div class="syllogism-layout" id="three-workspace" hidden>
+          <article class="diagram-card">
+            <div class="diagram-title">
+              <h3>Premise Diagram</h3>
+              <span class="sentence-preview" id="premise-preview"></span>
+            </div>
+            <div id="three-diagram"></div>
+          </article>
+          <article class="diagram-card">
+            <div class="diagram-title">
+              <h3>Conclusion Comparison</h3>
+              <span class="sentence-preview" id="conclusion-preview"></span>
+            </div>
+            <div id="conclusion-diagram"></div>
+            <p class="caption">This is the conclusion diagram. A syllogism is valid when the premise diagram already warrants this information.</p>
+          </article>
+        </div>
+      </div>
+
+      <aside class="panel side-panel">
+        <section>
+          <h2>Actions</h2>
+          <div class="action-row">
+            <button class="btn btn-primary" id="check-btn" type="button">Check Diagram</button>
+            <button class="btn btn-secondary" id="show-btn" type="button">Show Correct</button>
+            <button class="btn btn-danger" id="clear-btn" type="button">Clear</button>
+          </div>
+          <div id="feedback" class="status note" role="status" aria-live="polite">Build a diagram, then check it.</div>
+        </section>
+        <section>
+          <h2>Current Marks</h2>
+          <div id="state-list" class="state-list"></div>
+        </section>
+      </aside>
+    </section>
+  </main>
+
+  <script>
+    'use strict';
+
+    const MODE = { TWO: 'two', THREE: 'three' };
+    const MARK = { BLANK: 'blank', SHADE: 'shade', X: 'x', ERASE: 'erase' };
+    const DIAGRAM = { TWO: 'two', THREE: 'three', CONCLUSION: 'conclusion' };
+
+    const TWO_REGIONS = [
+      { id: 'S', bits: { S: true, P: false }, label: 'S and not P', cx: 126, cy: 150 },
+      { id: 'SP', bits: { S: true, P: true }, label: 'S and P', cx: 200, cy: 150 },
+      { id: 'P', bits: { S: false, P: true }, label: 'P and not S', cx: 274, cy: 150 },
+      { id: 'O', bits: { S: false, P: false }, label: 'Outside S and P', cx: 200, cy: 42 },
+    ];
+
+    const THREE_REGIONS = [
+      { id: 'S', bits: { S: true, P: false, M: false }, label: 'S only', cx: 112, cy: 246 },
+      { id: 'SP', bits: { S: true, P: true, M: false }, label: 'S and P, not M', cx: 200, cy: 248 },
+      { id: 'P', bits: { S: false, P: true, M: false }, label: 'P only', cx: 288, cy: 246 },
+      { id: 'SM', bits: { S: true, P: false, M: true }, label: 'S and M, not P', cx: 150, cy: 157 },
+      { id: 'SPM', bits: { S: true, P: true, M: true }, label: 'S and P and M', cx: 200, cy: 178 },
+      { id: 'PM', bits: { S: false, P: true, M: true }, label: 'P and M, not S', cx: 250, cy: 157 },
+      { id: 'M', bits: { S: false, P: false, M: true }, label: 'M only', cx: 200, cy: 88 },
+      { id: 'O', bits: { S: false, P: false, M: false }, label: 'Outside S, P, and M', cx: 200, cy: 30 },
+    ];
+
+    const FLOATING_TARGETS = [
+      { id: 'S|SP', cx: 156, cy: 248 },
+      { id: 'SP|SPM', cx: 200, cy: 214 },
+      { id: 'P|SP', cx: 244, cy: 248 },
+      { id: 'S|SM', cx: 130, cy: 200 },
+      { id: 'SM|SPM', cx: 175, cy: 168 },
+      { id: 'PM|SPM', cx: 225, cy: 168 },
+      { id: 'P|PM', cx: 270, cy: 200 },
+      { id: 'M|SM', cx: 174, cy: 122 },
+      { id: 'M|PM', cx: 226, cy: 122 },
+    ];
+
+    const app = {
+      mode: MODE.TWO,
+      tool: MARK.SHADE,
+      marks: {
+        two: {},
+        three: {},
+        conclusion: {},
+      },
+    };
+
+    const $ = (id) => document.getElementById(id);
+
+    function esc(str) {
+      return String(str)
+        .replace(/&/g, '&amp;')
+        .replace(/</g, '&lt;')
+        .replace(/>/g, '&gt;')
+        .replace(/"/g, '&quot;');
+    }
+
+    function setMode(mode) {
+      app.mode = mode;
+      $('mode-two').setAttribute('aria-pressed', mode === MODE.TWO ? 'true' : 'false');
+      $('mode-three').setAttribute('aria-pressed', mode === MODE.THREE ? 'true' : 'false');
+      $('two-setup').hidden = mode !== MODE.TWO;
+      $('three-setup').hidden = mode !== MODE.THREE;
+      $('two-workspace').hidden = mode !== MODE.TWO;
+      $('three-workspace').hidden = mode !== MODE.THREE;
+      setFeedback('Build a diagram, then check it.', 'note');
+      renderAll();
+    }
+
+    function setTool(tool) {
+      app.tool = tool;
+      $('tool-shade').setAttribute('aria-pressed', tool === MARK.SHADE ? 'true' : 'false');
+      $('tool-x').setAttribute('aria-pressed', tool === MARK.X ? 'true' : 'false');
+      $('tool-erase').setAttribute('aria-pressed', tool === MARK.ERASE ? 'true' : 'false');
+    }
+
+    function sentenceText(form, subject, predicate) {
+      if (form === 'all') return `All ${subject} are ${predicate}`;
+      if (form === 'no') return `No ${subject} are ${predicate}`;
+      if (form === 'some') return `Some ${subject} are ${predicate}`;
+      return `Some ${subject} are not ${predicate}`;
+    }
+
+    function roleName(role) {
+      if (app.mode === MODE.TWO) {
+        if (role === 'S') return $('two-subject').value.trim() || 'S';
+        if (role === 'P') return $('two-predicate').value.trim() || 'P';
+        return role;
+      }
+      if (role === 'S') return $('term-s').value.trim() || 'S';
+      if (role === 'P') return $('term-p').value.trim() || 'P';
+      if (role === 'M') return $('term-m').value.trim() || 'M';
+      return role;
+    }
+
+    function twoProposition() {
+      return {
+        form: $('two-quantity').value,
+        subject: 'S',
+        predicate: 'P',
+      };
+    }
+
+    function syllogismPropositions() {
+      return {
+        major: { form: $('major-form').value, subject: $('major-subject').value, predicate: $('major-predicate').value },
+        minor: { form: $('minor-form').value, subject: $('minor-subject').value, predicate: $('minor-predicate').value },
+        conclusion: { form: $('conclusion-form').value, subject: 'S', predicate: 'P' },
+      };
+    }
+
+    function regionHas(region, role) {
+      return !!region.bits[role];
+    }
+
+    function regionsForProposition(regions, prop) {
+      const subj = prop.subject;
+      const pred = prop.predicate;
+      if (prop.form === 'all') {
+        return { shade: regions.filter(r => regionHas(r, subj) && !regionHas(r, pred)).map(r => r.id), x: [] };
+      }
+      if (prop.form === 'no') {
+        return { shade: regions.filter(r => regionHas(r, subj) && regionHas(r, pred)).map(r => r.id), x: [] };
+      }
+      if (prop.form === 'some') {
+        return { shade: [], x: [regions.filter(r => regionHas(r, subj) && regionHas(r, pred)).map(r => r.id)] };
+      }
+      return { shade: [], x: [regions.filter(r => regionHas(r, subj) && !regionHas(r, pred)).map(r => r.id)] };
+    }
+
+    function solveDiagram(regions, propositions) {
+      const shaded = new Set();
+      const rawX = [];
+      for (const prop of propositions) {
+        const translated = regionsForProposition(regions, prop);
+        translated.shade.forEach(id => shaded.add(id));
+        translated.x.forEach(ids => rawX.push(ids));
+      }
+
+      const xSets = rawX
+        .map(ids => ids.filter(id => !shaded.has(id)).sort())
+        .filter(ids => ids.length > 0);
+      return { shaded, xSets };
+    }
+
+    function canonicalSet(ids) {
+      return [...ids].sort().join('|');
+    }
+
+    function expectedMarksFromSolution(solution) {
+      const marks = {};
+      solution.shaded.forEach(id => { marks[id] = MARK.SHADE; });
+      solution.xSets.forEach(ids => {
+        marks[canonicalSet(ids)] = MARK.X;
+      });
+      return marks;
+    }
+
+    function splitMarkId(id) {
+      return id.split('|').filter(Boolean).sort();
+    }
+
+    function getStudentXKeys(marks) {
+      return Object.entries(marks)
+        .filter(([, mark]) => mark === MARK.X)
+        .map(([id]) => canonicalSet(splitMarkId(id)));
+    }
+
+    function compareMarks(regions, marks, solution) {
+      const problems = [];
+      const regionIds = regions.map(r => r.id);
+      const expectedShade = solution.shaded;
+      const expectedXKeys = solution.xSets.map(ids => canonicalSet(ids));
+      const studentXKeys = getStudentXKeys(marks);
+
+      regionIds.forEach(id => {
+        const mark = marks[id] || MARK.BLANK;
+        if (expectedShade.has(id) && mark !== MARK.SHADE) problems.push(`${labelForRegion(regions, id)} should be shaded.`);
+        if (!expectedShade.has(id) && mark === MARK.SHADE) problems.push(`${labelForRegion(regions, id)} should not be shaded.`);
+      });
+
+      expectedXKeys.forEach(key => {
+        if (studentXKeys.includes(key)) return;
+        const ids = splitMarkId(key);
+        if (ids.length === 1) problems.push(`${labelForRegion(regions, key)} should contain an X.`);
+        else problems.push(`An X should float across ${ids.map(id => labelForRegion(regions, id)).join(' or ')}.`);
+      });
+
+      Object.entries(marks).forEach(([id, mark]) => {
+        if (mark !== MARK.X) return;
+        const key = canonicalSet(splitMarkId(id));
+        if (expectedXKeys.includes(key)) return;
+        const overSpecific = splitMarkId(id).length === 1 && solution.xSets.some(ids => ids.length > 1 && ids.includes(id));
+        if (overSpecific) problems.push(`${labelForRegion(regions, id)} has an over-specific X; this existential claim is not fixed to one region.`);
+        else problems.push(`${labelForRegion(regions, id)} has an X that is not strictly warranted.`);
+      });
+
+      return problems;
+    }
+
+    function conclusionWarranted(premiseSolution, conclusionSolution) {
+      for (const id of conclusionSolution.shaded) {
+        if (!premiseSolution.shaded.has(id)) return false;
+      }
+      for (const needed of conclusionSolution.xSets) {
+        const neededKey = canonicalSet(needed);
+        const match = premiseSolution.xSets.some(have => canonicalSet(have) === neededKey);
+        if (!match) return false;
+      }
+      return true;
+    }
+
+    function labelForRegion(regions, id) {
+      if (id.includes('|')) {
+        return `floating X across ${splitMarkId(id).map(part => labelForRegion(regions, part)).join(' or ')}`;
+      }
+      return regions.find(r => r.id === id)?.label || id;
+    }
+
+    function markRegion(diagram, regionId) {
+      const marks = app.marks[diagram];
+      const isFloatingTarget = regionId.includes('|');
+      if (isFloatingTarget && app.tool === MARK.SHADE) {
+        setFeedback('Floating targets are for X marks. Choose X or Erase for that target.', 'note');
+        return;
+      }
+      if (app.tool === MARK.ERASE) {
+        delete marks[regionId];
+      } else {
+        marks[regionId] = app.tool;
+        if (app.tool === MARK.X) {
+          splitMarkId(regionId).forEach(id => {
+            if (id !== regionId && marks[id] === MARK.X) delete marks[id];
+          });
+        }
+      }
+      setFeedback(`Marked ${labelForRegion(diagram === DIAGRAM.TWO || diagram === DIAGRAM.CONCLUSION ? TWO_REGIONS : THREE_REGIONS, regionId)}.`, 'note');
+      renderAll();
+    }
+
+    function clearCurrent() {
+      if (app.mode === MODE.TWO) app.marks.two = {};
+      else app.marks.three = {};
+      setFeedback('Diagram cleared.', 'note');
+      renderAll();
+    }
+
+    function showCorrect() {
+      if (app.mode === MODE.TWO) {
+        app.marks.two = expectedMarksFromSolution(solveDiagram(TWO_REGIONS, [twoProposition()]));
+      } else {
+        const props = syllogismPropositions();
+        app.marks.three = expectedMarksFromSolution(solveDiagram(THREE_REGIONS, [props.major, props.minor]));
+      }
+      setFeedback('Correct shading and X placement are shown.', 'note');
+      renderAll();
+    }
+
+    function checkCurrent() {
+      if (app.mode === MODE.TWO) {
+        const solution = solveDiagram(TWO_REGIONS, [twoProposition()]);
+        const problems = compareMarks(TWO_REGIONS, app.marks.two, solution);
+        if (problems.length === 0) setFeedback('Correct: this two-circle diagram matches the proposition.', 'ok');
+        else setFeedback(`Not yet correct. ${problems.join(' ')}`, 'err');
+        return;
+      }
+
+      const props = syllogismPropositions();
+      const premiseSolution = solveDiagram(THREE_REGIONS, [props.major, props.minor]);
+      const problems = compareMarks(THREE_REGIONS, app.marks.three, premiseSolution);
+      const conclusionSolution = solveDiagram(TWO_REGIONS, [props.conclusion]);
+      const valid = conclusionWarranted(projectToConclusion(premiseSolution), conclusionSolution);
+      if (problems.length === 0) {
+        setFeedback(`Correct premise diagram. The syllogism is ${valid ? 'valid' : 'invalid'} under the modern interpretation.`, valid ? 'ok' : 'note');
+      } else {
+        setFeedback(`The premise diagram is not yet correct. ${problems.join(' ')}`, 'err');
+      }
+    }
+
+    function projectToConclusion(solution) {
+      const map = {
+        S: 'S',
+        SP: 'SP',
+        SM: 'S',
+        SPM: 'SP',
+        P: 'P',
+        PM: 'P',
+        M: 'O',
+        O: 'O',
+      };
+      const shaded = new Set();
+      const groups = { S: ['S', 'SM'], SP: ['SP', 'SPM'], P: ['P', 'PM'], O: ['O', 'M'] };
+      Object.entries(groups).forEach(([twoId, threeIds]) => {
+        if (threeIds.every(id => solution.shaded.has(id))) shaded.add(twoId);
+      });
+      const xSets = solution.xSets
+        .map(ids => [...new Set(ids.map(id => map[id]))].sort())
+        .filter(ids => ids.length > 0);
+      return { shaded, xSets };
+    }
+
+    function setFeedback(message, kind) {
+      const el = $('feedback');
+      el.className = 'status ' + kind;
+      el.textContent = message;
+    }
+
+    function makePattern() {
+      return `<defs>
+        <pattern id="shadePattern" width="8" height="8" patternUnits="userSpaceOnUse" patternTransform="rotate(45)">
+          <rect width="8" height="8" fill="#d9dde5"></rect>
+          <line x1="0" y1="0" x2="0" y2="8" stroke="#667085" stroke-width="3"></line>
+        </pattern>
+      </defs>`;
+    }
+
+    function renderTwoSvg(container, marks, terms, interactive, diagramId) {
+      const regions = TWO_REGIONS;
+      const hit = {
+        S: '<path d="M 124 80 A 72 72 0 1 0 124 220 A 58 72 0 0 1 124 80 Z">',
+        SP: '<ellipse cx="200" cy="150" rx="39" ry="65">',
+        P: '<path d="M 276 80 A 72 72 0 1 1 276 220 A 58 72 0 0 0 276 80 Z">',
+        O: '<path d="M 12 12 H388 V72 H12 Z M12 228 H388 V288 H12 Z M12 72 H72 V228 H12 Z M328 72 H388 V228 H328 Z">',
+      };
+      const shade = {
+        S: '<path class="shade-mark" d="M 124 80 A 72 72 0 1 0 124 220 A 58 72 0 0 1 124 80 Z"></path>',
+        SP: '<ellipse class="shade-mark" cx="200" cy="150" rx="39" ry="65"></ellipse>',
+        P: '<path class="shade-mark" d="M 276 80 A 72 72 0 1 1 276 220 A 58 72 0 0 0 276 80 Z"></path>',
+        O: '<path class="shade-mark" d="M 12 12 H388 V72 H12 Z M12 228 H388 V288 H12 Z M12 72 H72 V228 H12 Z M328 72 H388 V228 H328 Z"></path>',
+      };
+      container.innerHTML = `<svg viewBox="0 0 400 300" role="img" aria-label="${interactive ? 'Interactive' : 'Correct'} two-circle Venn diagram">
+        ${makePattern()}
+        <rect class="universe" x="12" y="12" width="376" height="276"></rect>
+        <circle class="circle" cx="160" cy="150" r="72"></circle>
+        <circle class="circle" cx="240" cy="150" r="72"></circle>
+        ${regions.map(r => marks[r.id] === MARK.SHADE ? shade[r.id] : '').join('')}
+        <text class="term-label" x="116" y="256">${esc(terms.S)} (S)</text>
+        <text class="term-label" x="284" y="256">${esc(terms.P)} (P)</text>
+        ${regions.map(r => `<text class="region-label" x="${r.cx}" y="${r.cy - 18}">${r.id}</text>`).join('')}
+        ${regions.map(r => marks[r.id] === MARK.X ? xMark(r.cx, r.cy) : '').join('')}
+        ${interactive ? regions.map(r => regionControl(hit[r.id], diagramId, r)).join('') : ''}
+      </svg>`;
+    }
+
+    function renderThreeSvg(container, marks, terms) {
+      const regions = THREE_REGIONS;
+      const hit = {
+        S: '<circle cx="112" cy="246" r="34">',
+        SP: '<circle cx="200" cy="248" r="32">',
+        P: '<circle cx="288" cy="246" r="34">',
+        SM: '<circle cx="150" cy="157" r="32">',
+        SPM: '<circle cx="200" cy="178" r="30">',
+        PM: '<circle cx="250" cy="157" r="32">',
+        M: '<circle cx="200" cy="88" r="36">',
+        O: '<path d="M 12 12 H388 V58 H12 Z M12 292 H388 V338 H12 Z M12 58 H52 V292 H12 Z M348 58 H388 V292 H348 Z">',
+      };
+      const shade = Object.fromEntries(regions.map(r => [r.id, `<circle class="shade-mark" cx="${r.cx}" cy="${r.cy}" r="${r.id === 'O' ? 24 : 30}"></circle>`]));
+      shade.O = '<path class="shade-mark" d="M 12 12 H388 V58 H12 Z M12 292 H388 V338 H12 Z M12 58 H52 V292 H12 Z M348 58 H388 V292 H348 Z"></path>';
+      container.innerHTML = `<svg viewBox="0 0 400 350" role="img" aria-label="Interactive three-circle Venn diagram">
+        ${makePattern()}
+        <rect class="universe" x="12" y="12" width="376" height="326"></rect>
+        <circle class="circle" cx="200" cy="130" r="82"></circle>
+        <circle class="circle" cx="150" cy="230" r="82"></circle>
+        <circle class="circle" cx="250" cy="230" r="82"></circle>
+        ${regions.map(r => marks[r.id] === MARK.SHADE ? shade[r.id] : '').join('')}
+        <text class="term-label" x="200" y="40">${esc(terms.M)} (M)</text>
+        <text class="term-label" x="98" y="326">${esc(terms.S)} (S/minor)</text>
+        <text class="term-label" x="302" y="326">${esc(terms.P)} (P/major)</text>
+        ${regions.map(r => `<text class="region-label" x="${r.cx}" y="${r.cy - 18}">${r.id}</text>`).join('')}
+        ${regions.map(r => marks[r.id] === MARK.X ? xMark(r.cx, r.cy) : '').join('')}
+        ${FLOATING_TARGETS.map(target => marks[target.id] === MARK.X ? xMark(target.cx, target.cy) : '').join('')}
+        ${regions.map(r => regionControl(hit[r.id], DIAGRAM.THREE, r)).join('')}
+        ${FLOATING_TARGETS.map(target => floatingTargetControl(target)).join('')}
+      </svg>`;
+    }
+
+    function floatingTargetControl(target) {
+      const state = app.marks[DIAGRAM.THREE][target.id] || MARK.BLANK;
+      const label = `${labelForRegion(THREE_REGIONS, target.id)}, currently ${state}. Use selected tool: ${app.tool}.`;
+      return `<g class="floating-target" role="button" tabindex="0" data-diagram="${DIAGRAM.THREE}" data-region="${target.id}" aria-label="${esc(label)}">
+        <circle cx="${target.cx}" cy="${target.cy}" r="13"></circle>
+        <text class="floating-target-label" x="${target.cx}" y="${target.cy + 3}">X?</text>
+      </g>`;
+    }
+
+    function regionControl(shape, diagram, region) {
+      const state = app.marks[diagram][region.id] || MARK.BLANK;
+      const label = `${region.label}, currently ${state}. Use selected tool: ${app.tool}.`;
+      return `<g class="region-hit" role="button" tabindex="0" data-diagram="${diagram}" data-region="${region.id}" aria-label="${esc(label)}">${shape}</g>`;
+    }
+
+    function xMark(cx, cy) {
+      return `<g class="x-mark"><line x1="${cx - 9}" y1="${cy - 9}" x2="${cx + 9}" y2="${cy + 9}"></line><line x1="${cx + 9}" y1="${cy - 9}" x2="${cx - 9}" y2="${cy + 9}"></line></g>`;
+    }
+
+    function renderAll() {
+      const twoTerms = { S: roleName('S'), P: roleName('P') };
+      const threeTerms = { S: roleName('S'), P: roleName('P'), M: roleName('M') };
+
+      const twoProp = twoProposition();
+      $('two-preview').textContent = sentenceText(twoProp.form, twoTerms.S, twoTerms.P);
+      renderTwoSvg($('two-diagram'), app.marks.two, twoTerms, true, DIAGRAM.TWO);
+
+      const props = syllogismPropositions();
+      $('premise-preview').textContent = `${sentenceText(props.major.form, roleName(props.major.subject), roleName(props.major.predicate))}; ${sentenceText(props.minor.form, roleName(props.minor.subject), roleName(props.minor.predicate))}`;
+      $('conclusion-preview').textContent = sentenceText(props.conclusion.form, threeTerms.S, threeTerms.P);
+      renderThreeSvg($('three-diagram'), app.marks.three, threeTerms);
+      renderTwoSvg($('conclusion-diagram'), expectedMarksFromSolution(solveDiagram(TWO_REGIONS, [props.conclusion])), { S: threeTerms.S, P: threeTerms.P }, false, DIAGRAM.CONCLUSION);
+      renderStateList();
+      wireRegionControls();
+    }
+
+    function renderStateList() {
+      const activeMarks = app.mode === MODE.TWO ? app.marks.two : app.marks.three;
+      const regions = app.mode === MODE.TWO ? TWO_REGIONS : THREE_REGIONS;
+      const rows = Object.entries(activeMarks)
+        .map(([id, mark]) => `<div><code>${esc(id)}</code> ${esc(labelForRegion(regions, id))}: ${mark}</div>`);
+      $('state-list').innerHTML = rows.length ? rows.join('') : '<div>No marks yet.</div>';
+    }
+
+    function wireRegionControls() {
+      document.querySelectorAll('.region-hit').forEach(el => {
+        el.addEventListener('click', () => markRegion(el.dataset.diagram, el.dataset.region));
+        el.addEventListener('keydown', (event) => {
+          if (event.key === 'Enter' || event.key === ' ') {
+            event.preventDefault();
+            markRegion(el.dataset.diagram, el.dataset.region);
+          }
+        });
+      });
+    }
+
+    function loadSyllogismExample() {
+      const value = $('syllogism-example').value;
+      if (!value) return;
+      const examples = {
+        valid: {
+          major: ['all', 'M', 'P'],
+          minor: ['some', 'S', 'M'],
+          conclusion: 'some',
+        },
+        invalid: {
+          major: ['some', 'P', 'M'],
+          minor: ['some', 'M', 'S'],
+          conclusion: 'some',
+        },
+        barbara: {
+          major: ['all', 'M', 'P'],
+          minor: ['all', 'S', 'M'],
+          conclusion: 'all',
+        },
+        floating: {
+          major: ['no', 'P', 'M'],
+          minor: ['some', 'S', 'M'],
+          conclusion: 'some-not',
+        },
+      };
+      const ex = examples[value];
+      $('major-form').value = ex.major[0];
+      $('major-subject').value = ex.major[1];
+      $('major-predicate').value = ex.major[2];
+      $('minor-form').value = ex.minor[0];
+      $('minor-subject').value = ex.minor[1];
+      $('minor-predicate').value = ex.minor[2];
+      $('conclusion-form').value = ex.conclusion;
+      app.marks.three = {};
+      setFeedback('Example loaded.', 'note');
+      renderAll();
+    }
+
+    function init() {
+      $('mode-two').addEventListener('click', () => setMode(MODE.TWO));
+      $('mode-three').addEventListener('click', () => setMode(MODE.THREE));
+      $('tool-shade').addEventListener('click', () => setTool(MARK.SHADE));
+      $('tool-x').addEventListener('click', () => setTool(MARK.X));
+      $('tool-erase').addEventListener('click', () => setTool(MARK.ERASE));
+      $('check-btn').addEventListener('click', checkCurrent);
+      $('show-btn').addEventListener('click', showCorrect);
+      $('clear-btn').addEventListener('click', clearCurrent);
+      $('load-syllogism').addEventListener('click', loadSyllogismExample);
+      $('two-example').addEventListener('change', () => {
+        if ($('two-example').value) $('two-quantity').value = $('two-example').value;
+        app.marks.two = {};
+        renderAll();
+      });
+      document.querySelectorAll('input, select').forEach(el => {
+        el.addEventListener('input', renderAll);
+        el.addEventListener('change', renderAll);
+      });
+      renderAll();
+    }
+
+    init();
+  </script>
+</body>
+
+</html>
