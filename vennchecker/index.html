@@ -682,15 +682,15 @@
     ];
 
     const FLOATING_TARGETS = [
-      { id: 'S|SM', cx: 132, cy: 201, angle: -28, kind: 'line' },
-      { id: 'S|SP', cx: 156, cy: 248, angle: 90, kind: 'line' },
-      { id: 'SP|SPM', cx: 200, cy: 210, angle: 0, kind: 'line' },
-      { id: 'P|SP', cx: 244, cy: 248, angle: 90, kind: 'line' },
-      { id: 'SM|SPM', cx: 170, cy: 188, angle: 58, kind: 'line' },
-      { id: 'PM|SPM', cx: 230, cy: 188, angle: -58, kind: 'line' },
-      { id: 'P|PM', cx: 268, cy: 201, angle: 28, kind: 'line' },
-      { id: 'M|SM', cx: 170, cy: 140, angle: 28, kind: 'line' },
-      { id: 'M|PM', cx: 230, cy: 140, angle: -28, kind: 'line' },
+      { id: 'S|SM', cx: 147, cy: 193, angle: -40, kind: 'line' },
+      { id: 'S|SP', cx: 192, cy: 288, angle: 45, kind: 'line' },
+      { id: 'SP|SPM', cx: 200, cy: 212, angle: 0, kind: 'line' },
+      { id: 'P|SP', cx: 208, cy: 288, angle: -45, kind: 'line' },
+      { id: 'SM|SPM', cx: 173, cy: 202, angle: -70, kind: 'line' },
+      { id: 'PM|SPM', cx: 227, cy: 202, angle: 70, kind: 'line' },
+      { id: 'P|PM', cx: 253, cy: 193, angle: 40, kind: 'line' },
+      { id: 'M|SM', cx: 136, cy: 149, angle: 78, kind: 'line' },
+      { id: 'M|PM', cx: 264, cy: 149, angle: -78, kind: 'line' },
     ];
 
     const THREE_X_TARGETS = [
@@ -1198,8 +1198,9 @@
       const label = `${labelForRegion(THREE_REGIONS, target.id)}, currently ${state}. Use selected tool: ${app.tool}.`;
       if (target.kind === 'line') {
         return `<g class="floating-target" role="button" tabindex="0" data-diagram="${DIAGRAM.THREE}" data-region="${target.id}" aria-label="${esc(label)}">
-          <rect class="x-slot-line-hit" x="${target.cx - 15}" y="${target.cy - 7}" width="30" height="14" rx="3" transform="rotate(${target.angle || 0} ${target.cx} ${target.cy})"></rect>
-          <line class="x-slot-guide" x1="${target.cx - 13}" y1="${target.cy}" x2="${target.cx + 13}" y2="${target.cy}" transform="rotate(${target.angle || 0} ${target.cx} ${target.cy})"></line>
+          <rect class="x-slot-line-hit" x="${target.cx - 13}" y="${target.cy - 7}" width="26" height="14" rx="3" transform="rotate(${target.angle || 0} ${target.cx} ${target.cy})"></rect>
+          <line class="x-slot-guide" x1="${target.cx - 10}" y1="${target.cy}" x2="${target.cx + 10}" y2="${target.cy}" transform="rotate(${target.angle || 0} ${target.cx} ${target.cy})"></line>
+          <line class="x-slot-guide" x1="${target.cx}" y1="${target.cy - 7}" x2="${target.cx}" y2="${target.cy + 7}" transform="rotate(${target.angle || 0} ${target.cx} ${target.cy})"></line>
         </g>`;
       }
       return `<g class="floating-target" role="button" tabindex="0" data-diagram="${DIAGRAM.THREE}" data-region="${target.id}" aria-label="${esc(label)}">
