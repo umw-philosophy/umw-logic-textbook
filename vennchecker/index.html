@@ -265,6 +265,7 @@
       fill: transparent;
       stroke: transparent;
       cursor: pointer;
+      pointer-events: all;
     }
 
     .region-hit:focus {
@@ -941,10 +942,10 @@
     function renderTwoSvg(container, marks, terms, interactive, diagramId) {
       const regions = TWO_REGIONS;
       const hit = {
-        S: '<path d="M 124 80 A 72 72 0 1 0 124 220 A 58 72 0 0 1 124 80 Z">',
-        SP: '<ellipse cx="200" cy="150" rx="39" ry="65">',
-        P: '<path d="M 276 80 A 72 72 0 1 1 276 220 A 58 72 0 0 0 276 80 Z">',
-        O: '<path d="M 12 12 H388 V72 H12 Z M12 228 H388 V288 H12 Z M12 72 H72 V228 H12 Z M328 72 H388 V228 H328 Z">',
+        S: '<ellipse cx="126" cy="150" rx="38" ry="54"></ellipse>',
+        SP: '<ellipse cx="200" cy="150" rx="39" ry="65"></ellipse>',
+        P: '<ellipse cx="274" cy="150" rx="38" ry="54"></ellipse>',
+        O: '<rect x="12" y="12" width="376" height="60"></rect><rect x="12" y="228" width="376" height="60"></rect><rect x="12" y="72" width="60" height="156"></rect><rect x="328" y="72" width="60" height="156"></rect>',
       };
       const shade = {
         S: '<path class="shade-mark" d="M 124 80 A 72 72 0 1 0 124 220 A 58 72 0 0 1 124 80 Z"></path>',
