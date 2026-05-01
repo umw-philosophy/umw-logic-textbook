@@ -647,12 +647,9 @@
 
     const FLOATING_TARGETS = [
       { id: 'S|SP', cx: 156, cy: 248, angle: 90 },
-      { id: 'SP|SPM', cx: 200, cy: 214, angle: 0 },
       { id: 'P|SP', cx: 244, cy: 248, angle: 90 },
-      { id: 'S|SM', cx: 130, cy: 200, angle: -28 },
       { id: 'SM|SPM', cx: 170, cy: 175, angle: 58 },
       { id: 'PM|SPM', cx: 230, cy: 175, angle: -58 },
-      { id: 'P|PM', cx: 270, cy: 200, angle: 28 },
       { id: 'M|SM', cx: 170, cy: 122, angle: 28 },
       { id: 'M|PM', cx: 230, cy: 122, angle: -28 },
     ];
@@ -854,6 +851,10 @@
         setFeedback('Floating targets are for X marks. Choose X or Erase for that target.', 'note');
         return;
       }
+      if (diagram === DIAGRAM.THREE && regionId === 'O' && app.tool === MARK.X) {
+        setFeedback('The outside area is not an X position for categorical syllogism premises.', 'note');
+        return;
+      }
       if (app.tool === MARK.ERASE) {
         delete marks[regionId];
       } else {
@@ -995,6 +996,7 @@
 
     function renderThreeSvg(container, marks, terms) {
       const regions = THREE_REGIONS;
+      const boundedRegions = regions.filter(r => r.id !== 'O');
       const hit = {
         S: '<circle cx="112" cy="246" r="34">',
         SP: '<circle cx="200" cy="248" r="32">',
@@ -1003,7 +1005,6 @@
         SPM: '<circle cx="200" cy="178" r="30">',
         PM: '<circle cx="250" cy="157" r="32">',
         M: '<circle cx="200" cy="88" r="36">',
-        O: '<path d="M 12 12 H388 V58 H12 Z M12 292 H388 V338 H12 Z M12 58 H52 V292 H12 Z M348 58 H388 V292 H348 Z">',
       };
       const shade = Object.fromEntries(regions.map(r => [r.id, `<circle class="shade-mark" cx="${r.cx}" cy="${r.cy}" r="${r.id === 'O' ? 24 : 30}"></circle>`]));
       shade.O = '<path class="shade-mark" d="M 12 12 H388 V58 H12 Z M12 292 H388 V338 H12 Z M12 58 H52 V292 H12 Z M348 58 H388 V292 H348 Z"></path>';
@@ -1017,10 +1018,10 @@
         <text class="term-label" x="200" y="40">${esc(terms.M)} (M)</text>
         <text class="term-label" x="98" y="326">${esc(terms.S)} (S/minor)</text>
         <text class="term-label" x="302" y="326">${esc(terms.P)} (P/major)</text>
-        ${regions.map(r => `<text class="region-label" x="${r.cx}" y="${r.cy - 18}">${r.id}</text>`).join('')}
-        ${regions.map(r => marks[r.id] === MARK.X ? xMark(r.cx, r.cy) : '').join('')}
+        ${boundedRegions.map(r => `<text class="region-label" x="${r.cx}" y="${r.cy - 18}">${r.id}</text>`).join('')}
+        ${boundedRegions.map(r => marks[r.id] === MARK.X ? xMark(r.cx, r.cy) : '').join('')}
         ${FLOATING_TARGETS.map(target => marks[target.id] === MARK.X ? xMark(target.cx, target.cy) : '').join('')}
-        ${regions.map(r => regionControl(hit[r.id], DIAGRAM.THREE, r)).join('')}
+        ${boundedRegions.map(r => regionControl(hit[r.id], DIAGRAM.THREE, r)).join('')}
         ${FLOATING_TARGETS.map(target => floatingTargetControl(target)).join('')}
       </svg>`;
     }
