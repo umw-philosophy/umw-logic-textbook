@@ -276,10 +276,9 @@
     }
 
     .floating-target {
-      fill: rgba(255, 255, 255, .74);
-      stroke: var(--gray-500);
-      stroke-width: 1.5;
-      stroke-dasharray: 4 3;
+      fill: transparent;
+      stroke: transparent;
+      stroke-width: 16;
       cursor: pointer;
       pointer-events: all;
     }
@@ -288,14 +287,11 @@
       outline: none;
       stroke: var(--blue-mid);
       stroke-width: 3;
+      stroke-dasharray: 4 3;
     }
 
     .floating-target-label {
-      fill: var(--gray-700);
-      font-size: 9px;
-      font-weight: 800;
-      text-anchor: middle;
-      pointer-events: none;
+      display: none;
     }
 
     .shade-mark {
@@ -476,10 +472,10 @@
           <label class="sr-only" for="syllogism-example">Syllogism examples</label>
           <select id="syllogism-example">
             <option value="">Choose a built-in example</option>
-            <option value="valid">Valid: Some S are M; All M are P; therefore Some S are P</option>
-            <option value="invalid">Invalid: Some M are S; Some P are M; therefore Some S are P</option>
+            <option value="valid">Valid: All M are P; Some S are M; therefore Some S are P</option>
+            <option value="invalid">Invalid: Some P are M; Some M are S; therefore Some S are P</option>
             <option value="barbara">Barbara: All M are P; All S are M; therefore All S are P</option>
-            <option value="floating">Floating X: Some S are M; No P are M; therefore Some S are not P</option>
+            <option value="floating">Floating X: No P are M; Some S are M; therefore Some S are not P</option>
           </select>
           <button class="btn btn-secondary" id="load-syllogism" type="button">Load Example</button>
         </div>
@@ -669,6 +665,7 @@
         three: {},
         conclusion: {},
       },
+      showConclusionModel: true,
     };
 
     const $ = (id) => document.getElementById(id);
@@ -683,6 +680,9 @@
 
     function setMode(mode) {
       app.mode = mode;
+      if (mode === MODE.THREE && Object.keys(app.marks.conclusion).length === 0) {
+        app.showConclusionModel = true;
+      }
       $('mode-two').setAttribute('aria-pressed', mode === MODE.TWO ? 'true' : 'false');
       $('mode-three').setAttribute('aria-pressed', mode === MODE.THREE ? 'true' : 'false');
       $('two-setup').hidden = mode !== MODE.TWO;
@@ -846,7 +846,8 @@
     function markRegion(diagram, regionId) {
       const marks = app.marks[diagram];
       if (diagram === DIAGRAM.CONCLUSION && Object.keys(marks).length === 0) {
-        Object.assign(marks, conclusionExpectedMarks());
+        if (app.showConclusionModel) Object.assign(marks, conclusionExpectedMarks());
+        app.showConclusionModel = false;
       }
       const isFloatingTarget = regionId.includes('|');
       if (isFloatingTarget && app.tool === MARK.SHADE) {
@@ -872,6 +873,7 @@
       else {
         app.marks.three = {};
         app.marks.conclusion = {};
+        app.showConclusionModel = false;
       }
       setFeedback('Diagram cleared.', 'note');
       renderAll();
@@ -884,6 +886,7 @@
         const props = syllogismPropositions();
         app.marks.three = expectedMarksFromSolution(solveDiagram(THREE_REGIONS, [props.major, props.minor]));
         app.marks.conclusion = conclusionExpectedMarks();
+        app.showConclusionModel = false;
       }
       setFeedback('Correct shading and X placement are shown.', 'note');
       renderAll();
@@ -921,7 +924,8 @@
     }
 
     function visibleConclusionMarks() {
-      return Object.keys(app.marks.conclusion).length ? app.marks.conclusion : conclusionExpectedMarks();
+      if (Object.keys(app.marks.conclusion).length) return app.marks.conclusion;
+      return app.showConclusionModel ? conclusionExpectedMarks() : {};
     }
 
     function projectToConclusion(solution) {
@@ -1025,9 +1029,7 @@
       const state = app.marks[DIAGRAM.THREE][target.id] || MARK.BLANK;
       const label = `${labelForRegion(THREE_REGIONS, target.id)}, currently ${state}. Use selected tool: ${app.tool}.`;
       return `<g class="floating-target" role="button" tabindex="0" data-diagram="${DIAGRAM.THREE}" data-region="${target.id}" aria-label="${esc(label)}">
-        <circle cx="${target.cx}" cy="${target.cy}" r="16"></circle>
         <line x1="${target.cx - 12}" y1="${target.cy}" x2="${target.cx + 12}" y2="${target.cy}" transform="rotate(${target.angle} ${target.cx} ${target.cy})"></line>
-        <text class="floating-target-label" x="${target.cx}" y="${target.cy + 4}">line</text>
       </g>`;
     }
 
@@ -1116,6 +1118,8 @@
       $('minor-predicate').value = ex.minor[2];
       $('conclusion-form').value = ex.conclusion;
       app.marks.three = {};
+      app.marks.conclusion = {};
+      app.showConclusionModel = true;
       setFeedback('Example loaded.', 'note');
       renderAll();
     }
@@ -1147,6 +1151,7 @@
         el.addEventListener('change', () => {
           app.marks.three = {};
           app.marks.conclusion = {};
+          app.showConclusionModel = true;
           renderAll();
         });
       });
