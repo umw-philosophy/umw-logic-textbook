@@ -289,18 +289,24 @@
 
     .x-slot-hit {
       fill: transparent;
-      stroke: transparent;
+      stroke: rgba(45, 90, 142, .08);
       stroke-width: 24;
+      pointer-events: all;
+    }
+
+    .x-slot-line-hit {
+      fill: rgba(45, 90, 142, .08);
+      stroke: none;
       pointer-events: all;
     }
 
     .x-slot-guide {
       fill: none;
       stroke: var(--blue-mid);
-      stroke-width: 2;
+      stroke-width: 2.6;
       stroke-dasharray: 4 3;
-      opacity: .8;
-      pointer-events: none;
+      opacity: .95;
+      pointer-events: all;
     }
 
     .x-slot-ring {
@@ -309,7 +315,7 @@
       stroke: var(--blue-mid);
       stroke-width: 1.6;
       stroke-dasharray: 4 3;
-      pointer-events: none;
+      pointer-events: all;
     }
 
     .floating-target:focus {
@@ -676,10 +682,13 @@
     ];
 
     const FLOATING_TARGETS = [
+      { id: 'S|SM', cx: 132, cy: 201, angle: -28, kind: 'line' },
       { id: 'S|SP', cx: 156, cy: 248, angle: 90, kind: 'line' },
+      { id: 'SP|SPM', cx: 200, cy: 210, angle: 0, kind: 'line' },
       { id: 'P|SP', cx: 244, cy: 248, angle: 90, kind: 'line' },
       { id: 'SM|SPM', cx: 170, cy: 188, angle: 58, kind: 'line' },
       { id: 'PM|SPM', cx: 230, cy: 188, angle: -58, kind: 'line' },
+      { id: 'P|PM', cx: 268, cy: 201, angle: 28, kind: 'line' },
       { id: 'M|SM', cx: 170, cy: 140, angle: 28, kind: 'line' },
       { id: 'M|PM', cx: 230, cy: 140, angle: -28, kind: 'line' },
     ];
@@ -1189,7 +1198,7 @@
       const label = `${labelForRegion(THREE_REGIONS, target.id)}, currently ${state}. Use selected tool: ${app.tool}.`;
       if (target.kind === 'line') {
         return `<g class="floating-target" role="button" tabindex="0" data-diagram="${DIAGRAM.THREE}" data-region="${target.id}" aria-label="${esc(label)}">
-          <line class="x-slot-hit" x1="${target.cx - 15}" y1="${target.cy}" x2="${target.cx + 15}" y2="${target.cy}" transform="rotate(${target.angle || 0} ${target.cx} ${target.cy})"></line>
+          <rect class="x-slot-line-hit" x="${target.cx - 15}" y="${target.cy - 7}" width="30" height="14" rx="3" transform="rotate(${target.angle || 0} ${target.cx} ${target.cy})"></rect>
           <line class="x-slot-guide" x1="${target.cx - 13}" y1="${target.cy}" x2="${target.cx + 13}" y2="${target.cy}" transform="rotate(${target.angle || 0} ${target.cx} ${target.cy})"></line>
         </g>`;
       }
@@ -1207,7 +1216,7 @@
     }
 
     function xMark(cx, cy) {
-      return `<g class="x-mark"><line x1="${cx - 9}" y1="${cy - 9}" x2="${cx + 9}" y2="${cy + 9}"></line><line x1="${cx + 9}" y1="${cy - 9}" x2="${cx - 9}" y2="${cy + 9}"></line></g>`;
+      return `<g class="x-mark"><line x1="${cx - 6}" y1="${cy - 6}" x2="${cx + 6}" y2="${cy + 6}"></line><line x1="${cx + 6}" y1="${cy - 6}" x2="${cx - 6}" y2="${cy + 6}"></line></g>`;
     }
 
     function renderAll() {
