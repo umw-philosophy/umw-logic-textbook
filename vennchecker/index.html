@@ -203,6 +203,14 @@
       gap: 16px;
     }
 
+    .workspace.three-mode {
+      grid-template-columns: minmax(0, 1fr);
+    }
+
+    .workspace.three-mode .side-panel {
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    }
+
     .diagram-grid {
       display: grid;
       gap: 16px;
@@ -211,7 +219,7 @@
 
     .syllogism-layout {
       display: grid;
-      grid-template-columns: minmax(0, 1.1fr) minmax(280px, .9fr);
+      grid-template-columns: minmax(0, 1fr);
       gap: 16px;
       align-items: start;
     }
@@ -599,7 +607,7 @@
       </div>
     </section>
 
-    <section class="workspace">
+    <section class="workspace" id="workspace-shell">
       <div class="panel">
         <div class="tool-row" role="group" aria-label="Diagram marking tool">
           <span class="group-label">Tool</span>
@@ -682,13 +690,13 @@
     ];
 
     const FLOATING_TARGETS = [
-      { id: 'S|SM', cx: 147, cy: 193, angle: -40, kind: 'line' },
-      { id: 'S|SP', cx: 192, cy: 288, angle: 45, kind: 'line' },
+      { id: 'S|SM', cx: 139, cy: 185, angle: -44, kind: 'line' },
+      { id: 'S|SP', cx: 178, cy: 270, angle: 38, kind: 'line' },
       { id: 'SP|SPM', cx: 200, cy: 212, angle: 0, kind: 'line' },
-      { id: 'P|SP', cx: 208, cy: 288, angle: -45, kind: 'line' },
-      { id: 'SM|SPM', cx: 173, cy: 202, angle: -70, kind: 'line' },
-      { id: 'PM|SPM', cx: 227, cy: 202, angle: 70, kind: 'line' },
-      { id: 'P|PM', cx: 253, cy: 193, angle: 40, kind: 'line' },
+      { id: 'P|SP', cx: 222, cy: 270, angle: -38, kind: 'line' },
+      { id: 'SM|SPM', cx: 175, cy: 196, angle: -66, kind: 'line' },
+      { id: 'PM|SPM', cx: 225, cy: 196, angle: 66, kind: 'line' },
+      { id: 'P|PM', cx: 261, cy: 185, angle: 44, kind: 'line' },
       { id: 'M|SM', cx: 136, cy: 149, angle: 78, kind: 'line' },
       { id: 'M|PM', cx: 264, cy: 149, angle: -78, kind: 'line' },
     ];
@@ -736,6 +744,7 @@
       $('three-setup').hidden = mode !== MODE.THREE;
       $('two-workspace').hidden = mode !== MODE.TWO;
       $('three-workspace').hidden = mode !== MODE.THREE;
+      $('workspace-shell').classList.toggle('three-mode', mode === MODE.THREE);
       setFeedback('Build a diagram, then check it.', 'note');
       renderAll();
     }
@@ -1186,7 +1195,6 @@
         <text class="term-label" x="200" y="40">${esc(terms.M)} (M)</text>
         <text class="term-label" x="98" y="326">${esc(terms.S)} (S/minor)</text>
         <text class="term-label" x="302" y="326">${esc(terms.P)} (P/major)</text>
-        ${boundedRegions.map(r => `<text class="region-label" x="${r.cx}" y="${r.cy - 18}">${r.id}</text>`).join('')}
         ${showThreeXSlots() ? THREE_X_TARGETS.map(target => floatingTargetControl(target)).join('') : ''}
         ${THREE_X_TARGETS.map(target => marks[target.id] === MARK.X ? xMark(target.cx, target.cy) : '').join('')}
         ${showThreeRegionControls() ? boundedRegions.map(r => regionControl(hit[r.id], DIAGRAM.THREE, r)).join('') : ''}
