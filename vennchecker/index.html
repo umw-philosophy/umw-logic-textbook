@@ -948,9 +948,9 @@
         O: '<rect x="12" y="12" width="376" height="60"></rect><rect x="12" y="228" width="376" height="60"></rect><rect x="12" y="72" width="60" height="156"></rect><rect x="328" y="72" width="60" height="156"></rect>',
       };
       const shade = {
-        S: '<ellipse class="shade-mark" cx="126" cy="150" rx="38" ry="54"></ellipse>',
+        S: '<path class="shade-mark" d="M 200 90.13 A 72 72 0 1 0 200 209.87 A 72 72 0 0 1 200 90.13 Z"></path>',
         SP: '<ellipse class="shade-mark" cx="200" cy="150" rx="39" ry="65"></ellipse>',
-        P: '<ellipse class="shade-mark" cx="274" cy="150" rx="38" ry="54"></ellipse>',
+        P: '<path class="shade-mark" d="M 200 90.13 A 72 72 0 1 1 200 209.87 A 72 72 0 0 0 200 90.13 Z"></path>',
         O: '<path class="shade-mark" d="M 12 12 H388 V72 H12 Z M12 228 H388 V288 H12 Z M12 72 H72 V228 H12 Z M328 72 H388 V228 H328 Z"></path>',
       };
       container.innerHTML = `<svg viewBox="0 0 400 300" role="img" aria-label="${interactive ? 'Interactive' : 'Correct'} two-circle Venn diagram">
