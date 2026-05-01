@@ -281,6 +281,7 @@
       stroke-width: 1.5;
       stroke-dasharray: 4 3;
       cursor: pointer;
+      pointer-events: all;
     }
 
     .floating-target:focus {
@@ -291,7 +292,7 @@
 
     .floating-target-label {
       fill: var(--gray-700);
-      font-size: 10px;
+      font-size: 9px;
       font-weight: 800;
       text-anchor: middle;
       pointer-events: none;
@@ -649,15 +650,15 @@
     ];
 
     const FLOATING_TARGETS = [
-      { id: 'S|SP', cx: 156, cy: 248 },
-      { id: 'SP|SPM', cx: 200, cy: 214 },
-      { id: 'P|SP', cx: 244, cy: 248 },
-      { id: 'S|SM', cx: 130, cy: 200 },
-      { id: 'SM|SPM', cx: 175, cy: 168 },
-      { id: 'PM|SPM', cx: 225, cy: 168 },
-      { id: 'P|PM', cx: 270, cy: 200 },
-      { id: 'M|SM', cx: 174, cy: 122 },
-      { id: 'M|PM', cx: 226, cy: 122 },
+      { id: 'S|SP', cx: 156, cy: 248, angle: 90 },
+      { id: 'SP|SPM', cx: 200, cy: 214, angle: 0 },
+      { id: 'P|SP', cx: 244, cy: 248, angle: 90 },
+      { id: 'S|SM', cx: 130, cy: 200, angle: -28 },
+      { id: 'SM|SPM', cx: 170, cy: 175, angle: 58 },
+      { id: 'PM|SPM', cx: 230, cy: 175, angle: -58 },
+      { id: 'P|PM', cx: 270, cy: 200, angle: 28 },
+      { id: 'M|SM', cx: 170, cy: 122, angle: 28 },
+      { id: 'M|PM', cx: 230, cy: 122, angle: -28 },
     ];
 
     const app = {
@@ -844,6 +845,9 @@
 
     function markRegion(diagram, regionId) {
       const marks = app.marks[diagram];
+      if (diagram === DIAGRAM.CONCLUSION && Object.keys(marks).length === 0) {
+        Object.assign(marks, conclusionExpectedMarks());
+      }
       const isFloatingTarget = regionId.includes('|');
       if (isFloatingTarget && app.tool === MARK.SHADE) {
         setFeedback('Floating targets are for X marks. Choose X or Erase for that target.', 'note');
@@ -865,7 +869,10 @@
 
     function clearCurrent() {
       if (app.mode === MODE.TWO) app.marks.two = {};
-      else app.marks.three = {};
+      else {
+        app.marks.three = {};
+        app.marks.conclusion = {};
+      }
       setFeedback('Diagram cleared.', 'note');
       renderAll();
     }
@@ -876,6 +883,7 @@
       } else {
         const props = syllogismPropositions();
         app.marks.three = expectedMarksFromSolution(solveDiagram(THREE_REGIONS, [props.major, props.minor]));
+        app.marks.conclusion = conclusionExpectedMarks();
       }
       setFeedback('Correct shading and X placement are shown.', 'note');
       renderAll();
@@ -894,12 +902,26 @@
       const premiseSolution = solveDiagram(THREE_REGIONS, [props.major, props.minor]);
       const problems = compareMarks(THREE_REGIONS, app.marks.three, premiseSolution);
       const conclusionSolution = solveDiagram(TWO_REGIONS, [props.conclusion]);
+      const conclusionTouched = Object.keys(app.marks.conclusion).length > 0;
+      const conclusionProblems = conclusionTouched ? compareMarks(TWO_REGIONS, app.marks.conclusion, conclusionSolution) : [];
       const valid = conclusionWarranted(projectToConclusion(premiseSolution), conclusionSolution);
-      if (problems.length === 0) {
+      if (problems.length === 0 && conclusionProblems.length === 0) {
         setFeedback(`Correct premise diagram. The syllogism is ${valid ? 'valid' : 'invalid'} under the modern interpretation.`, valid ? 'ok' : 'note');
       } else {
-        setFeedback(`The premise diagram is not yet correct. ${problems.join(' ')}`, 'err');
+        const parts = [];
+        if (problems.length) parts.push(`Premise diagram: ${problems.join(' ')}`);
+        if (conclusionProblems.length) parts.push(`Conclusion diagram: ${conclusionProblems.join(' ')}`);
+        setFeedback(parts.join(' '), 'err');
       }
+    }
+
+    function conclusionExpectedMarks() {
+      const props = syllogismPropositions();
+      return expectedMarksFromSolution(solveDiagram(TWO_REGIONS, [props.conclusion]));
+    }
+
+    function visibleConclusionMarks() {
+      return Object.keys(app.marks.conclusion).length ? app.marks.conclusion : conclusionExpectedMarks();
     }
 
     function projectToConclusion(solution) {
@@ -1003,8 +1025,9 @@
       const state = app.marks[DIAGRAM.THREE][target.id] || MARK.BLANK;
       const label = `${labelForRegion(THREE_REGIONS, target.id)}, currently ${state}. Use selected tool: ${app.tool}.`;
       return `<g class="floating-target" role="button" tabindex="0" data-diagram="${DIAGRAM.THREE}" data-region="${target.id}" aria-label="${esc(label)}">
-        <circle cx="${target.cx}" cy="${target.cy}" r="13"></circle>
-        <text class="floating-target-label" x="${target.cx}" y="${target.cy + 3}">X?</text>
+        <circle cx="${target.cx}" cy="${target.cy}" r="16"></circle>
+        <line x1="${target.cx - 12}" y1="${target.cy}" x2="${target.cx + 12}" y2="${target.cy}" transform="rotate(${target.angle} ${target.cx} ${target.cy})"></line>
+        <text class="floating-target-label" x="${target.cx}" y="${target.cy + 4}">line</text>
       </g>`;
     }
 
@@ -1030,7 +1053,7 @@
       $('premise-preview').textContent = `${sentenceText(props.major.form, roleName(props.major.subject), roleName(props.major.predicate))}; ${sentenceText(props.minor.form, roleName(props.minor.subject), roleName(props.minor.predicate))}`;
       $('conclusion-preview').textContent = sentenceText(props.conclusion.form, threeTerms.S, threeTerms.P);
       renderThreeSvg($('three-diagram'), app.marks.three, threeTerms);
-      renderTwoSvg($('conclusion-diagram'), expectedMarksFromSolution(solveDiagram(TWO_REGIONS, [props.conclusion])), { S: threeTerms.S, P: threeTerms.P }, false, DIAGRAM.CONCLUSION);
+      renderTwoSvg($('conclusion-diagram'), visibleConclusionMarks(), { S: threeTerms.S, P: threeTerms.P }, true, DIAGRAM.CONCLUSION);
       renderStateList();
       wireRegionControls();
     }
@@ -1040,11 +1063,15 @@
       const regions = app.mode === MODE.TWO ? TWO_REGIONS : THREE_REGIONS;
       const rows = Object.entries(activeMarks)
         .map(([id, mark]) => `<div><code>${esc(id)}</code> ${esc(labelForRegion(regions, id))}: ${mark}</div>`);
+      if (app.mode === MODE.THREE && Object.keys(app.marks.conclusion).length) {
+        rows.push(...Object.entries(app.marks.conclusion)
+          .map(([id, mark]) => `<div><code>Conclusion ${esc(id)}</code> ${esc(labelForRegion(TWO_REGIONS, id))}: ${mark}</div>`));
+      }
       $('state-list').innerHTML = rows.length ? rows.join('') : '<div>No marks yet.</div>';
     }
 
     function wireRegionControls() {
-      document.querySelectorAll('.region-hit').forEach(el => {
+      document.querySelectorAll('.region-hit, .floating-target').forEach(el => {
         el.addEventListener('click', () => markRegion(el.dataset.diagram, el.dataset.region));
         el.addEventListener('keydown', (event) => {
           if (event.key === 'Enter' || event.key === ' ') {
@@ -1108,9 +1135,20 @@
         app.marks.two = {};
         renderAll();
       });
-      document.querySelectorAll('input, select').forEach(el => {
+      document.querySelectorAll('#two-setup input, #two-setup select').forEach(el => {
         el.addEventListener('input', renderAll);
-        el.addEventListener('change', renderAll);
+        el.addEventListener('change', () => {
+          app.marks.two = {};
+          renderAll();
+        });
+      });
+      document.querySelectorAll('#three-setup input, #three-setup select').forEach(el => {
+        el.addEventListener('input', renderAll);
+        el.addEventListener('change', () => {
+          app.marks.three = {};
+          app.marks.conclusion = {};
+          renderAll();
+        });
       });
       renderAll();
     }
