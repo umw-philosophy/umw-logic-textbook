@@ -168,6 +168,39 @@
       margin-top: 14px;
     }
 
+    .validity-choice {
+      border: 1px solid var(--gray-200);
+      border-radius: 7px;
+      padding: 12px;
+      margin-top: 12px;
+      display: grid;
+      gap: 8px;
+    }
+
+    .validity-options {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
+      color: var(--gray-700);
+      font-weight: 650;
+    }
+
+    .validity-options label {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      margin: 0;
+      color: var(--gray-700);
+      font-size: .95rem;
+      font-weight: 650;
+      letter-spacing: 0;
+      text-transform: none;
+    }
+
+    .validity-options input {
+      width: auto;
+    }
+
     label,
     .group-label {
       display: block;
@@ -641,7 +674,14 @@
               <span class="sentence-preview" id="conclusion-preview"></span>
             </div>
             <div id="conclusion-diagram"></div>
-            <p class="caption">This is the conclusion diagram. A syllogism is valid when the premise diagram already warrants this information.</p>
+            <p class="caption">Diagram the conclusion here, then decide whether the premises warrant it.</p>
+            <fieldset class="validity-choice">
+              <legend class="group-label">Validity</legend>
+              <div class="validity-options">
+                <label><input type="radio" name="validity-answer" value="valid"> Valid</label>
+                <label><input type="radio" name="validity-answer" value="invalid"> Invalid</label>
+              </div>
+            </fieldset>
           </article>
         </div>
       </div>
@@ -720,7 +760,7 @@
         three: {},
         conclusion: {},
       },
-      showConclusionModel: true,
+      validityAnswer: '',
     };
 
     const $ = (id) => document.getElementById(id);
@@ -735,9 +775,6 @@
 
     function setMode(mode) {
       app.mode = mode;
-      if (mode === MODE.THREE && Object.keys(app.marks.conclusion).length === 0) {
-        app.showConclusionModel = true;
-      }
       $('mode-two').setAttribute('aria-pressed', mode === MODE.TWO ? 'true' : 'false');
       $('mode-three').setAttribute('aria-pressed', mode === MODE.THREE ? 'true' : 'false');
       $('two-setup').hidden = mode !== MODE.TWO;
@@ -902,10 +939,6 @@
 
     function markRegion(diagram, regionId) {
       const marks = app.marks[diagram];
-      if (diagram === DIAGRAM.CONCLUSION && Object.keys(marks).length === 0) {
-        if (app.showConclusionModel) Object.assign(marks, conclusionExpectedMarks());
-        app.showConclusionModel = false;
-      }
       const isFloatingTarget = regionId.includes('|');
       if (isFloatingTarget && app.tool === MARK.SHADE) {
         setFeedback('Floating targets are for X marks. Choose X or Erase for that target.', 'note');
@@ -934,7 +967,7 @@
       else {
         app.marks.three = {};
         app.marks.conclusion = {};
-        app.showConclusionModel = false;
+        app.validityAnswer = '';
       }
       setFeedback('Diagram cleared.', 'note');
       renderAll();
@@ -947,7 +980,7 @@
         const props = syllogismPropositions();
         app.marks.three = expectedMarksFromSolution(solveDiagram(THREE_REGIONS, [props.major, props.minor]));
         app.marks.conclusion = conclusionExpectedMarks();
-        app.showConclusionModel = false;
+        app.validityAnswer = actualValidityAnswer();
       }
       setFeedback('Correct shading and X placement are shown.', 'note');
       renderAll();
@@ -966,15 +999,21 @@
       const premiseSolution = solveDiagram(THREE_REGIONS, [props.major, props.minor]);
       const problems = compareMarks(THREE_REGIONS, app.marks.three, premiseSolution);
       const conclusionSolution = solveDiagram(TWO_REGIONS, [props.conclusion]);
-      const conclusionTouched = Object.keys(app.marks.conclusion).length > 0;
-      const conclusionProblems = conclusionTouched ? compareMarks(TWO_REGIONS, app.marks.conclusion, conclusionSolution) : [];
-      const valid = conclusionWarranted(projectToConclusion(premiseSolution), conclusionSolution);
-      if (problems.length === 0 && conclusionProblems.length === 0) {
-        setFeedback(`Correct premise diagram. The syllogism is ${valid ? 'valid' : 'invalid'} under the modern interpretation.`, valid ? 'ok' : 'note');
+      const conclusionProblems = compareMarks(TWO_REGIONS, app.marks.conclusion, conclusionSolution);
+      const correctValidity = actualValidityAnswer();
+      const validityProblems = [];
+      if (!app.validityAnswer) {
+        validityProblems.push('Choose whether the syllogism is valid or invalid.');
+      } else if (app.validityAnswer !== correctValidity) {
+        validityProblems.push(`The validity answer should be ${correctValidity}.`);
+      }
+      if (problems.length === 0 && conclusionProblems.length === 0 && validityProblems.length === 0) {
+        setFeedback(`Correct: the premise diagram, conclusion diagram, and validity answer are all right.`, 'ok');
       } else {
         const parts = [];
         if (problems.length) parts.push(`Premise diagram: ${problems.join(' ')}`);
         if (conclusionProblems.length) parts.push(`Conclusion diagram: ${conclusionProblems.join(' ')}`);
+        if (validityProblems.length) parts.push(`Validity: ${validityProblems.join(' ')}`);
         setFeedback(parts.join(' '), 'err');
       }
     }
@@ -985,8 +1024,14 @@
     }
 
     function visibleConclusionMarks() {
-      if (Object.keys(app.marks.conclusion).length) return app.marks.conclusion;
-      return app.showConclusionModel ? conclusionExpectedMarks() : {};
+      return app.marks.conclusion;
+    }
+
+    function actualValidityAnswer() {
+      const props = syllogismPropositions();
+      const premiseSolution = solveDiagram(THREE_REGIONS, [props.major, props.minor]);
+      const conclusionSolution = solveDiagram(TWO_REGIONS, [props.conclusion]);
+      return conclusionWarranted(projectToConclusion(premiseSolution), conclusionSolution) ? 'valid' : 'invalid';
     }
 
     function distance(x1, y1, x2, y2) {
@@ -1241,6 +1286,9 @@
       $('conclusion-preview').textContent = sentenceText(props.conclusion.form, threeTerms.S, threeTerms.P);
       renderThreeSvg($('three-diagram'), app.marks.three, threeTerms);
       renderTwoSvg($('conclusion-diagram'), visibleConclusionMarks(), { S: threeTerms.S, P: threeTerms.P }, true, DIAGRAM.CONCLUSION);
+      document.querySelectorAll('input[name="validity-answer"]').forEach(input => {
+        input.checked = input.value === app.validityAnswer;
+      });
       renderStateList();
       wireRegionControls();
     }
@@ -1253,6 +1301,9 @@
       if (app.mode === MODE.THREE && Object.keys(app.marks.conclusion).length) {
         rows.push(...Object.entries(app.marks.conclusion)
           .map(([id, mark]) => `<div><code>Conclusion ${esc(id)}</code> ${esc(labelForRegion(TWO_REGIONS, id))}: ${mark}</div>`));
+      }
+      if (app.mode === MODE.THREE && app.validityAnswer) {
+        rows.push(`<div><code>Validity</code> ${esc(app.validityAnswer)}</div>`);
       }
       $('state-list').innerHTML = rows.length ? rows.join('') : '<div>No marks yet.</div>';
     }
@@ -1309,7 +1360,7 @@
       $('conclusion-form').value = ex.conclusion;
       app.marks.three = {};
       app.marks.conclusion = {};
-      app.showConclusionModel = true;
+      app.validityAnswer = '';
       setFeedback('Example loaded.', 'note');
       renderAll();
     }
@@ -1324,6 +1375,12 @@
       $('show-btn').addEventListener('click', showCorrect);
       $('clear-btn').addEventListener('click', clearCurrent);
       $('load-syllogism').addEventListener('click', loadSyllogismExample);
+      document.querySelectorAll('input[name="validity-answer"]').forEach(input => {
+        input.addEventListener('change', () => {
+          app.validityAnswer = input.value;
+          renderAll();
+        });
+      });
       $('two-example').addEventListener('change', () => {
         if ($('two-example').value) $('two-quantity').value = $('two-example').value;
         app.marks.two = {};
@@ -1341,7 +1398,7 @@
         el.addEventListener('change', () => {
           app.marks.three = {};
           app.marks.conclusion = {};
-          app.showConclusionModel = true;
+          app.validityAnswer = '';
           renderAll();
         });
       });
