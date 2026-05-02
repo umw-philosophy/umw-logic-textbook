@@ -2,7 +2,8 @@
 <!--
   Custom LaTeX stylesheet for the UMW Logic Textbook.
 
-  Purpose: render <term> elements as plain prose, not italics.
+  Purpose: render <term> elements as plain prose, not italics, and tune
+  the default PDF styling for pedagogical blocks.
   Source still uses <term> for first-introduction tagging (so the
   index, cross-references, and future tooling work). The styling
   override here just suppresses the italic in PDF output.
@@ -21,16 +22,13 @@
     1. \terminology: render <term> as plain prose (not italic).
        PreTeXt default is \newcommand{\terminology}[1]{\textit{#1}}.
 
-    2. \ptxdiamond: suppress the end-of-definition marker (◇).
-       PreTeXt's default tcolorbox style for <definition> appends a
-       Zapf Dingbat diamond (\ding{117}) after the upper content.
-       Renewing \ptxdiamond to empty removes the marker for
-       definitions while leaving other tombstones (\ptxsquare for
-       theorems, \ptxtriangle for examples) untouched.
+    2. definitionstyle and examplestyle: keep the title visually
+       separate from the body and suppress the end-of-block tombstones.
   -->
   <xsl:param name="latex.preamble.late">
 \renewcommand{\terminology}[1]{#1}
-\renewcommand{\ptxdiamond}{}
+\tcbset{definitionstyle/.style={bwminimalstyle, blockspacingstyle, fonttitle=\blocktitlefont\bfseries, bottomtitle=0.8ex, before upper app={\setparstyle}}}
+\tcbset{examplestyle/.style={bwminimalstyle, blockspacingstyle, fonttitle=\blocktitlefont\bfseries, bottomtitle=0.8ex, before upper app={\setparstyle}}}
   </xsl:param>
 
 </xsl:stylesheet>
