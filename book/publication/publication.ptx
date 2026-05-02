@@ -9,7 +9,7 @@
 
   <common>
     <!-- combined per-section numbering: Item 1.2.1 = chapter 1, section 2, item 1 -->
-    <chunking level="2"/>
+    <chunking level="3"/>
   </common>
 
   <numbering>
@@ -28,12 +28,13 @@
     <knowl exercise-inline="yes" exercise-sectional="no"
            example="no" definition="no" theorem="no"
            project="no" task="no"/>
-    <!-- Reveal solutions on click for inline practice problems; static for end-of-chapter (with solutions in appendix) -->
+    <solutions divisional="" inline="" project="" />
   </html>
 
   <latex>
     <!-- Standard accessible PDF output -->
     <page paper="letterpaper"/>
+    <solutions divisional="" inline="" project="" />
   </latex>
 
   <source>

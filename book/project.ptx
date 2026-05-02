@@ -10,11 +10,11 @@
             format="html"
             source="main.ptx"
             publication="publication.ptx"/>
+    <!-- Custom LaTeX hook intentionally disabled until PDF symbol generation is reviewed. -->
     <target name="print"
             format="pdf"
             source="main.ptx"
             publication="publication.ptx"
-            xsl="../xsl/custom-latex.xsl"
             output-filename="umw-logic.pdf"/>
   </targets>
 </project>

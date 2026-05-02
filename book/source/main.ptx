@@ -119,10 +119,7 @@
     -->
 
     <backmatter xml:id="backmatter">
-      <appendix xml:id="appendix-solutions">
-        <title>Selected Solutions</title>
-        <p>Placeholder for selected end-of-chapter solutions.</p>
-      </appendix>
+      <xi:include href="appendix-solutions.ptx"/>
       <colophon xml:id="back-colophon">
         <p>
           This book was authored in <url href="https://pretextbook.org">PreTeXt</url>.
