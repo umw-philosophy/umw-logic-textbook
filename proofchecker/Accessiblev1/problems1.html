@@ -1,0 +1,560 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Natural Deduction Problem Generator</title>
+  <style>
+    /* ── Reset & base (Matching index.html) ───────────────────────────── */
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    :root {
+      --blue: #1e3a5f;
+      --blue-mid: #2d5a8e;
+      --blue-light: #e8eef8;
+      --green: #1a6b3c;
+      --green-bg: #f0fdf4;
+      --red: #b91c1c;
+      --gray-100: #f7f8fa;
+      --gray-200: #edf0f4;
+      --gray-300: #d1d9e0;
+      --gray-500: #6b7a8f;
+      --gray-700: #3d4a5c;
+      --text: #1a2332;
+      --radius: 8px;
+      --shadow: 0 2px 8px rgba(0, 0, 0, .10);
+    }
+
+    html,
+    body {
+      height: 100%;
+      font-family: system-ui, -apple-system, "Segoe UI", Helvetica, Arial, sans-serif;
+      background: var(--gray-100);
+      color: var(--text);
+      font-size: 15px;
+      line-height: 1.5;
+    }
+
+    #app {
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+    }
+
+    header {
+      background: var(--blue);
+      color: white;
+      padding: 14px 24px;
+      display: flex;
+      align-items: baseline;
+      gap: 12px;
+    }
+
+    header h1 {
+      font-size: 1.1rem;
+      font-weight: 700;
+      letter-spacing: .02em;
+    }
+
+    header p {
+      font-size: .82rem;
+      opacity: .7;
+      flex: 1;
+    }
+
+    .gen-link {
+      font-size: .82rem;
+      color: rgba(255, 255, 255, .8);
+      text-decoration: none;
+      border: 1px solid rgba(255, 255, 255, .35);
+      padding: 3px 10px;
+      border-radius: 4px;
+      transition: background .15s;
+    }
+
+    .gen-link:hover {
+      background: rgba(255, 255, 255, .15);
+      color: white;
+    }
+
+    /* ── Main Content ─────────────────────────────────────────────────── */
+    main {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 32px 16px;
+      gap: 24px;
+    }
+
+    .card {
+      background: white;
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      padding: 32px;
+      width: 100%;
+      max-width: 650px;
+    }
+
+    h2 {
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: var(--blue);
+      margin-bottom: 16px;
+    }
+
+    /* ── Selection Grids ──────────────────────────────────────────────── */
+    .section-label {
+      font-size: .85rem;
+      font-weight: 600;
+      color: var(--gray-500);
+      text-transform: uppercase;
+      letter-spacing: .05em;
+      margin-bottom: 10px;
+      margin-top: 20px;
+    }
+
+    .section-label:first-child {
+      margin-top: 0;
+    }
+
+    .grid-options {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+      gap: 10px;
+    }
+
+    .grid-options.rules {
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    }
+
+    .option-btn {
+      background: white;
+      border: 2px solid var(--gray-200);
+      border-radius: 6px;
+      padding: 12px;
+      text-align: center;
+      cursor: pointer;
+      font-size: .9rem;
+      font-weight: 600;
+      color: var(--gray-700);
+      transition: all .15s;
+      user-select: none;
+    }
+
+    .option-btn:hover {
+      border-color: var(--gray-300);
+      background: var(--gray-100);
+    }
+
+    .option-btn.selected {
+      border-color: var(--blue-mid);
+      background: var(--blue-light);
+      color: var(--blue);
+    }
+
+    /* ── Problem Display ──────────────────────────────────────────────── */
+    #problem-display {
+      display: none;
+      margin-top: 24px;
+      padding-top: 24px;
+      border-top: 1px solid var(--gray-200);
+    }
+
+    #problem-display.active {
+      display: block;
+      animation: fadeIn 0.3s ease-out;
+    }
+
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+        transform: translateY(-5px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .problem-box {
+      background: var(--gray-100);
+      border: 1px solid var(--gray-300);
+      border-radius: 6px;
+      padding: 20px;
+      font-family: 'Cambria Math', Georgia, 'Times New Roman', serif;
+      font-size: 1.1rem;
+      color: var(--text);
+      line-height: 1.8;
+      margin-bottom: 20px;
+    }
+
+    .premise-line {
+      display: flex;
+      gap: 12px;
+    }
+
+    .premise-num {
+      color: var(--gray-500);
+      user-select: none;
+      font-family: system-ui;
+      font-size: 0.9rem;
+      margin-top: 2px;
+    }
+
+    .conclusion-line {
+      margin-top: 10px;
+      padding-top: 10px;
+      border-top: 1px solid var(--gray-300);
+      font-weight: bold;
+      color: var(--blue);
+      display: flex;
+      gap: 12px;
+    }
+
+    .conclusion-slash {
+      font-weight: normal;
+      color: var(--gray-500);
+      font-family: system-ui;
+    }
+
+    .argument-table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+
+    .argument-table th,
+    .argument-table td {
+      padding: 2px 8px;
+      text-align: left;
+      vertical-align: baseline;
+    }
+
+    .argument-table th {
+      width: 1%;
+      white-space: nowrap;
+      font-family: system-ui, sans-serif;
+      font-size: .82rem;
+      font-weight: 600;
+      color: var(--gray-500);
+    }
+
+    .argument-table .conclusion-row th,
+    .argument-table .conclusion-row td {
+      border-top: 1px solid var(--gray-300);
+      padding-top: 8px;
+      color: var(--blue);
+      font-weight: 700;
+    }
+
+    /* ── Actions ──────────────────────────────────────────────────────── */
+    .actions {
+      display: flex;
+      gap: 12px;
+      margin-top: 24px;
+    }
+
+    .btn {
+      flex: 1;
+      border: none;
+      border-radius: 6px;
+      padding: 12px 20px;
+      font-size: 1rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background .15s;
+      text-align: center;
+      text-decoration: none;
+    }
+
+    .btn-secondary {
+      background: var(--gray-200);
+      color: var(--gray-700);
+    }
+
+    .btn-secondary:hover {
+      background: var(--gray-300);
+    }
+
+    .btn-primary {
+      background: var(--blue);
+      color: white;
+    }
+
+    .btn-primary:hover {
+      background: var(--blue-mid);
+    }
+
+    .btn-primary:disabled {
+      background: var(--gray-300);
+      cursor: not-allowed;
+    }
+  </style>
+</head>
+
+<body>
+
+  <div id="app">
+    <header>
+      <h1>Problem Generator 1</h1>
+      <p>Standard Bank</p>
+      <div style="display: flex; gap: 8px;">
+        <a class="gen-link" href="index.html">← Proof Checker</a>
+        <a class="gen-link" href="problems.html">Randomized Gen →</a>
+      </div>
+    </header>
+
+    <main>
+      <div class="card">
+
+        <div class="section-label">1. Select Allowed Rules</div>
+        <div class="grid-options rules" id="rules-grid" role="group" aria-label="Allowed rules">
+          <button type="button" class="option-btn selected" data-val="first4" aria-pressed="true">First 4 (MP, MT, HS, DS)</button>
+          <button type="button" class="option-btn" data-val="impl8" aria-pressed="false">8 Implication Rules</button>
+          <button type="button" class="option-btn" data-val="all18" aria-pressed="false">All 18 Rules</button>
+          <button type="button" class="option-btn" data-val="cpip" aria-pressed="false">18 Rules + CP / IP</button>
+        </div>
+
+        <div class="section-label">2. Select Difficulty</div>
+        <div class="grid-options" id="diff-grid" role="group" aria-label="Difficulty">
+          <button type="button" class="option-btn selected" data-val="easy" aria-pressed="true">Easy</button>
+          <button type="button" class="option-btn" data-val="med" aria-pressed="false">Medium</button>
+          <button type="button" class="option-btn" data-val="hard" aria-pressed="false">Hard</button>
+          <button type="button" class="option-btn" data-val="extreme" aria-pressed="false">Extreme</button>
+        </div>
+
+        <div class="actions">
+          <button class="btn btn-primary" onclick="generateProblem()">Generate Problem</button>
+        </div>
+
+        <div id="problem-display">
+          <div class="section-label">Generated Problem</div>
+          <div class="problem-box" id="problem-content">
+          </div>
+          <div class="actions">
+            <a href="#" id="solve-link" class="btn btn-primary">Solve in Checker →</a>
+          </div>
+        </div>
+
+      </div>
+    </main>
+  </div>
+
+  <script>
+    // ════════════════════════════════════════════════════════════════════════
+    // UI LOGIC
+    // ════════════════════════════════════════════════════════════════════════
+    let currentRules = 'first4';
+    let currentDiff = 'easy';
+
+    // Setup button selections
+    document.querySelectorAll('#rules-grid .option-btn').forEach(btn => {
+      btn.addEventListener('click', (e) => {
+        document.querySelectorAll('#rules-grid .option-btn').forEach(b => {
+          b.classList.remove('selected');
+          b.setAttribute('aria-pressed', 'false');
+        });
+        e.currentTarget.classList.add('selected');
+        e.currentTarget.setAttribute('aria-pressed', 'true');
+        currentRules = e.currentTarget.dataset.val;
+      });
+    });
+
+    document.querySelectorAll('#diff-grid .option-btn').forEach(btn => {
+      btn.addEventListener('click', (e) => {
+        document.querySelectorAll('#diff-grid .option-btn').forEach(b => {
+          b.classList.remove('selected');
+          b.setAttribute('aria-pressed', 'false');
+        });
+        e.currentTarget.classList.add('selected');
+        e.currentTarget.setAttribute('aria-pressed', 'true');
+        currentDiff = e.currentTarget.dataset.val;
+      });
+    });
+
+    // ════════════════════════════════════════════════════════════════════════
+    // PROBLEM BANK
+    // ════════════════════════════════════════════════════════════════════════
+    // p = premises array, c = conclusion string
+    const problems = {
+      first4: {
+        easy: [
+          { p: ["A ⊃ B", "A"], c: "B" },
+          { p: ["A ∨ B", "~A"], c: "B" },
+          { p: ["A ⊃ B", "~B"], c: "~A" }
+        ],
+        med: [
+          { p: ["A ⊃ B", "B ⊃ C", "A"], c: "C" },
+          { p: ["A ∨ B", "B ⊃ C", "~A"], c: "C" },
+          { p: ["A ⊃ B", "B ⊃ C", "~C"], c: "~A" }
+        ],
+        hard: [
+          { p: ["A ⊃ B", "B ⊃ C", "C ⊃ D", "A"], c: "D" },
+          { p: ["A ∨ B", "A ⊃ C", "C ⊃ D", "~D"], c: "B" },
+          { p: ["A ⊃ B", "C ∨ A", "~C", "B ⊃ D"], c: "D" }
+        ],
+        extreme: [
+          { p: ["A ⊃ (B ⊃ C)", "A", "C ⊃ D", "~D"], c: "~B" },
+          { p: ["A ∨ (B ⊃ C)", "~A", "C ⊃ D", "~D"], c: "~B" },
+          { p: ["A ⊃ B", "B ⊃ (C ∨ D)", "A", "~C"], c: "D" }
+        ]
+      },
+      impl8: {
+        easy: [
+          { p: ["A · B"], c: "A ∨ C" },
+          { p: ["A ⊃ B", "C ⊃ D", "A ∨ C"], c: "B ∨ D" },
+          { p: ["A", "B"], c: "A · B" }
+        ],
+        med: [
+          { p: ["(A ∨ B) ⊃ C", "A"], c: "C" },
+          { p: ["A · B", "A ⊃ C"], c: "C ∨ D" },
+          { p: ["A ⊃ (B · C)", "A"], c: "B" }
+        ],
+        hard: [
+          { p: ["A · B", "A ⊃ (C ∨ D)", "C ⊃ E", "D ⊃ F"], c: "E ∨ F" },
+          { p: ["(A · B) ⊃ C", "A", "B"], c: "C ∨ D" },
+          { p: ["A ⊃ B", "C ⊃ D", "~(B ∨ D)"], c: "~(A ∨ C)" } // Uses CD implicitly backward via MT logic if creative, or standard derivation
+        ],
+        extreme: [
+          { p: ["(A ∨ B) ⊃ (C · D)", "A", "C ⊃ E", "D ⊃ F"], c: "E · F" },
+          { p: ["A ⊃ (B ⊃ C)", "A · B", "C ⊃ (D · E)"], c: "D ∨ F" },
+          { p: ["A ∨ B", "A ⊃ C", "B ⊃ D", "C ⊃ E", "D ⊃ E"], c: "E ∨ F" }
+        ]
+      },
+      all18: {
+        easy: [
+          { p: ["~(A ∨ B)"], c: "~A" },
+          { p: ["A ⊃ B"], c: "~B ⊃ ~A" },
+          { p: ["~~A"], c: "A ∨ B" }
+        ],
+        med: [
+          { p: ["~(A · B)", "A"], c: "~B" },
+          { p: ["A ⊃ B", "B ⊃ C"], c: "~C ⊃ ~A" },
+          { p: ["A ∨ (B · C)"], c: "A ∨ B" }
+        ],
+        hard: [
+          { p: ["A ⊃ B", "A ∨ (C · D)", "~B"], c: "C" },
+          { p: ["(A ⊃ B) · (A ⊃ C)", "A"], c: "B · C" },
+          { p: ["~(A ∨ B)", "C ⊃ A"], c: "~C" }
+        ],
+        extreme: [
+          { p: ["~(A · B)", "A ≡ C", "C"], c: "~B ∨ D" },
+          { p: ["A ⊃ (B ⊃ C)", "~(A ⊃ C)"], c: "~B" },
+          { p: ["(A ∨ B) ⊃ (C · D)", "~C"], c: "~A · ~B" }
+        ]
+      },
+      cpip: {
+        easy: [
+          { p: ["A ⊃ (B ⊃ C)"], c: "(A · B) ⊃ C" },
+          { p: ["A ⊃ B", "B ⊃ C"], c: "A ⊃ C" },
+          { p: ["A ⊃ B", "A ⊃ C"], c: "A ⊃ (B · C)" }
+        ],
+        med: [
+          { p: ["A ∨ B", "A ⊃ C", "B ⊃ C"], c: "C" },
+          { p: ["(A ∨ B) ⊃ C"], c: "A ⊃ C" },
+          { p: ["A ⊃ (B ∨ C)", "~B"], c: "A ⊃ C" }
+        ],
+        hard: [
+          { p: ["A ⊃ (B · C)", "(B ∨ D) ⊃ E"], c: "A ⊃ E" },
+          { p: ["A ⊃ (B ⊃ C)", "D ⊃ B"], c: "(A · D) ⊃ C" },
+          { p: ["A ∨ B", "~A ∨ C", "~B ∨ C"], c: "C" }
+        ],
+        extreme: [
+          { p: ["A ⊃ (B ∨ C)", "B ⊃ D", "C ⊃ D"], c: "A ⊃ D" },
+          { p: ["(A · B) ⊃ C", "(A · ~B) ⊃ C"], c: "A ⊃ C" },
+          { p: ["A ⊃ (B ≡ C)"], c: "(A · B) ⊃ C" }
+        ]
+      }
+    };
+
+    // ════════════════════════════════════════════════════════════════════════
+    // GENERATOR LOGIC
+    // ════════════════════════════════════════════════════════════════════════
+
+    function randomizeVariables(problemTemplate) {
+      // Find all unique uppercase letters in the problem
+      const allText = problemTemplate.p.join(' ') + ' ' + problemTemplate.c;
+      const originalVars = [...new Set(allText.match(/[A-Z]/g))];
+
+      if (!originalVars || originalVars.length === 0) return problemTemplate;
+
+      // Create a pool of standard logic letters
+      const pool = "PQRSTUVWXYZABCDEFGHIJKLMN".split('');
+
+      // Shuffle pool slightly based on a random starting point
+      const startIdx = Math.floor(Math.random() * 10);
+      const shuffledPool = pool.slice(startIdx).concat(pool.slice(0, startIdx));
+
+      // Map original -> new
+      const varMap = {};
+      originalVars.forEach((v, i) => { varMap[v] = shuffledPool[i]; });
+
+      // Replace function ensuring we only replace standalone letters (though in our strings they are all isolated)
+      const applyMap = (str) => {
+        return str.replace(/[A-Z]/g, match => varMap[match]);
+      };
+
+      return {
+        p: problemTemplate.p.map(applyMap),
+        c: applyMap(problemTemplate.c)
+      };
+    }
+
+    function esc(str) {
+      return String(str)
+        .replace(/&/g, '&amp;')
+        .replace(/</g, '&lt;')
+        .replace(/>/g, '&gt;')
+        .replace(/"/g, '&quot;');
+    }
+
+    function generateProblem() {
+      const bank = problems[currentRules][currentDiff];
+      const template = bank[Math.floor(Math.random() * bank.length)];
+      const activeProblem = randomizeVariables(template);
+
+      // Render HTML
+      const displayArea = document.getElementById('problem-content');
+      let html = '<table class="argument-table" aria-label="Generated argument"><tbody>';
+
+      activeProblem.p.forEach((prem, idx) => {
+        html += `<tr>
+               <th scope="row">Premise ${idx + 1}</th>
+               <td>${esc(prem)}</td>
+             </tr>`;
+      });
+
+      html += `<tr class="conclusion-row">
+             <th scope="row">Conclusion</th>
+             <td><span class="conclusion-slash">/</span> ${esc(activeProblem.c)}</td>
+           </tr>`;
+      html += '</tbody></table>';
+
+      displayArea.innerHTML = html;
+
+      // Build deep link for index.html
+      // URL Format expected: index.html?p=A+%E2%8A%83+B&c=B
+      const url = new URL('index.html', window.location.href);
+      activeProblem.p.forEach(prem => url.searchParams.append('p', prem));
+      url.searchParams.append('c', activeProblem.c);
+
+      document.getElementById('solve-link').href = url.toString();
+
+      // Show UI
+      const displayContainer = document.getElementById('problem-display');
+      displayContainer.classList.remove('active');
+      void displayContainer.offsetWidth; // trigger reflow to restart animation
+      displayContainer.classList.add('active');
+    }
+  </script>
+</body>
+
+</html>

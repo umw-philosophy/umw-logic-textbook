@@ -282,4 +282,14 @@ Each decision is dated, numbered, and tagged with the section of `PROJECT_PLAN.m
 
 ---
 
+## D-025 — Automated Markdown-to-PreTeXt translation for End-of-Chapter materials
+
+**Date**: 2026-05-02
+**Plan section**: 12
+**Decision**: Use a custom Python script to translate Markdown drafts of exercises, solutions, and chapter summaries directly into PreTeXt XML, rather than hand-authoring them.
+**Alternatives considered**: Hand-coding all XML; writing a generic Pandoc filter.
+**Rationale**: Hand-coding `<exercises>`, `<solution>`, and complex numbered blocks in PreTeXt is tedious, error-prone, and hinders pedagogical review. Drafting in Markdown allows the lead author to easily balance and review exercise sets. The custom Python script guarantees PreTeXt schema compliance (e.g., proper element ordering, automatic `<blockquote/>` wrapping for standard form, and filtering out instructor notes).
+
+---
+
 *End of decision log as of project alignment, April 26, 2026. New decisions appended below.*

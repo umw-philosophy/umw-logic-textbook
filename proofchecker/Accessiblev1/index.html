@@ -1,0 +1,2103 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Natural Deduction Proof Checker</title>
+  <style>
+    /* ── Reset & base ──────────────────────────────────────────────────── */
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    :root {
+      --blue: #1e3a5f;
+      --blue-mid: #2d5a8e;
+      --blue-light: #e8eef8;
+      --green: #1a6b3c;
+      --green-bg: #f0fdf4;
+      --red: #b91c1c;
+      --red-bg: #fff5f5;
+      --amber: #b45309;
+      --amber-bg: #fffbeb;
+      --cp-bar: #3b82f6;
+      --ip-bar: #f59e0b;
+      --gray-100: #f7f8fa;
+      --gray-200: #edf0f4;
+      --gray-300: #d1d9e0;
+      --gray-500: #6b7a8f;
+      --gray-700: #3d4a5c;
+      --text: #1a2332;
+      --radius: 8px;
+      --shadow: 0 2px 8px rgba(0, 0, 0, .10);
+      --shadow-sm: 0 1px 3px rgba(0, 0, 0, .08);
+    }
+
+    html,
+    body {
+      height: 100%;
+      font-family: system-ui, -apple-system, "Segoe UI", Helvetica, Arial, sans-serif;
+      background: var(--gray-100);
+      color: var(--text);
+      font-size: 15px;
+      line-height: 1.5;
+    }
+
+    /* ── Layout ────────────────────────────────────────────────────────── */
+    #app {
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+    }
+
+    header {
+      background: var(--blue);
+      color: white;
+      padding: 14px 24px;
+      display: flex;
+      align-items: baseline;
+      gap: 12px;
+    }
+
+    header h1 {
+      font-size: 1.1rem;
+      font-weight: 700;
+      letter-spacing: .02em;
+    }
+
+    header p {
+      font-size: .82rem;
+      opacity: .7;
+      flex: 1;
+    }
+
+    .gen-link {
+      font-size: .82rem;
+      color: rgba(255, 255, 255, .8);
+      text-decoration: none;
+      border: 1px solid rgba(255, 255, 255, .35);
+      padding: 3px 10px;
+      border-radius: 4px;
+      white-space: nowrap;
+      transition: background .15s;
+    }
+
+    .gen-link:hover {
+      background: rgba(255, 255, 255, .15);
+      color: white;
+    }
+
+    /* ── Setup panel ───────────────────────────────────────────────────── */
+    #setup-panel {
+      flex: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 32px 16px;
+    }
+
+    .setup-card {
+      background: white;
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      padding: 32px;
+      width: 100%;
+      max-width: 560px;
+    }
+
+    .setup-card h2 {
+      font-size: 1rem;
+      font-weight: 700;
+      color: var(--blue);
+      margin-bottom: 20px;
+    }
+
+    .field-label {
+      display: block;
+      font-size: .8rem;
+      font-weight: 600;
+      color: var(--gray-500);
+      text-transform: uppercase;
+      letter-spacing: .05em;
+      margin-bottom: 6px;
+      margin-top: 18px;
+    }
+
+    .field-label:first-of-type {
+      margin-top: 0;
+    }
+
+    #premise-list {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      margin-bottom: 8px;
+    }
+
+    .premise-row {
+      display: flex;
+      gap: 6px;
+      align-items: center;
+    }
+
+    .premise-row .formula-input {
+      flex: 1;
+    }
+
+    .premise-row .btn-remove {
+      background: none;
+      border: none;
+      cursor: pointer;
+      color: var(--gray-500);
+      font-size: 1.2rem;
+      line-height: 1;
+      padding: 0 4px;
+      transition: color .15s;
+    }
+
+    .premise-row .btn-remove:hover {
+      color: var(--red);
+    }
+
+    .formula-input {
+      width: 100%;
+      padding: 8px 12px;
+      border: 1px solid var(--gray-300);
+      border-radius: 6px;
+      font-size: .95rem;
+      font-family: 'Cambria Math', Georgia, 'Times New Roman', serif;
+      color: var(--text);
+      transition: border-color .15s, box-shadow .15s;
+      background: white;
+    }
+
+    .formula-input:focus {
+      outline: none;
+      border-color: var(--blue-mid);
+      box-shadow: 0 0 0 3px rgba(45, 90, 142, .12);
+    }
+
+    .formula-input::placeholder {
+      color: var(--gray-500);
+      font-style: italic;
+      font-family: system-ui, sans-serif;
+    }
+
+    .btn-add-premise {
+      background: none;
+      border: 1px dashed var(--gray-300);
+      border-radius: 6px;
+      padding: 6px 12px;
+      font-size: .82rem;
+      color: var(--gray-500);
+      cursor: pointer;
+      width: 100%;
+      text-align: left;
+      transition: background .15s, color .15s;
+    }
+
+    .btn-add-premise:hover {
+      background: var(--blue-light);
+      color: var(--blue);
+      border-color: var(--blue-mid);
+    }
+
+    .btn-primary {
+      display: block;
+      width: 100%;
+      margin-top: 24px;
+      background: var(--blue);
+      color: white;
+      border: none;
+      border-radius: 6px;
+      padding: 11px 20px;
+      font-size: .95rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background .15s;
+    }
+
+    .btn-primary:hover {
+      background: var(--blue-mid);
+    }
+
+    .setup-hint {
+      margin-top: 14px;
+      padding: 10px 12px;
+      background: var(--blue-light);
+      border-radius: 6px;
+      font-size: .78rem;
+      color: var(--blue);
+    }
+
+    .setup-hint strong {
+      font-weight: 700;
+    }
+
+    /* ── Proof panel ───────────────────────────────────────────────────── */
+    #proof-panel {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      min-height: 0;
+    }
+
+    /* Proof goal bar */
+    #proof-goal {
+      background: var(--blue-light);
+      border-bottom: 1px solid var(--gray-300);
+      padding: 10px 20px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    #proof-goal .goal-text {
+      flex: 1;
+      font-family: 'Cambria Math', Georgia, serif;
+      font-size: .9rem;
+      color: var(--blue);
+      line-height: 1.7;
+    }
+
+    .goal-row {
+      display: flex;
+      align-items: baseline;
+      gap: 0;
+    }
+
+    .goal-prem {
+      /* premise number + text */
+      white-space: pre;
+    }
+
+    .goal-conc {
+      margin-left: 2em;
+      white-space: nowrap;
+      color: var(--blue);
+      font-weight: 700;
+    }
+
+    .goal-conc-slash {
+      font-style: normal;
+      font-weight: 400;
+      margin-right: .3em;
+    }
+
+    #proof-goal .btn-new {
+      background: none;
+      border: 1px solid var(--blue-mid);
+      border-radius: 5px;
+      padding: 4px 12px;
+      font-size: .78rem;
+      color: var(--blue);
+      cursor: pointer;
+      white-space: nowrap;
+      transition: background .15s;
+    }
+
+    #proof-goal .btn-new:hover {
+      background: var(--blue-light);
+    }
+
+    /* Proof lines */
+    #proof-scroll {
+      flex: 1;
+      overflow-y: auto;
+      padding: 16px 0;
+    }
+
+    .proof-table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+
+    .proof-line {
+      padding: 3px 20px 3px 0;
+      transition: background .1s;
+    }
+
+    .proof-line:hover {
+      background: rgba(0, 0, 0, .018);
+    }
+
+    .line-num {
+      width: 38px;
+      min-width: 38px;
+      text-align: right;
+      padding-right: 10px;
+      padding-top: 4px;
+      font-size: .78rem;
+      color: var(--gray-500);
+      font-variant-numeric: tabular-nums;
+      font-family: ui-monospace, monospace;
+      user-select: none;
+      vertical-align: top;
+    }
+
+    .line-body {
+      min-width: 0;
+      border-left: 3px solid transparent;
+      padding-left: 10px;
+      vertical-align: top;
+      width: 100%;
+    }
+
+    .line-just-cell,
+    .line-status-cell {
+      vertical-align: top;
+      padding-top: 4px;
+      white-space: nowrap;
+    }
+
+    .line-just-cell {
+      padding-left: 10px;
+      padding-right: 10px;
+    }
+
+    .line-status-cell {
+      width: 32px;
+      text-align: right;
+      padding-right: 20px;
+    }
+
+    .line-body.depth-1 {
+      border-left-color: var(--cp-bar);
+    }
+
+    .line-body.depth-1.ip {
+      border-left-color: var(--ip-bar);
+    }
+
+    .line-body.depth-2 {
+      border-left-color: var(--cp-bar);
+      margin-left: 20px;
+    }
+
+    .line-body.depth-2.ip {
+      border-left-color: var(--ip-bar);
+    }
+
+    .line-body.depth-3 {
+      border-left-color: var(--cp-bar);
+      margin-left: 40px;
+    }
+
+    .line-body.depth-3.ip {
+      border-left-color: var(--ip-bar);
+    }
+
+    .line-main {
+      display: flex;
+      align-items: baseline;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
+    .line-formula {
+      font-family: 'Cambria Math', Georgia, 'Times New Roman', serif;
+      font-size: 1rem;
+      color: var(--text);
+      flex: 1;
+      min-width: 0;
+    }
+
+    .proof-line.assumption .line-formula {
+      font-style: italic;
+      color: var(--gray-700);
+    }
+
+    .line-just {
+      font-size: .75rem;
+      color: var(--gray-500);
+      white-space: nowrap;
+      font-family: system-ui, sans-serif;
+    }
+
+    .line-status {
+      font-size: .85rem;
+      font-weight: 700;
+      min-width: 18px;
+      text-align: right;
+    }
+
+    .line-status.ok {
+      color: var(--green);
+    }
+
+    .line-status.err {
+      color: var(--red);
+    }
+
+    .line-error {
+      margin-top: 3px;
+      font-size: .78rem;
+      color: var(--red);
+      padding: 5px 8px;
+      background: var(--red-bg);
+      border-radius: 4px;
+      line-height: 1.4;
+      font-family: system-ui, sans-serif;
+    }
+
+    .line-error[hidden] {
+      display: none;
+    }
+
+    .line-tag {
+      display: inline-block;
+      font-size: .65rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: .06em;
+      padding: 1px 6px;
+      border-radius: 3px;
+      margin-right: 4px;
+      vertical-align: middle;
+    }
+
+    .line-tag.cp {
+      background: #dbeafe;
+      color: #1d4ed8;
+    }
+
+    .line-tag.ip {
+      background: #fef3c7;
+      color: #92400e;
+    }
+
+    /* Complete banner */
+    #complete-banner {
+      margin: 8px 16px;
+      padding: 10px 16px;
+      background: var(--green-bg);
+      border: 1px solid #86efac;
+      border-radius: var(--radius);
+      color: var(--green);
+      font-weight: 700;
+      font-size: .9rem;
+      display: none;
+    }
+
+    #complete-banner.show {
+      display: block;
+    }
+
+    /* Scope indicator */
+    #scope-indicator {
+      margin: 6px 16px;
+      padding: 7px 12px;
+      border-radius: 6px;
+      font-size: .78rem;
+      font-weight: 600;
+      display: none;
+    }
+
+    #scope-indicator.cp-open {
+      display: block;
+      background: #dbeafe;
+      color: #1d4ed8;
+      border: 1px solid #93c5fd;
+    }
+
+    #scope-indicator.ip-open {
+      display: block;
+      background: #fef3c7;
+      color: #92400e;
+      border: 1px solid #fcd34d;
+    }
+
+    /* ── Entry panel ───────────────────────────────────────────────────── */
+    #entry-panel {
+      background: white;
+      border-top: 1px solid var(--gray-200);
+      box-shadow: 0 -2px 8px rgba(0, 0, 0, .06);
+      padding: 14px 16px 16px;
+    }
+
+    /* Symbol toolbar */
+    .sym-bar {
+      display: flex;
+      gap: 5px;
+      flex-wrap: wrap;
+      margin-bottom: 10px;
+    }
+
+    /* Compact version for setup panel */
+    .sym-bar.sym-bar-setup {
+      margin-bottom: 12px;
+      margin-top: 4px;
+    }
+
+    .sym-btn {
+      background: white;
+      border: 1px solid var(--gray-300);
+      border-bottom: 2px solid var(--gray-300);
+      border-radius: 5px;
+      padding: 5px 10px;
+      font-family: 'Cambria Math', Georgia, 'Times New Roman', serif;
+      font-size: 1rem;
+      cursor: pointer;
+      color: var(--text);
+      transition: background .1s, border-color .1s;
+      min-width: 36px;
+      text-align: center;
+    }
+
+    .sym-btn:hover {
+      background: var(--blue-light);
+      border-color: var(--blue-mid);
+      border-bottom-color: var(--blue-mid);
+      color: var(--blue);
+    }
+
+    .sym-btn:active {
+      transform: translateY(1px);
+      border-bottom-width: 1px;
+    }
+
+    .sym-divider {
+      width: 1px;
+      background: var(--gray-200);
+      align-self: stretch;
+      margin: 0 2px;
+    }
+
+    /* Formula row */
+    .entry-formula-row {
+      margin-bottom: 8px;
+    }
+
+    /* Rule + cite row */
+    .entry-rule-row {
+      display: flex;
+      gap: 8px;
+      margin-bottom: 10px;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+
+    .entry-rule-row label {
+      font-size: .75rem;
+      font-weight: 600;
+      color: var(--gray-500);
+      text-transform: uppercase;
+      letter-spacing: .04em;
+      white-space: nowrap;
+    }
+
+    #rule-select {
+      flex: 1;
+      min-width: 0;
+      padding: 7px 10px;
+      border: 1px solid var(--gray-300);
+      border-radius: 6px;
+      font-size: .88rem;
+      background: white;
+      color: var(--text);
+      cursor: pointer;
+    }
+
+    #rule-select:focus {
+      outline: none;
+      border-color: var(--blue-mid);
+      box-shadow: 0 0 0 3px rgba(45, 90, 142, .12);
+    }
+
+    .cited-wrap {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      white-space: nowrap;
+    }
+
+    #cited-input {
+      width: 100px;
+      padding: 7px 10px;
+      border: 1px solid var(--gray-300);
+      border-radius: 6px;
+      font-size: .88rem;
+      font-family: ui-monospace, monospace;
+      text-align: center;
+    }
+
+    #cited-input:focus {
+      outline: none;
+      border-color: var(--blue-mid);
+      box-shadow: 0 0 0 3px rgba(45, 90, 142, .12);
+    }
+
+    /* Action buttons */
+    .action-row {
+      display: flex;
+      gap: 6px;
+      flex-wrap: wrap;
+    }
+
+    .btn {
+      padding: 7px 14px;
+      border-radius: 6px;
+      font-size: .82rem;
+      font-weight: 600;
+      cursor: pointer;
+      border: none;
+      transition: background .15s, opacity .15s;
+      white-space: nowrap;
+    }
+
+    .btn:disabled {
+      opacity: .45;
+      cursor: not-allowed;
+    }
+
+    .btn-submit {
+      background: var(--blue);
+      color: white;
+    }
+
+    .btn-submit:hover:not(:disabled) {
+      background: var(--blue-mid);
+    }
+
+    .btn-cp {
+      background: #dbeafe;
+      color: #1d4ed8;
+      border: 1px solid #93c5fd;
+    }
+
+    .btn-cp:hover:not(:disabled) {
+      background: #bfdbfe;
+    }
+
+    .btn-ip {
+      background: #fef3c7;
+      color: #92400e;
+      border: 1px solid #fcd34d;
+    }
+
+    .btn-ip:hover:not(:disabled) {
+      background: #fde68a;
+    }
+
+    .btn-close {
+      background: var(--gray-200);
+      color: var(--gray-700);
+      border: 1px solid var(--gray-300);
+    }
+
+    .btn-close:hover:not(:disabled) {
+      background: var(--gray-300);
+    }
+
+    .btn-secondary {
+      background: var(--gray-200);
+      color: var(--gray-700);
+    }
+
+    .btn-secondary:hover:not(:disabled) {
+      background: var(--gray-300);
+    }
+
+    .btn-danger {
+      background: none;
+      color: var(--red);
+      border: 1px solid #fca5a5;
+    }
+
+    .btn-danger:hover:not(:disabled) {
+      background: var(--red-bg);
+    }
+
+    /* ── Keyboard hint ─────────────────────────────────────────────────── */
+    .kbd-hint {
+      font-size: .7rem;
+      color: var(--gray-500);
+      margin-bottom: 8px;
+    }
+
+    kbd {
+      background: var(--gray-200);
+      border: 1px solid var(--gray-300);
+      border-radius: 3px;
+      padding: 1px 4px;
+      font-family: ui-monospace, monospace;
+      font-size: .72em;
+    }
+
+    /* ── Utility ───────────────────────────────────────────────────────── */
+    .sr-only {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      padding: 0;
+      margin: -1px;
+      overflow: hidden;
+      clip: rect(0, 0, 0, 0);
+      white-space: nowrap;
+      border: 0;
+    }
+
+    [hidden] {
+      display: none !important;
+    }
+
+    @media (max-width: 520px) {
+      .setup-card {
+        padding: 20px 16px;
+      }
+
+      .entry-rule-row {
+        flex-direction: column;
+        align-items: stretch;
+      }
+
+      #cited-input {
+        width: 100%;
+      }
+
+      .cited-wrap {
+        flex-direction: column;
+        align-items: stretch;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <div id="app">
+
+    <!-- ── Header ─────────────────────────────────────────────────────────── -->
+    <header>
+      <h1>Natural Deduction Proof Checker</h1>
+      <p>Sentential Logic</p>
+      <div style="display: flex; gap: 8px;">
+        <a class="gen-link" href="problems1.html">Problem Gen 1 →</a>
+        <a class="gen-link" href="problems.html">Problem Gen 2 →</a>
+      </div>
+    </header>
+
+    <!-- ── Setup panel ────────────────────────────────────────────────────── -->
+    <section id="setup-panel">
+      <div class="setup-card">
+        <h2>New Proof</h2>
+
+        <!-- Operator toolbar for setup screen -->
+        <div class="sym-bar sym-bar-setup" role="toolbar" aria-label="Formula symbols">
+          <button class="sym-btn" type="button" onclick="ins('~')" title="Negation (~)" aria-label="Insert negation">~</button>
+          <button class="sym-btn" type="button" onclick="ins('·')" title="Conjunction (·) — also type &amp;" aria-label="Insert conjunction">·</button>
+          <button class="sym-btn" type="button" onclick="ins('∨')" title="Disjunction (∨) — also type v" aria-label="Insert disjunction">∨</button>
+          <button class="sym-btn" type="button" onclick="ins('⊃')" title="Conditional (⊃) — also type ->" aria-label="Insert conditional">⊃</button>
+          <button class="sym-btn" type="button" onclick="ins('≡')"
+            title="Biconditional (≡) — also type &lt;->" aria-label="Insert biconditional">≡</button>
+          <div class="sym-divider"></div>
+          <button class="sym-btn" type="button" onclick="ins('(')" title="Open parenthesis" aria-label="Insert open parenthesis">(</button>
+          <button class="sym-btn" type="button" onclick="ins(')')" title="Close parenthesis" aria-label="Insert close parenthesis">)</button>
+        </div>
+
+        <div class="field-label" id="premises-label">Premises</div>
+        <div id="premise-list"></div>
+        <button class="btn-add-premise" type="button" onclick="addPremiseField()">+ Add another premise</button>
+
+        <label class="field-label" for="conclusion-input">Conclusion</label>
+        <input id="conclusion-input" class="formula-input" type="text" placeholder="e.g. A ⊃ (B · C)"
+          aria-describedby="setup-hint setup-error" onkeydown="if(event.key==='Enter') startProof()">
+
+        <button class="btn-primary" type="button" onclick="startProof()">Begin Proof →</button>
+
+        <div class="setup-hint" id="setup-hint">
+          <strong>Tip:</strong> Click an operator button above, or type shortcuts:
+          <kbd>-&gt;</kbd> for ⊃ &nbsp; <kbd>&amp;</kbd> for · &nbsp; <kbd>v</kbd> for ∨ &nbsp; <kbd>&lt;-&gt;</kbd> for
+          ≡.
+          Atomic sentences must be <strong>capital letters</strong> (A–Z).
+          Parentheses are required around each embedded connective: write <kbd>A ⊃ (B · C)</kbd>, not <kbd>A ⊃ B ·
+            C</kbd>.
+        </div>
+        <div id="setup-error" class="line-error" role="alert" hidden></div>
+      </div>
+    </section>
+
+    <!-- ── Proof panel ─────────────────────────────────────────────────────── -->
+    <section id="proof-panel" hidden>
+
+      <!-- Goal bar -->
+      <div id="proof-goal">
+        <div class="goal-text" id="goal-text"></div>
+        <button class="btn-new" type="button" onclick="newProof()">New Proof</button>
+      </div>
+
+      <!-- Proof lines (scrollable) -->
+      <div id="proof-scroll">
+        <div id="complete-banner" role="status" aria-live="polite">✓ Proof complete!</div>
+        <div id="scope-indicator"></div>
+        <table class="proof-table" aria-label="Proof lines">
+          <thead class="sr-only">
+            <tr>
+              <th scope="col">Line</th>
+              <th scope="col">Formula</th>
+              <th scope="col">Justification</th>
+              <th scope="col">Status</th>
+            </tr>
+          </thead>
+          <tbody id="proof-lines"></tbody>
+        </table>
+      </div>
+
+      <!-- Entry panel (fixed at bottom) -->
+      <div id="entry-panel">
+
+        <!-- Symbol toolbar -->
+        <div class="sym-bar" role="toolbar" aria-label="Formula symbols">
+          <button class="sym-btn" type="button" onclick="ins('~')" title="Negation (~)" aria-label="Insert negation">~</button>
+          <button class="sym-btn" type="button" onclick="ins('·')" title="Conjunction (·)  — also type &amp;" aria-label="Insert conjunction">·</button>
+          <button class="sym-btn" type="button" onclick="ins('∨')" title="Disjunction (∨)  — also type v" aria-label="Insert disjunction">∨</button>
+          <button class="sym-btn" type="button" onclick="ins('⊃')" title="Conditional (⊃) — also type ->" aria-label="Insert conditional">⊃</button>
+          <button class="sym-btn" type="button" onclick="ins('≡')"
+            title="Biconditional (≡) — also type &lt;->" aria-label="Insert biconditional">≡</button>
+          <div class="sym-divider"></div>
+          <button class="sym-btn" type="button" onclick="ins('(')" title="Open parenthesis" aria-label="Insert open parenthesis">(</button>
+          <button class="sym-btn" type="button" onclick="ins(')')" title="Close parenthesis" aria-label="Insert close parenthesis">)</button>
+        </div>
+
+        <div class="kbd-hint" id="entry-hint">
+          Keyboard shortcuts: <kbd>-></kbd> → ⊃ &nbsp; <kbd>&amp;</kbd> → · &nbsp;
+          <kbd>v</kbd> → ∨ &nbsp; <kbd>&lt;-></kbd> → ≡ &nbsp; <kbd>[ ]</kbd> → ( )
+        </div>
+
+        <!-- Formula input -->
+        <div class="entry-formula-row">
+          <label class="sr-only" for="formula-input">Formula for the next proof line</label>
+          <input id="formula-input" class="formula-input" type="text" placeholder="Enter formula…"
+            aria-describedby="entry-hint entry-error" onkeydown="if(event.key==='Enter') submitLine()">
+        </div>
+
+        <!-- Rule + cited lines -->
+        <div class="entry-rule-row">
+          <label for="rule-select">Rule</label>
+          <select id="rule-select" aria-describedby="entry-error" onchange="onRuleChange()">
+            <option value="">— select —</option>
+            <optgroup label="Implication Rules">
+              <option value="MP">MP — Modus Ponens</option>
+              <option value="MT">MT — Modus Tollens</option>
+              <option value="HS">HS — Hypothetical Syllogism</option>
+              <option value="DS">DS — Disjunctive Syllogism</option>
+              <option value="Simp">Simp — Simplification</option>
+              <option value="Conj">Conj — Conjunction</option>
+              <option value="Add">Add — Addition</option>
+              <option value="CD">CD — Constructive Dilemma</option>
+            </optgroup>
+            <optgroup label="Replacement Rules">
+              <option value="DM">DM — De Morgan</option>
+              <option value="Com">Com — Commutation</option>
+              <option value="Assoc">Assoc — Association</option>
+              <option value="Dist">Dist — Distribution</option>
+              <option value="DN">DN — Double Negation</option>
+              <option value="Trans">Trans — Transposition</option>
+              <option value="Impl">Impl — Material Implication</option>
+              <option value="Equiv">Equiv — Material Equivalence</option>
+              <option value="Exp">Exp — Exportation</option>
+              <option value="Taut">Taut — Tautology</option>
+            </optgroup>
+          </select>
+          <div class="cited-wrap">
+            <label for="cited-input">Lines</label>
+            <input id="cited-input" type="text" placeholder="e.g. 1, 2" title="Comma-separated line numbers"
+              aria-describedby="entry-error" onkeydown="if(event.key==='Enter') submitLine()">
+          </div>
+        </div>
+
+        <!-- Action buttons -->
+        <div class="action-row">
+          <button class="btn btn-submit" type="button" onclick="submitLine()">Add Line</button>
+          <button class="btn btn-cp" type="button" onclick="openSubproof('CP')" id="btn-cp">Open CP</button>
+          <button class="btn btn-ip" type="button" onclick="openSubproof('IP')" id="btn-ip">Open IP</button>
+          <button class="btn btn-close" type="button" onclick="closeSubproof()" id="btn-close" disabled>Close
+            Subproof</button>
+          <button class="btn btn-secondary" type="button" onclick="undoLine()">Undo</button>
+          <button class="btn btn-danger" type="button" onclick="resetProof()">Reset</button>
+        </div>
+        <div id="entry-error" class="line-error" role="alert" hidden></div>
+        <div id="status-region" class="sr-only" role="status" aria-live="polite" aria-atomic="true"></div>
+
+      </div>
+    </section>
+
+  </div><!-- #app -->
+
+  <!-- ══════════════════════════════════════════════════════════════════════ -->
+  <!-- All logic is inlined below so the page works when opened as a file   -->
+  <!-- ══════════════════════════════════════════════════════════════════════ -->
+  <script>
+    'use strict';
+
+    // ════════════════════════════════════════════════════════════════════════
+    // PARSER
+    // ════════════════════════════════════════════════════════════════════════
+
+    const T = {
+      ATOM: 'ATOM', NEG: 'NEG', CONJ: 'CONJ', DISJ: 'DISJ',
+      COND: 'COND', BICOND: 'BICOND', LPAREN: 'LPAREN', RPAREN: 'RPAREN', EOF: 'EOF',
+    };
+
+    class ParseError extends Error {
+      constructor(message) { super(message); this.name = 'ParseError'; }
+    }
+
+    function _normalize(input) {
+      return input
+        .replace(/\[/g, '(').replace(/\]/g, ')')
+        .replace(/¬/g, '~')
+        .replace(/<->/g, '≡').replace(/<=>/g, '≡')
+        .replace(/->/g, '⊃').replace(/=>/g, '⊃')
+        .replace(/v/g, '∨')
+        .replace(/&/g, '·').replace(/\*/g, '·').replace(/\^/g, '·');
+    }
+
+    function _tokenize(input) {
+      const src = _normalize(input);
+      const tokens = [];
+      let i = 0;
+      while (i < src.length) {
+        const ch = src[i];
+        if (/\s/.test(ch)) { i++; continue; }
+        switch (ch) {
+          case '(': tokens.push({ type: T.LPAREN }); i++; break;
+          case ')': tokens.push({ type: T.RPAREN }); i++; break;
+          case '~': tokens.push({ type: T.NEG }); i++; break;
+          case '·': tokens.push({ type: T.CONJ }); i++; break;
+          case '∨': tokens.push({ type: T.DISJ }); i++; break;
+          case '⊃': tokens.push({ type: T.COND }); i++; break;
+          case '≡': tokens.push({ type: T.BICOND }); i++; break;
+          default:
+            if (/[A-Z]/.test(ch)) { tokens.push({ type: T.ATOM, name: ch }); i++; }
+            else if (/[a-z]/.test(ch)) {
+              throw new ParseError(`"${ch}" is not valid. Atomic sentences must be capital letters (A–Z).`);
+            } else {
+              throw new ParseError(`Unrecognized character: "${ch}". Allowed: A–Z, ~, ·, ∨, ⊃, ≡, parentheses.`);
+            }
+        }
+      }
+      tokens.push({ type: T.EOF });
+      return tokens;
+    }
+
+    function parse(input) {
+      if (typeof input !== 'string' || input.trim() === '') {
+        throw new ParseError('Formula cannot be empty.');
+      }
+      const tokens = _tokenize(input.trim());
+      let pos = 0;
+      const peek = () => tokens[pos];
+      const consume = () => tokens[pos++];
+
+      function tokStr(tok) {
+        if (!tok || tok.type === T.EOF) return 'end of formula';
+        return ({
+          [T.ATOM]: tok.name, [T.NEG]: '~', [T.CONJ]: '·', [T.DISJ]: '∨',
+          [T.COND]: '⊃', [T.BICOND]: '≡', [T.LPAREN]: '(', [T.RPAREN]: ')'
+        })[tok.type] || tok.type;
+      }
+
+      const BINOPS = new Set([T.CONJ, T.DISJ, T.COND, T.BICOND]);
+      const binopNodeType = { [T.CONJ]: 'conj', [T.DISJ]: 'disj', [T.COND]: 'cond', [T.BICOND]: 'bicond' };
+      const binopSymbol = { [T.CONJ]: '·', [T.DISJ]: '∨', [T.COND]: '⊃', [T.BICOND]: '≡' };
+
+      function parseFormula() {
+        const tok = peek();
+        if (tok.type === T.ATOM) { consume(); return { type: 'atom', name: tok.name }; }
+        if (tok.type === T.NEG) {
+          consume();
+          if (peek().type === T.EOF) throw new ParseError('"~" must be followed by a formula.');
+          return { type: 'neg', operand: parseFormula() };
+        }
+        if (tok.type === T.LPAREN) {
+          consume();
+          if (peek().type === T.RPAREN) throw new ParseError('Empty parentheses "()" are not valid.');
+          const left = parseFormula();
+          const opTok = peek();
+          if (!BINOPS.has(opTok.type)) {
+            if (opTok.type === T.RPAREN)
+              throw new ParseError(`After "${astToString(left)}" inside parentheses, expected a connective (·, ∨, ⊃, or ≡).`);
+            if (opTok.type === T.EOF)
+              throw new ParseError('Reached end of input while looking for a connective inside "(". Check parentheses.');
+            throw new ParseError(`Expected a connective after "${astToString(left)}", but found "${tokStr(opTok)}".`);
+          }
+          consume();
+          if (BINOPS.has(peek().type))
+            throw new ParseError(`Two connectives in a row are not allowed.`);
+          if (peek().type === T.RPAREN)
+            throw new ParseError(`After "${binopSymbol[opTok.type]}", a formula is required before ")".`);
+          const right = parseFormula();
+          const closeTok = peek();
+          if (closeTok.type !== T.RPAREN) {
+            if (BINOPS.has(closeTok.type))
+              throw new ParseError(`Extra connective "${tokStr(closeTok)}" where ")" was expected. Each connective needs its own parentheses.`);
+            throw new ParseError(`Expected ")" but found "${tokStr(closeTok)}".`);
+          }
+          consume();
+          return { type: binopNodeType[opTok.type], left, right };
+        }
+        if (tok.type === T.EOF) throw new ParseError('Formula ended unexpectedly — is it incomplete?');
+        if (tok.type === T.RPAREN) throw new ParseError('Unexpected ")" — check parentheses are balanced.');
+        if (BINOPS.has(tok.type))
+          throw new ParseError(`Connective "${tokStr(tok)}" appears without a formula before it. Write (A ${tokStr(tok)} B).`);
+        throw new ParseError(`Unexpected symbol: "${tokStr(tok)}".`);
+      }
+
+      const ast = parseFormula();
+      if (peek().type !== T.EOF) {
+        const extra = tokStr(peek());
+        const hint = BINOPS.has(peek().type)
+          ? ` Hint: wrap the whole thing in parentheses, e.g., (${astToString(ast)} ${extra} ...).` : '';
+        throw new ParseError(`Unexpected "${extra}" after the formula.${hint} Each connective must be in its own parentheses.`);
+      }
+      return ast;
+    }
+
+    function astEquals(a, b) {
+      if (a == null || b == null) return a === b;
+      if (a.type !== b.type) return false;
+      if (a.type === 'atom') return a.name === b.name;
+      if (a.type === 'neg') return astEquals(a.operand, b.operand);
+      return astEquals(a.left, b.left) && astEquals(a.right, b.right);
+    }
+
+    function astToString(ast) {
+      if (!ast) return '';
+      if (ast.type === 'atom') return ast.name;
+      if (ast.type === 'neg') return '~' + astToString(ast.operand);
+      const sym = { conj: '·', disj: '∨', cond: '⊃', bicond: '≡' };
+      return `(${astToString(ast.left)} ${sym[ast.type]} ${astToString(ast.right)})`;
+    }
+
+    /**
+     * Display version: like astToString but drops the outermost parentheses
+     * for top-level binary formulas, since a lone "A ∨ Z" on a proof line
+     * needs no wrapping parens. Inner parens are preserved as usual.
+     */
+    function astToStringDisplay(ast) {
+      if (!ast) return '';
+      if (ast.type === 'atom') return ast.name;
+      if (ast.type === 'neg') return '~' + astToString(ast.operand);
+      const sym = { conj: '·', disj: '∨', cond: '⊃', bicond: '≡' };
+      return `${astToString(ast.left)} ${sym[ast.type]} ${astToString(ast.right)}`;
+    }
+
+    function astClone(ast) {
+      if (!ast) return ast;
+      if (ast.type === 'atom') return { type: 'atom', name: ast.name };
+      if (ast.type === 'neg') return { type: 'neg', operand: astClone(ast.operand) };
+      return { type: ast.type, left: astClone(ast.left), right: astClone(ast.right) };
+    }
+
+    /**
+     * parseTopLevel(input)
+     *
+     * Like parse(), but allows the outermost parentheses to be omitted.
+     * A standalone line like "A ⊃ B" is unambiguous and should be accepted.
+     * Internally we try strict parse first; if that fails, we try wrapping
+     * the whole input in parentheses. Truly ambiguous inputs like "A ⊃ B · C"
+     * still fail (wrapping doesn't resolve the inner ambiguity).
+     */
+    function parseTopLevel(input) {
+      const trimmed = (input || '').trim();
+      try {
+        return parse(trimmed);
+      } catch (err1) {
+        try {
+          return parse('(' + trimmed + ')');
+        } catch (_err2) {
+          throw err1;   // original error is more informative
+        }
+      }
+    }
+
+    // ════════════════════════════════════════════════════════════════════════
+    // IMPLICATION RULES
+    // ════════════════════════════════════════════════════════════════════════
+
+    function _ok() { return { valid: true }; }
+    function _fail(msg) { return { valid: false, message: msg }; }
+    function _q(ast) { return `"${astToString(ast)}"`; }
+
+    function _reqLines(cited, n, rule) {
+      if (cited.length !== n) {
+        const w = n === 1 ? 'line' : 'lines';
+        return _fail(`${rule} requires exactly ${n} cited ${w}, but ${cited.length} ${cited.length === 1 ? 'was' : 'were'} provided.`);
+      }
+      return null;
+    }
+
+    function checkMP(cited, conc) {
+      const e = _reqLines(cited, 2, 'MP'); if (e) return e;
+      const [a, b] = cited;
+      for (const [cond, minor] of [[a, b], [b, a]]) {
+        if (cond.type === 'cond' && astEquals(cond.left, minor)) {
+          if (astEquals(cond.right, conc)) return _ok();
+          return _fail(`MP: Antecedent ${_q(minor)} matches the conditional ${_q(cond)}, so the conclusion must be ${_q(cond.right)}, not ${_q(conc)}.`);
+        }
+      }
+      const conds = cited.filter(f => f.type === 'cond');
+      if (!conds.length) return _fail(`MP requires one cited line to be a conditional (P ⊃ Q), but neither is.`);
+      if (conds.length === 2) return _fail(`MP: Both lines are conditionals — one must be the antecedent of the other.`);
+      const cond = conds[0], minor = cited.find(f => f !== cond);
+      return _fail(`MP: Conditional is ${_q(cond)}, so its antecedent is ${_q(cond.left)}, but you cited ${_q(minor)}.`);
+    }
+
+    function checkMT(cited, conc) {
+      const e = _reqLines(cited, 2, 'MT'); if (e) return e;
+      const [a, b] = cited;
+      for (const [cond, minor] of [[a, b], [b, a]]) {
+        if (cond.type === 'cond') {
+          const negQ = { type: 'neg', operand: cond.right };
+          if (astEquals(minor, negQ)) {
+            const negP = { type: 'neg', operand: cond.left };
+            if (astEquals(conc, negP)) return _ok();
+            return _fail(`MT: Conditional is ${_q(cond)}, negated consequent matches, so conclusion must be ${_q(negP)}, not ${_q(conc)}.`);
+          }
+        }
+      }
+      const conds = cited.filter(f => f.type === 'cond');
+      if (!conds.length) return _fail(`MT requires one conditional (P ⊃ Q) among cited lines.`);
+      const cond = conds[0], minor = cited.find(f => f !== cond);
+      return _fail(`MT: Conditional is ${_q(cond)}, so you need its negated consequent ~${_q(cond.right)}, but cited ${_q(minor)}.`);
+    }
+
+    function checkHS(cited, conc) {
+      const e = _reqLines(cited, 2, 'HS'); if (e) return e;
+      const [a, b] = cited;
+      if (a.type !== 'cond' || b.type !== 'cond')
+        return _fail(`HS requires both cited lines to be conditionals. ${_q(a.type !== 'cond' ? a : b)} is not a conditional.`);
+      for (const [first, second] of [[a, b], [b, a]]) {
+        if (astEquals(first.right, second.left)) {
+          const exp = { type: 'cond', left: first.left, right: second.right };
+          if (astEquals(conc, exp)) return _ok();
+          return _fail(`HS: Chain ${_q(first)} → ${_q(second)} gives ${_q(exp)}, not ${_q(conc)}.`);
+        }
+      }
+      return _fail(`HS: The consequent of ${_q(a)} (${_q(a.right)}) does not match the antecedent of ${_q(b)} (${_q(b.left)}), and vice-versa — no chain possible.`);
+    }
+
+    function checkDS(cited, conc) {
+      const e = _reqLines(cited, 2, 'DS'); if (e) return e;
+      const [a, b] = cited;
+      for (const [disj, minor] of [[a, b], [b, a]]) {
+        if (disj.type === 'disj') {
+          const negL = { type: 'neg', operand: disj.left }, negR = { type: 'neg', operand: disj.right };
+          if (astEquals(minor, negL)) {
+            if (astEquals(conc, disj.right)) return _ok();
+            return _fail(`DS: ${_q(minor)} eliminates left disjunct, so conclusion must be ${_q(disj.right)}, not ${_q(conc)}.`);
+          }
+          if (astEquals(minor, negR)) {
+            if (astEquals(conc, disj.left)) return _ok();
+            return _fail(`DS: ${_q(minor)} eliminates right disjunct, so conclusion must be ${_q(disj.left)}, not ${_q(conc)}.`);
+          }
+        }
+      }
+      const disjs = cited.filter(f => f.type === 'disj');
+      if (!disjs.length) return _fail(`DS requires one cited line to be a disjunction (P ∨ Q).`);
+      const disj = disjs[0], minor = cited.find(f => f !== disj);
+      return _fail(`DS: Disjunction ${_q(disj)} has disjuncts ${_q(disj.left)} and ${_q(disj.right)}. You need the negation of one as the second line, but cited ${_q(minor)}.`);
+    }
+
+    function checkSimp(cited, conc) {
+      const e = _reqLines(cited, 1, 'Simp'); if (e) return e;
+      const [conj] = cited;
+      if (conj.type !== 'conj') return _fail(`Simp requires the cited line to be a conjunction (P · Q), but ${_q(conj)} is not.`);
+      if (astEquals(conc, conj.left) || astEquals(conc, conj.right)) return _ok();
+      return _fail(`Simp: From ${_q(conj)}, the conclusion must be either ${_q(conj.left)} or ${_q(conj.right)}, not ${_q(conc)}.`);
+    }
+
+    function checkConj(cited, conc) {
+      const e = _reqLines(cited, 2, 'Conj'); if (e) return e;
+      const [a, b] = cited;
+      if (conc.type !== 'conj') return _fail(`Conj requires a conjunction (P · Q) as conclusion, but ${_q(conc)} is not.`);
+      if (astEquals(conc.left, a) && astEquals(conc.right, b)) return _ok();
+      if (astEquals(conc.left, b) && astEquals(conc.right, a))
+        return _fail(`Conj: Conclusion has conjuncts in reverse order. Conj produces (first·second). Swap the cited lines or rewrite as ${_q({ type: 'conj', left: a, right: b })}.`);
+      return _fail(`Conj: Cited ${_q(a)} and ${_q(b)}, so conclusion must be ${_q({ type: 'conj', left: a, right: b })}, not ${_q(conc)}.`);
+    }
+
+    function checkAdd(cited, conc) {
+      const e = _reqLines(cited, 1, 'Add'); if (e) return e;
+      const [prem] = cited;
+      if (conc.type !== 'disj') return _fail(`Add requires the conclusion to be a disjunction (P ∨ Q), but ${_q(conc)} is not.`);
+      if (astEquals(conc.left, prem)) return _ok();
+      if (astEquals(conc.right, prem)) return _fail(`Add places the cited formula as the LEFT disjunct. Write ${_q({ type: 'disj', left: prem, right: conc.left })}.`);
+      return _fail(`Add: Cited ${_q(prem)}, so conclusion must have it as the left disjunct, e.g. (${astToString(prem)} ∨ Q). Left disjunct of your conclusion is ${_q(conc.left)}.`);
+    }
+
+    function checkCD(cited, conc) {
+      const e = _reqLines(cited, 2, 'CD'); if (e) return e;
+      const [a, b] = cited;
+      for (const [cc, disj] of [[a, b], [b, a]]) {
+        if (cc.type !== 'conj' || cc.left.type !== 'cond' || cc.right.type !== 'cond') continue;
+        if (disj.type !== 'disj') continue;
+        const pIQ = cc.left, rIS = cc.right;
+        const P = pIQ.left, Q = pIQ.right, R = rIS.left, S = rIS.right;
+        if (astEquals(disj.left, P) && astEquals(disj.right, R)) {
+          const exp = { type: 'disj', left: Q, right: S };
+          if (astEquals(conc, exp)) return _ok();
+          return _fail(`CD: Pattern matches — conclusion must be ${_q(exp)}, not ${_q(conc)}.`);
+        }
+        if (astEquals(disj.left, R) && astEquals(disj.right, P))
+          return _fail(`CD: Disjunction ${_q(disj)} has disjuncts in reverse order from the conditionals.`);
+      }
+      const ccs = cited.filter(f => f.type === 'conj' && f.left.type === 'cond' && f.right.type === 'cond');
+      if (!ccs.length) return _fail(`CD requires one cited line to be a conjunction of two conditionals: ((P ⊃ Q) · (R ⊃ S)).`);
+      const cc = ccs[0], other = cited.find(f => f !== cc);
+      if (other.type !== 'disj') return _fail(`CD: ${_q(cc)} is the conjunction of conditionals. The other line must be a disjunction (P ∨ R), but ${_q(other)} is not.`);
+      const P = cc.left.left, R = cc.right.left;
+      return _fail(`CD: Need disjunction ${_q({ type: 'disj', left: P, right: R })}, but cited ${_q(other)}.`);
+    }
+
+    const IMPL_CHECKERS = { MP: checkMP, MT: checkMT, HS: checkHS, DS: checkDS, Simp: checkSimp, Conj: checkConj, Add: checkAdd, CD: checkCD };
+    const IMPLICATION_RULES = new Set(Object.keys(IMPL_CHECKERS));
+
+    function checkImplicationRule(rule, cited, conc) {
+      const fn = IMPL_CHECKERS[rule];
+      if (!fn) return _fail(`"${rule}" is not a recognized implication rule.`);
+      try { return fn(cited, conc); } catch (e) { return _fail(`Internal error: ${e.message}`); }
+    }
+
+    // ════════════════════════════════════════════════════════════════════════
+    // REPLACEMENT RULES
+    // ════════════════════════════════════════════════════════════════════════
+
+    function _trySub(nodeA, nodeB, matchFn) {
+      if (astEquals(nodeA, nodeB)) return 'identical';
+      if (matchFn(nodeA, nodeB)) return 'valid';
+      if (nodeA.type !== nodeB.type) return 'mismatch';
+      if (nodeA.type === 'atom') return 'mismatch';
+      if (nodeA.type === 'neg') return _trySub(nodeA.operand, nodeB.operand, matchFn);
+      const L = _trySub(nodeA.left, nodeB.left, matchFn);
+      if (L === 'valid') return astEquals(nodeA.right, nodeB.right) ? 'valid' : 'mismatch';
+      if (L === 'identical') return _trySub(nodeA.right, nodeB.right, matchFn);
+      return 'mismatch';
+    }
+    function _appliesOnce(cited, conc, fn) { return _trySub(cited, conc, fn) === 'valid'; }
+
+    function matchDM(a, b) {
+      if (a.type === 'neg' && a.operand.type === 'conj') {
+        const P = a.operand.left, Q = a.operand.right;
+        if (b.type === 'disj' && b.left.type === 'neg' && astEquals(b.left.operand, P) && b.right.type === 'neg' && astEquals(b.right.operand, Q)) return true;
+      }
+      if (a.type === 'disj' && a.left.type === 'neg' && a.right.type === 'neg') {
+        const P = a.left.operand, Q = a.right.operand;
+        if (b.type === 'neg' && b.operand.type === 'conj' && astEquals(b.operand.left, P) && astEquals(b.operand.right, Q)) return true;
+      }
+      if (a.type === 'neg' && a.operand.type === 'disj') {
+        const P = a.operand.left, Q = a.operand.right;
+        if (b.type === 'conj' && b.left.type === 'neg' && astEquals(b.left.operand, P) && b.right.type === 'neg' && astEquals(b.right.operand, Q)) return true;
+      }
+      if (a.type === 'conj' && a.left.type === 'neg' && a.right.type === 'neg') {
+        const P = a.left.operand, Q = a.right.operand;
+        if (b.type === 'neg' && b.operand.type === 'disj' && astEquals(b.operand.left, P) && astEquals(b.operand.right, Q)) return true;
+      }
+      return false;
+    }
+    function matchCom(a, b) {
+      return (a.type === 'disj' || a.type === 'conj') && b.type === a.type && astEquals(a.left, b.right) && astEquals(a.right, b.left);
+    }
+    function matchAssoc(a, b) {
+      for (const op of ['disj', 'conj']) {
+        if (a.type === op && a.right.type === op) {
+          const P = a.left, Q = a.right.left, R = a.right.right;
+          if (b.type === op && b.left.type === op && astEquals(b.left.left, P) && astEquals(b.left.right, Q) && astEquals(b.right, R)) return true;
+        }
+        if (a.type === op && a.left.type === op) {
+          const P = a.left.left, Q = a.left.right, R = a.right;
+          if (b.type === op && b.right.type === op && astEquals(b.left, P) && astEquals(b.right.left, Q) && astEquals(b.right.right, R)) return true;
+        }
+      }
+      return false;
+    }
+    function matchDist(a, b) {
+      if (a.type === 'conj' && a.right.type === 'disj') {
+        const P = a.left, Q = a.right.left, R = a.right.right;
+        if (b.type === 'disj' && b.left.type === 'conj' && b.right.type === 'conj' &&
+          astEquals(b.left.left, P) && astEquals(b.left.right, Q) && astEquals(b.right.left, P) && astEquals(b.right.right, R)) return true;
+      }
+      if (a.type === 'disj' && a.left.type === 'conj' && a.right.type === 'conj' && astEquals(a.left.left, a.right.left)) {
+        const P = a.left.left, Q = a.left.right, R = a.right.right;
+        if (b.type === 'conj' && b.right.type === 'disj' && astEquals(b.left, P) && astEquals(b.right.left, Q) && astEquals(b.right.right, R)) return true;
+      }
+      if (a.type === 'disj' && a.right.type === 'conj') {
+        const P = a.left, Q = a.right.left, R = a.right.right;
+        if (b.type === 'conj' && b.left.type === 'disj' && b.right.type === 'disj' &&
+          astEquals(b.left.left, P) && astEquals(b.left.right, Q) && astEquals(b.right.left, P) && astEquals(b.right.right, R)) return true;
+      }
+      if (a.type === 'conj' && a.left.type === 'disj' && a.right.type === 'disj' && astEquals(a.left.left, a.right.left)) {
+        const P = a.left.left, Q = a.left.right, R = a.right.right;
+        if (b.type === 'disj' && b.right.type === 'conj' && astEquals(b.left, P) && astEquals(b.right.left, Q) && astEquals(b.right.right, R)) return true;
+      }
+      return false;
+    }
+    function matchDN(a, b) {
+      if (b.type === 'neg' && b.operand.type === 'neg' && astEquals(a, b.operand.operand)) return true;
+      if (a.type === 'neg' && a.operand.type === 'neg' && astEquals(b, a.operand.operand)) return true;
+      return false;
+    }
+    function matchTrans(a, b) {
+      if (a.type === 'cond' && b.type === 'cond') {
+        const P = a.left, Q = a.right;
+        if (b.left.type === 'neg' && astEquals(b.left.operand, Q) && b.right.type === 'neg' && astEquals(b.right.operand, P)) return true;
+        const negQ = a.left, negP = a.right;
+        if (negQ.type === 'neg' && negP.type === 'neg') {
+          const Q2 = negQ.operand, P2 = negP.operand;
+          if (astEquals(b.left, P2) && astEquals(b.right, Q2)) return true;
+        }
+      }
+      return false;
+    }
+    function matchImpl(a, b) {
+      if (a.type === 'cond') {
+        const P = a.left, Q = a.right;
+        if (b.type === 'disj' && b.left.type === 'neg' && astEquals(b.left.operand, P) && astEquals(b.right, Q)) return true;
+      }
+      if (a.type === 'disj' && a.left.type === 'neg') {
+        const P = a.left.operand, Q = a.right;
+        if (b.type === 'cond' && astEquals(b.left, P) && astEquals(b.right, Q)) return true;
+      }
+      return false;
+    }
+    function matchEquiv(a, b) {
+      if (a.type === 'bicond') {
+        const P = a.left, Q = a.right;
+        if (b.type === 'conj' && b.left.type === 'cond' && b.right.type === 'cond' &&
+          astEquals(b.left.left, P) && astEquals(b.left.right, Q) && astEquals(b.right.left, Q) && astEquals(b.right.right, P)) return true;
+        if (b.type === 'disj' && b.left.type === 'conj' && b.right.type === 'conj' &&
+          astEquals(b.left.left, P) && astEquals(b.left.right, Q) &&
+          b.right.left.type === 'neg' && astEquals(b.right.left.operand, P) &&
+          b.right.right.type === 'neg' && astEquals(b.right.right.operand, Q)) return true;
+      }
+      if (a.type === 'conj' && a.left.type === 'cond' && a.right.type === 'cond') {
+        const P = a.left.left, Q = a.left.right;
+        if (astEquals(a.right.left, Q) && astEquals(a.right.right, P) && b.type === 'bicond' && astEquals(b.left, P) && astEquals(b.right, Q)) return true;
+      }
+      if (a.type === 'disj' && a.left.type === 'conj' && a.right.type === 'conj' &&
+        a.right.left.type === 'neg' && a.right.right.type === 'neg') {
+        const P = a.left.left, Q = a.left.right;
+        if (astEquals(a.right.left.operand, P) && astEquals(a.right.right.operand, Q) &&
+          b.type === 'bicond' && astEquals(b.left, P) && astEquals(b.right, Q)) return true;
+      }
+      return false;
+    }
+    function matchExp(a, b) {
+      if (a.type === 'cond' && a.left.type === 'conj') {
+        const P = a.left.left, Q = a.left.right, R = a.right;
+        if (b.type === 'cond' && b.right.type === 'cond' && astEquals(b.left, P) && astEquals(b.right.left, Q) && astEquals(b.right.right, R)) return true;
+      }
+      if (a.type === 'cond' && a.right.type === 'cond') {
+        const P = a.left, Q = a.right.left, R = a.right.right;
+        if (b.type === 'cond' && b.left.type === 'conj' && astEquals(b.left.left, P) && astEquals(b.left.right, Q) && astEquals(b.right, R)) return true;
+      }
+      return false;
+    }
+    function matchTaut(a, b) {
+      if (b.type === 'disj' && astEquals(b.left, a) && astEquals(b.right, a)) return true;
+      if (b.type === 'conj' && astEquals(b.left, a) && astEquals(b.right, a)) return true;
+      if (a.type === 'disj' && astEquals(a.left, a.right) && astEquals(b, a.left)) return true;
+      if (a.type === 'conj' && astEquals(a.left, a.right) && astEquals(b, a.left)) return true;
+      return false;
+    }
+
+    function _makeRepChecker(rule, matchFn, desc) {
+      return function (cited, conc) {
+        const e = _reqLines(cited, 1, rule); if (e) return e;
+        const [prem] = cited;
+        if (_appliesOnce(prem, conc, matchFn)) return _ok();
+        if (astEquals(prem, conc)) return _fail(`${rule}: Conclusion is identical to cited line. ${desc}`);
+        return _fail(`${rule}: ${_q(conc)} cannot be obtained from ${_q(prem)} by a single application of ${rule}. ${desc}`);
+      };
+    }
+
+    const checkDM = _makeRepChecker('DM', matchDM, 'De Morgan: ~(P·Q) ↔ (~P∨~Q) and ~(P∨Q) ↔ (~P·~Q).');
+    const checkCom = _makeRepChecker('Com', matchCom, 'Commutation: (P∨Q) ↔ (Q∨P) and (P·Q) ↔ (Q·P).');
+    const checkAssoc = _makeRepChecker('Assoc', matchAssoc, 'Association: [P∨(Q∨R)] ↔ [(P∨Q)∨R] and [P·(Q·R)] ↔ [(P·Q)·R].');
+    const checkDist = _makeRepChecker('Dist', matchDist, 'Distribution: [P·(Q∨R)] ↔ [(P·Q)∨(P·R)] and [P∨(Q·R)] ↔ [(P∨Q)·(P∨R)].');
+    const checkTrans = _makeRepChecker('Trans', matchTrans, 'Transposition: (P⊃Q) ↔ (~Q⊃~P).');
+    const checkImpl = _makeRepChecker('Impl', matchImpl, 'Material Implication: (P⊃Q) ↔ (~P∨Q).');
+    const checkEquiv = _makeRepChecker('Equiv', matchEquiv, 'Material Equivalence: (P≡Q) ↔ [(P⊃Q)·(Q⊃P)] and (P≡Q) ↔ [(P·Q)∨(~P·~Q)].');
+    const checkExp = _makeRepChecker('Exp', matchExp, 'Exportation: [(P·Q)⊃R] ↔ [P⊃(Q⊃R)].');
+    const checkTaut = _makeRepChecker('Taut', matchTaut, 'Tautology: P ↔ (P∨P) and P ↔ (P·P).');
+
+    function checkDN(cited, conc) {
+      const e = _reqLines(cited, 1, 'DN'); if (e) return e;
+      const [prem] = cited;
+      if (_appliesOnce(prem, conc, matchDN)) return _ok();
+      if (astEquals(prem, conc)) return _fail('DN: Conclusion is identical to cited line. DN must add or remove exactly one pair of ~~ .');
+      let count = 0;
+      function countDN(a, b) {
+        if (astEquals(a, b)) return;
+        if (matchDN(a, b)) { count++; return; }
+        if (a.type !== b.type) return;
+        if (a.type === 'neg') { countDN(a.operand, b.operand); return; }
+        if (a.type !== 'atom') { countDN(a.left, b.left); countDN(a.right, b.right); }
+      }
+      countDN(prem, conc);
+      if (count > 1) return _fail('DN: Looks like DN was applied to more than one location. Only one ~~ pair may be added or removed per step.');
+      return _fail(`DN: ${_q(conc)} cannot be obtained from ${_q(prem)} by adding or removing exactly one ~~ pair. DN: P ↔ ~~P.`);
+    }
+
+    const REPL_CHECKERS = {
+      DM: checkDM, Com: checkCom, Assoc: checkAssoc, Dist: checkDist,
+      DN: checkDN, Trans: checkTrans, Impl: checkImpl, Equiv: checkEquiv, Exp: checkExp, Taut: checkTaut
+    };
+    const REPLACEMENT_RULES = new Set(Object.keys(REPL_CHECKERS));
+
+    function checkReplacementRule(rule, cited, conc) {
+      const fn = REPL_CHECKERS[rule];
+      if (!fn) return _fail(`"${rule}" is not a recognized replacement rule.`);
+      try { return fn(cited, conc); } catch (e) { return _fail(`Internal error: ${e.message}`); }
+    }
+
+    // ════════════════════════════════════════════════════════════════════════
+    // PROOF STATE
+    // ════════════════════════════════════════════════════════════════════════
+
+    let _blockCounter = 0;
+    function _newBlockId() { return ++_blockCounter; }
+    function _cloneLines(lines) {
+      return lines.map(l => ({ ...l, justification: { ...l.justification, cited: [...l.justification.cited] } }));
+    }
+
+    class ProofState {
+      constructor(premiseStrings, conclusionStr) {
+        this._premises = [];
+        for (let i = 0; i < premiseStrings.length; i++) {
+          const raw = premiseStrings[i].trim();
+          if (!raw) continue;
+          try { this._premises.push({ raw, ast: parseTopLevel(raw) }); }
+          catch (e) { throw new Error(`Premise ${i + 1}: ${e.message}`); }
+        }
+        try { this._conclusionAst = parseTopLevel(conclusionStr.trim()); this._conclusionStr = conclusionStr.trim(); }
+        catch (e) { throw new Error(`Conclusion: ${e.message}`); }
+
+        this._lines = [];
+        this._depth = 0;
+        this._openBlocks = [];
+        _blockCounter = 0;
+
+        for (const p of this._premises) {
+          this._lines.push({
+            lineNum: this._lines.length + 1, rawFormula: p.raw, ast: p.ast,
+            type: 'premise', depth: 0, justification: { rule: 'Premise', cited: [] },
+            valid: true, message: '', blockId: null,
+          });
+        }
+      }
+
+      getLines() { return _cloneLines(this._lines); }
+      getDepth() { return this._depth; }
+      getConclusion() { return this._conclusionStr; }
+      getPremises() { return this._premises.map(p => p.raw); }
+      getLineCount() { return this._lines.length; }
+
+      isComplete() {
+        if (this._depth !== 0) return false;
+        for (let i = this._lines.length - 1; i >= 0; i--) {
+          const l = this._lines[i];
+          if (l.depth === 0 && l.valid && astEquals(l.ast, this._conclusionAst)) return true;
+        }
+        return false;
+      }
+
+      _citableLineNums() {
+        const citable = new Set();
+        const curBlock = this._openBlocks.length > 0 ? this._openBlocks[this._openBlocks.length - 1].blockId : null;
+        for (const line of this._lines) {
+          if (line.depth < this._depth) { citable.add(line.lineNum); }
+          else if (line.depth === this._depth) {
+            if (curBlock === null || line.blockId === curBlock) citable.add(line.lineNum);
+          }
+        }
+        return citable;
+      }
+
+      _getLine(num) { return this._lines.find(l => l.lineNum === num) || null; }
+
+      addLine(formulaStr, rule, citedLineNums) {
+        const raw = formulaStr.trim();
+        let ast;
+        try { ast = parseTopLevel(raw); }
+        catch (e) { return this._failLine(raw, rule, citedLineNums, e.message); }
+
+        if (rule === 'CP' || rule === 'IP' || rule === 'Premise') {
+          return this._failLine(raw, rule, citedLineNums,
+            `"${rule}" is not entered as a regular line. ${rule === 'Premise' ? 'Premises are set up at the start.' : 'Use the ' + rule + ' button.'}`);
+        }
+        if (!IMPLICATION_RULES.has(rule) && !REPLACEMENT_RULES.has(rule)) {
+          return this._failLine(raw, rule, citedLineNums, `"${rule}" is not a recognized rule.`);
+        }
+
+        const citableNums = this._citableLineNums();
+        const citedAsts = [];
+        for (const num of citedLineNums) {
+          if (!citableNums.has(num)) {
+            const line = this._getLine(num);
+            if (!line) return this._failLine(raw, rule, citedLineNums, `Line ${num} does not exist.`);
+            return this._failLine(raw, rule, citedLineNums, `Line ${num} is out of scope (inside a closed subproof).`);
+          }
+          const line = this._getLine(num);
+          if (!line.valid) return this._failLine(raw, rule, citedLineNums, `Line ${num} has an error and cannot be cited.`);
+          citedAsts.push(line.ast);
+        }
+
+        let result;
+        if (IMPLICATION_RULES.has(rule)) result = checkImplicationRule(rule, citedAsts, ast);
+        else result = checkReplacementRule(rule, citedAsts, ast);
+
+        if (!result.valid) return this._failLine(raw, rule, citedLineNums, result.message);
+        return this._pushLine(raw, ast, 'derived', rule, citedLineNums, true, '');
+      }
+
+      openSubproof(formulaStr, type) {
+        const raw = formulaStr.trim();
+        if (type !== 'CP' && type !== 'IP') return { valid: false, message: `Subproof type must be 'CP' or 'IP'.`, line: null };
+        let ast;
+        try { ast = parseTopLevel(raw); }
+        catch (e) { return { valid: false, message: `Assumption error: ${e.message}`, line: null }; }
+
+        const blockId = _newBlockId();
+        this._depth++;
+        this._openBlocks.push({ type, blockId, assumptionLineNum: this._lines.length + 1 });
+        const line = {
+          lineNum: this._lines.length + 1, rawFormula: raw, ast, type: 'assumption',
+          depth: this._depth, justification: { rule: type + ' Assumption', cited: [] },
+          valid: true, message: '', blockId,
+        };
+        this._lines.push(line);
+        return { valid: true, message: '', line: { ...line } };
+      }
+
+      closeSubproof(formulaStr, citedLineNums) {
+        const raw = formulaStr.trim();
+        if (this._openBlocks.length === 0) return { valid: false, message: 'There is no open subproof to close.', line: null };
+        let ast;
+        try { ast = parseTopLevel(raw); }
+        catch (e) { return { valid: false, message: `Formula error: ${e.message}`, line: null }; }
+
+        const block = this._openBlocks[this._openBlocks.length - 1];
+        const { type, blockId, assumptionLineNum } = block;
+        const assumptionLine = this._getLine(assumptionLineNum);
+        const assumptionAst = assumptionLine.ast;
+        const innerLines = this._lines.filter(l => l.blockId === blockId);
+
+        for (const num of citedLineNums) {
+          if (num !== assumptionLineNum && !innerLines.find(l => l.lineNum === num)) {
+            const outer = this._getLine(num);
+            if (!outer || outer.depth >= this._depth)
+              return { valid: false, message: `Line ${num} is not accessible for this subproof closure.`, line: null };
+          }
+        }
+
+        if (type === 'CP') {
+          const r = this._validateCP(ast, citedLineNums, assumptionLineNum, assumptionAst);
+          if (!r.valid) return { valid: false, message: r.message, line: null };
+          this._openBlocks.pop(); this._depth--;
+          return this._pushLine(raw, ast, 'cp', 'CP', citedLineNums, true, '');
+        }
+        if (type === 'IP') {
+          const r = this._validateIP(ast, citedLineNums, assumptionLineNum, assumptionAst);
+          if (!r.valid) return { valid: false, message: r.message, line: null };
+          this._openBlocks.pop(); this._depth--;
+          return this._pushLine(raw, ast, 'ip', 'IP', citedLineNums, true, '');
+        }
+      }
+
+      _validateCP(conc, cited, assLineNum, assAst) {
+        if (conc.type !== 'cond')
+          return { valid: false, message: `CP discharge must produce a conditional (${astToString(assAst)} ⊃ ψ). "${astToString(conc)}" is not a conditional.` };
+        if (!astEquals(conc.left, assAst))
+          return { valid: false, message: `CP: Antecedent must be the assumption ${astToString(assAst)}, but you wrote ${astToString(conc.left)}.` };
+        const unique = [...new Set(cited)];
+        const sub = unique.filter(n => n !== assLineNum);
+        if (sub.length === 0) {
+          if (astEquals(conc.right, assAst)) return { valid: true };
+          return { valid: false, message: `CP: Only the assumption was cited. If consequent equals assumption that is valid; otherwise also cite the last line of the subproof.` };
+        }
+        if (sub.length > 1) return { valid: false, message: `CP: Cite the assumption and exactly one other line (the consequent). Extra lines: ${sub.join(', ')}.` };
+        const consLine = this._getLine(sub[0]);
+        if (!consLine || !consLine.valid) return { valid: false, message: `Line ${sub[0]} ${!consLine ? 'does not exist' : 'has an error'}.` };
+        if (!astEquals(conc.right, consLine.ast))
+          return { valid: false, message: `CP: Consequent must match line ${sub[0]} (${astToString(consLine.ast)}), but you wrote ${astToString(conc.right)}.` };
+        return { valid: true };
+      }
+
+      _validateIP(conc, cited, assLineNum, assAst) {
+        const exp = assAst.type === 'neg' ? assAst.operand : { type: 'neg', operand: assAst };
+        if (!astEquals(conc, exp))
+          return { valid: false, message: `IP: Assumed ${astToString(assAst)}, so conclusion must be ${astToString(exp)}, not ${astToString(conc)}.` };
+        const sub = cited.filter(n => n !== assLineNum);
+        if (sub.length < 2) return { valid: false, message: `IP: Must cite the assumption plus two lines forming a contradiction (X and ~X). Only ${cited.length} line(s) cited.` };
+        if (!this._findContradiction(sub))
+          return { valid: false, message: `IP: The cited lines do not form a contradiction. Need two lines where one is X and the other is ~X.` };
+        return { valid: true };
+      }
+
+      _findContradiction(nums) {
+        const asts = nums.map(n => this._getLine(n)).filter(l => l && l.ast).map(l => l.ast);
+        for (let i = 0; i < asts.length; i++) for (let j = i + 1; j < asts.length; j++) {
+          const a = asts[i], b = asts[j];
+          if (b.type === 'neg' && astEquals(a, b.operand)) return true;
+          if (a.type === 'neg' && astEquals(b, a.operand)) return true;
+        }
+        return false;
+      }
+
+      _pushLine(raw, ast, type, rule, cited, valid, message) {
+        const blockId = this._openBlocks.length > 0 ? this._openBlocks[this._openBlocks.length - 1].blockId : null;
+        const line = {
+          lineNum: this._lines.length + 1, rawFormula: raw, ast, type,
+          depth: this._depth, justification: { rule, cited: [...cited] },
+          valid, message, blockId,
+        };
+        this._lines.push(line);
+        return { valid, message, line: { ...line } };
+      }
+
+      _failLine(raw, rule, cited, message) { return this._pushLine(raw, null, 'derived', rule, cited, false, message); }
+
+      removeLast() {
+        if (this._lines.length <= this._premises.length) return false;
+        const last = this._lines[this._lines.length - 1];
+        if (last.type === 'cp' || last.type === 'ip') {
+          this._depth++;
+          const blockLine = this._lines.slice(0, this._lines.length - 1).reverse()
+            .find(l => l.type === 'assumption' && l.depth === this._depth);
+          if (blockLine) this._openBlocks.push({ type: last.type.toUpperCase(), blockId: blockLine.blockId, assumptionLineNum: blockLine.lineNum });
+        }
+        if (last.type === 'assumption') { this._openBlocks.pop(); this._depth--; }
+        this._lines.pop();
+        return true;
+      }
+
+      reset() {
+        this._lines = this._lines.slice(0, this._premises.length);
+        this._depth = 0; this._openBlocks = []; _blockCounter = 0;
+      }
+    }
+
+    // ════════════════════════════════════════════════════════════════════════
+    // APP UI
+    // ════════════════════════════════════════════════════════════════════════
+
+    let proof = null;
+    let activeInput = null;
+
+    function ins(sym) {
+      const el = activeInput || document.getElementById('formula-input');
+      if (!el) return;
+      const s = el.selectionStart, e = el.selectionEnd;
+      el.value = el.value.slice(0, s) + sym + el.value.slice(e);
+      el.setSelectionRange(s + sym.length, s + sym.length);
+      el.focus();
+    }
+
+    function normalizeField(el) {
+      const orig = el.value, start = el.selectionStart;
+      let v = orig;
+      v = v.replace(/<->/g, '≡');
+      v = v.replace(/->/g, '⊃');
+      v = v.replace(/&/g, '·');
+      v = v.replace(/\[/g, '(');
+      v = v.replace(/\]/g, ')');
+      v = v.replace(/¬/g, '~');
+      v = v.replace(/v/g, '∨');
+      if (v !== orig) {
+        const cursor = Math.max(0, start - (orig.length - v.length));
+        el.value = v;
+        el.setSelectionRange(cursor, cursor);
+      }
+    }
+
+    function trackFocus(el) { activeInput = el; }
+
+    let _premiseSeq = 0;
+
+    function addPremiseField(value = '') {
+      _premiseSeq++;
+      const row = document.createElement('div');
+      row.className = 'premise-row';
+      row.dataset.uid = _premiseSeq;
+
+      const input = document.createElement('input');
+      input.type = 'text'; input.className = 'formula-input';
+      input.id = 'premise-input-' + _premiseSeq;
+      input.setAttribute('aria-label', 'Premise ' + _premiseSeq);
+      input.setAttribute('aria-describedby', 'setup-hint setup-error');
+      input.placeholder = 'e.g. A ⊃ B'; input.value = value;
+      input.addEventListener('focus', () => { trackFocus(input); });
+      input.addEventListener('input', () => { normalizeField(input); _hideSetupError(); _clearInvalid(input); });
+      input.addEventListener('keydown', e => { if (e.key === 'Enter') startProof(); });
+
+      const removeBtn = document.createElement('button');
+      removeBtn.type = 'button'; removeBtn.className = 'btn-remove';
+      removeBtn.title = 'Remove this premise'; removeBtn.textContent = '×';
+      removeBtn.setAttribute('aria-label', 'Remove premise ' + _premiseSeq);
+      removeBtn.addEventListener('click', () => row.remove());
+
+      row.appendChild(input);
+      row.appendChild(removeBtn);
+      document.getElementById('premise-list').appendChild(row);
+      if (!value) input.focus();
+      trackFocus(input);
+    }
+
+    function _getPremiseValues() {
+      return [...document.querySelectorAll('#premise-list .formula-input')]
+        .map(el => el.value.trim()).filter(Boolean);
+    }
+
+    function _esc(str) {
+      return String(str).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
+    }
+
+    function _parseCited(str) {
+      if (!str.trim()) return [];
+      return str.split(/[\s,]+/).map(s => parseInt(s, 10)).filter(n => Number.isFinite(n) && n > 0);
+    }
+
+    // ── Panel transitions ──────────────────────────────────────────────────
+
+    function startProof() {
+      _hideSetupError();
+      const premises = _getPremiseValues();
+      const conclusionInput = document.getElementById('conclusion-input');
+      const conclusion = conclusionInput.value.trim();
+      if (!conclusion) { _showSetupError('Enter a conclusion before beginning the proof.', conclusionInput); return; }
+
+      let ps;
+      try { ps = new ProofState(premises, conclusion); }
+      catch (e) { _showSetupError('Setup error: ' + e.message); return; }
+
+      proof = ps;
+
+      // Build goal display:
+      //   1. A ⊃ B
+      //   2. B ⊃ C     / A ⊃ C   ← conclusion on the last premise line
+      // If no premises, a single row shows just:  / A ⊃ C
+      const concHTML = '<span class="goal-conc"><span class="goal-conc-slash">/</span> ' + _esc(conclusion) + '</span>';
+      let goalHTML = '';
+      if (premises.length === 0) {
+        goalHTML = '<div class="goal-row">' + concHTML + '</div>';
+      } else {
+        for (let i = 0; i < premises.length; i++) {
+          const isLast = (i === premises.length - 1);
+          const numLabel = (i + 1) + '.';
+          goalHTML += '<div class="goal-row">'
+            + '<span class="goal-prem">' + numLabel + ' ' + _esc(premises[i]) + '</span>'
+            + (isLast ? concHTML : '')
+            + '</div>';
+        }
+      }
+      document.getElementById('goal-text').innerHTML = goalHTML;
+      document.getElementById('setup-panel').hidden = true;
+      document.getElementById('proof-panel').hidden = false;
+      renderProof();
+      document.getElementById('formula-input').focus();
+    }
+
+    function newProof() {
+      const hasDerived = proof && !proof.isComplete() && proof.getLineCount() > proof.getPremises().length;
+      if (hasDerived && !confirm('Start a new proof? Current work will be lost.')) return;
+      proof = null;
+      document.getElementById('conclusion-input').value = '';
+      document.getElementById('premise-list').innerHTML = '';
+      _premiseSeq = 0;
+      addPremiseField();
+      document.getElementById('proof-panel').hidden = true;
+      document.getElementById('setup-panel').hidden = false;
+    }
+
+    // ── Proof rendering ────────────────────────────────────────────────────
+
+    function renderProof() {
+      if (!proof) return;
+      const lines = proof.getLines();
+      const blockTypes = {};
+      for (const line of lines) {
+        if (line.type === 'assumption' && line.blockId !== null)
+          blockTypes[line.blockId] = line.justification.rule.startsWith('CP') ? 'CP' : 'IP';
+      }
+
+      const container = document.getElementById('proof-lines');
+      container.innerHTML = '';
+      for (const line of lines) container.appendChild(_buildLine(line, blockTypes));
+
+      document.getElementById('complete-banner').classList.toggle('show', proof.isComplete());
+      _updateScopeIndicator(lines);
+      _updateButtons(proof.isComplete());
+      const scroll = document.getElementById('proof-scroll');
+      scroll.scrollTop = scroll.scrollHeight;
+    }
+
+    function _buildLine(line, blockTypes) {
+      const depth = line.depth;
+      const blockType = line.blockId !== null ? blockTypes[line.blockId] : null;
+      const frag = document.createDocumentFragment();
+      const wrap = document.createElement('tr');
+      wrap.className = 'proof-line' + (line.type === 'assumption' ? ' assumption' : '');
+
+      const numEl = document.createElement('th');
+      numEl.scope = 'row';
+      numEl.className = 'line-num'; numEl.textContent = line.lineNum;
+      wrap.appendChild(numEl);
+
+      const body = document.createElement('td');
+      body.className = 'line-body';
+      if (depth > 0) body.classList.add('depth-' + Math.min(depth, 3));
+      if (blockType === 'IP') body.classList.add('ip');
+      if (depth > 0) {
+        const depthText = document.createElement('span');
+        depthText.className = 'sr-only';
+        depthText.textContent = 'Subproof depth ' + depth + '. ';
+        body.appendChild(depthText);
+      }
+
+      if (line.type === 'assumption' && blockType) body.appendChild(_badge(blockType.toLowerCase(), blockType + '\u202fAss.'));
+      else if (line.type === 'cp') body.appendChild(_badge('cp', 'CP'));
+      else if (line.type === 'ip') body.appendChild(_badge('ip', 'IP'));
+
+      const fml = document.createElement('span');
+      fml.className = 'line-formula';
+      fml.textContent = (line.valid && line.ast) ? astToStringDisplay(line.ast) : line.rawFormula;
+      body.appendChild(fml);
+      wrap.appendChild(body);
+
+      const just = document.createElement('td');
+      just.className = 'line-just-cell';
+      const justText = document.createElement('span');
+      justText.className = 'line-just';
+      justText.textContent = _formatJust(line);
+      just.appendChild(justText);
+      wrap.appendChild(just);
+
+      const statusCell = document.createElement('td');
+      statusCell.className = 'line-status-cell';
+      if (line.type !== 'premise') {
+        const status = document.createElement('span');
+        status.className = 'line-status ' + (line.valid ? 'ok' : 'err');
+        status.textContent = line.valid ? '✓' : '✗';
+        status.setAttribute('aria-label', line.valid ? 'valid line' : 'line has an error');
+        statusCell.appendChild(status);
+      }
+      wrap.appendChild(statusCell);
+      frag.appendChild(wrap);
+
+      if (!line.valid && line.message) {
+        const errRow = document.createElement('tr');
+        errRow.className = 'proof-line-error';
+        const errCell = document.createElement('td');
+        errCell.colSpan = 4;
+        const err = document.createElement('div');
+        err.className = 'line-error'; err.textContent = line.message;
+        errCell.appendChild(err);
+        errRow.appendChild(errCell);
+        frag.appendChild(errRow);
+      }
+      return frag;
+    }
+
+    function _badge(cls, text) {
+      const el = document.createElement('span');
+      el.className = 'line-tag ' + cls; el.textContent = text;
+      return el;
+    }
+
+    function _formatJust(line) {
+      const { rule, cited } = line.justification;
+      if (rule === 'Premise') return 'Premise';
+      const citeStr = cited.length ? '\u2002' + cited.join(', ') : '';
+      return rule + citeStr;
+    }
+
+    function _updateScopeIndicator(lines) {
+      const depth = proof.getDepth();
+      const ind = document.getElementById('scope-indicator');
+      if (depth === 0) { ind.className = ''; ind.textContent = ''; return; }
+      let blockType = 'CP';
+      for (let i = lines.length - 1; i >= 0; i--) {
+        const l = lines[i];
+        if (l.type === 'assumption' && l.depth === depth) {
+          blockType = l.justification.rule.startsWith('CP') ? 'CP' : 'IP'; break;
+        }
+      }
+      ind.className = blockType === 'CP' ? 'cp-open' : 'ip-open';
+      ind.textContent = 'Open ' + blockType + ' subproof (depth ' + depth + ')  —  add lines, then click Close Subproof to discharge.';
+    }
+
+    function _updateButtons(complete) {
+      const depth = proof.getDepth();
+      document.getElementById('btn-close').disabled = (depth === 0) || complete;
+      document.getElementById('btn-cp').disabled = complete;
+      document.getElementById('btn-ip').disabled = complete;
+    }
+
+    // ── Rule hint ──────────────────────────────────────────────────────────
+
+    const _CITE_HINTS = {
+      MP: '2 lines', MT: '2 lines', HS: '2 lines', DS: '2 lines',
+      CD: '2 lines', Simp: '1 line', Conj: '2 lines', Add: '1 line',
+      DM: '1 line', Com: '1 line', Assoc: '1 line', Dist: '1 line',
+      DN: '1 line', Trans: '1 line', Impl: '1 line', Equiv: '1 line', Exp: '1 line', Taut: '1 line',
+    };
+
+    function onRuleChange() {
+      const rule = document.getElementById('rule-select').value;
+      document.getElementById('cited-input').placeholder = _CITE_HINTS[rule] || 'e.g. 1, 2';
+    }
+
+    // ── Entry actions ──────────────────────────────────────────────────────
+
+    function submitLine() {
+      if (!proof) return;
+      _hideEntryError();
+      const formula = document.getElementById('formula-input').value.trim();
+      const rule = document.getElementById('rule-select').value;
+      const cited = _parseCited(document.getElementById('cited-input').value);
+      if (!formula) { _showEntryError('Enter a formula for the next proof line.', document.getElementById('formula-input')); return; }
+      if (!rule) { _showEntryError('Choose a rule before adding the line.', document.getElementById('rule-select')); return; }
+      const result = proof.addLine(formula, rule, cited);
+      _clearEntry(); renderProof();
+      if (result.valid) _announce('Line ' + result.line.lineNum + ' added.' + (proof.isComplete() ? ' Proof complete.' : ''));
+      else _announce('Line ' + result.line.lineNum + ' has an error: ' + result.message);
+    }
+
+    function openSubproof(type) {
+      if (!proof) return;
+      _hideEntryError();
+      const formula = document.getElementById('formula-input').value.trim();
+      if (!formula) { _showEntryError('Enter the assumption for the subproof.', document.getElementById('formula-input')); return; }
+      const result = proof.openSubproof(formula, type);
+      if (!result.valid) _showEntryError(result.message);
+      else { _clearEntry(); _announce(type + ' subproof opened at line ' + result.line.lineNum + '.'); }
+      renderProof();
+    }
+
+    function closeSubproof() {
+      if (!proof) return;
+      _hideEntryError();
+      const formula = document.getElementById('formula-input').value.trim();
+      const cited = _parseCited(document.getElementById('cited-input').value);
+      if (!formula) { _showEntryError('Enter the line that closes the subproof.', document.getElementById('formula-input')); return; }
+      const result = proof.closeSubproof(formula, cited);
+      if (!result.valid) _showEntryError(result.message);
+      else { _clearEntry(); _announce('Subproof closed at line ' + result.line.lineNum + '.'); }
+      renderProof();
+    }
+
+    function undoLine() {
+      if (!proof) return;
+      _hideEntryError(); proof.removeLast(); renderProof(); _announce('Last line removed.');
+    }
+
+    function resetProof() {
+      if (!proof) return;
+      if (!confirm('Reset proof? All derived lines will be removed.')) return;
+      _hideEntryError(); proof.reset(); renderProof(); _announce('Proof reset. Derived lines removed.');
+    }
+
+    // ── Entry panel helpers ────────────────────────────────────────────────
+
+    function _clearEntry() {
+      document.getElementById('formula-input').value = '';
+      document.getElementById('cited-input').value = '';
+      document.getElementById('rule-select').value = '';
+      _clearInvalid(document.getElementById('formula-input'));
+      _clearInvalid(document.getElementById('rule-select'));
+      _clearInvalid(document.getElementById('cited-input'));
+      document.getElementById('formula-input').focus();
+    }
+
+    function _setInvalid(el) {
+      if (!el) return;
+      el.setAttribute('aria-invalid', 'true');
+      el.style.setProperty('border-color', 'var(--red)');
+      el.style.setProperty('box-shadow', '0 0 0 3px rgba(185,28,28,.18)');
+      el.focus();
+    }
+
+    function _clearInvalid(el) {
+      if (!el) return;
+      el.removeAttribute('aria-invalid');
+      el.style.removeProperty('border-color');
+      el.style.removeProperty('box-shadow');
+    }
+
+    function _showEntryError(msg, target = null) {
+      const err = document.getElementById('entry-error');
+      err.textContent = msg;
+      err.hidden = false;
+      if (target) _setInvalid(target);
+      _announce(msg);
+    }
+
+    function _hideEntryError() {
+      const err = document.getElementById('entry-error');
+      err.textContent = '';
+      err.hidden = true;
+    }
+
+    function _showSetupError(msg, target = null) {
+      const err = document.getElementById('setup-error');
+      err.textContent = msg;
+      err.hidden = false;
+      if (target) _setInvalid(target);
+      _announce(msg);
+    }
+
+    function _hideSetupError() {
+      const err = document.getElementById('setup-error');
+      err.textContent = '';
+      err.hidden = true;
+      _clearInvalid(document.getElementById('conclusion-input'));
+      document.querySelectorAll('#premise-list .formula-input').forEach(_clearInvalid);
+    }
+
+    function _announce(msg) {
+      const region = document.getElementById('status-region');
+      if (region) region.textContent = msg;
+    }
+
+    // ── Initialization ─────────────────────────────────────────────────────
+
+    (function init() {
+      // Wire proof-panel formula input
+      const fmlInput = document.getElementById('formula-input');
+      fmlInput.addEventListener('focus', () => { trackFocus(fmlInput); });
+      fmlInput.addEventListener('input', () => { normalizeField(fmlInput); _hideEntryError(); _clearInvalid(fmlInput); });
+
+      // Wire setup-panel conclusion input
+      const conInput = document.getElementById('conclusion-input');
+      conInput.addEventListener('focus', () => { trackFocus(conInput); });
+      conInput.addEventListener('input', () => { normalizeField(conInput); _hideSetupError(); _clearInvalid(conInput); });
+
+      // ── Load a problem from URL parameters (sent by problems1.html) ──────────
+      // URL format: index.html?p=A+%E2%8A%83+B&p=B+%E2%8A%83+C&c=A+%E2%8A%83+C
+      (function loadFromURL() {
+        const params = new URLSearchParams(window.location.search);
+        const prems = params.getAll('p');
+        const conc = params.get('c');
+        if (!prems.length || !conc) {
+          // No URL problem — start with one blank premise field as normal
+          addPremiseField();
+          return;
+        }
+        // Fill in the premise fields from URL
+        prems.forEach(p => addPremiseField(p));
+        document.getElementById('conclusion-input').value = conc;
+        // Launch the proof automatically so the student lands straight in proof mode
+        startProof();
+      })();
+    })();
+  </script>
+</body>
+
+</html>

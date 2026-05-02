@@ -162,7 +162,7 @@ The project proceeds whether or not the grant is awarded. The grant compensates 
 
 | Date | Milestone |
 | --- | --- |
-| **Apr–Aug 2026** | Chapter 1 vertical slice, then steady-state chapter drafting (Parts I–II). Recruit librarian. Begin grant application drafting. |
+| **Apr–Aug 2026** | Chapter 1 vertical slice (Completed May 2026). Steady-state chapter drafting (Parts I–II). Recruit librarian. Begin grant application drafting. |
 | **Sep–Nov 2026** | Drafting Parts III–IV. Submit grant application (~Nov 5). |
 | **Dec 2026** | Grant notification. PDF v1 of textbook complete (independent of grant). |
 | **Jan–May 2027** | Truth table checker built. Proof checker accessibility remediation. Canvas modules built alongside. |

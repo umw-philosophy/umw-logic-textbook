@@ -1,0 +1,844 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Problem Generator — Natural Deduction</title>
+  <style>
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    :root {
+      --blue: #1e3a5f;
+      --blue-mid: #2d5a8e;
+      --blue-light: #e8eef8;
+      --green: #1a6b3c;
+      --green-bg: #f0fdf4;
+      --red: #b91c1c;
+      --red-bg: #fff5f5;
+      --amber: #b45309;
+      --amber-bg: #fffbeb;
+      --purple: #6d28d9;
+      --purple-bg: #f5f3ff;
+      --gray-100: #f7f8fa;
+      --gray-200: #edf0f4;
+      --gray-300: #d1d9e0;
+      --gray-500: #6b7a8f;
+      --gray-700: #3d4a5c;
+      --text: #1a2332;
+      --radius: 8px;
+      --shadow: 0 2px 8px rgba(0, 0, 0, .10);
+      --shadow-sm: 0 1px 3px rgba(0, 0, 0, .08);
+    }
+
+    html,
+    body {
+      height: 100%;
+      font-family: system-ui, -apple-system, "Segoe UI", Helvetica, Arial, sans-serif;
+      background: var(--gray-100);
+      color: var(--text);
+      font-size: 15px;
+      line-height: 1.5;
+    }
+
+    #app {
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+    }
+
+    /* ── Header ──────────────────────────────────────────────────────── */
+    header {
+      background: var(--blue);
+      color: white;
+      padding: 14px 24px;
+      display: flex;
+      align-items: baseline;
+      gap: 12px;
+    }
+
+    header h1 {
+      font-size: 1.1rem;
+      font-weight: 700;
+      letter-spacing: .02em;
+    }
+
+    header .sub {
+      font-size: .82rem;
+      opacity: .7;
+      flex: 1;
+    }
+
+    .back-link {
+      font-size: .82rem;
+      color: rgba(255, 255, 255, .8);
+      text-decoration: none;
+      border: 1px solid rgba(255, 255, 255, .35);
+      padding: 3px 10px;
+      border-radius: 4px;
+      white-space: nowrap;
+      transition: background .15s;
+    }
+
+    .back-link:hover {
+      background: rgba(255, 255, 255, .15);
+      color: white;
+    }
+
+    /* ── Main layout ─────────────────────────────────────────────────── */
+    main {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 32px 16px 48px;
+      gap: 20px;
+    }
+
+    .card {
+      background: white;
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      padding: 28px 32px;
+      width: 100%;
+      max-width: 640px;
+    }
+
+    .card h2 {
+      font-size: .8rem;
+      font-weight: 700;
+      color: var(--gray-500);
+      text-transform: uppercase;
+      letter-spacing: .08em;
+      margin-bottom: 12px;
+    }
+
+    .selector-section {
+      margin-bottom: 24px;
+    }
+
+    /* ── Selector button rows ─────────────────────────────────────────── */
+    .sel-row {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 8px;
+    }
+
+    @media (max-width: 520px) {
+      .sel-row {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    .sel-btn {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 3px;
+      padding: 10px 6px;
+      border: 2px solid var(--gray-300);
+      border-radius: var(--radius);
+      background: white;
+      cursor: pointer;
+      transition: border-color .15s, background .15s;
+      font-family: inherit;
+      text-align: center;
+    }
+
+    .sel-btn:hover {
+      border-color: var(--blue-mid);
+      background: var(--blue-light);
+    }
+
+    .sel-btn.active {
+      border-color: var(--blue-mid);
+      background: var(--blue-light);
+    }
+
+    .sel-name {
+      font-size: .92rem;
+      font-weight: 700;
+      color: var(--gray-700);
+    }
+
+    .sel-btn.active .sel-name {
+      color: var(--blue-mid);
+    }
+
+    .sel-sub {
+      font-size: .70rem;
+      color: var(--gray-500);
+      text-align: center;
+      line-height: 1.3;
+    }
+
+    /* ── Difficulty color scheme ────────────────────────────────────── */
+    .sel-btn[data-diff="1"].active {
+      border-color: var(--green);
+      background: var(--green-bg);
+    }
+
+    .sel-btn[data-diff="1"].active .sel-name {
+      color: var(--green);
+    }
+
+    .sel-btn[data-diff="2"].active {
+      border-color: var(--blue-mid);
+      background: var(--blue-light);
+    }
+
+    .sel-btn[data-diff="2"].active .sel-name {
+      color: var(--blue-mid);
+    }
+
+    .sel-btn[data-diff="3"].active {
+      border-color: var(--amber);
+      background: var(--amber-bg);
+    }
+
+    .sel-btn[data-diff="3"].active .sel-name {
+      color: var(--amber);
+    }
+
+    .sel-btn[data-diff="4"].active {
+      border-color: var(--red);
+      background: var(--red-bg);
+    }
+
+    .sel-btn[data-diff="4"].active .sel-name {
+      color: var(--red);
+    }
+
+    /* ── Buttons ─────────────────────────────────────────────────────── */
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 9px 18px;
+      border: none;
+      border-radius: var(--radius);
+      font-size: .9rem;
+      font-weight: 600;
+      cursor: pointer;
+      font-family: inherit;
+      text-decoration: none;
+      transition: filter .15s, transform .08s;
+      white-space: nowrap;
+    }
+
+    .btn:hover {
+      filter: brightness(1.08);
+    }
+
+    .btn:active {
+      transform: scale(.97);
+    }
+
+    .btn-generate {
+      background: var(--blue-mid);
+      color: white;
+      width: 100%;
+      justify-content: center;
+      padding: 11px;
+      font-size: 1rem;
+    }
+
+    .btn-primary {
+      background: var(--blue-mid);
+      color: white;
+    }
+
+    .btn-secondary {
+      background: var(--gray-200);
+      color: var(--gray-700);
+    }
+
+    /* ── Problem card ────────────────────────────────────────────────── */
+    .problem-card {
+      background: white;
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      width: 100%;
+      max-width: 640px;
+      overflow: hidden;
+    }
+
+    .problem-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 16px 24px 12px;
+      border-bottom: 1px solid var(--gray-200);
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    .problem-header h2 {
+      font-size: 1rem;
+      font-weight: 700;
+      color: var(--blue);
+    }
+
+    .badge-group {
+      display: flex;
+      gap: 6px;
+      flex-wrap: wrap;
+    }
+
+    .badge {
+      font-size: .72rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: .06em;
+      padding: 3px 10px;
+      border-radius: 20px;
+    }
+
+    /* diff badges */
+    .badge-diff-1 {
+      background: var(--green-bg);
+      color: var(--green);
+    }
+
+    .badge-diff-2 {
+      background: var(--blue-light);
+      color: var(--blue-mid);
+    }
+
+    .badge-diff-3 {
+      background: var(--amber-bg);
+      color: var(--amber);
+    }
+
+    .badge-diff-4 {
+      background: var(--red-bg);
+      color: var(--red);
+    }
+
+    /* rules badge always neutral */
+    .badge-rules {
+      background: var(--gray-200);
+      color: var(--gray-700);
+    }
+
+    .problem-body {
+      padding: 20px 24px;
+    }
+
+    .problem-intro {
+      font-size: .85rem;
+      color: var(--gray-500);
+      margin-bottom: 16px;
+    }
+
+    /* ── Argument display ────────────────────────────────────────────── */
+    .prob-display {
+      background: var(--gray-100);
+      border: 1px solid var(--gray-300);
+      border-radius: 6px;
+      padding: 14px 18px;
+      margin-bottom: 14px;
+      font-size: 1.05rem;
+      line-height: 1.9;
+      font-family: "Georgia", "Times New Roman", serif;
+    }
+
+    .prob-row {
+      display: flex;
+      align-items: baseline;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
+    .prob-num {
+      font-size: .82rem;
+      color: var(--gray-500);
+      min-width: 18px;
+      font-family: system-ui, sans-serif;
+      flex-shrink: 0;
+    }
+
+    .prob-formula {
+      color: var(--text);
+      flex: 1;
+    }
+
+    .prob-conc {
+      display: inline-flex;
+      align-items: baseline;
+      gap: 5px;
+      margin-left: auto;
+      padding-left: 16px;
+      color: var(--blue);
+      font-weight: 600;
+      white-space: nowrap;
+    }
+
+    .prob-slash {
+      color: var(--gray-500);
+      font-weight: 400;
+      font-size: 1.1em;
+    }
+
+    .prob-row-conc-only .prob-conc {
+      margin-left: 0;
+      padding-left: 0;
+    }
+
+    .argument-table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+
+    .argument-table th,
+    .argument-table td {
+      padding: 2px 8px;
+      text-align: left;
+      vertical-align: baseline;
+    }
+
+    .argument-table th {
+      width: 1%;
+      white-space: nowrap;
+      font-family: system-ui, sans-serif;
+      font-size: .82rem;
+      font-weight: 600;
+      color: var(--gray-500);
+    }
+
+    .argument-table .conclusion-row th,
+    .argument-table .conclusion-row td {
+      border-top: 1px solid var(--gray-300);
+      padding-top: 8px;
+      color: var(--blue);
+      font-weight: 700;
+    }
+
+    /* ── Technique notice ────────────────────────────────────────────── */
+    .tech-notice {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      padding: 10px 14px;
+      border-radius: 6px;
+      margin-bottom: 14px;
+      font-size: .85rem;
+      line-height: 1.5;
+    }
+
+    .tech-notice.cp {
+      background: #eff6ff;
+      border-left: 3px solid #3b82f6;
+      color: #1e40af;
+    }
+
+    .tech-notice.ip {
+      background: #fffbeb;
+      border-left: 3px solid #f59e0b;
+      color: #92400e;
+    }
+
+    .tech-badge {
+      font-size: .72rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: .07em;
+      padding: 2px 7px;
+      border-radius: 4px;
+      flex-shrink: 0;
+      margin-top: 1px;
+    }
+
+    .tech-badge.cp {
+      background: #3b82f6;
+      color: white;
+    }
+
+    .tech-badge.ip {
+      background: #f59e0b;
+      color: white;
+    }
+
+    /* ── Actions ─────────────────────────────────────────────────────── */
+    .problem-actions {
+      display: flex;
+      gap: 10px;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+
+    .no-solution-note {
+      font-size: .78rem;
+      color: var(--gray-500);
+      text-align: center;
+      margin-top: 6px;
+    }
+  </style>
+</head>
+
+<body>
+  <div id="app">
+
+    <header>
+      <h1>Problem Generator 2</h1>
+      <span class="sub">Randomized Schemas</span>
+      <div style="display: flex; gap: 8px;">
+        <a class="back-link" href="index.html">← Proof Checker</a>
+        <a class="back-link" href="problems1.html">Standard Gen →</a>
+      </div>
+    </header>
+
+    <main>
+      <!-- ── Settings card ───────────────────────────────────────────── -->
+      <div class="card">
+
+        <!-- Rules selector -->
+        <div class="selector-section">
+          <h2>Rules in Play</h2>
+          <div class="sel-row" id="rules-row" role="group" aria-label="Rules in play">
+            <button class="sel-btn active" data-rules="first4" aria-pressed="true" onclick="selectRules('first4')">
+              <span class="sel-name">Basic</span>
+              <span class="sel-sub">MP · MT · HS · DS</span>
+            </button>
+            <button class="sel-btn" data-rules="all8" aria-pressed="false" onclick="selectRules('all8')">
+              <span class="sel-name">Implication</span>
+              <span class="sel-sub">All 8 implication rules</span>
+            </button>
+            <button class="sel-btn" data-rules="all18" aria-pressed="false" onclick="selectRules('all18')">
+              <span class="sel-name">Full</span>
+              <span class="sel-sub">All 18 rules</span>
+            </button>
+            <button class="sel-btn" data-rules="extended" aria-pressed="false" onclick="selectRules('extended')">
+              <span class="sel-name">Extended</span>
+              <span class="sel-sub">18 rules + CP &amp; IP</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- Difficulty selector -->
+        <div class="selector-section">
+          <h2>Difficulty</h2>
+          <div class="sel-row" id="diff-row" role="group" aria-label="Difficulty">
+            <button class="sel-btn active" data-diff="1" aria-pressed="true" onclick="selectDiff(1)">
+              <span class="sel-name">Easy</span>
+              <span class="sel-sub">1–2 steps</span>
+            </button>
+            <button class="sel-btn" data-diff="2" aria-pressed="false" onclick="selectDiff(2)">
+              <span class="sel-name">Medium</span>
+              <span class="sel-sub">2–3 steps</span>
+            </button>
+            <button class="sel-btn" data-diff="3" aria-pressed="false" onclick="selectDiff(3)">
+              <span class="sel-name">Hard</span>
+              <span class="sel-sub">3–4 steps</span>
+            </button>
+            <button class="sel-btn" data-diff="4" aria-pressed="false" onclick="selectDiff(4)">
+              <span class="sel-name">Extreme</span>
+              <span class="sel-sub">4+ steps</span>
+            </button>
+          </div>
+        </div>
+
+        <button class="btn btn-generate" onclick="generate()">Generate Problem</button>
+      </div>
+
+      <!-- ── Problem card (hidden until first generate) ─────────────── -->
+      <div class="problem-card" id="problem-card" hidden>
+
+        <div class="problem-header">
+          <h2>Your Problem</h2>
+          <div class="badge-group">
+            <span class="badge badge-diff-1" id="diff-badge">Easy</span>
+            <span class="badge badge-rules" id="rules-badge">Basic</span>
+          </div>
+        </div>
+
+        <div class="problem-body">
+          <p class="problem-intro">Derive the conclusion from the given premises using only the allowed rules.</p>
+
+          <div class="prob-display" id="prob-display"></div>
+
+          <div id="tech-notice" hidden></div>
+
+          <div class="problem-actions">
+            <button class="btn btn-secondary" onclick="generate()">Generate Another</button>
+            <a id="load-link" class="btn btn-primary" href="index.html">Open in Checker →</a>
+          </div>
+
+          <p class="no-solution-note">No solution is provided — work it out in the Proof Checker.</p>
+        </div>
+      </div>
+    </main>
+
+  </div><!-- #app -->
+
+  <script>
+    'use strict';
+
+    // ════════════════════════════════════════════════════════════════════════
+    // METADATA
+    // ════════════════════════════════════════════════════════════════════════
+
+    const RULES_META = {
+      first4: { label: 'Basic', sub: 'MP · MT · HS · DS' },
+      all8: { label: 'Implication', sub: 'All 8 implication rules' },
+      all18: { label: 'Full', sub: 'All 18 rules' },
+      extended: { label: 'Extended', sub: '18 rules + CP & IP' },
+    };
+
+    const DIFF_META = {
+      1: { label: 'Easy', badgeClass: 'badge-diff-1' },
+      2: { label: 'Medium', badgeClass: 'badge-diff-2' },
+      3: { label: 'Hard', badgeClass: 'badge-diff-3' },
+      4: { label: 'Extreme', badgeClass: 'badge-diff-4' },
+    };
+
+    // ════════════════════════════════════════════════════════════════════════
+    // PROBLEM SCHEMAS
+    //
+    // Each schema has:
+    //   v         — placeholder variable letters (p/q/r/s → random capital atoms)
+    //   p         — premise template strings
+    //   c         — conclusion template string
+    //   diff      — difficulty 1 (easy) … 4 (extreme), based on step count
+    //   technique — 'CP' or 'IP' for extended-tier problems
+    // ════════════════════════════════════════════════════════════════════════
+
+    const SCHEMAS = {
+
+      // ── Basic: MP, MT, HS, DS only ──────────────────────────────────────
+      first4: [
+        // diff 1 — one principal rule
+        { v: 'pq', p: ['p ⊃ q', 'p'], c: 'q', diff: 1 },  // MP
+        { v: 'pq', p: ['p ⊃ q', '~q'], c: '~p', diff: 1 },  // MT
+        { v: 'pq', p: ['p ∨ q', '~p'], c: 'q', diff: 1 },  // DS
+        { v: 'pq', p: ['p ∨ q', '~q'], c: 'p', diff: 1 },  // DS
+        { v: 'pqr', p: ['p ⊃ q', 'q ⊃ r'], c: 'p ⊃ r', diff: 1 },  // HS
+
+        // diff 2 — two steps
+        { v: 'pqr', p: ['p ⊃ q', 'q ⊃ r', 'p'], c: 'r', diff: 2 },  // HS + MP
+        { v: 'pqr', p: ['p ⊃ q', 'q ⊃ r', '~r'], c: '~p', diff: 2 },  // HS + MT
+        { v: 'pqr', p: ['p ∨ q', '~p', 'q ⊃ r'], c: 'r', diff: 2 },  // DS + MP
+        { v: 'pqr', p: ['p ∨ q', '~q', 'p ⊃ r'], c: 'r', diff: 2 },  // DS + MP
+
+        // diff 3 — three or more steps
+        { v: 'pqrs', p: ['p ⊃ q', 'q ⊃ r', 'r ⊃ s'], c: 'p ⊃ s', diff: 3 },  // HS × 2
+        { v: 'pqr', p: ['p ⊃ q', '~q', '~p ⊃ r'], c: 'r', diff: 3 },  // MT + MP
+        { v: 'pqrs', p: ['p ⊃ q', 'q ⊃ r', 'r ⊃ s', 'p'], c: 's', diff: 3 },  // HS × 2 + MP
+      ],
+
+      // ── Implication: all 8 implication rules ────────────────────────────
+      all8: [
+        // diff 1
+        { v: 'pqrs', p: ['p ⊃ q', 'r ⊃ s', 'p ∨ r'], c: 'q ∨ s', diff: 1 },  // CD
+        { v: 'pqr', p: ['p · q', 'p ⊃ r'], c: 'r', diff: 1 },  // Simp + MP
+        { v: 'pqr', p: ['p · q', 'q ⊃ r'], c: 'r', diff: 1 },  // Simp + MP
+
+        // diff 2
+        { v: 'pqr', p: ['p', 'q', '(p · q) ⊃ r'], c: 'r', diff: 2 },  // Conj + MP
+        { v: 'pqr', p: ['p', '(p ∨ q) ⊃ r'], c: 'r', diff: 2 },  // Add + MP
+        { v: 'pqrs', p: ['p · q', 'p ⊃ r', 'r ⊃ s'], c: 's', diff: 2 },  // Simp + HS + MP
+
+        // diff 3
+        { v: 'pqr', p: ['p ⊃ q', 'p ⊃ r', 'p'], c: 'q · r', diff: 3 },  // MP × 2 + Conj
+        { v: 'pqrs', p: ['p · q', 'p ⊃ r', 'q ⊃ s'], c: 'r · s', diff: 3 },  // Simp × 2 + MP × 2 + Conj
+
+        // diff 4
+        { v: 'pqrs', p: ['p ⊃ q', 'r ⊃ s', 'p ∨ r', 'q ⊃ r'], c: 'q ∨ s', diff: 4 },  // red-herring problem
+      ],
+
+      // ── Full: all 18 rules ───────────────────────────────────────────────
+      all18: [
+        // diff 1
+        { v: 'pq', p: ['~~p', 'p ⊃ q'], c: 'q', diff: 1 },  // DN + MP
+        { v: 'pq', p: ['~p ∨ q', 'p'], c: 'q', diff: 1 },  // Impl + MP
+        { v: 'pq', p: ['~q ⊃ ~p', 'p'], c: 'q', diff: 1 },  // Trans + MP
+        { v: 'pq', p: ['p ≡ q', 'p'], c: 'q', diff: 1 },  // Equiv + Simp + MP
+
+        // diff 2
+        { v: 'pqr', p: ['~(p · q)', 'p'], c: '~q', diff: 2 },  // DM + Impl + MP
+        { v: 'pqr', p: ['~(p ∨ q)', 'r ⊃ p'], c: '~r', diff: 2 },  // DM + Simp + MT
+        { v: 'pqr', p: ['p ⊃ (q ⊃ r)', 'p · q'], c: 'r', diff: 2 },  // Exp + MP
+        { v: 'pq', p: ['p', 'p ⊃ (q ∨ q)'], c: 'q', diff: 2 },  // MP + Taut
+        { v: 'pqr', p: ['p ∨ (q ∨ r)', '~p', '~q'], c: 'r', diff: 2 },  // DS × 2
+        { v: 'pqr', p: ['~(p ∨ q)', 'p ∨ r'], c: 'r', diff: 2 },  // DM + Simp + MP × 2
+
+        // diff 3
+        { v: 'pq', p: ['p ≡ q', '~p'], c: '~q', diff: 3 },  // Equiv + Simp + Trans + MP
+        { v: 'pqrs', p: ['(p · (q ∨ r))', '(p · q) ⊃ s', '(p · r) ⊃ s'], c: 's', diff: 3 },  // Dist + CD
+      ],
+
+      // ── Extended: all 18 rules + CP and IP ──────────────────────────────
+      extended: [
+        // diff 3 — simpler subproofs
+        { v: 'pqr', p: ['p ⊃ (q ∨ r)', 'p ⊃ ~r'], c: 'p ⊃ q', diff: 3, technique: 'CP' },
+        { v: 'pqr', p: ['p ⊃ q', 'p ⊃ r'], c: 'p ⊃ (q · r)', diff: 3, technique: 'CP' },
+        { v: 'pqr', p: ['p ⊃ (q ∨ r)', 'p ⊃ ~q'], c: 'p ⊃ r', diff: 3, technique: 'CP' },
+        { v: 'pq', p: ['p ⊃ q', 'p ⊃ ~q'], c: '~p', diff: 3, technique: 'IP' },
+        { v: 'pq', p: ['~p ⊃ q', '~p ⊃ ~q'], c: 'p', diff: 3, technique: 'IP' },
+
+        // diff 4 — more complex subproofs
+        { v: 'pqrs', p: ['p ⊃ q', 'r ⊃ s'], c: '(p ∨ r) ⊃ (q ∨ s)', diff: 4, technique: 'CP' },
+        { v: 'pqrs', p: ['p ⊃ (q · r)', 'p ⊃ (r ⊃ s)'], c: 'p ⊃ (q · s)', diff: 4, technique: 'CP' },
+        { v: 'pqr', p: ['p ⊃ (q · r)', 'p ⊃ ~r'], c: '~p', diff: 4, technique: 'IP' },
+        { v: 'pqr', p: ['p ⊃ q', 'p ⊃ r', 'q ⊃ ~r'], c: '~p', diff: 4, technique: 'IP' },
+        { v: 'pqrs', p: ['p ⊃ (q · r)', 'p ⊃ ~q'], c: '~p', diff: 4, technique: 'IP' },
+      ],
+    };
+
+    // ════════════════════════════════════════════════════════════════════════
+    // STATE
+    // ════════════════════════════════════════════════════════════════════════
+
+    let currentRules = 'first4';
+    let currentDiff = 1;
+    let currentProblem = null;
+
+    // ════════════════════════════════════════════════════════════════════════
+    // SELECTION HANDLERS
+    // ════════════════════════════════════════════════════════════════════════
+
+    function selectRules(key) {
+      currentRules = key;
+      document.querySelectorAll('#rules-row .sel-btn').forEach(b => {
+        const selected = b.dataset.rules === key;
+        b.classList.toggle('active', selected);
+        b.setAttribute('aria-pressed', selected ? 'true' : 'false');
+      });
+    }
+
+    function selectDiff(n) {
+      currentDiff = n;
+      document.querySelectorAll('#diff-row .sel-btn').forEach(b => {
+        const selected = parseInt(b.dataset.diff) === n;
+        b.classList.toggle('active', selected);
+        b.setAttribute('aria-pressed', selected ? 'true' : 'false');
+      });
+    }
+
+    // ════════════════════════════════════════════════════════════════════════
+    // GENERATION
+    // ════════════════════════════════════════════════════════════════════════
+
+    function _shuffle(arr) {
+      const a = [...arr];
+      for (let i = a.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [a[i], a[j]] = [a[j], a[i]];
+      }
+      return a;
+    }
+
+    function _instantiate(schema) {
+      const vars = schema.v.split('');
+      const atoms = _shuffle(['A', 'B', 'C', 'D', 'E', 'F', 'G']);
+      const map = {};
+      vars.forEach((v, i) => { map[v] = atoms[i]; });
+
+      function sub(f) {
+        return f.replace(/[pqrs]/g, c => (map[c] !== undefined ? map[c] : c));
+      }
+
+      return {
+        premises: schema.p.map(sub),
+        conclusion: sub(schema.c),
+        technique: schema.technique || null,
+        diff: schema.diff,
+      };
+    }
+
+    function generate() {
+      const pool = SCHEMAS[currentRules];
+
+      // Try to match the selected difficulty; fall back to whole pool if no match.
+      let candidates = pool.filter(s => s.diff === currentDiff);
+      if (candidates.length === 0) candidates = pool;
+
+      const schema = candidates[Math.floor(Math.random() * candidates.length)];
+      currentProblem = _instantiate(schema);
+      _render();
+    }
+
+    // ════════════════════════════════════════════════════════════════════════
+    // RENDERING
+    // ════════════════════════════════════════════════════════════════════════
+
+    function _esc(str) {
+      return String(str)
+        .replace(/&/g, '&amp;')
+        .replace(/</g, '&lt;')
+        .replace(/>/g, '&gt;')
+        .replace(/"/g, '&quot;');
+    }
+
+    function _render() {
+      const { premises, conclusion, technique, diff } = currentProblem;
+      const diffMeta = DIFF_META[diff];
+      const rulesMeta = RULES_META[currentRules];
+
+      // ── Badges ──────────────────────────────────────────────────────────
+      const diffBadge = document.getElementById('diff-badge');
+      diffBadge.textContent = diffMeta.label;
+      diffBadge.className = 'badge ' + diffMeta.badgeClass;
+
+      const rulesBadge = document.getElementById('rules-badge');
+      rulesBadge.textContent = rulesMeta.label;
+
+      // ── Argument display ─────────────────────────────────────────────────
+      const display = document.getElementById('prob-display');
+      let html = '<table class="argument-table" aria-label="Generated argument"><tbody>';
+
+      premises.forEach((p, i) => {
+        html += '<tr>'
+          + '<th scope="row">Premise ' + (i + 1) + '</th>'
+          + '<td>' + _esc(p) + '</td>'
+          + '</tr>';
+      });
+      html += '<tr class="conclusion-row">'
+        + '<th scope="row">Conclusion</th>'
+        + '<td><span class="prob-slash">/</span> ' + _esc(conclusion) + '</td>'
+        + '</tr>';
+      html += '</tbody></table>';
+      display.innerHTML = html;
+
+      // ── Technique notice (CP / IP) ───────────────────────────────────────
+      const techEl = document.getElementById('tech-notice');
+      if (technique) {
+        const isCp = technique === 'CP';
+        const label = isCp ? 'Conditional Proof (CP)' : 'Indirect Proof (IP)';
+        const desc = isCp
+          ? 'Open a CP subproof by assuming the antecedent of your target conditional, then derive the consequent and close.'
+          : 'Open an IP subproof by assuming the negation of the conclusion, derive a contradiction (two lines X and ~X), then close.';
+        techEl.className = 'tech-notice ' + technique.toLowerCase();
+        techEl.innerHTML = '<span class="tech-badge ' + technique.toLowerCase() + '">' + technique + '</span>'
+          + '<span>This problem requires <strong>' + _esc(label) + '</strong>. ' + _esc(desc) + '</span>';
+        techEl.hidden = false;
+      } else {
+        techEl.hidden = true;
+      }
+
+      // ── "Open in Checker" link ───────────────────────────────────────────
+      const params = premises.map(p => 'p=' + encodeURIComponent(p)).join('&')
+        + '&c=' + encodeURIComponent(conclusion);
+      document.getElementById('load-link').href = 'index.html?' + params;
+
+      // ── Show the card ────────────────────────────────────────────────────
+      const card = document.getElementById('problem-card');
+      card.hidden = false;
+      card.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+    }
+
+    // ════════════════════════════════════════════════════════════════════════
+    // INIT
+    // ════════════════════════════════════════════════════════════════════════
+
+    generate();
+  </script>
+</body>
+
+</html>

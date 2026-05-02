@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Natural Deduction Proof Checker</title>
+    <style>
+        body { font-family: Arial, sans-serif; }
+        .toolbar { margin-bottom: 20px; }
+        .proof-line { margin: 10px 0; }
+        #entry-panel { margin: 20px 0; }
+        #proof-state { border: 1px solid #ccc; padding: 10px; }
+    </style>
+</head>
+<body>
+    <h1>Natural Deduction Proof Checker</h1>
+    <div class="toolbar">
+        <button onclick="insertSymbol('∧')">∧</button>
+        <button onclick="insertSymbol('∨')">∨</button>
+        <button onclick="insertSymbol('→')">→</button>
+        <button onclick="insertSymbol('¬')">¬</button>
+        <button onclick="insertSymbol('⊥')">⊥</button>
+        <button onclick="insertSymbol('∀')">∀</button>
+        <button onclick="insertSymbol('∃')">∃</button>
+    </div>
+    <div id="proof-state">
+        <h2>Proof State</h2>
+        <div id="proof-lines"></div>
+        <div id="entry-panel">
+            <input type="text" id="formula-input" placeholder="Enter your formula here">
+            <button onclick="addProofLine()">Add Proof Line</button>
+        </div>
+    </div>
+    <script>
+        let proofLines = [];
+        let premises = [];
+        let conclusions = [];
+
+        function insertSymbol(symbol) {
+            const formulaInput = document.getElementById('formula-input');
+            formulaInput.value += symbol;
+        }
+
+        function addProofLine() {
+            const formulaInput = document.getElementById('formula-input');
+            const formula = formulaInput.value.trim();
+            if (formula) {
+                proofLines.push(formula);
+                updateProofLinesDisplay();
+                formulaInput.value = '';
+            }
+        }
+
+        function updateProofLinesDisplay() {
+            const proofLinesDiv = document.getElementById('proof-lines');
+            proofLinesDiv.innerHTML = '';
+            proofLines.forEach((line, index) => {
+                proofLinesDiv.innerHTML += `<div class='proof-line'>Line ${index + 1}: ${line}</div>`;
+            });
+        }
+    </script>
+</body>
+</html>
