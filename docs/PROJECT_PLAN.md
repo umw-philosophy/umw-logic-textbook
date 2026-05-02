@@ -28,10 +28,10 @@ The cheating-and-AI stance is "I'm not a cop." The real assessment gate is the i
 The book is divided into four parts that align with the four exam blocks of the UMW course, plus an optional fifth part for adopters who teach predicate logic.
 
 - **Part I — Arguments and Reasoning** (informal logic): what arguments are, deductive vs. inductive, validity and soundness, language and meaning, informal fallacies.
-- **Part II — Categorical Logic** (Venn-first): categorical statements, the square of opposition, Venn diagrams for statements, categorical syllogisms via Venn diagrams, translating English into categorical form. Mood and Figure are de-emphasized; the Venn diagram method is treated as the primary tool for assessing validity.
+- **Part II — Categorical Logic** (Venn-first): categorical statements, the square of opposition, Venn diagrams for statements, categorical syllogisms via Venn diagrams, translating English into categorical form. Mood and Figure are de-emphasized; the Venn diagram method is treated as the primary tool for assessing validity. Only modern categorical logic is taught in the body of the text. Existential commitment is discussed. But, the Aristotelian categorical logic is placed in an appendix. 
 - **Part III — Sentential Logic**: symbolizing sentences using Copi notation (⊃, ·, ∨, ≡, ∼), truth tables, natural deduction with the 8 implication rules and the 10 replacement rules, and conditional and indirect proof. CP and IP are taught but assessments are designed to be solvable using only the 18 rules.
 - **Part IV — Inductive and Statistical Reasoning**: inductive reasoning, probability basics, descriptive statistics, statistical inference, and a closing chapter that draws on Hacking-flavored material to give students a richer appreciation of statistical reasoning than typical intro texts offer.
-- **Part V — Predicate Logic** (optional adopter chapters): symbolization with quantifiers, the four standard quantifier rules, and (optionally) identity. PHIL 151B does not cover this material; adopters who want it can include it.
+- **Part V — Predicate Logic** (optional adopter chapters): symbolization with quantifiers, the four standard quantifier rules, and (optionally) identity. PHIL 151B does not (currently) cover this material; adopters who want it can include it.
 
 A target of approximately 17–18 chapters total. The exact chapter list will firm up after the Chapter 1 vertical slice.
 

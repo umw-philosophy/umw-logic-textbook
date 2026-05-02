@@ -1113,10 +1113,2660 @@
 
   </section>
 
-  <!--
-    Sections 1.4 onward will follow once drafted.
-    §1.4: Recognizing arguments in the wild
-    (Plus: chapter summary, key terms, end-of-chapter exercises)
-  -->
+  <section xml:id="sec-recognizing-arguments">
+    <title>Recognizing Arguments in the Wild</title>
+
+    <introduction>
+      <p>
+        In the previous three sections we assembled the apparatus.
+        Language does many jobs (<xref ref="sec-language"/>); only
+        some sentences are statements (<xref ref="sec-statements"/>);
+        arguments are statements arranged into premises and a
+        conclusion connected by an inferential relation
+        (<xref ref="sec-premises-conclusions"/>). We have what we need.
+      </p>
+      <p>
+        The trouble is that our use of language doesn't come
+        pre-labeled. Sentences flow into each other without indicator
+        words, or with misleading ones. Two passages that look
+        identical on the page can be doing entirely different jobs.
+        Multiple arguments can be tangled together in one paragraph,
+        with intermediate claims doing double duty as conclusions of
+        one inference and premises of the next. Recognizing arguments
+        in the wild — picking them out of real prose, distinguishing
+        them from things that aren't quite arguments, laying them out
+        so we can examine them — is the skill that turns the apparatus
+        from something you can describe into something you can
+        actually use. And that's our aim. The development of the
+        skills needed to pick out and analyze arguments and the
+        corresponding skills needed to produce good arguments. The
+        answer to the question, <q>Is it any good?</q> is not idle.
+        The answer is an active engagement with other people's
+        language and your own.
+      </p>
+    </introduction>
+
+    <paragraphs xml:id="paragraphs-argument-or-explanation">
+      <title>Argument or explanation?</title>
+      <p>
+        Way back in <xref ref="sec-language"/> we put
+        <em>explaining</em> in the catalog of things people do with
+        language and noted that explanations look a lot like
+        arguments. They use reasons. They have inferential structure.
+        They often use the same indicator words — especially
+        <em>because</em>. They can sound, on a first reading, exactly
+        the same. The difference is not in the words. It's in the job
+        the words are doing.
+      </p>
+      <p>
+        An argument moves you from claims you accept (the premises)
+        to a claim that's in question (the conclusion). The conclusion
+        is the thing the arguer is trying to get you to believe — the
+        part you might not have accepted before. The premises are the
+        reasons offered.
+      </p>
+      <p>
+        An explanation works in the other direction. The thing being
+        explained is something everyone (in the intended audience)
+        already accepts — it's not in question. The explanation
+        provides the reasons <em>why</em> that already-accepted thing
+        is the case. You're not being asked to believe the
+        explanandum; you already do. You're being told why it's true.
+      </p>
+      <p>
+        (Two pieces of vocabulary, since you'll occasionally see
+        them: the <term>explanandum</term> is the thing being
+        explained; the <term>explanans</term> is the reason offered.
+        <em>Premise</em> and <em>conclusion</em> are the parallel
+        words for arguments.)
+      </p>
+      <p>
+        The same content can serve as either an argument or an
+        explanation, depending on what's in question.
+      </p>
+      <example xml:id="ex-grid-argument-or-explanation">
+        <title>Same claim, different jobs</title>
+        <statement>
+          <p>
+            <alert>Argument.</alert> <q>We should expand the
+            electrical grid, because data centers are being built
+            faster than we can power them.</q>
+          </p>
+          <p>
+            <alert>Explanation.</alert> <q>Electricity prices are
+            rising, because data centers are being built faster than
+            we can power them.</q>
+          </p>
+        </statement>
+      </example>
+      <p>
+        Same claim after <em>because</em>. In the first, the
+        conclusion is <em>we should expand the grid</em> — a claim
+        that's contested, that depends on policy and money, and that
+        the speaker is trying to bring you around to. The premise is
+        the reason offered: <em>data centers are being built faster
+        than we can power them.</em> It's an argument because there's
+        something at issue.
+      </p>
+      <p>
+        In the second, the thing to be explained, the explanandum,
+        is <em>electricity prices are rising</em>. That's not in
+        question. Anyone's electric bill has been telling them this
+        for a while. The work being done is to explain <em>why</em>.
+        The data-center load isn't being offered as a reason to
+        <em>believe</em> prices are rising; it's being offered as a
+        reason <em>they are</em>. It's an explanation.
+      </p>
+      <p>
+        Another pair, even clearer:
+      </p>
+      <example xml:id="ex-car-argument-or-explanation">
+        <title>The car</title>
+        <statement>
+          <p>
+            <alert>Argument.</alert> <q>Your car doesn't have any gas,
+            so it won't start.</q>
+          </p>
+          <p>
+            <alert>Explanation.</alert> <q>My car wouldn't start. Oh,
+            look — I'm out of gas. That's why.</q>
+          </p>
+        </statement>
+      </example>
+      <p>
+        The first is prospective. It's not yet known that you won't
+        be able to start your car. The speaker is reasoning forward
+        from a known fact (no gas) to a predicted outcome (won't
+        start). It's an argument.
+      </p>
+      <p>
+        The second is retrospective. The car has already failed to
+        start; that's the data point everyone has. The reason offered
+        (out of gas) is offered to explain the already-observed fact.
+        It's an explanation.
+      </p>
+      <p>
+        That last contrast points to a useful diagnostic:
+        <alert>arguments are often future- or contention-oriented;
+        explanations are usually past- or already-accepted-oriented.</alert>
+        It isn't a perfect rule. Some arguments are about the past —
+        a historian arguing for one reconstruction of an event over
+        another, for instance, is making an argument about something
+        that already happened, but the conclusion is still in question
+        because the <em>historical claim</em> hasn't been settled.
+        And a few explanations gesture forward — <q>the storm will be
+        bad because the air pressure is dropping fast</q> could be
+        either, depending on whether the listener already accepts that
+        the storm will be bad. But for a quick first pass,
+        time-direction is a strong tell: when in doubt, ask whether
+        the would-be conclusion is something the audience already
+        believes (likely an explanation) or something the speaker is
+        trying to convince them of (likely an argument).
+      </p>
+      <p>
+        A second diagnostic worth keeping: <alert>argue or make sense
+        of?</alert> If the speaker's posture is <em>let me convince
+        you of this</em>, it's an argument. If it's <em>let me help
+        you make sense of this</em>, it's an explanation. Same words
+        on the page can do either job, depending on what kind of
+        conversation is happening.
+      </p>
+    </paragraphs>
+
+    <paragraphs xml:id="paragraphs-extraction-procedure">
+      <title>A procedure for extracting arguments</title>
+      <p>
+        Here is a workable procedure for pulling an argument out of
+        real text. It looks pedantic written down, but it gets
+        natural, nuanced, and requires judgment as you practice.
+      </p>
+      <ol>
+        <li>
+          <p>
+            <alert>Read the passage twice.</alert> Once for the gist;
+            once ready to take notes.
+          </p>
+        </li>
+        <li>
+          <p>
+            <alert>Find the conclusion.</alert> Ask yourself: what is
+            the writer asking the reader to accept? It's often — not
+            always — the most contentious-sounding sentence in the
+            passage. Look for conclusion indicators (<em>therefore,
+            thus, so, hence, consequently</em>) but don't rely on
+            them; conclusions can sit at the start of a passage, at
+            the end, or in the middle.
+          </p>
+        </li>
+        <li>
+          <p>
+            <alert>Find the premises.</alert> Ask: what reasons are
+            given for the conclusion? Look for premise indicators
+            (<em>because, since, given that, for</em>) and for
+            sentences whose role is clearly to support something
+            else.
+          </p>
+        </li>
+        <li>
+          <p>
+            <alert>Lay it out in standard form</alert> (P1, P2,
+            <ellipsis/> <m>\therefore</m> C). One statement per line.
+            Use exactly the wording the passage uses where possible;
+            reword only when the passage's prose makes the structure
+            hard to see.
+          </p>
+        </li>
+        <li>
+          <p>
+            <alert>Check the structure.</alert> Does the conclusion
+            really follow from the premises? Is something obviously
+            missing — a hidden assumption the passage takes for
+            granted? Are there actually two arguments in this passage
+            instead of one? Does what looks like a single premise
+            turn out to itself be a small argument?
+          </p>
+        </li>
+      </ol>
+      <p>
+        A worked example. Here's a short paragraph:
+      </p>
+      <blockquote>
+        <p>
+          Most people think of running shoes as a recent invention,
+          but archaeologists have found rope-soled sandals from twenty
+          thousand years ago that show specific wear patterns
+          associated with running, and similar sandals have appeared
+          independently in widely separated cultures. So the
+          deliberate design of footwear for running is a much older
+          human practice than people assume.
+        </p>
+      </blockquote>
+      <p>
+        Read once for gist: claim about running-shoe history. Read
+        again taking notes or marking up the passage: the conclusion
+        is signaled by <em>so</em> — <em>the deliberate design of
+        footwear for running is a much older human practice than
+        people assume</em>. The premises are the two historical
+        claims that are assumed to be true: the claims about
+        archaeological discoveries and cultural distribution.
+      </p>
+      <p>
+        In standard form:
+      </p>
+      <example xml:id="ex-running-shoes-standard-form">
+        <title>Running shoes, in standard form</title>
+        <statement>
+          <p>
+            P1: Archaeologists have found rope-soled sandals from
+            twenty thousand years ago with wear patterns associated
+            with running.
+          </p>
+          <p>
+            P2: Similar running-adapted sandals have appeared
+            independently in widely separated cultures.
+          </p>
+          <p>
+            <m>\therefore</m> C: The deliberate design of footwear
+            for running is a much older human practice than people
+            assume. <em>(from P1 and P2)</em>
+          </p>
+        </statement>
+      </example>
+      <p>
+        Two premises, one conclusion, indicator word <em>so</em>. The
+        first sentence (<q>Most people think<ellipsis/></q>) isn't a
+        premise of the argument; it's setting up what the argument is
+        pushing back against. Notice that — sometimes the prose
+        includes orientation that isn't part of the inference, and
+        you should leave it out of the standard-form layout. Though,
+        sometimes, this set-up is so integral to the argument that it
+        will make it into the conclusion itself.
+      </p>
+    </paragraphs>
+
+    <paragraphs xml:id="paragraphs-layered-arguments">
+      <title>Layered arguments and sub-conclusions</title>
+      <p>
+        In <xref ref="sec-premises-conclusions"/> we noted that real
+        arguments are often messier than P1, P2,
+        <m>\therefore</m> C. Sometimes a passage argues for an
+        intermediate claim and then uses that intermediate claim as
+        a premise for a further conclusion. We called these
+        intermediate claims <term>sub-conclusions</term>. The
+        notation: each sub-conclusion is labeled C1, C2,
+        <ellipsis/> and followed by a parenthetical note saying
+        which premises (and which earlier conclusions) it follows
+        from.
+      </p>
+      <p>
+        A worked example. Here's a paragraph adapted from a charity
+        pitch:
+      </p>
+      <blockquote>
+        <p>
+          You should donate to Oxfam. Oxfam efficiently uses
+          contributions to help end long-term poverty by providing
+          the tools for people to get an education and support their
+          families. Eighty-nine cents of every dollar goes directly
+          to organizations on the ground. The aid provides for things
+          like goats and schoolbooks, so that a family can provide
+          for itself and the next generation has options. Also, it
+          feels good to help people.
+        </p>
+      </blockquote>
+      <p>
+        The conclusion is the first sentence: <em>you should donate
+        to Oxfam</em>. Notice the conclusion at the start, not the
+        end — perfectly common. The rest of the paragraph is offering
+        reasons.
+      </p>
+      <p>
+        But the structure is layered. Some of the reasons are
+        themselves supported by other reasons. Two factual claims
+        (89 cents on the dollar; the aid provides for goats and
+        schoolbooks) support an intermediate claim (Oxfam uses
+        donations efficiently to end long-term poverty). That
+        intermediate claim, plus a separate consideration (it feels
+        good to help people), supports the main conclusion (you
+        should donate). Laid out:
+      </p>
+      <example xml:id="ex-oxfam-standard-form">
+        <title>Oxfam, in standard form</title>
+        <statement>
+          <p>P1: 89 cents of every dollar goes directly to organizations on the ground.</p>
+          <p>P2: The aid provides for things like goats and schoolbooks.</p>
+          <p>C1: The aid Oxfam provides makes it so a family can provide for itself and the next generation has options. <em>(from P2)</em></p>
+          <p>C2: Oxfam efficiently uses contributions to help end long-term poverty by providing the tools for people to get an education and support their families. <em>(from P1 and C1)</em></p>
+          <p>P3: It feels good to help people.</p>
+          <p><m>\therefore</m> C3: You should donate to Oxfam. <em>(from C2 and P3)</em></p>
+        </statement>
+      </example>
+      <p>
+        This is the diagramming notation we'll use throughout the
+        book whenever an argument has more than one inference in it.
+        Two things worth pausing on.
+      </p>
+      <p>
+        First, every conclusion declares what it follows from.
+        <em>(from P2)</em>, <em>(from P1 and C1)</em>, <em>(from C2
+        and P3)</em> — those parenthetical notes are how the structure
+        shows itself. Without them, a multi-step argument is just a
+        list of statements, and the reader has to guess which
+        inferences the writer intended.
+      </p>
+      <p>
+        Second, this is harder than it looks the first time. The
+        Oxfam paragraph contains six statements doing different jobs
+        — two raw premises, three inferred claims (one of which is
+        the final conclusion), and one independent premise (P3) that
+        doesn't connect to the others until the very end. Pulling
+        that structure out cleanly takes practice. The Field Exercise
+        below has a couple of layered passages so you can practice on
+        something a little messier than the one we just did together.
+      </p>
+    </paragraphs>
+
+    <paragraphs xml:id="paragraphs-where-headed-1-4">
+      <title>Where we're headed</title>
+      <p>
+        That's the apparatus and the extraction skill. To recap what
+        we've put together over four sections: the recognition that
+        language does many jobs and only some of them count as
+        arguing (<xref ref="sec-language"/>); the precise notion of a
+        statement as a sentence that is either true or false,
+        regardless of who knows or who agrees
+        (<xref ref="sec-statements"/>); the structural roles of
+        premise and conclusion, the distinction between intent and
+        successful support, indicator words, and standard form
+        (<xref ref="sec-premises-conclusions"/>); and now
+        (<xref ref="sec-recognizing-arguments"/>) the practice of
+        pulling all of that out of real text, distinguishing argument
+        from explanation, and handling layered structure.
+      </p>
+      <p>
+        What we <em>can't</em> yet do is evaluate the arguments we've
+        extracted. We can lay one out cleanly and we can ask the
+        question we've been pointing at since the beginning —
+        <em>is this any good?</em> — but we don't yet have the tools
+        to answer that question with rigor. That's what the next
+        chapter is for. Once an argument is in standard form, we can
+        begin to ask whether the support is genuine: whether the
+        conclusion really follows from the premises (validity),
+        whether the premises are actually true (soundness), and what
+        we should make of arguments where one of those holds but not
+        the other. The chapters that follow give us the technical
+        machinery — categorical logic in Part II, sentential logic
+        and natural deduction in Part III, statistical reasoning in
+        Part IV — for answering <em>is this any good?</em> in
+        different domains. But all of those machines run on the
+        structures we've built here. Statements as truth-bearing
+        sentences; arguments as premises supporting conclusions.
+        That's the foundation.
+      </p>
+    </paragraphs>
+
+    <exploration xml:id="field-1-4-1">
+      <title>Field Exercise: Extract and classify</title>
+      <statement>
+        <p>
+          For each passage below:
+        </p>
+        <ul>
+          <li>
+            <p>
+              Decide whether the passage is making an argument,
+              giving an explanation, or doing something else (and
+              say which).
+            </p>
+          </li>
+          <li>
+            <p>
+              If it is an argument, lay it out in standard form,
+              including any sub-conclusions.
+            </p>
+          </li>
+          <li>
+            <p>
+              If it is an explanation, identify the explanandum and
+              explanans.
+            </p>
+          </li>
+          <li>
+            <p>
+              If it is something else, say what.
+            </p>
+          </li>
+        </ul>
+        <p>
+          Don't worry about evaluating whether the arguments are good.
+          We'll get to that in the next chapter. For now, the work is
+          just to see the structure.
+        </p>
+        <ol>
+          <li>
+            <p>
+              <q>Since the data centers in this region pull more than
+              ten percent of available capacity at peak, and since
+              the grid was designed for a load profile from twenty
+              years ago, brownouts during summer evenings are now
+              nearly inevitable absent serious investment in
+              transmission.</q>
+            </p>
+          </li>
+          <li>
+            <p>
+              <q>Roman concrete has lasted two thousand years in the
+              worst possible conditions for ordinary cement: salt
+              water, repeated tide cycles, freeze-thaw. We've finally
+              figured out why. The Romans included unslaked lime in
+              the mix, which reacts with seawater to produce calcium
+              aluminum silicate, sealing the very cracks that destroy
+              modern concrete.</q>
+            </p>
+          </li>
+          <li>
+            <p>
+              <q>I shouldn't take the elective in graphic design. The
+              course meets at eight in the morning. I have soccer
+              practice that runs late on Mondays, and I've never been
+              able to drag myself out of bed for an early class after
+              a late practice.</q>
+            </p>
+          </li>
+          <li>
+            <p>
+              <q>You should support the proposed expansion of the
+              campus library. Studies of similar projects at peer
+              institutions show measurable improvements in student
+              retention. The current building was last renovated in
+              1973 and lacks accessible study space for students with
+              disabilities. The expansion is also cheaper now than it
+              will be in ten years; construction costs are projected
+              to rise faster than inflation. And the library is the
+              one space on campus that serves every student,
+              regardless of major.</q>
+            </p>
+          </li>
+          <li>
+            <p>
+              <q>In the medieval university, the lecturer typically
+              read aloud from a manuscript while students copied the
+              text. Movable type was nonexistent and books were
+              scarce; an entire institution might own only a single
+              copy of a given text. Centuries before the printing
+              press, the most efficient way to distribute knowledge
+              was to put it in a single voice and have everyone in
+              the room write it down at once.</q>
+              (Adapted from Clay Shirky, <q>Students Hate Them.
+              Universities Need Them,</q> <em>The New York Times</em>,
+              August 2025.)
+            </p>
+          </li>
+        </ol>
+      </statement>
+    </exploration>
+
+  </section>
+
+  <section xml:id="sec-ch1-key-terms">
+    <title>Key Terms</title>
+
+    <p>Listed alphabetically, with section references.</p>
+
+    <dl>
+      <li xml:id="term-antecedent">
+        <title>Antecedent</title>
+        <p>In a conditional sentence (&quot;If ..., then ...&quot;), the part following &quot;if.&quot; (§1.3)</p>
+      </li>
+      <li xml:id="term-argument">
+        <title>Argument</title>
+        <p>A set of statements in which one or more statements (the premises) are offered as reasons in support of another statement (the conclusion). (§1.1, §1.3)</p>
+      </li>
+      <li xml:id="term-assertoric">
+        <title>Assertoric</title>
+        <p>Describing a sentence that says something is the case; i.e., a sentence that is either true or false. Statements are assertoric sentences. (§1.2)</p>
+      </li>
+      <li xml:id="term-conclusion">
+        <title>Conclusion</title>
+        <p>The statement in an argument that the premises are offered to support. (§1.3)</p>
+      </li>
+      <li xml:id="term-conclusion-indicator">
+        <title>Conclusion indicator</title>
+        <p>A word or phrase (e.g., <em>therefore</em>, <em>thus</em>, <em>so</em>, <em>hence</em>, <em>consequently</em>, <em>it follows that</em>) that often signals that what follows is a conclusion. (§1.3)</p>
+      </li>
+      <li xml:id="term-conditional-sentence">
+        <title>Conditional sentence</title>
+        <p>A sentence of the form &quot;If ..., then ...&quot; The &quot;if&quot; part is the antecedent; the &quot;then&quot; part is the consequent. (§1.3)</p>
+      </li>
+      <li xml:id="term-consequent">
+        <title>Consequent</title>
+        <p>In a conditional sentence, the part following &quot;then.&quot; (§1.3)</p>
+      </li>
+      <li xml:id="term-deductive-argument">
+        <title>Deductive argument</title>
+        <p>An argument in which the premises, if true, are intended to guarantee the truth of the conclusion. (§1.1)</p>
+      </li>
+      <li xml:id="term-explanandum">
+        <title>Explanandum</title>
+        <p>In an explanation, the thing being explained — the already-accepted fact whose cause or reason is being given. (§1.4)</p>
+      </li>
+      <li xml:id="term-explanans">
+        <title>Explanans</title>
+        <p>In an explanation, the reason offered for why the explanandum is the case. (§1.4)</p>
+      </li>
+      <li xml:id="term-explanation">
+        <title>Explanation</title>
+        <p>A use of language in which reasons are given for why something already accepted is the case. Distinct from an argument, which offers reasons for a claim that is in question. (§1.4)</p>
+      </li>
+      <li xml:id="term-inductive-argument">
+        <title>Inductive argument</title>
+        <p>An argument in which the premises, if true, are intended to make the conclusion probable but not certain. (§1.1)</p>
+      </li>
+      <li xml:id="term-modus-ponens">
+        <title>Modus ponens</title>
+        <p>An argument form: from a conditional and the affirmation of its antecedent, conclude the affirmation of its consequent. (§1.3)</p>
+      </li>
+      <li xml:id="term-modus-tollens">
+        <title>Modus tollens</title>
+        <p>An argument form: from a conditional and the denial of its consequent, conclude the denial of its antecedent. (§1.3)</p>
+      </li>
+      <li xml:id="term-performative-sentence">
+        <title>Performative sentence</title>
+        <p>A sentence that, when uttered in the right context, performs the action it describes (e.g., &quot;I hereby resign&quot;). Not a statement. (§1.1)</p>
+      </li>
+      <li xml:id="term-premise">
+        <title>Premise</title>
+        <p>A statement offered in support of a conclusion. (§1.3)</p>
+      </li>
+      <li xml:id="term-premise-indicator">
+        <title>Premise indicator</title>
+        <p>A word or phrase (e.g., <em>because</em>, <em>since</em>, <em>given that</em>, <em>for</em>, <em>the reason being</em>) that often signals that what follows is a premise. (§1.3)</p>
+      </li>
+      <li xml:id="term-sound-argument">
+        <title>Sound (argument)</title>
+        <p>An argument that is valid and has all true premises. Previewed here; treated in detail in Chapter 2. (§1.1)</p>
+      </li>
+      <li xml:id="term-standard-form">
+        <title>Standard form</title>
+        <p>A layout for arguments in which each statement appears on its own line, premises are labeled P1, P2, etc., and the conclusion is labeled C. Sub-conclusions are labeled C1, C2, etc. with parenthetical notes showing what each follows from. (§1.3, §1.4)</p>
+      </li>
+      <li xml:id="term-statement">
+        <title>Statement</title>
+        <p>An assertoric sentence — a sentence that is either true or false, regardless of whether anyone knows which, can prove which, or agrees about which. (§1.2)</p>
+      </li>
+      <li xml:id="term-strong-inductive-argument">
+        <title>Strong (inductive argument)</title>
+        <p>An inductive argument in which the premises, if true, make the conclusion highly probable. Previewed here; treated in detail in Part IV. (§1.1)</p>
+      </li>
+      <li xml:id="term-sub-conclusion">
+        <title>Sub-conclusion</title>
+        <p>An intermediate conclusion in a layered argument that serves as a premise for a further inference. (§1.4)</p>
+      </li>
+      <li xml:id="term-valid-argument">
+        <title>Valid (argument)</title>
+        <p>An argument in which, if all the premises were true, the conclusion would have to be true. Previewed here; treated in detail in Chapter 2. (§1.1)</p>
+      </li>
+    </dl>
+
+  </section>
+
+  <exercises xml:id="exercises-ch1">
+    <title>End-of-Chapter Exercises</title>
+
+    <exercisegroup xml:id="exgroup-ch1-s01">
+      <title>Exercise Set 1: What We Do With Language</title>
+      <introduction>
+        <p>
+          For each item below, identify the main thing the speaker is doing with language: stating, asking, commanding/requesting, promising, expressing, performing, greeting, explaining, or arguing. Some items may do more than one thing, but choose the dominant role and briefly explain your choice.
+        </p>
+      </introduction>
+      <exercise xml:id="ex-ch1-s01-01">
+        <statement>
+          <p>
+            &quot;Could you send me the reading before class?&quot;
+          </p>
+        </statement>
+        <solution>
+          <p>
+            <em>Asking.</em> The speaker is requesting that someone send a file. Although phrased as a question (&quot;Could you...&quot;), its dominant function is a polite request for action, not a claim about how things are.
+          </p>
+        </solution>
+      </exercise>
+      <exercise xml:id="ex-ch1-s01-02">
+        <statement>
+          <p>
+            &quot;The reading is posted on Canvas.&quot;
+          </p>
+        </statement>
+      </exercise>
+      <exercise xml:id="ex-ch1-s01-03">
+        <statement>
+          <p>
+            &quot;I promise I'll bring the handouts tomorrow.&quot;
+          </p>
+        </statement>
+        <solution>
+          <p>
+            <em>Promising.</em> The speaker is committing to a future action (bringing the handouts tomorrow). This is not asserting that something is the case; it is undertaking an obligation.
+          </p>
+        </solution>
+      </exercise>
+      <exercise xml:id="ex-ch1-s01-04">
+        <statement>
+          <p>
+            &quot;Welcome back.&quot;
+          </p>
+        </statement>
+      </exercise>
+      <exercise xml:id="ex-ch1-s01-05">
+        <statement>
+          <p>
+            &quot;I hereby resign from the committee.&quot;
+          </p>
+        </statement>
+        <solution>
+          <p>
+            <em>Performing.</em> This is a performative utterance. By saying &quot;I hereby resign,&quot; the speaker performs the act of resigning. The sentence does not describe a resignation — it <em>is</em> one.
+          </p>
+        </solution>
+      </exercise>
+      <exercise xml:id="ex-ch1-s01-06">
+        <statement>
+          <p>
+            &quot;Yikes, that was loud.&quot;
+          </p>
+        </statement>
+      </exercise>
+      <exercise xml:id="ex-ch1-s01-07">
+        <statement>
+          <p>
+            &quot;The room is cold because someone left the window open overnight.&quot;
+          </p>
+        </statement>
+        <solution>
+          <p>
+            <em>Explaining.</em> The explanandum is &quot;the room is cold&quot; — an already-accepted fact. The explanans is &quot;someone left the window open overnight.&quot; The speaker is giving the reason <em>why</em> the room is cold, not trying to convince someone that it is cold.
+          </p>
+        </solution>
+      </exercise>
+      <exercise xml:id="ex-ch1-s01-08">
+        <statement>
+          <p>
+            &quot;You should not park in that lot, because campus police ticket cars there every afternoon.&quot;
+          </p>
+        </statement>
+      </exercise>
+      <exercise xml:id="ex-ch1-s01-09">
+        <statement>
+          <p>
+            &quot;The oldest tree on campus is more than seventy years old.&quot;
+          </p>
+        </statement>
+        <solution>
+          <p>
+            <em>Stating.</em> The sentence asserts that something is the case (a claim about the age of a tree on campus). It is either true or false.
+          </p>
+        </solution>
+      </exercise>
+      <exercise xml:id="ex-ch1-s01-10">
+        <statement>
+          <p>
+            &quot;Please silence your phone.&quot;
+          </p>
+        </statement>
+      </exercise>
+      <exercise xml:id="ex-ch1-s01-11">
+        <statement>
+          <p>
+            &quot;I'll pick you up at seven.&quot;
+          </p>
+        </statement>
+        <solution>
+          <p>
+            <em>Promising.</em> The speaker is committing to a future action (picking someone up at seven). This is not a truth-apt assertion about how things are; it is an undertaking.
+          </p>
+        </solution>
+      </exercise>
+      <exercise xml:id="ex-ch1-s01-12">
+        <statement>
+          <p>
+            &quot;The senator's proposal will cost taxpayers more than it saves.&quot;
+          </p>
+        </statement>
+      </exercise>
+      <exercise xml:id="ex-ch1-s01-13">
+        <statement>
+          <p>
+            &quot;You should take the bus to campus, since parking costs twelve dollars a day.&quot;
+          </p>
+        </statement>
+        <solution>
+          <p>
+            <em>Arguing.</em> The conclusion is &quot;you should take the bus to campus.&quot; The premise is &quot;parking costs twelve dollars a day.&quot; The indicator word <em>since</em> flags the premise.
+          </p>
+        </solution>
+      </exercise>
+      <exercise xml:id="ex-ch1-s01-14">
+        <statement>
+          <p>
+            &quot;The printer is jammed because someone loaded the wrong paper size.&quot;
+          </p>
+        </statement>
+      </exercise>
+      <exercise xml:id="ex-ch1-s01-15">
+        <statement>
+          <p>
+            &quot;Congratulations on your promotion.&quot;
+          </p>
+        </statement>
+        <solution>
+          <p>
+            <em>Expressing / Greeting.</em> This is a social expression of goodwill. It does not assert that something is the case and does not offer reasons for a claim.
+          </p>
+        </solution>
+      </exercise>
+      <exercise xml:id="ex-ch1-s01-16">
+        <statement>
+          <p>
+            &quot;Every student in this class passed the midterm.&quot;
+          </p>
+        </statement>
+      </exercise>
+      <conclusion>
+        <p>
+          For the items you classified as arguments, identify the claim being supported and the reason offered in support of it. For the items you classified as explanations, identify what is being explained and what explains it.
+        </p>
+        <p>
+          ---
+        </p>
+      </conclusion>
+    </exercisegroup>
+
+    <exercisegroup xml:id="exgroup-ch1-s02">
+      <title>Exercise Set 2: Arguing and Persuading</title>
+      <introduction>
+        <p>
+          For each case below, decide whether the person is arguing, persuading without arguing, both arguing and persuading, or neither. Explain your answer in one or two sentences.
+        </p>
+      </introduction>
+      <exercise xml:id="ex-ch1-s02-01">
+        <statement>
+          <p>
+            A campus poster shows smiling students studying under trees and says, &quot;Choose UMW.&quot;
+          </p>
+        </statement>
+        <solution>
+          <p>
+            <em>Persuading without arguing.</em> The poster uses positive imagery (smiling students, trees) to create an emotional association with the university. No reasons are offered for why you should choose UMW. &quot;Choose UMW&quot; is a command paired with persuasive imagery, not an argument.
+          </p>
+        </solution>
+      </exercise>
+      <exercise xml:id="ex-ch1-s02-02">
+        <statement>
+          <p>
+            A friend says, &quot;You should come to the lecture because the speaker works on exactly the topic you wrote about last week.&quot;
+          </p>
+        </statement>
+      </exercise>
+      <exercise xml:id="ex-ch1-s02-03">
+        <statement>
+          <p>
+            A commercial repeats a restaurant's jingle five times but gives no reason to eat there.
+          </p>
+        </statement>
+        <solution>
+          <p>
+            <em>Persuading without arguing.</em> Repetition is a persuasion technique — it creates familiarity — but no premise or conclusion is offered. There is no reasoning, just a jingle played five times.
+          </p>
+        </solution>
+      </exercise>
+      <exercise xml:id="ex-ch1-s02-04">
+        <statement>
+          <p>
+            A student says, &quot;I know this policy is unpopular, but it will reduce wait times and make advising appointments easier to schedule, so we should adopt it.&quot;
+          </p>
+        </statement>
+      </exercise>
+      <exercise xml:id="ex-ch1-s02-05">
+        <statement>
+          <p>
+            A coach says, &quot;Again. Run it again.&quot;
+          </p>
+        </statement>
+        <solution>
+          <p>
+            <em>Neither.</em> This is a command. The coach is directing the players to repeat a drill. No claim is being supported by reasons, and no persuasion technique is being employed beyond the coach's authority.
+          </p>
+        </solution>
+      </exercise>
+      <exercise xml:id="ex-ch1-s02-06">
+        <statement>
+          <p>
+            A politician says, &quot;This plan is patriotic, hopeful, and bold,&quot; but gives no reasons for thinking it will work.
+          </p>
+        </statement>
+      </exercise>
+      <exercise xml:id="ex-ch1-s02-07">
+        <statement>
+          <p>
+            A university email says, &quot;Register by Friday to avoid a late fee. Registration after Friday incurs a $50 surcharge.&quot;
+          </p>
+        </statement>
+        <solution>
+          <p>
+            <em>Both arguing and persuading.</em> The email gives a reason (the $50 surcharge) for a recommended action (register by Friday). The implicit conclusion is &quot;you should register by Friday&quot;; the premise is &quot;registration after Friday incurs a $50 surcharge.&quot; It is also designed to motivate action through the concrete dollar amount.
+          </p>
+        </solution>
+      </exercise>
+      <exercise xml:id="ex-ch1-s02-08">
+        <statement>
+          <p>
+            An influencer posts a photo of themselves wearing a brand's clothing, with no caption other than the brand's hashtag.
+          </p>
+        </statement>
+      </exercise>
+      <exercise xml:id="ex-ch1-s02-09">
+        <statement>
+          <p>
+            A classmate says, &quot;Trust me, this professor is great,&quot; without giving any reasons.
+          </p>
+        </statement>
+        <solution>
+          <p>
+            <em>Persuading without arguing.</em> The classmate is trying to get you to believe the professor is great but offers no reasons — only an appeal to trust (&quot;Trust me&quot;). There is no premise supporting the conclusion.
+          </p>
+        </solution>
+      </exercise>
+      <exercise xml:id="ex-ch1-s02-10">
+        <statement>
+          <p>
+            A letter to the editor says, &quot;The city should fund the new shelter because homelessness has increased 30% and the current facility cannot accommodate everyone who needs help.&quot;
+          </p>
+        </statement>
+      </exercise>
+      <conclusion>
+        <p>
+          ---
+        </p>
+      </conclusion>
+    </exercisegroup>
+
+    <exercisegroup xml:id="exgroup-ch1-s03">
+      <title>Exercise Set 3: Statements and Non-Statements</title>
+      <introduction>
+        <p>
+          For each sentence below, decide whether it is a statement. If it is a statement, write &quot;statement&quot; and briefly say what it asserts. If it is not a statement, identify what kind of language use it is.
+        </p>
+      </introduction>
+      <exercise xml:id="ex-ch1-s03-01">
+        <statement>
+          <p>
+            &quot;The registrar's office opens at eight.&quot;
+          </p>
+        </statement>
+        <solution>
+          <p>
+            <em>Statement.</em> It asserts that the registrar's office opens at eight. This is either true or false.
+          </p>
+        </solution>
+      </exercise>
+      <exercise xml:id="ex-ch1-s03-02">
+        <statement>
+          <p>
+            &quot;Does the registrar's office open at eight?&quot;
+          </p>
+        </statement>
+      </exercise>
+      <exercise xml:id="ex-ch1-s03-03">
+        <statement>
+          <p>
+            &quot;Please bring your laptop to class.&quot;
+          </p>
+        </statement>
+        <solution>
+          <p>
+            <em>Not a statement.</em> This is a command or request. It is not asserting that something is the case; it is asking someone to do something.
+          </p>
+        </solution>
+      </exercise>
+      <exercise xml:id="ex-ch1-s03-04">
+        <statement>
+          <p>
+            &quot;Factory farming is wrong.&quot;
+          </p>
+        </statement>
+      </exercise>
+      <exercise xml:id="ex-ch1-s03-05">
+        <statement>
+          <p>
+            &quot;There were exactly 19 students in this room at 10:02 a.m. yesterday.&quot;
+          </p>
+        </statement>
+        <solution>
+          <p>
+            <em>Statement.</em> It asserts a specific claim about the world (exactly 19 students were in this room at a particular time). It is either true or false, even though no one may have counted.
+          </p>
+        </solution>
+      </exercise>
+      <exercise xml:id="ex-ch1-s03-06">
+        <statement>
+          <p>
+            &quot;Wow.&quot;
+          </p>
+        </statement>
+      </exercise>
+      <exercise xml:id="ex-ch1-s03-07">
+        <statement>
+          <p>
+            &quot;Pineapple belongs on pizza.&quot;
+          </p>
+        </statement>
+        <solution>
+          <p>
+            <em>Statement.</em> It asserts that pineapple belongs on pizza. By the definition in Chapter 1, it is either true or false, regardless of how many people disagree. Someone tempted by the fact-vs-opinion taxonomy might call this &quot;just an opinion,&quot; but the chapter's criterion is whether the sentence says that something is the case — and it does.
+          </p>
+        </solution>
+      </exercise>
+      <exercise xml:id="ex-ch1-s03-08">
+        <statement>
+          <p>
+            &quot;I now declare this meeting adjourned.&quot;
+          </p>
+        </statement>
+      </exercise>
+      <exercise xml:id="ex-ch1-s03-09">
+        <statement>
+          <p>
+            &quot;No one knows how many grains of sand are on this beach.&quot;
+          </p>
+        </statement>
+        <solution>
+          <p>
+            <em>Statement.</em> It asserts something is the case — namely, that no one knows a particular piece of information. It is true or false. Note: this is a statement <em>about knowledge</em>, not about grains of sand.
+          </p>
+        </solution>
+      </exercise>
+      <exercise xml:id="ex-ch1-s03-10">
+        <statement>
+          <p>
+            &quot;There are more than one million grains of sand on this beach.&quot;
+          </p>
+        </statement>
+      </exercise>
+      <exercise xml:id="ex-ch1-s03-11">
+        <statement>
+          <p>
+            &quot;Wealth taxes are just.&quot;
+          </p>
+        </statement>
+        <solution>
+          <p>
+            <em>Statement.</em> It asserts that wealth taxes are just. It is either true or false. Someone might call this &quot;just an opinion,&quot; but disagreement and truth are different things.
+          </p>
+        </solution>
+      </exercise>
+      <exercise xml:id="ex-ch1-s03-12">
+        <statement>
+          <p>
+            &quot;See you later.&quot;
+          </p>
+        </statement>
+      </exercise>
+      <exercise xml:id="ex-ch1-s03-13">
+        <statement>
+          <p>
+            &quot;I doubt it will rain today.&quot;
+          </p>
+        </statement>
+        <solution>
+          <p>
+            <em>Statement.</em> It asserts something about the speaker's mental state — that the speaker doubts it will rain. That assertion is either true or false (the speaker either does or does not have that doubt).
+          </p>
+        </solution>
+      </exercise>
+      <exercise xml:id="ex-ch1-s03-14">
+        <statement>
+          <p>
+            &quot;Would you like coffee or tea?&quot;
+          </p>
+        </statement>
+      </exercise>
+      <exercise xml:id="ex-ch1-s03-15">
+        <statement>
+          <p>
+            &quot;Climate change is the most urgent crisis of our time.&quot;
+          </p>
+        </statement>
+        <solution>
+          <p>
+            <em>Statement.</em> It asserts that climate change is the most urgent crisis of our time. It is either true or false. The fact that people disagree about its truth does not prevent it from being a statement.
+          </p>
+        </solution>
+      </exercise>
+      <exercise xml:id="ex-ch1-s03-16">
+        <statement>
+          <p>
+            &quot;Let's go.&quot;
+          </p>
+        </statement>
+      </exercise>
+      <conclusion>
+        <p>
+          After sorting all sixteen, choose two statement examples that someone might mistakenly call &quot;just opinions.&quot; Explain why they are still statements according to the definition in Chapter 1.
+        </p>
+        <p>
+          ---
+        </p>
+      </conclusion>
+    </exercisegroup>
+
+    <exercisegroup xml:id="exgroup-ch1-s04">
+      <title>Exercise Set 4: Truth, Knowledge, and Consensus</title>
+      <introduction>
+        <p>
+          For each sentence below, answer three questions:
+        </p>
+        <p>
+          - Is the sentence a statement?
+- Is the difficulty mainly about knowledge, consensus, both, or neither?
+- Why does that difficulty not settle whether the sentence is a statement?
+        </p>
+      </introduction>
+      <exercise xml:id="ex-ch1-s04-01">
+        <statement>
+          <p>
+            &quot;There are an even number of stars in the Milky Way.&quot;
+          </p>
+        </statement>
+        <solution>
+          <p>
+            Yes, it is a statement. The difficulty is mainly about <em>knowledge</em>: no one knows the exact number of stars in the Milky Way, so no one knows whether the number is even or odd. But there is a definite number, and that number is either even or odd. The sentence is true or false regardless of our ignorance.
+          </p>
+        </solution>
+      </exercise>
+      <exercise xml:id="ex-ch1-s04-02">
+        <statement>
+          <p>
+            &quot;Universal basic income would make society fairer.&quot;
+          </p>
+        </statement>
+      </exercise>
+      <exercise xml:id="ex-ch1-s04-03">
+        <statement>
+          <p>
+            &quot;The best possible grading system is contract grading.&quot;
+          </p>
+        </statement>
+        <solution>
+          <p>
+            Yes, it is a statement. The difficulty is mainly about <em>consensus</em>: people disagree about what the best grading system is. But the sentence asserts that something is the case, and it is either true or false. Disagreement does not settle whether a sentence is a statement.
+          </p>
+        </solution>
+      </exercise>
+      <exercise xml:id="ex-ch1-s04-04">
+        <statement>
+          <p>
+            &quot;The first person to cross the Rappahannock River on January 1, 1900 wore a hat.&quot;
+          </p>
+        </statement>
+      </exercise>
+      <exercise xml:id="ex-ch1-s04-05">
+        <statement>
+          <p>
+            &quot;Seven plus five equals twelve.&quot;
+          </p>
+        </statement>
+        <solution>
+          <p>
+            Yes, it is a statement. The difficulty is <em>neither</em> — there is no knowledge gap and no serious disagreement. Truth, knowledge, and consensus all align here. It is still a statement for the same reason the harder cases are: it asserts that something is the case.
+          </p>
+        </solution>
+      </exercise>
+      <exercise xml:id="ex-ch1-s04-06">
+        <statement>
+          <p>
+            &quot;There were exactly 412 people inside this stadium at 2:14 p.m. last Saturday.&quot;
+          </p>
+        </statement>
+      </exercise>
+      <exercise xml:id="ex-ch1-s04-07">
+        <statement>
+          <p>
+            &quot;Abolishing standardized tests would make college admissions fairer.&quot;
+          </p>
+        </statement>
+        <solution>
+          <p>
+            Yes, it is a statement. The difficulty is mainly about <em>consensus</em> (and perhaps partly about <em>knowledge</em>, since the effects of abolishing tests are uncertain). People disagree strongly. But the sentence asserts that something is the case, and it is either true or false. The disagreement is about <em>what is true</em>, not about whether the sentence has a truth value.
+          </p>
+        </solution>
+      </exercise>
+      <exercise xml:id="ex-ch1-s04-08">
+        <statement>
+          <p>
+            &quot;The campus bookstore opens at ten.&quot;
+          </p>
+        </statement>
+      </exercise>
+      <exercise xml:id="ex-ch1-s04-09">
+        <statement>
+          <p>
+            &quot;The painting in the hallway was hung crooked at exactly 3:15 p.m. last Tuesday.&quot;
+          </p>
+        </statement>
+        <solution>
+          <p>
+            Yes, it is a statement. The difficulty is mainly about <em>knowledge</em>: no one is likely to have observed the exact time the painting was hung. But the world was arranged in some definite way at that time, and the sentence either correctly describes it or not.
+          </p>
+        </solution>
+      </exercise>
+      <exercise xml:id="ex-ch1-s04-10">
+        <statement>
+          <p>
+            &quot;Democracy is the best form of government.&quot;
+          </p>
+        </statement>
+      </exercise>
+      <exercise xml:id="ex-ch1-s04-11">
+        <statement>
+          <p>
+            &quot;It is wrong to eat animals.&quot;
+          </p>
+        </statement>
+        <solution>
+          <p>
+            Yes, it is a statement. The difficulty is mainly about <em>consensus</em>: this is a deeply contested moral claim. But by the chapter's criterion, it asserts that something is the case (that eating animals is wrong), and it is either true or false.
+          </p>
+        </solution>
+      </exercise>
+      <exercise xml:id="ex-ch1-s04-12">
+        <statement>
+          <p>
+            &quot;Some planet outside our solar system has liquid water on its surface.&quot;
+          </p>
+        </statement>
+      </exercise>
+      <conclusion>
+        <p>
+          ---
+        </p>
+      </conclusion>
+    </exercisegroup>
+
+    <exercisegroup xml:id="exgroup-ch1-s05">
+      <title>Exercise Set 5: Fact, Opinion, and Statementhood</title>
+      <introduction>
+        <p>
+          The following classifications use the fact-vs-opinion taxonomy. For each one, explain what is wrong or incomplete about the classification from the point of view of Chapter 1.
+        </p>
+      </introduction>
+      <exercise xml:id="ex-ch1-s05-01">
+        <statement>
+          <p>
+            &quot;Factory farming is wrong&quot; is not a statement because it is an opinion.
+          </p>
+        </statement>
+        <solution>
+          <p>
+            The classification is wrong. &quot;Factory farming is wrong&quot; asserts that something is the case — that factory farming is wrong. By the chapter's definition, it is a statement with a truth value. Calling it &quot;an opinion&quot; describes whose belief it is, not what kind of sentence it is. A sentence can be both someone's opinion (a belief they hold) and a statement (a sentence that is true or false). The categories collapse into each other.
+          </p>
+        </solution>
+      </exercise>
+      <exercise xml:id="ex-ch1-s05-02">
+        <statement>
+          <p>
+            &quot;Seven plus five equals twelve&quot; is a fact, so it cannot be anyone's opinion.
+          </p>
+        </statement>
+      </exercise>
+      <exercise xml:id="ex-ch1-s05-03">
+        <statement>
+          <p>
+            &quot;Universal basic income would make society fairer&quot; is not true or false because people disagree about it.
+          </p>
+        </statement>
+        <solution>
+          <p>
+            This confuses consensus with truth. People disagree about many things that are true or false. Disagreement tells you that the question is unresolved <em>among people</em>, not that the sentence lacks a truth value. The sentence asserts that something is the case; it is either true or false regardless of whether anyone has settled the debate.
+          </p>
+        </solution>
+      </exercise>
+      <exercise xml:id="ex-ch1-s05-04">
+        <statement>
+          <p>
+            &quot;There are an even number of stars in the Milky Way&quot; is not a statement because no one knows whether it is true.
+          </p>
+        </statement>
+      </exercise>
+      <exercise xml:id="ex-ch1-s05-05">
+        <statement>
+          <p>
+            &quot;The campus bookstore opens at ten&quot; is a statement, but &quot;wealth taxes are just&quot; is not, because only the first one can be proven.
+          </p>
+        </statement>
+        <solution>
+          <p>
+            This confuses <em>provability</em> with <em>statementhood</em>. Both sentences assert that something is the case. Both are either true or false. The fact that one is easy to verify and the other is not does not change what kind of sentence each is. The chapter's criterion is whether the sentence says that something is the case, not whether we can prove it.
+          </p>
+        </solution>
+      </exercise>
+      <exercise xml:id="ex-ch1-s05-06">
+        <statement>
+          <p>
+            &quot;No claim can be both false and useful&quot; cannot be used in an argument because it is about claims rather than about the world.
+          </p>
+        </statement>
+      </exercise>
+      <exercise xml:id="ex-ch1-s05-07">
+        <statement>
+          <p>
+            &quot;The claim that 'we should raise the minimum wage' is just an opinion, so it cannot be a premise in an argument.&quot;
+          </p>
+        </statement>
+        <solution>
+          <p>
+            This is wrong on two counts. First, &quot;we should raise the minimum wage&quot; is a statement — it asserts that something is the case, and it is either true or false. Second, even if one insists on calling it &quot;an opinion,&quot; opinions can serve as premises. Arguments are built out of statements, and the chapter shows that contested claims are still statements. The fact-vs-opinion taxonomy does not determine what can function as a premise.
+          </p>
+        </solution>
+      </exercise>
+      <exercise xml:id="ex-ch1-s05-08">
+        <statement>
+          <p>
+            &quot;'The Earth orbits the Sun' is a fact, not a statement.&quot;
+          </p>
+        </statement>
+      </exercise>
+      <exercise xml:id="ex-ch1-s05-09">
+        <statement>
+          <p>
+            &quot;'Pineapple belongs on pizza' is neither true nor false because it is a matter of taste.&quot;
+          </p>
+        </statement>
+        <solution>
+          <p>
+            This assumes that &quot;matters of taste&quot; are not truth-apt. But &quot;pineapple belongs on pizza&quot; asserts that something is the case. By the chapter's definition and the working assumption of classical logic, assertoric sentences are either true or false. The sentence says that something is the case; it is a statement.
+          </p>
+        </solution>
+      </exercise>
+      <exercise xml:id="ex-ch1-s05-10">
+        <statement>
+          <p>
+            &quot;You can't argue about morality because moral claims are just opinions.&quot;
+          </p>
+        </statement>
+      </exercise>
+      <conclusion>
+        <p>
+          ---
+        </p>
+      </conclusion>
+    </exercisegroup>
+
+    <exercisegroup xml:id="exgroup-ch1-s06">
+      <title>Exercise Set 6: Premises, Conclusions, and Indicators</title>
+      <introduction>
+        <p>
+          For each passage below:
+        </p>
+        <p>
+          - Identify the conclusion.
+- Identify the premise or premises.
+- Note any indicator words.
+- Lay the argument out in standard form.
+        </p>
+      </introduction>
+      <exercise xml:id="ex-ch1-s06-01">
+        <statement>
+          <p>
+            Since the printer is out of toner and the handout is due in ten minutes, we need to send the file electronically.
+          </p>
+        </statement>
+        <solution>
+          <p>
+            Conclusion: We need to send the file electronically. Premises: P1: The printer is out of toner. P2: The handout is due in ten minutes. Indicator: <em>Since</em> (premise indicator).
+          </p>
+          <p>
+            Standard form:
+          </p>
+          <blockquote>
+            <p>
+              P1: The printer is out of toner.<br/>
+              P2: The handout is due in ten minutes.<br/>
+              <m>\therefore</m> C: We need to send the file electronically.<br/>
+            </p>
+          </blockquote>
+        </solution>
+      </exercise>
+      <exercise xml:id="ex-ch1-s06-02">
+        <statement>
+          <p>
+            The university should add more evening classes. Many students work during the day, and evening sections would make it easier for them to graduate on time.
+          </p>
+        </statement>
+      </exercise>
+      <exercise xml:id="ex-ch1-s06-03">
+        <statement>
+          <p>
+            We should not rely on the app's arrival time estimate, because it has been wrong three times this week.
+          </p>
+        </statement>
+        <solution>
+          <p>
+            Conclusion: We should not rely on the app's arrival time estimate. Premise: The app's arrival time estimate has been wrong three times this week. Indicator: <em>because</em> (premise indicator).
+          </p>
+          <p>
+            Standard form:
+          </p>
+          <blockquote>
+            <p>
+              P1: The app's arrival time estimate has been wrong three times this week.<br/>
+              <m>\therefore</m> C: We should not rely on the app's arrival time estimate.<br/>
+            </p>
+          </blockquote>
+        </solution>
+      </exercise>
+      <exercise xml:id="ex-ch1-s06-04">
+        <statement>
+          <p>
+            If the grant deadline is Friday, then the application must be submitted this week. The grant deadline is Friday. Therefore, the application must be submitted this week.
+          </p>
+        </statement>
+      </exercise>
+      <exercise xml:id="ex-ch1-s06-05">
+        <statement>
+          <p>
+            Either the department hires another advisor or students will keep waiting weeks for appointments. Students should not have to wait weeks for appointments. So the department should hire another advisor.
+          </p>
+        </statement>
+        <solution>
+          <p>
+            Conclusion: The department should hire another advisor. Premises: P1: Either the department hires another advisor or students will keep waiting weeks for appointments. P2: Students should not have to wait weeks for appointments. Indicator: <em>So</em> (conclusion indicator).
+          </p>
+          <p>
+            Standard form:
+          </p>
+          <blockquote>
+            <p>
+              P1: Either the department hires another advisor or students will keep waiting weeks for appointments.<br/>
+              P2: Students should not have to wait weeks for appointments.<br/>
+              <m>\therefore</m> C: The department should hire another advisor.<br/>
+            </p>
+          </blockquote>
+        </solution>
+      </exercise>
+      <exercise xml:id="ex-ch1-s06-06">
+        <statement>
+          <p>
+            The city should repair the sidewalks near campus. The cracked pavement is a hazard for wheelchair users, and several students have already reported injuries.
+          </p>
+        </statement>
+      </exercise>
+      <exercise xml:id="ex-ch1-s06-07">
+        <statement>
+          <p>
+            The museum should extend its hours on weekends. Families with school-age children can only visit on Saturdays and Sundays, and the museum currently closes at three, which is too early for most families.
+          </p>
+        </statement>
+        <solution>
+          <p>
+            Conclusion: The museum should extend its hours on weekends. Premises: P1: Families with school-age children can only visit on Saturdays and Sundays. P2: The museum currently closes at three, which is too early for most families. Indicator: None explicit. The conclusion is the first sentence; the rest are reasons.
+          </p>
+          <p>
+            Standard form:
+          </p>
+          <blockquote>
+            <p>
+              P1: Families with school-age children can only visit on Saturdays and Sundays.<br/>
+              P2: The museum currently closes at three, which is too early for most families.<br/>
+              <m>\therefore</m> C: The museum should extend its hours on weekends.<br/>
+            </p>
+          </blockquote>
+        </solution>
+      </exercise>
+      <exercise xml:id="ex-ch1-s06-08">
+        <statement>
+          <p>
+            Because the forecast calls for freezing rain, and because freezing rain makes the roads dangerous, you should leave early for your drive.
+          </p>
+        </statement>
+      </exercise>
+      <exercise xml:id="ex-ch1-s06-09">
+        <statement>
+          <p>
+            If tuition increases, then more students will take on debt. Tuition is increasing. Therefore, more students will take on debt.
+          </p>
+        </statement>
+        <solution>
+          <p>
+            Conclusion: More students will take on debt. Premises: P1: If tuition increases, then more students will take on debt. P2: Tuition is increasing. Indicator: <em>Therefore</em> (conclusion indicator).
+          </p>
+          <p>
+            Standard form:
+          </p>
+          <blockquote>
+            <p>
+              P1: If tuition increases, then more students will take on debt.<br/>
+              P2: Tuition is increasing.<br/>
+              <m>\therefore</m> C: More students will take on debt.<br/>
+            </p>
+          </blockquote>
+        </solution>
+      </exercise>
+      <exercise xml:id="ex-ch1-s06-10">
+        <statement>
+          <p>
+            The dining hall should offer more vegetarian options. A recent survey shows that 28% of students want vegetarian meals, but only 10% of the menu is vegetarian.
+          </p>
+        </statement>
+      </exercise>
+      <exercise xml:id="ex-ch1-s06-11">
+        <statement>
+          <p>
+            We cannot trust the poll results, since the sample was not random and fewer than 200 people responded.
+          </p>
+        </statement>
+        <solution>
+          <p>
+            Conclusion: We cannot trust the poll results. Premises: P1: The sample was not random. P2: Fewer than 200 people responded. Indicator: <em>since</em> (premise indicator).
+          </p>
+          <p>
+            Standard form:
+          </p>
+          <blockquote>
+            <p>
+              P1: The sample was not random.<br/>
+              P2: Fewer than 200 people responded.<br/>
+              <m>\therefore</m> C: We cannot trust the poll results.<br/>
+            </p>
+          </blockquote>
+        </solution>
+      </exercise>
+      <exercise xml:id="ex-ch1-s06-12">
+        <statement>
+          <p>
+            Either the committee approves the budget by Friday or the project will be delayed. The committee will not approve the budget by Friday. So the project will be delayed.
+          </p>
+        </statement>
+      </exercise>
+      <conclusion>
+        <p>
+          ---
+        </p>
+      </conclusion>
+    </exercisegroup>
+
+    <exercisegroup xml:id="exgroup-ch1-s07">
+      <title>Exercise Set 7: Standard Form Without Indicator Words</title>
+      <introduction>
+        <p>
+          Each passage below contains an argument, but the indicator words are missing or minimal. Identify the conclusion by asking what the speaker is trying to get the reader to accept. Then lay the argument out in standard form.
+        </p>
+      </introduction>
+      <exercise xml:id="ex-ch1-s07-01">
+        <statement>
+          <p>
+            I am not signing up for the 8 a.m. section. My shift ends at midnight on Tuesdays, and I never sleep well after closing.
+          </p>
+        </statement>
+        <solution>
+          <p>
+            Conclusion: I am not signing up for the 8 a.m. section. (This is the claim being defended; the other sentences are offered as reasons.)
+          </p>
+          <p>
+            Standard form:
+          </p>
+          <blockquote>
+            <p>
+              P1: My shift ends at midnight on Tuesdays.<br/>
+              P2: I never sleep well after closing.<br/>
+              <m>\therefore</m> C: I am not signing up for the 8 a.m. section.<br/>
+            </p>
+          </blockquote>
+        </solution>
+      </exercise>
+      <exercise xml:id="ex-ch1-s07-02">
+        <statement>
+          <p>
+            The final exam should be optional. The course already has three papers, two quizzes, and a presentation.
+          </p>
+        </statement>
+      </exercise>
+      <exercise xml:id="ex-ch1-s07-03">
+        <statement>
+          <p>
+            That road will flood again this spring. The drainage ditch is still blocked, and every heavy rain last year covered the intersection.
+          </p>
+        </statement>
+        <solution>
+          <p>
+            Conclusion: That road will flood again this spring. (The claim the speaker is asking the listener to accept.)
+          </p>
+          <p>
+            Standard form:
+          </p>
+          <blockquote>
+            <p>
+              P1: The drainage ditch is still blocked.<br/>
+              P2: Every heavy rain last year covered the intersection.<br/>
+              <m>\therefore</m> C: That road will flood again this spring.<br/>
+            </p>
+          </blockquote>
+        </solution>
+      </exercise>
+      <exercise xml:id="ex-ch1-s07-04">
+        <statement>
+          <p>
+            The club should meet in the student center instead of the dining hall. The dining hall is too loud for discussion. The student center has reservable meeting rooms.
+          </p>
+        </statement>
+      </exercise>
+      <exercise xml:id="ex-ch1-s07-05">
+        <statement>
+          <p>
+            We should take the train to D.C. Parking downtown is expensive, and the station is only a ten-minute walk from the museum.
+          </p>
+        </statement>
+        <solution>
+          <p>
+            Conclusion: We should take the train to D.C. (The recommendation being supported.)
+          </p>
+          <p>
+            Standard form:
+          </p>
+          <blockquote>
+            <p>
+              P1: Parking downtown is expensive.<br/>
+              P2: The station is only a ten-minute walk from the museum.<br/>
+              <m>\therefore</m> C: We should take the train to D.C.<br/>
+            </p>
+          </blockquote>
+          <p>
+            How the conclusion was recognized: The first sentence is the recommendation — it is the claim the speaker wants the listener to accept. The remaining sentences are factual claims offered as reasons for it.
+          </p>
+        </solution>
+      </exercise>
+      <exercise xml:id="ex-ch1-s07-06">
+        <statement>
+          <p>
+            The library needs more group study rooms. Every room is booked solid by Tuesday each week, and students end up working in the hallways.
+          </p>
+        </statement>
+      </exercise>
+      <exercise xml:id="ex-ch1-s07-07">
+        <statement>
+          <p>
+            The scholarship deadline should be extended. The financial aid office did not send the announcement until three days before it was due.
+          </p>
+        </statement>
+        <solution>
+          <p>
+            Conclusion: The scholarship deadline should be extended.
+          </p>
+          <p>
+            Standard form:
+          </p>
+          <blockquote>
+            <p>
+              P1: The financial aid office did not send the announcement until three days before it was due.<br/>
+              <m>\therefore</m> C: The scholarship deadline should be extended.<br/>
+            </p>
+          </blockquote>
+        </solution>
+      </exercise>
+      <exercise xml:id="ex-ch1-s07-08">
+        <statement>
+          <p>
+            Campus parking is not the solution to our commuting problem. A single parking space costs the university $15,000 to build, and demand will always outpace supply.
+          </p>
+        </statement>
+      </exercise>
+      <exercise xml:id="ex-ch1-s07-09">
+        <statement>
+          <p>
+            The student government should publish its meeting minutes online. Currently, only people who attend the meetings know what was discussed.
+          </p>
+        </statement>
+        <solution>
+          <p>
+            Conclusion: The student government should publish its meeting minutes online.
+          </p>
+          <p>
+            Standard form:
+          </p>
+          <blockquote>
+            <p>
+              P1: Currently, only people who attend the meetings know what was discussed.<br/>
+              <m>\therefore</m> C: The student government should publish its meeting minutes online.<br/>
+            </p>
+          </blockquote>
+        </solution>
+      </exercise>
+      <exercise xml:id="ex-ch1-s07-10">
+        <statement>
+          <p>
+            This course should count toward the writing requirement. Every major assignment requires sustained analytical writing, and students regularly produce fifteen or more pages of revised prose.
+          </p>
+        </statement>
+      </exercise>
+      <conclusion>
+        <p>
+          For two of your answers, add one sentence explaining how you recognized the conclusion without relying on an indicator word.
+        </p>
+        <p>
+          ---
+        </p>
+      </conclusion>
+    </exercisegroup>
+
+    <exercisegroup xml:id="exgroup-ch1-s08">
+      <title>Exercise Set 8: Conditional Sentences</title>
+      <introduction>
+        <p>
+          For each conditional sentence, identify the antecedent and the consequent.
+        </p>
+      </introduction>
+      <exercise xml:id="ex-ch1-s08-01">
+        <statement>
+          <p>
+            If it rains, then the sidewalks will be wet.
+          </p>
+        </statement>
+        <solution>
+          <p>
+            Antecedent: It rains. Consequent: The sidewalks will be wet.
+          </p>
+        </solution>
+      </exercise>
+      <exercise xml:id="ex-ch1-s08-02">
+        <statement>
+          <p>
+            If the server is down, then students cannot submit the quiz.
+          </p>
+        </statement>
+      </exercise>
+      <exercise xml:id="ex-ch1-s08-03">
+        <statement>
+          <p>
+            If the argument is sound, then it is valid.
+          </p>
+        </statement>
+        <solution>
+          <p>
+            Antecedent: The argument is sound. Consequent: It is valid.
+          </p>
+        </solution>
+      </exercise>
+      <exercise xml:id="ex-ch1-s08-04">
+        <statement>
+          <p>
+            If the archive is closed on weekends, then we cannot inspect the letters on Saturday.
+          </p>
+        </statement>
+      </exercise>
+      <exercise xml:id="ex-ch1-s08-05">
+        <statement>
+          <p>
+            If the grant is approved, then the lab will replace its oldest equipment.
+          </p>
+        </statement>
+        <solution>
+          <p>
+            Antecedent: The grant is approved. Consequent: The lab will replace its oldest equipment.
+          </p>
+        </solution>
+      </exercise>
+      <exercise xml:id="ex-ch1-s08-06">
+        <statement>
+          <p>
+            If the campus expands housing, then more students will be able to live near their classes.
+          </p>
+        </statement>
+      </exercise>
+      <exercise xml:id="ex-ch1-s08-07">
+        <statement>
+          <p>
+            If the premise is false, then the argument is not sound.
+          </p>
+        </statement>
+        <solution>
+          <p>
+            Antecedent: The premise is false. Consequent: The argument is not sound.
+          </p>
+        </solution>
+      </exercise>
+      <exercise xml:id="ex-ch1-s08-08">
+        <statement>
+          <p>
+            If the bill passes, then tuition will not increase next year.
+          </p>
+        </statement>
+      </exercise>
+      <exercise xml:id="ex-ch1-s08-09">
+        <statement>
+          <p>
+            If the experiment is not replicated, then the results should be treated with caution.
+          </p>
+        </statement>
+        <solution>
+          <p>
+            Antecedent: The experiment is not replicated. Consequent: The results should be treated with caution.
+          </p>
+        </solution>
+      </exercise>
+      <exercise xml:id="ex-ch1-s08-10">
+        <statement>
+          <p>
+            If voter turnout increases, then the election results better reflect public opinion.
+          </p>
+        </statement>
+      </exercise>
+      <exercise xml:id="ex-ch1-s08-11">
+        <statement>
+          <p>
+            If the bridge is closed, then commuters will need an alternate route.
+          </p>
+        </statement>
+        <solution>
+          <p>
+            Antecedent: The bridge is closed. Consequent: Commuters will need an alternate route.
+          </p>
+        </solution>
+      </exercise>
+      <exercise xml:id="ex-ch1-s08-12">
+        <statement>
+          <p>
+            If all the premises of an argument are true and the argument is valid, then the conclusion is true.
+          </p>
+        </statement>
+      </exercise>
+      <conclusion>
+        <p>
+          Then write two original conditional sentences of your own and label the antecedent and consequent in each.
+        </p>
+        <p>
+          ---
+        </p>
+      </conclusion>
+    </exercisegroup>
+
+    <exercisegroup xml:id="exgroup-ch1-s09">
+      <title>Exercise Set 9: Modus Ponens and Modus Tollens</title>
+      <introduction>
+        <p>
+          For each argument below:
+        </p>
+        <p>
+          - Put the argument in standard form if it is not already.
+- Identify whether it has the form of modus ponens, modus tollens, or neither.
+- Name the conditional premise's antecedent and consequent.
+        </p>
+      </introduction>
+      <exercise xml:id="ex-ch1-s09-01">
+        <statement>
+          <p>
+            If the alarm is armed, then opening the door will trigger it. The alarm is armed. Therefore, opening the door will trigger it.
+          </p>
+        </statement>
+        <solution>
+          <p>
+            Standard form:
+          </p>
+          <blockquote>
+            <p>
+              P1: If the alarm is armed, then opening the door will trigger it.<br/>
+              P2: The alarm is armed.<br/>
+              <m>\therefore</m> C: Opening the door will trigger it.<br/>
+            </p>
+          </blockquote>
+          <p>
+            Form: *<em>Modus ponens.</em>* The second premise affirms the antecedent (&quot;the alarm is armed&quot;), and the conclusion affirms the consequent (&quot;opening the door will trigger it&quot;). Antecedent: The alarm is armed. Consequent: Opening the door will trigger it.
+          </p>
+        </solution>
+      </exercise>
+      <exercise xml:id="ex-ch1-s09-02">
+        <statement>
+          <p>
+            If the greenhouse were heated, the tropical plants would still be alive. The tropical plants are not alive. Therefore, the greenhouse was not heated.
+          </p>
+        </statement>
+      </exercise>
+      <exercise xml:id="ex-ch1-s09-03">
+        <statement>
+          <p>
+            If the sculpture were made of bronze, then it would not be attracted to a magnet. The sculpture is attracted to a magnet. Therefore, the sculpture is not made of bronze.
+          </p>
+        </statement>
+        <solution>
+          <p>
+            Standard form:
+          </p>
+          <blockquote>
+            <p>
+              P1: If the sculpture were made of bronze, then it would not be attracted to a magnet.<br/>
+              P2: The sculpture is attracted to a magnet.<br/>
+              <m>\therefore</m> C: The sculpture is not made of bronze.<br/>
+            </p>
+          </blockquote>
+          <p>
+            Form: *<em>Modus tollens.</em>* The second premise denies the consequent (&quot;would not be attracted&quot; is denied by &quot;is attracted&quot;), and the conclusion denies the antecedent. Antecedent: The sculpture were made of bronze. Consequent: It would not be attracted to a magnet.
+          </p>
+        </solution>
+      </exercise>
+      <exercise xml:id="ex-ch1-s09-04">
+        <statement>
+          <p>
+            If the river rises above the walkway, then the race will be rerouted. The river is rising above the walkway. So the race will be rerouted.
+          </p>
+        </statement>
+      </exercise>
+      <exercise xml:id="ex-ch1-s09-05">
+        <statement>
+          <p>
+            If the course required a textbook, it would appear on the bookstore list. The course does not require a textbook. Therefore, it does not appear on the bookstore list.
+          </p>
+        </statement>
+        <solution>
+          <p>
+            Standard form:
+          </p>
+          <blockquote>
+            <p>
+              P1: If the course required a textbook, it would appear on the bookstore list.<br/>
+              P2: The course does not require a textbook.<br/>
+              <m>\therefore</m> C: It does not appear on the bookstore list.<br/>
+            </p>
+          </blockquote>
+          <p>
+            Form: *<em>Neither.</em><em> This argument denies the antecedent, which is a formal fallacy. Modus tollens denies the </em>consequent<em>, while modus ponens affirms the </em>antecedent*. (The course might appear on the bookstore list for some other reason.) Antecedent: The course required a textbook. Consequent: It would appear on the bookstore list.
+          </p>
+        </solution>
+      </exercise>
+      <exercise xml:id="ex-ch1-s09-06">
+        <statement>
+          <p>
+            If the proposal reduces advising delays, then we should consider adopting it. We should consider adopting it. Therefore, the proposal reduces advising delays.
+          </p>
+        </statement>
+      </exercise>
+      <exercise xml:id="ex-ch1-s09-07">
+        <statement>
+          <p>
+            If class is canceled, then the assignment deadline will be extended. Class is canceled. Therefore, the assignment deadline will be extended.
+          </p>
+        </statement>
+        <solution>
+          <p>
+            Standard form:
+          </p>
+          <blockquote>
+            <p>
+              P1: If class is canceled, then the assignment deadline will be extended.<br/>
+              P2: Class is canceled.<br/>
+              <m>\therefore</m> C: The assignment deadline will be extended.<br/>
+            </p>
+          </blockquote>
+          <p>
+            Form: *<em>Modus ponens.</em>* The second premise affirms the antecedent. Antecedent: Class is canceled. Consequent: The assignment deadline will be extended.
+          </p>
+        </solution>
+      </exercise>
+      <exercise xml:id="ex-ch1-s09-08">
+        <statement>
+          <p>
+            If the building meets the fire code, then the sprinkler system is functional. The sprinkler system is not functional. Therefore, the building does not meet the fire code.
+          </p>
+        </statement>
+      </exercise>
+      <exercise xml:id="ex-ch1-s09-09">
+        <statement>
+          <p>
+            If the study abroad program requires a 3.0 GPA, then students below 3.0 are ineligible. The program requires a 3.0 GPA. Therefore, students below 3.0 are ineligible.
+          </p>
+        </statement>
+        <solution>
+          <p>
+            Standard form:
+          </p>
+          <blockquote>
+            <p>
+              P1: If the study abroad program requires a 3.0 GPA, then students below 3.0 are ineligible.<br/>
+              P2: The program requires a 3.0 GPA.<br/>
+              <m>\therefore</m> C: Students below 3.0 are ineligible.<br/>
+            </p>
+          </blockquote>
+          <p>
+            Form: *<em>Modus ponens.</em>* The second premise affirms the antecedent. Antecedent: The study abroad program requires a 3.0 GPA. Consequent: Students below 3.0 are ineligible.
+          </p>
+        </solution>
+      </exercise>
+      <exercise xml:id="ex-ch1-s09-10">
+        <statement>
+          <p>
+            If the restaurant passed its health inspection, then the kitchen is clean. The restaurant passed its health inspection. Therefore, the restaurant is a good place to eat.
+          </p>
+        </statement>
+      </exercise>
+      <conclusion>
+        <p>
+          ---
+        </p>
+      </conclusion>
+    </exercisegroup>
+
+    <exercisegroup xml:id="exgroup-ch1-s10">
+      <title>Exercise Set 10: Argument or Explanation?</title>
+      <introduction>
+        <p>
+          For each passage below, classify it as an argument, an explanation, or something else. If it is an argument, identify the conclusion and premises. If it is an explanation, identify the explanandum and explanans. If it is something else, say what it is doing.
+        </p>
+      </introduction>
+      <exercise xml:id="ex-ch1-s10-01">
+        <statement>
+          <p>
+            The coffee tastes bitter because the grounds were over-extracted.
+          </p>
+        </statement>
+        <solution>
+          <p>
+            <em>Explanation.</em> The explanandum is &quot;the coffee tastes bitter&quot; — this is already observed and accepted. The explanans is &quot;the grounds were over-extracted&quot; — the reason <em>why</em> the coffee tastes bitter.
+          </p>
+        </solution>
+      </exercise>
+      <exercise xml:id="ex-ch1-s10-02">
+        <statement>
+          <p>
+            The grounds were over-extracted, so the coffee will probably taste bitter.
+          </p>
+        </statement>
+      </exercise>
+      <exercise xml:id="ex-ch1-s10-03">
+        <statement>
+          <p>
+            You should bring an umbrella because the forecast calls for thunderstorms.
+          </p>
+        </statement>
+        <solution>
+          <p>
+            <em>Argument.</em> The conclusion is &quot;you should bring an umbrella&quot; — a recommendation the speaker is trying to get the listener to accept. The premise is &quot;the forecast calls for thunderstorms.&quot;
+          </p>
+        </solution>
+      </exercise>
+      <exercise xml:id="ex-ch1-s10-04">
+        <statement>
+          <p>
+            The fire alarm went off because smoke from the kitchen reached the detector.
+          </p>
+        </statement>
+      </exercise>
+      <exercise xml:id="ex-ch1-s10-05">
+        <statement>
+          <p>
+            Since the fire alarm is going off, we should leave the building.
+          </p>
+        </statement>
+        <solution>
+          <p>
+            <em>Argument.</em> The conclusion is &quot;we should leave the building&quot; — the recommended action. The premise is &quot;the fire alarm is going off.&quot; The speaker is reasoning forward from a current observation to a course of action; the action is in question, not the fact of the alarm.
+          </p>
+        </solution>
+      </exercise>
+      <exercise xml:id="ex-ch1-s10-06">
+        <statement>
+          <p>
+            My laptop is slow because I have twenty-seven browser tabs open.
+          </p>
+        </statement>
+      </exercise>
+      <exercise xml:id="ex-ch1-s10-07">
+        <statement>
+          <p>
+            Since this laptop cannot run the required software, you should use a computer lab machine for the assignment.
+          </p>
+        </statement>
+        <solution>
+          <p>
+            <em>Argument.</em> The conclusion is &quot;you should use a computer lab machine for the assignment.&quot; The premise is &quot;this laptop cannot run the required software.&quot; The indicator word <em>since</em> flags the premise. The speaker is reasoning toward a recommendation, not explaining an already-accepted fact.
+          </p>
+        </solution>
+      </exercise>
+      <exercise xml:id="ex-ch1-s10-08">
+        <statement>
+          <p>
+            Welcome back. Did you finish the reading?
+          </p>
+        </statement>
+      </exercise>
+      <exercise xml:id="ex-ch1-s10-09">
+        <statement>
+          <p>
+            The Wi-Fi is slow because too many devices are connected to the network.
+          </p>
+        </statement>
+        <solution>
+          <p>
+            <em>Explanation.</em> The explanandum is &quot;the Wi-Fi is slow&quot; — already observed and accepted. The explanans is &quot;too many devices are connected to the network&quot; — the cause.
+          </p>
+        </solution>
+      </exercise>
+      <exercise xml:id="ex-ch1-s10-10">
+        <statement>
+          <p>
+            You should switch to the earlier section, since the later one conflicts with your work schedule.
+          </p>
+        </statement>
+      </exercise>
+      <exercise xml:id="ex-ch1-s10-11">
+        <statement>
+          <p>
+            The pipes froze because the thermostat was set too low overnight.
+          </p>
+        </statement>
+        <solution>
+          <p>
+            <em>Explanation.</em> The explanandum is &quot;the pipes froze&quot; — already observed. The explanans is &quot;the thermostat was set too low overnight&quot; — the cause. The speaker is explaining why a known event occurred, not trying to convince anyone that it occurred.
+          </p>
+        </solution>
+      </exercise>
+      <exercise xml:id="ex-ch1-s10-12">
+        <statement>
+          <p>
+            Have a good weekend.
+          </p>
+        </statement>
+      </exercise>
+      <conclusion>
+        <p>
+          For two of the cases, explain how the same word, such as &quot;because&quot; or &quot;since,&quot; can appear in passages doing different jobs.
+        </p>
+        <p>
+          ---
+        </p>
+      </conclusion>
+    </exercisegroup>
+
+    <exercisegroup xml:id="exgroup-ch1-s11">
+      <title>Exercise Set 11: Extracting Arguments From Realistic Prose</title>
+      <introduction>
+        <p>
+          For each passage below, use the procedure from Section 1.4:
+        </p>
+        <p>
+          1. Read for the gist.
+        </p>
+        <p>
+          2. Find the conclusion.
+        </p>
+        <p>
+          3. Find the premises.
+        </p>
+        <p>
+          4. Lay the argument out in standard form.
+        </p>
+        <p>
+          5. Check whether anything should be left out because it is background, orientation, or a separate language use.
+        </p>
+        <p>
+          Do not evaluate the argument yet.
+        </p>
+      </introduction>
+      <exercise xml:id="ex-ch1-s11-01">
+        <statement>
+          <p>
+            Most students think office hours are only for emergencies, but that is a mistake. Students should visit office hours early in the semester. Early visits make it easier to ask for help later, and they give professors a better sense of what students are finding confusing.
+          </p>
+        </statement>
+        <solution>
+          <p>
+            Conclusion: Students should visit office hours early in the semester.
+          </p>
+          <p>
+            Standard form:
+          </p>
+          <blockquote>
+            <p>
+              P1: Early visits make it easier to ask for help later.<br/>
+              P2: Early visits give professors a better sense of what students are finding confusing.<br/>
+              <m>\therefore</m> C: Students should visit office hours early in the semester.<br/>
+            </p>
+          </blockquote>
+          <p>
+            Note: The first sentence (&quot;Most students think office hours are only for emergencies, but that is a mistake&quot;) is orientation — it sets up what the argument pushes back against but is not itself a premise of the inference.
+          </p>
+        </solution>
+      </exercise>
+      <exercise xml:id="ex-ch1-s11-02">
+        <statement>
+          <p>
+            The city should add protected bike lanes on the road next to campus. Cars regularly pass cyclists with less than three feet of space, and the current painted lane disappears at the busiest intersection. A protected lane would make commuting safer for students and staff.
+          </p>
+        </statement>
+      </exercise>
+      <exercise xml:id="ex-ch1-s11-03">
+        <statement>
+          <p>
+            We should replace the old projector in Monroe Hall. It cuts out during class, the replacement bulbs are no longer easy to order, and several instructors have stopped using media clips because they cannot trust the equipment.
+          </p>
+        </statement>
+        <solution>
+          <p>
+            Conclusion: We should replace the old projector in Monroe Hall.
+          </p>
+          <p>
+            Standard form:
+          </p>
+          <blockquote>
+            <p>
+              P1: The projector cuts out during class.<br/>
+              P2: Replacement bulbs are no longer easy to order.<br/>
+              P3: Several instructors have stopped using media clips because they cannot trust the equipment.<br/>
+              <m>\therefore</m> C: We should replace the old projector in Monroe Hall.<br/>
+            </p>
+          </blockquote>
+        </solution>
+      </exercise>
+      <exercise xml:id="ex-ch1-s11-04">
+        <statement>
+          <p>
+            The policy should be revised before next semester. It was written before online advising appointments became common, and it does not say who is responsible when a student misses a remote meeting because of a technology failure.
+          </p>
+        </statement>
+      </exercise>
+      <exercise xml:id="ex-ch1-s11-05">
+        <statement>
+          <p>
+            The committee should not postpone the vote again. Everyone has had the proposal for three weeks. The remaining objections are about implementation details, not about the main principle, and those details can be handled after approval.
+          </p>
+        </statement>
+        <solution>
+          <p>
+            Conclusion: The committee should not postpone the vote again.
+          </p>
+          <p>
+            Standard form:
+          </p>
+          <blockquote>
+            <p>
+              P1: Everyone has had the proposal for three weeks.<br/>
+              P2: The remaining objections are about implementation details, not about the main principle.<br/>
+              P3: Implementation details can be handled after approval.<br/>
+              <m>\therefore</m> C: The committee should not postpone the vote again.<br/>
+            </p>
+          </blockquote>
+        </solution>
+      </exercise>
+      <exercise xml:id="ex-ch1-s11-06">
+        <statement>
+          <p>
+            The campus shuttle schedule should be revised. The current routes were designed five years ago, before the new science building opened on the south end of campus. Students now have to walk twenty minutes from the nearest shuttle stop to reach their labs, and several have reported being late to class as a result.
+          </p>
+        </statement>
+      </exercise>
+      <exercise xml:id="ex-ch1-s11-07">
+        <statement>
+          <p>
+            College athletes should be allowed to profit from their name, image, and likeness. They generate millions in revenue for their schools, and other students are free to earn money from their talents.
+          </p>
+        </statement>
+        <solution>
+          <p>
+            Conclusion: College athletes should be allowed to profit from their name, image, and likeness.
+          </p>
+          <p>
+            Standard form:
+          </p>
+          <blockquote>
+            <p>
+              P1: College athletes generate millions in revenue for their schools.<br/>
+              P2: Other students are free to earn money from their talents.<br/>
+              <m>\therefore</m> C: College athletes should be allowed to profit from their name, image, and likeness.<br/>
+            </p>
+          </blockquote>
+        </solution>
+      </exercise>
+      <exercise xml:id="ex-ch1-s11-08">
+        <statement>
+          <p>
+            The university should not eliminate the foreign language requirement. Research consistently shows that studying a second language improves cognitive flexibility. Many employers prefer candidates who speak more than one language. And exposure to another language and culture is part of what a liberal arts education is for.
+          </p>
+        </statement>
+      </exercise>
+      <exercise xml:id="ex-ch1-s11-09">
+        <statement>
+          <p>
+            Standardized test scores should be optional in admissions. Scores correlate more strongly with family income than with college performance, and many high-performing students test poorly due to anxiety.
+          </p>
+        </statement>
+        <solution>
+          <p>
+            Conclusion: Standardized test scores should be optional in admissions.
+          </p>
+          <p>
+            Standard form:
+          </p>
+          <blockquote>
+            <p>
+              P1: Scores correlate more strongly with family income than with college performance.<br/>
+              P2: Many high-performing students test poorly due to anxiety.<br/>
+              <m>\therefore</m> C: Standardized test scores should be optional in admissions.<br/>
+            </p>
+          </blockquote>
+        </solution>
+      </exercise>
+      <exercise xml:id="ex-ch1-s11-10">
+        <statement>
+          <p>
+            The department should keep offering the senior seminar in person rather than moving it online. The seminar depends on spontaneous discussion, and online formats make it harder for students to build on each other's comments in real time.
+          </p>
+        </statement>
+      </exercise>
+      <conclusion>
+        <p>
+          ---
+        </p>
+      </conclusion>
+    </exercisegroup>
+
+    <exercisegroup xml:id="exgroup-ch1-s12">
+      <title>Exercise Set 12: Layered Arguments and Sub-Conclusions</title>
+      <introduction>
+        <p>
+          Each passage below contains a layered argument. Lay it out in standard form using P1, P2, C1, C2, and so on. Include parenthetical notes saying what each conclusion follows from.
+        </p>
+      </introduction>
+      <exercise xml:id="ex-ch1-s12-01">
+        <statement>
+          <p>
+            The university should expand evening tutoring. Many students who need tutoring work during the day. Students who work during the day cannot attend most current tutoring sessions. So the current schedule excludes many of the students who need help. Expanding evening tutoring would make academic support available to more students.
+          </p>
+        </statement>
+        <solution>
+          <p>
+            Standard form:
+          </p>
+          <blockquote>
+            <p>
+              P1: Many students who need tutoring work during the day.<br/>
+              P2: Students who work during the day cannot attend most current tutoring sessions.<br/>
+              C1: The current schedule excludes many of the students who need help. <em>(from P1 and P2)</em><br/>
+              P3: Expanding evening tutoring would make academic support available to more students.<br/>
+              <m>\therefore</m> C2: The university should expand evening tutoring. <em>(from C1 and P3)</em><br/>
+            </p>
+          </blockquote>
+        </solution>
+      </exercise>
+      <exercise xml:id="ex-ch1-s12-02">
+        <statement>
+          <p>
+            We should move the club meeting to Thursday. The room is already reserved for another group on Wednesday, so we cannot meet in our usual room then. If we meet somewhere else on Wednesday, several members will not know where to go. Thursday is the only night this week when the usual room is available.
+          </p>
+        </statement>
+      </exercise>
+      <exercise xml:id="ex-ch1-s12-03">
+        <statement>
+          <p>
+            The city should install better lighting near the crosswalk. Drivers often fail to see pedestrians there at night. Poor visibility makes collisions more likely. Better lighting would improve visibility, and improving visibility would make the crosswalk safer.
+          </p>
+        </statement>
+        <solution>
+          <p>
+            Standard form:
+          </p>
+          <blockquote>
+            <p>
+              P1: Drivers often fail to see pedestrians at the crosswalk at night.<br/>
+              P2: Poor visibility makes collisions more likely.<br/>
+              C1: The crosswalk is dangerous at night. <em>(from P1 and P2)</em><br/>
+              P3: Better lighting would improve visibility.<br/>
+              P4: Improving visibility would make the crosswalk safer.<br/>
+              <m>\therefore</m> C2: The city should install better lighting near the crosswalk. <em>(from C1, P3, and P4)</em><br/>
+            </p>
+          </blockquote>
+        </solution>
+      </exercise>
+      <exercise xml:id="ex-ch1-s12-04">
+        <statement>
+          <p>
+            The department should keep the methods course as a requirement. Students who take it write stronger senior theses, because the course teaches research design before students begin independent projects. Stronger senior theses make the major more valuable. A required methods course also gives transfer students a shared foundation with students who began the major earlier.
+          </p>
+        </statement>
+      </exercise>
+      <exercise xml:id="ex-ch1-s12-05">
+        <statement>
+          <p>
+            We should not use attendance software that tracks students' locations. The software collects sensitive data. Sensitive data can be misused or exposed in a breach. Tools that create serious privacy risks should be avoided unless they are necessary. This software is not necessary, since professors can take attendance without location tracking.
+          </p>
+        </statement>
+        <solution>
+          <p>
+            Standard form:
+          </p>
+          <blockquote>
+            <p>
+              P1: The software collects sensitive data.<br/>
+              P2: Sensitive data can be misused or exposed in a breach.<br/>
+              C1: The software creates serious privacy risks. <em>(from P1 and P2)</em><br/>
+              P3: Tools that create serious privacy risks should be avoided unless they are necessary.<br/>
+              P4: Professors can take attendance without location tracking.<br/>
+              C2: This software is not necessary. <em>(from P4)</em><br/>
+              <m>\therefore</m> C3: We should not use attendance software that tracks students' locations. <em>(from C1, P3, and C2)</em><br/>
+            </p>
+          </blockquote>
+        </solution>
+      </exercise>
+      <exercise xml:id="ex-ch1-s12-06">
+        <statement>
+          <p>
+            The city should build a new park near the university. The nearest park is two miles away, and students without cars cannot easily reach it. A nearby park would improve mental health, because access to green space reduces stress. Reduced stress leads to better academic performance.
+          </p>
+        </statement>
+      </exercise>
+      <exercise xml:id="ex-ch1-s12-07">
+        <statement>
+          <p>
+            We should require all first-year students to take a critical thinking course. Students arrive with widely varying reasoning skills. A shared course would give everyone a common vocabulary for evaluating arguments. A common vocabulary makes class discussions in other courses more productive. More productive discussions improve learning across the curriculum.
+          </p>
+        </statement>
+        <solution>
+          <p>
+            Standard form:
+          </p>
+          <blockquote>
+            <p>
+              P1: Students arrive with widely varying reasoning skills.<br/>
+              P2: A shared course would give everyone a common vocabulary for evaluating arguments.<br/>
+              C1: A common vocabulary makes class discussions in other courses more productive. <em>(from P2)</em><br/>
+              P3: More productive discussions improve learning across the curriculum.<br/>
+              <m>\therefore</m> C2: We should require all first-year students to take a critical thinking course. <em>(from P1, C1, and P3)</em><br/>
+            </p>
+          </blockquote>
+        </solution>
+      </exercise>
+      <exercise xml:id="ex-ch1-s12-08">
+        <statement>
+          <p>
+            The software should be replaced. It crashes at least once per week during peak hours. Each crash disrupts service for roughly 500 users. Frequent disruptions erode trust in the system. A system that users do not trust will not be used, and a system that is not used wastes the money spent on it.
+          </p>
+        </statement>
+      </exercise>
+      <conclusion>
+        <p>
+          ---
+        </p>
+      </conclusion>
+    </exercisegroup>
+
+    <exercisegroup xml:id="exgroup-ch1-s13">
+      <title>Exercise Set 13: Mixed Review</title>
+      <introduction>
+        <p>
+          For each passage below, complete all tasks that apply.
+        </p>
+        <p>
+          - Classify the passage as an argument, explanation, or another language use.
+- Identify all statements in the passage.
+- If it is an argument, put it in standard form.
+- If it is an explanation, identify the explanandum and explanans.
+- If it includes a conditional, identify its antecedent and consequent.
+- If it includes a sub-conclusion, label it.
+        </p>
+      </introduction>
+      <exercise xml:id="ex-ch1-s13-01">
+        <statement>
+          <p>
+            If the storm reaches campus before noon, then afternoon labs should be canceled. The storm is projected to arrive by 11:30, so afternoon labs should be canceled.
+          </p>
+        </statement>
+        <solution>
+          <p>
+            <em>Argument.</em> Contains a conditional: antecedent = &quot;the storm reaches campus before noon&quot;; consequent = &quot;afternoon labs should be canceled.&quot; The argument affirms the antecedent (the storm is projected to arrive by 11:30, which is before noon). Indicator: <em>so</em>.
+          </p>
+          <p>
+            Standard form:
+          </p>
+          <blockquote>
+            <p>
+              P1: If the storm reaches campus before noon, then afternoon labs should be canceled.<br/>
+              P2: The storm is projected to arrive by 11:30.<br/>
+              <m>\therefore</m> C: Afternoon labs should be canceled.<br/>
+            </p>
+          </blockquote>
+        </solution>
+      </exercise>
+      <exercise xml:id="ex-ch1-s13-02">
+        <statement>
+          <p>
+            The lab smelled strange because someone left a burner on after class.
+          </p>
+        </statement>
+      </exercise>
+      <exercise xml:id="ex-ch1-s13-03">
+        <statement>
+          <p>
+            Please do not leave burners on after class.
+          </p>
+        </statement>
+        <solution>
+          <p>
+            <em>Not a statement and not an argument.</em> This is a command/request. It is not asserting that something is the case and not offering reasons for a claim.
+          </p>
+        </solution>
+      </exercise>
+      <exercise xml:id="ex-ch1-s13-04">
+        <statement>
+          <p>
+            We should not schedule the exam on the Monday after break. Many students travel that weekend, and travel delays would make the exam harder for reasons unrelated to course learning.
+          </p>
+        </statement>
+      </exercise>
+      <exercise xml:id="ex-ch1-s13-05">
+        <statement>
+          <p>
+            If the collaboration policy applies to group chat notes, then students must list those notes in their acknowledgments. The collaboration policy does apply to group chat notes. Therefore, students must list those notes in their acknowledgments.
+          </p>
+        </statement>
+        <solution>
+          <p>
+            <em>Argument.</em> Contains a conditional: antecedent = &quot;the collaboration policy applies to group chat notes&quot;; consequent = &quot;students must list those notes in their acknowledgments.&quot; The argument affirms the antecedent (modus ponens). Indicator: <em>Therefore</em>.
+          </p>
+          <p>
+            Standard form:
+          </p>
+          <blockquote>
+            <p>
+              P1: If the collaboration policy applies to group chat notes, then students must list those notes in their acknowledgments.<br/>
+              P2: The collaboration policy does apply to group chat notes.<br/>
+              <m>\therefore</m> C: Students must list those notes in their acknowledgments.<br/>
+            </p>
+          </blockquote>
+        </solution>
+      </exercise>
+      <exercise xml:id="ex-ch1-s13-06">
+        <statement>
+          <p>
+            Students must list group chat notes in their acknowledgments because the collaboration policy applies to them.
+          </p>
+        </statement>
+      </exercise>
+      <exercise xml:id="ex-ch1-s13-07">
+        <statement>
+          <p>
+            The classroom was moved because the projector broke. The new classroom is in Combs.
+          </p>
+        </statement>
+        <solution>
+          <p>
+            <em>Explanation plus a statement.</em> The first sentence is an explanation: the explanandum is &quot;the classroom was moved&quot; (already known); the explanans is &quot;the projector broke.&quot; The second sentence (&quot;The new classroom is in Combs&quot;) is a separate statement providing information. Neither sentence is part of an argument.
+          </p>
+        </solution>
+      </exercise>
+      <exercise xml:id="ex-ch1-s13-08">
+        <statement>
+          <p>
+            Since the current policy does not mention online quizzes, students and instructors are interpreting it differently. If a policy is being interpreted differently by the people governed by it, then it should be clarified. Therefore, the current policy should be clarified.
+          </p>
+        </statement>
+      </exercise>
+      <exercise xml:id="ex-ch1-s13-09">
+        <statement>
+          <p>
+            If the committee meets on Friday, then the proposal will be voted on before the deadline. The proposal will not be voted on before the deadline. Therefore, the committee is not meeting on Friday.
+          </p>
+        </statement>
+        <solution>
+          <p>
+            <em>Argument.</em> Contains a conditional: antecedent = &quot;the committee meets on Friday&quot;; consequent = &quot;the proposal will be voted on before the deadline.&quot; The argument denies the consequent (modus tollens). Indicator: <em>Therefore</em>.
+          </p>
+          <p>
+            Standard form:
+          </p>
+          <blockquote>
+            <p>
+              P1: If the committee meets on Friday, then the proposal will be voted on before the deadline.<br/>
+              P2: The proposal will not be voted on before the deadline.<br/>
+              <m>\therefore</m> C: The committee is not meeting on Friday.<br/>
+            </p>
+          </blockquote>
+        </solution>
+      </exercise>
+      <exercise xml:id="ex-ch1-s13-10">
+        <statement>
+          <p>
+            The concert was canceled because the headlining band's bus broke down on the interstate.
+          </p>
+        </statement>
+      </exercise>
+      <exercise xml:id="ex-ch1-s13-11">
+        <statement>
+          <p>
+            You should apply for the internship. The application deadline is next week, the position pays well, and it is directly related to your major.
+          </p>
+        </statement>
+        <solution>
+          <p>
+            <em>Argument.</em> Conclusion: You should apply for the internship. No indicator words. The conclusion is the recommendation (the claim the speaker wants the listener to accept).
+          </p>
+          <p>
+            Standard form:
+          </p>
+          <blockquote>
+            <p>
+              P1: The application deadline is next week.<br/>
+              P2: The position pays well.<br/>
+              P3: The position is directly related to your major.<br/>
+              <m>\therefore</m> C: You should apply for the internship.<br/>
+            </p>
+          </blockquote>
+        </solution>
+      </exercise>
+      <exercise xml:id="ex-ch1-s13-12">
+        <statement>
+          <p>
+            Since the fire alarm sometimes malfunctions, we cannot always tell from the alarm alone whether there is an actual fire. But since we cannot always tell, and since the cost of ignoring a real fire is catastrophic, we should treat every alarm as real until confirmed otherwise.
+          </p>
+        </statement>
+      </exercise>
+      <conclusion>
+        <p>
+          ---
+        </p>
+      </conclusion>
+    </exercisegroup>
+
+    <exercisegroup xml:id="exgroup-ch1-s14">
+      <title>Exercise Set 14: Short Writing Prompts</title>
+      <introduction>
+        <p>
+          Choose two of the following prompts. Each response should be one to two paragraphs.
+        </p>
+      </introduction>
+      <exercise xml:id="ex-ch1-s14-01">
+        <statement>
+          <p>
+            Describe a case where someone persuaded you without giving an argument. What made the persuasion work?
+          </p>
+        </statement>
+      </exercise>
+      <exercise xml:id="ex-ch1-s14-02">
+        <statement>
+          <p>
+            Describe a case where someone gave you an argument that did not persuade you. What were the premises and conclusion?
+          </p>
+        </statement>
+      </exercise>
+      <exercise xml:id="ex-ch1-s14-03">
+        <statement>
+          <p>
+            Find a short passage from a news article, opinion piece, advertisement, syllabus, campus email, or social media post. Classify it as an argument, explanation, or something else. Defend your classification.
+          </p>
+        </statement>
+      </exercise>
+      <exercise xml:id="ex-ch1-s14-04">
+        <statement>
+          <p>
+            Return to the listening exercise from Section 1.1. Report one example of language use you noticed and classify it using the categories from the chapter.
+          </p>
+        </statement>
+      </exercise>
+      <exercise xml:id="ex-ch1-s14-05">
+        <statement>
+          <p>
+            Explain why &quot;statement&quot; is a more useful category for logic than &quot;fact&quot; or &quot;opinion.&quot;
+          </p>
+        </statement>
+      </exercise>
+      <exercise xml:id="ex-ch1-s14-06">
+        <statement>
+          <p>
+            Write your own short layered argument with at least two premises, one sub-conclusion, and one final conclusion. Then lay it out in standard form.
+          </p>
+        </statement>
+      </exercise>
+      <exercise xml:id="ex-ch1-s14-07">
+        <statement>
+          <p>
+            Pick one of the arguments you put in standard form in Exercise Sets 6 or 7. Without yet using the formal tools from later chapters, write a paragraph assessing whether you think the premises actually support the conclusion. What would someone who disagrees with the conclusion say about the premises?
+          </p>
+        </statement>
+      </exercise>
+      <exercise xml:id="ex-ch1-s14-08">
+        <statement>
+          <p>
+            Find a passage from a textbook in another course you are taking. Determine whether the passage is making an argument, giving an explanation, or doing something else. Quote the passage, classify it, and explain your reasoning.
+          </p>
+        </statement>
+      </exercise>
+      <conclusion>
+        <p>
+          ---
+        </p>
+      </conclusion>
+    </exercisegroup>
+
+  </exercises>
+
+  <conclusion xml:id="conclusion-ch1">
+    <title>Chapter Summary</title>
+
+    <p>
+      This chapter introduced the basic apparatus for recognizing and analyzing arguments. The core ideas, section by section:
+    </p>
+
+    <p>
+      <alert>What We Do With Language (§1.1).</alert> Language serves many purposes — stating, asking, commanding, promising, expressing, performing, greeting, explaining, arguing — and most of them are not arguing. An argument is a special use of language in which reasons are offered in support of a claim. Arguing is not the same as persuading: persuasion aims to change someone's mind by any means; arguing offers reasons. An argument can persuade without being good, and a good argument can fail to persuade. This section also previews what makes an argument good (validity and soundness) and introduces the two main kinds of arguments: deductive (where the premises are intended to guarantee the conclusion) and inductive (where the premises are intended to make the conclusion probable).
+    </p>
+
+    <p>
+      <alert>Statements (§1.2).</alert> Arguments are built out of statements — assertoric sentences that are either true or false. Whether a sentence is a statement does not depend on whether anyone knows it is true, whether anyone can prove it, or whether people agree about it. The familiar fact-vs-opinion taxonomy is unreliable as a test for statementhood: many sentences people dismiss as &quot;just opinions&quot; are genuine statements (true or false), and many sentences people call &quot;facts&quot; are also someone's opinion (a belief they hold). The useful distinction is not fact vs. opinion but statement vs. non-statement.
+    </p>
+
+    <p>
+      <alert>Premises and Conclusions (§1.3).</alert> Every argument has premises and a conclusion. The conclusion is the claim being supported; the premises are the reasons offered in support of it. Indicator words — <em>therefore</em>, <em>so</em>, <em>since</em>, <em>because</em>, among others — often flag premises and conclusions, but they are not always present and not always reliable. Standard form lays an argument out with each statement on its own line (P1, P2, ... <m>\therefore</m> C). A conditional sentence (&quot;If ..., then ...&quot;) has an antecedent (the &quot;if&quot; part) and a consequent (the &quot;then&quot; part). Two named argument forms were previewed: modus ponens (affirming the antecedent) and modus tollens (denying the consequent).
+    </p>
+
+    <p>
+      <alert>Recognizing Arguments in the Wild (§1.4).</alert> Arguments and explanations can look identical on the page but do different work. An argument moves the audience from accepted premises to a conclusion that is in question. An explanation provides reasons why something already accepted is the case. Two diagnostics: (1) Is the would-be conclusion something the audience already accepts (likely explanation) or something the speaker is trying to convince them of (likely argument)? (2) Is the speaker's posture &quot;let me convince you&quot; (argument) or &quot;let me help you make sense of this&quot; (explanation)? Real-world arguments are often layered: intermediate claims (sub-conclusions) serve as premises for further inferences. Standard form uses C1, C2, etc. with parenthetical notes to show which premises and earlier conclusions each sub-conclusion follows from.
+    </p>
+
+  </conclusion>
 
 </chapter>

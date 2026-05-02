@@ -1,0 +1,1620 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  Chapter 1 — What Is an Argument?
+  Section 1.1 ported from book/drafts/ch01-sec01-language.md (rev. 3).
+  Sections 1.2 onward remain placeholders.
+
+  Style conventions in use:
+    <term> = first introduction of a technical term (italic + indexed)
+    <em>   = emphasis only, used sparingly
+    italics for word-mention vs. term-introduction:
+      mention only       → <em>argument</em>
+      term-introduction  → <q><term>valid</term></q>
+    Quotes around quoted speech / example utterances → <q>...</q>
+-->
+<chapter xmlns:xi="http://www.w3.org/2001/XInclude" xml:id="ch-what-is-an-argument">
+
+  <title>What Is an Argument?</title>
+
+  <introduction xml:id="ch-arguments-intro">
+    <p>
+      Spend ten minutes listening in any public space and you will notice
+      people doing all sorts of things with language. They are telling
+      stories, ordering food, complaining about traffic, complimenting
+      each other's shoes, explaining how the parking app works, confessing
+      crushes, lying about their weekends, asking for directions, and,
+      even, on occasion, trying to convince someone of something using
+      actual reasons.
+    </p>
+    <p>
+      That last activity, the giving-reasons one, is what we'll call
+      <term>making an argument</term>, and it is the subject of this book.
+      The other activities are largely where we find and make meaning with
+      each other, but arguments are special in their own way as well.
+      Arguments let us ask: <q>is this any good?</q> You can't ask that of
+      <q>good morning</q> or <q>could you pass the salt?</q> You can ask
+      it of <q>Since data centers demand immense power, we must expand
+      the electrical grid,</q> and the answer is not obvious until you
+      stop and look closely (and might not be obvious even then).
+    </p>
+    <p>
+      This book is about how to look closely.
+    </p>
+  </introduction>
+
+  <section xml:id="sec-language">
+    <title>What We Do With Language</title>
+
+    <paragraphs xml:id="paragraphs-catalog">
+      <title>A short list of things we do with language</title>
+      <p>
+        Take all the things people do with language — every overheard
+        sentence, every text, every email — and you can sort them, loosely,
+        into a handful of types. The list isn't exact; many sentences do
+        more than one thing at once, and philosophers of language have
+        argued for a long time about exactly how the categories work. But
+        for our purposes, a working list looks something like this.
+      </p>
+      <dl>
+        <li>
+          <title>Stating</title>
+          <p>
+            <q>It's raining.</q> <q>The library closes at nine.</q>
+            <q>Data centers consume a lot of power.</q> Statements assert
+            that something is the case. They can be true or false, and
+            that is the property we are going to care about most.
+          </p>
+        </li>
+        <li>
+          <title>Asking</title>
+          <p>
+            <q>What time is it?</q> <q>Did you eat already?</q> Questions
+            request information. They aren't true or false themselves,
+            even though their answers might be.
+          </p>
+        </li>
+        <li>
+          <title>Commanding</title>
+          <p>
+            <q>Close the door.</q> <q>Show your ID.</q> Commands and
+            requests try to get someone to do something. They're not
+            true or false either, though there are good and bad ones.
+          </p>
+        </li>
+        <li>
+          <title>Promising</title>
+          <p>
+            <q>I'll be there by seven.</q> <q>We'll consider your
+            application by the fifteenth.</q> A promise commits the
+            speaker to some future action. It's evaluable in its own
+            way — promises are kept or broken — but not as true or false
+            at the moment of speaking.
+          </p>
+        </li>
+        <li>
+          <title>Expressing</title>
+          <p>
+            <q>Ouch.</q> <q>What a beautiful day.</q> Expressions report
+            or perform an inner state. They're sincere or insincere,
+            fitting or off-key, but again, not really true or false.
+          </p>
+        </li>
+        <li>
+          <title>Performing</title>
+          <p>
+            Some sentences make something happen just by being said in
+            the right circumstances. <q>I now pronounce you married.</q>
+            <q>I name this ship the <em>Enterprise</em>.</q>
+            <q>I apologize.</q> The philosopher J. L. Austin called these
+            <term>performative</term> sentences and noticed they're a
+            strange beast: they don't describe a marriage, a naming, or
+            an apology — the act of uttering the right phrase under the
+            right circumstances is just what it is to do the thing.
+          </p>
+        </li>
+        <li>
+          <title>Greeting</title>
+          <p>
+            <q>Good morning.</q> <q>Hey.</q> <q>How's it going?</q> A
+            great deal of human conversation is just acknowledging that
+            other humans exist and are not strangers. The semantic
+            content of <q>How's it going?</q> is roughly zero. The social
+            work it does is enormous.
+          </p>
+        </li>
+        <li>
+          <title>Explaining</title>
+          <p>
+            <q>The reason your phone is hot is that you've been on it
+            for two hours.</q> <q>I'm late because there was an accident
+            on Route 17.</q> Explanations look a lot like arguments —
+            they offer reasons connected to a claim — and we'll come
+            back to that resemblance later. For now just note that this
+            distinction is a little tricky, but we'll want to pay
+            attention to it.
+          </p>
+        </li>
+        <li>
+          <title>Arguing</title>
+          <p>
+            <q>You shouldn't take Route 17 — there was an accident, and
+            traffic is backed up to the next exit.</q> <q>We need to
+            expand the grid because data centers are coming online faster
+            than we can power them.</q> An argument offers reasons in
+            support of a claim. The reasons are called <term>premises</term>,
+            the supported claim is called the <term>conclusion</term>,
+            and the relationship between them is mostly what the rest of
+            this book is about.
+          </p>
+        </li>
+      </dl>
+    </paragraphs>
+
+    <paragraphs xml:id="paragraphs-two-senses">
+      <title>Two senses of <q>argument</q></title>
+      <!--
+        STYLE NOTE: Reno's revision uses italics-only for word-mentions
+        of "argument", "argue", "arguing" here. This contrasts with the
+        quotes+italics pattern used for "valid" and "sound" in the
+        "What makes an argument good?" subsection below. We're keeping
+        Reno's pattern as written; convention to be confirmed.
+      -->
+      <p>
+        The word <em>argument</em> and its related verb forms
+        <em>argue</em>, <em>arguing</em> are ambiguous in everyday
+        English. They often refer to a verbal disagreement — two people
+        exchanging insults, or yelling at each other about whether the
+        runner was safe: <q>He was out!</q> <q>No way! He was safe!</q>
+        That kind of dispute is not what we'll mean by <em>argument</em>
+        in this book. We'll be using the word in the more specialized
+        sense from the catalog above: an offering of reasons in support
+        of a claim. From here on, when you see <em>argument</em>, that's
+        the meaning to assume.
+      </p>
+    </paragraphs>
+
+    <paragraphs xml:id="paragraphs-persuading">
+      <title>Persuading and arguing</title>
+      <p>
+        One thing you might notice in the list above is that I haven't
+        said anything about <em>persuading</em>. That's deliberate.
+        Persuasion isn't really a separate category — it's something a
+        person can be trying to do across many of the categories at once.
+        Importantly, you can persuade someone without arguing.
+      </p>
+      <p>
+        Advertising is the cleanest example. Most ads don't make
+        arguments. They show you a beautiful person enjoying a beautiful
+        product in beautiful light, and they hope that you, watching,
+        will associate the product with the feeling of beauty. There's
+        no premise, no conclusion, no reasoning offered. There's just an
+        emotional pairing. If you walk away from the ad wanting the
+        product, the ad has succeeded — but it did not argue.
+      </p>
+      <p>
+        Politicians do this too. So do friends, parents, salespeople,
+        professors, and AI chatbots. A great deal of persuasion happens
+        through repetition, charm, fear, social pressure, identity, and
+        the sheer confidence with which a claim is delivered. None of
+        this is arguing. None of it requires reasons.
+      </p>
+      <p>
+        The reverse is also true. You can make a careful, airtight
+        argument and persuade exactly nobody. Anyone who has tried to
+        talk an unwilling family member out of a strongly held belief
+        knows the experience.
+      </p>
+      <p>
+        Logic is about the <em>reasoning</em> embedded in argumentative
+        language, not about whether the reasoning works on its audience.
+        Whether arguments persuade is, much of the time, a question of
+        human psychology, and humans are persuaded by all sorts of things
+        that have nothing to do with reasons. Whether arguments are
+        <em>good</em> is a different question — a logical question — and
+        it is the one we will spend the rest of this book learning to
+        answer.
+      </p>
+    </paragraphs>
+
+    <paragraphs xml:id="paragraphs-good-argument">
+      <title>What makes an argument good?</title>
+      <p>
+        The central observation of the opening was that arguments are
+        the kind of language use about which we can ask, <q>is this any
+        good?</q> You can ask other questions of other kinds of speech:
+        whether a promise was kept, whether a question was relevant,
+        whether an explanation was satisfying, whether a greeting was
+        warm. But <q>is this argument any good?</q> is a question that
+        implies a specific structure, and the structure implied by that
+        question is what the rest of the book is for.
+      </p>
+      <p>
+        What does it actually mean for an argument to be good?
+      </p>
+      <p>
+        A first answer: a good argument is one whose conclusion really
+        does follow from its premises. If the premises support the
+        conclusion, then accepting the premises gives you reason to
+        accept the conclusion. If the premises do not support the
+        conclusion, the argument is bad — even if every sentence in it
+        happens to be true. Bad reasoning can land on a true conclusion
+        by accident; good reasoning can sometimes land on a false
+        conclusion if the premises were false. Both happen all the time.
+        This is because a good argument isn't just about truth and
+        falsity.
+      </p>
+      <p>
+        Logicians have a specific vocabulary for these properties. The
+        word <q><term>valid</term></q> means roughly <q>the conclusion
+        really does follow from the premises,</q> and it applies to the
+        structure of an argument, not its content. And the word
+        <q><term>sound</term></q> means <q>valid, and all the premises
+        are also actually true.</q> For now, treat those as labels; we
+        will fill in their precise meanings in the next chapter.
+        <!--
+          TODO: Reno, this sentence in your revision ends mid-thought:
+          "those are the questions you can ask of an argument and not
+          of sentences like 'good morning' or"
+          Pasting a placeholder completion below; replace with what you
+          actually want.
+        -->
+        The point is that those are the questions you can ask of an
+        argument and not of sentences like <q>good morning</q> or
+        <q>close the door.</q>
+      </p>
+    </paragraphs>
+
+    <paragraphs xml:id="paragraphs-two-kinds">
+      <title>Two kinds of arguing</title>
+      <p>
+        Arguments come in two broad kinds, and we'll discuss both in
+        this book.
+      </p>
+      <p>
+        Some arguments are <term>deductive</term>. In a deductive
+        argument, the premises are supposed to guarantee the conclusion.
+        A deductive argument asserts that if the premises are true, the
+        conclusion has to be true too, no exceptions. If it's valid, and
+        sound, then it works; it's a good argument. <q>All humans are
+        mortal. Socrates is human. Therefore Socrates is mortal.</q> If
+        you accept the premises, you can't dodge the conclusion without
+        contradicting yourself. Most of Parts I, II, and III of this book
+        are about deductive reasoning.
+      </p>
+      <p>
+        Other arguments are <term>inductive</term>. In an inductive
+        argument, the premises don't guarantee the conclusion, but they
+        make it more likely than it would have been otherwise. Here's a
+        <term>strong</term> inductive argument: <q>The last hundred
+        flamingos I saw were pink. So the next flamingo I see will
+        probably be pink too.</q> The conclusion isn't guaranteed even
+        if the premises are all true; it's supported. Inductive arguments
+        are the workhorses of science, statistics, medicine, and most
+        everyday reasoning. Part IV of this book is about inductive
+        reasoning, with statistical inference as its centerpiece.
+      </p>
+      <p>
+        Both kinds count as arguing. Both can be done well or badly. The
+        standards of <q>good</q> are different in each case — what makes
+        a deductive argument good is not the same as what makes an
+        inductive one good — but in both cases we can ask the same
+        question we asked above: <q>is this argument any good?</q>
+      </p>
+    </paragraphs>
+
+    <paragraphs xml:id="paragraphs-where-headed">
+      <title>Where we're headed</title>
+      <p>
+        To talk about arguments precisely, we need vocabulary for their
+        parts. Arguments are built out of <term>statements</term> —
+        claims that are either true or false — combined in particular
+        ways. Some statements serve as premises, some as conclusions,
+        and in compound arguments some serve as both. Not all sentences
+        are statements, though: greetings, questions, and commands
+        aren't, as the list above suggests. The next section gets
+        specific about what statements are and how to recognize them,
+        because we can't say much about arguments without first saying
+        what they're made of.
+      </p>
+    </paragraphs>
+
+    <exploration xml:id="field-1-1-1">
+      <title>Field Exercise: Listen for ten minutes</title>
+      <statement>
+        <p>
+          Find a public space — a coffee shop, a hallway between classes,
+          a bus stop, a dorm common area — and listen for ten minutes
+          without participating. (You can pretend to be on your phone.
+          Nobody will notice.)
+        </p>
+        <p>
+          While you listen, try to spot the different kinds of language
+          use from the catalog above. You don't have to be exact, and
+          many things you hear will fit more than one category at once.
+          Notice especially:
+        </p>
+        <ul>
+          <li>
+            <p>
+              How often you hear someone making an actual argument —
+              that is, giving reasons in support of a claim.
+            </p>
+          </li>
+          <li>
+            <p>
+              Where the arguments tend to appear (between strangers,
+              close friends, parents and kids, strangers with strong
+              opinions about parking).
+            </p>
+          </li>
+          <li>
+            <p>
+              Whether anything you heard sounded like an argument but,
+              on second thought, was doing a different job — an
+              explanation, a complaint, a vent, a recital of grievances.
+            </p>
+          </li>
+        </ul>
+        <p>
+          You don't have to write any of this down right now. The point
+          is just to start noticing the difference. We'll come back to
+          it in an end-of-chapter writing prompt, where you'll be asked
+          to report and reflect on what you heard.
+        </p>
+      </statement>
+    </exploration>
+
+  </section>
+
+  <section xml:id="sec-statements">
+    <title>Statements</title>
+
+    <introduction>
+      <p>
+        We can't talk carefully about arguments without being clear about
+        what they are built out of. An argument is a structure — one or
+        more statements offered in support of another statement — and
+        every piece of that structure is a particular kind of sentence.
+        Before we can do any actual logic, we need to be clear about what
+        statements are and, just as importantly, what they are not.
+      </p>
+    </introduction>
+
+    <paragraphs xml:id="paragraphs-what-is-statement">
+      <title>What a statement is</title>
+      <p>
+        A statement is an <term>assertoric</term> sentence — a sentence
+        that says something is the case. The word <em>assertoric</em>
+        comes from <em>assert</em>; an assertoric sentence is one that
+        makes a claim about how things are. Every statement is either
+        true or false.
+      </p>
+      <p>
+        That definition is short, and we'll spend the rest of this
+        section unpacking what it does and does not mean. But it is
+        worth saying directly first.
+      </p>
+      <definition xml:id="def-statement">
+        <statement>
+          <p>
+            A <term>statement</term> is an assertoric sentence — a
+            sentence that says something is the case. Every statement
+            is either true or false.
+          </p>
+        </statement>
+      </definition>
+      <p>
+        Only sentences in the <em>stating</em> category produce
+        assertions. The other categories don't. Questions don't make
+        claims about how things are; commands don't either; expressions
+        and greetings and performatives are doing other work. None of
+        those produce sentences that are true or false.
+      </p>
+      <p>
+        A few examples of statements:
+      </p>
+      <ul>
+        <li><p><q>The library closes at nine.</q></p></li>
+        <li><p><q>Snow is white.</q></p></li>
+        <li><p><q>Carthage was destroyed in 146 BCE.</q></p></li>
+        <li><p><q>Two plus two equals four.</q></p></li>
+        <li><p><q>Data centers consume a great deal of electricity.</q></p></li>
+      </ul>
+      <p>
+        Each of these sentences claims that something is the case. Each
+        is true or false. Most of them are also things almost nobody
+        would push back on, and that's deliberate — we're starting with
+        the easy cases.
+      </p>
+      <p>
+        A few examples of sentences that are <em>not</em> statements:
+      </p>
+      <ul>
+        <li><p><q>What time is it?</q> (a question)</p></li>
+        <li><p><q>Close the door.</q> (a command)</p></li>
+        <li><p><q>Ouch.</q> (an expression)</p></li>
+        <li><p><q>Good morning.</q> (a greeting)</p></li>
+        <li><p><q>I now pronounce you married.</q> (a performative)</p></li>
+      </ul>
+      <p>
+        None of these are statements, because none of them say that
+        something is the case. None of them is true or false. They are
+        doing other things with language, and those other things are
+        valuable, but they aren't what arguments are built out of.
+      </p>
+    </paragraphs>
+
+    <paragraphs xml:id="paragraphs-harder-cases">
+      <title>What about the harder cases?</title>
+      <p>
+        So far, so good. The examples above were chosen to be easy:
+        nobody is going to fight you about whether the library closes
+        at nine. But you may have already started to notice that real
+        life isn't always like that. Sentences like <q>there is
+        intelligent life somewhere else in the universe,</q> <q>slavery
+        is wrong,</q> <q>there were exactly 27,891 people living in
+        Fredericksburg in 1856,</q> and <q>the one-millionth digit of
+        <m>\pi</m> is 7</q> all <em>seem</em> to be saying that
+        something is the case. By the definition above, they should
+        all be statements. But they don't feel like the library
+        example. Some of them are deeply contested. Others involve
+        facts nobody alive knows or can easily find out.
+      </p>
+      <p>
+        Are they still statements?
+      </p>
+      <p>
+        The short answer is yes. The longer answer requires getting
+        clear on what is actually being asked. To handle the harder
+        cases — the contested ones, the ones we can't easily, if at
+        all, verify — we need to separate three things that often get
+        smushed together: what is the case, what we <em>know</em>
+        about what is the case, and what we <em>agree about</em> about
+        what is the case. Once those three are pulled apart, the
+        harder cases are no harder to classify than the library
+        example.
+      </p>
+    </paragraphs>
+
+    <paragraphs xml:id="paragraphs-truth-knowledge-consensus">
+      <title>Truth, knowledge, and consensus are different things</title>
+      <p>
+        What is the case is one thing. Whether anyone knows what is the
+        case is another thing. Whether everyone agrees about what is
+        the case is yet a third. These three are easy to run together
+        in everyday speech, but they are genuinely separate, and
+        statementhood depends only on the first.
+      </p>
+      <p>
+        Consider a few examples in turn.
+      </p>
+      <p>
+        <alert>Things that are true or false even if we don't know which.</alert>
+      </p>
+      <p>
+        There were exactly 27,891 people living in Fredericksburg on
+        January 26th, 1856. Nobody alive knows whether that's true.
+        The historical record isn't fine-grained enough to settle it.
+        The sentence is still either true or false. The population of
+        Fredericksburg, VA on January 26th, 1856 is a fact about the
+        world; the sentence asserts that the number of people living
+        here on that date was 27,891; the sentence is true if that was
+        the number and false if it wasn't.
+      </p>
+      <p>
+        There is intelligent life elsewhere in the universe. We don't
+        know. We may never know. The sentence is still either true or
+        false right now, today, regardless of what humans manage to
+        find out in the next century or the next ten thousand years.
+      </p>
+      <p>
+        The one-millionth digit of <m>\pi</m> is 7. Almost nobody has
+        computed this. (For what it's worth, it's possible to look up;
+        I haven't.) The sentence has a definite truth value at this
+        moment, even for those of us who haven't checked.
+      </p>
+      <p>
+        Caesar walked under a particular fig tree on the Ides of March,
+        44 BCE. The world has not preserved that information for us.
+        We can't recover it. The sentence is still either true or
+        false; the world either was or wasn't arranged that way at
+        that moment even though we don't know if it was or not.
+      </p>
+      <p>
+        In each of these cases, the sentence is a statement, and for
+        the same reason: there is a way the world was, or is, that the
+        sentence makes a claim about. Whether <em>we</em> have access
+        to that way the world was or is — whether anyone has computed
+        it, recovered it from history, observed it, or proven it — is
+        a different question. Statementhood depends on the first;
+        knowledge is a question on top of it.
+      </p>
+      <p>
+        <alert>Things that are true or false even if we don't agree about which it is.</alert>
+      </p>
+      <p>
+        Now consider a different kind of difficulty. <q>God exists.</q>
+        Humans have been arguing about this sentence for as long as
+        they've been arguing about anything. We have not settled it.
+        The sentence is still either true or false. Whichever it is,
+        the disagreement among humans does not change it.
+      </p>
+      <p>
+        The same goes for <q>slavery is wrong,</q> <q>capital punishment
+        is unjust,</q> <q>abortion is morally permissible in the first
+        trimester,</q> and many other claims people have strong,
+        divergent views about. These sentences make claims about how
+        things are — about what is moral, what is just, what the world
+        contains. Each is either true or false. Whether reasonable
+        people agree is a separate question. Whether anyone can settle
+        the disagreement is a third question. Neither is the same as
+        whether the sentence is a statement. It is.
+      </p>
+      <p>
+        This is the part that you might resist even if you buy the rest
+        of this discussion. <em>Surely</em> if smart people disagree
+        about a sentence, it must be that the sentence isn't really
+        true or false — it must be that there's no fact of the matter,
+        just a clash of preferences. That's not the assumption of
+        classical logic, and it's not the assumption of this book.
+        The assumption here is that disagreement and truth are
+        different things. People can disagree about what's true.
+        People can be wrong about what's true. None of that changes
+        whether there's a fact of the matter, neither does it change
+        that people are asserting something about the world when they
+        utter these sorts of sentences.
+      </p>
+      <p>
+        <alert>Why this matters for what comes later.</alert>
+        This isn't a philosophical sidebar. It's load-bearing structure
+        for everything in the rest of the book. Truth tables work
+        because every row has a definite truth value, regardless of
+        what we happen to know about that row. Validity is a
+        relationship between truth values. The reasoning we're going
+        to teach you depends, all the way down, on the assumption that
+        statements are either true or false — no matter who knows
+        what, and no matter who agrees with whom.
+      </p>
+    </paragraphs>
+
+    <paragraphs xml:id="paragraphs-fact-vs-opinion">
+      <title>The fact-vs-opinion taxonomy doesn't help</title>
+      <p>
+        Many of you were taught somewhere along the way to sort
+        sentences into two bins: <em>facts</em> (which are true and
+        provable) and <em>opinions</em> (which are subjective,
+        debatable, and somehow not really claims about how things
+        are). That taxonomy is not useful for logic. It is, in fact,
+        actively in the way. This subsection is about why.
+      </p>
+      <p>
+        Try a quick test on the distinction. Can there be false facts?
+      </p>
+      <p>
+        Most people, asked cold, will say no. <em>Fact</em> in
+        ordinary speech already means <q>true claim.</q> That's the
+        whole point of saying <q>it's a fact</q> instead of just
+        saying the thing. But notice what that concession costs the
+        taxonomy. If the word <em>fact</em> already builds truth into
+        itself, then <em>fact</em> cannot help us sort sentences
+        before we have figured out what is true. The fact-vs-opinion
+        taxonomy is asking us to grade the answers before we have
+        read the questions.
+      </p>
+      <p>
+        There's a second problem. Even sentences that everyone agrees
+        with become <em>opinions</em> the moment somebody asserts
+        them. If I say <q>two plus two equals four,</q> that's my
+        belief — my opinion about how arithmetic works. It is also a
+        fact. The same sentence is in both categories at once,
+        depending on how you frame it. The categories don't pick out
+        two different kinds of sentences; they collapse into each
+        other on contact.
+      </p>
+      <p>
+        A third problem. People sometimes use <em>opinion</em> in a
+        looser sense — meaning something like <q>a claim that hasn't
+        been settled.</q> On that usage, <em>opinion</em> names not a
+        kind of sentence but a feature of how the conversation is
+        going. That doesn't help us either. From the perfectly
+        settled premises <q>2 + 5 = 7</q> and <q>3 + 4 = 7</q> you
+        can build the argument <q>therefore (2 + 5) = (3 + 4).</q>
+        It's a boring argument, but unmistakably an argument. Settled
+        premises do not make a piece of reasoning stop being
+        reasoning. And we already saw above that <em>unsettled</em>
+        sentences — <q>God exists,</q> <q>slavery is wrong,</q> and
+        the rest — are still statements. Settledness and statementhood
+        have nothing to do with each other.
+      </p>
+      <p>
+        So here is the replacement we want.
+      </p>
+      <principle xml:id="principle-statement-criterion">
+        <statement>
+          <p>
+            The criterion for whether a sentence is a statement is not
+            whether it is a <q>fact</q> or an <q>opinion.</q> It is
+            whether the sentence is assertoric — whether it says that
+            something is the case. If yes, it is a statement; it has
+            a truth value; logic can operate on it. If no, it is some
+            other kind of speech, and logic operates on it only
+            indirectly, if at all.
+          </p>
+        </statement>
+      </principle>
+      <p>
+        And, looking ahead one section, a related replacement: the
+        criterion for whether something is an argument is also not
+        whether the statements involved are facts or opinions. It is
+        purely structural: some statements offered in support of
+        another. We'll get to the details of that structure in the
+        next section.
+      </p>
+    </paragraphs>
+
+    <paragraphs xml:id="paragraphs-where-headed-1-2">
+      <title>Where we're headed</title>
+      <p>
+        Statements are the building blocks. The next section is about
+        how those blocks fit together. What is a premise, technically
+        speaking? What is a conclusion? What does it mean for one
+        statement to support another? Once we have named those parts,
+        we can start asking the question that drives the rest of the
+        book: what makes one arrangement of statements a good argument
+        and another arrangement a bad one. <em>Is this any good?</em>
+      </p>
+    </paragraphs>
+
+    <exploration xml:id="field-1-2-1">
+      <title>Field Exercise: Sort the sentences</title>
+      <statement>
+        <p>
+          Below is a list of sentences. For each one, decide whether
+          it is a statement (an assertoric sentence — one that says
+          something is the case, and is therefore either true or
+          false) or not.
+        </p>
+        <p>
+          Use the definition from this section. Do not use the
+          fact-vs-opinion taxonomy. Some of these sentences will
+          tempt you to mis-sort them as <q>just opinions</q> or
+          <q>not really statements.</q> Resist that temptation.
+          Trust the definition.
+        </p>
+        <ol>
+          <li><p>The library closes at nine.</p></li>
+          <li><p>What time does the library close?</p></li>
+          <li><p>Slavery is wrong.</p></li>
+          <li><p>Pass the salt.</p></li>
+          <li><p>There were exactly 27,891 people living in Fredericksburg in 1856.</p></li>
+          <li><p>God exists.</p></li>
+          <li><p>Chocolate ice cream is better than vanilla.</p></li>
+          <li><p>Hey.</p></li>
+          <li><p>There is no such thing as a false fact.</p></li>
+          <li><p>The one-millionth digit of <m>\pi</m> is 7.</p></li>
+          <li><p>We need to expand the electrical grid to keep up with new data centers.</p></li>
+          <li><p>Ouch.</p></li>
+        </ol>
+        <p>
+          For at least three of the sentences you sorted as
+          statements, write a one-sentence explanation of why someone
+          might mistakenly think they are <em>not</em> statements.
+          We'll come back to this in the end-of-chapter writing
+          prompt.
+        </p>
+      </statement>
+    </exploration>
+
+  </section>
+
+  <section xml:id="sec-premises-conclusions">
+    <title>Premises and Conclusions</title>
+
+    <introduction>
+      <p>
+        In the previous section we said that arguments are built out of
+        statements. Now we name the structural roles those statements
+        play, and the relationship that makes a collection of statements
+        an argument rather than just a list.
+      </p>
+    </introduction>
+
+    <paragraphs xml:id="paragraphs-premise-conclusion-defs">
+      <title>What a premise is, what a conclusion is</title>
+      <p>
+        Every argument has two kinds of statement in it. There is the
+        statement being argued for — the claim the argument is
+        <em>for</em>. There are also the statements offered as reason
+        to accept that claim. The first is the <term>conclusion</term>.
+        The others are the <term>premises</term>.
+      </p>
+      <definition xml:id="def-premise-conclusion">
+        <statement>
+          <p>
+            A <term>premise</term> is a statement offered in support of
+            another statement.
+          </p>
+          <p>
+            A <term>conclusion</term> is the statement being supported.
+          </p>
+        </statement>
+      </definition>
+      <p>
+        A small example.
+      </p>
+      <example xml:id="ex-library-argument">
+        <title>The library is closed</title>
+        <statement>
+          <p>P1: The library closes at nine.</p>
+          <p>P2: It is now ten past nine.</p>
+          <p><m>\therefore</m> C: The library is closed.</p>
+        </statement>
+      </example>
+      <p>
+        The symbol <m>\therefore</m> is read <q>therefore.</q> We won't
+        use it constantly in prose, but you'll see it whenever an
+        argument is laid out cleanly, and it's the symbol the proof
+        checker we'll use later uses to mark the conclusion line.
+      </p>
+      <p>
+        Two things to notice. First, an argument can have one premise
+        or many. Most have several. Second, the conclusion is just
+        another statement — there is nothing about its grammar or
+        content that announces it as the conclusion. What makes it the
+        conclusion is the <em>role</em> it plays in the argument: it's
+        the claim the others are aiming at. The same sentence could be
+        a premise in one argument and a conclusion in another,
+        depending on what the arguer is trying to do.
+      </p>
+    </paragraphs>
+
+    <paragraphs xml:id="paragraphs-support-relation">
+      <title>The support relation: intent and actuality</title>
+      <p>
+        When we say premises <em>support</em> a conclusion, we are
+        saying two things at once, and it pays to keep them straight.
+      </p>
+      <p>
+        The first is about the <alert>intent</alert> of the arguer.
+        When somebody offers an argument, they are saying: <em>here are
+        reasons; you should believe the conclusion because of them</em>.
+        The premise/conclusion structure is built out of intent. If I
+        say <q>It is ten past nine, so the library is closed,</q> I am
+        claiming that the first sentence is reason to believe the
+        second. Whether anyone <em>should</em> be persuaded is a
+        different question.
+      </p>
+      <p>
+        The second is about whether the support actually
+        <alert>succeeds</alert>. The premises might genuinely give you
+        reason to believe the conclusion (a good argument), or they
+        might not (a bad argument). An argument can have its premises
+        and its conclusion in their proper places, follow the rules of
+        grammar, sound entirely persuasive — and still be a bad
+        argument because the premises don't actually support the
+        conclusion. A bad argument is still an argument. It's an
+        argument whose support fails.
+      </p>
+      <p>
+        This is the question we promised in <xref ref="sec-language"/>.
+        <em>Is this any good?</em> Once we have premises and a
+        conclusion in front of us, we can finally ask the question
+        with an object in mind. Then, we can start to draw out some
+        general properties from these specific arguments.
+      </p>
+    </paragraphs>
+
+    <paragraphs xml:id="paragraphs-indicator-words">
+      <title>Indicator words</title>
+      <p>
+        In real texts, premises and conclusions are frequently flagged
+        by short signal words. There's a small set of them that show
+        up over and over, and recognizing them is half the work of
+        recognizing arguments.
+      </p>
+      <p>
+        <alert>Conclusion indicators</alert> — words and phrases that
+        flag what comes next as a conclusion:
+      </p>
+      <ul>
+        <li><p><em>therefore</em></p></li>
+        <li><p><em>thus</em></p></li>
+        <li><p><em>hence</em></p></li>
+        <li><p><em>so</em> (when used inferentially)</p></li>
+        <li><p><em>consequently</em></p></li>
+        <li><p><em>it follows that</em></p></li>
+        <li><p><em>which means that</em></p></li>
+        <li><p><em>because</em></p></li>
+      </ul>
+      <p>
+        <alert>Premise indicators</alert> — words and phrases that
+        flag what comes next as a premise:
+      </p>
+      <ul>
+        <li><p><em>because</em></p></li>
+        <li><p><em>since</em></p></li>
+        <li><p><em>for</em> (when used inferentially)</p></li>
+        <li><p><em>given that</em></p></li>
+        <li><p><em>as</em></p></li>
+        <li><p><em>the reason being</em></p></li>
+      </ul>
+      <p>
+        A short example with both kinds of indicator:
+      </p>
+      <p>
+        <q><em>Since</em> the library closes at nine, <em>and since</em>
+        it is now ten past nine, the library is closed.</q>
+      </p>
+      <p>
+        Two premise indicators (both <em>since</em>) flag the two
+        premises. The unmarked sentence at the end is the conclusion.
+      </p>
+      <p>
+        A caveat worth taking seriously. Indicator words play other
+        roles or dual roles. <em>Because</em> often introduces a
+        premise, but it can also introduce a <em>causal explanation</em>
+        — a different kind of speech that can sound similar and which
+        we'll work on distinguishing in the next section.
+        <em>Because</em>, when it's used as a premise indicator, also
+        tells you what the conclusion is that's being supported by
+        that premise. For example, <q>You should support data center
+        construction, because they are the most efficient way to fund
+        public schools.</q> <em>Because</em> tells you both that
+        <q>they are the most efficient way to fund public schools</q>
+        is a premise and that <q>You should support data center
+        construction</q> is the conclusion. <em>So</em> can introduce
+        a conclusion (<q>It's late, so we should go home</q>) or it
+        can be filler (<q>So, anyway, the cat got out</q>) without
+        doing inferential work. Don't take an indicator as proof an
+        argument is happening. Take it as a strong hint, then read
+        carefully.
+      </p>
+      <p>
+        And one more case. Sometimes there are no indicator words at
+        all. A passage can have a perfectly clear argument without a
+        single <em>therefore</em> or <em>because</em>. You then have
+        to identify premise and conclusion by content and intent:
+        which sentence is the claim the writer is asking you to
+        accept, and which sentences are the reasons offered? That's
+        a skill that takes practice. We'll begin that practice in
+        the next section.
+      </p>
+    </paragraphs>
+
+    <paragraphs xml:id="paragraphs-standard-form">
+      <title>Standard form</title>
+      <p>
+        Once we've picked premises and conclusion out of a passage, we
+        lay them out cleanly. The convention we'll call
+        <term>standard form</term> in this book goes like this:
+      </p>
+      <ul>
+        <li><p>Each statement is on its own line.</p></li>
+        <li><p>Premises are labeled P1, P2, P3, <ellipsis/> in the order they appear.</p></li>
+        <li><p>The conclusion is labeled C.</p></li>
+      </ul>
+      <p>
+        When an argument has more than one conclusion (which happens
+        often in real texts — see the section below on sub-conclusions),
+        each conclusion gets a number (C1, C2, <ellipsis/>) and a
+        parenthetical note saying which premises and earlier
+        conclusions it follows from.
+      </p>
+      <p>
+        Two worked examples now, both about the same general topic.
+        They're worth pausing on, because together they make a point
+        we'll return to throughout the book.
+      </p>
+      <p>
+        Before we look at them, we need one piece of vocabulary that
+        both examples use. Conditional sentences — sentences of the
+        form <q>If [something], then [something else]</q> — have two
+        named parts. The part following <em>if</em> is called the
+        <term>antecedent</term>. The part following <em>then</em> is
+        called the <term>consequent</term>. (In real text the
+        <em>then</em> is often left implicit, but the structure is
+        the same: <q>If it rains, the streets are wet</q> is doing
+        the same work as <q>If it rains, then the streets are
+        wet.</q>) We'll work with conditionals in much more detail in
+        Part III; for now the labels are enough to follow the examples
+        below.
+      </p>
+      <example xml:id="ex-antecedent-consequent">
+        <title>Identifying antecedent and consequent</title>
+        <statement>
+          <p>
+            In each of the following conditional sentences, the
+            antecedent and consequent are labeled.
+          </p>
+          <ul>
+            <li>
+              <p>
+                <q>If it is raining, then the streets are wet.</q>
+                <mdash/> Antecedent: <q>it is raining.</q>
+                Consequent: <q>the streets are wet.</q>
+              </p>
+            </li>
+            <li>
+              <p>
+                <q>If there is no God, then life is meaningless.</q>
+                <mdash/> Antecedent: <q>there is no God.</q>
+                Consequent: <q>life is meaningless.</q>
+              </p>
+            </li>
+            <li>
+              <p>
+                <q>If there is evil in the world, then God does not exist.</q>
+                <mdash/> Antecedent: <q>there is evil in the world.</q>
+                Consequent: <q>God does not exist.</q>
+              </p>
+            </li>
+          </ul>
+        </statement>
+      </example>
+      <p>
+        The first is the argument we met at the end of
+        <xref ref="sec-statements"/>:
+      </p>
+      <example xml:id="ex-modus-tollens-god">
+        <title>An argument for God's existence</title>
+        <statement>
+          <p>P1: If there is no God, then life is meaningless.</p>
+          <p>P2: Life is not meaningless.</p>
+          <p><m>\therefore</m> C: God exists.</p>
+        </statement>
+      </example>
+      <p>
+        This argument has the structure logicians call
+        <term>modus tollens</term>: from a conditional and the denial
+        of its consequent, we conclude the denial of its antecedent.
+        We'll meet this and other named argument forms in detail in
+        Part III.
+      </p>
+      <p>
+        The second argument draws the <em>opposite</em> conclusion
+        from the same general territory:
+      </p>
+      <example xml:id="ex-modus-ponens-evil">
+        <title>An argument against God's existence</title>
+        <statement>
+          <p>P1: If there is evil in the world, then God does not exist.</p>
+          <p>P2: There is evil in the world.</p>
+          <p><m>\therefore</m> C: God does not exist.</p>
+        </statement>
+      </example>
+      <p>
+        This argument has the structure called
+        <term>modus ponens</term>: from a conditional and the
+        affirmation of its antecedent, we conclude the affirmation of
+        its consequent. Like modus tollens, we'll come back to it.
+      </p>
+      <p>
+        These two arguments make opposite claims. They take opposite
+        sides of one of the deepest, longest-running disputes in
+        human thought. Yet structurally, both are perfectly fine
+        argument <em>forms</em> — meaning that <em>if</em> their
+        premises were true, their conclusions would have to be true
+        too. The disagreement between them isn't a disagreement about
+        logic. It's a disagreement about whether the premises hold:
+        whether life is meaningful, whether evil exists in a sense
+        that's incompatible with God. Settling those is hard work,
+        much harder than checking the structure. But notice what the
+        structural framing does for us: it makes it perfectly clear
+        <em>where</em> the disagreement lies. The arguer who accepts
+        the first argument and rejects the second is committed to
+        defending <q>life is not meaningless</q> and challenging
+        <q>if evil exists, God does not.</q> That's a real position
+        to hold; it's also one a critic can engage with by attacking
+        exactly those premises.
+      </p>
+      <p>
+        Structure first. Then we can ask what's good about an
+        argument and what isn't, and have a productive disagreement
+        when we disagree.
+      </p>
+    </paragraphs>
+
+    <paragraphs xml:id="paragraphs-subconclusions-seed">
+      <title>Many arguments have sub-conclusions</title>
+      <p>
+        Most real-world arguments are messier than P1, P2,
+        <m>\therefore</m> C. Often a passage argues for an
+        intermediate claim and then uses that claim as a premise for
+        a further conclusion. When you see an argument laid out with
+        C1, C2, and parenthetical notes like <em>(from P1 and P2)</em>
+        or <em>(from C1 and P3)</em>, that's what's going on.
+        Conclusions can themselves serve as premises for later
+        conclusions, and complex arguments are stacks of inferences.
+        We'll work with these explicitly in the next section and
+        later. For now: don't be surprised when a real argument has
+        more than one conclusion in it.
+      </p>
+    </paragraphs>
+
+    <paragraphs xml:id="paragraphs-where-headed-1-3">
+      <title>Where we're headed</title>
+      <p>
+        We now have the parts (statements), the roles those parts
+        play (premises, conclusions), the relationship between them
+        (support, intended and actual), and the standard layout
+        (standard form, with sub-conclusions where the argument is
+        layered). What we don't yet have is much practice extracting
+        all that from real text — text where the indicator words
+        might be missing or misleading, where multiple things are
+        happening at once, and where a passage that <em>looks</em>
+        like an argument is sometimes really an <em>explanation</em>
+        — a different kind of speech that uses the same shape.
+        That's the next section. The eavesdropping field exercise
+        from <xref ref="sec-language"/> is about to start paying off.
+      </p>
+    </paragraphs>
+
+    <exploration xml:id="field-1-3-1">
+      <title>Field Exercise: Lay out the arguments in standard form</title>
+      <statement>
+        <p>
+          For each passage below, identify the premises and the
+          conclusion. Then write the argument in standard form (P1,
+          P2, <ellipsis/> <m>\therefore</m> C). If a passage has
+          indicator words, note which ones helped you. If it doesn't,
+          write a one-sentence explanation of how you decided which
+          statement was the conclusion.
+        </p>
+        <ol>
+          <li>
+            <p>
+              <q>Since data centers are coming online faster than we
+              can power them, and since rolling blackouts are
+              unacceptable in a modern economy, we need to expand the
+              electrical grid.</q>
+            </p>
+          </li>
+          <li>
+            <p>
+              <q>Either we stop subsidizing oil or we accept that our
+              climate goals are political theater. We are not going
+              to accept that our climate goals are political theater.
+              Therefore, we should stop subsidizing oil.</q>
+            </p>
+          </li>
+          <li>
+            <p>
+              <q>I shouldn't take the elective in graphic design. The
+              course meets at eight in the morning. I have soccer
+              practice that runs late on Mondays.</q>
+            </p>
+          </li>
+          <li>
+            <p>
+              <q>If the death penalty deterred crime, we would expect
+              murder rates to be lower in states that have it than in
+              states that don't. Murder rates are not lower in those
+              states. So the death penalty does not deter crime.</q>
+            </p>
+          </li>
+          <li>
+            <p>
+              <q>We can't simply redesign assignments to prevent lazy
+              AI use. If you ask students to use AI but critique what
+              it spits out, they can generate the critique with AI.
+              If you give them AI tutors trained only to guide them,
+              they can still use tools that just supply the answers.
+              And detectors are too prone to false accusations of
+              cheating and too poor at catching lightly edited output
+              for professors to rely on them.</q>
+              (From Clay Shirky, <q>Students Hate Them. Universities
+              Need Them. The Only Real Solution to the A.I. Cheating
+              Crisis,</q> <em>The New York Times</em>, August 2025.)
+            </p>
+          </li>
+        </ol>
+      </statement>
+    </exploration>
+
+  </section>
+
+  <section xml:id="sec-recognizing-arguments">
+    <title>Recognizing Arguments in the Wild</title>
+
+    <introduction>
+      <p>
+        In the previous three sections we assembled the apparatus.
+        Language does many jobs (<xref ref="sec-language"/>); only
+        some sentences are statements (<xref ref="sec-statements"/>);
+        arguments are statements arranged into premises and a
+        conclusion connected by an inferential relation
+        (<xref ref="sec-premises-conclusions"/>). We have what we need.
+      </p>
+      <p>
+        The trouble is that our use of language doesn't come
+        pre-labeled. Sentences flow into each other without indicator
+        words, or with misleading ones. Two passages that look
+        identical on the page can be doing entirely different jobs.
+        Multiple arguments can be tangled together in one paragraph,
+        with intermediate claims doing double duty as conclusions of
+        one inference and premises of the next. Recognizing arguments
+        in the wild — picking them out of real prose, distinguishing
+        them from things that aren't quite arguments, laying them out
+        so we can examine them — is the skill that turns the apparatus
+        from something you can describe into something you can
+        actually use. And that's our aim. The development of the
+        skills needed to pick out and analyze arguments and the
+        corresponding skills needed to produce good arguments. The
+        answer to the question, <q>Is it any good?</q> is not idle.
+        The answer is an active engagement with other people's
+        language and your own.
+      </p>
+    </introduction>
+
+    <paragraphs xml:id="paragraphs-argument-or-explanation">
+      <title>Argument or explanation?</title>
+      <p>
+        Way back in <xref ref="sec-language"/> we put
+        <em>explaining</em> in the catalog of things people do with
+        language and noted that explanations look a lot like
+        arguments. They use reasons. They have inferential structure.
+        They often use the same indicator words — especially
+        <em>because</em>. They can sound, on a first reading, exactly
+        the same. The difference is not in the words. It's in the job
+        the words are doing.
+      </p>
+      <p>
+        An argument moves you from claims you accept (the premises)
+        to a claim that's in question (the conclusion). The conclusion
+        is the thing the arguer is trying to get you to believe — the
+        part you might not have accepted before. The premises are the
+        reasons offered.
+      </p>
+      <p>
+        An explanation works in the other direction. The thing being
+        explained is something everyone (in the intended audience)
+        already accepts — it's not in question. The explanation
+        provides the reasons <em>why</em> that already-accepted thing
+        is the case. You're not being asked to believe the
+        explanandum; you already do. You're being told why it's true.
+      </p>
+      <p>
+        (Two pieces of vocabulary, since you'll occasionally see
+        them: the <term>explanandum</term> is the thing being
+        explained; the <term>explanans</term> is the reason offered.
+        <em>Premise</em> and <em>conclusion</em> are the parallel
+        words for arguments.)
+      </p>
+      <p>
+        The same content can serve as either an argument or an
+        explanation, depending on what's in question.
+      </p>
+      <example xml:id="ex-grid-argument-or-explanation">
+        <title>Same claim, different jobs</title>
+        <statement>
+          <p>
+            <alert>Argument.</alert> <q>We should expand the
+            electrical grid, because data centers are being built
+            faster than we can power them.</q>
+          </p>
+          <p>
+            <alert>Explanation.</alert> <q>Electricity prices are
+            rising, because data centers are being built faster than
+            we can power them.</q>
+          </p>
+        </statement>
+      </example>
+      <p>
+        Same claim after <em>because</em>. In the first, the
+        conclusion is <em>we should expand the grid</em> — a claim
+        that's contested, that depends on policy and money, and that
+        the speaker is trying to bring you around to. The premise is
+        the reason offered: <em>data centers are being built faster
+        than we can power them.</em> It's an argument because there's
+        something at issue.
+      </p>
+      <p>
+        In the second, the thing to be explained, the explanandum,
+        is <em>electricity prices are rising</em>. That's not in
+        question. Anyone's electric bill has been telling them this
+        for a while. The work being done is to explain <em>why</em>.
+        The data-center load isn't being offered as a reason to
+        <em>believe</em> prices are rising; it's being offered as a
+        reason <em>they are</em>. It's an explanation.
+      </p>
+      <p>
+        Another pair, even clearer:
+      </p>
+      <example xml:id="ex-car-argument-or-explanation">
+        <title>The car</title>
+        <statement>
+          <p>
+            <alert>Argument.</alert> <q>Your car doesn't have any gas,
+            so it won't start.</q>
+          </p>
+          <p>
+            <alert>Explanation.</alert> <q>My car wouldn't start. Oh,
+            look — I'm out of gas. That's why.</q>
+          </p>
+        </statement>
+      </example>
+      <p>
+        The first is prospective. It's not yet known that you won't
+        be able to start your car. The speaker is reasoning forward
+        from a known fact (no gas) to a predicted outcome (won't
+        start). It's an argument.
+      </p>
+      <p>
+        The second is retrospective. The car has already failed to
+        start; that's the data point everyone has. The reason offered
+        (out of gas) is offered to explain the already-observed fact.
+        It's an explanation.
+      </p>
+      <p>
+        That last contrast points to a useful diagnostic:
+        <alert>arguments are often future- or contention-oriented;
+        explanations are usually past- or already-accepted-oriented.</alert>
+        It isn't a perfect rule. Some arguments are about the past —
+        a historian arguing for one reconstruction of an event over
+        another, for instance, is making an argument about something
+        that already happened, but the conclusion is still in question
+        because the <em>historical claim</em> hasn't been settled.
+        And a few explanations gesture forward — <q>the storm will be
+        bad because the air pressure is dropping fast</q> could be
+        either, depending on whether the listener already accepts that
+        the storm will be bad. But for a quick first pass,
+        time-direction is a strong tell: when in doubt, ask whether
+        the would-be conclusion is something the audience already
+        believes (likely an explanation) or something the speaker is
+        trying to convince them of (likely an argument).
+      </p>
+      <p>
+        A second diagnostic worth keeping: <alert>argue or make sense
+        of?</alert> If the speaker's posture is <em>let me convince
+        you of this</em>, it's an argument. If it's <em>let me help
+        you make sense of this</em>, it's an explanation. Same words
+        on the page can do either job, depending on what kind of
+        conversation is happening.
+      </p>
+    </paragraphs>
+
+    <paragraphs xml:id="paragraphs-extraction-procedure">
+      <title>A procedure for extracting arguments</title>
+      <p>
+        Here is a workable procedure for pulling an argument out of
+        real text. It looks pedantic written down, but it gets
+        natural, nuanced, and requires judgment as you practice.
+      </p>
+      <ol>
+        <li>
+          <p>
+            <alert>Read the passage twice.</alert> Once for the gist;
+            once ready to take notes.
+          </p>
+        </li>
+        <li>
+          <p>
+            <alert>Find the conclusion.</alert> Ask yourself: what is
+            the writer asking the reader to accept? It's often — not
+            always — the most contentious-sounding sentence in the
+            passage. Look for conclusion indicators (<em>therefore,
+            thus, so, hence, consequently</em>) but don't rely on
+            them; conclusions can sit at the start of a passage, at
+            the end, or in the middle.
+          </p>
+        </li>
+        <li>
+          <p>
+            <alert>Find the premises.</alert> Ask: what reasons are
+            given for the conclusion? Look for premise indicators
+            (<em>because, since, given that, for</em>) and for
+            sentences whose role is clearly to support something
+            else.
+          </p>
+        </li>
+        <li>
+          <p>
+            <alert>Lay it out in standard form</alert> (P1, P2,
+            <ellipsis/> <m>\therefore</m> C). One statement per line.
+            Use exactly the wording the passage uses where possible;
+            reword only when the passage's prose makes the structure
+            hard to see.
+          </p>
+        </li>
+        <li>
+          <p>
+            <alert>Check the structure.</alert> Does the conclusion
+            really follow from the premises? Is something obviously
+            missing — a hidden assumption the passage takes for
+            granted? Are there actually two arguments in this passage
+            instead of one? Does what looks like a single premise
+            turn out to itself be a small argument?
+          </p>
+        </li>
+      </ol>
+      <p>
+        A worked example. Here's a short paragraph:
+      </p>
+      <blockquote>
+        <p>
+          Most people think of running shoes as a recent invention,
+          but archaeologists have found rope-soled sandals from twenty
+          thousand years ago that show specific wear patterns
+          associated with running, and similar sandals have appeared
+          independently in widely separated cultures. So the
+          deliberate design of footwear for running is a much older
+          human practice than people assume.
+        </p>
+      </blockquote>
+      <p>
+        Read once for gist: claim about running-shoe history. Read
+        again taking notes or marking up the passage: the conclusion
+        is signaled by <em>so</em> — <em>the deliberate design of
+        footwear for running is a much older human practice than
+        people assume</em>. The premises are the two historical
+        claims that are assumed to be true: the claims about
+        archaeological discoveries and cultural distribution.
+      </p>
+      <p>
+        In standard form:
+      </p>
+      <example xml:id="ex-running-shoes-standard-form">
+        <title>Running shoes, in standard form</title>
+        <statement>
+          <p>
+            P1: Archaeologists have found rope-soled sandals from
+            twenty thousand years ago with wear patterns associated
+            with running.
+          </p>
+          <p>
+            P2: Similar running-adapted sandals have appeared
+            independently in widely separated cultures.
+          </p>
+          <p>
+            <m>\therefore</m> C: The deliberate design of footwear
+            for running is a much older human practice than people
+            assume. <em>(from P1 and P2)</em>
+          </p>
+        </statement>
+      </example>
+      <p>
+        Two premises, one conclusion, indicator word <em>so</em>. The
+        first sentence (<q>Most people think<ellipsis/></q>) isn't a
+        premise of the argument; it's setting up what the argument is
+        pushing back against. Notice that — sometimes the prose
+        includes orientation that isn't part of the inference, and
+        you should leave it out of the standard-form layout. Though,
+        sometimes, this set-up is so integral to the argument that it
+        will make it into the conclusion itself.
+      </p>
+    </paragraphs>
+
+    <paragraphs xml:id="paragraphs-layered-arguments">
+      <title>Layered arguments and sub-conclusions</title>
+      <p>
+        In <xref ref="sec-premises-conclusions"/> we noted that real
+        arguments are often messier than P1, P2,
+        <m>\therefore</m> C. Sometimes a passage argues for an
+        intermediate claim and then uses that intermediate claim as
+        a premise for a further conclusion. We called these
+        intermediate claims <term>sub-conclusions</term>. The
+        notation: each sub-conclusion is labeled C1, C2,
+        <ellipsis/> and followed by a parenthetical note saying
+        which premises (and which earlier conclusions) it follows
+        from.
+      </p>
+      <p>
+        A worked example. Here's a paragraph adapted from a charity
+        pitch:
+      </p>
+      <blockquote>
+        <p>
+          You should donate to Oxfam. Oxfam efficiently uses
+          contributions to help end long-term poverty by providing
+          the tools for people to get an education and support their
+          families. Eighty-nine cents of every dollar goes directly
+          to organizations on the ground. The aid provides for things
+          like goats and schoolbooks, so that a family can provide
+          for itself and the next generation has options. Also, it
+          feels good to help people.
+        </p>
+      </blockquote>
+      <p>
+        The conclusion is the first sentence: <em>you should donate
+        to Oxfam</em>. Notice the conclusion at the start, not the
+        end — perfectly common. The rest of the paragraph is offering
+        reasons.
+      </p>
+      <p>
+        But the structure is layered. Some of the reasons are
+        themselves supported by other reasons. Two factual claims
+        (89 cents on the dollar; the aid provides for goats and
+        schoolbooks) support an intermediate claim (Oxfam uses
+        donations efficiently to end long-term poverty). That
+        intermediate claim, plus a separate consideration (it feels
+        good to help people), supports the main conclusion (you
+        should donate). Laid out:
+      </p>
+      <example xml:id="ex-oxfam-standard-form">
+        <title>Oxfam, in standard form</title>
+        <statement>
+          <p>P1: 89 cents of every dollar goes directly to organizations on the ground.</p>
+          <p>P2: The aid provides for things like goats and schoolbooks.</p>
+          <p>C1: The aid Oxfam provides makes it so a family can provide for itself and the next generation has options. <em>(from P2)</em></p>
+          <p>C2: Oxfam efficiently uses contributions to help end long-term poverty by providing the tools for people to get an education and support their families. <em>(from P1 and C1)</em></p>
+          <p>P3: It feels good to help people.</p>
+          <p><m>\therefore</m> C3: You should donate to Oxfam. <em>(from C2 and P3)</em></p>
+        </statement>
+      </example>
+      <p>
+        This is the diagramming notation we'll use throughout the
+        book whenever an argument has more than one inference in it.
+        Two things worth pausing on.
+      </p>
+      <p>
+        First, every conclusion declares what it follows from.
+        <em>(from P2)</em>, <em>(from P1 and C1)</em>, <em>(from C2
+        and P3)</em> — those parenthetical notes are how the structure
+        shows itself. Without them, a multi-step argument is just a
+        list of statements, and the reader has to guess which
+        inferences the writer intended.
+      </p>
+      <p>
+        Second, this is harder than it looks the first time. The
+        Oxfam paragraph contains six statements doing different jobs
+        — two raw premises, three inferred claims (one of which is
+        the final conclusion), and one independent premise (P3) that
+        doesn't connect to the others until the very end. Pulling
+        that structure out cleanly takes practice. The Field Exercise
+        below has a couple of layered passages so you can practice on
+        something a little messier than the one we just did together.
+      </p>
+    </paragraphs>
+
+    <paragraphs xml:id="paragraphs-where-headed-1-4">
+      <title>Where we're headed</title>
+      <p>
+        That's the apparatus and the extraction skill. To recap what
+        we've put together over four sections: the recognition that
+        language does many jobs and only some of them count as
+        arguing (<xref ref="sec-language"/>); the precise notion of a
+        statement as a sentence that is either true or false,
+        regardless of who knows or who agrees
+        (<xref ref="sec-statements"/>); the structural roles of
+        premise and conclusion, the distinction between intent and
+        successful support, indicator words, and standard form
+        (<xref ref="sec-premises-conclusions"/>); and now
+        (<xref ref="sec-recognizing-arguments"/>) the practice of
+        pulling all of that out of real text, distinguishing argument
+        from explanation, and handling layered structure.
+      </p>
+      <p>
+        What we <em>can't</em> yet do is evaluate the arguments we've
+        extracted. We can lay one out cleanly and we can ask the
+        question we've been pointing at since the beginning —
+        <em>is this any good?</em> — but we don't yet have the tools
+        to answer that question with rigor. That's what the next
+        chapter is for. Once an argument is in standard form, we can
+        begin to ask whether the support is genuine: whether the
+        conclusion really follows from the premises (validity),
+        whether the premises are actually true (soundness), and what
+        we should make of arguments where one of those holds but not
+        the other. The chapters that follow give us the technical
+        machinery — categorical logic in Part II, sentential logic
+        and natural deduction in Part III, statistical reasoning in
+        Part IV — for answering <em>is this any good?</em> in
+        different domains. But all of those machines run on the
+        structures we've built here. Statements as truth-bearing
+        sentences; arguments as premises supporting conclusions.
+        That's the foundation.
+      </p>
+    </paragraphs>
+
+    <exploration xml:id="field-1-4-1">
+      <title>Field Exercise: Extract and classify</title>
+      <statement>
+        <p>
+          For each passage below:
+        </p>
+        <ul>
+          <li>
+            <p>
+              Decide whether the passage is making an argument,
+              giving an explanation, or doing something else (and
+              say which).
+            </p>
+          </li>
+          <li>
+            <p>
+              If it is an argument, lay it out in standard form,
+              including any sub-conclusions.
+            </p>
+          </li>
+          <li>
+            <p>
+              If it is an explanation, identify the explanandum and
+              explanans.
+            </p>
+          </li>
+          <li>
+            <p>
+              If it is something else, say what.
+            </p>
+          </li>
+        </ul>
+        <p>
+          Don't worry about evaluating whether the arguments are good.
+          We'll get to that in the next chapter. For now, the work is
+          just to see the structure.
+        </p>
+        <ol>
+          <li>
+            <p>
+              <q>Since the data centers in this region pull more than
+              ten percent of available capacity at peak, and since
+              the grid was designed for a load profile from twenty
+              years ago, brownouts during summer evenings are now
+              nearly inevitable absent serious investment in
+              transmission.</q>
+            </p>
+          </li>
+          <li>
+            <p>
+              <q>Roman concrete has lasted two thousand years in the
+              worst possible conditions for ordinary cement: salt
+              water, repeated tide cycles, freeze-thaw. We've finally
+              figured out why. The Romans included unslaked lime in
+              the mix, which reacts with seawater to produce calcium
+              aluminum silicate, sealing the very cracks that destroy
+              modern concrete.</q>
+            </p>
+          </li>
+          <li>
+            <p>
+              <q>I shouldn't take the elective in graphic design. The
+              course meets at eight in the morning. I have soccer
+              practice that runs late on Mondays, and I've never been
+              able to drag myself out of bed for an early class after
+              a late practice.</q>
+            </p>
+          </li>
+          <li>
+            <p>
+              <q>You should support the proposed expansion of the
+              campus library. Studies of similar projects at peer
+              institutions show measurable improvements in student
+              retention. The current building was last renovated in
+              1973 and lacks accessible study space for students with
+              disabilities. The expansion is also cheaper now than it
+              will be in ten years; construction costs are projected
+              to rise faster than inflation. And the library is the
+              one space on campus that serves every student,
+              regardless of major.</q>
+            </p>
+          </li>
+          <li>
+            <p>
+              <q>In the medieval university, the lecturer typically
+              read aloud from a manuscript while students copied the
+              text. Movable type was nonexistent and books were
+              scarce; an entire institution might own only a single
+              copy of a given text. Centuries before the printing
+              press, the most efficient way to distribute knowledge
+              was to put it in a single voice and have everyone in
+              the room write it down at once.</q>
+              (Adapted from Clay Shirky, <q>Students Hate Them.
+              Universities Need Them,</q> <em>The New York Times</em>,
+              August 2025.)
+            </p>
+          </li>
+        </ol>
+      </statement>
+    </exploration>
+
+  </section>
+
+  <!--
+    Remaining Chapter 1 back-matter, to be added after §1.4 is locked:
+    - Chapter Summary (key concepts in lookup-friendly format)
+    - Key Terms (alphabetized list with section pointers)
+    - End-of-Chapter Exercises (gradable problem set, including the
+      writing prompt that pairs with Field Exercise 1.1.1's eavesdropping)
+    - Selected-solutions appendix entries
+  -->
+
+</chapter>
