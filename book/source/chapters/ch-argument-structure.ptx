@@ -449,6 +449,20 @@
       weaker or incomplete.
     </p>
 
+    <p>
+      The food pantry was a fresh passage. We saw another layered
+      argument earlier, in <xref ref="sec-recognizing-arguments"/>: the
+      paragraph about donating to Oxfam. The reconstruction we produced
+      there was a good first pass — built with the extraction tools of
+      Chapter 1, not the more careful machinery of this chapter. The
+      tools we've worked through here let us revisit it: ask whether
+      each support relation is dependent or independent, identify any
+      implicit premises the Chapter 1 version absorbed quietly, and
+      reconsider whether every sentence in the original passage was
+      doing argumentative work. We'll do that revisit in the
+      end-of-chapter exercises.
+    </p>
+
   </section>
 
   <section xml:id="sec-implicit-premises">
@@ -940,6 +954,84 @@
       <exercise xml:id="ex-ch2-s06-02">
         <statement>
           <p>Automated tutors can answer routine questions quickly, and that is useful. But students often come to office hours because they are confused about what they are confused about. In those cases, a human instructor can listen, ask follow-up questions, and notice patterns the student cannot yet name. The hardest learning problems often require that kind of diagnosis. Automated tutors are useful supplements, but they are not replacements for office hours.</p>
+        </statement>
+      </exercise>
+    </exercisegroup>
+
+    <exercisegroup xml:id="exgroup-ch2-s07">
+      <title>Exercise Set 7: Revisiting a Chapter 1 Reconstruction</title>
+      <introduction>
+        <p>
+          Reconstruction is a draft skill: a first reconstruction can
+          be improved by going back over it with sharper tools. This
+          exercise asks you to do exactly that.
+        </p>
+        <p>
+          Below is the original passage from
+          <xref ref="sec-recognizing-arguments"/> about donating to
+          Oxfam, followed by the reconstruction we produced there.
+          Apply the tools of this chapter to that reconstruction.
+        </p>
+      </introduction>
+      <exercise xml:id="ex-ch2-s07-01">
+        <statement>
+          <p>
+            <em>Original passage:</em>
+          </p>
+          <blockquote>
+            <p>
+              You should donate to Oxfam. Oxfam efficiently uses
+              contributions to help end long-term poverty by providing
+              the tools for people to get an education and support
+              their families. Eighty-nine cents of every dollar goes
+              directly to organizations on the ground. The aid
+              provides for things like goats and schoolbooks, so that
+              a family can provide for itself and the next generation
+              has options. Also, it feels good to help people.
+            </p>
+          </blockquote>
+          <p>
+            <em>Reconstruction from <xref ref="sec-recognizing-arguments"/>:</em>
+          </p>
+          <p>P1: 89 cents of every dollar goes directly to organizations on the ground.</p>
+          <p>P2: The aid provides for things like goats and schoolbooks.</p>
+          <p>C1: The aid Oxfam provides makes it so a family can provide for itself and the next generation has options. <em>(from P2)</em></p>
+          <p>C2: Oxfam efficiently uses contributions to help end long-term poverty by providing the tools for people to get an education and support their families. <em>(from P1 and C1)</em></p>
+          <p>P3: It feels good to help people.</p>
+          <p>C3: You should donate to Oxfam. <em>(from C2 and P3)</em></p>
+          <p>
+            Now answer the following:
+          </p>
+          <ol marker="(a)">
+            <li>
+              <p>
+                For each support note in the reconstruction, decide
+                whether the support is dependent or independent. Rewrite
+                each support note so that the answer is included.
+              </p>
+            </li>
+            <li>
+              <p>
+                Identify at least one implicit premise that the original
+                Chapter 1 reconstruction absorbed quietly. Where in the
+                reasoning does it belong? Write it out.
+              </p>
+            </li>
+            <li>
+              <p>
+                Reconsider every sentence in the original passage. Is
+                any sentence doing background, rhetorical, or emotional
+                work rather than supporting the conclusion? If so, name
+                it and say what kind of work it's doing.
+              </p>
+            </li>
+            <li>
+              <p>
+                Write two or three sentences explaining what the tools
+                of this chapter added to the original reconstruction.
+              </p>
+            </li>
+          </ol>
         </statement>
       </exercise>
     </exercisegroup>

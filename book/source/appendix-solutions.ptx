@@ -244,4 +244,23 @@
     <title>Exercise Set 14: Short Writing Prompts</title>
     <p>No solutions provided. These are open-ended writing prompts; responses will vary by student.</p>
   </section>
+
+  <section xml:id="sol-ch2-exercise-set-7-revisiting-ch1-reconstruction">
+    <title>Chapter 2, Exercise Set 7: Revisiting a Chapter 1 Reconstruction</title>
+    <p>A model answer follows. Other defensible answers are possible; the goal is to apply the tools of Chapter 2 to the original reconstruction with care.</p>
+
+    <p><term>(a)</term> <em>Dependent / independent labels.</em></p>
+    <p>C1 (from P2 alone). Only one premise is offered at this step, so there is no dependence question to ask.</p>
+    <p>C2 (from P1 and C1, dependent). P1 alone tells us about cost efficiency; C1 alone tells us what the aid does. Neither alone supports the broader claim that Oxfam efficiently uses contributions to help end long-term poverty by providing the tools for people to get an education and support their families. Together they do.</p>
+    <p>C3 (from C2, P3, and an implicit premise — see (b); dependent). The structure of the inference is that Oxfam's efficient use of donations <em>plus</em> the goodness of helping <em>plus</em> a connecting principle is what licenses the recommendation. Removing any one piece weakens the support significantly.</p>
+
+    <p><term>(b)</term> <em>An implicit premise.</em></p>
+    <p>The natural implicit premise is something like: <q>You should donate to programs that efficiently end long-term poverty and that you find rewarding to support.</q> A more minimal version: <q>You should donate to programs that meet conditions like efficiency and that produce satisfaction in the donor.</q> Without an implicit principle of this kind, the move from C2 and P3 to C3 isn't licensed; the reconstruction needs the bridging claim. Adding it as P4 (implicit) makes the inference to C3 explicit.</p>
+
+    <p><term>(c)</term> <em>Background, rhetorical, or emotional work.</em></p>
+    <p>P3 (<q>It feels good to help people</q>) is doing different work from the other premises. The earlier premises and C1 and C2 build a case about Oxfam's effectiveness. P3 shifts to an emotional appeal. A charitable reconstruction can keep it as a premise — donor satisfaction is one reason to give, and the original passage offers it as one — but a more critical reconstruction might flag it as rhetorical, particularly because the case for donating goes through even without it. Reasonable reconstructions can disagree here. Either choice is defensible; what matters is making the choice consciously and being able to explain it.</p>
+
+    <p><term>(d)</term> <em>What Chapter 2's tools added.</em></p>
+    <p>The Chapter 1 reconstruction identified the structure of the argument but did not say <em>how</em> the support worked at each step. Chapter 2's tools added three things: explicit dependent/independent labels showing which premises rely on which others; an implicit premise that makes the move to the conclusion licensed rather than left for the reader to supply silently; and a finer reading of what each sentence in the original passage is doing — premise, sub-conclusion, or rhetorical addition. The reconstruction is the same in outline but more rigorous about the relations between the parts.</p>
+  </section>
 </appendix>
