@@ -121,6 +121,7 @@
 
     <backmatter xml:id="backmatter">
       <xi:include href="appendix-solutions.ptx"/>
+      <xi:include href="appendix-diagramming.ptx"/>
       <colophon xml:id="back-colophon">
         <p>
           This book was authored in <url href="https://pretextbook.org">PreTeXt</url>.

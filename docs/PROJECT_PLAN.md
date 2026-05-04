@@ -273,3 +273,41 @@ Items planted in earlier chapters that *must* be paid off in later chapters. Add
 
 - **Chapter 1 §1.1** plants the explanation-vs-argument distinction with a one-line preview ("we'll come back to that resemblance later"). This requires a dedicated subsection in the later chapter on *recognizing arguments in the wild*. The subsection should make the contrast precise: an argument tries to get the audience to *accept* a claim by giving reasons for it; an explanation assumes the claim is already accepted and gives reasons *why it is true*. Same shape, different work.
 - **Chapter 1 §1.1** previews *valid* and *sound* as labels, with a note that they apply to argument structure and not content. Definitions come in Chapter 3.
+- **Chapter 2 §2.3** points readers forward to *Appendix on Argument Diagrams* (planned). The pointer is a two-sentence reference at the end of the *verbal diagram rule* paragraphs block. The appendix itself remains to be drafted; see §18 of this plan for what it will contain.
+
+## 18. Planned Appendices
+
+Documented future content in the back-matter, in addition to the existing `appendix-solutions.ptx`.
+
+### Appendix on Argument Diagrams
+
+**Status.** Planned. A placeholder file lives at `book/source/appendix-diagramming.ptx` and is included from `main.ptx` so the build picks it up. Full content to be drafted later.
+
+**Why an appendix and not body content.** Three reasons:
+
+1. *Accessibility.* The main text never relies on a diagram, so screen-reader users get a complete, fully load-bearing book without the appendix. The book's cross-cutting accessibility commitment from §7 holds cleanly.
+2. *The verbal-diagram rule already governs the body.* §2.3 establishes that a reconstruction must state every support relation in words, and that the verbal form is primary. The diagrams appendix formalizes this — diagrams are an alternate visual representation of information that already lives in the reconstruction.
+3. *Optional vs. required separation.* Students who find diagrams unhelpful, who use screen readers, or who prefer prose can complete the course without engaging the appendix. Students who learn visually use it as a study aid. Adopters can assign or skip.
+
+**Inline pointer in §2.3.** Two sentences at the end of the *verbal diagram rule* paragraphs block direct readers to the appendix and reaffirm that the verbal reconstruction is primary. The pointer was added when the appendix was created; see §2.3 of `book/source/chapters/ch-argument-structure.ptx`.
+
+**Diagrammatic conventions to teach.** Four core conventions plus one composed case:
+
+1. *Single arrow.* A premise (or sub-conclusion) supporting a conclusion is represented by an arrow from the premise to the conclusion.
+2. *Bracket for dependent.* Premises that work only together are visually grouped with a brace or bracket, and one arrow leaves the group and points to the conclusion they jointly support.
+3. *Separate arrows for independent.* Premises that each support the conclusion on their own each get their own arrow. Multiple arrows arriving at one conclusion = independent support.
+4. *Divergent.* A single premise that supports multiple conclusions has arrows leaving it for each conclusion. Multiple arrows leaving one premise = the premise supports more than one thing.
+5. *Convergent layered.* When a sub-conclusion C1 is itself supported by P1 and P2, the diagram has arrows from those premises (bracketed if dependent) into C1, and then a further arrow from C1 onward to whatever it in turn supports. Not a fifth fundamental convention — a consequence of applying the four to layered arguments — but worth showing as a worked diagram so students see how the conventions compose.
+
+**Planned appendix contents.**
+
+1. *Frame.* One paragraph stating that diagrams are optional, what they add (visual at-a-glance overview of structure), what they don't add (no information beyond the verbal reconstruction). Names the accessibility commitment.
+2. *The four conventions* with the simplest possible example of each — one arrow, then bracket-dependent, then independent multi-arrow, then divergent.
+3. *Worked diagrams of arguments students have already met:* the library example from §1.3, the two God arguments from §1.3, the running shoes argument from §1.4, the Oxfam paragraph from §1.4 (especially good — it shows layered + dependent + independent + sub-conclusions all in one), and the food pantry from §2.4. Each diagram paired with its already-published verbal reconstruction so the equivalence is right there.
+4. *A worked example of a divergent argument* — students haven't seen one yet in the body of the book. One tailor-made example is worth including so the convention has a concrete instance.
+5. *Accessibility note.* Brief paragraph stating the appendix's commitment: every diagram has a `<description>` for screen readers that fully describes the support structure; the verbal reconstruction is primary; nothing in the assessments depends on producing or reading a diagram.
+6. *Optional exercises.* If we want any. Could be a small set asking students to take a verbal reconstruction from Chapters 1 or 2 and produce a diagram. Optional and explicitly so. No corresponding solutions — exploratory territory.
+
+**Implementation notes.** Diagrams are generated via PreTeXt's `<figure>` + `<image>` elements, with TikZ source (or PreTeXt's `<diagram>` element) compiled to SVG for both PDF and HTML. Each `<image>` has a required `<description>` element holding the alt-text — for these diagrams the description must walk through the support structure for screen-reader users (e.g., *"P1 and P2 are bracketed together; one arrow leaves the bracket and arrives at C, indicating dependent support."*). Descriptions are non-trivial to write but are write-once.
+
+**Voice conventions.** Same as the rest of Chapter 2: matter-of-fact, declarative, second-person where it lands. The frame paragraph should explicitly name diagrams as optional and as supplementary to the verbal form. The convention sub-sections are mostly structural prose plus diagrams; minimal opportunity for voice slips.

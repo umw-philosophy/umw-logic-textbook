@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  Appendix: Argument Diagrams.
+  Placeholder. Full content to be drafted later.
+  See docs/PROJECT_PLAN.md §18 and docs/DECISIONS.md D-027 for the
+  appendix's planned scope, contents, and rationale.
+-->
+<appendix xml:id="appendix-diagramming">
+
+  <title>Argument Diagrams</title>
+
+  <introduction>
+    <p>
+      <em>This appendix is in preparation.</em>
+    </p>
+    <p>
+      It will describe the optional visual conventions for diagramming
+      argument structure — single arrows from premises to conclusions,
+      brackets for dependent premises, separate arrows for independent
+      support, divergent arguments where one premise supports more than
+      one conclusion, and the convergent-layered composition — and will
+      present worked diagrams of several arguments students have already
+      met in the body of the book. Each diagram will be paired with the
+      verbal reconstruction it represents.
+    </p>
+    <p>
+      The verbal reconstruction is the primary form. Diagrams are an
+      alternate visual representation that does not add information
+      beyond what the reconstruction already conveys. Nothing in the
+      assessments depends on producing or reading a diagram.
+    </p>
+    <p>
+      Until this appendix is drafted, students who would benefit from
+      visual representations can draw their own diagrams from the
+      verbal reconstructions in Chapter 2.
+    </p>
+  </introduction>
+
+  <!--
+    PLANNED CONTENTS (per PROJECT_PLAN.md §18):
+    1. Frame: optional, accessibility-first, what diagrams add and don't add.
+    2. The four conventions: single arrow; bracket for dependent;
+       separate arrows for independent; divergent (one premise → many
+       conclusions). Plus the convergent-layered composition as a
+       consequence of the four applied together.
+    3. Worked diagrams of arguments students have already met:
+       - Library example (§1.3)
+       - Modus tollens for God's existence (§1.3)
+       - Modus ponens against God's existence (§1.3)
+       - Running shoes (§1.4)
+       - Oxfam (§1.4) — shows layered + dependent + independent + sub-conclusions
+       - Food pantry (§2.4)
+    4. A worked example of a divergent argument (newly written for this appendix).
+    5. Accessibility statement up front and at the bottom.
+    6. Optional exercises (no required solutions; exploratory).
+
+    Implementation: each diagram is a <figure>+<image> with an
+    embedded <description> giving the support structure in words for
+    screen-reader users. Source for the diagrams in TikZ or PreTeXt's
+    <diagram> element; SVG output for both PDF and HTML.
+  -->
+
+</appendix>

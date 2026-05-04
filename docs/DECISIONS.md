@@ -310,4 +310,18 @@ Each decision is dated, numbered, and tagged with the section of `PROJECT_PLAN.m
 
 ---
 
+## D-027 — Argument diagramming as an optional appendix, not body content
+
+**Date**: 2026-05-04
+**Plan section**: 18
+**Decision**: Visual diagramming of argument structure (arrows from premises to conclusions, brackets for dependent premises, separate arrows for independent support, the divergent case, and the convergent-layered composition) is presented in a dedicated appendix (`book/source/appendix-diagramming.ptx`), not in the body of Chapter 2 or any other chapter. A two-sentence pointer in §2.3 directs readers to the appendix; the body of the book treats the verbal form of reconstruction (with parenthetical *(from P1 and P2, dependent)* notation) as primary.
+**Alternatives considered**:
+- (a) **Inline alongside the §2.3 reconstruction material.** Diagrams introduced in body prose where the dependent/independent distinction first appears. Rejected: harder to keep accessibility clean since visual material would be intermixed with text central to the chapter; would make screen-reader users navigate around figures whose information is already in the surrounding prose.
+- (b) **Pure appendix with no inline mention.** Risks visual learners not discovering the appendix. Rejected in favor of (c).
+- (c) **Appendix with a brief inline pointer in §2.3.** Chosen.
+- (d) **No diagramming at all.** Rejected: visual representation genuinely helps some students learn argument structure, even if everything in the diagram is in principle in the reconstruction.
+**Rationale**: Three considerations. (1) The book's accessibility commitment (D-024 / PROJECT_PLAN.md §7) is easiest to honor when no body content depends on a visual representation. (2) The "verbal diagram rule" already adopted in §2.3 makes the verbal form primary; an appendix formalizes the implication that diagrams are an optional alternate representation. (3) Separating optional from required lets adopters and students choose: instructors who want to teach diagramming can assign the appendix; instructors who don't can skip it. The two-sentence inline pointer ensures students who would benefit from diagrams discover them.
+
+---
+
 *End of decision log as of project alignment, April 26, 2026. New decisions appended below.*

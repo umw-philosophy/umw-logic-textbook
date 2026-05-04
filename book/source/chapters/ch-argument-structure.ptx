@@ -357,6 +357,14 @@
         It should be clear enough that a reader who never sees the arrows
         still knows the structure of the argument.
       </p>
+      <p>
+        Some students find a visual diagram of these support relations
+        clarifying. Standard diagramming conventions and worked diagrams
+        of arguments from this chapter appear in
+        <xref ref="appendix-diagramming"/>; the verbal reconstruction
+        we use throughout the body of the book remains the primary
+        form.
+      </p>
     </paragraphs>
 
   </section>
@@ -686,7 +694,7 @@
           term.
         </p>
         <p>
-          C2: New data centers provide economic benefits. (from P4 and P5
+          C2: New data centers provide economic benefits. (implicit, from P4 and P5
           independently)
         </p>
         <p>
@@ -712,7 +720,7 @@
       written. It organizes the reasoning. It also shows why each premise
       matters. P1, P2, and P3 work together to support C1: the tax
       efficiency of data centers matters because schools need property tax
-      revenue. P4 and P5 each give some support for C2, since short-term
+      revenue. C2, which is not stated explicitly, is supported by P4 and P5 independently as each gives some support for the claim, since short-term
       construction jobs and longer-term tech jobs are separate economic
       benefits. C3 is slightly different. It responds to an objection
       rather than giving the main positive reason for the conclusion. In a
@@ -962,9 +970,7 @@
       <title>Exercise Set 7: Revisiting a Chapter 1 Reconstruction</title>
       <introduction>
         <p>
-          Reconstruction is a draft skill: a first reconstruction can
-          be improved by going back over it with sharper tools. This
-          exercise asks you to do exactly that.
+          Reconstruction is a skill that requires interation: a first reconstruction can be improved by going back over it with sharper tools. This exercise asks you to do exactly that.
         </p>
         <p>
           Below is the original passage from
