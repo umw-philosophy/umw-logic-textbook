@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<quiz xmlns="http://canvas.instructure.com/xsd/cccv1p0" identifier="assessment_34dda4d685a3476eb9d0c8ad3fd4a7b0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://canvas.instructure.com/xsd/cccv1p0 http://canvas.instructure.com/xsd/cccv1p0.xsd">
+  <title>Chapter 1 Quiz 3: Premises and Conclusions</title>
+  <description>&lt;p&gt;Autograded practice for Chapter 1, Section 1.3. Due May 18.&lt;/p&gt;</description>
+  <quiz_type>assignment</quiz_type>
+  <points_possible>5</points_possible>
+  <due_at>2026-05-19T03:59:00Z</due_at>
+  <published>true</published>
+</quiz>

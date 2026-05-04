@@ -69,7 +69,8 @@
     <part xml:id="part-arguments">
       <title>Arguments and Reasoning</title>
       <xi:include href="chapters/ch-what-is-an-argument.ptx"/>
-      <!-- Future: ch-argument-structure.ptx, ch-language-and-meaning.ptx, ch-informal-fallacies.ptx -->
+      <xi:include href="chapters/ch-argument-structure.ptx"/>
+      <!-- Future: ch-language-and-meaning.ptx, ch-informal-fallacies.ptx -->
     </part>
 
     <!--

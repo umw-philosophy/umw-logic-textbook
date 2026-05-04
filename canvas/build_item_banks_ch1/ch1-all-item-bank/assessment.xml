@@ -1,0 +1,2110 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<questestinterop xmlns="http://www.imsglobal.org/xsd/ims_qtiasiv1p2" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.imsglobal.org/xsd/ims_qtiasiv1p2 http://www.imsglobal.org/xsd/ims_qtiasiv1p2p1.xsd">
+  <assessment ident="ch1-all-item-bank" title="Chapter 1 Item Bank - All Questions">
+    <qtimetadata>
+      <qtimetadatafield><fieldlabel>cc_maxattempts</fieldlabel><fieldentry>unlimited</fieldentry></qtimetadatafield>
+    </qtimetadata>
+    <section ident="root_section">
+
+      <item ident="ch1-all-item-bank_q1" title="Question 1">
+        <itemmetadata>
+          <qtimetadata>
+            <qtimetadatafield><fieldlabel>question_type</fieldlabel><fieldentry>multiple_choice_question</fieldentry></qtimetadatafield>
+            <qtimetadatafield><fieldlabel>points_possible</fieldlabel><fieldentry>1</fieldentry></qtimetadatafield>
+          </qtimetadata>
+        </itemmetadata>
+        <presentation>
+          <material><mattext texttype="text/html">&lt;div&gt;What is the main thing the speaker is doing?&lt;br&gt;&lt;br&gt;&lt;em&gt;Please close the classroom door.&lt;/em&gt;&lt;/div&gt;</mattext></material>
+          <response_lid ident="response1" rcardinality="Single">
+            <render_choice>
+              <response_label ident="ch1-all-item-bank_q1_a0">
+                <material><mattext texttype="text/plain">Commanding or requesting</mattext></material>
+              </response_label>
+              <response_label ident="ch1-all-item-bank_q1_a1">
+                <material><mattext texttype="text/plain">Stating</mattext></material>
+              </response_label>
+              <response_label ident="ch1-all-item-bank_q1_a2">
+                <material><mattext texttype="text/plain">Arguing</mattext></material>
+              </response_label>
+              <response_label ident="ch1-all-item-bank_q1_a3">
+                <material><mattext texttype="text/plain">Explaining</mattext></material>
+              </response_label>
+            </render_choice>
+          </response_lid>
+        </presentation>
+        <resprocessing>
+          <outcomes><decvar maxvalue="100" minvalue="0" varname="SCORE" vartype="Decimal"/></outcomes>
+          <respcondition continue="No">
+            <conditionvar><varequal respident="response1">ch1-all-item-bank_q1_a0</varequal></conditionvar>
+            <setvar action="Set" varname="SCORE">100</setvar>
+          </respcondition>
+        </resprocessing>
+      </item>
+
+      <item ident="ch1-all-item-bank_q2" title="Question 2">
+        <itemmetadata>
+          <qtimetadata>
+            <qtimetadatafield><fieldlabel>question_type</fieldlabel><fieldentry>multiple_choice_question</fieldentry></qtimetadatafield>
+            <qtimetadatafield><fieldlabel>points_possible</fieldlabel><fieldentry>1</fieldentry></qtimetadatafield>
+          </qtimetadata>
+        </itemmetadata>
+        <presentation>
+          <material><mattext texttype="text/html">&lt;div&gt;What is the main thing the speaker is doing?&lt;br&gt;&lt;br&gt;&lt;em&gt;The library closes at midnight during exams.&lt;/em&gt;&lt;/div&gt;</mattext></material>
+          <response_lid ident="response1" rcardinality="Single">
+            <render_choice>
+              <response_label ident="ch1-all-item-bank_q2_a0">
+                <material><mattext texttype="text/plain">Stating</mattext></material>
+              </response_label>
+              <response_label ident="ch1-all-item-bank_q2_a1">
+                <material><mattext texttype="text/plain">Greeting</mattext></material>
+              </response_label>
+              <response_label ident="ch1-all-item-bank_q2_a2">
+                <material><mattext texttype="text/plain">Promising</mattext></material>
+              </response_label>
+              <response_label ident="ch1-all-item-bank_q2_a3">
+                <material><mattext texttype="text/plain">Commanding</mattext></material>
+              </response_label>
+            </render_choice>
+          </response_lid>
+        </presentation>
+        <resprocessing>
+          <outcomes><decvar maxvalue="100" minvalue="0" varname="SCORE" vartype="Decimal"/></outcomes>
+          <respcondition continue="No">
+            <conditionvar><varequal respident="response1">ch1-all-item-bank_q2_a0</varequal></conditionvar>
+            <setvar action="Set" varname="SCORE">100</setvar>
+          </respcondition>
+        </resprocessing>
+      </item>
+
+      <item ident="ch1-all-item-bank_q3" title="Question 3">
+        <itemmetadata>
+          <qtimetadata>
+            <qtimetadatafield><fieldlabel>question_type</fieldlabel><fieldentry>multiple_choice_question</fieldentry></qtimetadatafield>
+            <qtimetadatafield><fieldlabel>points_possible</fieldlabel><fieldentry>1</fieldentry></qtimetadatafield>
+          </qtimetadata>
+        </itemmetadata>
+        <presentation>
+          <material><mattext texttype="text/html">&lt;div&gt;What is the main thing the speaker is doing?&lt;br&gt;&lt;br&gt;&lt;em&gt;I promise I will return the notes before class.&lt;/em&gt;&lt;/div&gt;</mattext></material>
+          <response_lid ident="response1" rcardinality="Single">
+            <render_choice>
+              <response_label ident="ch1-all-item-bank_q3_a0">
+                <material><mattext texttype="text/plain">Promising</mattext></material>
+              </response_label>
+              <response_label ident="ch1-all-item-bank_q3_a1">
+                <material><mattext texttype="text/plain">Explaining</mattext></material>
+              </response_label>
+              <response_label ident="ch1-all-item-bank_q3_a2">
+                <material><mattext texttype="text/plain">Arguing</mattext></material>
+              </response_label>
+              <response_label ident="ch1-all-item-bank_q3_a3">
+                <material><mattext texttype="text/plain">Asking a question</mattext></material>
+              </response_label>
+            </render_choice>
+          </response_lid>
+        </presentation>
+        <resprocessing>
+          <outcomes><decvar maxvalue="100" minvalue="0" varname="SCORE" vartype="Decimal"/></outcomes>
+          <respcondition continue="No">
+            <conditionvar><varequal respident="response1">ch1-all-item-bank_q3_a0</varequal></conditionvar>
+            <setvar action="Set" varname="SCORE">100</setvar>
+          </respcondition>
+        </resprocessing>
+      </item>
+
+      <item ident="ch1-all-item-bank_q4" title="Question 4">
+        <itemmetadata>
+          <qtimetadata>
+            <qtimetadatafield><fieldlabel>question_type</fieldlabel><fieldentry>multiple_choice_question</fieldentry></qtimetadatafield>
+            <qtimetadatafield><fieldlabel>points_possible</fieldlabel><fieldentry>1</fieldentry></qtimetadatafield>
+          </qtimetadata>
+        </itemmetadata>
+        <presentation>
+          <material><mattext texttype="text/html">&lt;div&gt;What is the main thing the speaker is doing?&lt;br&gt;&lt;br&gt;&lt;em&gt;Why did the train leave early?&lt;/em&gt;&lt;/div&gt;</mattext></material>
+          <response_lid ident="response1" rcardinality="Single">
+            <render_choice>
+              <response_label ident="ch1-all-item-bank_q4_a0">
+                <material><mattext texttype="text/plain">Asking a question</mattext></material>
+              </response_label>
+              <response_label ident="ch1-all-item-bank_q4_a1">
+                <material><mattext texttype="text/plain">Stating</mattext></material>
+              </response_label>
+              <response_label ident="ch1-all-item-bank_q4_a2">
+                <material><mattext texttype="text/plain">Arguing</mattext></material>
+              </response_label>
+              <response_label ident="ch1-all-item-bank_q4_a3">
+                <material><mattext texttype="text/plain">Promising</mattext></material>
+              </response_label>
+            </render_choice>
+          </response_lid>
+        </presentation>
+        <resprocessing>
+          <outcomes><decvar maxvalue="100" minvalue="0" varname="SCORE" vartype="Decimal"/></outcomes>
+          <respcondition continue="No">
+            <conditionvar><varequal respident="response1">ch1-all-item-bank_q4_a0</varequal></conditionvar>
+            <setvar action="Set" varname="SCORE">100</setvar>
+          </respcondition>
+        </resprocessing>
+      </item>
+
+      <item ident="ch1-all-item-bank_q5" title="Question 5">
+        <itemmetadata>
+          <qtimetadata>
+            <qtimetadatafield><fieldlabel>question_type</fieldlabel><fieldentry>multiple_choice_question</fieldentry></qtimetadatafield>
+            <qtimetadatafield><fieldlabel>points_possible</fieldlabel><fieldentry>1</fieldentry></qtimetadatafield>
+          </qtimetadata>
+        </itemmetadata>
+        <presentation>
+          <material><mattext texttype="text/html">&lt;div&gt;What is the main thing the speaker is doing?&lt;br&gt;&lt;br&gt;&lt;em&gt;Congratulations on finishing the project!&lt;/em&gt;&lt;/div&gt;</mattext></material>
+          <response_lid ident="response1" rcardinality="Single">
+            <render_choice>
+              <response_label ident="ch1-all-item-bank_q5_a0">
+                <material><mattext texttype="text/plain">Expressing or greeting</mattext></material>
+              </response_label>
+              <response_label ident="ch1-all-item-bank_q5_a1">
+                <material><mattext texttype="text/plain">Arguing</mattext></material>
+              </response_label>
+              <response_label ident="ch1-all-item-bank_q5_a2">
+                <material><mattext texttype="text/plain">Explaining</mattext></material>
+              </response_label>
+              <response_label ident="ch1-all-item-bank_q5_a3">
+                <material><mattext texttype="text/plain">Reporting a fact</mattext></material>
+              </response_label>
+            </render_choice>
+          </response_lid>
+        </presentation>
+        <resprocessing>
+          <outcomes><decvar maxvalue="100" minvalue="0" varname="SCORE" vartype="Decimal"/></outcomes>
+          <respcondition continue="No">
+            <conditionvar><varequal respident="response1">ch1-all-item-bank_q5_a0</varequal></conditionvar>
+            <setvar action="Set" varname="SCORE">100</setvar>
+          </respcondition>
+        </resprocessing>
+      </item>
+
+      <item ident="ch1-all-item-bank_q6" title="Question 6">
+        <itemmetadata>
+          <qtimetadata>
+            <qtimetadatafield><fieldlabel>question_type</fieldlabel><fieldentry>multiple_choice_question</fieldentry></qtimetadatafield>
+            <qtimetadatafield><fieldlabel>points_possible</fieldlabel><fieldentry>1</fieldentry></qtimetadatafield>
+          </qtimetadata>
+        </itemmetadata>
+        <presentation>
+          <material><mattext texttype="text/html">&lt;div&gt;In the textbook&#x27;s special sense, an argument is best understood as:&lt;/div&gt;</mattext></material>
+          <response_lid ident="response1" rcardinality="Single">
+            <render_choice>
+              <response_label ident="ch1-all-item-bank_q6_a0">
+                <material><mattext texttype="text/plain">an offering of reasons in support of a claim</mattext></material>
+              </response_label>
+              <response_label ident="ch1-all-item-bank_q6_a1">
+                <material><mattext texttype="text/plain">a disagreement between two people</mattext></material>
+              </response_label>
+              <response_label ident="ch1-all-item-bank_q6_a2">
+                <material><mattext texttype="text/plain">any attempt to persuade an audience</mattext></material>
+              </response_label>
+              <response_label ident="ch1-all-item-bank_q6_a3">
+                <material><mattext texttype="text/plain">a sentence that expresses emotion</mattext></material>
+              </response_label>
+            </render_choice>
+          </response_lid>
+        </presentation>
+        <resprocessing>
+          <outcomes><decvar maxvalue="100" minvalue="0" varname="SCORE" vartype="Decimal"/></outcomes>
+          <respcondition continue="No">
+            <conditionvar><varequal respident="response1">ch1-all-item-bank_q6_a0</varequal></conditionvar>
+            <setvar action="Set" varname="SCORE">100</setvar>
+          </respcondition>
+        </resprocessing>
+      </item>
+
+      <item ident="ch1-all-item-bank_q7" title="Question 7">
+        <itemmetadata>
+          <qtimetadata>
+            <qtimetadatafield><fieldlabel>question_type</fieldlabel><fieldentry>multiple_choice_question</fieldentry></qtimetadatafield>
+            <qtimetadatafield><fieldlabel>points_possible</fieldlabel><fieldentry>1</fieldentry></qtimetadatafield>
+          </qtimetadata>
+        </itemmetadata>
+        <presentation>
+          <material><mattext texttype="text/html">&lt;div&gt;A commercial shows famous athletes drinking a sports drink but gives no reasons for buying it. This is best described as:&lt;/div&gt;</mattext></material>
+          <response_lid ident="response1" rcardinality="Single">
+            <render_choice>
+              <response_label ident="ch1-all-item-bank_q7_a0">
+                <material><mattext texttype="text/plain">persuasion without argument</mattext></material>
+              </response_label>
+              <response_label ident="ch1-all-item-bank_q7_a1">
+                <material><mattext texttype="text/plain">deductive argument</mattext></material>
+              </response_label>
+              <response_label ident="ch1-all-item-bank_q7_a2">
+                <material><mattext texttype="text/plain">standard form</mattext></material>
+              </response_label>
+              <response_label ident="ch1-all-item-bank_q7_a3">
+                <material><mattext texttype="text/plain">a statement</mattext></material>
+              </response_label>
+            </render_choice>
+          </response_lid>
+        </presentation>
+        <resprocessing>
+          <outcomes><decvar maxvalue="100" minvalue="0" varname="SCORE" vartype="Decimal"/></outcomes>
+          <respcondition continue="No">
+            <conditionvar><varequal respident="response1">ch1-all-item-bank_q7_a0</varequal></conditionvar>
+            <setvar action="Set" varname="SCORE">100</setvar>
+          </respcondition>
+        </resprocessing>
+      </item>
+
+      <item ident="ch1-all-item-bank_q8" title="Question 8">
+        <itemmetadata>
+          <qtimetadata>
+            <qtimetadatafield><fieldlabel>question_type</fieldlabel><fieldentry>multiple_choice_question</fieldentry></qtimetadatafield>
+            <qtimetadatafield><fieldlabel>points_possible</fieldlabel><fieldentry>1</fieldentry></qtimetadatafield>
+          </qtimetadata>
+        </itemmetadata>
+        <presentation>
+          <material><mattext texttype="text/html">&lt;div&gt;Which sentence is most clearly an argument?&lt;/div&gt;</mattext></material>
+          <response_lid ident="response1" rcardinality="Single">
+            <render_choice>
+              <response_label ident="ch1-all-item-bank_q8_a0">
+                <material><mattext texttype="text/plain">You should bring an umbrella because the forecast calls for storms.</mattext></material>
+              </response_label>
+              <response_label ident="ch1-all-item-bank_q8_a1">
+                <material><mattext texttype="text/plain">Could you bring an umbrella?</mattext></material>
+              </response_label>
+              <response_label ident="ch1-all-item-bank_q8_a2">
+                <material><mattext texttype="text/plain">Umbrellas are often stored near the door.</mattext></material>
+              </response_label>
+              <response_label ident="ch1-all-item-bank_q8_a3">
+                <material><mattext texttype="text/plain">Wow, that umbrella is enormous.</mattext></material>
+              </response_label>
+            </render_choice>
+          </response_lid>
+        </presentation>
+        <resprocessing>
+          <outcomes><decvar maxvalue="100" minvalue="0" varname="SCORE" vartype="Decimal"/></outcomes>
+          <respcondition continue="No">
+            <conditionvar><varequal respident="response1">ch1-all-item-bank_q8_a0</varequal></conditionvar>
+            <setvar action="Set" varname="SCORE">100</setvar>
+          </respcondition>
+        </resprocessing>
+      </item>
+
+      <item ident="ch1-all-item-bank_q9" title="Question 9">
+        <itemmetadata>
+          <qtimetadata>
+            <qtimetadatafield><fieldlabel>question_type</fieldlabel><fieldentry>multiple_choice_question</fieldentry></qtimetadatafield>
+            <qtimetadatafield><fieldlabel>points_possible</fieldlabel><fieldentry>1</fieldentry></qtimetadatafield>
+          </qtimetadata>
+        </itemmetadata>
+        <presentation>
+          <material><mattext texttype="text/html">&lt;div&gt;Which passage is persuasion without argument?&lt;/div&gt;</mattext></material>
+          <response_lid ident="response1" rcardinality="Single">
+            <render_choice>
+              <response_label ident="ch1-all-item-bank_q9_a0">
+                <material><mattext texttype="text/plain">A poster says, &#x27;Everyone cool wears this brand,&#x27; but gives no reason to think the brand is good.</mattext></material>
+              </response_label>
+              <response_label ident="ch1-all-item-bank_q9_a1">
+                <material><mattext texttype="text/plain">The hallway is wet because the roof leaked overnight.</mattext></material>
+              </response_label>
+              <response_label ident="ch1-all-item-bank_q9_a2">
+                <material><mattext texttype="text/plain">You should leave early because the bridge is closed.</mattext></material>
+              </response_label>
+              <response_label ident="ch1-all-item-bank_q9_a3">
+                <material><mattext texttype="text/plain">If the battery is dead, the car will not start. The battery is dead. So the car will not start.</mattext></material>
+              </response_label>
+            </render_choice>
+          </response_lid>
+        </presentation>
+        <resprocessing>
+          <outcomes><decvar maxvalue="100" minvalue="0" varname="SCORE" vartype="Decimal"/></outcomes>
+          <respcondition continue="No">
+            <conditionvar><varequal respident="response1">ch1-all-item-bank_q9_a0</varequal></conditionvar>
+            <setvar action="Set" varname="SCORE">100</setvar>
+          </respcondition>
+        </resprocessing>
+      </item>
+
+      <item ident="ch1-all-item-bank_q10" title="Question 10">
+        <itemmetadata>
+          <qtimetadata>
+            <qtimetadatafield><fieldlabel>question_type</fieldlabel><fieldentry>multiple_choice_question</fieldentry></qtimetadatafield>
+            <qtimetadatafield><fieldlabel>points_possible</fieldlabel><fieldentry>1</fieldentry></qtimetadatafield>
+          </qtimetadata>
+        </itemmetadata>
+        <presentation>
+          <material><mattext texttype="text/html">&lt;div&gt;What distinguishes arguing from merely persuading?&lt;/div&gt;</mattext></material>
+          <response_lid ident="response1" rcardinality="Single">
+            <render_choice>
+              <response_label ident="ch1-all-item-bank_q10_a0">
+                <material><mattext texttype="text/plain">Arguing offers reasons in support of a claim.</mattext></material>
+              </response_label>
+              <response_label ident="ch1-all-item-bank_q10_a1">
+                <material><mattext texttype="text/plain">Arguing always succeeds in changing someone&#x27;s mind.</mattext></material>
+              </response_label>
+              <response_label ident="ch1-all-item-bank_q10_a2">
+                <material><mattext texttype="text/plain">Arguing always involves anger.</mattext></material>
+              </response_label>
+              <response_label ident="ch1-all-item-bank_q10_a3">
+                <material><mattext texttype="text/plain">Arguing never appears in ordinary conversation.</mattext></material>
+              </response_label>
+            </render_choice>
+          </response_lid>
+        </presentation>
+        <resprocessing>
+          <outcomes><decvar maxvalue="100" minvalue="0" varname="SCORE" vartype="Decimal"/></outcomes>
+          <respcondition continue="No">
+            <conditionvar><varequal respident="response1">ch1-all-item-bank_q10_a0</varequal></conditionvar>
+            <setvar action="Set" varname="SCORE">100</setvar>
+          </respcondition>
+        </resprocessing>
+      </item>
+
+      <item ident="ch1-all-item-bank_q11" title="Question 11">
+        <itemmetadata>
+          <qtimetadata>
+            <qtimetadatafield><fieldlabel>question_type</fieldlabel><fieldentry>multiple_choice_question</fieldentry></qtimetadatafield>
+            <qtimetadatafield><fieldlabel>points_possible</fieldlabel><fieldentry>1</fieldentry></qtimetadatafield>
+          </qtimetadata>
+        </itemmetadata>
+        <presentation>
+          <material><mattext texttype="text/html">&lt;div&gt;Which sentence best uses language to perform an action?&lt;/div&gt;</mattext></material>
+          <response_lid ident="response1" rcardinality="Single">
+            <render_choice>
+              <response_label ident="ch1-all-item-bank_q11_a0">
+                <material><mattext texttype="text/plain">I apologize for missing the meeting.</mattext></material>
+              </response_label>
+              <response_label ident="ch1-all-item-bank_q11_a1">
+                <material><mattext texttype="text/plain">The meeting was at 2:00.</mattext></material>
+              </response_label>
+              <response_label ident="ch1-all-item-bank_q11_a2">
+                <material><mattext texttype="text/plain">Was the meeting at 2:00?</mattext></material>
+              </response_label>
+              <response_label ident="ch1-all-item-bank_q11_a3">
+                <material><mattext texttype="text/plain">The meeting room has six chairs.</mattext></material>
+              </response_label>
+            </render_choice>
+          </response_lid>
+        </presentation>
+        <resprocessing>
+          <outcomes><decvar maxvalue="100" minvalue="0" varname="SCORE" vartype="Decimal"/></outcomes>
+          <respcondition continue="No">
+            <conditionvar><varequal respident="response1">ch1-all-item-bank_q11_a0</varequal></conditionvar>
+            <setvar action="Set" varname="SCORE">100</setvar>
+          </respcondition>
+        </resprocessing>
+      </item>
+
+      <item ident="ch1-all-item-bank_q12" title="Question 12">
+        <itemmetadata>
+          <qtimetadata>
+            <qtimetadatafield><fieldlabel>question_type</fieldlabel><fieldentry>multiple_choice_question</fieldentry></qtimetadatafield>
+            <qtimetadatafield><fieldlabel>points_possible</fieldlabel><fieldentry>1</fieldentry></qtimetadatafield>
+          </qtimetadata>
+        </itemmetadata>
+        <presentation>
+          <material><mattext texttype="text/html">&lt;div&gt;Which of these is not enough, by itself, to make something an argument?&lt;/div&gt;</mattext></material>
+          <response_lid ident="response1" rcardinality="Single">
+            <render_choice>
+              <response_label ident="ch1-all-item-bank_q12_a0">
+                <material><mattext texttype="text/plain">It tries to get someone to believe something.</mattext></material>
+              </response_label>
+              <response_label ident="ch1-all-item-bank_q12_a1">
+                <material><mattext texttype="text/plain">It gives reasons for a claim.</mattext></material>
+              </response_label>
+              <response_label ident="ch1-all-item-bank_q12_a2">
+                <material><mattext texttype="text/plain">It contains a premise and a conclusion.</mattext></material>
+              </response_label>
+              <response_label ident="ch1-all-item-bank_q12_a3">
+                <material><mattext texttype="text/plain">It offers support for a statement.</mattext></material>
+              </response_label>
+            </render_choice>
+          </response_lid>
+        </presentation>
+        <resprocessing>
+          <outcomes><decvar maxvalue="100" minvalue="0" varname="SCORE" vartype="Decimal"/></outcomes>
+          <respcondition continue="No">
+            <conditionvar><varequal respident="response1">ch1-all-item-bank_q12_a0</varequal></conditionvar>
+            <setvar action="Set" varname="SCORE">100</setvar>
+          </respcondition>
+        </resprocessing>
+      </item>
+
+      <item ident="ch1-all-item-bank_q13" title="Question 13">
+        <itemmetadata>
+          <qtimetadata>
+            <qtimetadatafield><fieldlabel>question_type</fieldlabel><fieldentry>multiple_choice_question</fieldentry></qtimetadatafield>
+            <qtimetadatafield><fieldlabel>points_possible</fieldlabel><fieldentry>1</fieldentry></qtimetadatafield>
+          </qtimetadata>
+        </itemmetadata>
+        <presentation>
+          <material><mattext texttype="text/html">&lt;div&gt;A person says, &#x27;Buy this phone. It has the longest battery life in its price range.&#x27; This is best classified as:&lt;/div&gt;</mattext></material>
+          <response_lid ident="response1" rcardinality="Single">
+            <render_choice>
+              <response_label ident="ch1-all-item-bank_q13_a0">
+                <material><mattext texttype="text/plain">an argument</mattext></material>
+              </response_label>
+              <response_label ident="ch1-all-item-bank_q13_a1">
+                <material><mattext texttype="text/plain">a greeting</mattext></material>
+              </response_label>
+              <response_label ident="ch1-all-item-bank_q13_a2">
+                <material><mattext texttype="text/plain">a command with no reason</mattext></material>
+              </response_label>
+              <response_label ident="ch1-all-item-bank_q13_a3">
+                <material><mattext texttype="text/plain">a question</mattext></material>
+              </response_label>
+            </render_choice>
+          </response_lid>
+        </presentation>
+        <resprocessing>
+          <outcomes><decvar maxvalue="100" minvalue="0" varname="SCORE" vartype="Decimal"/></outcomes>
+          <respcondition continue="No">
+            <conditionvar><varequal respident="response1">ch1-all-item-bank_q13_a0</varequal></conditionvar>
+            <setvar action="Set" varname="SCORE">100</setvar>
+          </respcondition>
+        </resprocessing>
+      </item>
+
+      <item ident="ch1-all-item-bank_q14" title="Question 14">
+        <itemmetadata>
+          <qtimetadata>
+            <qtimetadatafield><fieldlabel>question_type</fieldlabel><fieldentry>multiple_choice_question</fieldentry></qtimetadatafield>
+            <qtimetadatafield><fieldlabel>points_possible</fieldlabel><fieldentry>1</fieldentry></qtimetadatafield>
+          </qtimetadata>
+        </itemmetadata>
+        <presentation>
+          <material><mattext texttype="text/html">&lt;div&gt;A person says, &#x27;Buy this phone!&#x27; and nothing else. In the textbook&#x27;s sense, this is:&lt;/div&gt;</mattext></material>
+          <response_lid ident="response1" rcardinality="Single">
+            <render_choice>
+              <response_label ident="ch1-all-item-bank_q14_a0">
+                <material><mattext texttype="text/plain">not an argument, because no reason is offered</mattext></material>
+              </response_label>
+              <response_label ident="ch1-all-item-bank_q14_a1">
+                <material><mattext texttype="text/plain">an argument, because it is forceful</mattext></material>
+              </response_label>
+              <response_label ident="ch1-all-item-bank_q14_a2">
+                <material><mattext texttype="text/plain">an explanation</mattext></material>
+              </response_label>
+              <response_label ident="ch1-all-item-bank_q14_a3">
+                <material><mattext texttype="text/plain">a premise indicator</mattext></material>
+              </response_label>
+            </render_choice>
+          </response_lid>
+        </presentation>
+        <resprocessing>
+          <outcomes><decvar maxvalue="100" minvalue="0" varname="SCORE" vartype="Decimal"/></outcomes>
+          <respcondition continue="No">
+            <conditionvar><varequal respident="response1">ch1-all-item-bank_q14_a0</varequal></conditionvar>
+            <setvar action="Set" varname="SCORE">100</setvar>
+          </respcondition>
+        </resprocessing>
+      </item>
+
+      <item ident="ch1-all-item-bank_q15" title="Question 15">
+        <itemmetadata>
+          <qtimetadata>
+            <qtimetadatafield><fieldlabel>question_type</fieldlabel><fieldentry>multiple_choice_question</fieldentry></qtimetadatafield>
+            <qtimetadatafield><fieldlabel>points_possible</fieldlabel><fieldentry>1</fieldentry></qtimetadatafield>
+          </qtimetadata>
+        </itemmetadata>
+        <presentation>
+          <material><mattext texttype="text/html">&lt;div&gt;Which choice best captures the relationship between persuasion and argument?&lt;/div&gt;</mattext></material>
+          <response_lid ident="response1" rcardinality="Single">
+            <render_choice>
+              <response_label ident="ch1-all-item-bank_q15_a0">
+                <material><mattext texttype="text/plain">Some persuasion uses arguments, but persuasion can also work without arguments.</mattext></material>
+              </response_label>
+              <response_label ident="ch1-all-item-bank_q15_a1">
+                <material><mattext texttype="text/plain">All persuasion is argument.</mattext></material>
+              </response_label>
+              <response_label ident="ch1-all-item-bank_q15_a2">
+                <material><mattext texttype="text/plain">Arguments are never persuasive.</mattext></material>
+              </response_label>
+              <response_label ident="ch1-all-item-bank_q15_a3">
+                <material><mattext texttype="text/plain">Persuasion and argument mean exactly the same thing.</mattext></material>
+              </response_label>
+            </render_choice>
+          </response_lid>
+        </presentation>
+        <resprocessing>
+          <outcomes><decvar maxvalue="100" minvalue="0" varname="SCORE" vartype="Decimal"/></outcomes>
+          <respcondition continue="No">
+            <conditionvar><varequal respident="response1">ch1-all-item-bank_q15_a0</varequal></conditionvar>
+            <setvar action="Set" varname="SCORE">100</setvar>
+          </respcondition>
+        </resprocessing>
+      </item>
+
+      <item ident="ch1-all-item-bank_q16" title="Question 16">
+        <itemmetadata>
+          <qtimetadata>
+            <qtimetadatafield><fieldlabel>question_type</fieldlabel><fieldentry>multiple_choice_question</fieldentry></qtimetadatafield>
+            <qtimetadatafield><fieldlabel>points_possible</fieldlabel><fieldentry>1</fieldentry></qtimetadatafield>
+          </qtimetadata>
+        </itemmetadata>
+        <presentation>
+          <material><mattext texttype="text/html">&lt;div&gt;Which of the following is a statement in the logical sense?&lt;/div&gt;</mattext></material>
+          <response_lid ident="response1" rcardinality="Single">
+            <render_choice>
+              <response_label ident="ch1-all-item-bank_q16_a0">
+                <material><mattext texttype="text/plain">The exam begins at 9:00.</mattext></material>
+              </response_label>
+              <response_label ident="ch1-all-item-bank_q16_a1">
+                <material><mattext texttype="text/plain">Please open the window.</mattext></material>
+              </response_label>
+              <response_label ident="ch1-all-item-bank_q16_a2">
+                <material><mattext texttype="text/plain">How late is the library open?</mattext></material>
+              </response_label>
+              <response_label ident="ch1-all-item-bank_q16_a3">
+                <material><mattext texttype="text/plain">Good morning!</mattext></material>
+              </response_label>
+            </render_choice>
+          </response_lid>
+        </presentation>
+        <resprocessing>
+          <outcomes><decvar maxvalue="100" minvalue="0" varname="SCORE" vartype="Decimal"/></outcomes>
+          <respcondition continue="No">
+            <conditionvar><varequal respident="response1">ch1-all-item-bank_q16_a0</varequal></conditionvar>
+            <setvar action="Set" varname="SCORE">100</setvar>
+          </respcondition>
+        </resprocessing>
+      </item>
+
+      <item ident="ch1-all-item-bank_q17" title="Question 17">
+        <itemmetadata>
+          <qtimetadata>
+            <qtimetadatafield><fieldlabel>question_type</fieldlabel><fieldentry>multiple_choice_question</fieldentry></qtimetadatafield>
+            <qtimetadatafield><fieldlabel>points_possible</fieldlabel><fieldentry>1</fieldentry></qtimetadatafield>
+          </qtimetadata>
+        </itemmetadata>
+        <presentation>
+          <material><mattext texttype="text/html">&lt;div&gt;Why do logicians care about statements?&lt;/div&gt;</mattext></material>
+          <response_lid ident="response1" rcardinality="Single">
+            <render_choice>
+              <response_label ident="ch1-all-item-bank_q17_a0">
+                <material><mattext texttype="text/plain">Statements are the kinds of claims that can be true or false.</mattext></material>
+              </response_label>
+              <response_label ident="ch1-all-item-bank_q17_a1">
+                <material><mattext texttype="text/plain">Statements are always persuasive.</mattext></material>
+              </response_label>
+              <response_label ident="ch1-all-item-bank_q17_a2">
+                <material><mattext texttype="text/plain">Statements are always commands.</mattext></material>
+              </response_label>
+              <response_label ident="ch1-all-item-bank_q17_a3">
+                <material><mattext texttype="text/plain">Statements never appear inside arguments.</mattext></material>
+              </response_label>
+            </render_choice>
+          </response_lid>
+        </presentation>
+        <resprocessing>
+          <outcomes><decvar maxvalue="100" minvalue="0" varname="SCORE" vartype="Decimal"/></outcomes>
+          <respcondition continue="No">
+            <conditionvar><varequal respident="response1">ch1-all-item-bank_q17_a0</varequal></conditionvar>
+            <setvar action="Set" varname="SCORE">100</setvar>
+          </respcondition>
+        </resprocessing>
+      </item>
+
+      <item ident="ch1-all-item-bank_q18" title="Question 18">
+        <itemmetadata>
+          <qtimetadata>
+            <qtimetadatafield><fieldlabel>question_type</fieldlabel><fieldentry>multiple_choice_question</fieldentry></qtimetadatafield>
+            <qtimetadatafield><fieldlabel>points_possible</fieldlabel><fieldentry>1</fieldentry></qtimetadatafield>
+          </qtimetadata>
+        </itemmetadata>
+        <presentation>
+          <material><mattext texttype="text/html">&lt;div&gt;Which sentence is not a statement?&lt;/div&gt;</mattext></material>
+          <response_lid ident="response1" rcardinality="Single">
+            <render_choice>
+              <response_label ident="ch1-all-item-bank_q18_a0">
+                <material><mattext texttype="text/plain">Take the quiz before midnight.</mattext></material>
+              </response_label>
+              <response_label ident="ch1-all-item-bank_q18_a1">
+                <material><mattext texttype="text/plain">Fredericksburg is in Virginia.</mattext></material>
+              </response_label>
+              <response_label ident="ch1-all-item-bank_q18_a2">
+                <material><mattext texttype="text/plain">Some dogs are mammals.</mattext></material>
+              </response_label>
+              <response_label ident="ch1-all-item-bank_q18_a3">
+                <material><mattext texttype="text/plain">The classroom has windows.</mattext></material>
+              </response_label>
+            </render_choice>
+          </response_lid>
+        </presentation>
+        <resprocessing>
+          <outcomes><decvar maxvalue="100" minvalue="0" varname="SCORE" vartype="Decimal"/></outcomes>
+          <respcondition continue="No">
+            <conditionvar><varequal respident="response1">ch1-all-item-bank_q18_a0</varequal></conditionvar>
+            <setvar action="Set" varname="SCORE">100</setvar>
+          </respcondition>
+        </resprocessing>
+      </item>
+
+      <item ident="ch1-all-item-bank_q19" title="Question 19">
+        <itemmetadata>
+          <qtimetadata>
+            <qtimetadatafield><fieldlabel>question_type</fieldlabel><fieldentry>multiple_choice_question</fieldentry></qtimetadatafield>
+            <qtimetadatafield><fieldlabel>points_possible</fieldlabel><fieldentry>1</fieldentry></qtimetadatafield>
+          </qtimetadata>
+        </itemmetadata>
+        <presentation>
+          <material><mattext texttype="text/html">&lt;div&gt;A sentence can be grammatically declarative but still fail to be a useful logical statement when:&lt;/div&gt;</mattext></material>
+          <response_lid ident="response1" rcardinality="Single">
+            <render_choice>
+              <response_label ident="ch1-all-item-bank_q19_a0">
+                <material><mattext texttype="text/plain">it is too vague or context-dependent to evaluate clearly</mattext></material>
+              </response_label>
+              <response_label ident="ch1-all-item-bank_q19_a1">
+                <material><mattext texttype="text/plain">it contains more than five words</mattext></material>
+              </response_label>
+              <response_label ident="ch1-all-item-bank_q19_a2">
+                <material><mattext texttype="text/plain">it appears in a paragraph</mattext></material>
+              </response_label>
+              <response_label ident="ch1-all-item-bank_q19_a3">
+                <material><mattext texttype="text/plain">it is written in English</mattext></material>
+              </response_label>
+            </render_choice>
+          </response_lid>
+        </presentation>
+        <resprocessing>
+          <outcomes><decvar maxvalue="100" minvalue="0" varname="SCORE" vartype="Decimal"/></outcomes>
+          <respcondition continue="No">
+            <conditionvar><varequal respident="response1">ch1-all-item-bank_q19_a0</varequal></conditionvar>
+            <setvar action="Set" varname="SCORE">100</setvar>
+          </respcondition>
+        </resprocessing>
+      </item>
+
+      <item ident="ch1-all-item-bank_q20" title="Question 20">
+        <itemmetadata>
+          <qtimetadata>
+            <qtimetadatafield><fieldlabel>question_type</fieldlabel><fieldentry>multiple_choice_question</fieldentry></qtimetadatafield>
+            <qtimetadatafield><fieldlabel>points_possible</fieldlabel><fieldentry>1</fieldentry></qtimetadatafield>
+          </qtimetadata>
+        </itemmetadata>
+        <presentation>
+          <material><mattext texttype="text/html">&lt;div&gt;Which choice best explains the relation between sentences and statements?&lt;/div&gt;</mattext></material>
+          <response_lid ident="response1" rcardinality="Single">
+            <render_choice>
+              <response_label ident="ch1-all-item-bank_q20_a0">
+                <material><mattext texttype="text/plain">A sentence is a piece of language; a statement is a claim that can be true or false.</mattext></material>
+              </response_label>
+              <response_label ident="ch1-all-item-bank_q20_a1">
+                <material><mattext texttype="text/plain">Every sentence is automatically a statement.</mattext></material>
+              </response_label>
+              <response_label ident="ch1-all-item-bank_q20_a2">
+                <material><mattext texttype="text/plain">Statements are questions with punctuation removed.</mattext></material>
+              </response_label>
+              <response_label ident="ch1-all-item-bank_q20_a3">
+                <material><mattext texttype="text/plain">Sentences can be true or false, but statements cannot.</mattext></material>
+              </response_label>
+            </render_choice>
+          </response_lid>
+        </presentation>
+        <resprocessing>
+          <outcomes><decvar maxvalue="100" minvalue="0" varname="SCORE" vartype="Decimal"/></outcomes>
+          <respcondition continue="No">
+            <conditionvar><varequal respident="response1">ch1-all-item-bank_q20_a0</varequal></conditionvar>
+            <setvar action="Set" varname="SCORE">100</setvar>
+          </respcondition>
+        </resprocessing>
+      </item>
+
+      <item ident="ch1-all-item-bank_q21" title="Question 21">
+        <itemmetadata>
+          <qtimetadata>
+            <qtimetadatafield><fieldlabel>question_type</fieldlabel><fieldentry>multiple_choice_question</fieldentry></qtimetadatafield>
+            <qtimetadatafield><fieldlabel>points_possible</fieldlabel><fieldentry>1</fieldentry></qtimetadatafield>
+          </qtimetadata>
+        </itemmetadata>
+        <presentation>
+          <material><mattext texttype="text/html">&lt;div&gt;Which is a statement?&lt;/div&gt;</mattext></material>
+          <response_lid ident="response1" rcardinality="Single">
+            <render_choice>
+              <response_label ident="ch1-all-item-bank_q21_a0">
+                <material><mattext texttype="text/plain">Every student in the room has completed the reading.</mattext></material>
+              </response_label>
+              <response_label ident="ch1-all-item-bank_q21_a1">
+                <material><mattext texttype="text/plain">Complete the reading.</mattext></material>
+              </response_label>
+              <response_label ident="ch1-all-item-bank_q21_a2">
+                <material><mattext texttype="text/plain">Have you completed the reading?</mattext></material>
+              </response_label>
+              <response_label ident="ch1-all-item-bank_q21_a3">
+                <material><mattext texttype="text/plain">Welcome to class.</mattext></material>
+              </response_label>
+            </render_choice>
+          </response_lid>
+        </presentation>
+        <resprocessing>
+          <outcomes><decvar maxvalue="100" minvalue="0" varname="SCORE" vartype="Decimal"/></outcomes>
+          <respcondition continue="No">
+            <conditionvar><varequal respident="response1">ch1-all-item-bank_q21_a0</varequal></conditionvar>
+            <setvar action="Set" varname="SCORE">100</setvar>
+          </respcondition>
+        </resprocessing>
+      </item>
+
+      <item ident="ch1-all-item-bank_q22" title="Question 22">
+        <itemmetadata>
+          <qtimetadata>
+            <qtimetadatafield><fieldlabel>question_type</fieldlabel><fieldentry>multiple_choice_question</fieldentry></qtimetadatafield>
+            <qtimetadatafield><fieldlabel>points_possible</fieldlabel><fieldentry>1</fieldentry></qtimetadatafield>
+          </qtimetadata>
+        </itemmetadata>
+        <presentation>
+          <material><mattext texttype="text/html">&lt;div&gt;Which is not a statement?&lt;/div&gt;</mattext></material>
+          <response_lid ident="response1" rcardinality="Single">
+            <render_choice>
+              <response_label ident="ch1-all-item-bank_q22_a0">
+                <material><mattext texttype="text/plain">Please submit the homework.</mattext></material>
+              </response_label>
+              <response_label ident="ch1-all-item-bank_q22_a1">
+                <material><mattext texttype="text/plain">The homework is due Friday.</mattext></material>
+              </response_label>
+              <response_label ident="ch1-all-item-bank_q22_a2">
+                <material><mattext texttype="text/plain">Some homework assignments are short.</mattext></material>
+              </response_label>
+              <response_label ident="ch1-all-item-bank_q22_a3">
+                <material><mattext texttype="text/plain">No quizzes are open after midnight.</mattext></material>
+              </response_label>
+            </render_choice>
+          </response_lid>
+        </presentation>
+        <resprocessing>
+          <outcomes><decvar maxvalue="100" minvalue="0" varname="SCORE" vartype="Decimal"/></outcomes>
+          <respcondition continue="No">
+            <conditionvar><varequal respident="response1">ch1-all-item-bank_q22_a0</varequal></conditionvar>
+            <setvar action="Set" varname="SCORE">100</setvar>
+          </respcondition>
+        </resprocessing>
+      </item>
+
+      <item ident="ch1-all-item-bank_q23" title="Question 23">
+        <itemmetadata>
+          <qtimetadata>
+            <qtimetadatafield><fieldlabel>question_type</fieldlabel><fieldentry>multiple_choice_question</fieldentry></qtimetadatafield>
+            <qtimetadatafield><fieldlabel>points_possible</fieldlabel><fieldentry>1</fieldentry></qtimetadatafield>
+          </qtimetadata>
+        </itemmetadata>
+        <presentation>
+          <material><mattext texttype="text/html">&lt;div&gt;A claim can be a statement even if:&lt;/div&gt;</mattext></material>
+          <response_lid ident="response1" rcardinality="Single">
+            <render_choice>
+              <response_label ident="ch1-all-item-bank_q23_a0">
+                <material><mattext texttype="text/plain">we do not know whether it is true or false</mattext></material>
+              </response_label>
+              <response_label ident="ch1-all-item-bank_q23_a1">
+                <material><mattext texttype="text/plain">it is phrased as a command</mattext></material>
+              </response_label>
+              <response_label ident="ch1-all-item-bank_q23_a2">
+                <material><mattext texttype="text/plain">it is a greeting</mattext></material>
+              </response_label>
+              <response_label ident="ch1-all-item-bank_q23_a3">
+                <material><mattext texttype="text/plain">it cannot possibly be evaluated</mattext></material>
+              </response_label>
+            </render_choice>
+          </response_lid>
+        </presentation>
+        <resprocessing>
+          <outcomes><decvar maxvalue="100" minvalue="0" varname="SCORE" vartype="Decimal"/></outcomes>
+          <respcondition continue="No">
+            <conditionvar><varequal respident="response1">ch1-all-item-bank_q23_a0</varequal></conditionvar>
+            <setvar action="Set" varname="SCORE">100</setvar>
+          </respcondition>
+        </resprocessing>
+      </item>
+
+      <item ident="ch1-all-item-bank_q24" title="Question 24">
+        <itemmetadata>
+          <qtimetadata>
+            <qtimetadatafield><fieldlabel>question_type</fieldlabel><fieldentry>multiple_choice_question</fieldentry></qtimetadatafield>
+            <qtimetadatafield><fieldlabel>points_possible</fieldlabel><fieldentry>1</fieldentry></qtimetadatafield>
+          </qtimetadata>
+        </itemmetadata>
+        <presentation>
+          <material><mattext texttype="text/html">&lt;div&gt;Which sentence is too context-dependent to evaluate clearly without more information?&lt;/div&gt;</mattext></material>
+          <response_lid ident="response1" rcardinality="Single">
+            <render_choice>
+              <response_label ident="ch1-all-item-bank_q24_a0">
+                <material><mattext texttype="text/plain">This is too heavy.</mattext></material>
+              </response_label>
+              <response_label ident="ch1-all-item-bank_q24_a1">
+                <material><mattext texttype="text/plain">Washington, D.C. is south of Baltimore.</mattext></material>
+              </response_label>
+              <response_label ident="ch1-all-item-bank_q24_a2">
+                <material><mattext texttype="text/plain">All squares have four sides.</mattext></material>
+              </response_label>
+              <response_label ident="ch1-all-item-bank_q24_a3">
+                <material><mattext texttype="text/plain">Some classes meet online.</mattext></material>
+              </response_label>
+            </render_choice>
+          </response_lid>
+        </presentation>
+        <resprocessing>
+          <outcomes><decvar maxvalue="100" minvalue="0" varname="SCORE" vartype="Decimal"/></outcomes>
+          <respcondition continue="No">
+            <conditionvar><varequal respident="response1">ch1-all-item-bank_q24_a0</varequal></conditionvar>
+            <setvar action="Set" varname="SCORE">100</setvar>
+          </respcondition>
+        </resprocessing>
+      </item>
+
+      <item ident="ch1-all-item-bank_q25" title="Question 25">
+        <itemmetadata>
+          <qtimetadata>
+            <qtimetadatafield><fieldlabel>question_type</fieldlabel><fieldentry>multiple_choice_question</fieldentry></qtimetadatafield>
+            <qtimetadatafield><fieldlabel>points_possible</fieldlabel><fieldentry>1</fieldentry></qtimetadatafield>
+          </qtimetadata>
+        </itemmetadata>
+        <presentation>
+          <material><mattext texttype="text/html">&lt;div&gt;Which pair contains two statements?&lt;/div&gt;</mattext></material>
+          <response_lid ident="response1" rcardinality="Single">
+            <render_choice>
+              <response_label ident="ch1-all-item-bank_q25_a0">
+                <material><mattext texttype="text/plain">The lights are on; the door is locked.</mattext></material>
+              </response_label>
+              <response_label ident="ch1-all-item-bank_q25_a1">
+                <material><mattext texttype="text/plain">Close the door; the door is locked.</mattext></material>
+              </response_label>
+              <response_label ident="ch1-all-item-bank_q25_a2">
+                <material><mattext texttype="text/plain">Is the door locked?; the lights are on.</mattext></material>
+              </response_label>
+              <response_label ident="ch1-all-item-bank_q25_a3">
+                <material><mattext texttype="text/plain">Good morning; close the door.</mattext></material>
+              </response_label>
+            </render_choice>
+          </response_lid>
+        </presentation>
+        <resprocessing>
+          <outcomes><decvar maxvalue="100" minvalue="0" varname="SCORE" vartype="Decimal"/></outcomes>
+          <respcondition continue="No">
+            <conditionvar><varequal respident="response1">ch1-all-item-bank_q25_a0</varequal></conditionvar>
+            <setvar action="Set" varname="SCORE">100</setvar>
+          </respcondition>
+        </resprocessing>
+      </item>
+
+      <item ident="ch1-all-item-bank_q26" title="Question 26">
+        <itemmetadata>
+          <qtimetadata>
+            <qtimetadatafield><fieldlabel>question_type</fieldlabel><fieldentry>multiple_choice_question</fieldentry></qtimetadatafield>
+            <qtimetadatafield><fieldlabel>points_possible</fieldlabel><fieldentry>1</fieldentry></qtimetadatafield>
+          </qtimetadata>
+        </itemmetadata>
+        <presentation>
+          <material><mattext texttype="text/html">&lt;div&gt;Which sentence expresses a claim that could be false?&lt;/div&gt;</mattext></material>
+          <response_lid ident="response1" rcardinality="Single">
+            <render_choice>
+              <response_label ident="ch1-all-item-bank_q26_a0">
+                <material><mattext texttype="text/plain">The cafeteria opens at 7:30.</mattext></material>
+              </response_label>
+              <response_label ident="ch1-all-item-bank_q26_a1">
+                <material><mattext texttype="text/plain">Please eat breakfast.</mattext></material>
+              </response_label>
+              <response_label ident="ch1-all-item-bank_q26_a2">
+                <material><mattext texttype="text/plain">How much is breakfast?</mattext></material>
+              </response_label>
+              <response_label ident="ch1-all-item-bank_q26_a3">
+                <material><mattext texttype="text/plain">Thanks for breakfast.</mattext></material>
+              </response_label>
+            </render_choice>
+          </response_lid>
+        </presentation>
+        <resprocessing>
+          <outcomes><decvar maxvalue="100" minvalue="0" varname="SCORE" vartype="Decimal"/></outcomes>
+          <respcondition continue="No">
+            <conditionvar><varequal respident="response1">ch1-all-item-bank_q26_a0</varequal></conditionvar>
+            <setvar action="Set" varname="SCORE">100</setvar>
+          </respcondition>
+        </resprocessing>
+      </item>
+
+      <item ident="ch1-all-item-bank_q27" title="Question 27">
+        <itemmetadata>
+          <qtimetadata>
+            <qtimetadatafield><fieldlabel>question_type</fieldlabel><fieldentry>multiple_choice_question</fieldentry></qtimetadatafield>
+            <qtimetadatafield><fieldlabel>points_possible</fieldlabel><fieldentry>1</fieldentry></qtimetadatafield>
+          </qtimetadata>
+        </itemmetadata>
+        <presentation>
+          <material><mattext texttype="text/html">&lt;div&gt;What makes a statement truth-apt?&lt;/div&gt;</mattext></material>
+          <response_lid ident="response1" rcardinality="Single">
+            <render_choice>
+              <response_label ident="ch1-all-item-bank_q27_a0">
+                <material><mattext texttype="text/plain">It says something that can be evaluated as true or false.</mattext></material>
+              </response_label>
+              <response_label ident="ch1-all-item-bank_q27_a1">
+                <material><mattext texttype="text/plain">It is emotionally powerful.</mattext></material>
+              </response_label>
+              <response_label ident="ch1-all-item-bank_q27_a2">
+                <material><mattext texttype="text/plain">It has a period at the end.</mattext></material>
+              </response_label>
+              <response_label ident="ch1-all-item-bank_q27_a3">
+                <material><mattext texttype="text/plain">It persuades an audience.</mattext></material>
+              </response_label>
+            </render_choice>
+          </response_lid>
+        </presentation>
+        <resprocessing>
+          <outcomes><decvar maxvalue="100" minvalue="0" varname="SCORE" vartype="Decimal"/></outcomes>
+          <respcondition continue="No">
+            <conditionvar><varequal respident="response1">ch1-all-item-bank_q27_a0</varequal></conditionvar>
+            <setvar action="Set" varname="SCORE">100</setvar>
+          </respcondition>
+        </resprocessing>
+      </item>
+
+      <item ident="ch1-all-item-bank_q28" title="Question 28">
+        <itemmetadata>
+          <qtimetadata>
+            <qtimetadatafield><fieldlabel>question_type</fieldlabel><fieldentry>multiple_choice_question</fieldentry></qtimetadatafield>
+            <qtimetadatafield><fieldlabel>points_possible</fieldlabel><fieldentry>1</fieldentry></qtimetadatafield>
+          </qtimetadata>
+        </itemmetadata>
+        <presentation>
+          <material><mattext texttype="text/html">&lt;div&gt;Which sentence is a statement even if it is controversial?&lt;/div&gt;</mattext></material>
+          <response_lid ident="response1" rcardinality="Single">
+            <render_choice>
+              <response_label ident="ch1-all-item-bank_q28_a0">
+                <material><mattext texttype="text/plain">College athletes should be paid.</mattext></material>
+              </response_label>
+              <response_label ident="ch1-all-item-bank_q28_a1">
+                <material><mattext texttype="text/plain">Pay college athletes!</mattext></material>
+              </response_label>
+              <response_label ident="ch1-all-item-bank_q28_a2">
+                <material><mattext texttype="text/plain">Should college athletes be paid?</mattext></material>
+              </response_label>
+              <response_label ident="ch1-all-item-bank_q28_a3">
+                <material><mattext texttype="text/plain">Wow, college sports!</mattext></material>
+              </response_label>
+            </render_choice>
+          </response_lid>
+        </presentation>
+        <resprocessing>
+          <outcomes><decvar maxvalue="100" minvalue="0" varname="SCORE" vartype="Decimal"/></outcomes>
+          <respcondition continue="No">
+            <conditionvar><varequal respident="response1">ch1-all-item-bank_q28_a0</varequal></conditionvar>
+            <setvar action="Set" varname="SCORE">100</setvar>
+          </respcondition>
+        </resprocessing>
+      </item>
+
+      <item ident="ch1-all-item-bank_q29" title="Question 29">
+        <itemmetadata>
+          <qtimetadata>
+            <qtimetadatafield><fieldlabel>question_type</fieldlabel><fieldentry>multiple_choice_question</fieldentry></qtimetadatafield>
+            <qtimetadatafield><fieldlabel>points_possible</fieldlabel><fieldentry>1</fieldentry></qtimetadatafield>
+          </qtimetadata>
+        </itemmetadata>
+        <presentation>
+          <material><mattext texttype="text/html">&lt;div&gt;Which choice is the best reason &#x27;Shut the window&#x27; is not a statement?&lt;/div&gt;</mattext></material>
+          <response_lid ident="response1" rcardinality="Single">
+            <render_choice>
+              <response_label ident="ch1-all-item-bank_q29_a0">
+                <material><mattext texttype="text/plain">It tells someone to do something rather than making a true-or-false claim.</mattext></material>
+              </response_label>
+              <response_label ident="ch1-all-item-bank_q29_a1">
+                <material><mattext texttype="text/plain">It is too short.</mattext></material>
+              </response_label>
+              <response_label ident="ch1-all-item-bank_q29_a2">
+                <material><mattext texttype="text/plain">It contains no nouns.</mattext></material>
+              </response_label>
+              <response_label ident="ch1-all-item-bank_q29_a3">
+                <material><mattext texttype="text/plain">It appears outside an argument.</mattext></material>
+              </response_label>
+            </render_choice>
+          </response_lid>
+        </presentation>
+        <resprocessing>
+          <outcomes><decvar maxvalue="100" minvalue="0" varname="SCORE" vartype="Decimal"/></outcomes>
+          <respcondition continue="No">
+            <conditionvar><varequal respident="response1">ch1-all-item-bank_q29_a0</varequal></conditionvar>
+            <setvar action="Set" varname="SCORE">100</setvar>
+          </respcondition>
+        </resprocessing>
+      </item>
+
+      <item ident="ch1-all-item-bank_q30" title="Question 30">
+        <itemmetadata>
+          <qtimetadata>
+            <qtimetadatafield><fieldlabel>question_type</fieldlabel><fieldentry>multiple_choice_question</fieldentry></qtimetadatafield>
+            <qtimetadatafield><fieldlabel>points_possible</fieldlabel><fieldentry>1</fieldentry></qtimetadatafield>
+          </qtimetadata>
+        </itemmetadata>
+        <presentation>
+          <material><mattext texttype="text/html">&lt;div&gt;In logic, &#x27;statement&#x27; is closest in meaning to:&lt;/div&gt;</mattext></material>
+          <response_lid ident="response1" rcardinality="Single">
+            <render_choice>
+              <response_label ident="ch1-all-item-bank_q30_a0">
+                <material><mattext texttype="text/plain">truth-apt claim</mattext></material>
+              </response_label>
+              <response_label ident="ch1-all-item-bank_q30_a1">
+                <material><mattext texttype="text/plain">angry disagreement</mattext></material>
+              </response_label>
+              <response_label ident="ch1-all-item-bank_q30_a2">
+                <material><mattext texttype="text/plain">persuasive slogan</mattext></material>
+              </response_label>
+              <response_label ident="ch1-all-item-bank_q30_a3">
+                <material><mattext texttype="text/plain">grammatical sentence of any kind</mattext></material>
+              </response_label>
+            </render_choice>
+          </response_lid>
+        </presentation>
+        <resprocessing>
+          <outcomes><decvar maxvalue="100" minvalue="0" varname="SCORE" vartype="Decimal"/></outcomes>
+          <respcondition continue="No">
+            <conditionvar><varequal respident="response1">ch1-all-item-bank_q30_a0</varequal></conditionvar>
+            <setvar action="Set" varname="SCORE">100</setvar>
+          </respcondition>
+        </resprocessing>
+      </item>
+
+      <item ident="ch1-all-item-bank_q31" title="Question 31">
+        <itemmetadata>
+          <qtimetadata>
+            <qtimetadatafield><fieldlabel>question_type</fieldlabel><fieldentry>multiple_choice_question</fieldentry></qtimetadatafield>
+            <qtimetadatafield><fieldlabel>points_possible</fieldlabel><fieldentry>1</fieldentry></qtimetadatafield>
+          </qtimetadata>
+        </itemmetadata>
+        <presentation>
+          <material><mattext texttype="text/html">&lt;div&gt;Identify the conclusion:&lt;br&gt;&lt;br&gt;&lt;em&gt;The sidewalks are wet because it rained overnight.&lt;/em&gt;&lt;/div&gt;</mattext></material>
+          <response_lid ident="response1" rcardinality="Single">
+            <render_choice>
+              <response_label ident="ch1-all-item-bank_q31_a0">
+                <material><mattext texttype="text/plain">The sidewalks are wet.</mattext></material>
+              </response_label>
+              <response_label ident="ch1-all-item-bank_q31_a1">
+                <material><mattext texttype="text/plain">It rained overnight.</mattext></material>
+              </response_label>
+              <response_label ident="ch1-all-item-bank_q31_a2">
+                <material><mattext texttype="text/plain">Because</mattext></material>
+              </response_label>
+              <response_label ident="ch1-all-item-bank_q31_a3">
+                <material><mattext texttype="text/plain">There is no argument here.</mattext></material>
+              </response_label>
+            </render_choice>
+          </response_lid>
+        </presentation>
+        <resprocessing>
+          <outcomes><decvar maxvalue="100" minvalue="0" varname="SCORE" vartype="Decimal"/></outcomes>
+          <respcondition continue="No">
+            <conditionvar><varequal respident="response1">ch1-all-item-bank_q31_a0</varequal></conditionvar>
+            <setvar action="Set" varname="SCORE">100</setvar>
+          </respcondition>
+        </resprocessing>
+      </item>
+
+      <item ident="ch1-all-item-bank_q32" title="Question 32">
+        <itemmetadata>
+          <qtimetadata>
+            <qtimetadatafield><fieldlabel>question_type</fieldlabel><fieldentry>multiple_choice_question</fieldentry></qtimetadatafield>
+            <qtimetadatafield><fieldlabel>points_possible</fieldlabel><fieldentry>1</fieldentry></qtimetadatafield>
+          </qtimetadata>
+        </itemmetadata>
+        <presentation>
+          <material><mattext texttype="text/html">&lt;div&gt;Which word or phrase is commonly a premise indicator?&lt;/div&gt;</mattext></material>
+          <response_lid ident="response1" rcardinality="Single">
+            <render_choice>
+              <response_label ident="ch1-all-item-bank_q32_a0">
+                <material><mattext texttype="text/plain">since</mattext></material>
+              </response_label>
+              <response_label ident="ch1-all-item-bank_q32_a1">
+                <material><mattext texttype="text/plain">therefore</mattext></material>
+              </response_label>
+              <response_label ident="ch1-all-item-bank_q32_a2">
+                <material><mattext texttype="text/plain">so</mattext></material>
+              </response_label>
+              <response_label ident="ch1-all-item-bank_q32_a3">
+                <material><mattext texttype="text/plain">it follows that</mattext></material>
+              </response_label>
+            </render_choice>
+          </response_lid>
+        </presentation>
+        <resprocessing>
+          <outcomes><decvar maxvalue="100" minvalue="0" varname="SCORE" vartype="Decimal"/></outcomes>
+          <respcondition continue="No">
+            <conditionvar><varequal respident="response1">ch1-all-item-bank_q32_a0</varequal></conditionvar>
+            <setvar action="Set" varname="SCORE">100</setvar>
+          </respcondition>
+        </resprocessing>
+      </item>
+
+      <item ident="ch1-all-item-bank_q33" title="Question 33">
+        <itemmetadata>
+          <qtimetadata>
+            <qtimetadatafield><fieldlabel>question_type</fieldlabel><fieldentry>multiple_choice_question</fieldentry></qtimetadatafield>
+            <qtimetadatafield><fieldlabel>points_possible</fieldlabel><fieldentry>1</fieldentry></qtimetadatafield>
+          </qtimetadata>
+        </itemmetadata>
+        <presentation>
+          <material><mattext texttype="text/html">&lt;div&gt;Which word or phrase is commonly a conclusion indicator?&lt;/div&gt;</mattext></material>
+          <response_lid ident="response1" rcardinality="Single">
+            <render_choice>
+              <response_label ident="ch1-all-item-bank_q33_a0">
+                <material><mattext texttype="text/plain">therefore</mattext></material>
+              </response_label>
+              <response_label ident="ch1-all-item-bank_q33_a1">
+                <material><mattext texttype="text/plain">because</mattext></material>
+              </response_label>
+              <response_label ident="ch1-all-item-bank_q33_a2">
+                <material><mattext texttype="text/plain">given that</mattext></material>
+              </response_label>
+              <response_label ident="ch1-all-item-bank_q33_a3">
+                <material><mattext texttype="text/plain">for the reason that</mattext></material>
+              </response_label>
+            </render_choice>
+          </response_lid>
+        </presentation>
+        <resprocessing>
+          <outcomes><decvar maxvalue="100" minvalue="0" varname="SCORE" vartype="Decimal"/></outcomes>
+          <respcondition continue="No">
+            <conditionvar><varequal respident="response1">ch1-all-item-bank_q33_a0</varequal></conditionvar>
+            <setvar action="Set" varname="SCORE">100</setvar>
+          </respcondition>
+        </resprocessing>
+      </item>
+
+      <item ident="ch1-all-item-bank_q34" title="Question 34">
+        <itemmetadata>
+          <qtimetadata>
+            <qtimetadatafield><fieldlabel>question_type</fieldlabel><fieldentry>multiple_choice_question</fieldentry></qtimetadatafield>
+            <qtimetadatafield><fieldlabel>points_possible</fieldlabel><fieldentry>1</fieldentry></qtimetadatafield>
+          </qtimetadata>
+        </itemmetadata>
+        <presentation>
+          <material><mattext texttype="text/html">&lt;div&gt;In standard form, premises are normally labeled as:&lt;/div&gt;</mattext></material>
+          <response_lid ident="response1" rcardinality="Single">
+            <render_choice>
+              <response_label ident="ch1-all-item-bank_q34_a0">
+                <material><mattext texttype="text/plain">P1, P2, P3, ...</mattext></material>
+              </response_label>
+              <response_label ident="ch1-all-item-bank_q34_a1">
+                <material><mattext texttype="text/plain">C1, C2, C3, ...</mattext></material>
+              </response_label>
+              <response_label ident="ch1-all-item-bank_q34_a2">
+                <material><mattext texttype="text/plain">A, E, I, O</mattext></material>
+              </response_label>
+              <response_label ident="ch1-all-item-bank_q34_a3">
+                <material><mattext texttype="text/plain">T and F only</mattext></material>
+              </response_label>
+            </render_choice>
+          </response_lid>
+        </presentation>
+        <resprocessing>
+          <outcomes><decvar maxvalue="100" minvalue="0" varname="SCORE" vartype="Decimal"/></outcomes>
+          <respcondition continue="No">
+            <conditionvar><varequal respident="response1">ch1-all-item-bank_q34_a0</varequal></conditionvar>
+            <setvar action="Set" varname="SCORE">100</setvar>
+          </respcondition>
+        </resprocessing>
+      </item>
+
+      <item ident="ch1-all-item-bank_q35" title="Question 35">
+        <itemmetadata>
+          <qtimetadata>
+            <qtimetadatafield><fieldlabel>question_type</fieldlabel><fieldentry>multiple_choice_question</fieldentry></qtimetadatafield>
+            <qtimetadatafield><fieldlabel>points_possible</fieldlabel><fieldentry>1</fieldentry></qtimetadatafield>
+          </qtimetadata>
+        </itemmetadata>
+        <presentation>
+          <material><mattext texttype="text/html">&lt;div&gt;In the conditional statement &lt;em&gt;If the battery is dead, then the car will not start&lt;/em&gt;, what is the consequent?&lt;/div&gt;</mattext></material>
+          <response_lid ident="response1" rcardinality="Single">
+            <render_choice>
+              <response_label ident="ch1-all-item-bank_q35_a0">
+                <material><mattext texttype="text/plain">the car will not start</mattext></material>
+              </response_label>
+              <response_label ident="ch1-all-item-bank_q35_a1">
+                <material><mattext texttype="text/plain">the battery is dead</mattext></material>
+              </response_label>
+              <response_label ident="ch1-all-item-bank_q35_a2">
+                <material><mattext texttype="text/plain">if</mattext></material>
+              </response_label>
+              <response_label ident="ch1-all-item-bank_q35_a3">
+                <material><mattext texttype="text/plain">the whole conditional is the consequent</mattext></material>
+              </response_label>
+            </render_choice>
+          </response_lid>
+        </presentation>
+        <resprocessing>
+          <outcomes><decvar maxvalue="100" minvalue="0" varname="SCORE" vartype="Decimal"/></outcomes>
+          <respcondition continue="No">
+            <conditionvar><varequal respident="response1">ch1-all-item-bank_q35_a0</varequal></conditionvar>
+            <setvar action="Set" varname="SCORE">100</setvar>
+          </respcondition>
+        </resprocessing>
+      </item>
+
+      <item ident="ch1-all-item-bank_q36" title="Question 36">
+        <itemmetadata>
+          <qtimetadata>
+            <qtimetadatafield><fieldlabel>question_type</fieldlabel><fieldentry>multiple_choice_question</fieldentry></qtimetadatafield>
+            <qtimetadatafield><fieldlabel>points_possible</fieldlabel><fieldentry>1</fieldentry></qtimetadatafield>
+          </qtimetadata>
+        </itemmetadata>
+        <presentation>
+          <material><mattext texttype="text/html">&lt;div&gt;Identify the premise:&lt;br&gt;&lt;br&gt;&lt;em&gt;Since the battery is dead, the car will not start.&lt;/em&gt;&lt;/div&gt;</mattext></material>
+          <response_lid ident="response1" rcardinality="Single">
+            <render_choice>
+              <response_label ident="ch1-all-item-bank_q36_a0">
+                <material><mattext texttype="text/plain">The battery is dead.</mattext></material>
+              </response_label>
+              <response_label ident="ch1-all-item-bank_q36_a1">
+                <material><mattext texttype="text/plain">The car will not start.</mattext></material>
+              </response_label>
+              <response_label ident="ch1-all-item-bank_q36_a2">
+                <material><mattext texttype="text/plain">Since</mattext></material>
+              </response_label>
+              <response_label ident="ch1-all-item-bank_q36_a3">
+                <material><mattext texttype="text/plain">There is no premise.</mattext></material>
+              </response_label>
+            </render_choice>
+          </response_lid>
+        </presentation>
+        <resprocessing>
+          <outcomes><decvar maxvalue="100" minvalue="0" varname="SCORE" vartype="Decimal"/></outcomes>
+          <respcondition continue="No">
+            <conditionvar><varequal respident="response1">ch1-all-item-bank_q36_a0</varequal></conditionvar>
+            <setvar action="Set" varname="SCORE">100</setvar>
+          </respcondition>
+        </resprocessing>
+      </item>
+
+      <item ident="ch1-all-item-bank_q37" title="Question 37">
+        <itemmetadata>
+          <qtimetadata>
+            <qtimetadatafield><fieldlabel>question_type</fieldlabel><fieldentry>multiple_choice_question</fieldentry></qtimetadatafield>
+            <qtimetadatafield><fieldlabel>points_possible</fieldlabel><fieldentry>1</fieldentry></qtimetadatafield>
+          </qtimetadata>
+        </itemmetadata>
+        <presentation>
+          <material><mattext texttype="text/html">&lt;div&gt;Identify the conclusion:&lt;br&gt;&lt;br&gt;&lt;em&gt;The museum should extend its hours, since students need evening access for their projects.&lt;/em&gt;&lt;/div&gt;</mattext></material>
+          <response_lid ident="response1" rcardinality="Single">
+            <render_choice>
+              <response_label ident="ch1-all-item-bank_q37_a0">
+                <material><mattext texttype="text/plain">The museum should extend its hours.</mattext></material>
+              </response_label>
+              <response_label ident="ch1-all-item-bank_q37_a1">
+                <material><mattext texttype="text/plain">Students need evening access for their projects.</mattext></material>
+              </response_label>
+              <response_label ident="ch1-all-item-bank_q37_a2">
+                <material><mattext texttype="text/plain">Since</mattext></material>
+              </response_label>
+              <response_label ident="ch1-all-item-bank_q37_a3">
+                <material><mattext texttype="text/plain">Their projects.</mattext></material>
+              </response_label>
+            </render_choice>
+          </response_lid>
+        </presentation>
+        <resprocessing>
+          <outcomes><decvar maxvalue="100" minvalue="0" varname="SCORE" vartype="Decimal"/></outcomes>
+          <respcondition continue="No">
+            <conditionvar><varequal respident="response1">ch1-all-item-bank_q37_a0</varequal></conditionvar>
+            <setvar action="Set" varname="SCORE">100</setvar>
+          </respcondition>
+        </resprocessing>
+      </item>
+
+      <item ident="ch1-all-item-bank_q38" title="Question 38">
+        <itemmetadata>
+          <qtimetadata>
+            <qtimetadatafield><fieldlabel>question_type</fieldlabel><fieldentry>multiple_choice_question</fieldentry></qtimetadatafield>
+            <qtimetadatafield><fieldlabel>points_possible</fieldlabel><fieldentry>1</fieldentry></qtimetadatafield>
+          </qtimetadata>
+        </itemmetadata>
+        <presentation>
+          <material><mattext texttype="text/html">&lt;div&gt;Which reconstruction is in standard form?&lt;/div&gt;</mattext></material>
+          <response_lid ident="response1" rcardinality="Single">
+            <render_choice>
+              <response_label ident="ch1-all-item-bank_q38_a0">
+                <material><mattext texttype="text/plain">P1: The forecast calls for storms. C: You should bring an umbrella.</mattext></material>
+              </response_label>
+              <response_label ident="ch1-all-item-bank_q38_a1">
+                <material><mattext texttype="text/plain">Because the forecast calls for storms, you should bring an umbrella.</mattext></material>
+              </response_label>
+              <response_label ident="ch1-all-item-bank_q38_a2">
+                <material><mattext texttype="text/plain">You should bring an umbrella because storms.</mattext></material>
+              </response_label>
+              <response_label ident="ch1-all-item-bank_q38_a3">
+                <material><mattext texttype="text/plain">Argument: umbrella.</mattext></material>
+              </response_label>
+            </render_choice>
+          </response_lid>
+        </presentation>
+        <resprocessing>
+          <outcomes><decvar maxvalue="100" minvalue="0" varname="SCORE" vartype="Decimal"/></outcomes>
+          <respcondition continue="No">
+            <conditionvar><varequal respident="response1">ch1-all-item-bank_q38_a0</varequal></conditionvar>
+            <setvar action="Set" varname="SCORE">100</setvar>
+          </respcondition>
+        </resprocessing>
+      </item>
+
+      <item ident="ch1-all-item-bank_q39" title="Question 39">
+        <itemmetadata>
+          <qtimetadata>
+            <qtimetadatafield><fieldlabel>question_type</fieldlabel><fieldentry>multiple_choice_question</fieldentry></qtimetadatafield>
+            <qtimetadatafield><fieldlabel>points_possible</fieldlabel><fieldentry>1</fieldentry></qtimetadatafield>
+          </qtimetadata>
+        </itemmetadata>
+        <presentation>
+          <material><mattext texttype="text/html">&lt;div&gt;What is a conclusion?&lt;/div&gt;</mattext></material>
+          <response_lid ident="response1" rcardinality="Single">
+            <render_choice>
+              <response_label ident="ch1-all-item-bank_q39_a0">
+                <material><mattext texttype="text/plain">The claim the premises are offered to support.</mattext></material>
+              </response_label>
+              <response_label ident="ch1-all-item-bank_q39_a1">
+                <material><mattext texttype="text/plain">Any sentence that appears first.</mattext></material>
+              </response_label>
+              <response_label ident="ch1-all-item-bank_q39_a2">
+                <material><mattext texttype="text/plain">A word such as because or since.</mattext></material>
+              </response_label>
+              <response_label ident="ch1-all-item-bank_q39_a3">
+                <material><mattext texttype="text/plain">A question that begins an argument.</mattext></material>
+              </response_label>
+            </render_choice>
+          </response_lid>
+        </presentation>
+        <resprocessing>
+          <outcomes><decvar maxvalue="100" minvalue="0" varname="SCORE" vartype="Decimal"/></outcomes>
+          <respcondition continue="No">
+            <conditionvar><varequal respident="response1">ch1-all-item-bank_q39_a0</varequal></conditionvar>
+            <setvar action="Set" varname="SCORE">100</setvar>
+          </respcondition>
+        </resprocessing>
+      </item>
+
+      <item ident="ch1-all-item-bank_q40" title="Question 40">
+        <itemmetadata>
+          <qtimetadata>
+            <qtimetadatafield><fieldlabel>question_type</fieldlabel><fieldentry>multiple_choice_question</fieldentry></qtimetadatafield>
+            <qtimetadatafield><fieldlabel>points_possible</fieldlabel><fieldentry>1</fieldentry></qtimetadatafield>
+          </qtimetadata>
+        </itemmetadata>
+        <presentation>
+          <material><mattext texttype="text/html">&lt;div&gt;What is a premise?&lt;/div&gt;</mattext></material>
+          <response_lid ident="response1" rcardinality="Single">
+            <render_choice>
+              <response_label ident="ch1-all-item-bank_q40_a0">
+                <material><mattext texttype="text/plain">A statement offered in support of a conclusion.</mattext></material>
+              </response_label>
+              <response_label ident="ch1-all-item-bank_q40_a1">
+                <material><mattext texttype="text/plain">The final sentence of every passage.</mattext></material>
+              </response_label>
+              <response_label ident="ch1-all-item-bank_q40_a2">
+                <material><mattext texttype="text/plain">Any sentence with emotional force.</mattext></material>
+              </response_label>
+              <response_label ident="ch1-all-item-bank_q40_a3">
+                <material><mattext texttype="text/plain">A command in an argument.</mattext></material>
+              </response_label>
+            </render_choice>
+          </response_lid>
+        </presentation>
+        <resprocessing>
+          <outcomes><decvar maxvalue="100" minvalue="0" varname="SCORE" vartype="Decimal"/></outcomes>
+          <respcondition continue="No">
+            <conditionvar><varequal respident="response1">ch1-all-item-bank_q40_a0</varequal></conditionvar>
+            <setvar action="Set" varname="SCORE">100</setvar>
+          </respcondition>
+        </resprocessing>
+      </item>
+
+      <item ident="ch1-all-item-bank_q41" title="Question 41">
+        <itemmetadata>
+          <qtimetadata>
+            <qtimetadatafield><fieldlabel>question_type</fieldlabel><fieldentry>multiple_choice_question</fieldentry></qtimetadatafield>
+            <qtimetadatafield><fieldlabel>points_possible</fieldlabel><fieldentry>1</fieldentry></qtimetadatafield>
+          </qtimetadata>
+        </itemmetadata>
+        <presentation>
+          <material><mattext texttype="text/html">&lt;div&gt;Identify the conclusion:&lt;br&gt;&lt;br&gt;&lt;em&gt;The lecture was recorded. So students who missed class can watch it.&lt;/em&gt;&lt;/div&gt;</mattext></material>
+          <response_lid ident="response1" rcardinality="Single">
+            <render_choice>
+              <response_label ident="ch1-all-item-bank_q41_a0">
+                <material><mattext texttype="text/plain">Students who missed class can watch it.</mattext></material>
+              </response_label>
+              <response_label ident="ch1-all-item-bank_q41_a1">
+                <material><mattext texttype="text/plain">The lecture was recorded.</mattext></material>
+              </response_label>
+              <response_label ident="ch1-all-item-bank_q41_a2">
+                <material><mattext texttype="text/plain">So</mattext></material>
+              </response_label>
+              <response_label ident="ch1-all-item-bank_q41_a3">
+                <material><mattext texttype="text/plain">The lecture.</mattext></material>
+              </response_label>
+            </render_choice>
+          </response_lid>
+        </presentation>
+        <resprocessing>
+          <outcomes><decvar maxvalue="100" minvalue="0" varname="SCORE" vartype="Decimal"/></outcomes>
+          <respcondition continue="No">
+            <conditionvar><varequal respident="response1">ch1-all-item-bank_q41_a0</varequal></conditionvar>
+            <setvar action="Set" varname="SCORE">100</setvar>
+          </respcondition>
+        </resprocessing>
+      </item>
+
+      <item ident="ch1-all-item-bank_q42" title="Question 42">
+        <itemmetadata>
+          <qtimetadata>
+            <qtimetadatafield><fieldlabel>question_type</fieldlabel><fieldentry>multiple_choice_question</fieldentry></qtimetadatafield>
+            <qtimetadatafield><fieldlabel>points_possible</fieldlabel><fieldentry>1</fieldentry></qtimetadatafield>
+          </qtimetadata>
+        </itemmetadata>
+        <presentation>
+          <material><mattext texttype="text/html">&lt;div&gt;Which phrase most strongly signals a conclusion?&lt;/div&gt;</mattext></material>
+          <response_lid ident="response1" rcardinality="Single">
+            <render_choice>
+              <response_label ident="ch1-all-item-bank_q42_a0">
+                <material><mattext texttype="text/plain">hence</mattext></material>
+              </response_label>
+              <response_label ident="ch1-all-item-bank_q42_a1">
+                <material><mattext texttype="text/plain">because</mattext></material>
+              </response_label>
+              <response_label ident="ch1-all-item-bank_q42_a2">
+                <material><mattext texttype="text/plain">given that</mattext></material>
+              </response_label>
+              <response_label ident="ch1-all-item-bank_q42_a3">
+                <material><mattext texttype="text/plain">for</mattext></material>
+              </response_label>
+            </render_choice>
+          </response_lid>
+        </presentation>
+        <resprocessing>
+          <outcomes><decvar maxvalue="100" minvalue="0" varname="SCORE" vartype="Decimal"/></outcomes>
+          <respcondition continue="No">
+            <conditionvar><varequal respident="response1">ch1-all-item-bank_q42_a0</varequal></conditionvar>
+            <setvar action="Set" varname="SCORE">100</setvar>
+          </respcondition>
+        </resprocessing>
+      </item>
+
+      <item ident="ch1-all-item-bank_q43" title="Question 43">
+        <itemmetadata>
+          <qtimetadata>
+            <qtimetadatafield><fieldlabel>question_type</fieldlabel><fieldentry>multiple_choice_question</fieldentry></qtimetadatafield>
+            <qtimetadatafield><fieldlabel>points_possible</fieldlabel><fieldentry>1</fieldentry></qtimetadatafield>
+          </qtimetadata>
+        </itemmetadata>
+        <presentation>
+          <material><mattext texttype="text/html">&lt;div&gt;Which phrase most strongly signals a premise?&lt;/div&gt;</mattext></material>
+          <response_lid ident="response1" rcardinality="Single">
+            <render_choice>
+              <response_label ident="ch1-all-item-bank_q43_a0">
+                <material><mattext texttype="text/plain">for the reason that</mattext></material>
+              </response_label>
+              <response_label ident="ch1-all-item-bank_q43_a1">
+                <material><mattext texttype="text/plain">therefore</mattext></material>
+              </response_label>
+              <response_label ident="ch1-all-item-bank_q43_a2">
+                <material><mattext texttype="text/plain">thus</mattext></material>
+              </response_label>
+              <response_label ident="ch1-all-item-bank_q43_a3">
+                <material><mattext texttype="text/plain">we may conclude</mattext></material>
+              </response_label>
+            </render_choice>
+          </response_lid>
+        </presentation>
+        <resprocessing>
+          <outcomes><decvar maxvalue="100" minvalue="0" varname="SCORE" vartype="Decimal"/></outcomes>
+          <respcondition continue="No">
+            <conditionvar><varequal respident="response1">ch1-all-item-bank_q43_a0</varequal></conditionvar>
+            <setvar action="Set" varname="SCORE">100</setvar>
+          </respcondition>
+        </resprocessing>
+      </item>
+
+      <item ident="ch1-all-item-bank_q44" title="Question 44">
+        <itemmetadata>
+          <qtimetadata>
+            <qtimetadatafield><fieldlabel>question_type</fieldlabel><fieldentry>multiple_choice_question</fieldentry></qtimetadatafield>
+            <qtimetadatafield><fieldlabel>points_possible</fieldlabel><fieldentry>1</fieldentry></qtimetadatafield>
+          </qtimetadata>
+        </itemmetadata>
+        <presentation>
+          <material><mattext texttype="text/html">&lt;div&gt;In the conditional &lt;em&gt;If the team practices, then it will improve&lt;/em&gt;, what is the antecedent?&lt;/div&gt;</mattext></material>
+          <response_lid ident="response1" rcardinality="Single">
+            <render_choice>
+              <response_label ident="ch1-all-item-bank_q44_a0">
+                <material><mattext texttype="text/plain">the team practices</mattext></material>
+              </response_label>
+              <response_label ident="ch1-all-item-bank_q44_a1">
+                <material><mattext texttype="text/plain">it will improve</mattext></material>
+              </response_label>
+              <response_label ident="ch1-all-item-bank_q44_a2">
+                <material><mattext texttype="text/plain">then</mattext></material>
+              </response_label>
+              <response_label ident="ch1-all-item-bank_q44_a3">
+                <material><mattext texttype="text/plain">the team</mattext></material>
+              </response_label>
+            </render_choice>
+          </response_lid>
+        </presentation>
+        <resprocessing>
+          <outcomes><decvar maxvalue="100" minvalue="0" varname="SCORE" vartype="Decimal"/></outcomes>
+          <respcondition continue="No">
+            <conditionvar><varequal respident="response1">ch1-all-item-bank_q44_a0</varequal></conditionvar>
+            <setvar action="Set" varname="SCORE">100</setvar>
+          </respcondition>
+        </resprocessing>
+      </item>
+
+      <item ident="ch1-all-item-bank_q45" title="Question 45">
+        <itemmetadata>
+          <qtimetadata>
+            <qtimetadatafield><fieldlabel>question_type</fieldlabel><fieldentry>multiple_choice_question</fieldentry></qtimetadatafield>
+            <qtimetadatafield><fieldlabel>points_possible</fieldlabel><fieldentry>1</fieldentry></qtimetadatafield>
+          </qtimetadata>
+        </itemmetadata>
+        <presentation>
+          <material><mattext texttype="text/html">&lt;div&gt;Which is the best standard-form version of this argument?&lt;br&gt;&lt;br&gt;&lt;em&gt;Because the lab is required, you should not schedule the exam during the lab.&lt;/em&gt;&lt;/div&gt;</mattext></material>
+          <response_lid ident="response1" rcardinality="Single">
+            <render_choice>
+              <response_label ident="ch1-all-item-bank_q45_a0">
+                <material><mattext texttype="text/plain">P1: The lab is required. C: You should not schedule the exam during the lab.</mattext></material>
+              </response_label>
+              <response_label ident="ch1-all-item-bank_q45_a1">
+                <material><mattext texttype="text/plain">P1: You should not schedule the exam during the lab. C: The lab is required.</mattext></material>
+              </response_label>
+              <response_label ident="ch1-all-item-bank_q45_a2">
+                <material><mattext texttype="text/plain">P1: Because. C: The lab.</mattext></material>
+              </response_label>
+              <response_label ident="ch1-all-item-bank_q45_a3">
+                <material><mattext texttype="text/plain">There is no argument because it has one sentence.</mattext></material>
+              </response_label>
+            </render_choice>
+          </response_lid>
+        </presentation>
+        <resprocessing>
+          <outcomes><decvar maxvalue="100" minvalue="0" varname="SCORE" vartype="Decimal"/></outcomes>
+          <respcondition continue="No">
+            <conditionvar><varequal respident="response1">ch1-all-item-bank_q45_a0</varequal></conditionvar>
+            <setvar action="Set" varname="SCORE">100</setvar>
+          </respcondition>
+        </resprocessing>
+      </item>
+
+      <item ident="ch1-all-item-bank_q46" title="Question 46">
+        <itemmetadata>
+          <qtimetadata>
+            <qtimetadatafield><fieldlabel>question_type</fieldlabel><fieldentry>multiple_choice_question</fieldentry></qtimetadatafield>
+            <qtimetadatafield><fieldlabel>points_possible</fieldlabel><fieldentry>1</fieldentry></qtimetadatafield>
+          </qtimetadata>
+        </itemmetadata>
+        <presentation>
+          <material><mattext texttype="text/html">&lt;div&gt;Argument or explanation?&lt;br&gt;&lt;br&gt;&lt;em&gt;The road is closed because a water main broke downtown.&lt;/em&gt;&lt;/div&gt;</mattext></material>
+          <response_lid ident="response1" rcardinality="Single">
+            <render_choice>
+              <response_label ident="ch1-all-item-bank_q46_a0">
+                <material><mattext texttype="text/plain">Explanation</mattext></material>
+              </response_label>
+              <response_label ident="ch1-all-item-bank_q46_a1">
+                <material><mattext texttype="text/plain">Argument</mattext></material>
+              </response_label>
+              <response_label ident="ch1-all-item-bank_q46_a2">
+                <material><mattext texttype="text/plain">Neither</mattext></material>
+              </response_label>
+              <response_label ident="ch1-all-item-bank_q46_a3">
+                <material><mattext texttype="text/plain">Both, because all uses of &#x27;because&#x27; are arguments</mattext></material>
+              </response_label>
+            </render_choice>
+          </response_lid>
+        </presentation>
+        <resprocessing>
+          <outcomes><decvar maxvalue="100" minvalue="0" varname="SCORE" vartype="Decimal"/></outcomes>
+          <respcondition continue="No">
+            <conditionvar><varequal respident="response1">ch1-all-item-bank_q46_a0</varequal></conditionvar>
+            <setvar action="Set" varname="SCORE">100</setvar>
+          </respcondition>
+        </resprocessing>
+      </item>
+
+      <item ident="ch1-all-item-bank_q47" title="Question 47">
+        <itemmetadata>
+          <qtimetadata>
+            <qtimetadatafield><fieldlabel>question_type</fieldlabel><fieldentry>multiple_choice_question</fieldentry></qtimetadatafield>
+            <qtimetadatafield><fieldlabel>points_possible</fieldlabel><fieldentry>1</fieldentry></qtimetadatafield>
+          </qtimetadata>
+        </itemmetadata>
+        <presentation>
+          <material><mattext texttype="text/html">&lt;div&gt;Argument or explanation?&lt;br&gt;&lt;br&gt;&lt;em&gt;You should avoid Route 3 because a water main broke downtown and traffic is backed up for miles.&lt;/em&gt;&lt;/div&gt;</mattext></material>
+          <response_lid ident="response1" rcardinality="Single">
+            <render_choice>
+              <response_label ident="ch1-all-item-bank_q47_a0">
+                <material><mattext texttype="text/plain">Argument</mattext></material>
+              </response_label>
+              <response_label ident="ch1-all-item-bank_q47_a1">
+                <material><mattext texttype="text/plain">Explanation</mattext></material>
+              </response_label>
+              <response_label ident="ch1-all-item-bank_q47_a2">
+                <material><mattext texttype="text/plain">Greeting</mattext></material>
+              </response_label>
+              <response_label ident="ch1-all-item-bank_q47_a3">
+                <material><mattext texttype="text/plain">Promise</mattext></material>
+              </response_label>
+            </render_choice>
+          </response_lid>
+        </presentation>
+        <resprocessing>
+          <outcomes><decvar maxvalue="100" minvalue="0" varname="SCORE" vartype="Decimal"/></outcomes>
+          <respcondition continue="No">
+            <conditionvar><varequal respident="response1">ch1-all-item-bank_q47_a0</varequal></conditionvar>
+            <setvar action="Set" varname="SCORE">100</setvar>
+          </respcondition>
+        </resprocessing>
+      </item>
+
+      <item ident="ch1-all-item-bank_q48" title="Question 48">
+        <itemmetadata>
+          <qtimetadata>
+            <qtimetadatafield><fieldlabel>question_type</fieldlabel><fieldentry>multiple_choice_question</fieldentry></qtimetadatafield>
+            <qtimetadatafield><fieldlabel>points_possible</fieldlabel><fieldentry>1</fieldentry></qtimetadatafield>
+          </qtimetadata>
+        </itemmetadata>
+        <presentation>
+          <material><mattext texttype="text/html">&lt;div&gt;When a passage contains no indicator words, the best strategy is to:&lt;/div&gt;</mattext></material>
+          <response_lid ident="response1" rcardinality="Single">
+            <render_choice>
+              <response_label ident="ch1-all-item-bank_q48_a0">
+                <material><mattext texttype="text/plain">ask which claim the other claims are meant to support</mattext></material>
+              </response_label>
+              <response_label ident="ch1-all-item-bank_q48_a1">
+                <material><mattext texttype="text/plain">assume it is not an argument</mattext></material>
+              </response_label>
+              <response_label ident="ch1-all-item-bank_q48_a2">
+                <material><mattext texttype="text/plain">treat the first sentence as the conclusion every time</mattext></material>
+              </response_label>
+              <response_label ident="ch1-all-item-bank_q48_a3">
+                <material><mattext texttype="text/plain">ignore the passage</mattext></material>
+              </response_label>
+            </render_choice>
+          </response_lid>
+        </presentation>
+        <resprocessing>
+          <outcomes><decvar maxvalue="100" minvalue="0" varname="SCORE" vartype="Decimal"/></outcomes>
+          <respcondition continue="No">
+            <conditionvar><varequal respident="response1">ch1-all-item-bank_q48_a0</varequal></conditionvar>
+            <setvar action="Set" varname="SCORE">100</setvar>
+          </respcondition>
+        </resprocessing>
+      </item>
+
+      <item ident="ch1-all-item-bank_q49" title="Question 49">
+        <itemmetadata>
+          <qtimetadata>
+            <qtimetadatafield><fieldlabel>question_type</fieldlabel><fieldentry>multiple_choice_question</fieldentry></qtimetadatafield>
+            <qtimetadatafield><fieldlabel>points_possible</fieldlabel><fieldentry>1</fieldentry></qtimetadatafield>
+          </qtimetadata>
+        </itemmetadata>
+        <presentation>
+          <material><mattext texttype="text/html">&lt;div&gt;A sub-conclusion is:&lt;/div&gt;</mattext></material>
+          <response_lid ident="response1" rcardinality="Single">
+            <render_choice>
+              <response_label ident="ch1-all-item-bank_q49_a0">
+                <material><mattext texttype="text/plain">a claim supported by earlier premises that also supports a later conclusion</mattext></material>
+              </response_label>
+              <response_label ident="ch1-all-item-bank_q49_a1">
+                <material><mattext texttype="text/plain">a premise that is false</mattext></material>
+              </response_label>
+              <response_label ident="ch1-all-item-bank_q49_a2">
+                <material><mattext texttype="text/plain">a question inside an argument</mattext></material>
+              </response_label>
+              <response_label ident="ch1-all-item-bank_q49_a3">
+                <material><mattext texttype="text/plain">a conclusion that has no support</mattext></material>
+              </response_label>
+            </render_choice>
+          </response_lid>
+        </presentation>
+        <resprocessing>
+          <outcomes><decvar maxvalue="100" minvalue="0" varname="SCORE" vartype="Decimal"/></outcomes>
+          <respcondition continue="No">
+            <conditionvar><varequal respident="response1">ch1-all-item-bank_q49_a0</varequal></conditionvar>
+            <setvar action="Set" varname="SCORE">100</setvar>
+          </respcondition>
+        </resprocessing>
+      </item>
+
+      <item ident="ch1-all-item-bank_q50" title="Question 50">
+        <itemmetadata>
+          <qtimetadata>
+            <qtimetadatafield><fieldlabel>question_type</fieldlabel><fieldentry>multiple_choice_question</fieldentry></qtimetadatafield>
+            <qtimetadatafield><fieldlabel>points_possible</fieldlabel><fieldentry>1</fieldentry></qtimetadatafield>
+          </qtimetadata>
+        </itemmetadata>
+        <presentation>
+          <material><mattext texttype="text/html">&lt;div&gt;Which reconstruction best fits this argument?&lt;br&gt;&lt;br&gt;&lt;em&gt;If the server is down, students cannot submit the quiz. The server is down. So students cannot submit the quiz.&lt;/em&gt;&lt;/div&gt;</mattext></material>
+          <response_lid ident="response1" rcardinality="Single">
+            <render_choice>
+              <response_label ident="ch1-all-item-bank_q50_a0">
+                <material><mattext texttype="text/plain">P1: If the server is down, students cannot submit the quiz. P2: The server is down. C: Students cannot submit the quiz.</mattext></material>
+              </response_label>
+              <response_label ident="ch1-all-item-bank_q50_a1">
+                <material><mattext texttype="text/plain">P1: Students cannot submit the quiz. C: The server is down.</mattext></material>
+              </response_label>
+              <response_label ident="ch1-all-item-bank_q50_a2">
+                <material><mattext texttype="text/plain">P1: The server is down. P2: Students can submit the quiz. C: No argument.</mattext></material>
+              </response_label>
+              <response_label ident="ch1-all-item-bank_q50_a3">
+                <material><mattext texttype="text/plain">P1: If students cannot submit the quiz, the server is down. C: The server is down.</mattext></material>
+              </response_label>
+            </render_choice>
+          </response_lid>
+        </presentation>
+        <resprocessing>
+          <outcomes><decvar maxvalue="100" minvalue="0" varname="SCORE" vartype="Decimal"/></outcomes>
+          <respcondition continue="No">
+            <conditionvar><varequal respident="response1">ch1-all-item-bank_q50_a0</varequal></conditionvar>
+            <setvar action="Set" varname="SCORE">100</setvar>
+          </respcondition>
+        </resprocessing>
+      </item>
+
+      <item ident="ch1-all-item-bank_q51" title="Question 51">
+        <itemmetadata>
+          <qtimetadata>
+            <qtimetadatafield><fieldlabel>question_type</fieldlabel><fieldentry>multiple_choice_question</fieldentry></qtimetadatafield>
+            <qtimetadatafield><fieldlabel>points_possible</fieldlabel><fieldentry>1</fieldentry></qtimetadatafield>
+          </qtimetadata>
+        </itemmetadata>
+        <presentation>
+          <material><mattext texttype="text/html">&lt;div&gt;Which passage is most clearly an explanation rather than an argument?&lt;/div&gt;</mattext></material>
+          <response_lid ident="response1" rcardinality="Single">
+            <render_choice>
+              <response_label ident="ch1-all-item-bank_q51_a0">
+                <material><mattext texttype="text/plain">The alarm sounded because smoke reached the sensor.</mattext></material>
+              </response_label>
+              <response_label ident="ch1-all-item-bank_q51_a1">
+                <material><mattext texttype="text/plain">You should leave because the alarm sounded.</mattext></material>
+              </response_label>
+              <response_label ident="ch1-all-item-bank_q51_a2">
+                <material><mattext texttype="text/plain">The alarm sounded. Therefore, we should leave.</mattext></material>
+              </response_label>
+              <response_label ident="ch1-all-item-bank_q51_a3">
+                <material><mattext texttype="text/plain">Since smoke is dangerous, we should leave.</mattext></material>
+              </response_label>
+            </render_choice>
+          </response_lid>
+        </presentation>
+        <resprocessing>
+          <outcomes><decvar maxvalue="100" minvalue="0" varname="SCORE" vartype="Decimal"/></outcomes>
+          <respcondition continue="No">
+            <conditionvar><varequal respident="response1">ch1-all-item-bank_q51_a0</varequal></conditionvar>
+            <setvar action="Set" varname="SCORE">100</setvar>
+          </respcondition>
+        </resprocessing>
+      </item>
+
+      <item ident="ch1-all-item-bank_q52" title="Question 52">
+        <itemmetadata>
+          <qtimetadata>
+            <qtimetadatafield><fieldlabel>question_type</fieldlabel><fieldentry>multiple_choice_question</fieldentry></qtimetadatafield>
+            <qtimetadatafield><fieldlabel>points_possible</fieldlabel><fieldentry>1</fieldentry></qtimetadatafield>
+          </qtimetadata>
+        </itemmetadata>
+        <presentation>
+          <material><mattext texttype="text/html">&lt;div&gt;Which passage is most clearly an argument?&lt;/div&gt;</mattext></material>
+          <response_lid ident="response1" rcardinality="Single">
+            <render_choice>
+              <response_label ident="ch1-all-item-bank_q52_a0">
+                <material><mattext texttype="text/plain">The alarm sounded, so we should leave the building.</mattext></material>
+              </response_label>
+              <response_label ident="ch1-all-item-bank_q52_a1">
+                <material><mattext texttype="text/plain">The alarm sounded because smoke reached the sensor.</mattext></material>
+              </response_label>
+              <response_label ident="ch1-all-item-bank_q52_a2">
+                <material><mattext texttype="text/plain">The alarm was loud and repeated.</mattext></material>
+              </response_label>
+              <response_label ident="ch1-all-item-bank_q52_a3">
+                <material><mattext texttype="text/plain">After the alarm sounded, people left.</mattext></material>
+              </response_label>
+            </render_choice>
+          </response_lid>
+        </presentation>
+        <resprocessing>
+          <outcomes><decvar maxvalue="100" minvalue="0" varname="SCORE" vartype="Decimal"/></outcomes>
+          <respcondition continue="No">
+            <conditionvar><varequal respident="response1">ch1-all-item-bank_q52_a0</varequal></conditionvar>
+            <setvar action="Set" varname="SCORE">100</setvar>
+          </respcondition>
+        </resprocessing>
+      </item>
+
+      <item ident="ch1-all-item-bank_q53" title="Question 53">
+        <itemmetadata>
+          <qtimetadata>
+            <qtimetadatafield><fieldlabel>question_type</fieldlabel><fieldentry>multiple_choice_question</fieldentry></qtimetadatafield>
+            <qtimetadatafield><fieldlabel>points_possible</fieldlabel><fieldentry>1</fieldentry></qtimetadatafield>
+          </qtimetadata>
+        </itemmetadata>
+        <presentation>
+          <material><mattext texttype="text/html">&lt;div&gt;What is the explanandum in an explanation?&lt;/div&gt;</mattext></material>
+          <response_lid ident="response1" rcardinality="Single">
+            <render_choice>
+              <response_label ident="ch1-all-item-bank_q53_a0">
+                <material><mattext texttype="text/plain">The thing being explained.</mattext></material>
+              </response_label>
+              <response_label ident="ch1-all-item-bank_q53_a1">
+                <material><mattext texttype="text/plain">The reason offered for accepting a conclusion.</mattext></material>
+              </response_label>
+              <response_label ident="ch1-all-item-bank_q53_a2">
+                <material><mattext texttype="text/plain">The final conclusion of an argument.</mattext></material>
+              </response_label>
+              <response_label ident="ch1-all-item-bank_q53_a3">
+                <material><mattext texttype="text/plain">A conclusion indicator.</mattext></material>
+              </response_label>
+            </render_choice>
+          </response_lid>
+        </presentation>
+        <resprocessing>
+          <outcomes><decvar maxvalue="100" minvalue="0" varname="SCORE" vartype="Decimal"/></outcomes>
+          <respcondition continue="No">
+            <conditionvar><varequal respident="response1">ch1-all-item-bank_q53_a0</varequal></conditionvar>
+            <setvar action="Set" varname="SCORE">100</setvar>
+          </respcondition>
+        </resprocessing>
+      </item>
+
+      <item ident="ch1-all-item-bank_q54" title="Question 54">
+        <itemmetadata>
+          <qtimetadata>
+            <qtimetadatafield><fieldlabel>question_type</fieldlabel><fieldentry>multiple_choice_question</fieldentry></qtimetadatafield>
+            <qtimetadatafield><fieldlabel>points_possible</fieldlabel><fieldentry>1</fieldentry></qtimetadatafield>
+          </qtimetadata>
+        </itemmetadata>
+        <presentation>
+          <material><mattext texttype="text/html">&lt;div&gt;What is the explanans in an explanation?&lt;/div&gt;</mattext></material>
+          <response_lid ident="response1" rcardinality="Single">
+            <render_choice>
+              <response_label ident="ch1-all-item-bank_q54_a0">
+                <material><mattext texttype="text/plain">The claim or claims doing the explaining.</mattext></material>
+              </response_label>
+              <response_label ident="ch1-all-item-bank_q54_a1">
+                <material><mattext texttype="text/plain">The claim being supported in an argument.</mattext></material>
+              </response_label>
+              <response_label ident="ch1-all-item-bank_q54_a2">
+                <material><mattext texttype="text/plain">The word therefore.</mattext></material>
+              </response_label>
+              <response_label ident="ch1-all-item-bank_q54_a3">
+                <material><mattext texttype="text/plain">Any emotional appeal.</mattext></material>
+              </response_label>
+            </render_choice>
+          </response_lid>
+        </presentation>
+        <resprocessing>
+          <outcomes><decvar maxvalue="100" minvalue="0" varname="SCORE" vartype="Decimal"/></outcomes>
+          <respcondition continue="No">
+            <conditionvar><varequal respident="response1">ch1-all-item-bank_q54_a0</varequal></conditionvar>
+            <setvar action="Set" varname="SCORE">100</setvar>
+          </respcondition>
+        </resprocessing>
+      </item>
+
+      <item ident="ch1-all-item-bank_q55" title="Question 55">
+        <itemmetadata>
+          <qtimetadata>
+            <qtimetadatafield><fieldlabel>question_type</fieldlabel><fieldentry>multiple_choice_question</fieldentry></qtimetadatafield>
+            <qtimetadatafield><fieldlabel>points_possible</fieldlabel><fieldentry>1</fieldentry></qtimetadatafield>
+          </qtimetadata>
+        </itemmetadata>
+        <presentation>
+          <material><mattext texttype="text/html">&lt;div&gt;Which feature is most important for deciding whether a passage is an argument?&lt;/div&gt;</mattext></material>
+          <response_lid ident="response1" rcardinality="Single">
+            <render_choice>
+              <response_label ident="ch1-all-item-bank_q55_a0">
+                <material><mattext texttype="text/plain">Whether some claims are offered as reasons to accept another claim.</mattext></material>
+              </response_label>
+              <response_label ident="ch1-all-item-bank_q55_a1">
+                <material><mattext texttype="text/plain">Whether the passage contains the word because.</mattext></material>
+              </response_label>
+              <response_label ident="ch1-all-item-bank_q55_a2">
+                <material><mattext texttype="text/plain">Whether the passage is long.</mattext></material>
+              </response_label>
+              <response_label ident="ch1-all-item-bank_q55_a3">
+                <material><mattext texttype="text/plain">Whether the passage contains a question mark.</mattext></material>
+              </response_label>
+            </render_choice>
+          </response_lid>
+        </presentation>
+        <resprocessing>
+          <outcomes><decvar maxvalue="100" minvalue="0" varname="SCORE" vartype="Decimal"/></outcomes>
+          <respcondition continue="No">
+            <conditionvar><varequal respident="response1">ch1-all-item-bank_q55_a0</varequal></conditionvar>
+            <setvar action="Set" varname="SCORE">100</setvar>
+          </respcondition>
+        </resprocessing>
+      </item>
+
+      <item ident="ch1-all-item-bank_q56" title="Question 56">
+        <itemmetadata>
+          <qtimetadata>
+            <qtimetadatafield><fieldlabel>question_type</fieldlabel><fieldentry>multiple_choice_question</fieldentry></qtimetadatafield>
+            <qtimetadatafield><fieldlabel>points_possible</fieldlabel><fieldentry>1</fieldentry></qtimetadatafield>
+          </qtimetadata>
+        </itemmetadata>
+        <presentation>
+          <material><mattext texttype="text/html">&lt;div&gt;Which passage has a likely sub-conclusion?&lt;/div&gt;</mattext></material>
+          <response_lid ident="response1" rcardinality="Single">
+            <render_choice>
+              <response_label ident="ch1-all-item-bank_q56_a0">
+                <material><mattext texttype="text/plain">The tutoring center helps students revise papers. Better writing improves graduation rates. So the tutoring center supports student success. Therefore, it should be funded.</mattext></material>
+              </response_label>
+              <response_label ident="ch1-all-item-bank_q56_a1">
+                <material><mattext texttype="text/plain">The tutoring center is in the library. The library has three floors.</mattext></material>
+              </response_label>
+              <response_label ident="ch1-all-item-bank_q56_a2">
+                <material><mattext texttype="text/plain">Please visit the tutoring center before Friday.</mattext></material>
+              </response_label>
+              <response_label ident="ch1-all-item-bank_q56_a3">
+                <material><mattext texttype="text/plain">Where is the tutoring center located?</mattext></material>
+              </response_label>
+            </render_choice>
+          </response_lid>
+        </presentation>
+        <resprocessing>
+          <outcomes><decvar maxvalue="100" minvalue="0" varname="SCORE" vartype="Decimal"/></outcomes>
+          <respcondition continue="No">
+            <conditionvar><varequal respident="response1">ch1-all-item-bank_q56_a0</varequal></conditionvar>
+            <setvar action="Set" varname="SCORE">100</setvar>
+          </respcondition>
+        </resprocessing>
+      </item>
+
+      <item ident="ch1-all-item-bank_q57" title="Question 57">
+        <itemmetadata>
+          <qtimetadata>
+            <qtimetadatafield><fieldlabel>question_type</fieldlabel><fieldentry>multiple_choice_question</fieldentry></qtimetadatafield>
+            <qtimetadatafield><fieldlabel>points_possible</fieldlabel><fieldentry>1</fieldentry></qtimetadatafield>
+          </qtimetadata>
+        </itemmetadata>
+        <presentation>
+          <material><mattext texttype="text/html">&lt;div&gt;In a layered argument, a sub-conclusion:&lt;/div&gt;</mattext></material>
+          <response_lid ident="response1" rcardinality="Single">
+            <render_choice>
+              <response_label ident="ch1-all-item-bank_q57_a0">
+                <material><mattext texttype="text/plain">is both supported by earlier claims and used to support a further conclusion</mattext></material>
+              </response_label>
+              <response_label ident="ch1-all-item-bank_q57_a1">
+                <material><mattext texttype="text/plain">cannot be used as support for anything else</mattext></material>
+              </response_label>
+              <response_label ident="ch1-all-item-bank_q57_a2">
+                <material><mattext texttype="text/plain">is always false</mattext></material>
+              </response_label>
+              <response_label ident="ch1-all-item-bank_q57_a3">
+                <material><mattext texttype="text/plain">is the same thing as a premise indicator</mattext></material>
+              </response_label>
+            </render_choice>
+          </response_lid>
+        </presentation>
+        <resprocessing>
+          <outcomes><decvar maxvalue="100" minvalue="0" varname="SCORE" vartype="Decimal"/></outcomes>
+          <respcondition continue="No">
+            <conditionvar><varequal respident="response1">ch1-all-item-bank_q57_a0</varequal></conditionvar>
+            <setvar action="Set" varname="SCORE">100</setvar>
+          </respcondition>
+        </resprocessing>
+      </item>
+
+      <item ident="ch1-all-item-bank_q58" title="Question 58">
+        <itemmetadata>
+          <qtimetadata>
+            <qtimetadatafield><fieldlabel>question_type</fieldlabel><fieldentry>multiple_choice_question</fieldentry></qtimetadatafield>
+            <qtimetadatafield><fieldlabel>points_possible</fieldlabel><fieldentry>1</fieldentry></qtimetadatafield>
+          </qtimetadata>
+        </itemmetadata>
+        <presentation>
+          <material><mattext texttype="text/html">&lt;div&gt;Which is the best first question to ask when reconstructing a messy passage?&lt;/div&gt;</mattext></material>
+          <response_lid ident="response1" rcardinality="Single">
+            <render_choice>
+              <response_label ident="ch1-all-item-bank_q58_a0">
+                <material><mattext texttype="text/plain">What is the main claim the author wants me to accept?</mattext></material>
+              </response_label>
+              <response_label ident="ch1-all-item-bank_q58_a1">
+                <material><mattext texttype="text/plain">How many commas does the passage contain?</mattext></material>
+              </response_label>
+              <response_label ident="ch1-all-item-bank_q58_a2">
+                <material><mattext texttype="text/plain">Does the first sentence have more than ten words?</mattext></material>
+              </response_label>
+              <response_label ident="ch1-all-item-bank_q58_a3">
+                <material><mattext texttype="text/plain">Can I ignore all sentences without indicator words?</mattext></material>
+              </response_label>
+            </render_choice>
+          </response_lid>
+        </presentation>
+        <resprocessing>
+          <outcomes><decvar maxvalue="100" minvalue="0" varname="SCORE" vartype="Decimal"/></outcomes>
+          <respcondition continue="No">
+            <conditionvar><varequal respident="response1">ch1-all-item-bank_q58_a0</varequal></conditionvar>
+            <setvar action="Set" varname="SCORE">100</setvar>
+          </respcondition>
+        </resprocessing>
+      </item>
+
+      <item ident="ch1-all-item-bank_q59" title="Question 59">
+        <itemmetadata>
+          <qtimetadata>
+            <qtimetadatafield><fieldlabel>question_type</fieldlabel><fieldentry>multiple_choice_question</fieldentry></qtimetadatafield>
+            <qtimetadatafield><fieldlabel>points_possible</fieldlabel><fieldentry>1</fieldentry></qtimetadatafield>
+          </qtimetadata>
+        </itemmetadata>
+        <presentation>
+          <material><mattext texttype="text/html">&lt;div&gt;Which passage is not an argument?&lt;/div&gt;</mattext></material>
+          <response_lid ident="response1" rcardinality="Single">
+            <render_choice>
+              <response_label ident="ch1-all-item-bank_q59_a0">
+                <material><mattext texttype="text/plain">The printer jammed because someone loaded the paper tray incorrectly.</mattext></material>
+              </response_label>
+              <response_label ident="ch1-all-item-bank_q59_a1">
+                <material><mattext texttype="text/plain">You should reload the paper tray because it was loaded incorrectly.</mattext></material>
+              </response_label>
+              <response_label ident="ch1-all-item-bank_q59_a2">
+                <material><mattext texttype="text/plain">Since the paper tray was loaded incorrectly, the printer may jam again.</mattext></material>
+              </response_label>
+              <response_label ident="ch1-all-item-bank_q59_a3">
+                <material><mattext texttype="text/plain">The printer may jam again, so we should reload the tray.</mattext></material>
+              </response_label>
+            </render_choice>
+          </response_lid>
+        </presentation>
+        <resprocessing>
+          <outcomes><decvar maxvalue="100" minvalue="0" varname="SCORE" vartype="Decimal"/></outcomes>
+          <respcondition continue="No">
+            <conditionvar><varequal respident="response1">ch1-all-item-bank_q59_a0</varequal></conditionvar>
+            <setvar action="Set" varname="SCORE">100</setvar>
+          </respcondition>
+        </resprocessing>
+      </item>
+
+      <item ident="ch1-all-item-bank_q60" title="Question 60">
+        <itemmetadata>
+          <qtimetadata>
+            <qtimetadatafield><fieldlabel>question_type</fieldlabel><fieldentry>multiple_choice_question</fieldentry></qtimetadatafield>
+            <qtimetadatafield><fieldlabel>points_possible</fieldlabel><fieldentry>1</fieldentry></qtimetadatafield>
+          </qtimetadata>
+        </itemmetadata>
+        <presentation>
+          <material><mattext texttype="text/html">&lt;div&gt;Which support note best communicates a simple layered structure?&lt;/div&gt;</mattext></material>
+          <response_lid ident="response1" rcardinality="Single">
+            <render_choice>
+              <response_label ident="ch1-all-item-bank_q60_a0">
+                <material><mattext texttype="text/plain">C2: The policy should be changed. (from C1 and P3)</mattext></material>
+              </response_label>
+              <response_label ident="ch1-all-item-bank_q60_a1">
+                <material><mattext texttype="text/plain">C2: The policy should be changed. (from nothing)</mattext></material>
+              </response_label>
+              <response_label ident="ch1-all-item-bank_q60_a2">
+                <material><mattext texttype="text/plain">P2: The policy should be changed. (therefore)</mattext></material>
+              </response_label>
+              <response_label ident="ch1-all-item-bank_q60_a3">
+                <material><mattext texttype="text/plain">Argument: The policy.</mattext></material>
+              </response_label>
+            </render_choice>
+          </response_lid>
+        </presentation>
+        <resprocessing>
+          <outcomes><decvar maxvalue="100" minvalue="0" varname="SCORE" vartype="Decimal"/></outcomes>
+          <respcondition continue="No">
+            <conditionvar><varequal respident="response1">ch1-all-item-bank_q60_a0</varequal></conditionvar>
+            <setvar action="Set" varname="SCORE">100</setvar>
+          </respcondition>
+        </resprocessing>
+      </item>
+    </section>
+  </assessment>
+</questestinterop>

@@ -1,0 +1,535 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<questestinterop xmlns="http://www.imsglobal.org/xsd/ims_qtiasiv1p2" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.imsglobal.org/xsd/ims_qtiasiv1p2 http://www.imsglobal.org/xsd/ims_qtiasiv1p2p1.xsd">
+  <assessment ident="ch1-sec1-language" title="Chapter 1 Item Bank - 1.1 Language Uses">
+    <qtimetadata>
+      <qtimetadatafield><fieldlabel>cc_maxattempts</fieldlabel><fieldentry>unlimited</fieldentry></qtimetadatafield>
+    </qtimetadata>
+    <section ident="root_section">
+
+      <item ident="ch1-sec1-language_q1" title="Question 1">
+        <itemmetadata>
+          <qtimetadata>
+            <qtimetadatafield><fieldlabel>question_type</fieldlabel><fieldentry>multiple_choice_question</fieldentry></qtimetadatafield>
+            <qtimetadatafield><fieldlabel>points_possible</fieldlabel><fieldentry>1</fieldentry></qtimetadatafield>
+          </qtimetadata>
+        </itemmetadata>
+        <presentation>
+          <material><mattext texttype="text/html">&lt;div&gt;What is the main thing the speaker is doing?&lt;br&gt;&lt;br&gt;&lt;em&gt;Please close the classroom door.&lt;/em&gt;&lt;/div&gt;</mattext></material>
+          <response_lid ident="response1" rcardinality="Single">
+            <render_choice>
+              <response_label ident="ch1-sec1-language_q1_a0">
+                <material><mattext texttype="text/plain">Commanding or requesting</mattext></material>
+              </response_label>
+              <response_label ident="ch1-sec1-language_q1_a1">
+                <material><mattext texttype="text/plain">Stating</mattext></material>
+              </response_label>
+              <response_label ident="ch1-sec1-language_q1_a2">
+                <material><mattext texttype="text/plain">Arguing</mattext></material>
+              </response_label>
+              <response_label ident="ch1-sec1-language_q1_a3">
+                <material><mattext texttype="text/plain">Explaining</mattext></material>
+              </response_label>
+            </render_choice>
+          </response_lid>
+        </presentation>
+        <resprocessing>
+          <outcomes><decvar maxvalue="100" minvalue="0" varname="SCORE" vartype="Decimal"/></outcomes>
+          <respcondition continue="No">
+            <conditionvar><varequal respident="response1">ch1-sec1-language_q1_a0</varequal></conditionvar>
+            <setvar action="Set" varname="SCORE">100</setvar>
+          </respcondition>
+        </resprocessing>
+      </item>
+
+      <item ident="ch1-sec1-language_q2" title="Question 2">
+        <itemmetadata>
+          <qtimetadata>
+            <qtimetadatafield><fieldlabel>question_type</fieldlabel><fieldentry>multiple_choice_question</fieldentry></qtimetadatafield>
+            <qtimetadatafield><fieldlabel>points_possible</fieldlabel><fieldentry>1</fieldentry></qtimetadatafield>
+          </qtimetadata>
+        </itemmetadata>
+        <presentation>
+          <material><mattext texttype="text/html">&lt;div&gt;What is the main thing the speaker is doing?&lt;br&gt;&lt;br&gt;&lt;em&gt;The library closes at midnight during exams.&lt;/em&gt;&lt;/div&gt;</mattext></material>
+          <response_lid ident="response1" rcardinality="Single">
+            <render_choice>
+              <response_label ident="ch1-sec1-language_q2_a0">
+                <material><mattext texttype="text/plain">Stating</mattext></material>
+              </response_label>
+              <response_label ident="ch1-sec1-language_q2_a1">
+                <material><mattext texttype="text/plain">Greeting</mattext></material>
+              </response_label>
+              <response_label ident="ch1-sec1-language_q2_a2">
+                <material><mattext texttype="text/plain">Promising</mattext></material>
+              </response_label>
+              <response_label ident="ch1-sec1-language_q2_a3">
+                <material><mattext texttype="text/plain">Commanding</mattext></material>
+              </response_label>
+            </render_choice>
+          </response_lid>
+        </presentation>
+        <resprocessing>
+          <outcomes><decvar maxvalue="100" minvalue="0" varname="SCORE" vartype="Decimal"/></outcomes>
+          <respcondition continue="No">
+            <conditionvar><varequal respident="response1">ch1-sec1-language_q2_a0</varequal></conditionvar>
+            <setvar action="Set" varname="SCORE">100</setvar>
+          </respcondition>
+        </resprocessing>
+      </item>
+
+      <item ident="ch1-sec1-language_q3" title="Question 3">
+        <itemmetadata>
+          <qtimetadata>
+            <qtimetadatafield><fieldlabel>question_type</fieldlabel><fieldentry>multiple_choice_question</fieldentry></qtimetadatafield>
+            <qtimetadatafield><fieldlabel>points_possible</fieldlabel><fieldentry>1</fieldentry></qtimetadatafield>
+          </qtimetadata>
+        </itemmetadata>
+        <presentation>
+          <material><mattext texttype="text/html">&lt;div&gt;What is the main thing the speaker is doing?&lt;br&gt;&lt;br&gt;&lt;em&gt;I promise I will return the notes before class.&lt;/em&gt;&lt;/div&gt;</mattext></material>
+          <response_lid ident="response1" rcardinality="Single">
+            <render_choice>
+              <response_label ident="ch1-sec1-language_q3_a0">
+                <material><mattext texttype="text/plain">Promising</mattext></material>
+              </response_label>
+              <response_label ident="ch1-sec1-language_q3_a1">
+                <material><mattext texttype="text/plain">Explaining</mattext></material>
+              </response_label>
+              <response_label ident="ch1-sec1-language_q3_a2">
+                <material><mattext texttype="text/plain">Arguing</mattext></material>
+              </response_label>
+              <response_label ident="ch1-sec1-language_q3_a3">
+                <material><mattext texttype="text/plain">Asking a question</mattext></material>
+              </response_label>
+            </render_choice>
+          </response_lid>
+        </presentation>
+        <resprocessing>
+          <outcomes><decvar maxvalue="100" minvalue="0" varname="SCORE" vartype="Decimal"/></outcomes>
+          <respcondition continue="No">
+            <conditionvar><varequal respident="response1">ch1-sec1-language_q3_a0</varequal></conditionvar>
+            <setvar action="Set" varname="SCORE">100</setvar>
+          </respcondition>
+        </resprocessing>
+      </item>
+
+      <item ident="ch1-sec1-language_q4" title="Question 4">
+        <itemmetadata>
+          <qtimetadata>
+            <qtimetadatafield><fieldlabel>question_type</fieldlabel><fieldentry>multiple_choice_question</fieldentry></qtimetadatafield>
+            <qtimetadatafield><fieldlabel>points_possible</fieldlabel><fieldentry>1</fieldentry></qtimetadatafield>
+          </qtimetadata>
+        </itemmetadata>
+        <presentation>
+          <material><mattext texttype="text/html">&lt;div&gt;What is the main thing the speaker is doing?&lt;br&gt;&lt;br&gt;&lt;em&gt;Why did the train leave early?&lt;/em&gt;&lt;/div&gt;</mattext></material>
+          <response_lid ident="response1" rcardinality="Single">
+            <render_choice>
+              <response_label ident="ch1-sec1-language_q4_a0">
+                <material><mattext texttype="text/plain">Asking a question</mattext></material>
+              </response_label>
+              <response_label ident="ch1-sec1-language_q4_a1">
+                <material><mattext texttype="text/plain">Stating</mattext></material>
+              </response_label>
+              <response_label ident="ch1-sec1-language_q4_a2">
+                <material><mattext texttype="text/plain">Arguing</mattext></material>
+              </response_label>
+              <response_label ident="ch1-sec1-language_q4_a3">
+                <material><mattext texttype="text/plain">Promising</mattext></material>
+              </response_label>
+            </render_choice>
+          </response_lid>
+        </presentation>
+        <resprocessing>
+          <outcomes><decvar maxvalue="100" minvalue="0" varname="SCORE" vartype="Decimal"/></outcomes>
+          <respcondition continue="No">
+            <conditionvar><varequal respident="response1">ch1-sec1-language_q4_a0</varequal></conditionvar>
+            <setvar action="Set" varname="SCORE">100</setvar>
+          </respcondition>
+        </resprocessing>
+      </item>
+
+      <item ident="ch1-sec1-language_q5" title="Question 5">
+        <itemmetadata>
+          <qtimetadata>
+            <qtimetadatafield><fieldlabel>question_type</fieldlabel><fieldentry>multiple_choice_question</fieldentry></qtimetadatafield>
+            <qtimetadatafield><fieldlabel>points_possible</fieldlabel><fieldentry>1</fieldentry></qtimetadatafield>
+          </qtimetadata>
+        </itemmetadata>
+        <presentation>
+          <material><mattext texttype="text/html">&lt;div&gt;What is the main thing the speaker is doing?&lt;br&gt;&lt;br&gt;&lt;em&gt;Congratulations on finishing the project!&lt;/em&gt;&lt;/div&gt;</mattext></material>
+          <response_lid ident="response1" rcardinality="Single">
+            <render_choice>
+              <response_label ident="ch1-sec1-language_q5_a0">
+                <material><mattext texttype="text/plain">Expressing or greeting</mattext></material>
+              </response_label>
+              <response_label ident="ch1-sec1-language_q5_a1">
+                <material><mattext texttype="text/plain">Arguing</mattext></material>
+              </response_label>
+              <response_label ident="ch1-sec1-language_q5_a2">
+                <material><mattext texttype="text/plain">Explaining</mattext></material>
+              </response_label>
+              <response_label ident="ch1-sec1-language_q5_a3">
+                <material><mattext texttype="text/plain">Reporting a fact</mattext></material>
+              </response_label>
+            </render_choice>
+          </response_lid>
+        </presentation>
+        <resprocessing>
+          <outcomes><decvar maxvalue="100" minvalue="0" varname="SCORE" vartype="Decimal"/></outcomes>
+          <respcondition continue="No">
+            <conditionvar><varequal respident="response1">ch1-sec1-language_q5_a0</varequal></conditionvar>
+            <setvar action="Set" varname="SCORE">100</setvar>
+          </respcondition>
+        </resprocessing>
+      </item>
+
+      <item ident="ch1-sec1-language_q6" title="Question 6">
+        <itemmetadata>
+          <qtimetadata>
+            <qtimetadatafield><fieldlabel>question_type</fieldlabel><fieldentry>multiple_choice_question</fieldentry></qtimetadatafield>
+            <qtimetadatafield><fieldlabel>points_possible</fieldlabel><fieldentry>1</fieldentry></qtimetadatafield>
+          </qtimetadata>
+        </itemmetadata>
+        <presentation>
+          <material><mattext texttype="text/html">&lt;div&gt;In the textbook&#x27;s special sense, an argument is best understood as:&lt;/div&gt;</mattext></material>
+          <response_lid ident="response1" rcardinality="Single">
+            <render_choice>
+              <response_label ident="ch1-sec1-language_q6_a0">
+                <material><mattext texttype="text/plain">an offering of reasons in support of a claim</mattext></material>
+              </response_label>
+              <response_label ident="ch1-sec1-language_q6_a1">
+                <material><mattext texttype="text/plain">a disagreement between two people</mattext></material>
+              </response_label>
+              <response_label ident="ch1-sec1-language_q6_a2">
+                <material><mattext texttype="text/plain">any attempt to persuade an audience</mattext></material>
+              </response_label>
+              <response_label ident="ch1-sec1-language_q6_a3">
+                <material><mattext texttype="text/plain">a sentence that expresses emotion</mattext></material>
+              </response_label>
+            </render_choice>
+          </response_lid>
+        </presentation>
+        <resprocessing>
+          <outcomes><decvar maxvalue="100" minvalue="0" varname="SCORE" vartype="Decimal"/></outcomes>
+          <respcondition continue="No">
+            <conditionvar><varequal respident="response1">ch1-sec1-language_q6_a0</varequal></conditionvar>
+            <setvar action="Set" varname="SCORE">100</setvar>
+          </respcondition>
+        </resprocessing>
+      </item>
+
+      <item ident="ch1-sec1-language_q7" title="Question 7">
+        <itemmetadata>
+          <qtimetadata>
+            <qtimetadatafield><fieldlabel>question_type</fieldlabel><fieldentry>multiple_choice_question</fieldentry></qtimetadatafield>
+            <qtimetadatafield><fieldlabel>points_possible</fieldlabel><fieldentry>1</fieldentry></qtimetadatafield>
+          </qtimetadata>
+        </itemmetadata>
+        <presentation>
+          <material><mattext texttype="text/html">&lt;div&gt;A commercial shows famous athletes drinking a sports drink but gives no reasons for buying it. This is best described as:&lt;/div&gt;</mattext></material>
+          <response_lid ident="response1" rcardinality="Single">
+            <render_choice>
+              <response_label ident="ch1-sec1-language_q7_a0">
+                <material><mattext texttype="text/plain">persuasion without argument</mattext></material>
+              </response_label>
+              <response_label ident="ch1-sec1-language_q7_a1">
+                <material><mattext texttype="text/plain">deductive argument</mattext></material>
+              </response_label>
+              <response_label ident="ch1-sec1-language_q7_a2">
+                <material><mattext texttype="text/plain">standard form</mattext></material>
+              </response_label>
+              <response_label ident="ch1-sec1-language_q7_a3">
+                <material><mattext texttype="text/plain">a statement</mattext></material>
+              </response_label>
+            </render_choice>
+          </response_lid>
+        </presentation>
+        <resprocessing>
+          <outcomes><decvar maxvalue="100" minvalue="0" varname="SCORE" vartype="Decimal"/></outcomes>
+          <respcondition continue="No">
+            <conditionvar><varequal respident="response1">ch1-sec1-language_q7_a0</varequal></conditionvar>
+            <setvar action="Set" varname="SCORE">100</setvar>
+          </respcondition>
+        </resprocessing>
+      </item>
+
+      <item ident="ch1-sec1-language_q8" title="Question 8">
+        <itemmetadata>
+          <qtimetadata>
+            <qtimetadatafield><fieldlabel>question_type</fieldlabel><fieldentry>multiple_choice_question</fieldentry></qtimetadatafield>
+            <qtimetadatafield><fieldlabel>points_possible</fieldlabel><fieldentry>1</fieldentry></qtimetadatafield>
+          </qtimetadata>
+        </itemmetadata>
+        <presentation>
+          <material><mattext texttype="text/html">&lt;div&gt;Which sentence is most clearly an argument?&lt;/div&gt;</mattext></material>
+          <response_lid ident="response1" rcardinality="Single">
+            <render_choice>
+              <response_label ident="ch1-sec1-language_q8_a0">
+                <material><mattext texttype="text/plain">You should bring an umbrella because the forecast calls for storms.</mattext></material>
+              </response_label>
+              <response_label ident="ch1-sec1-language_q8_a1">
+                <material><mattext texttype="text/plain">Could you bring an umbrella?</mattext></material>
+              </response_label>
+              <response_label ident="ch1-sec1-language_q8_a2">
+                <material><mattext texttype="text/plain">Umbrellas are often stored near the door.</mattext></material>
+              </response_label>
+              <response_label ident="ch1-sec1-language_q8_a3">
+                <material><mattext texttype="text/plain">Wow, that umbrella is enormous.</mattext></material>
+              </response_label>
+            </render_choice>
+          </response_lid>
+        </presentation>
+        <resprocessing>
+          <outcomes><decvar maxvalue="100" minvalue="0" varname="SCORE" vartype="Decimal"/></outcomes>
+          <respcondition continue="No">
+            <conditionvar><varequal respident="response1">ch1-sec1-language_q8_a0</varequal></conditionvar>
+            <setvar action="Set" varname="SCORE">100</setvar>
+          </respcondition>
+        </resprocessing>
+      </item>
+
+      <item ident="ch1-sec1-language_q9" title="Question 9">
+        <itemmetadata>
+          <qtimetadata>
+            <qtimetadatafield><fieldlabel>question_type</fieldlabel><fieldentry>multiple_choice_question</fieldentry></qtimetadatafield>
+            <qtimetadatafield><fieldlabel>points_possible</fieldlabel><fieldentry>1</fieldentry></qtimetadatafield>
+          </qtimetadata>
+        </itemmetadata>
+        <presentation>
+          <material><mattext texttype="text/html">&lt;div&gt;Which passage is persuasion without argument?&lt;/div&gt;</mattext></material>
+          <response_lid ident="response1" rcardinality="Single">
+            <render_choice>
+              <response_label ident="ch1-sec1-language_q9_a0">
+                <material><mattext texttype="text/plain">A poster says, &#x27;Everyone cool wears this brand,&#x27; but gives no reason to think the brand is good.</mattext></material>
+              </response_label>
+              <response_label ident="ch1-sec1-language_q9_a1">
+                <material><mattext texttype="text/plain">The hallway is wet because the roof leaked overnight.</mattext></material>
+              </response_label>
+              <response_label ident="ch1-sec1-language_q9_a2">
+                <material><mattext texttype="text/plain">You should leave early because the bridge is closed.</mattext></material>
+              </response_label>
+              <response_label ident="ch1-sec1-language_q9_a3">
+                <material><mattext texttype="text/plain">If the battery is dead, the car will not start. The battery is dead. So the car will not start.</mattext></material>
+              </response_label>
+            </render_choice>
+          </response_lid>
+        </presentation>
+        <resprocessing>
+          <outcomes><decvar maxvalue="100" minvalue="0" varname="SCORE" vartype="Decimal"/></outcomes>
+          <respcondition continue="No">
+            <conditionvar><varequal respident="response1">ch1-sec1-language_q9_a0</varequal></conditionvar>
+            <setvar action="Set" varname="SCORE">100</setvar>
+          </respcondition>
+        </resprocessing>
+      </item>
+
+      <item ident="ch1-sec1-language_q10" title="Question 10">
+        <itemmetadata>
+          <qtimetadata>
+            <qtimetadatafield><fieldlabel>question_type</fieldlabel><fieldentry>multiple_choice_question</fieldentry></qtimetadatafield>
+            <qtimetadatafield><fieldlabel>points_possible</fieldlabel><fieldentry>1</fieldentry></qtimetadatafield>
+          </qtimetadata>
+        </itemmetadata>
+        <presentation>
+          <material><mattext texttype="text/html">&lt;div&gt;What distinguishes arguing from merely persuading?&lt;/div&gt;</mattext></material>
+          <response_lid ident="response1" rcardinality="Single">
+            <render_choice>
+              <response_label ident="ch1-sec1-language_q10_a0">
+                <material><mattext texttype="text/plain">Arguing offers reasons in support of a claim.</mattext></material>
+              </response_label>
+              <response_label ident="ch1-sec1-language_q10_a1">
+                <material><mattext texttype="text/plain">Arguing always succeeds in changing someone&#x27;s mind.</mattext></material>
+              </response_label>
+              <response_label ident="ch1-sec1-language_q10_a2">
+                <material><mattext texttype="text/plain">Arguing always involves anger.</mattext></material>
+              </response_label>
+              <response_label ident="ch1-sec1-language_q10_a3">
+                <material><mattext texttype="text/plain">Arguing never appears in ordinary conversation.</mattext></material>
+              </response_label>
+            </render_choice>
+          </response_lid>
+        </presentation>
+        <resprocessing>
+          <outcomes><decvar maxvalue="100" minvalue="0" varname="SCORE" vartype="Decimal"/></outcomes>
+          <respcondition continue="No">
+            <conditionvar><varequal respident="response1">ch1-sec1-language_q10_a0</varequal></conditionvar>
+            <setvar action="Set" varname="SCORE">100</setvar>
+          </respcondition>
+        </resprocessing>
+      </item>
+
+      <item ident="ch1-sec1-language_q11" title="Question 11">
+        <itemmetadata>
+          <qtimetadata>
+            <qtimetadatafield><fieldlabel>question_type</fieldlabel><fieldentry>multiple_choice_question</fieldentry></qtimetadatafield>
+            <qtimetadatafield><fieldlabel>points_possible</fieldlabel><fieldentry>1</fieldentry></qtimetadatafield>
+          </qtimetadata>
+        </itemmetadata>
+        <presentation>
+          <material><mattext texttype="text/html">&lt;div&gt;Which sentence best uses language to perform an action?&lt;/div&gt;</mattext></material>
+          <response_lid ident="response1" rcardinality="Single">
+            <render_choice>
+              <response_label ident="ch1-sec1-language_q11_a0">
+                <material><mattext texttype="text/plain">I apologize for missing the meeting.</mattext></material>
+              </response_label>
+              <response_label ident="ch1-sec1-language_q11_a1">
+                <material><mattext texttype="text/plain">The meeting was at 2:00.</mattext></material>
+              </response_label>
+              <response_label ident="ch1-sec1-language_q11_a2">
+                <material><mattext texttype="text/plain">Was the meeting at 2:00?</mattext></material>
+              </response_label>
+              <response_label ident="ch1-sec1-language_q11_a3">
+                <material><mattext texttype="text/plain">The meeting room has six chairs.</mattext></material>
+              </response_label>
+            </render_choice>
+          </response_lid>
+        </presentation>
+        <resprocessing>
+          <outcomes><decvar maxvalue="100" minvalue="0" varname="SCORE" vartype="Decimal"/></outcomes>
+          <respcondition continue="No">
+            <conditionvar><varequal respident="response1">ch1-sec1-language_q11_a0</varequal></conditionvar>
+            <setvar action="Set" varname="SCORE">100</setvar>
+          </respcondition>
+        </resprocessing>
+      </item>
+
+      <item ident="ch1-sec1-language_q12" title="Question 12">
+        <itemmetadata>
+          <qtimetadata>
+            <qtimetadatafield><fieldlabel>question_type</fieldlabel><fieldentry>multiple_choice_question</fieldentry></qtimetadatafield>
+            <qtimetadatafield><fieldlabel>points_possible</fieldlabel><fieldentry>1</fieldentry></qtimetadatafield>
+          </qtimetadata>
+        </itemmetadata>
+        <presentation>
+          <material><mattext texttype="text/html">&lt;div&gt;Which of these is not enough, by itself, to make something an argument?&lt;/div&gt;</mattext></material>
+          <response_lid ident="response1" rcardinality="Single">
+            <render_choice>
+              <response_label ident="ch1-sec1-language_q12_a0">
+                <material><mattext texttype="text/plain">It tries to get someone to believe something.</mattext></material>
+              </response_label>
+              <response_label ident="ch1-sec1-language_q12_a1">
+                <material><mattext texttype="text/plain">It gives reasons for a claim.</mattext></material>
+              </response_label>
+              <response_label ident="ch1-sec1-language_q12_a2">
+                <material><mattext texttype="text/plain">It contains a premise and a conclusion.</mattext></material>
+              </response_label>
+              <response_label ident="ch1-sec1-language_q12_a3">
+                <material><mattext texttype="text/plain">It offers support for a statement.</mattext></material>
+              </response_label>
+            </render_choice>
+          </response_lid>
+        </presentation>
+        <resprocessing>
+          <outcomes><decvar maxvalue="100" minvalue="0" varname="SCORE" vartype="Decimal"/></outcomes>
+          <respcondition continue="No">
+            <conditionvar><varequal respident="response1">ch1-sec1-language_q12_a0</varequal></conditionvar>
+            <setvar action="Set" varname="SCORE">100</setvar>
+          </respcondition>
+        </resprocessing>
+      </item>
+
+      <item ident="ch1-sec1-language_q13" title="Question 13">
+        <itemmetadata>
+          <qtimetadata>
+            <qtimetadatafield><fieldlabel>question_type</fieldlabel><fieldentry>multiple_choice_question</fieldentry></qtimetadatafield>
+            <qtimetadatafield><fieldlabel>points_possible</fieldlabel><fieldentry>1</fieldentry></qtimetadatafield>
+          </qtimetadata>
+        </itemmetadata>
+        <presentation>
+          <material><mattext texttype="text/html">&lt;div&gt;A person says, &#x27;Buy this phone. It has the longest battery life in its price range.&#x27; This is best classified as:&lt;/div&gt;</mattext></material>
+          <response_lid ident="response1" rcardinality="Single">
+            <render_choice>
+              <response_label ident="ch1-sec1-language_q13_a0">
+                <material><mattext texttype="text/plain">an argument</mattext></material>
+              </response_label>
+              <response_label ident="ch1-sec1-language_q13_a1">
+                <material><mattext texttype="text/plain">a greeting</mattext></material>
+              </response_label>
+              <response_label ident="ch1-sec1-language_q13_a2">
+                <material><mattext texttype="text/plain">a command with no reason</mattext></material>
+              </response_label>
+              <response_label ident="ch1-sec1-language_q13_a3">
+                <material><mattext texttype="text/plain">a question</mattext></material>
+              </response_label>
+            </render_choice>
+          </response_lid>
+        </presentation>
+        <resprocessing>
+          <outcomes><decvar maxvalue="100" minvalue="0" varname="SCORE" vartype="Decimal"/></outcomes>
+          <respcondition continue="No">
+            <conditionvar><varequal respident="response1">ch1-sec1-language_q13_a0</varequal></conditionvar>
+            <setvar action="Set" varname="SCORE">100</setvar>
+          </respcondition>
+        </resprocessing>
+      </item>
+
+      <item ident="ch1-sec1-language_q14" title="Question 14">
+        <itemmetadata>
+          <qtimetadata>
+            <qtimetadatafield><fieldlabel>question_type</fieldlabel><fieldentry>multiple_choice_question</fieldentry></qtimetadatafield>
+            <qtimetadatafield><fieldlabel>points_possible</fieldlabel><fieldentry>1</fieldentry></qtimetadatafield>
+          </qtimetadata>
+        </itemmetadata>
+        <presentation>
+          <material><mattext texttype="text/html">&lt;div&gt;A person says, &#x27;Buy this phone!&#x27; and nothing else. In the textbook&#x27;s sense, this is:&lt;/div&gt;</mattext></material>
+          <response_lid ident="response1" rcardinality="Single">
+            <render_choice>
+              <response_label ident="ch1-sec1-language_q14_a0">
+                <material><mattext texttype="text/plain">not an argument, because no reason is offered</mattext></material>
+              </response_label>
+              <response_label ident="ch1-sec1-language_q14_a1">
+                <material><mattext texttype="text/plain">an argument, because it is forceful</mattext></material>
+              </response_label>
+              <response_label ident="ch1-sec1-language_q14_a2">
+                <material><mattext texttype="text/plain">an explanation</mattext></material>
+              </response_label>
+              <response_label ident="ch1-sec1-language_q14_a3">
+                <material><mattext texttype="text/plain">a premise indicator</mattext></material>
+              </response_label>
+            </render_choice>
+          </response_lid>
+        </presentation>
+        <resprocessing>
+          <outcomes><decvar maxvalue="100" minvalue="0" varname="SCORE" vartype="Decimal"/></outcomes>
+          <respcondition continue="No">
+            <conditionvar><varequal respident="response1">ch1-sec1-language_q14_a0</varequal></conditionvar>
+            <setvar action="Set" varname="SCORE">100</setvar>
+          </respcondition>
+        </resprocessing>
+      </item>
+
+      <item ident="ch1-sec1-language_q15" title="Question 15">
+        <itemmetadata>
+          <qtimetadata>
+            <qtimetadatafield><fieldlabel>question_type</fieldlabel><fieldentry>multiple_choice_question</fieldentry></qtimetadatafield>
+            <qtimetadatafield><fieldlabel>points_possible</fieldlabel><fieldentry>1</fieldentry></qtimetadatafield>
+          </qtimetadata>
+        </itemmetadata>
+        <presentation>
+          <material><mattext texttype="text/html">&lt;div&gt;Which choice best captures the relationship between persuasion and argument?&lt;/div&gt;</mattext></material>
+          <response_lid ident="response1" rcardinality="Single">
+            <render_choice>
+              <response_label ident="ch1-sec1-language_q15_a0">
+                <material><mattext texttype="text/plain">Some persuasion uses arguments, but persuasion can also work without arguments.</mattext></material>
+              </response_label>
+              <response_label ident="ch1-sec1-language_q15_a1">
+                <material><mattext texttype="text/plain">All persuasion is argument.</mattext></material>
+              </response_label>
+              <response_label ident="ch1-sec1-language_q15_a2">
+                <material><mattext texttype="text/plain">Arguments are never persuasive.</mattext></material>
+              </response_label>
+              <response_label ident="ch1-sec1-language_q15_a3">
+                <material><mattext texttype="text/plain">Persuasion and argument mean exactly the same thing.</mattext></material>
+              </response_label>
+            </render_choice>
+          </response_lid>
+        </presentation>
+        <resprocessing>
+          <outcomes><decvar maxvalue="100" minvalue="0" varname="SCORE" vartype="Decimal"/></outcomes>
+          <respcondition continue="No">
+            <conditionvar><varequal respident="response1">ch1-sec1-language_q15_a0</varequal></conditionvar>
+            <setvar action="Set" varname="SCORE">100</setvar>
+          </respcondition>
+        </resprocessing>
+      </item>
+    </section>
+  </assessment>
+</questestinterop>

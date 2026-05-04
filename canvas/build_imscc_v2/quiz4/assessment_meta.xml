@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<quiz xmlns="http://canvas.instructure.com/xsd/cccv1p0" identifier="assessment_48dc5744b8be4c22ae7b41c720180686" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://canvas.instructure.com/xsd/cccv1p0 http://canvas.instructure.com/xsd/cccv1p0.xsd">
+  <title>Chapter 1 Quiz 4: Recognizing Arguments</title>
+  <description>&lt;p&gt;Autograded practice for Chapter 1, Section 1.4. Due May 18.&lt;/p&gt;</description>
+  <quiz_type>assignment</quiz_type>
+  <points_possible>5</points_possible>
+  <due_at>2026-05-19T03:59:00Z</due_at>
+  <published>true</published>
+</quiz>

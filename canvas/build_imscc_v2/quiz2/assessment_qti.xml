@@ -1,0 +1,181 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<questestinterop xmlns="http://www.imsglobal.org/xsd/ims_qtiasiv1p2" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.imsglobal.org/xsd/ims_qtiasiv1p2 http://www.imsglobal.org/xsd/ims_qtiasiv1p2p1.xsd">
+  <assessment ident="assessment_7f71ce2d08ef4cbfa47db693dcb469bd" title="Chapter 1 Quiz 2: Statements">
+    <qtimetadata>
+      <qtimetadatafield><fieldlabel>cc_maxattempts</fieldlabel><fieldentry>unlimited</fieldentry></qtimetadatafield>
+    </qtimetadata>
+    <section ident="root_section">
+
+      <item ident="q2_1" title="Question 1">
+        <itemmetadata>
+          <qtimetadata>
+            <qtimetadatafield><fieldlabel>question_type</fieldlabel><fieldentry>multiple_choice_question</fieldentry></qtimetadatafield>
+            <qtimetadatafield><fieldlabel>points_possible</fieldlabel><fieldentry>1</fieldentry></qtimetadatafield>
+          </qtimetadata>
+        </itemmetadata>
+        <presentation>
+          <material><mattext texttype="text/html">&lt;div&gt;Which of the following is a statement in the logical sense?&lt;/div&gt;</mattext></material>
+          <response_lid ident="response1" rcardinality="Single">
+            <render_choice>
+              <response_label ident="q2_1_a0">
+                <material><mattext texttype="text/plain">The exam begins at 9:00.</mattext></material>
+              </response_label>
+              <response_label ident="q2_1_a1">
+                <material><mattext texttype="text/plain">Please open the window.</mattext></material>
+              </response_label>
+              <response_label ident="q2_1_a2">
+                <material><mattext texttype="text/plain">How late is the library open?</mattext></material>
+              </response_label>
+              <response_label ident="q2_1_a3">
+                <material><mattext texttype="text/plain">Good morning!</mattext></material>
+              </response_label>
+            </render_choice>
+          </response_lid>
+        </presentation>
+        <resprocessing>
+          <outcomes><decvar maxvalue="100" minvalue="0" varname="SCORE" vartype="Decimal"/></outcomes>
+          <respcondition continue="No">
+            <conditionvar><varequal respident="response1">q2_1_a0</varequal></conditionvar>
+            <setvar action="Set" varname="SCORE">100</setvar>
+          </respcondition>
+        </resprocessing>
+      </item>
+      <item ident="q2_2" title="Question 2">
+        <itemmetadata>
+          <qtimetadata>
+            <qtimetadatafield><fieldlabel>question_type</fieldlabel><fieldentry>multiple_choice_question</fieldentry></qtimetadatafield>
+            <qtimetadatafield><fieldlabel>points_possible</fieldlabel><fieldentry>1</fieldentry></qtimetadatafield>
+          </qtimetadata>
+        </itemmetadata>
+        <presentation>
+          <material><mattext texttype="text/html">&lt;div&gt;Why do logicians care about statements?&lt;/div&gt;</mattext></material>
+          <response_lid ident="response1" rcardinality="Single">
+            <render_choice>
+              <response_label ident="q2_2_a0">
+                <material><mattext texttype="text/plain">Statements are the kinds of claims that can be true or false.</mattext></material>
+              </response_label>
+              <response_label ident="q2_2_a1">
+                <material><mattext texttype="text/plain">Statements are always persuasive.</mattext></material>
+              </response_label>
+              <response_label ident="q2_2_a2">
+                <material><mattext texttype="text/plain">Statements are always commands.</mattext></material>
+              </response_label>
+              <response_label ident="q2_2_a3">
+                <material><mattext texttype="text/plain">Statements never appear inside arguments.</mattext></material>
+              </response_label>
+            </render_choice>
+          </response_lid>
+        </presentation>
+        <resprocessing>
+          <outcomes><decvar maxvalue="100" minvalue="0" varname="SCORE" vartype="Decimal"/></outcomes>
+          <respcondition continue="No">
+            <conditionvar><varequal respident="response1">q2_2_a0</varequal></conditionvar>
+            <setvar action="Set" varname="SCORE">100</setvar>
+          </respcondition>
+        </resprocessing>
+      </item>
+      <item ident="q2_3" title="Question 3">
+        <itemmetadata>
+          <qtimetadata>
+            <qtimetadatafield><fieldlabel>question_type</fieldlabel><fieldentry>multiple_choice_question</fieldentry></qtimetadatafield>
+            <qtimetadatafield><fieldlabel>points_possible</fieldlabel><fieldentry>1</fieldentry></qtimetadatafield>
+          </qtimetadata>
+        </itemmetadata>
+        <presentation>
+          <material><mattext texttype="text/html">&lt;div&gt;Which sentence is not a statement?&lt;/div&gt;</mattext></material>
+          <response_lid ident="response1" rcardinality="Single">
+            <render_choice>
+              <response_label ident="q2_3_a0">
+                <material><mattext texttype="text/plain">Take the quiz before midnight.</mattext></material>
+              </response_label>
+              <response_label ident="q2_3_a1">
+                <material><mattext texttype="text/plain">Fredericksburg is in Virginia.</mattext></material>
+              </response_label>
+              <response_label ident="q2_3_a2">
+                <material><mattext texttype="text/plain">Some dogs are mammals.</mattext></material>
+              </response_label>
+              <response_label ident="q2_3_a3">
+                <material><mattext texttype="text/plain">The classroom has windows.</mattext></material>
+              </response_label>
+            </render_choice>
+          </response_lid>
+        </presentation>
+        <resprocessing>
+          <outcomes><decvar maxvalue="100" minvalue="0" varname="SCORE" vartype="Decimal"/></outcomes>
+          <respcondition continue="No">
+            <conditionvar><varequal respident="response1">q2_3_a0</varequal></conditionvar>
+            <setvar action="Set" varname="SCORE">100</setvar>
+          </respcondition>
+        </resprocessing>
+      </item>
+      <item ident="q2_4" title="Question 4">
+        <itemmetadata>
+          <qtimetadata>
+            <qtimetadatafield><fieldlabel>question_type</fieldlabel><fieldentry>multiple_choice_question</fieldentry></qtimetadatafield>
+            <qtimetadatafield><fieldlabel>points_possible</fieldlabel><fieldentry>1</fieldentry></qtimetadatafield>
+          </qtimetadata>
+        </itemmetadata>
+        <presentation>
+          <material><mattext texttype="text/html">&lt;div&gt;A sentence can be grammatically declarative but still fail to be a useful logical statement when:&lt;/div&gt;</mattext></material>
+          <response_lid ident="response1" rcardinality="Single">
+            <render_choice>
+              <response_label ident="q2_4_a0">
+                <material><mattext texttype="text/plain">it is too vague or context-dependent to evaluate clearly</mattext></material>
+              </response_label>
+              <response_label ident="q2_4_a1">
+                <material><mattext texttype="text/plain">it contains more than five words</mattext></material>
+              </response_label>
+              <response_label ident="q2_4_a2">
+                <material><mattext texttype="text/plain">it appears in a paragraph</mattext></material>
+              </response_label>
+              <response_label ident="q2_4_a3">
+                <material><mattext texttype="text/plain">it is written in English</mattext></material>
+              </response_label>
+            </render_choice>
+          </response_lid>
+        </presentation>
+        <resprocessing>
+          <outcomes><decvar maxvalue="100" minvalue="0" varname="SCORE" vartype="Decimal"/></outcomes>
+          <respcondition continue="No">
+            <conditionvar><varequal respident="response1">q2_4_a0</varequal></conditionvar>
+            <setvar action="Set" varname="SCORE">100</setvar>
+          </respcondition>
+        </resprocessing>
+      </item>
+      <item ident="q2_5" title="Question 5">
+        <itemmetadata>
+          <qtimetadata>
+            <qtimetadatafield><fieldlabel>question_type</fieldlabel><fieldentry>multiple_choice_question</fieldentry></qtimetadatafield>
+            <qtimetadatafield><fieldlabel>points_possible</fieldlabel><fieldentry>1</fieldentry></qtimetadatafield>
+          </qtimetadata>
+        </itemmetadata>
+        <presentation>
+          <material><mattext texttype="text/html">&lt;div&gt;Which choice best explains the relation between sentences and statements?&lt;/div&gt;</mattext></material>
+          <response_lid ident="response1" rcardinality="Single">
+            <render_choice>
+              <response_label ident="q2_5_a0">
+                <material><mattext texttype="text/plain">A sentence is a piece of language; a statement is a claim that can be true or false.</mattext></material>
+              </response_label>
+              <response_label ident="q2_5_a1">
+                <material><mattext texttype="text/plain">Every sentence is automatically a statement.</mattext></material>
+              </response_label>
+              <response_label ident="q2_5_a2">
+                <material><mattext texttype="text/plain">Statements are questions with punctuation removed.</mattext></material>
+              </response_label>
+              <response_label ident="q2_5_a3">
+                <material><mattext texttype="text/plain">Sentences can be true or false, but statements cannot.</mattext></material>
+              </response_label>
+            </render_choice>
+          </response_lid>
+        </presentation>
+        <resprocessing>
+          <outcomes><decvar maxvalue="100" minvalue="0" varname="SCORE" vartype="Decimal"/></outcomes>
+          <respcondition continue="No">
+            <conditionvar><varequal respident="response1">q2_5_a0</varequal></conditionvar>
+            <setvar action="Set" varname="SCORE">100</setvar>
+          </respcondition>
+        </resprocessing>
+      </item>
+    </section>
+  </assessment>
+</questestinterop>

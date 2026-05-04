@@ -1,0 +1,535 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<questestinterop xmlns="http://www.imsglobal.org/xsd/ims_qtiasiv1p2" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.imsglobal.org/xsd/ims_qtiasiv1p2 http://www.imsglobal.org/xsd/ims_qtiasiv1p2p1.xsd">
+  <assessment ident="ch1-sec3-premises-conclusions" title="Chapter 1 Item Bank - 1.3 Premises and Conclusions">
+    <qtimetadata>
+      <qtimetadatafield><fieldlabel>cc_maxattempts</fieldlabel><fieldentry>unlimited</fieldentry></qtimetadatafield>
+    </qtimetadata>
+    <section ident="root_section">
+
+      <item ident="ch1-sec3-premises-conclusions_q1" title="Question 1">
+        <itemmetadata>
+          <qtimetadata>
+            <qtimetadatafield><fieldlabel>question_type</fieldlabel><fieldentry>multiple_choice_question</fieldentry></qtimetadatafield>
+            <qtimetadatafield><fieldlabel>points_possible</fieldlabel><fieldentry>1</fieldentry></qtimetadatafield>
+          </qtimetadata>
+        </itemmetadata>
+        <presentation>
+          <material><mattext texttype="text/html">&lt;div&gt;Identify the conclusion:&lt;br&gt;&lt;br&gt;&lt;em&gt;The sidewalks are wet because it rained overnight.&lt;/em&gt;&lt;/div&gt;</mattext></material>
+          <response_lid ident="response1" rcardinality="Single">
+            <render_choice>
+              <response_label ident="ch1-sec3-premises-conclusions_q1_a0">
+                <material><mattext texttype="text/plain">The sidewalks are wet.</mattext></material>
+              </response_label>
+              <response_label ident="ch1-sec3-premises-conclusions_q1_a1">
+                <material><mattext texttype="text/plain">It rained overnight.</mattext></material>
+              </response_label>
+              <response_label ident="ch1-sec3-premises-conclusions_q1_a2">
+                <material><mattext texttype="text/plain">Because</mattext></material>
+              </response_label>
+              <response_label ident="ch1-sec3-premises-conclusions_q1_a3">
+                <material><mattext texttype="text/plain">There is no argument here.</mattext></material>
+              </response_label>
+            </render_choice>
+          </response_lid>
+        </presentation>
+        <resprocessing>
+          <outcomes><decvar maxvalue="100" minvalue="0" varname="SCORE" vartype="Decimal"/></outcomes>
+          <respcondition continue="No">
+            <conditionvar><varequal respident="response1">ch1-sec3-premises-conclusions_q1_a0</varequal></conditionvar>
+            <setvar action="Set" varname="SCORE">100</setvar>
+          </respcondition>
+        </resprocessing>
+      </item>
+
+      <item ident="ch1-sec3-premises-conclusions_q2" title="Question 2">
+        <itemmetadata>
+          <qtimetadata>
+            <qtimetadatafield><fieldlabel>question_type</fieldlabel><fieldentry>multiple_choice_question</fieldentry></qtimetadatafield>
+            <qtimetadatafield><fieldlabel>points_possible</fieldlabel><fieldentry>1</fieldentry></qtimetadatafield>
+          </qtimetadata>
+        </itemmetadata>
+        <presentation>
+          <material><mattext texttype="text/html">&lt;div&gt;Which word or phrase is commonly a premise indicator?&lt;/div&gt;</mattext></material>
+          <response_lid ident="response1" rcardinality="Single">
+            <render_choice>
+              <response_label ident="ch1-sec3-premises-conclusions_q2_a0">
+                <material><mattext texttype="text/plain">since</mattext></material>
+              </response_label>
+              <response_label ident="ch1-sec3-premises-conclusions_q2_a1">
+                <material><mattext texttype="text/plain">therefore</mattext></material>
+              </response_label>
+              <response_label ident="ch1-sec3-premises-conclusions_q2_a2">
+                <material><mattext texttype="text/plain">so</mattext></material>
+              </response_label>
+              <response_label ident="ch1-sec3-premises-conclusions_q2_a3">
+                <material><mattext texttype="text/plain">it follows that</mattext></material>
+              </response_label>
+            </render_choice>
+          </response_lid>
+        </presentation>
+        <resprocessing>
+          <outcomes><decvar maxvalue="100" minvalue="0" varname="SCORE" vartype="Decimal"/></outcomes>
+          <respcondition continue="No">
+            <conditionvar><varequal respident="response1">ch1-sec3-premises-conclusions_q2_a0</varequal></conditionvar>
+            <setvar action="Set" varname="SCORE">100</setvar>
+          </respcondition>
+        </resprocessing>
+      </item>
+
+      <item ident="ch1-sec3-premises-conclusions_q3" title="Question 3">
+        <itemmetadata>
+          <qtimetadata>
+            <qtimetadatafield><fieldlabel>question_type</fieldlabel><fieldentry>multiple_choice_question</fieldentry></qtimetadatafield>
+            <qtimetadatafield><fieldlabel>points_possible</fieldlabel><fieldentry>1</fieldentry></qtimetadatafield>
+          </qtimetadata>
+        </itemmetadata>
+        <presentation>
+          <material><mattext texttype="text/html">&lt;div&gt;Which word or phrase is commonly a conclusion indicator?&lt;/div&gt;</mattext></material>
+          <response_lid ident="response1" rcardinality="Single">
+            <render_choice>
+              <response_label ident="ch1-sec3-premises-conclusions_q3_a0">
+                <material><mattext texttype="text/plain">therefore</mattext></material>
+              </response_label>
+              <response_label ident="ch1-sec3-premises-conclusions_q3_a1">
+                <material><mattext texttype="text/plain">because</mattext></material>
+              </response_label>
+              <response_label ident="ch1-sec3-premises-conclusions_q3_a2">
+                <material><mattext texttype="text/plain">given that</mattext></material>
+              </response_label>
+              <response_label ident="ch1-sec3-premises-conclusions_q3_a3">
+                <material><mattext texttype="text/plain">for the reason that</mattext></material>
+              </response_label>
+            </render_choice>
+          </response_lid>
+        </presentation>
+        <resprocessing>
+          <outcomes><decvar maxvalue="100" minvalue="0" varname="SCORE" vartype="Decimal"/></outcomes>
+          <respcondition continue="No">
+            <conditionvar><varequal respident="response1">ch1-sec3-premises-conclusions_q3_a0</varequal></conditionvar>
+            <setvar action="Set" varname="SCORE">100</setvar>
+          </respcondition>
+        </resprocessing>
+      </item>
+
+      <item ident="ch1-sec3-premises-conclusions_q4" title="Question 4">
+        <itemmetadata>
+          <qtimetadata>
+            <qtimetadatafield><fieldlabel>question_type</fieldlabel><fieldentry>multiple_choice_question</fieldentry></qtimetadatafield>
+            <qtimetadatafield><fieldlabel>points_possible</fieldlabel><fieldentry>1</fieldentry></qtimetadatafield>
+          </qtimetadata>
+        </itemmetadata>
+        <presentation>
+          <material><mattext texttype="text/html">&lt;div&gt;In standard form, premises are normally labeled as:&lt;/div&gt;</mattext></material>
+          <response_lid ident="response1" rcardinality="Single">
+            <render_choice>
+              <response_label ident="ch1-sec3-premises-conclusions_q4_a0">
+                <material><mattext texttype="text/plain">P1, P2, P3, ...</mattext></material>
+              </response_label>
+              <response_label ident="ch1-sec3-premises-conclusions_q4_a1">
+                <material><mattext texttype="text/plain">C1, C2, C3, ...</mattext></material>
+              </response_label>
+              <response_label ident="ch1-sec3-premises-conclusions_q4_a2">
+                <material><mattext texttype="text/plain">A, E, I, O</mattext></material>
+              </response_label>
+              <response_label ident="ch1-sec3-premises-conclusions_q4_a3">
+                <material><mattext texttype="text/plain">T and F only</mattext></material>
+              </response_label>
+            </render_choice>
+          </response_lid>
+        </presentation>
+        <resprocessing>
+          <outcomes><decvar maxvalue="100" minvalue="0" varname="SCORE" vartype="Decimal"/></outcomes>
+          <respcondition continue="No">
+            <conditionvar><varequal respident="response1">ch1-sec3-premises-conclusions_q4_a0</varequal></conditionvar>
+            <setvar action="Set" varname="SCORE">100</setvar>
+          </respcondition>
+        </resprocessing>
+      </item>
+
+      <item ident="ch1-sec3-premises-conclusions_q5" title="Question 5">
+        <itemmetadata>
+          <qtimetadata>
+            <qtimetadatafield><fieldlabel>question_type</fieldlabel><fieldentry>multiple_choice_question</fieldentry></qtimetadatafield>
+            <qtimetadatafield><fieldlabel>points_possible</fieldlabel><fieldentry>1</fieldentry></qtimetadatafield>
+          </qtimetadata>
+        </itemmetadata>
+        <presentation>
+          <material><mattext texttype="text/html">&lt;div&gt;In the conditional statement &lt;em&gt;If the battery is dead, then the car will not start&lt;/em&gt;, what is the consequent?&lt;/div&gt;</mattext></material>
+          <response_lid ident="response1" rcardinality="Single">
+            <render_choice>
+              <response_label ident="ch1-sec3-premises-conclusions_q5_a0">
+                <material><mattext texttype="text/plain">the car will not start</mattext></material>
+              </response_label>
+              <response_label ident="ch1-sec3-premises-conclusions_q5_a1">
+                <material><mattext texttype="text/plain">the battery is dead</mattext></material>
+              </response_label>
+              <response_label ident="ch1-sec3-premises-conclusions_q5_a2">
+                <material><mattext texttype="text/plain">if</mattext></material>
+              </response_label>
+              <response_label ident="ch1-sec3-premises-conclusions_q5_a3">
+                <material><mattext texttype="text/plain">the whole conditional is the consequent</mattext></material>
+              </response_label>
+            </render_choice>
+          </response_lid>
+        </presentation>
+        <resprocessing>
+          <outcomes><decvar maxvalue="100" minvalue="0" varname="SCORE" vartype="Decimal"/></outcomes>
+          <respcondition continue="No">
+            <conditionvar><varequal respident="response1">ch1-sec3-premises-conclusions_q5_a0</varequal></conditionvar>
+            <setvar action="Set" varname="SCORE">100</setvar>
+          </respcondition>
+        </resprocessing>
+      </item>
+
+      <item ident="ch1-sec3-premises-conclusions_q6" title="Question 6">
+        <itemmetadata>
+          <qtimetadata>
+            <qtimetadatafield><fieldlabel>question_type</fieldlabel><fieldentry>multiple_choice_question</fieldentry></qtimetadatafield>
+            <qtimetadatafield><fieldlabel>points_possible</fieldlabel><fieldentry>1</fieldentry></qtimetadatafield>
+          </qtimetadata>
+        </itemmetadata>
+        <presentation>
+          <material><mattext texttype="text/html">&lt;div&gt;Identify the premise:&lt;br&gt;&lt;br&gt;&lt;em&gt;Since the battery is dead, the car will not start.&lt;/em&gt;&lt;/div&gt;</mattext></material>
+          <response_lid ident="response1" rcardinality="Single">
+            <render_choice>
+              <response_label ident="ch1-sec3-premises-conclusions_q6_a0">
+                <material><mattext texttype="text/plain">The battery is dead.</mattext></material>
+              </response_label>
+              <response_label ident="ch1-sec3-premises-conclusions_q6_a1">
+                <material><mattext texttype="text/plain">The car will not start.</mattext></material>
+              </response_label>
+              <response_label ident="ch1-sec3-premises-conclusions_q6_a2">
+                <material><mattext texttype="text/plain">Since</mattext></material>
+              </response_label>
+              <response_label ident="ch1-sec3-premises-conclusions_q6_a3">
+                <material><mattext texttype="text/plain">There is no premise.</mattext></material>
+              </response_label>
+            </render_choice>
+          </response_lid>
+        </presentation>
+        <resprocessing>
+          <outcomes><decvar maxvalue="100" minvalue="0" varname="SCORE" vartype="Decimal"/></outcomes>
+          <respcondition continue="No">
+            <conditionvar><varequal respident="response1">ch1-sec3-premises-conclusions_q6_a0</varequal></conditionvar>
+            <setvar action="Set" varname="SCORE">100</setvar>
+          </respcondition>
+        </resprocessing>
+      </item>
+
+      <item ident="ch1-sec3-premises-conclusions_q7" title="Question 7">
+        <itemmetadata>
+          <qtimetadata>
+            <qtimetadatafield><fieldlabel>question_type</fieldlabel><fieldentry>multiple_choice_question</fieldentry></qtimetadatafield>
+            <qtimetadatafield><fieldlabel>points_possible</fieldlabel><fieldentry>1</fieldentry></qtimetadatafield>
+          </qtimetadata>
+        </itemmetadata>
+        <presentation>
+          <material><mattext texttype="text/html">&lt;div&gt;Identify the conclusion:&lt;br&gt;&lt;br&gt;&lt;em&gt;The museum should extend its hours, since students need evening access for their projects.&lt;/em&gt;&lt;/div&gt;</mattext></material>
+          <response_lid ident="response1" rcardinality="Single">
+            <render_choice>
+              <response_label ident="ch1-sec3-premises-conclusions_q7_a0">
+                <material><mattext texttype="text/plain">The museum should extend its hours.</mattext></material>
+              </response_label>
+              <response_label ident="ch1-sec3-premises-conclusions_q7_a1">
+                <material><mattext texttype="text/plain">Students need evening access for their projects.</mattext></material>
+              </response_label>
+              <response_label ident="ch1-sec3-premises-conclusions_q7_a2">
+                <material><mattext texttype="text/plain">Since</mattext></material>
+              </response_label>
+              <response_label ident="ch1-sec3-premises-conclusions_q7_a3">
+                <material><mattext texttype="text/plain">Their projects.</mattext></material>
+              </response_label>
+            </render_choice>
+          </response_lid>
+        </presentation>
+        <resprocessing>
+          <outcomes><decvar maxvalue="100" minvalue="0" varname="SCORE" vartype="Decimal"/></outcomes>
+          <respcondition continue="No">
+            <conditionvar><varequal respident="response1">ch1-sec3-premises-conclusions_q7_a0</varequal></conditionvar>
+            <setvar action="Set" varname="SCORE">100</setvar>
+          </respcondition>
+        </resprocessing>
+      </item>
+
+      <item ident="ch1-sec3-premises-conclusions_q8" title="Question 8">
+        <itemmetadata>
+          <qtimetadata>
+            <qtimetadatafield><fieldlabel>question_type</fieldlabel><fieldentry>multiple_choice_question</fieldentry></qtimetadatafield>
+            <qtimetadatafield><fieldlabel>points_possible</fieldlabel><fieldentry>1</fieldentry></qtimetadatafield>
+          </qtimetadata>
+        </itemmetadata>
+        <presentation>
+          <material><mattext texttype="text/html">&lt;div&gt;Which reconstruction is in standard form?&lt;/div&gt;</mattext></material>
+          <response_lid ident="response1" rcardinality="Single">
+            <render_choice>
+              <response_label ident="ch1-sec3-premises-conclusions_q8_a0">
+                <material><mattext texttype="text/plain">P1: The forecast calls for storms. C: You should bring an umbrella.</mattext></material>
+              </response_label>
+              <response_label ident="ch1-sec3-premises-conclusions_q8_a1">
+                <material><mattext texttype="text/plain">Because the forecast calls for storms, you should bring an umbrella.</mattext></material>
+              </response_label>
+              <response_label ident="ch1-sec3-premises-conclusions_q8_a2">
+                <material><mattext texttype="text/plain">You should bring an umbrella because storms.</mattext></material>
+              </response_label>
+              <response_label ident="ch1-sec3-premises-conclusions_q8_a3">
+                <material><mattext texttype="text/plain">Argument: umbrella.</mattext></material>
+              </response_label>
+            </render_choice>
+          </response_lid>
+        </presentation>
+        <resprocessing>
+          <outcomes><decvar maxvalue="100" minvalue="0" varname="SCORE" vartype="Decimal"/></outcomes>
+          <respcondition continue="No">
+            <conditionvar><varequal respident="response1">ch1-sec3-premises-conclusions_q8_a0</varequal></conditionvar>
+            <setvar action="Set" varname="SCORE">100</setvar>
+          </respcondition>
+        </resprocessing>
+      </item>
+
+      <item ident="ch1-sec3-premises-conclusions_q9" title="Question 9">
+        <itemmetadata>
+          <qtimetadata>
+            <qtimetadatafield><fieldlabel>question_type</fieldlabel><fieldentry>multiple_choice_question</fieldentry></qtimetadatafield>
+            <qtimetadatafield><fieldlabel>points_possible</fieldlabel><fieldentry>1</fieldentry></qtimetadatafield>
+          </qtimetadata>
+        </itemmetadata>
+        <presentation>
+          <material><mattext texttype="text/html">&lt;div&gt;What is a conclusion?&lt;/div&gt;</mattext></material>
+          <response_lid ident="response1" rcardinality="Single">
+            <render_choice>
+              <response_label ident="ch1-sec3-premises-conclusions_q9_a0">
+                <material><mattext texttype="text/plain">The claim the premises are offered to support.</mattext></material>
+              </response_label>
+              <response_label ident="ch1-sec3-premises-conclusions_q9_a1">
+                <material><mattext texttype="text/plain">Any sentence that appears first.</mattext></material>
+              </response_label>
+              <response_label ident="ch1-sec3-premises-conclusions_q9_a2">
+                <material><mattext texttype="text/plain">A word such as because or since.</mattext></material>
+              </response_label>
+              <response_label ident="ch1-sec3-premises-conclusions_q9_a3">
+                <material><mattext texttype="text/plain">A question that begins an argument.</mattext></material>
+              </response_label>
+            </render_choice>
+          </response_lid>
+        </presentation>
+        <resprocessing>
+          <outcomes><decvar maxvalue="100" minvalue="0" varname="SCORE" vartype="Decimal"/></outcomes>
+          <respcondition continue="No">
+            <conditionvar><varequal respident="response1">ch1-sec3-premises-conclusions_q9_a0</varequal></conditionvar>
+            <setvar action="Set" varname="SCORE">100</setvar>
+          </respcondition>
+        </resprocessing>
+      </item>
+
+      <item ident="ch1-sec3-premises-conclusions_q10" title="Question 10">
+        <itemmetadata>
+          <qtimetadata>
+            <qtimetadatafield><fieldlabel>question_type</fieldlabel><fieldentry>multiple_choice_question</fieldentry></qtimetadatafield>
+            <qtimetadatafield><fieldlabel>points_possible</fieldlabel><fieldentry>1</fieldentry></qtimetadatafield>
+          </qtimetadata>
+        </itemmetadata>
+        <presentation>
+          <material><mattext texttype="text/html">&lt;div&gt;What is a premise?&lt;/div&gt;</mattext></material>
+          <response_lid ident="response1" rcardinality="Single">
+            <render_choice>
+              <response_label ident="ch1-sec3-premises-conclusions_q10_a0">
+                <material><mattext texttype="text/plain">A statement offered in support of a conclusion.</mattext></material>
+              </response_label>
+              <response_label ident="ch1-sec3-premises-conclusions_q10_a1">
+                <material><mattext texttype="text/plain">The final sentence of every passage.</mattext></material>
+              </response_label>
+              <response_label ident="ch1-sec3-premises-conclusions_q10_a2">
+                <material><mattext texttype="text/plain">Any sentence with emotional force.</mattext></material>
+              </response_label>
+              <response_label ident="ch1-sec3-premises-conclusions_q10_a3">
+                <material><mattext texttype="text/plain">A command in an argument.</mattext></material>
+              </response_label>
+            </render_choice>
+          </response_lid>
+        </presentation>
+        <resprocessing>
+          <outcomes><decvar maxvalue="100" minvalue="0" varname="SCORE" vartype="Decimal"/></outcomes>
+          <respcondition continue="No">
+            <conditionvar><varequal respident="response1">ch1-sec3-premises-conclusions_q10_a0</varequal></conditionvar>
+            <setvar action="Set" varname="SCORE">100</setvar>
+          </respcondition>
+        </resprocessing>
+      </item>
+
+      <item ident="ch1-sec3-premises-conclusions_q11" title="Question 11">
+        <itemmetadata>
+          <qtimetadata>
+            <qtimetadatafield><fieldlabel>question_type</fieldlabel><fieldentry>multiple_choice_question</fieldentry></qtimetadatafield>
+            <qtimetadatafield><fieldlabel>points_possible</fieldlabel><fieldentry>1</fieldentry></qtimetadatafield>
+          </qtimetadata>
+        </itemmetadata>
+        <presentation>
+          <material><mattext texttype="text/html">&lt;div&gt;Identify the conclusion:&lt;br&gt;&lt;br&gt;&lt;em&gt;The lecture was recorded. So students who missed class can watch it.&lt;/em&gt;&lt;/div&gt;</mattext></material>
+          <response_lid ident="response1" rcardinality="Single">
+            <render_choice>
+              <response_label ident="ch1-sec3-premises-conclusions_q11_a0">
+                <material><mattext texttype="text/plain">Students who missed class can watch it.</mattext></material>
+              </response_label>
+              <response_label ident="ch1-sec3-premises-conclusions_q11_a1">
+                <material><mattext texttype="text/plain">The lecture was recorded.</mattext></material>
+              </response_label>
+              <response_label ident="ch1-sec3-premises-conclusions_q11_a2">
+                <material><mattext texttype="text/plain">So</mattext></material>
+              </response_label>
+              <response_label ident="ch1-sec3-premises-conclusions_q11_a3">
+                <material><mattext texttype="text/plain">The lecture.</mattext></material>
+              </response_label>
+            </render_choice>
+          </response_lid>
+        </presentation>
+        <resprocessing>
+          <outcomes><decvar maxvalue="100" minvalue="0" varname="SCORE" vartype="Decimal"/></outcomes>
+          <respcondition continue="No">
+            <conditionvar><varequal respident="response1">ch1-sec3-premises-conclusions_q11_a0</varequal></conditionvar>
+            <setvar action="Set" varname="SCORE">100</setvar>
+          </respcondition>
+        </resprocessing>
+      </item>
+
+      <item ident="ch1-sec3-premises-conclusions_q12" title="Question 12">
+        <itemmetadata>
+          <qtimetadata>
+            <qtimetadatafield><fieldlabel>question_type</fieldlabel><fieldentry>multiple_choice_question</fieldentry></qtimetadatafield>
+            <qtimetadatafield><fieldlabel>points_possible</fieldlabel><fieldentry>1</fieldentry></qtimetadatafield>
+          </qtimetadata>
+        </itemmetadata>
+        <presentation>
+          <material><mattext texttype="text/html">&lt;div&gt;Which phrase most strongly signals a conclusion?&lt;/div&gt;</mattext></material>
+          <response_lid ident="response1" rcardinality="Single">
+            <render_choice>
+              <response_label ident="ch1-sec3-premises-conclusions_q12_a0">
+                <material><mattext texttype="text/plain">hence</mattext></material>
+              </response_label>
+              <response_label ident="ch1-sec3-premises-conclusions_q12_a1">
+                <material><mattext texttype="text/plain">because</mattext></material>
+              </response_label>
+              <response_label ident="ch1-sec3-premises-conclusions_q12_a2">
+                <material><mattext texttype="text/plain">given that</mattext></material>
+              </response_label>
+              <response_label ident="ch1-sec3-premises-conclusions_q12_a3">
+                <material><mattext texttype="text/plain">for</mattext></material>
+              </response_label>
+            </render_choice>
+          </response_lid>
+        </presentation>
+        <resprocessing>
+          <outcomes><decvar maxvalue="100" minvalue="0" varname="SCORE" vartype="Decimal"/></outcomes>
+          <respcondition continue="No">
+            <conditionvar><varequal respident="response1">ch1-sec3-premises-conclusions_q12_a0</varequal></conditionvar>
+            <setvar action="Set" varname="SCORE">100</setvar>
+          </respcondition>
+        </resprocessing>
+      </item>
+
+      <item ident="ch1-sec3-premises-conclusions_q13" title="Question 13">
+        <itemmetadata>
+          <qtimetadata>
+            <qtimetadatafield><fieldlabel>question_type</fieldlabel><fieldentry>multiple_choice_question</fieldentry></qtimetadatafield>
+            <qtimetadatafield><fieldlabel>points_possible</fieldlabel><fieldentry>1</fieldentry></qtimetadatafield>
+          </qtimetadata>
+        </itemmetadata>
+        <presentation>
+          <material><mattext texttype="text/html">&lt;div&gt;Which phrase most strongly signals a premise?&lt;/div&gt;</mattext></material>
+          <response_lid ident="response1" rcardinality="Single">
+            <render_choice>
+              <response_label ident="ch1-sec3-premises-conclusions_q13_a0">
+                <material><mattext texttype="text/plain">for the reason that</mattext></material>
+              </response_label>
+              <response_label ident="ch1-sec3-premises-conclusions_q13_a1">
+                <material><mattext texttype="text/plain">therefore</mattext></material>
+              </response_label>
+              <response_label ident="ch1-sec3-premises-conclusions_q13_a2">
+                <material><mattext texttype="text/plain">thus</mattext></material>
+              </response_label>
+              <response_label ident="ch1-sec3-premises-conclusions_q13_a3">
+                <material><mattext texttype="text/plain">we may conclude</mattext></material>
+              </response_label>
+            </render_choice>
+          </response_lid>
+        </presentation>
+        <resprocessing>
+          <outcomes><decvar maxvalue="100" minvalue="0" varname="SCORE" vartype="Decimal"/></outcomes>
+          <respcondition continue="No">
+            <conditionvar><varequal respident="response1">ch1-sec3-premises-conclusions_q13_a0</varequal></conditionvar>
+            <setvar action="Set" varname="SCORE">100</setvar>
+          </respcondition>
+        </resprocessing>
+      </item>
+
+      <item ident="ch1-sec3-premises-conclusions_q14" title="Question 14">
+        <itemmetadata>
+          <qtimetadata>
+            <qtimetadatafield><fieldlabel>question_type</fieldlabel><fieldentry>multiple_choice_question</fieldentry></qtimetadatafield>
+            <qtimetadatafield><fieldlabel>points_possible</fieldlabel><fieldentry>1</fieldentry></qtimetadatafield>
+          </qtimetadata>
+        </itemmetadata>
+        <presentation>
+          <material><mattext texttype="text/html">&lt;div&gt;In the conditional &lt;em&gt;If the team practices, then it will improve&lt;/em&gt;, what is the antecedent?&lt;/div&gt;</mattext></material>
+          <response_lid ident="response1" rcardinality="Single">
+            <render_choice>
+              <response_label ident="ch1-sec3-premises-conclusions_q14_a0">
+                <material><mattext texttype="text/plain">the team practices</mattext></material>
+              </response_label>
+              <response_label ident="ch1-sec3-premises-conclusions_q14_a1">
+                <material><mattext texttype="text/plain">it will improve</mattext></material>
+              </response_label>
+              <response_label ident="ch1-sec3-premises-conclusions_q14_a2">
+                <material><mattext texttype="text/plain">then</mattext></material>
+              </response_label>
+              <response_label ident="ch1-sec3-premises-conclusions_q14_a3">
+                <material><mattext texttype="text/plain">the team</mattext></material>
+              </response_label>
+            </render_choice>
+          </response_lid>
+        </presentation>
+        <resprocessing>
+          <outcomes><decvar maxvalue="100" minvalue="0" varname="SCORE" vartype="Decimal"/></outcomes>
+          <respcondition continue="No">
+            <conditionvar><varequal respident="response1">ch1-sec3-premises-conclusions_q14_a0</varequal></conditionvar>
+            <setvar action="Set" varname="SCORE">100</setvar>
+          </respcondition>
+        </resprocessing>
+      </item>
+
+      <item ident="ch1-sec3-premises-conclusions_q15" title="Question 15">
+        <itemmetadata>
+          <qtimetadata>
+            <qtimetadatafield><fieldlabel>question_type</fieldlabel><fieldentry>multiple_choice_question</fieldentry></qtimetadatafield>
+            <qtimetadatafield><fieldlabel>points_possible</fieldlabel><fieldentry>1</fieldentry></qtimetadatafield>
+          </qtimetadata>
+        </itemmetadata>
+        <presentation>
+          <material><mattext texttype="text/html">&lt;div&gt;Which is the best standard-form version of this argument?&lt;br&gt;&lt;br&gt;&lt;em&gt;Because the lab is required, you should not schedule the exam during the lab.&lt;/em&gt;&lt;/div&gt;</mattext></material>
+          <response_lid ident="response1" rcardinality="Single">
+            <render_choice>
+              <response_label ident="ch1-sec3-premises-conclusions_q15_a0">
+                <material><mattext texttype="text/plain">P1: The lab is required. C: You should not schedule the exam during the lab.</mattext></material>
+              </response_label>
+              <response_label ident="ch1-sec3-premises-conclusions_q15_a1">
+                <material><mattext texttype="text/plain">P1: You should not schedule the exam during the lab. C: The lab is required.</mattext></material>
+              </response_label>
+              <response_label ident="ch1-sec3-premises-conclusions_q15_a2">
+                <material><mattext texttype="text/plain">P1: Because. C: The lab.</mattext></material>
+              </response_label>
+              <response_label ident="ch1-sec3-premises-conclusions_q15_a3">
+                <material><mattext texttype="text/plain">There is no argument because it has one sentence.</mattext></material>
+              </response_label>
+            </render_choice>
+          </response_lid>
+        </presentation>
+        <resprocessing>
+          <outcomes><decvar maxvalue="100" minvalue="0" varname="SCORE" vartype="Decimal"/></outcomes>
+          <respcondition continue="No">
+            <conditionvar><varequal respident="response1">ch1-sec3-premises-conclusions_q15_a0</varequal></conditionvar>
+            <setvar action="Set" varname="SCORE">100</setvar>
+          </respcondition>
+        </resprocessing>
+      </item>
+    </section>
+  </assessment>
+</questestinterop>

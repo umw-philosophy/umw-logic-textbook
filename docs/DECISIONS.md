@@ -292,4 +292,22 @@ Each decision is dated, numbered, and tagged with the section of `PROJECT_PLAN.m
 
 ---
 
+## D-026 — Canvas as assessment shell, not content layer
+
+**Date**: 2026-05-04
+**Plan section**: 6
+**Decision**: Canvas modules host **assessment and administrative infrastructure only** — quizzes, item banks, assignment submissions, due dates, brief framing pages, and links to the published PDF. They do **not** reproduce, summarize, or paraphrase chapter content. The book's content lives in the PreTeXt source and its rendered outputs (PDF in Phase 1, accessible HTML in Phase 2). Refines and partially supersedes the implicit content-rich framing of D-015.
+**Alternatives considered**:
+- (a) **Content-rich Canvas modules** that mirror or summarize chapter material in Canvas Pages (rejected — see rationale below).
+- (b) **No Canvas deliverable at all** (rejected — the grant deliverable, the in-class workflow, and adopter portability all benefit from a well-built Canvas course shell with quizzes and item banks).
+- (c) **Canvas as assessment shell, with content-as-link-to-PDF** — chosen.
+**Rationale**:
+1. *Accessibility.* The PreTeXt-generated PDF, with the term-italic strip, the diamond suppression, and PDF/UA-2 metadata, produces a more accessible reading experience than Canvas Pages can practically replicate. Canvas's rich-text editor doesn't carry the semantic structure PreTeXt produces, and reproducing chapter content in Canvas would degrade the accessibility of that content.
+2. *Maintenance.* Content lives in one place (PreTeXt source). Canvas pages that mirror chapter content would have to be re-synced manually whenever the book changes, creating a maintenance trap.
+3. *Adopter portability.* Adopting institutions importing the Common Cartridge want the assessments — quizzes, item banks, assignment prompts — plus a link to the PDF. They do not want to inherit a specific Canvas content structure. A thin Canvas shell is more portable.
+4. *Scope.* A content-rich Canvas module per chapter is multi-week work per chapter. An assessment-shell module per chapter is hours per chapter. The reclaimed time can go into the textbook itself, the truth table checker, and accessibility review.
+5. *Each module retains the structure from D-015* — one module per chapter. The contents per module: a brief framing page (1–3 paragraphs), a link to the PDF or specific chapter section, required readings or videos, the quiz(zes) for that chapter, and assignment prompts.
+
+---
+
 *End of decision log as of project alignment, April 26, 2026. New decisions appended below.*

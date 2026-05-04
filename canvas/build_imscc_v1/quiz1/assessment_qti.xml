@@ -1,0 +1,283 @@
+<?xml version="1.0" ?>
+<questestinterop xmlns="http://www.imsglobal.org/xsd/ims_qtiasiv1p2" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.imsglobal.org/xsd/ims_qtiasiv1p2 http://www.imsglobal.org/xsd/ims_qtiasiv1p2p1.xsd">
+  <assessment ident="assessment_c6b2a2f431664ceeac0f8a1b92c6c1f3" title="Chapter 1, Section 1.1 Quiz">
+    <qtimetadata>
+      <qtimetadatafield>
+        <fieldlabel>cc_maxattempts</fieldlabel>
+        <fieldentry>unlimited</fieldentry>
+      </qtimetadatafield>
+    </qtimetadata>
+    <section ident="root_section">
+      <item ident="quiz1_q0" title="Question 1">
+        <itemmetadata>
+          <qtimetadata>
+            <qtimetadatafield>
+              <fieldlabel>question_type</fieldlabel>
+              <fieldentry>multiple_choice_question</fieldentry>
+            </qtimetadatafield>
+            <qtimetadatafield>
+              <fieldlabel>points_possible</fieldlabel>
+              <fieldentry>1</fieldentry>
+            </qtimetadatafield>
+          </qtimetadata>
+        </itemmetadata>
+        <presentation>
+          <material>
+            <mattext texttype="text/html">&lt;div&gt;Identify the main thing the speaker is doing: 'Could you send me the reading before class?'&lt;/div&gt;</mattext>
+          </material>
+          <response_lid ident="response1" rcardinality="Single">
+            <render_choice>
+              <response_label ident="quiz1_q0_ans0">
+                <material>
+                  <mattext texttype="text/plain">Commanding/requesting</mattext>
+                </material>
+              </response_label>
+              <response_label ident="quiz1_q0_ans1">
+                <material>
+                  <mattext texttype="text/plain">Stating</mattext>
+                </material>
+              </response_label>
+              <response_label ident="quiz1_q0_ans2">
+                <material>
+                  <mattext texttype="text/plain">Explaining</mattext>
+                </material>
+              </response_label>
+              <response_label ident="quiz1_q0_ans3">
+                <material>
+                  <mattext texttype="text/plain">Arguing</mattext>
+                </material>
+              </response_label>
+            </render_choice>
+          </response_lid>
+        </presentation>
+        <resprocessing>
+          <outcomes>
+            <decvar maxvalue="100" minvalue="0" varname="SCORE" vartype="Decimal"/>
+          </outcomes>
+          <respcondition continue="No">
+            <conditionvar>
+              <varequal respident="response1">quiz1_q0_ans0</varequal>
+            </conditionvar>
+            <setvar action="Set" varname="SCORE">100</setvar>
+          </respcondition>
+        </resprocessing>
+      </item>
+      <item ident="quiz1_q1" title="Question 2">
+        <itemmetadata>
+          <qtimetadata>
+            <qtimetadatafield>
+              <fieldlabel>question_type</fieldlabel>
+              <fieldentry>multiple_choice_question</fieldentry>
+            </qtimetadatafield>
+            <qtimetadatafield>
+              <fieldlabel>points_possible</fieldlabel>
+              <fieldentry>1</fieldentry>
+            </qtimetadatafield>
+          </qtimetadata>
+        </itemmetadata>
+        <presentation>
+          <material>
+            <mattext texttype="text/html">&lt;div&gt;Identify the main thing the speaker is doing: 'The reading is posted on Canvas.'&lt;/div&gt;</mattext>
+          </material>
+          <response_lid ident="response1" rcardinality="Single">
+            <render_choice>
+              <response_label ident="quiz1_q1_ans0">
+                <material>
+                  <mattext texttype="text/plain">Stating</mattext>
+                </material>
+              </response_label>
+              <response_label ident="quiz1_q1_ans1">
+                <material>
+                  <mattext texttype="text/plain">Expressing</mattext>
+                </material>
+              </response_label>
+              <response_label ident="quiz1_q1_ans2">
+                <material>
+                  <mattext texttype="text/plain">Greeting</mattext>
+                </material>
+              </response_label>
+              <response_label ident="quiz1_q1_ans3">
+                <material>
+                  <mattext texttype="text/plain">Arguing</mattext>
+                </material>
+              </response_label>
+            </render_choice>
+          </response_lid>
+        </presentation>
+        <resprocessing>
+          <outcomes>
+            <decvar maxvalue="100" minvalue="0" varname="SCORE" vartype="Decimal"/>
+          </outcomes>
+          <respcondition continue="No">
+            <conditionvar>
+              <varequal respident="response1">quiz1_q1_ans0</varequal>
+            </conditionvar>
+            <setvar action="Set" varname="SCORE">100</setvar>
+          </respcondition>
+        </resprocessing>
+      </item>
+      <item ident="quiz1_q2" title="Question 3">
+        <itemmetadata>
+          <qtimetadata>
+            <qtimetadatafield>
+              <fieldlabel>question_type</fieldlabel>
+              <fieldentry>multiple_choice_question</fieldentry>
+            </qtimetadatafield>
+            <qtimetadatafield>
+              <fieldlabel>points_possible</fieldlabel>
+              <fieldentry>1</fieldentry>
+            </qtimetadatafield>
+          </qtimetadata>
+        </itemmetadata>
+        <presentation>
+          <material>
+            <mattext texttype="text/html">&lt;div&gt;Is the person arguing, persuading without arguing, both, or neither: A campus poster shows smiling students studying under trees and says, 'Choose UMW.'&lt;/div&gt;</mattext>
+          </material>
+          <response_lid ident="response1" rcardinality="Single">
+            <render_choice>
+              <response_label ident="quiz1_q2_ans0">
+                <material>
+                  <mattext texttype="text/plain">Persuading without arguing</mattext>
+                </material>
+              </response_label>
+              <response_label ident="quiz1_q2_ans1">
+                <material>
+                  <mattext texttype="text/plain">Arguing</mattext>
+                </material>
+              </response_label>
+              <response_label ident="quiz1_q2_ans2">
+                <material>
+                  <mattext texttype="text/plain">Both arguing and persuading</mattext>
+                </material>
+              </response_label>
+              <response_label ident="quiz1_q2_ans3">
+                <material>
+                  <mattext texttype="text/plain">Neither</mattext>
+                </material>
+              </response_label>
+            </render_choice>
+          </response_lid>
+        </presentation>
+        <resprocessing>
+          <outcomes>
+            <decvar maxvalue="100" minvalue="0" varname="SCORE" vartype="Decimal"/>
+          </outcomes>
+          <respcondition continue="No">
+            <conditionvar>
+              <varequal respident="response1">quiz1_q2_ans0</varequal>
+            </conditionvar>
+            <setvar action="Set" varname="SCORE">100</setvar>
+          </respcondition>
+        </resprocessing>
+      </item>
+      <item ident="quiz1_q3" title="Question 4">
+        <itemmetadata>
+          <qtimetadata>
+            <qtimetadatafield>
+              <fieldlabel>question_type</fieldlabel>
+              <fieldentry>multiple_choice_question</fieldentry>
+            </qtimetadatafield>
+            <qtimetadatafield>
+              <fieldlabel>points_possible</fieldlabel>
+              <fieldentry>1</fieldentry>
+            </qtimetadatafield>
+          </qtimetadata>
+        </itemmetadata>
+        <presentation>
+          <material>
+            <mattext texttype="text/html">&lt;div&gt;Is the person arguing, persuading without arguing, both, or neither: A coach says, 'Again. Run it again.'&lt;/div&gt;</mattext>
+          </material>
+          <response_lid ident="response1" rcardinality="Single">
+            <render_choice>
+              <response_label ident="quiz1_q3_ans0">
+                <material>
+                  <mattext texttype="text/plain">Neither</mattext>
+                </material>
+              </response_label>
+              <response_label ident="quiz1_q3_ans1">
+                <material>
+                  <mattext texttype="text/plain">Arguing</mattext>
+                </material>
+              </response_label>
+              <response_label ident="quiz1_q3_ans2">
+                <material>
+                  <mattext texttype="text/plain">Persuading without arguing</mattext>
+                </material>
+              </response_label>
+              <response_label ident="quiz1_q3_ans3">
+                <material>
+                  <mattext texttype="text/plain">Both arguing and persuading</mattext>
+                </material>
+              </response_label>
+            </render_choice>
+          </response_lid>
+        </presentation>
+        <resprocessing>
+          <outcomes>
+            <decvar maxvalue="100" minvalue="0" varname="SCORE" vartype="Decimal"/>
+          </outcomes>
+          <respcondition continue="No">
+            <conditionvar>
+              <varequal respident="response1">quiz1_q3_ans0</varequal>
+            </conditionvar>
+            <setvar action="Set" varname="SCORE">100</setvar>
+          </respcondition>
+        </resprocessing>
+      </item>
+      <item ident="quiz1_q4" title="Question 5">
+        <itemmetadata>
+          <qtimetadata>
+            <qtimetadatafield>
+              <fieldlabel>question_type</fieldlabel>
+              <fieldentry>multiple_choice_question</fieldentry>
+            </qtimetadatafield>
+            <qtimetadatafield>
+              <fieldlabel>points_possible</fieldlabel>
+              <fieldentry>1</fieldentry>
+            </qtimetadatafield>
+          </qtimetadata>
+        </itemmetadata>
+        <presentation>
+          <material>
+            <mattext texttype="text/html">&lt;div&gt;Is the person arguing, persuading without arguing, both, or neither: A letter to the editor says, 'The city should fund the new shelter because homelessness has increased 30% and the current facility cannot accommodate everyone who needs help.'&lt;/div&gt;</mattext>
+          </material>
+          <response_lid ident="response1" rcardinality="Single">
+            <render_choice>
+              <response_label ident="quiz1_q4_ans0">
+                <material>
+                  <mattext texttype="text/plain">Both arguing and persuading</mattext>
+                </material>
+              </response_label>
+              <response_label ident="quiz1_q4_ans1">
+                <material>
+                  <mattext texttype="text/plain">Arguing (but not persuading)</mattext>
+                </material>
+              </response_label>
+              <response_label ident="quiz1_q4_ans2">
+                <material>
+                  <mattext texttype="text/plain">Persuading without arguing</mattext>
+                </material>
+              </response_label>
+              <response_label ident="quiz1_q4_ans3">
+                <material>
+                  <mattext texttype="text/plain">Neither</mattext>
+                </material>
+              </response_label>
+            </render_choice>
+          </response_lid>
+        </presentation>
+        <resprocessing>
+          <outcomes>
+            <decvar maxvalue="100" minvalue="0" varname="SCORE" vartype="Decimal"/>
+          </outcomes>
+          <respcondition continue="No">
+            <conditionvar>
+              <varequal respident="response1">quiz1_q4_ans0</varequal>
+            </conditionvar>
+            <setvar action="Set" varname="SCORE">100</setvar>
+          </respcondition>
+        </resprocessing>
+      </item>
+    </section>
+  </assessment>
+</questestinterop>

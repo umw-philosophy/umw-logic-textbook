@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>1.2 Statements</title>
+
+    <style>
+    /* Minimal PreTeXt Canvas Style */
+    .ptx-content { font-family: "PT Serif", serif; max-width: 800px; margin: 0 auto; line-height: 1.6; color: #333; }
+    .ptx-content h2, .ptx-content h3 { color: #195684; }
+    .terminology { font-weight: bold; color: #932c1c; }
+    .exploration, .definition, .example { background-color: #f8f9fa; border-left: 4px solid #195684; padding: 1em; margin: 1em 0; }
+    .description-list dt { font-weight: bold; margin-top: 1em; color: #195684; }
+    .description-list dd { margin-left: 2em; margin-bottom: 1em; }
+    .alert { color: #932c1c; font-weight: bold; }
+    </style>
+    
+</head>
+<body>
+<div id="ptx-content" class="ptx-content"><section class="section" id="sec-statements"><h2 class="heading hide-type">
+<span class="type">Section</span><span class="space"> </span><span class="codenumber">1.2</span><span class="space"> </span><span class="title">Statements</span>
+</h2>
+<section class="introduction" id="sec-statements-2"><div class="para" id="sec-statements-2-1">We can’t talk carefully about arguments without being clear about what they are built out of. An argument is a structure — one or more statements offered in support of another statement — and every piece of that structure is a particular kind of sentence. Before we can do any actual logic, we need to be clear about what statements are and, just as importantly, what they are not.
+</div></section><section class="paragraphs" id="paragraphs-what-is-statement"><h3 class="heading"><span class="title">What a statement is.</span></h3>
+<div class="para" id="paragraphs-what-is-statement-2">A statement is an <dfn class="terminology">assertoric</dfn> sentence — a sentence that says something is the case. The word <em class="emphasis">assertoric</em> comes from <em class="emphasis">assert</em>; an assertoric sentence is one that makes a claim about how things are. Every statement is either true or false.
+</div>
+<div class="para" id="paragraphs-what-is-statement-3">That definition is short, and we’ll spend the rest of this section unpacking what it does and does not mean. But it is worth saying directly first.
+</div>
+<article class="definition definition-like" id="def-statement"><h4 class="heading">
+<span class="type">Definition</span><span class="space"> </span><span class="codenumber">1.2.1</span><span class="period">.</span>
+</h4>
+<div class="para" id="def-statement-1-1">A <dfn class="terminology">statement</dfn> is an assertoric sentence — a sentence that says something is the case. Every statement is either true or false.
+</div>
+</article><div class="para" id="paragraphs-what-is-statement-5">Only sentences in the <em class="emphasis">stating</em> category produce assertions. The other categories don’t. Questions don’t make claims about how things are; commands don’t either; expressions and greetings and performatives are doing other work. None of those produce sentences that are true or false.
+</div>
+<div class="para" id="paragraphs-what-is-statement-6">A few examples of statements:
+</div>
+<ul class="disc" id="paragraphs-what-is-statement-7">
+<li id="paragraphs-what-is-statement-7-1">
+<div class="para" id="paragraphs-what-is-statement-7-1-1">“The library closes at nine.”
+</div>
+
+</li>
+<li id="paragraphs-what-is-statement-7-2">
+<div class="para" id="paragraphs-what-is-statement-7-2-1">“Snow is white.”
+</div>
+
+</li>
+<li id="paragraphs-what-is-statement-7-3">
+<div class="para" id="paragraphs-what-is-statement-7-3-1">“Carthage was destroyed in 146 BCE.”
+</div>
+
+</li>
+<li id="paragraphs-what-is-statement-7-4">
+<div class="para" id="paragraphs-what-is-statement-7-4-1">“Two plus two equals four.”
+</div>
+
+</li>
+<li id="paragraphs-what-is-statement-7-5">
+<div class="para" id="paragraphs-what-is-statement-7-5-1">“Data centers consume a great deal of electricity.”
+</div>
+
+</li>
+</ul>
+<div class="para" id="paragraphs-what-is-statement-8">Each of these sentences claims that something is the case. Each is true or false. Most of them are also things almost nobody would push back on, and that’s deliberate — we’re starting with the easy cases.
+</div>
+<div class="para" id="paragraphs-what-is-statement-9">A few examples of sentences that are <em class="emphasis">not</em> statements:
+</div>
+<ul class="disc" id="paragraphs-what-is-statement-10">
+<li id="paragraphs-what-is-statement-10-1">
+<div class="para" id="paragraphs-what-is-statement-10-1-1">“What time is it?” (a question)
+</div>
+
+</li>
+<li id="paragraphs-what-is-statement-10-2">
+<div class="para" id="paragraphs-what-is-statement-10-2-1">“Close the door.” (a command)
+</div>
+
+</li>
+<li id="paragraphs-what-is-statement-10-3">
+<div class="para" id="paragraphs-what-is-statement-10-3-1">“Ouch.” (an expression)
+</div>
+
+</li>
+<li id="paragraphs-what-is-statement-10-4">
+<div class="para" id="paragraphs-what-is-statement-10-4-1">“Good morning.” (a greeting)
+</div>
+
+</li>
+<li id="paragraphs-what-is-statement-10-5">
+<div class="para" id="paragraphs-what-is-statement-10-5-1">“I now pronounce you married.” (a performative)
+</div>
+
+</li>
+</ul>
+<div class="para" id="paragraphs-what-is-statement-11">None of these are statements, because none of them say that something is the case. None of them is true or false. They are doing other things with language, and those other things are valuable, but they aren’t what arguments are built out of.
+</div>
+</section><section class="paragraphs" id="paragraphs-harder-cases"><h3 class="heading"><span class="title">What about the harder cases?</span></h3>
+<div class="para" id="paragraphs-harder-cases-2">So far, so good. The examples above were chosen to be easy: nobody is going to fight you about whether the library closes at nine. But you may have already started to notice that real life isn’t always like that. Sentences like “there is intelligent life somewhere else in the universe,” “slavery is wrong,” “there were exactly 27,891 people living in Fredericksburg in 1856,” and “the one-millionth digit of <span class="process-math">\(\pi\)</span> is 7” all <em class="emphasis">seem</em> to be saying that something is the case. By the definition above, they should all be statements. But they don’t feel like the library example. Some of them are deeply contested. Others involve facts nobody alive knows or can easily find out.
+</div>
+<div class="para" id="paragraphs-harder-cases-3">Are they still statements?
+</div>
+<div class="para" id="paragraphs-harder-cases-4">The short answer is yes. The longer answer requires getting clear on what is actually being asked. To handle the harder cases — the contested ones, the ones we can’t easily, if at all, verify — we need to separate three things that often get smushed together: what is the case, what we <em class="emphasis">know</em> about what is the case, and what we <em class="emphasis">agree about</em> about what is the case. Once those three are pulled apart, the harder cases are no harder to classify than the library example.
+</div>
+</section><section class="paragraphs" id="paragraphs-truth-knowledge-consensus"><h3 class="heading"><span class="title">Truth, knowledge, and consensus are different things.</span></h3>
+<div class="para" id="paragraphs-truth-knowledge-consensus-2">What is the case is one thing. Whether anyone knows what is the case is another thing. Whether everyone agrees about what is the case is yet a third. These three are easy to run together in everyday speech, but they are genuinely separate, and statementhood depends only on the first.
+</div>
+<div class="para" id="paragraphs-truth-knowledge-consensus-3">Consider a few examples in turn.
+</div>
+<div class="para" id="paragraphs-truth-knowledge-consensus-4">
+<em class="alert">Things that are true or false even if we don’t know which.</em>
+</div>
+<div class="para" id="paragraphs-truth-knowledge-consensus-5">There were exactly 27,891 people living in Fredericksburg on January 26th, 1856. Nobody alive knows whether that’s true. The historical record isn’t fine-grained enough to settle it. The sentence is still either true or false. The population of Fredericksburg, VA on January 26th, 1856 is a fact about the world; the sentence asserts that the number of people living here on that date was 27,891; the sentence is true if that was the number and false if it wasn’t.
+</div>
+<div class="para" id="paragraphs-truth-knowledge-consensus-6">There is intelligent life elsewhere in the universe. We don’t know. We may never know. The sentence is still either true or false right now, today, regardless of what humans manage to find out in the next century or the next ten thousand years.
+</div>
+<div class="para" id="paragraphs-truth-knowledge-consensus-7">The one-millionth digit of <span class="process-math">\(\pi\)</span> is 7. Almost nobody has computed this. (For what it’s worth, it’s possible to look up; I haven’t.) The sentence has a definite truth value at this moment, even for those of us who haven’t checked.
+</div>
+<div class="para" id="paragraphs-truth-knowledge-consensus-8">Caesar walked under a particular fig tree on the Ides of March, 44 BCE. The world has not preserved that information for us. We can’t recover it. The sentence is still either true or false; the world either was or wasn’t arranged that way at that moment even though we don’t know if it was or not.
+</div>
+<div class="para" id="paragraphs-truth-knowledge-consensus-9">In each of these cases, the sentence is a statement, and for the same reason: there is a way the world was, or is, that the sentence makes a claim about. Whether <em class="emphasis">we</em> have access to that way the world was or is — whether anyone has computed it, recovered it from history, observed it, or proven it — is a different question. Statementhood depends on the first; knowledge is a question on top of it.
+</div>
+<div class="para" id="paragraphs-truth-knowledge-consensus-10">
+<em class="alert">Things that are true or false even if we don’t agree about which it is.</em>
+</div>
+<div class="para" id="paragraphs-truth-knowledge-consensus-11">Now consider a different kind of difficulty. “God exists.” Humans have been arguing about this sentence for as long as they’ve been arguing about anything. We have not settled it. The sentence is still either true or false. Whichever it is, the disagreement among humans does not change it.
+</div>
+<div class="para" id="paragraphs-truth-knowledge-consensus-12">The same goes for “slavery is wrong,” “capital punishment is unjust,” “abortion is morally permissible in the first trimester,” and many other claims people have strong, divergent views about. These sentences make claims about how things are — about what is moral, what is just, what the world contains. Each is either true or false. Whether reasonable people agree is a separate question. Whether anyone can settle the disagreement is a third question. Neither is the same as whether the sentence is a statement. It is.
+</div>
+<div class="para" id="paragraphs-truth-knowledge-consensus-13">This is the part that you might resist even if you buy the rest of this discussion. <em class="emphasis">Surely</em> if smart people disagree about a sentence, it must be that the sentence isn’t really true or false — it must be that there’s no fact of the matter, just a clash of preferences. That’s not the assumption of classical logic, and it’s not the assumption of this book. The assumption here is that disagreement and truth are different things. People can disagree about what’s true. People can be wrong about what’s true. None of that changes whether there’s a fact of the matter, neither does it change that people are asserting something about the world when they utter these sorts of sentences.
+</div>
+<div class="para" id="paragraphs-truth-knowledge-consensus-14">
+<em class="alert">Why this matters for what comes later.</em> This isn’t a philosophical sidebar. It’s load-bearing structure for everything in the rest of the book. Truth tables work because every row has a definite truth value, regardless of what we happen to know about that row. Validity is a relationship between truth values. The reasoning we’re going to teach you depends, all the way down, on the assumption that statements are either true or false — no matter who knows what, and no matter who agrees with whom.
+</div>
+</section><section class="paragraphs" id="paragraphs-fact-vs-opinion"><h3 class="heading"><span class="title">The fact-vs-opinion taxonomy doesn’t help.</span></h3>
+<div class="para" id="paragraphs-fact-vs-opinion-2">Many of you were taught somewhere along the way to sort sentences into two bins: <em class="emphasis">facts</em> (which are true and provable) and <em class="emphasis">opinions</em> (which are subjective, debatable, and somehow not really claims about how things are). That taxonomy is not useful for logic. It is, in fact, actively in the way. This subsection is about why.
+</div>
+<div class="para" id="paragraphs-fact-vs-opinion-3">Try a quick test on the distinction. Can there be false facts?
+</div>
+<div class="para" id="paragraphs-fact-vs-opinion-4">Most people, asked cold, will say no. <em class="emphasis">Fact</em> in ordinary speech already means “true claim.” That’s the whole point of saying “it’s a fact” instead of just saying the thing. But notice what that concession costs the taxonomy. If the word <em class="emphasis">fact</em> already builds truth into itself, then <em class="emphasis">fact</em> cannot help us sort sentences before we have figured out what is true. The fact-vs-opinion taxonomy is asking us to grade the answers before we have read the questions.
+</div>
+<div class="para" id="paragraphs-fact-vs-opinion-5">There’s a second problem. Even sentences that everyone agrees with become <em class="emphasis">opinions</em> the moment somebody asserts them. If I say “two plus two equals four,” that’s my belief — my opinion about how arithmetic works. It is also a fact. The same sentence is in both categories at once, depending on how you frame it. The categories don’t pick out two different kinds of sentences; they collapse into each other on contact.
+</div>
+<div class="para" id="paragraphs-fact-vs-opinion-6">A third problem. People sometimes use <em class="emphasis">opinion</em> in a looser sense — meaning something like “a claim that hasn’t been settled.” On that usage, <em class="emphasis">opinion</em> names not a kind of sentence but a feature of how the conversation is going. That doesn’t help us either. From the perfectly settled premises “2 + 5 = 7” and “3 + 4 = 7” you can build the argument “therefore (2 + 5) = (3 + 4).” It’s a boring argument, but unmistakably an argument. Settled premises do not make a piece of reasoning stop being reasoning. And we already saw above that <em class="emphasis">unsettled</em> sentences — “God exists,” “slavery is wrong,” and the rest — are still statements. Settledness and statementhood have nothing to do with each other.
+</div>
+<div class="para" id="paragraphs-fact-vs-opinion-7">So here is the replacement we want.
+</div>
+<article class="principle theorem-like" id="principle-statement-criterion"><h4 class="heading">
+<span class="type">Principle</span><span class="space"> </span><span class="codenumber">1.2.2</span><span class="period">.</span>
+</h4>
+<div class="para" id="principle-statement-criterion-1-1">The criterion for whether a sentence is a statement is not whether it is a “fact” or an “opinion.” It is whether the sentence is assertoric — whether it says that something is the case. If yes, it is a statement; it has a truth value; logic can operate on it. If no, it is some other kind of speech, and logic operates on it only indirectly, if at all.
+</div>
+</article><div class="para" id="paragraphs-fact-vs-opinion-9">And, looking ahead one section, a related replacement: the criterion for whether something is an argument is also not whether the statements involved are facts or opinions. It is purely structural: some statements offered in support of another. We’ll get to the details of that structure in the next section.
+</div>
+</section><section class="paragraphs" id="paragraphs-where-headed-1-2"><h3 class="heading"><span class="title">Where we’re headed.</span></h3>
+<div class="para" id="paragraphs-where-headed-1-2-2">Statements are the building blocks. The next section is about how those blocks fit together. What is a premise, technically speaking? What is a conclusion? What does it mean for one statement to support another? Once we have named those parts, we can start asking the question that drives the rest of the book: what makes one arrangement of statements a good argument and another arrangement a bad one. <em class="emphasis">Is this any good?</em>
+</div>
+</section><article class="exploration project-like" id="field-1-2-1"><h3 class="heading">
+<span class="type">Exploration</span><span class="space"> </span><span class="codenumber">1.2</span><span class="period">.</span><span class="space"> </span><span class="title">Field Exercise: Sort the sentences.</span>
+</h3>
+<div class="para" id="field-1-2-1-2-1">Below is a list of sentences. For each one, decide whether it is a statement (an assertoric sentence — one that says something is the case, and is therefore either true or false) or not.
+</div> <div class="para" id="field-1-2-1-2-2">Use the definition from this section. Do not use the fact-vs-opinion taxonomy. Some of these sentences will tempt you to mis-sort them as “just opinions” or “not really statements.” Resist that temptation. Trust the definition.
+</div> <ol class="decimal" id="field-1-2-1-2-3">
+<li id="field-1-2-1-2-3-1">
+<div class="para" id="field-1-2-1-2-3-1-1">The library closes at nine.
+</div>
+
+</li>
+<li id="field-1-2-1-2-3-2">
+<div class="para" id="field-1-2-1-2-3-2-1">What time does the library close?
+</div>
+
+</li>
+<li id="field-1-2-1-2-3-3">
+<div class="para" id="field-1-2-1-2-3-3-1">Slavery is wrong.
+</div>
+
+</li>
+<li id="field-1-2-1-2-3-4">
+<div class="para" id="field-1-2-1-2-3-4-1">Pass the salt.
+</div>
+
+</li>
+<li id="field-1-2-1-2-3-5">
+<div class="para" id="field-1-2-1-2-3-5-1">There were exactly 27,891 people living in Fredericksburg in 1856.
+</div>
+
+</li>
+<li id="field-1-2-1-2-3-6">
+<div class="para" id="field-1-2-1-2-3-6-1">God exists.
+</div>
+
+</li>
+<li id="field-1-2-1-2-3-7">
+<div class="para" id="field-1-2-1-2-3-7-1">Chocolate ice cream is better than vanilla.
+</div>
+
+</li>
+<li id="field-1-2-1-2-3-8">
+<div class="para" id="field-1-2-1-2-3-8-1">Hey.
+</div>
+
+</li>
+<li id="field-1-2-1-2-3-9">
+<div class="para" id="field-1-2-1-2-3-9-1">There is no such thing as a false fact.
+</div>
+
+</li>
+<li id="field-1-2-1-2-3-10">
+<div class="para" id="field-1-2-1-2-3-10-1">The one-millionth digit of <span class="process-math">\(\pi\)</span> is 7.
+</div>
+
+</li>
+<li id="field-1-2-1-2-3-11">
+<div class="para" id="field-1-2-1-2-3-11-1">We need to expand the electrical grid to keep up with new data centers.
+</div>
+
+</li>
+<li id="field-1-2-1-2-3-12">
+<div class="para" id="field-1-2-1-2-3-12-1">Ouch.
+</div>
+
+</li>
+</ol> <div class="para" id="field-1-2-1-2-4">For at least three of the sentences you sorted as statements, write a one-sentence explanation of why someone might mistakenly think they are <em class="emphasis">not</em> statements. We’ll come back to this in the end-of-chapter writing prompt.
+</div>
+</article></section></div>
+</body>
+</html>

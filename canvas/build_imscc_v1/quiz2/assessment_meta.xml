@@ -1,0 +1,7 @@
+<?xml version="1.0" ?>
+<quiz xmlns="http://canvas.instructure.com/xsd/cccv1p0" identifier="assessment_85edfb8dbc9344479cfbaabd770b75be" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://canvas.instructure.com/xsd/cccv1p0 http://canvas.instructure.com/xsd/cccv1p0.xsd">
+  <title>Chapter 1, Section 1.2 Quiz</title>
+  <description>&lt;p&gt;Practice questions for Chapter 1, Section 1.2 Quiz.&lt;/p&gt;</description>
+  <quiz_type>assignment</quiz_type>
+  <published>true</published>
+</quiz>

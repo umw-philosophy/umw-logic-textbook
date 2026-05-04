@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<manifest xmlns="http://www.imsglobal.org/xsd/imscp_v1p1" identifier="manifest_ch1-sec1-language" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.imsglobal.org/xsd/imscp_v1p1 http://www.imsglobal.org/xsd/imscp_v1p1.xsd">
+  <metadata>
+    <schema>QTI</schema>
+    <schemaversion>1.2</schemaversion>
+  </metadata>
+  <organizations/>
+  <resources>
+    <resource identifier="ch1-sec1-language" type="imsqti_xmlv1p2" href="assessment.xml">
+      <file href="assessment.xml"/>
+    </resource>
+  </resources>
+</manifest>

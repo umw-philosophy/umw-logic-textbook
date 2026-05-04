@@ -249,7 +249,7 @@
         structure of an argument, not its content. And the word
         <q><term>sound</term></q> means <q>valid, and all the premises
         are also actually true.</q> For now, treat those as labels; we
-        will fill in their precise meanings in the next chapter.
+        will fill in their precise meanings in Chapter 3.
         The point is that those are the questions you can ask of an
         argument and not of sentences like <q>good morning</q> or
         <q>close the door.</q>
@@ -1480,20 +1480,40 @@
         extracted. We can lay one out cleanly and we can ask the
         question we've been pointing at since the beginning —
         <em>is this any good?</em> — but we don't yet have the tools
-        to answer that question with rigor. That's what the next
-        chapter is for. Once an argument is in standard form, we can
-        begin to ask whether the support is genuine: whether the
-        conclusion really follows from the premises (validity),
-        whether the premises are actually true (soundness), and what
-        we should make of arguments where one of those holds but not
-        the other. The chapters that follow give us the technical
-        machinery — categorical logic in Part II, sentential logic
-        and natural deduction in Part III, statistical reasoning in
-        Part IV — for answering <em>is this any good?</em> in
-        different domains. But all of those machines run on the
-        structures we've built here. Statements as truth-bearing
-        sentences; arguments as premises supporting conclusions.
-        That's the foundation.
+        to answer that question with rigor.
+      </p>
+      <p>
+        Two things stand between us and that answer. The first is
+        that even a careful extraction is still rough. Real passages
+        contain background, repeated claims, sentences doing
+        rhetorical rather than logical work, and unstated assumptions
+        the arguer takes for granted. Before we can evaluate an
+        argument, we need to clean it up: represent it in a form fair
+        to the arguer and clear enough to examine. That work is
+        called <term>reconstruction</term>, and it's what Chapter 2
+        is for. Reconstruction takes the rough extractions we did in
+        this section and turns them into representations careful
+        enough to support real evaluation.
+      </p>
+      <p>
+        The second thing is the technical machinery for evaluation
+        itself. <em>Validity</em> and <em>soundness</em> — names
+        you've already seen, definitions still to come — are the
+        precise questions we'll ask of a reconstructed argument:
+        does the conclusion really follow from the premises, and are
+        the premises actually true. Chapter 3 begins that work, and
+        the chapters after it build the machinery in different
+        domains: categorical logic in Part II, sentential logic and
+        natural deduction in Part III, statistical reasoning in Part
+        IV.
+      </p>
+      <p>
+        All of that runs on the structures we've built here.
+        Statements as truth-bearing sentences; arguments as premises
+        supporting conclusions; the difference between explanation
+        and argument; the diagrammatic structure of layered
+        reasoning. That's the foundation, and Chapter 2 is where
+        we'll first lean on it.
       </p>
     </paragraphs>
 
@@ -1531,7 +1551,7 @@
         </ul>
         <p>
           Don't worry about evaluating whether the arguments are good.
-          We'll get to that in the next chapter. For now, the work is
+          We'll get to that in Chapter 3. For now, the work is
           just to see the structure.
         </p>
         <ol>
@@ -1701,7 +1721,7 @@
       </li>
       <li xml:id="term-sound-argument">
         <title>Sound (argument)</title>
-        <p>An argument that is valid and has all true premises. Previewed here; treated in detail in Chapter 2. (§1.1)</p>
+        <p>An argument that is valid and has all true premises. Previewed here; treated in detail in Chapter 3. (§1.1)</p>
       </li>
       <li xml:id="term-standard-form">
         <title>Standard form</title>
@@ -1721,7 +1741,7 @@
       </li>
       <li xml:id="term-valid-argument">
         <title>Valid (argument)</title>
-        <p>An argument in which, if all the premises were true, the conclusion would have to be true. Previewed here; treated in detail in Chapter 2. (§1.1)</p>
+        <p>An argument in which, if all the premises were true, the conclusion would have to be true. Previewed here; treated in detail in Chapter 3. (§1.1)</p>
       </li>
     </dl>
 

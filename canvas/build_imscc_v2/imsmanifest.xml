@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<manifest xmlns="http://www.imsglobal.org/xsd/imsccv1p1/imscp_v1p1" identifier="manifest_ccd7f80d6d1b4e74b381f4257853a80b" xmlns:lom="http://ltsc.ieee.org/xsd/imsccv1p1/LOM/resource" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.imsglobal.org/xsd/imsccv1p1/imscp_v1p1 http://www.imsglobal.org/xsd/imscp_v1p1.xsd">
+  <metadata>
+    <schema>IMS Common Cartridge</schema>
+    <schemaversion>1.1.0</schemaversion>
+  </metadata>
+  <organizations>
+    <organization identifier="org_f38b575bd8ef4602b10daa60d966f605" structure="rooted-hierarchy">
+      <item identifier="module_d40de1386ebe47af993d5f59d75646e6">
+        <title>Module 1: Chapter 1 - What Is an Argument? (V2)</title>
+        <item identifier="item_page_6c54771a2b9d4a0d8480289e00e7a031" identifierref="res_page_f5629dbb0d9546488454c278d7d4ad9b"><title>Module 1 Overview</title></item>
+        <item identifier="item_file_ch1_pdf" identifierref="res_file_ch1_pdf"><title>Textbook PDF: Chapter 1 Reading</title></item>
+        <item identifier="item_page_33bfa000da624b5c9f548fdbda8aab92" identifierref="res_page_598330b9ad5a4da49b88da35a48587e0"><title>May 17 Reading: Sections 1.1 and 1.2</title></item>
+        <item identifier="item_quiz_1e2df1e337a64e7699c5b73c5eae7a59" identifierref="assessment_5e402f26fc62471194e737e41a70466c"><title>Chapter 1 Quiz 1: Language Uses</title></item>
+        <item identifier="item_quiz_a5c466ffa3c341dd8608c1471f4f7209" identifierref="assessment_7f71ce2d08ef4cbfa47db693dcb469bd"><title>Chapter 1 Quiz 2: Statements</title></item>
+        <item identifier="item_page_b024f9538efc4f2988e4c09c9eede0b6" identifierref="res_page_68ae4c775a6a46669f60c510c7474965"><title>May 18 Reading: Sections 1.3 and 1.4</title></item>
+        <item identifier="item_quiz_a968ff549d024ab8910bc68398d962c8" identifierref="assessment_34dda4d685a3476eb9d0c8ad3fd4a7b0"><title>Chapter 1 Quiz 3: Premises and Conclusions</title></item>
+        <item identifier="item_quiz_1b4d4b754dcc44fc94b04f824b98a37c" identifierref="assessment_48dc5744b8be4c22ae7b41c720180686"><title>Chapter 1 Quiz 4: Recognizing Arguments</title></item>
+      </item>
+    </organization>
+  </organizations>
+  <resources>
+    <resource identifier="res_page_f5629dbb0d9546488454c278d7d4ad9b" type="webcontent" href="overview/page.html"><file href="overview/page.html"/></resource>
+    <resource identifier="res_page_598330b9ad5a4da49b88da35a48587e0" type="webcontent" href="may17-reading/page.html"><file href="may17-reading/page.html"/></resource>
+    <resource identifier="res_page_68ae4c775a6a46669f60c510c7474965" type="webcontent" href="may18-reading/page.html"><file href="may18-reading/page.html"/></resource>
+    <resource identifier="res_file_ch1_pdf" type="webcontent" href="files/umw-logic.pdf"><file href="files/umw-logic.pdf"/></resource>
+    <resource identifier="assessment_5e402f26fc62471194e737e41a70466c" type="imsqti_xmlv1p2" href="quiz1/assessment_qti.xml">
+      <file href="quiz1/assessment_qti.xml"/>
+      <dependency identifierref="assessment_5e402f26fc62471194e737e41a70466c_meta"/>
+    </resource>
+    <resource identifier="assessment_5e402f26fc62471194e737e41a70466c_meta" type="associatedcontent/imscc_xmlv1p1/learning-application-resource" href="quiz1/assessment_meta.xml">
+      <file href="quiz1/assessment_meta.xml"/>
+    </resource>
+    <resource identifier="assessment_7f71ce2d08ef4cbfa47db693dcb469bd" type="imsqti_xmlv1p2" href="quiz2/assessment_qti.xml">
+      <file href="quiz2/assessment_qti.xml"/>
+      <dependency identifierref="assessment_7f71ce2d08ef4cbfa47db693dcb469bd_meta"/>
+    </resource>
+    <resource identifier="assessment_7f71ce2d08ef4cbfa47db693dcb469bd_meta" type="associatedcontent/imscc_xmlv1p1/learning-application-resource" href="quiz2/assessment_meta.xml">
+      <file href="quiz2/assessment_meta.xml"/>
+    </resource>
+    <resource identifier="assessment_34dda4d685a3476eb9d0c8ad3fd4a7b0" type="imsqti_xmlv1p2" href="quiz3/assessment_qti.xml">
+      <file href="quiz3/assessment_qti.xml"/>
+      <dependency identifierref="assessment_34dda4d685a3476eb9d0c8ad3fd4a7b0_meta"/>
+    </resource>
+    <resource identifier="assessment_34dda4d685a3476eb9d0c8ad3fd4a7b0_meta" type="associatedcontent/imscc_xmlv1p1/learning-application-resource" href="quiz3/assessment_meta.xml">
+      <file href="quiz3/assessment_meta.xml"/>
+    </resource>
+    <resource identifier="assessment_48dc5744b8be4c22ae7b41c720180686" type="imsqti_xmlv1p2" href="quiz4/assessment_qti.xml">
+      <file href="quiz4/assessment_qti.xml"/>
+      <dependency identifierref="assessment_48dc5744b8be4c22ae7b41c720180686_meta"/>
+    </resource>
+    <resource identifier="assessment_48dc5744b8be4c22ae7b41c720180686_meta" type="associatedcontent/imscc_xmlv1p1/learning-application-resource" href="quiz4/assessment_meta.xml">
+      <file href="quiz4/assessment_meta.xml"/>
+    </resource>
+  </resources>
+</manifest>
