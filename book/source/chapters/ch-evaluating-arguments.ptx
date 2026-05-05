@@ -1,0 +1,850 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  Chapter 3 — Evaluating Arguments: Validity and Strength
+  First full draft.
+
+  Scope:
+  - The two questions one asks when evaluating an argument.
+  - Validity and soundness (deductive standard).
+  - Four valid forms with worked instances: MP, MT, DS, HS.
+  - Two invalid forms: affirming the consequent, denying the antecedent.
+  - The counterexample method.
+  - Inductive strength and cogency (the inductive parallels).
+  - Forward pivot to Parts II–IV for the formal machinery.
+
+  Voice: matter-of-fact, declarative, second-person where it lands,
+  real-world examples (politically-current where they land), dry humor
+  reserved for parentheticals. Continues the "is this any good?" thread.
+
+  Not yet introduced (deferred to later chapters):
+  - Venn diagrams (Part II)
+  - Truth tables (Part III)
+  - Natural deduction proofs (Part III)
+  - Statistical inference (Part IV)
+-->
+<chapter xmlns:xi="http://www.w3.org/2001/XInclude" xml:id="ch-evaluating-arguments">
+
+  <title>Evaluating Arguments: Validity and Strength</title>
+
+  <introduction xml:id="ch-evaluating-arguments-intro">
+    <p>
+      Chapters 1 and 2 taught two skills: recognizing arguments in
+      real prose, and reconstructing them carefully. We can now look
+      at an argument with its premises and conclusion clearly laid
+      out, and a support note saying which premises support which
+      conclusions and how.
+    </p>
+    <p>
+      The next question is the one we have been asking from the
+      beginning: <em>is this argument any good?</em>
+    </p>
+    <p>
+      This chapter introduces the vocabulary we need to ask that
+      question precisely. We will not yet have the formal machinery
+      that lets us answer it for arbitrary arguments — that work
+      begins in the next chapter and continues through the rest of
+      the book. What we build here is the conceptual frame: what is
+      being asked when we ask whether an argument is good, what
+      counts as a good answer, and how the question splits along the
+      deductive/inductive divide we first met in
+      <xref ref="sec-language"/>.
+    </p>
+  </introduction>
+
+  <section xml:id="sec-two-questions">
+    <title>The Two Questions</title>
+
+    <introduction>
+      <p>
+        When you ask whether an argument is good, you are really
+        asking two distinct questions, and they are independent of
+        each other.
+      </p>
+    </introduction>
+
+    <paragraphs xml:id="paragraphs-two-questions-statement">
+      <title>What the two questions are</title>
+      <p>
+        The first question is: do the premises actually support the
+        conclusion? If you accept the premises, do you have to accept
+        the conclusion (or, for inductive arguments, do you have good
+        reason to)?
+      </p>
+      <p>
+        The second question is: are the premises actually true?
+      </p>
+      <p>
+        Both questions matter. An argument that fails on the first
+        question is broken structurally — even if every sentence in
+        it happened to be true, the conclusion would not follow from
+        the premises. An argument that fails on the second question
+        may have perfectly good structure, but the case it makes
+        rests on something false.
+      </p>
+    </paragraphs>
+
+    <paragraphs xml:id="paragraphs-two-questions-independent">
+      <title>The two questions are independent</title>
+      <p>
+        An argument can have false premises but a structure where the
+        conclusion would follow if the premises were true. Or it can
+        have all true premises but a structure where the conclusion
+        does not follow at all. Or it can be perfect on both fronts.
+        Or perfect on neither. Each combination is possible, and each
+        gives us different information about how to engage with the
+        argument.
+      </p>
+      <p>
+        Logic begins with the first question — the structural one.
+        The technical machinery of categorical logic, sentential
+        logic, and natural deduction (the work of Parts II and III
+        of this book) is, fundamentally, machinery for answering
+        whether premises support conclusions. The second question is
+        not abandoned: premises matter, and a beautiful structural
+        argument from false premises is not a good argument. But the
+        second question is mostly about the world, not about logic,
+        and the logical work for the inductive case lives in
+        statistical reasoning (Part IV) where the relationship
+        between evidence and claims is what is at stake.
+      </p>
+      <p>
+        Before we can do any of that work, though, we need names for
+        the two situations: where the structure is good, and where
+        the structure is good and the premises are also true. The
+        names depend on whether the argument is deductive or
+        inductive. We take the deductive case first.
+      </p>
+    </paragraphs>
+  </section>
+
+  <section xml:id="sec-validity-soundness">
+    <title>Validity and Soundness</title>
+
+    <introduction>
+      <p>
+        A deductive argument is meant to do a specific thing:
+        guarantee its conclusion if its premises are true. The
+        technical name for an argument that achieves that guarantee
+        is <term>valid</term>.
+      </p>
+    </introduction>
+
+    <definition xml:id="def-validity">
+      <statement>
+        <p>
+          An argument is <term>valid</term> when, if its premises are
+          true, its conclusion must also be true. There is no
+          instance of the argument's form in which the premises are
+          all true and the conclusion is false.
+        </p>
+      </statement>
+    </definition>
+
+    <paragraphs xml:id="paragraphs-validity-is-structural">
+      <title>Validity is a structural property</title>
+      <p>
+        Validity depends on the form of the argument, not on whether
+        the premises or conclusion happen to be true. An argument can
+        be valid even if its premises are false. It can be valid even
+        if its conclusion is false. What makes it valid is that the
+        structure makes the conclusion forced <em>given</em> the
+        premises.
+      </p>
+      <example xml:id="ex-valid-elections">
+        <title>A valid argument with arguably true premises</title>
+        <statement>
+          <p>P1: If a country has free and fair elections, then its citizens can vote out incumbents who fail them.</p>
+          <p>P2: This country has free and fair elections.</p>
+          <p><m>\therefore</m> C: Its citizens can vote out incumbents who fail them.</p>
+        </statement>
+      </example>
+      <p>
+        This argument is valid. The structure is: if P then Q; P;
+        therefore Q. If you accept both premises, you cannot deny
+        the conclusion without contradicting yourself. Whether
+        either premise is <em>actually</em> true in any particular
+        country is a separate question, and a serious one. The
+        validity of the argument does not turn on the answer.
+      </p>
+      <example xml:id="ex-valid-moon-cheese">
+        <title>A valid argument with obviously false premises</title>
+        <statement>
+          <p>P1: If the moon is made of cheese, then mice love astronauts.</p>
+          <p>P2: The moon is made of cheese.</p>
+          <p><m>\therefore</m> C: Mice love astronauts.</p>
+        </statement>
+      </example>
+      <p>
+        Both premises are clearly false. The argument is still valid.
+        The structure is the same as the previous example: if P then
+        Q; P; therefore Q. If both premises were true, the conclusion
+        would have to be true. Validity does not care about reality;
+        it cares about the relation between premises and conclusion.
+      </p>
+    </paragraphs>
+
+    <definition xml:id="def-soundness">
+      <statement>
+        <p>
+          An argument is <term>sound</term> when it is valid <em>and</em>
+          all its premises are actually true.
+        </p>
+      </statement>
+    </definition>
+
+    <paragraphs xml:id="paragraphs-soundness-discussion">
+      <title>Soundness combines structure and substance</title>
+      <p>
+        A sound argument has a true conclusion, because validity
+        forces it. So a sound argument is the gold standard:
+        structurally good, substantively grounded, conclusion
+        guaranteed.
+      </p>
+      <p>
+        Sound arguments are rarer than they sound. Most real-world
+        deductive arguments are valid in form but rest on premises
+        whose truth is contestable. That doesn't make the arguments
+        useless. Knowing an argument is valid tells you where to
+        push back: if you cannot accept the conclusion, you must
+        reject at least one premise. Validity hands you the leverage
+        point. If a friend offers you a valid argument for a
+        conclusion you find unpalatable, your honest options are to
+        accept the conclusion, identify a premise you can deny, or
+        admit you have not yet decided. <q>I just don't like it</q>
+        is not on the list.
+      </p>
+    </paragraphs>
+  </section>
+
+  <section xml:id="sec-some-valid-forms">
+    <title>Some Valid Forms</title>
+
+    <introduction>
+      <p>
+        Validity belongs to the form of an argument, not its content.
+        The same form, with different content, has the same validity
+        status. There are a small number of forms that come up over
+        and over in everyday and formal reasoning. We meet four of
+        them now. They will reappear, formally, in Part III, where
+        natural deduction will turn each into a named inference rule.
+      </p>
+    </introduction>
+
+    <paragraphs xml:id="paragraphs-mp">
+      <title>Modus Ponens</title>
+      <example xml:id="ex-mp-form">
+        <title>Modus Ponens (MP)</title>
+        <statement>
+          <p><alert>Schema:</alert></p>
+          <p>P1: If P, then Q.</p>
+          <p>P2: P.</p>
+          <p><m>\therefore</m> C: Q.</p>
+          <p><alert>Instance:</alert></p>
+          <p>P1: If we expand the grid, we can keep up with new data center demand.</p>
+          <p>P2: We expand the grid.</p>
+          <p><m>\therefore</m> C: We can keep up with new data center demand.</p>
+        </statement>
+      </example>
+      <p>
+        <term>Modus ponens</term> — Latin, roughly <q>the way that
+        affirms</q> — is the most basic conditional inference. From a
+        conditional and the affirmation of its antecedent, we
+        conclude the affirmation of its consequent. We met this form
+        already in <xref ref="sec-premises-conclusions"/> when we
+        looked at the modus-ponens argument from the existence of
+        evil to the conclusion that God does not exist.
+      </p>
+    </paragraphs>
+
+    <paragraphs xml:id="paragraphs-mt">
+      <title>Modus Tollens</title>
+      <example xml:id="ex-mt-form">
+        <title>Modus Tollens (MT)</title>
+        <statement>
+          <p><alert>Schema:</alert></p>
+          <p>P1: If P, then Q.</p>
+          <p>P2: Not Q.</p>
+          <p><m>\therefore</m> C: Not P.</p>
+          <p><alert>Instance:</alert></p>
+          <p>P1: If a candidate had stronger turnout in this district, they would have won.</p>
+          <p>P2: They did not win.</p>
+          <p><m>\therefore</m> C: They did not have stronger turnout in this district.</p>
+        </statement>
+      </example>
+      <p>
+        <term>Modus tollens</term> — <q>the way that denies</q> —
+        runs the conditional in reverse. From a conditional and the
+        denial of its consequent, we conclude the denial of its
+        antecedent. We met this form too, in
+        <xref ref="sec-premises-conclusions"/>: the modus tollens
+        argument from <q>life is not meaningless</q> to the
+        conclusion that God exists.
+      </p>
+    </paragraphs>
+
+    <paragraphs xml:id="paragraphs-ds">
+      <title>Disjunctive Syllogism</title>
+      <example xml:id="ex-ds-form">
+        <title>Disjunctive Syllogism (DS)</title>
+        <statement>
+          <p><alert>Schema:</alert></p>
+          <p>P1: P or Q.</p>
+          <p>P2: Not P.</p>
+          <p><m>\therefore</m> C: Q.</p>
+          <p><alert>Instance:</alert></p>
+          <p>P1: Either the city expands transit or rush hour gets worse.</p>
+          <p>P2: The city did not expand transit.</p>
+          <p><m>\therefore</m> C: Rush hour got worse.</p>
+        </statement>
+      </example>
+      <p>
+        <term>Disjunctive syllogism</term> takes a disjunction (an
+        <em>or</em>-statement) and the denial of one disjunct to
+        conclude the other. The argument works equally well in the
+        other direction: from <q>P or Q</q> and <q>not Q</q>, conclude
+        <q>P</q>. The Field Exercise in
+        <xref ref="sec-premises-conclusions"/> on oil subsidies and
+        political theater was a disjunctive syllogism.
+      </p>
+    </paragraphs>
+
+    <paragraphs xml:id="paragraphs-hs">
+      <title>Hypothetical Syllogism</title>
+      <example xml:id="ex-hs-form">
+        <title>Hypothetical Syllogism (HS)</title>
+        <statement>
+          <p><alert>Schema:</alert></p>
+          <p>P1: If P, then Q.</p>
+          <p>P2: If Q, then R.</p>
+          <p><m>\therefore</m> C: If P, then R.</p>
+          <p><alert>Instance:</alert></p>
+          <p>P1: If interest rates fall, then borrowing increases.</p>
+          <p>P2: If borrowing increases, then construction picks up.</p>
+          <p><m>\therefore</m> C: If interest rates fall, then construction picks up.</p>
+        </statement>
+      </example>
+      <p>
+        <term>Hypothetical syllogism</term> chains conditionals: from
+        <q>if P then Q</q> and <q>if Q then R</q>, we conclude <q>if
+        P then R</q>. The conclusion is itself a conditional, not a
+        free-standing claim. This matters when reading real
+        arguments: a hypothetical syllogism doesn't entitle you to
+        assert R outright, only the conditional connecting P to R.
+      </p>
+    </paragraphs>
+
+    <paragraphs xml:id="paragraphs-four-forms-summary">
+      <title>Four forms, one observation</title>
+      <p>
+        All four forms are valid by their structure alone. Substitute
+        any P, Q, R you like — sentences about elections, about
+        weather, about whether your roommate did the dishes — and
+        the validity holds. We will see all four in Part III as named
+        inference rules in the natural deduction system. For now,
+        recognizing them in everyday reasoning is itself a real
+        skill, and it is what most of the practice in this chapter
+        is about.
+      </p>
+    </paragraphs>
+  </section>
+
+  <section xml:id="sec-invalid-forms-counterexamples">
+    <title>Two Invalid Forms and the Counterexample Method</title>
+
+    <introduction>
+      <p>
+        Not every argument that <em>looks</em> like a valid form is
+        one. Two forms are easy to mistake for the valid ones we
+        just met. They are not valid, and recognizing them is as
+        important as recognizing the valid forms. Confusing them is
+        one of the most common reasoning errors in real arguments,
+        and being able to spot it is a useful skill in its own
+        right.
+      </p>
+    </introduction>
+
+    <paragraphs xml:id="paragraphs-affirming-consequent">
+      <title>Affirming the consequent</title>
+      <example xml:id="ex-affirming-consequent">
+        <title>Affirming the consequent (invalid)</title>
+        <statement>
+          <p><alert>Schema:</alert></p>
+          <p>P1: If P, then Q.</p>
+          <p>P2: Q.</p>
+          <p><m>\therefore</m> C: P.</p>
+          <p><alert>Instance:</alert></p>
+          <p>P1: If it is raining, the streets are wet.</p>
+          <p>P2: The streets are wet.</p>
+          <p><m>\therefore</m> C: It is raining.</p>
+        </statement>
+      </example>
+      <p>
+        <term>Affirming the consequent</term> looks like modus ponens
+        with the second premise flipped. From a conditional and the
+        affirmation of its consequent, the argument concludes the
+        affirmation of its antecedent. That is not a valid move.
+      </p>
+      <p>
+        Why not? The conditional <q>if P then Q</q> tells us that P
+        is <em>one</em> way to get Q. It does not tell us P is the
+        <em>only</em> way. Q might be true for some other reason
+        entirely. Concluding P from Q ignores that possibility.
+      </p>
+      <p>
+        In the streets-and-rain instance, the streets might be wet
+        because a sprinkler ran for an hour, or a water main broke,
+        or someone washed their car. The conditional is still true
+        (if it <em>were</em> raining, the streets <em>would</em> be
+        wet). The conclusion just doesn't follow.
+      </p>
+    </paragraphs>
+
+    <paragraphs xml:id="paragraphs-denying-antecedent">
+      <title>Denying the antecedent</title>
+      <example xml:id="ex-denying-antecedent">
+        <title>Denying the antecedent (invalid)</title>
+        <statement>
+          <p><alert>Schema:</alert></p>
+          <p>P1: If P, then Q.</p>
+          <p>P2: Not P.</p>
+          <p><m>\therefore</m> C: Not Q.</p>
+          <p><alert>Instance:</alert></p>
+          <p>P1: If you study every night, you'll do well on the exam.</p>
+          <p>P2: You did not study every night.</p>
+          <p><m>\therefore</m> C: You will not do well on the exam.</p>
+        </statement>
+      </example>
+      <p>
+        <term>Denying the antecedent</term> looks like modus tollens
+        with the second premise flipped. The argument denies the
+        antecedent rather than the consequent. Also not valid.
+      </p>
+      <p>
+        Same reason as before: P is one way to Q, not the only way.
+        Just because P does not happen does not mean Q cannot.
+      </p>
+      <p>
+        In the studying-and-exam instance, the conclusion does not
+        follow. You could do well anyway — maybe you already knew the
+        material, or you studied differently, or you got lucky on the
+        questions, or the exam was easy. The conditional describes
+        one path to a good outcome, not the only one.
+      </p>
+    </paragraphs>
+
+    <paragraphs xml:id="paragraphs-counterexample-method">
+      <title>The counterexample method</title>
+      <p>
+        The general way to show that an argument form is invalid is
+        to construct a <term>counterexample</term>: an instance of
+        the form in which the premises are all true and the
+        conclusion is false. If even one such instance exists, the
+        form fails — because validity requires that <em>no</em>
+        instance has true premises and a false conclusion.
+      </p>
+      <p>
+        Building a counterexample is the work we just did. We took
+        the form <q>If P, then Q. Q. <m>\therefore</m> P.</q> and
+        substituted content where the premises came out true and the
+        conclusion came out false. The streets are wet because the
+        sprinkler ran. The conditional <q>if it is raining, the
+        streets are wet</q> is true. The premise <q>the streets are
+        wet</q> is true. The conclusion <q>it is raining</q> is
+        false. That single counterexample is enough to settle the
+        form's invalidity.
+      </p>
+      <p>
+        A few things to notice. First, the counterexample doesn't
+        need to be realistic — it just has to be possible. We could
+        write down something silly, as long as the premises came out
+        true and the conclusion false; the form would still be
+        invalidated. (Realistic counterexamples are usually more
+        persuasive in conversation, but for logic, possibility is
+        enough.) Second, a counterexample to the form invalidates
+        the form, not just one instance. If we have shown that <q>If
+        P, then Q. Q. <m>\therefore</m> P.</q> can have true
+        premises with a false conclusion, we have shown that
+        <em>any</em> argument of that form is invalid, regardless of
+        the content of P and Q. Third, if you cannot find a
+        counterexample after honest effort, that is not yet proof of
+        validity — formal validity proofs come later. But the
+        difficulty of finding a counterexample is at least evidence
+        that the form may be valid. Subsequent chapters' machinery
+        confirms or disconfirms the suspicion.
+      </p>
+    </paragraphs>
+  </section>
+
+  <section xml:id="sec-strength-cogency">
+    <title>Inductive Strength and Cogency</title>
+
+    <introduction>
+      <p>
+        Validity belongs to deductive arguments — arguments where the
+        premises are meant to <em>guarantee</em> the conclusion. Many
+        real arguments are not like that. They are inductive:
+        arguments where the premises make the conclusion <em>more
+        likely</em>, but not guaranteed. We met this distinction in
+        <xref ref="sec-language"/>; now we name the standards by
+        which inductive arguments are evaluated.
+      </p>
+    </introduction>
+
+    <definition xml:id="def-strength">
+      <statement>
+        <p>
+          An inductive argument is <term>strong</term> when, if its
+          premises are all true, its conclusion is much more likely
+          to be true than not. Strength is a matter of degree: an
+          inductive argument can be very strong, moderately strong,
+          weak, or somewhere in between.
+        </p>
+      </statement>
+    </definition>
+
+    <paragraphs xml:id="paragraphs-strength-discussion">
+      <title>Strength is a matter of degree</title>
+      <p>
+        Unlike validity, strength is not all-or-nothing. A deductive
+        argument is either valid or it is not — there is no such
+        thing as <q>more valid.</q> But an inductive argument can
+        be moderately strong, very strong, or weak. The premises
+        push the probability of the conclusion in some direction by
+        some amount; the question is how much.
+      </p>
+      <example xml:id="ex-strong-inductive">
+        <title>A strong inductive argument</title>
+        <statement>
+          <p>P1: All twelve patients in the trial who received the vaccine produced antibodies.</p>
+          <p>P2: The patients in the trial were a representative sample of the broader population.</p>
+          <p><m>\therefore</m> C: The vaccine probably produces antibodies in the broader population.</p>
+        </statement>
+      </example>
+      <p>
+        If the premises are true, the conclusion is significantly
+        more likely than it would be otherwise. The conclusion is
+        not forced — sample sizes can mislead, populations vary,
+        twelve is small — but the support is real and substantial.
+      </p>
+      <example xml:id="ex-weak-inductive">
+        <title>A weak inductive argument</title>
+        <statement>
+          <p>P1: My friend Alex got sick after eating at the cafeteria.</p>
+          <p>P2: Alex is one person.</p>
+          <p><m>\therefore</m> C: The cafeteria is unsanitary.</p>
+        </statement>
+      </example>
+      <p>
+        The premises do support the conclusion <em>slightly</em> —
+        there's some increase in probability — but not enough to draw
+        the conclusion responsibly. One person could get sick for
+        many reasons; one observation is not a pattern. We will be
+        much more careful about the difference between weak and
+        strong inductive evidence in Part IV, where statistical
+        reasoning is the main subject.
+      </p>
+    </paragraphs>
+
+    <definition xml:id="def-cogency">
+      <statement>
+        <p>
+          An inductive argument is <term>cogent</term> when it is
+          strong <em>and</em> all its premises are actually true.
+        </p>
+      </statement>
+    </definition>
+
+    <paragraphs xml:id="paragraphs-cogency-discussion">
+      <title>Cogency is the inductive parallel to soundness</title>
+      <p>
+        Cogency is to inductive arguments what soundness is to
+        deductive arguments: the structural standard plus a
+        substantive one. A cogent argument is a strong inductive
+        argument whose premises are also true. Cogent arguments give
+        you good reason — not certain, but good — to accept their
+        conclusions.
+      </p>
+      <p>
+        The two evaluations track each other:
+      </p>
+      <ul>
+        <li><p>For deductive: <em>validity</em> (structure) plus true premises gives <em>soundness</em>.</p></li>
+        <li><p>For inductive: <em>strength</em> (structure, in degree) plus true premises gives <em>cogency</em>.</p></li>
+      </ul>
+      <p>
+        Same shape: a structural property plus a substantive one.
+        Both questions live in every argument; the names just change
+        depending on whether we're being asked to <em>guarantee</em>
+        the conclusion or only to <em>raise its probability</em>.
+      </p>
+    </paragraphs>
+  </section>
+
+  <section xml:id="sec-where-headed-ch3">
+    <title>Where We're Headed</title>
+
+    <introduction>
+      <p>
+        This chapter built the vocabulary. It did not build the
+        procedures.
+      </p>
+    </introduction>
+
+    <paragraphs xml:id="paragraphs-where-headed-ch3-summary">
+      <title>What this chapter gave us</title>
+      <p>
+        We can now ask <q>is this argument any good?</q> with
+        structure. We have names for the four situations one finds
+        in real arguments: valid and sound (the deductive gold
+        standard); valid but unsound (structurally fine, but resting
+        on a false premise — push back on the premise); strong and
+        cogent (the inductive gold standard); and strong but
+        uncogent (good inductive structure on shaky factual ground —
+        same problem, different domain). We have four valid
+        deductive forms, two invalid forms that look like them, and
+        the counterexample method as the basic test for invalidity.
+      </p>
+      <p>
+        What we don't yet have are general procedures for evaluating
+        arbitrary arguments. We have hand-classified a handful of
+        forms in this chapter. The rest of the book builds the
+        machinery for doing this work systematically.
+      </p>
+    </paragraphs>
+
+    <paragraphs xml:id="paragraphs-where-headed-ch3-pivot">
+      <title>What's coming</title>
+      <p>
+        The chapters that follow build that machinery in different
+        domains.
+      </p>
+      <ul>
+        <li>
+          <p>
+            <alert>Part II: categorical logic.</alert> Venn diagrams
+            will let us evaluate arguments built from categorical
+            statements (<q>All As are Bs</q>, <q>No As are Bs</q>,
+            <q>Some As are Bs</q>, <q>Some As are not Bs</q>). This
+            is the natural home for the syllogisms first studied by
+            Aristotle, and it is the machinery for an important
+            class of everyday arguments.
+          </p>
+        </li>
+        <li>
+          <p>
+            <alert>Part III: sentential logic.</alert> Truth tables
+            will let us evaluate arguments built out of compound
+            statements connected by <em>and</em>, <em>or</em>,
+            <em>not</em>, <em>if-then</em>, and <em>if and only
+            if</em>. Natural deduction will let us prove validity by
+            chaining inference rules from a small starter set. The
+            four valid forms in <xref ref="sec-some-valid-forms"/>
+            reappear there as named rules.
+          </p>
+        </li>
+        <li>
+          <p>
+            <alert>Part IV: inductive and statistical reasoning.</alert>
+            The strength evaluation gets a serious workout here,
+            where statistical inference, probability, and reasoning
+            under uncertainty become the main tools. Cogency is the
+            standard those tools are computing.
+          </p>
+        </li>
+      </ul>
+      <p>
+        Validity and soundness, strength and cogency, are the
+        standards each of those domains is computing. The technical
+        chapters give us the procedures; this chapter named what the
+        procedures are for.
+      </p>
+    </paragraphs>
+  </section>
+
+  <exercises xml:id="exercises-ch3">
+    <title>End-of-Chapter Exercises</title>
+
+    <exercisegroup xml:id="exgroup-ch3-s01">
+      <title>Exercise Set 1: Identifying Valid Forms</title>
+      <introduction>
+        <p>
+          For each argument, identify which of the four valid forms
+          (modus ponens, modus tollens, disjunctive syllogism,
+          hypothetical syllogism) it instantiates.
+        </p>
+      </introduction>
+      <exercise xml:id="ex-ch3-s01-01">
+        <statement>
+          <p>If the bridge is open, the commute takes thirty minutes. The bridge is open. So the commute takes thirty minutes.</p>
+        </statement>
+      </exercise>
+      <exercise xml:id="ex-ch3-s01-02">
+        <statement>
+          <p>If the proposal had cleared committee, the chair would have announced it. The chair did not announce it. So the proposal did not clear committee.</p>
+        </statement>
+      </exercise>
+      <exercise xml:id="ex-ch3-s01-03">
+        <statement>
+          <p>Either the data center applies for a new permit or the construction stops. The data center did not apply for a new permit. So construction stops.</p>
+        </statement>
+      </exercise>
+      <exercise xml:id="ex-ch3-s01-04">
+        <statement>
+          <p>If turnout is above sixty percent, the incumbent wins. If the incumbent wins, the policy continues. So if turnout is above sixty percent, the policy continues.</p>
+        </statement>
+      </exercise>
+    </exercisegroup>
+
+    <exercisegroup xml:id="exgroup-ch3-s02">
+      <title>Exercise Set 2: Spotting Invalid Forms</title>
+      <introduction>
+        <p>
+          Each of the following arguments looks like a valid form
+          but is actually an instance of affirming the consequent or
+          denying the antecedent. For each, identify which invalid
+          form it is.
+        </p>
+      </introduction>
+      <exercise xml:id="ex-ch3-s02-01">
+        <statement>
+          <p>If a senator is corrupt, they accept dark-money donations. Senator X accepts dark-money donations. So Senator X is corrupt.</p>
+        </statement>
+      </exercise>
+      <exercise xml:id="ex-ch3-s02-02">
+        <statement>
+          <p>If a student attends every class, they will pass the course. This student did not attend every class. So this student will not pass the course.</p>
+        </statement>
+      </exercise>
+      <exercise xml:id="ex-ch3-s02-03">
+        <statement>
+          <p>If a country has a stable currency, foreign investment increases. Foreign investment in this country has increased. So this country has a stable currency.</p>
+        </statement>
+      </exercise>
+      <exercise xml:id="ex-ch3-s02-04">
+        <statement>
+          <p>If the medication works, the patient's symptoms improve. The medication did not work. So the patient's symptoms will not improve.</p>
+        </statement>
+      </exercise>
+    </exercisegroup>
+
+    <exercisegroup xml:id="exgroup-ch3-s03">
+      <title>Exercise Set 3: Constructing Counterexamples</title>
+      <introduction>
+        <p>
+          For each invalid form below, construct a counterexample —
+          an instance of the form with all premises true and the
+          conclusion false. Briefly explain why your counterexample
+          works.
+        </p>
+      </introduction>
+      <exercise xml:id="ex-ch3-s03-01">
+        <statement>
+          <p>The form <em>affirming the consequent</em>: If P, then Q. Q. <m>\therefore</m> P.</p>
+        </statement>
+      </exercise>
+      <exercise xml:id="ex-ch3-s03-02">
+        <statement>
+          <p>The form <em>denying the antecedent</em>: If P, then Q. Not P. <m>\therefore</m> Not Q.</p>
+        </statement>
+      </exercise>
+      <exercise xml:id="ex-ch3-s03-03">
+        <statement>
+          <p>Consider the form <q>All As are Bs. All Bs are Cs. <m>\therefore</m> All Cs are As.</q> Construct a counterexample showing that this form is invalid.</p>
+        </statement>
+      </exercise>
+    </exercisegroup>
+
+    <exercisegroup xml:id="exgroup-ch3-s04">
+      <title>Exercise Set 4: Validity, Soundness, or Neither</title>
+      <introduction>
+        <p>
+          For each argument, decide whether it is (a) valid and
+          sound, (b) valid but unsound, or (c) invalid. Briefly
+          justify your answer. You may need to evaluate the truth of
+          a premise; for arguments where reasonable people disagree,
+          say so.
+        </p>
+      </introduction>
+      <exercise xml:id="ex-ch3-s04-01">
+        <statement>
+          <p>If two plus two equals four, then arithmetic works as we have learned it. Two plus two equals four. So arithmetic works as we have learned it.</p>
+        </statement>
+      </exercise>
+      <exercise xml:id="ex-ch3-s04-02">
+        <statement>
+          <p>All cats are reptiles. All reptiles lay eggs. So all cats lay eggs.</p>
+        </statement>
+      </exercise>
+      <exercise xml:id="ex-ch3-s04-03">
+        <statement>
+          <p>If the moon orbits the Earth, then tides exist. The moon orbits the Earth. So tides exist.</p>
+        </statement>
+      </exercise>
+      <exercise xml:id="ex-ch3-s04-04">
+        <statement>
+          <p>If a piece of legislation is bipartisan, then it must be reasonable. The bill in question was bipartisan. So the bill in question must be reasonable.</p>
+        </statement>
+      </exercise>
+    </exercisegroup>
+
+    <exercisegroup xml:id="exgroup-ch3-s05">
+      <title>Exercise Set 5: Strength and Cogency</title>
+      <introduction>
+        <p>
+          For each inductive argument, decide whether it is strong
+          or weak, and whether you have enough information to judge
+          cogency. Briefly explain.
+        </p>
+      </introduction>
+      <exercise xml:id="ex-ch3-s05-01">
+        <statement>
+          <p>Of the last hundred winters in this region, ninety-three had at least one significant snowfall. So this winter will probably have at least one significant snowfall.</p>
+        </statement>
+      </exercise>
+      <exercise xml:id="ex-ch3-s05-02">
+        <statement>
+          <p>One person I know got food poisoning from a particular restaurant. So that restaurant is unsafe.</p>
+        </statement>
+      </exercise>
+      <exercise xml:id="ex-ch3-s05-03">
+        <statement>
+          <p>Eighty percent of small businesses surveyed reported that the new ordinance increased their costs. The survey was sent to a representative sample. So the new ordinance probably increases costs for small businesses generally.</p>
+        </statement>
+      </exercise>
+    </exercisegroup>
+
+    <exercisegroup xml:id="exgroup-ch3-s06">
+      <title>Exercise Set 6: Mixed Evaluation</title>
+      <introduction>
+        <p>
+          For each argument, identify whether it is deductive or
+          inductive; if deductive, evaluate validity (and, where
+          possible, soundness); if inductive, evaluate strength (and,
+          where possible, cogency). Briefly explain.
+        </p>
+      </introduction>
+      <exercise xml:id="ex-ch3-s06-01">
+        <statement>
+          <p>If the city raises the property tax rate, then revenue for schools will increase. The city did raise the property tax rate. So revenue for schools will increase.</p>
+        </statement>
+      </exercise>
+      <exercise xml:id="ex-ch3-s06-02">
+        <statement>
+          <p>The last three quarterly reports showed declining revenue. So next quarter's report will probably show declining revenue too.</p>
+        </statement>
+      </exercise>
+      <exercise xml:id="ex-ch3-s06-03">
+        <statement>
+          <p>Either the proposal cleared committee or the chair tabled it. The proposal did not clear committee. So the chair tabled it.</p>
+        </statement>
+      </exercise>
+      <exercise xml:id="ex-ch3-s06-04">
+        <statement>
+          <p>If a defendant has reasonable doubt established against the prosecution's case, they should be acquitted. Reasonable doubt has been established. So the defendant should be acquitted.</p>
+        </statement>
+      </exercise>
+    </exercisegroup>
+
+  </exercises>
+
+</chapter>

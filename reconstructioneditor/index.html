@@ -1,0 +1,1205 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Argument Reconstruction Editor</title>
+  <style>
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+    }
+
+    :root {
+      --blue: #1e3a5f;
+      --blue-mid: #2d5a8e;
+      --blue-light: #e8eef8;
+      --green: #17633a;
+      --green-bg: #effaf3;
+      --red: #b91c1c;
+      --red-bg: #fff5f5;
+      --amber: #8a5a00;
+      --amber-bg: #fff8e5;
+      --gray-100: #f7f8fa;
+      --gray-200: #edf0f4;
+      --gray-300: #d1d9e0;
+      --gray-500: #65758a;
+      --gray-700: #354256;
+      --text: #172033;
+      --shadow: 0 2px 10px rgba(0, 0, 0, .10);
+      --radius: 8px;
+    }
+
+    html,
+    body {
+      margin: 0;
+      min-height: 100%;
+      font-family: system-ui, -apple-system, "Segoe UI", Helvetica, Arial, sans-serif;
+      background: var(--gray-100);
+      color: var(--text);
+      font-size: 15px;
+      line-height: 1.5;
+    }
+
+    header {
+      background: var(--blue);
+      color: white;
+      padding: 14px 22px;
+      display: flex;
+      gap: 12px;
+      align-items: baseline;
+      flex-wrap: wrap;
+    }
+
+    header h1 {
+      margin: 0;
+      font-size: 1.15rem;
+    }
+
+    header p {
+      margin: 0;
+      opacity: .78;
+      font-size: .86rem;
+    }
+
+    main {
+      width: min(1280px, calc(100% - 28px));
+      margin: 22px auto 36px;
+      display: grid;
+      gap: 16px;
+    }
+
+    .workspace {
+      display: grid;
+      grid-template-columns: minmax(0, 1.15fr) minmax(360px, .85fr);
+      gap: 16px;
+      align-items: start;
+    }
+
+    .panel {
+      background: white;
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      padding: 18px;
+      min-width: 0;
+    }
+
+    h2,
+    h3 {
+      margin: 0 0 12px;
+      color: var(--blue);
+    }
+
+    h2 {
+      font-size: 1rem;
+    }
+
+    h3 {
+      font-size: .88rem;
+      text-transform: uppercase;
+      letter-spacing: .05em;
+    }
+
+    p {
+      margin: 0 0 12px;
+    }
+
+    label,
+    .group-label {
+      display: block;
+      color: var(--gray-500);
+      font-size: .78rem;
+      font-weight: 700;
+      letter-spacing: .04em;
+      text-transform: uppercase;
+      margin-bottom: 5px;
+    }
+
+    button,
+    textarea,
+    input {
+      font: inherit;
+    }
+
+    textarea,
+    input[type="text"] {
+      width: 100%;
+      border: 1px solid var(--gray-300);
+      border-radius: 6px;
+      padding: 9px 10px;
+      background: white;
+      color: var(--text);
+    }
+
+    textarea {
+      min-height: 140px;
+      resize: vertical;
+    }
+
+    .statement-text {
+      min-height: 74px;
+      line-height: 1.45;
+    }
+
+    textarea:focus,
+    input:focus,
+    button:focus {
+      outline: none;
+      border-color: var(--blue-mid);
+      box-shadow: 0 0 0 3px rgba(45, 90, 142, .16);
+    }
+
+    .btn,
+    .tag-btn {
+      border: 1px solid var(--gray-300);
+      border-radius: 6px;
+      background: white;
+      color: var(--gray-700);
+      padding: 8px 12px;
+      cursor: pointer;
+      font-weight: 650;
+    }
+
+    .btn-primary {
+      background: var(--blue);
+      color: white;
+      border-color: var(--blue);
+    }
+
+    .btn-secondary {
+      background: var(--gray-200);
+    }
+
+    .btn-danger {
+      color: var(--red);
+      border-color: #f0a2a2;
+    }
+
+    .btn-small {
+      padding: 6px 9px;
+      font-size: .86rem;
+    }
+
+    .btn:disabled,
+    .tag-btn:disabled {
+      cursor: not-allowed;
+      opacity: .55;
+    }
+
+    .action-row,
+    .tag-row,
+    .card-tools,
+    .stats-row,
+    .modal-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      align-items: center;
+    }
+
+    .action-row {
+      margin: 12px 0;
+    }
+
+    .hint,
+    .note {
+      color: var(--gray-500);
+      font-size: .9rem;
+    }
+
+    .status {
+      border: 1px solid var(--gray-200);
+      border-radius: 7px;
+      background: var(--gray-100);
+      padding: 10px 12px;
+      margin-top: 12px;
+    }
+
+    .status.warn {
+      border-color: #e9ca7a;
+      background: var(--amber-bg);
+      color: #533800;
+    }
+
+    .status.good {
+      border-color: #a9d8b8;
+      background: var(--green-bg);
+      color: #0f4227;
+    }
+
+    .statement-list {
+      display: grid;
+      gap: 12px;
+      margin-top: 14px;
+    }
+
+    .statement-card {
+      border: 1px solid var(--gray-300);
+      border-left-width: 6px;
+      border-radius: 8px;
+      padding: 12px;
+      background: #fff;
+      display: grid;
+      gap: 10px;
+    }
+
+    .statement-card[data-tag="untagged"] {
+      border-left-color: var(--gray-300);
+    }
+
+    .statement-card[data-tag="omit"] {
+      border-left-color: #737d8c;
+      background: #fafbfc;
+    }
+
+    .statement-card[data-tag="independent"] {
+      border-left-color: var(--green);
+    }
+
+    .statement-card[data-tag="dependent"] {
+      border-left-color: var(--amber);
+    }
+
+    .statement-card[data-tag="sub"] {
+      border-left-color: var(--blue-mid);
+    }
+
+    .statement-card[data-tag="main"] {
+      border-left-color: #7b2cbf;
+    }
+
+    .card-head {
+      display: flex;
+      justify-content: space-between;
+      gap: 10px;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+
+    .card-title {
+      font-weight: 750;
+      color: var(--blue);
+    }
+
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      border-radius: 999px;
+      border: 1px solid var(--gray-300);
+      padding: 3px 8px;
+      font-size: .78rem;
+      font-weight: 750;
+      color: var(--gray-700);
+      background: white;
+    }
+
+    .badge-warning {
+      border-color: #e9ca7a;
+      background: var(--amber-bg);
+      color: #5d4100;
+    }
+
+    .badge-implicit {
+      border-color: #b7c6df;
+      background: var(--blue-light);
+      color: var(--blue);
+    }
+
+    .tag-row {
+      border-top: 1px solid var(--gray-200);
+      padding-top: 10px;
+    }
+
+    .tag-btn {
+      padding: 6px 9px;
+      font-size: .82rem;
+    }
+
+    .tag-btn[aria-pressed="true"] {
+      border-color: var(--blue-mid);
+      background: var(--blue-light);
+      color: var(--blue);
+    }
+
+    .standard-form {
+      padding-left: 1.5rem;
+      margin: 0;
+      display: grid;
+      gap: 10px;
+    }
+
+    .standard-form li {
+      padding: 10px 10px;
+      border: 1px solid var(--gray-200);
+      border-radius: 7px;
+      background: #fff;
+    }
+
+    .line-label {
+      font-weight: 800;
+      color: var(--blue);
+      margin-right: 4px;
+    }
+
+    .support-note {
+      display: block;
+      margin-top: 4px;
+      color: var(--gray-700);
+      font-style: italic;
+    }
+
+    .needs-revision {
+      color: var(--red);
+      font-weight: 700;
+      font-style: normal;
+    }
+
+    .empty-state {
+      border: 1px dashed var(--gray-300);
+      border-radius: 8px;
+      padding: 16px;
+      color: var(--gray-500);
+      background: var(--gray-100);
+    }
+
+    .stats-row {
+      margin-top: 12px;
+    }
+
+    .stat {
+      border: 1px solid var(--gray-200);
+      border-radius: 6px;
+      padding: 7px 9px;
+      background: var(--gray-100);
+      color: var(--gray-700);
+      font-size: .86rem;
+      font-weight: 650;
+    }
+
+    .sr-only {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      padding: 0;
+      margin: -1px;
+      overflow: hidden;
+      clip: rect(0, 0, 0, 0);
+      white-space: nowrap;
+      border: 0;
+    }
+
+    .modal-backdrop {
+      position: fixed;
+      inset: 0;
+      z-index: 10;
+      background: rgba(10, 18, 32, .55);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 18px;
+    }
+
+    .modal-backdrop.active {
+      display: flex;
+    }
+
+    .modal {
+      width: min(620px, 100%);
+      max-height: min(86vh, 760px);
+      overflow: auto;
+      background: white;
+      border-radius: 8px;
+      box-shadow: 0 16px 40px rgba(0, 0, 0, .28);
+      padding: 18px;
+    }
+
+    .modal h2 {
+      margin-bottom: 6px;
+    }
+
+    .support-options {
+      display: grid;
+      gap: 8px;
+      margin: 12px 0;
+      max-height: 220px;
+      overflow: auto;
+      border: 1px solid var(--gray-200);
+      border-radius: 7px;
+      padding: 10px;
+    }
+
+    .support-option,
+    .radio-option {
+      display: flex;
+      gap: 8px;
+      align-items: flex-start;
+      color: var(--gray-700);
+      text-transform: none;
+      letter-spacing: 0;
+      font-size: .95rem;
+      font-weight: 600;
+      margin: 0;
+    }
+
+    .support-option input,
+    .radio-option input {
+      width: auto;
+      margin-top: 4px;
+      flex: 0 0 auto;
+    }
+
+    .radio-group {
+      display: grid;
+      gap: 8px;
+      margin: 12px 0;
+    }
+
+    .error-text {
+      color: var(--red);
+      font-weight: 700;
+      margin-top: 8px;
+    }
+
+    @media (max-width: 900px) {
+      .workspace {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 560px) {
+      main {
+        width: min(100% - 18px, 1280px);
+        margin-top: 12px;
+      }
+
+      header {
+        padding: 12px 14px;
+      }
+
+      .panel {
+        padding: 14px;
+      }
+
+      .btn,
+      .tag-btn {
+        width: 100%;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <header>
+    <h1>Argument Reconstruction Editor</h1>
+    <p>Prepare source statements, tag their roles, and generate standard form.</p>
+  </header>
+
+  <main>
+    <div class="workspace">
+      <section class="panel" aria-labelledby="source-heading">
+        <h2 id="source-heading">Source Text</h2>
+        <p class="note">Paste a passage, prepare statement cards, then edit, split, merge, and tag each card.</p>
+        <label for="source-input">Messy passage</label>
+        <textarea id="source-input" placeholder="Paste a paragraph here."></textarea>
+        <div class="action-row">
+          <button class="btn btn-primary" type="button" id="prepare-btn">Prepare Statements</button>
+          <button class="btn btn-secondary" type="button" id="example-btn">Load Example</button>
+          <button class="btn btn-danger" type="button" id="clear-btn">Start Over</button>
+        </div>
+        <div id="source-status" class="status" role="status" aria-live="polite">No statement cards yet.</div>
+        <div id="statement-list" class="statement-list" aria-label="Statement cards"></div>
+      </section>
+
+      <section class="panel" aria-labelledby="standard-heading">
+        <h2 id="standard-heading">Standard Form</h2>
+        <p class="note">Only premises and conclusions appear here. Omitted and untagged cards stay out of the reconstruction.</p>
+        <div class="action-row">
+          <button class="btn btn-secondary" type="button" id="implicit-btn">Add Implicit Premise</button>
+          <button class="btn btn-primary" type="button" id="copy-btn">Copy for Submission</button>
+        </div>
+        <div id="standard-output" aria-live="polite"></div>
+        <div class="stats-row" aria-label="Process statistics">
+          <span class="stat" id="time-stat">Time: 0m 00s</span>
+          <span class="stat" id="action-stat">Actions: 0</span>
+          <span class="stat" id="revision-stat">Revisions: 0</span>
+          <span class="stat" id="implicit-stat">Implicit: 0</span>
+        </div>
+        <div id="copy-status" class="status" role="status" aria-live="polite">Nothing copied yet.</div>
+      </section>
+    </div>
+  </main>
+
+  <div id="implicit-backdrop" class="modal-backdrop" role="presentation">
+    <section class="modal" role="dialog" aria-modal="true" aria-labelledby="implicit-title" aria-describedby="implicit-desc">
+      <h2 id="implicit-title">Add Implicit Premise</h2>
+      <p id="implicit-desc" class="note">Type the modest unstated claim needed to make the reasoning explicit.</p>
+      <label for="implicit-text">Implicit premise text</label>
+      <textarea id="implicit-text" class="statement-text"></textarea>
+      <div id="implicit-error" class="error-text" role="alert" hidden></div>
+      <div class="modal-actions">
+        <button class="btn btn-primary" type="button" id="save-implicit-btn">Add Premise</button>
+        <button class="btn btn-secondary" type="button" id="cancel-implicit-btn">Cancel</button>
+      </div>
+    </section>
+  </div>
+
+  <div id="support-backdrop" class="modal-backdrop" role="presentation">
+    <section class="modal" role="dialog" aria-modal="true" aria-labelledby="support-title" aria-describedby="support-desc">
+      <h2 id="support-title">Support Note</h2>
+      <p id="support-desc" class="note">Every conclusion must say which earlier claims support it and how they support it.</p>
+      <div id="support-target" class="status"></div>
+      <div class="group-label">Supporting statements</div>
+      <div id="support-options" class="support-options"></div>
+      <div class="group-label">Support relation</div>
+      <div class="radio-group" role="radiogroup" aria-label="Support relation">
+        <label class="radio-option">
+          <input type="radio" name="support-kind" value="independent">
+          Independent Support
+        </label>
+        <label class="radio-option">
+          <input type="radio" name="support-kind" value="dependent">
+          Dependent Support
+        </label>
+      </div>
+      <label for="support-detail">Optional note detail</label>
+      <input type="text" id="support-detail" placeholder="e.g., answers an objection">
+      <div id="support-error" class="error-text" role="alert" hidden></div>
+      <div class="modal-actions">
+        <button class="btn btn-primary" type="button" id="save-support-btn">Save Support Note</button>
+        <button class="btn btn-secondary" type="button" id="cancel-support-btn">Cancel</button>
+      </div>
+    </section>
+  </div>
+
+  <div id="confirm-backdrop" class="modal-backdrop" role="presentation">
+    <section class="modal" role="dialog" aria-modal="true" aria-labelledby="confirm-title" aria-describedby="confirm-desc">
+      <h2 id="confirm-title">Untagged Statements Remain</h2>
+      <p id="confirm-desc">Some source statements are still untagged. Untagged can mean unresolved, not intentionally omitted.</p>
+      <div id="confirm-summary" class="status warn"></div>
+      <div class="modal-actions">
+        <button class="btn btn-primary" type="button" id="confirm-copy-btn">Copy Anyway</button>
+        <button class="btn btn-secondary" type="button" id="cancel-copy-btn">Return to Editor</button>
+      </div>
+    </section>
+  </div>
+
+  <div id="live-region" class="sr-only" role="status" aria-live="polite" aria-atomic="true"></div>
+
+  <script>
+    const TAGS = {
+      UNTAGGED: 'untagged',
+      OMIT: 'omit',
+      INDEPENDENT: 'independent',
+      DEPENDENT: 'dependent',
+      SUB: 'sub',
+      MAIN: 'main'
+    };
+
+    const TAG_LABELS = {
+      [TAGS.UNTAGGED]: 'Untagged',
+      [TAGS.OMIT]: 'Omit from Reconstruction',
+      [TAGS.INDEPENDENT]: 'Independent Premise',
+      [TAGS.DEPENDENT]: 'Dependent Premise',
+      [TAGS.SUB]: 'Sub-Conclusion',
+      [TAGS.MAIN]: 'Main Conclusion'
+    };
+
+    const EXAMPLE_TEXT = 'The student newspaper has published three investigations this semester. Those investigations revealed unsafe housing conditions and errors in the student-fee budget. Reporting that uncovers safety problems and budget errors gives students information they need. The paper also trains new writers and editors. A project that informs students and develops student journalists is worth protecting. So the university has good reason to keep funding the student newspaper.';
+
+    let units = [];
+    let supportNotes = {};
+    let nextId = 1;
+    let activeSupportId = null;
+    let lastFocus = null;
+    let pendingCopy = false;
+
+    const telemetry = {
+      startedAt: Date.now(),
+      tagActions: 0,
+      revisionActions: 0,
+      implicitAdded: 0
+    };
+
+    const $ = (id) => document.getElementById(id);
+
+    function escapeHtml(value) {
+      return String(value).replace(/[&<>"']/g, (char) => ({
+        '&': '&amp;',
+        '<': '&lt;',
+        '>': '&gt;',
+        '"': '&quot;',
+        "'": '&#39;'
+      }[char]));
+    }
+
+    function createUnit(text, options = {}) {
+      return {
+        id: `u${nextId++}`,
+        text: text.trim(),
+        tag: options.tag || TAGS.UNTAGGED,
+        implicit: Boolean(options.implicit),
+        createdAt: Date.now(),
+        updatedAt: Date.now()
+      };
+    }
+
+    function splitIntoStatements(text) {
+      const normalized = text
+        .replace(/\r\n/g, '\n')
+        .replace(/\s+\n/g, '\n')
+        .replace(/\n\s+/g, '\n')
+        .trim();
+
+      if (!normalized) return [];
+
+      const protectedText = normalized
+        .replace(/\b(U\.S|U\.K|D\.C|e\.g|i\.e|Mr|Mrs|Ms|Dr|Prof)\./g, (m) => m.replace(/\./g, '∯'));
+
+      const parts = protectedText
+        .split(/(?<=[.!?])\s+(?=[A-Z0-9"“])/)
+        .flatMap((part) => part.split(/\n+/))
+        .map((part) => part.replace(/∯/g, '.').trim())
+        .filter(Boolean);
+
+      return parts.length ? parts : [normalized];
+    }
+
+    function lineType(tag) {
+      if (tag === TAGS.INDEPENDENT || tag === TAGS.DEPENDENT) return 'premise';
+      if (tag === TAGS.SUB) return 'sub';
+      if (tag === TAGS.MAIN) return 'main';
+      return 'none';
+    }
+
+    function getStandardItems() {
+      let premiseCount = 0;
+      let subCount = 0;
+      return units
+        .filter((unit) => lineType(unit.tag) !== 'none')
+        .map((unit) => {
+          const type = lineType(unit.tag);
+          let label = '';
+          if (type === 'premise') label = `P${++premiseCount}`;
+          if (type === 'sub') label = `C${++subCount}`;
+          if (type === 'main') label = 'C';
+          return { ...unit, type, label };
+        });
+    }
+
+    function getLabelMap() {
+      return Object.fromEntries(getStandardItems().map((item) => [item.id, item.label]));
+    }
+
+    function getAvailableSupportItems(targetId) {
+      const items = getStandardItems();
+      const targetIndex = items.findIndex((item) => item.id === targetId);
+      if (targetIndex < 0) return [];
+      return items.slice(0, targetIndex).filter((item) => item.type === 'premise' || item.type === 'sub');
+    }
+
+    function formatSupportNote(unitId) {
+      const note = supportNotes[unitId];
+      if (!note || !note.supportIds || !note.supportIds.length || !note.supportKind) {
+        return { text: 'Needs support note revision', valid: false };
+      }
+
+      const labels = getLabelMap();
+      const supportLabels = note.supportIds.map((id) => labels[id]).filter(Boolean);
+      if (supportLabels.length !== note.supportIds.length || !supportLabels.length) {
+        return { text: 'Needs support note revision', valid: false };
+      }
+
+      const joined = joinLabels(supportLabels);
+      const kind = note.supportKind === 'dependent' ? 'dependent' : 'independent';
+      const detail = note.detail ? `; ${note.detail}` : '';
+      return { text: `(from ${joined}, ${kind}${detail})`, valid: true };
+    }
+
+    function joinLabels(labels) {
+      if (labels.length <= 1) return labels[0] || '';
+      if (labels.length === 2) return `${labels[0]} and ${labels[1]}`;
+      return `${labels.slice(0, -1).join(', ')}, and ${labels[labels.length - 1]}`;
+    }
+
+    function render() {
+      renderCards();
+      renderStandardForm();
+      updateStats();
+      updateSourceStatus();
+    }
+
+    function renderCards() {
+      const list = $('statement-list');
+      if (!units.length) {
+        list.innerHTML = '<div class="empty-state">Prepared statement cards will appear here.</div>';
+        return;
+      }
+
+      list.innerHTML = units.map((unit, index) => {
+        const tagLabel = TAG_LABELS[unit.tag];
+        const implicitBadge = unit.implicit ? '<span class="badge badge-implicit">Implicit</span>' : '';
+        const tagButtons = [
+          [TAGS.OMIT, 'Omit'],
+          [TAGS.INDEPENDENT, 'Independent Premise'],
+          [TAGS.DEPENDENT, 'Dependent Premise'],
+          [TAGS.SUB, 'Sub-Conclusion'],
+          [TAGS.MAIN, 'Main Conclusion']
+        ].map(([tag, label]) => `
+          <button class="tag-btn" type="button" data-action="tag" data-id="${unit.id}" data-tag="${tag}" aria-pressed="${unit.tag === tag ? 'true' : 'false'}">${label}</button>
+        `).join('');
+
+        return `
+          <article class="statement-card" data-tag="${unit.tag}" aria-labelledby="title-${unit.id}">
+            <div class="card-head">
+              <div id="title-${unit.id}" class="card-title">Statement ${index + 1}</div>
+              <div>
+                <span class="badge ${unit.tag === TAGS.UNTAGGED ? 'badge-warning' : ''}">${tagLabel}</span>
+                ${implicitBadge}
+              </div>
+            </div>
+            <label for="text-${unit.id}">Statement text</label>
+            <textarea id="text-${unit.id}" class="statement-text" data-action="edit" data-id="${unit.id}">${escapeHtml(unit.text)}</textarea>
+            <div class="tag-row" role="group" aria-label="Tag statement ${index + 1}">
+              ${tagButtons}
+            </div>
+            <div class="card-tools">
+              <button class="btn btn-small btn-secondary" type="button" data-action="split" data-id="${unit.id}">Split at Cursor</button>
+              <button class="btn btn-small btn-secondary" type="button" data-action="merge-prev" data-id="${unit.id}" ${index === 0 ? 'disabled' : ''}>Merge with Previous</button>
+              <button class="btn btn-small btn-secondary" type="button" data-action="merge-next" data-id="${unit.id}" ${index === units.length - 1 ? 'disabled' : ''}>Merge with Next</button>
+              <button class="btn btn-small btn-danger" type="button" data-action="delete" data-id="${unit.id}">Delete</button>
+            </div>
+          </article>
+        `;
+      }).join('');
+    }
+
+    function renderStandardForm() {
+      const container = $('standard-output');
+      const items = getStandardItems();
+      if (!items.length) {
+        container.innerHTML = '<div class="empty-state">No premises or conclusions tagged yet.</div>';
+        return;
+      }
+
+      container.innerHTML = `
+        <ol class="standard-form" aria-label="Generated standard form reconstruction">
+          ${items.map((item) => {
+            const support = item.type === 'sub' || item.type === 'main' ? formatSupportNote(item.id) : null;
+            const implicit = item.implicit ? ' <span class="badge badge-implicit">Implicit</span>' : '';
+            const supportText = support
+              ? `<span class="support-note ${support.valid ? '' : 'needs-revision'}">${escapeHtml(support.text)}</span>`
+              : '';
+            return `
+              <li>
+                <span class="line-label">${item.label}:</span>
+                ${implicit}
+                <span>${escapeHtml(item.text)}</span>
+                ${supportText}
+              </li>
+            `;
+          }).join('')}
+        </ol>
+      `;
+    }
+
+    function updateSourceStatus() {
+      const untagged = units.filter((unit) => unit.tag === TAGS.UNTAGGED).length;
+      const omitted = units.filter((unit) => unit.tag === TAGS.OMIT).length;
+      const used = getStandardItems().length;
+      const status = $('source-status');
+      status.className = `status ${untagged ? 'warn' : 'good'}`;
+      status.textContent = units.length
+        ? `${units.length} cards prepared. ${used} in standard form. ${omitted} omitted. ${untagged} untagged.`
+        : 'No statement cards yet.';
+    }
+
+    function updateStats() {
+      $('time-stat').textContent = `Time: ${formatDuration(Date.now() - telemetry.startedAt)}`;
+      $('action-stat').textContent = `Actions: ${telemetry.tagActions}`;
+      $('revision-stat').textContent = `Revisions: ${telemetry.revisionActions}`;
+      $('implicit-stat').textContent = `Implicit: ${telemetry.implicitAdded}`;
+    }
+
+    function formatDuration(ms) {
+      const total = Math.floor(ms / 1000);
+      const minutes = Math.floor(total / 60);
+      const seconds = String(total % 60).padStart(2, '0');
+      return `${minutes}m ${seconds}s`;
+    }
+
+    function announce(message) {
+      $('live-region').textContent = message;
+    }
+
+    function prepareStatements() {
+      const text = $('source-input').value.trim();
+      if (!text) {
+        $('source-status').className = 'status warn';
+        $('source-status').textContent = 'Paste a passage before preparing statements.';
+        return;
+      }
+      if (units.length && !window.confirm('Replace the current statement cards with new cards from the source text?')) return;
+      units = splitIntoStatements(text).map((part) => createUnit(part));
+      supportNotes = {};
+      telemetry.revisionActions++;
+      render();
+      announce(`${units.length} statement cards prepared.`);
+    }
+
+    function loadExample() {
+      $('source-input').value = EXAMPLE_TEXT;
+      $('source-input').focus();
+      announce('Example passage loaded.');
+    }
+
+    function clearAll() {
+      if (!units.length && !$('source-input').value.trim()) return;
+      if (!window.confirm('Start over and clear the current reconstruction?')) return;
+      units = [];
+      supportNotes = {};
+      $('source-input').value = '';
+      telemetry.revisionActions++;
+      render();
+      $('copy-status').className = 'status';
+      $('copy-status').textContent = 'Nothing copied yet.';
+      announce('Editor cleared.');
+    }
+
+    function findUnit(id) {
+      return units.find((unit) => unit.id === id);
+    }
+
+    function unitIndex(id) {
+      return units.findIndex((unit) => unit.id === id);
+    }
+
+    function updateText(id, text) {
+      const unit = findUnit(id);
+      if (!unit) return;
+      unit.text = text;
+      unit.updatedAt = Date.now();
+      renderStandardForm();
+    }
+
+    function tagUnit(id, tag) {
+      const unit = findUnit(id);
+      if (!unit || unit.tag === tag) return;
+      if (tag === TAGS.MAIN) {
+        units.forEach((other) => {
+          if (other.id !== id && other.tag === TAGS.MAIN) {
+            other.tag = TAGS.UNTAGGED;
+            other.updatedAt = Date.now();
+            delete supportNotes[other.id];
+          }
+        });
+      }
+      unit.tag = tag;
+      unit.updatedAt = Date.now();
+      telemetry.tagActions++;
+
+      if (tag !== TAGS.SUB && tag !== TAGS.MAIN) {
+        delete supportNotes[id];
+      }
+
+      render();
+
+      if (tag === TAGS.SUB || tag === TAGS.MAIN) {
+        openSupportModal(id);
+      } else {
+        announce(`Statement tagged as ${TAG_LABELS[tag]}.`);
+      }
+    }
+
+    function splitUnit(id) {
+      const index = unitIndex(id);
+      const unit = units[index];
+      const textarea = $(`text-${id}`);
+      if (!unit || !textarea) return;
+      const cursor = textarea.selectionStart;
+      const text = textarea.value;
+      if (cursor <= 0 || cursor >= text.length) {
+        announce('Place the cursor inside the statement text before splitting.');
+        textarea.focus();
+        return;
+      }
+      const before = text.slice(0, cursor).trim();
+      const after = text.slice(cursor).trim();
+      if (!before || !after) {
+        announce('Split point must leave text on both sides.');
+        textarea.focus();
+        return;
+      }
+      unit.text = before;
+      unit.updatedAt = Date.now();
+      const newUnit = createUnit(after);
+      units.splice(index + 1, 0, newUnit);
+      telemetry.revisionActions++;
+      render();
+      setTimeout(() => $(`text-${newUnit.id}`)?.focus(), 0);
+      announce('Statement split.');
+    }
+
+    function mergeUnit(id, direction) {
+      const index = unitIndex(id);
+      if (index < 0) return;
+      const otherIndex = direction === 'prev' ? index - 1 : index + 1;
+      if (otherIndex < 0 || otherIndex >= units.length) return;
+      const firstIndex = Math.min(index, otherIndex);
+      const secondIndex = Math.max(index, otherIndex);
+      const first = units[firstIndex];
+      const second = units[secondIndex];
+      first.text = `${first.text.trim()} ${second.text.trim()}`.trim();
+      first.updatedAt = Date.now();
+      if (second.tag === TAGS.SUB || second.tag === TAGS.MAIN) delete supportNotes[second.id];
+      Object.values(supportNotes).forEach((note) => {
+        note.supportIds = note.supportIds.map((sid) => sid === second.id ? first.id : sid);
+        note.supportIds = [...new Set(note.supportIds)];
+      });
+      units.splice(secondIndex, 1);
+      telemetry.revisionActions++;
+      render();
+      announce('Statements merged.');
+    }
+
+    function deleteUnit(id) {
+      const index = unitIndex(id);
+      if (index < 0) return;
+      const unit = units[index];
+      if (!window.confirm('Delete this statement card?')) return;
+      units.splice(index, 1);
+      delete supportNotes[id];
+      Object.values(supportNotes).forEach((note) => {
+        note.supportIds = note.supportIds.filter((sid) => sid !== id);
+      });
+      telemetry.revisionActions++;
+      render();
+      announce(`${unit.implicit ? 'Implicit premise' : 'Statement'} deleted.`);
+    }
+
+    function openImplicitModal() {
+      lastFocus = document.activeElement;
+      $('implicit-text').value = '';
+      hideError('implicit-error');
+      showModal('implicit-backdrop');
+      setTimeout(() => $('implicit-text').focus(), 0);
+    }
+
+    function saveImplicit() {
+      const text = $('implicit-text').value.trim();
+      if (!text) {
+        showError('implicit-error', 'Enter an implicit premise before adding it.');
+        return;
+      }
+      units.push(createUnit(text, { tag: TAGS.DEPENDENT, implicit: true }));
+      telemetry.implicitAdded++;
+      telemetry.revisionActions++;
+      closeModal('implicit-backdrop');
+      render();
+      announce('Implicit premise added.');
+    }
+
+    function openSupportModal(id) {
+      const unit = findUnit(id);
+      if (!unit) return;
+      activeSupportId = id;
+      lastFocus = document.activeElement;
+      hideError('support-error');
+      $('support-target').textContent = unit.text;
+
+      const existing = supportNotes[id] || { supportIds: [], supportKind: '', detail: '' };
+      const options = getAvailableSupportItems(id);
+      $('support-options').innerHTML = options.length ? options.map((item) => `
+        <label class="support-option">
+          <input type="checkbox" value="${item.id}" ${existing.supportIds.includes(item.id) ? 'checked' : ''}>
+          <span><strong>${item.label}:</strong> ${escapeHtml(item.text)}</span>
+        </label>
+      `).join('') : '<p class="note">No earlier premises or sub-conclusions are available. Add supporting claims first, then revise this note.</p>';
+
+      document.querySelectorAll('input[name="support-kind"]').forEach((radio) => {
+        radio.checked = radio.value === existing.supportKind;
+      });
+      $('support-detail').value = existing.detail || '';
+      showModal('support-backdrop');
+      setTimeout(() => {
+        const first = $('support-options').querySelector('input') || document.querySelector('input[name="support-kind"]');
+        first?.focus();
+      }, 0);
+    }
+
+    function saveSupport() {
+      if (!activeSupportId) return;
+      const supportIds = [...$('support-options').querySelectorAll('input[type="checkbox"]:checked')].map((input) => input.value);
+      const relation = document.querySelector('input[name="support-kind"]:checked')?.value || '';
+      if (!supportIds.length) {
+        showError('support-error', 'Select at least one supporting statement.');
+        return;
+      }
+      if (!relation) {
+        showError('support-error', 'Select independent or dependent support.');
+        return;
+      }
+      supportNotes[activeSupportId] = {
+        supportIds,
+        supportKind: relation,
+        detail: $('support-detail').value.trim()
+      };
+      telemetry.revisionActions++;
+      const savedId = activeSupportId;
+      activeSupportId = null;
+      closeModal('support-backdrop');
+      render();
+      const label = getLabelMap()[savedId] || 'Conclusion';
+      announce(`Support note saved for ${label}.`);
+    }
+
+    function buildSubmissionText() {
+      const items = getStandardItems();
+      const lines = items.map((item) => {
+        const implicit = item.implicit ? ' [Implicit]' : '';
+        const support = item.type === 'sub' || item.type === 'main' ? ` ${formatSupportNote(item.id).text}` : '';
+        return `${item.label}:${implicit} ${item.text}${support}`;
+      });
+      const receipt = `--- SESSION DATA: Time: ${formatDuration(Date.now() - telemetry.startedAt)} | Actions: ${telemetry.tagActions} | Revisions: ${telemetry.revisionActions} | Implicit Added: ${telemetry.implicitAdded} ---`;
+      return `${lines.join('\n')}\n\n${receipt}`;
+    }
+
+    function requestCopy() {
+      if (!getStandardItems().length) {
+        $('copy-status').className = 'status warn';
+        $('copy-status').textContent = 'Tag at least one premise or conclusion before copying.';
+        return;
+      }
+      const untagged = units.filter((unit) => unit.tag === TAGS.UNTAGGED).length;
+      if (untagged) {
+        pendingCopy = true;
+        lastFocus = document.activeElement;
+        $('confirm-summary').textContent = `${untagged} statement${untagged === 1 ? ' is' : 's are'} still untagged.`;
+        showModal('confirm-backdrop');
+        setTimeout(() => $('confirm-copy-btn').focus(), 0);
+        return;
+      }
+      copySubmission();
+    }
+
+    async function copySubmission() {
+      pendingCopy = false;
+      if ($('confirm-backdrop').classList.contains('active')) {
+        closeModal('confirm-backdrop');
+      }
+      const text = buildSubmissionText();
+      try {
+        await navigator.clipboard.writeText(text);
+        $('copy-status').className = 'status good';
+        $('copy-status').textContent = 'Standard form copied with process receipt.';
+        announce('Standard form copied.');
+      } catch (error) {
+        fallbackCopy(text);
+      }
+    }
+
+    function fallbackCopy(text) {
+      const helper = document.createElement('textarea');
+      helper.value = text;
+      helper.setAttribute('readonly', '');
+      helper.style.position = 'fixed';
+      helper.style.left = '-9999px';
+      document.body.appendChild(helper);
+      helper.select();
+      const ok = document.execCommand('copy');
+      helper.remove();
+      $('copy-status').className = ok ? 'status good' : 'status warn';
+      $('copy-status').textContent = ok ? 'Standard form copied with process receipt.' : 'Copy failed. Select and copy from the standard form manually.';
+      announce($('copy-status').textContent);
+    }
+
+    function showModal(id) {
+      $(id).classList.add('active');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeModal(id) {
+      $(id).classList.remove('active');
+      if (!document.querySelector('.modal-backdrop.active')) {
+        document.body.style.overflow = '';
+      }
+      setTimeout(() => lastFocus?.focus?.(), 0);
+    }
+
+    function showError(id, message) {
+      const el = $(id);
+      el.hidden = false;
+      el.textContent = message;
+    }
+
+    function hideError(id) {
+      const el = $(id);
+      el.hidden = true;
+      el.textContent = '';
+    }
+
+    function trapFocus(event) {
+      if (event.key !== 'Tab') return;
+      const activeModal = document.querySelector('.modal-backdrop.active .modal');
+      if (!activeModal) return;
+      const focusables = [...activeModal.querySelectorAll('button, input, textarea, [href], [tabindex]:not([tabindex="-1"])')]
+        .filter((el) => !el.disabled && !el.hidden && el.offsetParent !== null);
+      if (!focusables.length) return;
+      const first = focusables[0];
+      const last = focusables[focusables.length - 1];
+      if (event.shiftKey && document.activeElement === first) {
+        event.preventDefault();
+        last.focus();
+      } else if (!event.shiftKey && document.activeElement === last) {
+        event.preventDefault();
+        first.focus();
+      }
+    }
+
+    $('prepare-btn').addEventListener('click', prepareStatements);
+    $('example-btn').addEventListener('click', loadExample);
+    $('clear-btn').addEventListener('click', clearAll);
+    $('implicit-btn').addEventListener('click', openImplicitModal);
+    $('save-implicit-btn').addEventListener('click', saveImplicit);
+    $('cancel-implicit-btn').addEventListener('click', () => closeModal('implicit-backdrop'));
+    $('save-support-btn').addEventListener('click', saveSupport);
+    $('cancel-support-btn').addEventListener('click', () => closeModal('support-backdrop'));
+    $('copy-btn').addEventListener('click', requestCopy);
+    $('confirm-copy-btn').addEventListener('click', () => pendingCopy && copySubmission());
+    $('cancel-copy-btn').addEventListener('click', () => {
+      pendingCopy = false;
+      closeModal('confirm-backdrop');
+    });
+
+    $('statement-list').addEventListener('input', (event) => {
+      const action = event.target.dataset.action;
+      const id = event.target.dataset.id;
+      if (action === 'edit') updateText(id, event.target.value);
+    });
+
+    $('statement-list').addEventListener('click', (event) => {
+      const button = event.target.closest('button[data-action]');
+      if (!button) return;
+      const action = button.dataset.action;
+      const id = button.dataset.id;
+      if (action === 'tag') tagUnit(id, button.dataset.tag);
+      if (action === 'split') splitUnit(id);
+      if (action === 'merge-prev') mergeUnit(id, 'prev');
+      if (action === 'merge-next') mergeUnit(id, 'next');
+      if (action === 'delete') deleteUnit(id);
+    });
+
+    document.addEventListener('keydown', (event) => {
+      trapFocus(event);
+      if (event.key !== 'Escape') return;
+      if ($('implicit-backdrop').classList.contains('active')) closeModal('implicit-backdrop');
+      if ($('confirm-backdrop').classList.contains('active')) closeModal('confirm-backdrop');
+    });
+
+    setInterval(updateStats, 1000);
+    render();
+  </script>
+</body>
+
+</html>
