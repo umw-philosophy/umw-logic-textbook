@@ -119,14 +119,12 @@
 
     button,
     textarea,
-    input,
-    select {
+    input {
       font: inherit;
     }
 
     textarea,
-    input[type="text"],
-    select {
+    input[type="text"] {
       width: 100%;
       border: 1px solid var(--gray-300);
       border-radius: 6px;
@@ -147,7 +145,6 @@
 
     textarea:focus,
     input:focus,
-    select:focus,
     button:focus {
       outline: none;
       border-color: var(--blue-mid);
@@ -359,65 +356,6 @@
       font-style: normal;
     }
 
-    .health-panel,
-    .challenge-panel {
-      margin-top: 14px;
-      border-top: 1px solid var(--gray-200);
-      padding-top: 14px;
-    }
-
-    .health-list,
-    .challenge-list {
-      display: grid;
-      gap: 9px;
-      margin: 0;
-      padding: 0;
-      list-style: none;
-    }
-
-    .health-item,
-    .challenge-card {
-      border: 1px solid var(--gray-200);
-      border-radius: 7px;
-      padding: 10px;
-      background: #fff;
-    }
-
-    .health-item.warn {
-      border-color: #e9ca7a;
-      background: var(--amber-bg);
-    }
-
-    .health-item.good {
-      border-color: #a9d8b8;
-      background: var(--green-bg);
-    }
-
-    .challenge-card {
-      display: grid;
-      gap: 8px;
-    }
-
-    .challenge-card[data-choice="support"] {
-      border-left: 6px solid var(--green);
-    }
-
-    .challenge-card[data-choice="background"] {
-      border-left: 6px solid #737d8c;
-    }
-
-    .challenge-result {
-      font-weight: 700;
-    }
-
-    .challenge-result.good {
-      color: var(--green);
-    }
-
-    .challenge-result.warn {
-      color: var(--amber);
-    }
-
     .empty-state {
       border: 1px dashed var(--gray-300);
       border-radius: 8px;
@@ -505,26 +443,6 @@
       margin: 0;
     }
 
-    .support-option {
-      display: grid;
-      grid-template-columns: auto minmax(0, 1fr);
-      gap: 8px 10px;
-      padding: 8px;
-      border: 1px solid var(--gray-200);
-      border-radius: 6px;
-      background: #fff;
-    }
-
-    .support-option .support-role {
-      grid-column: 2;
-      display: grid;
-      gap: 4px;
-    }
-
-    .support-role label {
-      margin: 0;
-    }
-
     .support-option input,
     .radio-option input {
       width: auto;
@@ -599,14 +517,9 @@
         <p class="note">Only premises and conclusions appear here. Omitted and untagged cards stay out of the reconstruction.</p>
         <div class="action-row">
           <button class="btn btn-secondary" type="button" id="implicit-btn">Add Implicit Premise</button>
-          <button class="btn btn-secondary" type="button" id="health-btn">Check Reconstruction</button>
           <button class="btn btn-primary" type="button" id="copy-btn">Copy for Submission</button>
         </div>
         <div id="standard-output" aria-live="polite"></div>
-        <section class="health-panel" aria-labelledby="health-heading">
-          <h3 id="health-heading">Reconstruction Health Check</h3>
-          <div id="health-output" class="empty-state" role="status" aria-live="polite">Run a health check to see structural points to reconsider.</div>
-        </section>
         <div class="stats-row" aria-label="Process statistics">
           <span class="stat" id="time-stat">Time: 0m 00s</span>
           <span class="stat" id="action-stat">Actions: 0</span>
@@ -616,18 +529,6 @@
         <div id="copy-status" class="status" role="status" aria-live="polite">Nothing copied yet.</div>
       </section>
     </div>
-
-    <section class="panel challenge-panel" aria-labelledby="challenge-heading">
-      <h2 id="challenge-heading">Background Or Support Mini-Challenge</h2>
-      <p class="note">Practice the first filtering move: decide whether each sentence supports the conclusion or belongs in the background.</p>
-      <div class="status" id="challenge-conclusion">Conclusion: Students should complete the challenge after loading a set.</div>
-      <div class="action-row">
-        <button class="btn btn-secondary" type="button" id="challenge-load-btn">Load Challenge</button>
-        <button class="btn btn-primary" type="button" id="challenge-check-btn">Check Challenge</button>
-      </div>
-      <div id="challenge-list" class="challenge-list" aria-label="Mini-challenge sentences"></div>
-      <div id="challenge-status" class="status" role="status" aria-live="polite">No challenge loaded yet.</div>
-    </section>
   </main>
 
   <div id="implicit-backdrop" class="modal-backdrop" role="presentation">
@@ -649,9 +550,19 @@
       <h2 id="support-title">Support Note</h2>
       <p id="support-desc" class="note">Every conclusion must say which earlier claims support it and how they support it.</p>
       <div id="support-target" class="status"></div>
-      <div class="group-label">Supporting statements and role</div>
-      <p class="note">Select each supporting claim, then mark whether it supports the conclusion independently or as part of a dependent set.</p>
+      <div class="group-label">Supporting statements</div>
       <div id="support-options" class="support-options"></div>
+      <div class="group-label">Support relation</div>
+      <div class="radio-group" role="radiogroup" aria-label="Support relation">
+        <label class="radio-option">
+          <input type="radio" name="support-kind" value="independent">
+          Independent Support
+        </label>
+        <label class="radio-option">
+          <input type="radio" name="support-kind" value="dependent">
+          Dependent Support
+        </label>
+      </div>
       <label for="support-detail">Optional note detail</label>
       <input type="text" id="support-detail" placeholder="e.g., answers an objection">
       <div id="support-error" class="error-text" role="alert" hidden></div>
@@ -697,48 +608,12 @@
 
     const EXAMPLE_TEXT = 'The student newspaper has published three investigations this semester. Those investigations revealed unsafe housing conditions and errors in the student-fee budget. Reporting that uncovers safety problems and budget errors gives students information they need. The paper also trains new writers and editors. A project that informs students and develops student journalists is worth protecting. So the university has good reason to keep funding the student newspaper.';
 
-    const CHALLENGES = [
-      {
-        conclusion: 'The city council has reason to keep the downtown library open on Sundays.',
-        sentences: [
-          { text: 'The downtown library is the oldest public building still in regular use in the city.', answer: 'background' },
-          { text: 'Many students can only get reliable internet access at the library on weekends.', answer: 'support' },
-          { text: 'The Sunday bus schedule already stops within one block of the library.', answer: 'support' },
-          { text: 'Several council members attended story hour there when they were children.', answer: 'background' },
-          { text: 'A public service that supplies weekend internet access and is already reachable by transit is worth keeping open on Sundays.', answer: 'support' }
-        ]
-      },
-      {
-        conclusion: 'The department should replace the old online homework system.',
-        sentences: [
-          { text: 'The current system was adopted before most students used phones for coursework.', answer: 'background' },
-          { text: 'The current system often fails to save submitted answers.', answer: 'support' },
-          { text: 'Students with screen readers report that several question types are inaccessible.', answer: 'support' },
-          { text: 'The company recently changed the color of its login page.', answer: 'background' },
-          { text: 'A required course tool that loses work and blocks some students from using it should be replaced.', answer: 'support' }
-        ]
-      },
-      {
-        conclusion: 'The university has good reason to expand evening advising hours.',
-        sentences: [
-          { text: 'The advising office is located on the first floor of Lee Hall.', answer: 'background' },
-          { text: 'Many students in the program work during ordinary business hours.', answer: 'support' },
-          { text: 'Students who cannot meet advisors often choose courses without checking prerequisites.', answer: 'support' },
-          { text: 'The office recently installed new chairs in the waiting area.', answer: 'background' },
-          { text: 'If a service prevents registration mistakes, students need access to it at times they can actually attend.', answer: 'support' }
-        ]
-      }
-    ];
-
     let units = [];
     let supportNotes = {};
     let nextId = 1;
     let activeSupportId = null;
     let lastFocus = null;
     let pendingCopy = false;
-    let healthCheckVisible = false;
-    let currentChallengeIndex = -1;
-    let challengeChoices = {};
 
     const telemetry = {
       startedAt: Date.now(),
@@ -824,52 +699,22 @@
       return items.slice(0, targetIndex).filter((item) => item.type === 'premise' || item.type === 'sub');
     }
 
-    function uniqueIds(ids) {
-      return [...new Set((ids || []).filter(Boolean))];
-    }
-
-    function normalizeSupportNote(note) {
-      if (!note) return { independentIds: [], dependentIds: [], detail: '' };
-      if ('independentIds' in note || 'dependentIds' in note) {
-        const dependentIds = uniqueIds(note.dependentIds);
-        return {
-          independentIds: uniqueIds(note.independentIds).filter((id) => !dependentIds.includes(id)),
-          dependentIds,
-          detail: note.detail || ''
-        };
-      }
-      const legacyIds = uniqueIds(note.supportIds);
-      return {
-        independentIds: note.supportKind === 'independent' ? legacyIds : [],
-        dependentIds: note.supportKind === 'dependent' ? legacyIds : [],
-        detail: note.detail || ''
-      };
-    }
-
-    function getAllSupportIds(note) {
-      const normalized = normalizeSupportNote(note);
-      return uniqueIds([...normalized.independentIds, ...normalized.dependentIds]);
-    }
-
     function formatSupportNote(unitId) {
-      const note = normalizeSupportNote(supportNotes[unitId]);
-      const supportIds = getAllSupportIds(note);
-      if (!supportIds.length) {
+      const note = supportNotes[unitId];
+      if (!note || !note.supportIds || !note.supportIds.length || !note.supportKind) {
         return { text: 'Needs support note revision', valid: false };
       }
 
       const labels = getLabelMap();
-      const independentLabels = note.independentIds.map((id) => labels[id]).filter(Boolean);
-      const dependentLabels = note.dependentIds.map((id) => labels[id]).filter(Boolean);
-      if (independentLabels.length !== note.independentIds.length || dependentLabels.length !== note.dependentIds.length) {
+      const supportLabels = note.supportIds.map((id) => labels[id]).filter(Boolean);
+      if (supportLabels.length !== note.supportIds.length || !supportLabels.length) {
         return { text: 'Needs support note revision', valid: false };
       }
 
-      const parts = [];
-      if (dependentLabels.length) parts.push(`${joinLabels(dependentLabels)}, dependent`);
-      if (independentLabels.length) parts.push(`${joinLabels(independentLabels)}, independent`);
+      const joined = joinLabels(supportLabels);
+      const kind = note.supportKind === 'dependent' ? 'dependent' : 'independent';
       const detail = note.detail ? `; ${note.detail}` : '';
-      return { text: `(from ${parts.join('; ')}${detail})`, valid: true };
+      return { text: `(from ${joined}, ${kind}${detail})`, valid: true };
     }
 
     function joinLabels(labels) {
@@ -881,7 +726,6 @@
     function render() {
       renderCards();
       renderStandardForm();
-      if (healthCheckVisible) renderHealthCheck();
       updateStats();
       updateSourceStatus();
     }
@@ -958,191 +802,6 @@
           }).join('')}
         </ol>
       `;
-    }
-
-    function renderHealthCheck() {
-      const output = $('health-output');
-      const findings = getHealthFindings();
-      if (!findings.length) {
-        output.className = 'status good';
-        output.innerHTML = 'No structural red flags found. This is not a correctness check, but the reconstruction has the expected Chapter 2 pieces.';
-        return;
-      }
-
-      output.className = 'status warn';
-      output.innerHTML = `
-        <ul class="health-list" aria-label="Reconstruction health check results">
-          ${findings.map((finding) => `
-            <li class="health-item ${finding.kind}">
-              <strong>${escapeHtml(finding.title)}</strong>
-              <div>${escapeHtml(finding.message)}</div>
-            </li>
-          `).join('')}
-        </ul>
-      `;
-    }
-
-    function getHealthFindings() {
-      const findings = [];
-      const items = getStandardItems();
-      const labelMap = getLabelMap();
-      const untagged = units.filter((unit) => unit.tag === TAGS.UNTAGGED);
-      const mainItems = items.filter((item) => item.type === 'main');
-      const conclusionItems = items.filter((item) => item.type === 'sub' || item.type === 'main');
-
-      if (!units.length) {
-        return [{
-          kind: 'warn',
-          title: 'No prepared statements',
-          message: 'Prepare statement cards before running a structural check.'
-        }];
-      }
-
-      if (untagged.length) {
-        findings.push({
-          kind: 'warn',
-          title: 'Untagged statements remain',
-          message: `${untagged.length} source statement${untagged.length === 1 ? ' is' : 's are'} still untagged. These may be unresolved rather than intentionally omitted.`
-        });
-      }
-
-      if (!mainItems.length) {
-        findings.push({
-          kind: 'warn',
-          title: 'No main conclusion',
-          message: 'A reconstruction normally needs one final claim labeled as the main conclusion.'
-        });
-      }
-
-      conclusionItems.forEach((item) => {
-        const note = normalizeSupportNote(supportNotes[item.id]);
-        const support = formatSupportNote(item.id);
-        if (!support.valid) {
-          findings.push({
-            kind: 'warn',
-            title: `${item.label} needs a usable support note`,
-            message: 'Every conclusion and sub-conclusion should say which earlier claims it follows from.'
-          });
-          return;
-        }
-        if (note.dependentIds.length === 1) {
-          findings.push({
-            kind: 'warn',
-            title: `${item.label} has dependent support from only one claim`,
-            message: 'Dependent support usually involves two or more claims working together. If one claim is doing the work by itself, independent support may be the better label.'
-          });
-        }
-        if (item.type === 'main' && note.dependentIds.length === 1 && !note.independentIds.length) {
-          findings.push({
-            kind: 'warn',
-            title: 'Main conclusion has only one dependent support',
-            message: 'The main conclusion is marked as depending on one claim. Check whether another premise, principle, or implicit premise is needed.'
-          });
-        }
-      });
-
-      units.filter((unit) => unit.implicit).forEach((unit) => {
-        const tooLong = unit.text.length > 180;
-        const hasConclusionSignal = /\b(therefore|thus|hence|consequently|should|ought|must)\b/i.test(unit.text);
-        if (tooLong || hasConclusionSignal) {
-          findings.push({
-            kind: 'warn',
-            title: `${labelMap[unit.id] || 'Implicit premise'} may be doing too much`,
-            message: 'Implicit premises should usually be modest assumptions. Check whether this one is too long or sounds like a conclusion rather than a bridge in the reasoning.'
-          });
-        }
-      });
-
-      items.filter((item) => item.type === 'sub').forEach((item) => {
-        const usedDownstream = Object.entries(supportNotes).some(([targetId, note]) => {
-          const target = items.find((candidate) => candidate.id === targetId);
-          const sourceIndex = items.findIndex((candidate) => candidate.id === item.id);
-          const targetIndex = items.findIndex((candidate) => candidate.id === targetId);
-          return target && targetIndex > sourceIndex && getAllSupportIds(note).includes(item.id);
-        });
-        if (!usedDownstream) {
-          findings.push({
-            kind: 'warn',
-            title: `${item.label} is not used downstream`,
-            message: 'A sub-conclusion should usually function as support for a later conclusion. If it does not, it may be a premise, an omitted statement, or the main conclusion.'
-          });
-        }
-      });
-
-      return findings;
-    }
-
-    function loadChallenge() {
-      currentChallengeIndex = (currentChallengeIndex + 1) % CHALLENGES.length;
-      challengeChoices = {};
-      renderChallenge();
-      $('challenge-status').className = 'status';
-      $('challenge-status').textContent = 'Choose Background or Supports conclusion for each sentence.';
-      announce('Mini-challenge loaded.');
-    }
-
-    function renderChallenge() {
-      const challenge = CHALLENGES[currentChallengeIndex];
-      const list = $('challenge-list');
-      if (!challenge) {
-        $('challenge-conclusion').textContent = 'Conclusion: Load a challenge to begin.';
-        list.innerHTML = '<div class="empty-state">Challenge sentences will appear here.</div>';
-        return;
-      }
-
-      $('challenge-conclusion').textContent = `Conclusion: ${challenge.conclusion}`;
-      list.innerHTML = challenge.sentences.map((sentence, index) => {
-        const choice = challengeChoices[index] || '';
-        return `
-          <article class="challenge-card" data-choice="${choice}" aria-labelledby="challenge-title-${index}">
-            <div id="challenge-title-${index}" class="card-title">Sentence ${index + 1}</div>
-            <p>${escapeHtml(sentence.text)}</p>
-            <div class="tag-row" role="group" aria-label="Classify sentence ${index + 1}">
-              <button class="tag-btn" type="button" data-challenge-action="choose" data-index="${index}" data-choice="support" aria-pressed="${choice === 'support' ? 'true' : 'false'}">Supports conclusion</button>
-              <button class="tag-btn" type="button" data-challenge-action="choose" data-index="${index}" data-choice="background" aria-pressed="${choice === 'background' ? 'true' : 'false'}">Background</button>
-            </div>
-          </article>
-        `;
-      }).join('');
-    }
-
-    function chooseChallenge(index, choice) {
-      if (!CHALLENGES[currentChallengeIndex]) return;
-      challengeChoices[index] = choice;
-      renderChallenge();
-      announce(`Sentence ${Number(index) + 1} marked as ${choice === 'support' ? 'supporting the conclusion' : 'background'}.`);
-    }
-
-    function checkChallenge() {
-      const challenge = CHALLENGES[currentChallengeIndex];
-      if (!challenge) {
-        $('challenge-status').className = 'status warn';
-        $('challenge-status').textContent = 'Load a challenge before checking.';
-        return;
-      }
-      const unanswered = challenge.sentences.filter((_, index) => !challengeChoices[index]).length;
-      if (unanswered) {
-        $('challenge-status').className = 'status warn';
-        $('challenge-status').textContent = `${unanswered} sentence${unanswered === 1 ? ' is' : 's are'} still unclassified.`;
-        return;
-      }
-      const missed = challenge.sentences
-        .map((sentence, index) => ({ sentence, index }))
-        .filter(({ sentence, index }) => challengeChoices[index] !== sentence.answer);
-
-      if (!missed.length) {
-        $('challenge-status').className = 'status good';
-        $('challenge-status').innerHTML = '<span class="challenge-result good">All classifications match the intended reconstruction filter.</span>';
-        announce('Mini-challenge complete.');
-        return;
-      }
-
-      $('challenge-status').className = 'status warn';
-      $('challenge-status').innerHTML = `
-        <span class="challenge-result warn">${missed.length} classification${missed.length === 1 ? '' : 's'} to reconsider:</span>
-        ${missed.map(({ sentence, index }) => `<div>Sentence ${index + 1} is better treated as ${sentence.answer === 'support' ? 'supporting the conclusion' : 'background'}.</div>`).join('')}
-      `;
-      announce('Mini-challenge checked with items to reconsider.');
     }
 
     function updateSourceStatus() {
@@ -1222,13 +881,6 @@
       unit.text = text;
       unit.updatedAt = Date.now();
       renderStandardForm();
-      if (healthCheckVisible) renderHealthCheck();
-    }
-
-    function runHealthCheck() {
-      healthCheckVisible = true;
-      renderHealthCheck();
-      announce('Reconstruction health check updated.');
     }
 
     function tagUnit(id, tag) {
@@ -1301,11 +953,9 @@
       first.text = `${first.text.trim()} ${second.text.trim()}`.trim();
       first.updatedAt = Date.now();
       if (second.tag === TAGS.SUB || second.tag === TAGS.MAIN) delete supportNotes[second.id];
-      Object.keys(supportNotes).forEach((noteId) => {
-        const note = normalizeSupportNote(supportNotes[noteId]);
-        note.independentIds = uniqueIds(note.independentIds.map((sid) => sid === second.id ? first.id : sid));
-        note.dependentIds = uniqueIds(note.dependentIds.map((sid) => sid === second.id ? first.id : sid));
-        supportNotes[noteId] = note;
+      Object.values(supportNotes).forEach((note) => {
+        note.supportIds = note.supportIds.map((sid) => sid === second.id ? first.id : sid);
+        note.supportIds = [...new Set(note.supportIds)];
       });
       units.splice(secondIndex, 1);
       telemetry.revisionActions++;
@@ -1320,11 +970,8 @@
       if (!window.confirm('Delete this statement card?')) return;
       units.splice(index, 1);
       delete supportNotes[id];
-      Object.keys(supportNotes).forEach((noteId) => {
-        const note = normalizeSupportNote(supportNotes[noteId]);
-        note.independentIds = note.independentIds.filter((sid) => sid !== id);
-        note.dependentIds = note.dependentIds.filter((sid) => sid !== id);
-        supportNotes[noteId] = note;
+      Object.values(supportNotes).forEach((note) => {
+        note.supportIds = note.supportIds.filter((sid) => sid !== id);
       });
       telemetry.revisionActions++;
       render();
@@ -1361,54 +1008,41 @@
       hideError('support-error');
       $('support-target').textContent = unit.text;
 
-      const existing = normalizeSupportNote(supportNotes[id]);
+      const existing = supportNotes[id] || { supportIds: [], supportKind: '', detail: '' };
       const options = getAvailableSupportItems(id);
-      const existingIds = getAllSupportIds(existing);
-      $('support-options').innerHTML = options.length ? options.map((item) => {
-        const selected = existingIds.includes(item.id);
-        const role = existing.dependentIds.includes(item.id) ? 'dependent' : 'independent';
-        return `
-        <div class="support-option">
-          <input id="support-include-${item.id}" type="checkbox" value="${item.id}" ${selected ? 'checked' : ''}>
-          <label for="support-include-${item.id}"><strong>${item.label}:</strong> ${escapeHtml(item.text)}</label>
-          <div class="support-role">
-            <label for="support-role-${item.id}">Support role</label>
-            <select id="support-role-${item.id}" data-role-for="${item.id}">
-              <option value="independent" ${role === 'independent' ? 'selected' : ''}>Independent support</option>
-              <option value="dependent" ${role === 'dependent' ? 'selected' : ''}>Part of dependent support set</option>
-            </select>
-          </div>
-        </div>
-        `;
-      }).join('') : '<p class="note">No earlier premises or sub-conclusions are available. Add supporting claims first, then revise this note.</p>';
+      $('support-options').innerHTML = options.length ? options.map((item) => `
+        <label class="support-option">
+          <input type="checkbox" value="${item.id}" ${existing.supportIds.includes(item.id) ? 'checked' : ''}>
+          <span><strong>${item.label}:</strong> ${escapeHtml(item.text)}</span>
+        </label>
+      `).join('') : '<p class="note">No earlier premises or sub-conclusions are available. Add supporting claims first, then revise this note.</p>';
+
+      document.querySelectorAll('input[name="support-kind"]').forEach((radio) => {
+        radio.checked = radio.value === existing.supportKind;
+      });
       $('support-detail').value = existing.detail || '';
       showModal('support-backdrop');
       setTimeout(() => {
-        const first = $('support-options').querySelector('input, select') || $('support-detail');
+        const first = $('support-options').querySelector('input') || document.querySelector('input[name="support-kind"]');
         first?.focus();
       }, 0);
     }
 
     function saveSupport() {
       if (!activeSupportId) return;
-      const selected = [...$('support-options').querySelectorAll('input[type="checkbox"]:checked')];
-      const independentIds = [];
-      const dependentIds = [];
-      selected.forEach((input) => {
-        const role = $(`support-role-${input.value}`)?.value || 'independent';
-        if (role === 'dependent') {
-          dependentIds.push(input.value);
-        } else {
-          independentIds.push(input.value);
-        }
-      });
-      if (!selected.length) {
+      const supportIds = [...$('support-options').querySelectorAll('input[type="checkbox"]:checked')].map((input) => input.value);
+      const relation = document.querySelector('input[name="support-kind"]:checked')?.value || '';
+      if (!supportIds.length) {
         showError('support-error', 'Select at least one supporting statement.');
         return;
       }
+      if (!relation) {
+        showError('support-error', 'Select independent or dependent support.');
+        return;
+      }
       supportNotes[activeSupportId] = {
-        independentIds: uniqueIds(independentIds),
-        dependentIds: uniqueIds(dependentIds),
+        supportIds,
+        supportKind: relation,
         detail: $('support-detail').value.trim()
       };
       telemetry.revisionActions++;
@@ -1509,7 +1143,7 @@
       if (event.key !== 'Tab') return;
       const activeModal = document.querySelector('.modal-backdrop.active .modal');
       if (!activeModal) return;
-      const focusables = [...activeModal.querySelectorAll('button, input, select, textarea, [href], [tabindex]:not([tabindex="-1"])')]
+      const focusables = [...activeModal.querySelectorAll('button, input, textarea, [href], [tabindex]:not([tabindex="-1"])')]
         .filter((el) => !el.disabled && !el.hidden && el.offsetParent !== null);
       if (!focusables.length) return;
       const first = focusables[0];
@@ -1527,7 +1161,6 @@
     $('example-btn').addEventListener('click', loadExample);
     $('clear-btn').addEventListener('click', clearAll);
     $('implicit-btn').addEventListener('click', openImplicitModal);
-    $('health-btn').addEventListener('click', runHealthCheck);
     $('save-implicit-btn').addEventListener('click', saveImplicit);
     $('cancel-implicit-btn').addEventListener('click', () => closeModal('implicit-backdrop'));
     $('save-support-btn').addEventListener('click', saveSupport);
@@ -1538,8 +1171,6 @@
       pendingCopy = false;
       closeModal('confirm-backdrop');
     });
-    $('challenge-load-btn').addEventListener('click', loadChallenge);
-    $('challenge-check-btn').addEventListener('click', checkChallenge);
 
     $('statement-list').addEventListener('input', (event) => {
       const action = event.target.dataset.action;
@@ -1559,14 +1190,6 @@
       if (action === 'delete') deleteUnit(id);
     });
 
-    $('challenge-list').addEventListener('click', (event) => {
-      const button = event.target.closest('button[data-challenge-action]');
-      if (!button) return;
-      if (button.dataset.challengeAction === 'choose') {
-        chooseChallenge(button.dataset.index, button.dataset.choice);
-      }
-    });
-
     document.addEventListener('keydown', (event) => {
       trapFocus(event);
       if (event.key !== 'Escape') return;
@@ -1576,7 +1199,6 @@
 
     setInterval(updateStats, 1000);
     render();
-    renderChallenge();
   </script>
 </body>
 

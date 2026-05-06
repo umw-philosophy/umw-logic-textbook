@@ -1,0 +1,1283 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  Chapter 5 — Informal Fallacies
+  First full draft.
+
+  Scope:
+  - 15 informal fallacies in three groupings: relevance, weak inductive
+    support, presumption.
+  - Each fallacy: name, schematic pattern, real-world political example,
+    why it fails, legitimate cousins where applicable.
+  - Ch. 4 (Language and Meaning) is non-load-bearing per PROJECT_PLAN.md
+    §3, so equivocation is re-introduced here from scratch as a fallacy
+    of relevance (rather than the traditional ambiguity slot — equivocation
+    makes premises non-relevant to the conclusion they appear to support).
+
+  Verification convention:
+  - Direct quotations are flagged with VERIFY comments and source
+    candidates. The lead author must verify before publication.
+  - Real-name attributions describe widely-reported public actions and
+    statements. Footnotes (<fn>) are placeholders to be filled with
+    confirmed citations.
+
+  Voice: matter-of-fact, declarative, second-person where it lands,
+  politically-current examples that don't pull punches but distribute
+  across the political spectrum so the chapter reads as serious analysis
+  rather than partisan tract. Examples drawn from: 2024 election cycle
+  and aftermath, the 2025 Iran conflict, data center politics
+  (especially Virginia), immigration enforcement, tariff/inflation
+  debates, and local Virginia politics.
+-->
+<chapter xmlns:xi="http://www.w3.org/2001/XInclude" xml:id="ch-informal-fallacies">
+
+  <title>Informal Fallacies</title>
+
+  <introduction xml:id="ch-informal-fallacies-intro">
+    <p>
+      <xref ref="ch-evaluating-arguments"/> gave us the standards for
+      evaluating arguments: validity and soundness for deductive
+      arguments, strength and cogency for inductive ones. With those
+      standards in hand, we can describe the most common ways
+      arguments fail. There turn out to be patterns. The same kinds
+      of bad reasoning recur often enough that they have names. The
+      named patterns are called <term>informal fallacies</term>.
+    </p>
+    <p>
+      The word <em>informal</em> matters. The fallacies in this
+      chapter are not failures of formal logic in a precise
+      mathematical sense. They are failures that show up in real
+      arguments built from real prose, where the trouble is usually
+      in how a premise is being deployed rather than in a misapplied
+      rule. Some fallacies make an argument invalid; others make it
+      weak; others smuggle in a premise that the argument hasn't
+      earned. We will sort the fifteen fallacies in this chapter
+      into three groups that map onto those three modes of failure.
+    </p>
+    <p>
+      Two warnings before we begin.
+    </p>
+    <p>
+      First, <q>fallacy</q> is a contested label. Calling an
+      argument fallacious is not the end of an analysis; it is
+      something close to a starting point. Sometimes what looks
+      fallacious is a legitimate move once you see the speaker's
+      full position. Sometimes a careful argument really is making
+      the bad move it appears to make. Several of the fallacies we
+      cover have <em>legitimate cousins</em> — closely related
+      moves that are not fallacies — and we name those where they
+      exist. The label <q>fallacy</q> works best as an invitation to
+      investigate rather than as a verdict.
+    </p>
+    <p>
+      Second, almost every fallacy in this chapter is committed by
+      people across the political spectrum, often by people you
+      otherwise agree with. The examples here reach for clear cases
+      from multiple directions — Republican and Democratic, federal
+      and state, foreign-policy and domestic, recent and ongoing —
+      because the only way to learn to spot fallacies is to learn
+      to spot them <em>everywhere</em>, including in arguments you
+      were inclined to like. Reading carefully through this chapter
+      should leave you a slightly less comfortable consumer of
+      political speech, regardless of where you sit.
+    </p>
+  </introduction>
+
+  <section xml:id="sec-what-is-a-fallacy">
+    <title>What a Fallacy Is and Isn't</title>
+
+    <introduction>
+      <p>
+        A <term>fallacy</term>, as we will use the word, is a
+        recognizable pattern of bad reasoning. <q>Recognizable</q>
+        does the work: a fallacy is a pattern, not a one-off mistake.
+        And <q>bad reasoning</q> is the central claim — a fallacious
+        argument doesn't actually give you good reason to accept its
+        conclusion, even when it sounds like it does.
+      </p>
+    </introduction>
+
+    <paragraphs xml:id="paragraphs-fallacies-and-ch3">
+      <title>How fallacies connect to Chapter 3</title>
+      <p>
+        Each of the three groups in this chapter corresponds to one
+        of the failure modes we identified in
+        <xref ref="ch-evaluating-arguments"/>.
+      </p>
+      <ul>
+        <li>
+          <p>
+            <alert>Fallacies of relevance</alert> involve premises
+            that are not actually relevant to the conclusion, even
+            though they appear to bear on it. The argument is
+            invalid (or, for inductive arguments, weak) because the
+            support relation is illusory. Most of the famous
+            fallacies fall here.
+          </p>
+        </li>
+        <li>
+          <p>
+            <alert>Fallacies of weak inductive support</alert>
+            involve premises that bear on the conclusion but only
+            very weakly. The argument is genuinely inductive, but
+            the strength is poor — too few cases, or the wrong
+            cases, or a causal claim the evidence doesn't license.
+          </p>
+        </li>
+        <li>
+          <p>
+            <alert>Fallacies of presumption</alert> involve premises
+            that smuggle in something the argument hasn't earned —
+            an unstated assumption, a question already answered, a
+            range of options reduced to two. The argument's premises
+            are not innocent.
+          </p>
+        </li>
+      </ul>
+      <p>
+        Each fallacy below is named, sketched in schematic form,
+        illustrated with a real-world example, and diagnosed: <em>why</em>
+        does the move fail? Where there's a legitimate cousin — a
+        close move that isn't fallacious — we name it.
+      </p>
+    </paragraphs>
+  </section>
+
+  <section xml:id="sec-fallacies-of-relevance">
+    <title>Fallacies of Relevance</title>
+
+    <introduction>
+      <p>
+        These fallacies share a structure: a premise that looks
+        relevant to the conclusion isn't. The premise might be
+        about the speaker's character, the audience's emotions, an
+        unrelated authority's opinion, or a misrepresentation of the
+        opposing position. In each case the premise, on inspection,
+        does not bear on whether the conclusion is true.
+      </p>
+    </introduction>
+
+    <paragraphs xml:id="paragraphs-ad-hominem">
+      <title>Ad hominem</title>
+      <example xml:id="ex-ad-hominem-pattern">
+        <title>Ad hominem (relevance)</title>
+        <statement>
+          <p><alert>Pattern.</alert> Speaker A makes argument X. Speaker B responds by attacking A's character, motives, or circumstances rather than by addressing X.</p>
+        </statement>
+      </example>
+      <p>
+        <term>Ad hominem</term> — Latin for <q>to the person</q> —
+        attacks the person making an argument rather than the
+        argument itself. The argument might be a good one or a bad
+        one; the ad hominem move doesn't engage with that question.
+        It tries to discredit the conclusion by discrediting the
+        speaker.
+      </p>
+      <p>
+        Donald Trump's habit of giving political opponents derisive
+        nicknames — <q>Sleepy Joe,</q> <q>Lyin' Ted,</q> <q>Crooked
+        Hillary,</q> <q>Ron DeSanctimonious</q> — is a sustained
+        public exercise in ad hominem.<fn>
+          <!-- VERIFY: extensively documented across reporting in the
+               2016, 2020, and 2024 cycles. Source candidates: NYT
+               coverage of Trump rally rhetoric; Politico's running
+               compilation; Washington Post fact-check archive. -->
+          Sample candidates for citation: extensive contemporaneous
+          coverage in major newspapers across the 2016, 2020, and 2024
+          presidential cycles.
+        </fn> When Trump's response to a substantive policy claim
+        from Joe Biden is to call him <q>Sleepy Joe</q> rather than
+        to address the substance, the response is ad hominem — it
+        attacks the speaker rather than engaging the claim.
+      </p>
+      <p>
+        It's worth saying clearly that this is not a Republican
+        habit specifically. Democrats have run for years on the
+        argument that Donald Trump is personally unfit, dangerous,
+        or temperamentally unstable. Insofar as those arguments are
+        offered as <em>responses to Trump's policy positions</em>
+        rather than as independent character assessments, they are
+        ad hominem in the same sense. The fallacy is the move from
+        <q>person X has these traits</q> to <q>therefore X's
+        argument fails,</q> regardless of whose person is being
+        attacked.
+      </p>
+      <p>
+        Ad hominem comes in several recognized varieties:
+        <em>abusive</em> (insulting the person), <em>circumstantial</em>
+        (attacking on the basis of the person's circumstances or
+        interests — <q>of course she's for the data center; her
+        district will get the tax revenue</q>), and <em>tu quoque</em>
+        (<q>you-too</q> — <q>you can't accuse me of corruption,
+        you've done it yourself</q>). All three share the
+        structural defect of substituting an attack on the speaker
+        for engagement with the argument. We will not test on the
+        subdivisions; the underlying move is what matters.
+      </p>
+      <p>
+        <alert>Legitimate cousin.</alert> Pointing out a relevant
+        conflict of interest is not always ad hominem. If a senator
+        argues for a tax break that would personally enrich their
+        family, the conflict-of-interest disclosure is a relevant
+        consideration, not just a personal attack — it bears on the
+        likely motive and reliability of the argument. The line
+        between fair disclosure and ad hominem is whether the
+        attack is being used to <em>dismiss the argument</em> or to
+        <em>contextualize the speaker</em>. If the senator's
+        argument is good, the conflict of interest doesn't make it
+        bad. If it's bad, the conflict explains why it might have
+        been offered anyway.
+      </p>
+    </paragraphs>
+
+    <paragraphs xml:id="paragraphs-appeal-to-emotion">
+      <title>Appeal to emotion</title>
+      <example xml:id="ex-appeal-to-emotion-pattern">
+        <title>Appeal to emotion (relevance)</title>
+        <statement>
+          <p><alert>Pattern.</alert> Argument: P makes you feel a strong emotion. Therefore Q.</p>
+        </statement>
+      </example>
+      <p>
+        An <term>appeal to emotion</term> tries to secure the
+        conclusion by stirring up feeling — fear, pity, anger,
+        patriotic fervor — rather than by giving reasons that bear
+        on the conclusion. Emotion can accompany good argument; the
+        fallacy is when it <em>substitutes</em> for it.
+      </p>
+      <p>
+        After the U.S. and Israel struck Iranian nuclear facilities
+        in June 2025, supporters of further escalation argued that
+        the strikes had to continue because <q>we cannot let Iran
+        get a nuclear weapon while our children sleep at
+        night.</q><fn>
+          <!-- VERIFY: paraphrase capturing the rhetorical shape of
+               escalation arguments after Operation [name to verify]
+               in June 2025. Sources: NYT, AP, Reuters reporting
+               on congressional reaction; statements from Senate
+               and House leaders. -->
+          Placeholder for confirmed quotation and source from
+          contemporaneous coverage of June 2025 strike reactions.
+        </fn> The conclusion — that further escalation was the right
+        course — does not follow from <q>your children's safety
+        feels like it depends on this.</q> Whether continued strikes
+        actually reduce the long-term risk of an Iranian nuclear
+        weapon, or instead increase it (by accelerating Iranian
+        program reconstitution, by spurring proliferation elsewhere,
+        by drawing the U.S. into a broader war), is a strategic
+        question the emotional appeal does not engage.
+      </p>
+      <p>
+        Pity-based appeals are equally common. Arguments about
+        immigration enforcement frequently lean on the emotional
+        force of family-separation footage on one side, and the
+        emotional force of victims of crimes committed by
+        unauthorized immigrants on the other. Both kinds of appeal
+        can carry real weight as a starting point — the human stakes
+        are real — but neither, by itself, settles policy. The
+        question is what enforcement regime would produce the best
+        outcomes for the people involved, and that question requires
+        argument that is not exhausted by either set of stories.
+      </p>
+      <p>
+        <alert>Legitimate cousin.</alert> Emotion is not banned from
+        argument. A premise that includes an emotional dimension —
+        <q>this policy causes serious suffering</q> — can be a real
+        premise. The fallacy is in <em>replacing</em> the argument
+        with feeling, not in including feeling among the
+        considerations.
+      </p>
+    </paragraphs>
+
+    <paragraphs xml:id="paragraphs-appeal-to-popularity">
+      <title>Appeal to popularity</title>
+      <example xml:id="ex-appeal-to-popularity-pattern">
+        <title>Appeal to popularity (relevance)</title>
+        <statement>
+          <p><alert>Pattern.</alert> Most people believe P. Therefore P.</p>
+        </statement>
+      </example>
+      <p>
+        An <term>appeal to popularity</term> (sometimes called
+        <em>argumentum ad populum</em> or the <em>bandwagon</em>
+        fallacy) argues that a claim is true because many people
+        believe it, or that an action is right because many people
+        do it. What people believe and what is true can come apart;
+        what people do and what is justified can come apart.
+      </p>
+      <p>
+        Inflation discourse in the 2024 cycle was often argued this
+        way: <q>most Americans say the economy is bad, so the
+        economy is bad.</q> Polling about public perception of the
+        economy is real evidence about <em>perception</em>, but
+        perception and reality can diverge — wages, employment,
+        prices, and growth rates are independent measurements that
+        can move in different directions from public mood. The
+        same fallacy worked the other way during the Biden
+        administration's defense of the recovery: <q>the underlying
+        numbers are good, so people are wrong to feel bad about the
+        economy.</q> Both moves treat one kind of evidence as
+        settling the other. They don't.
+      </p>
+      <p>
+        <alert>Legitimate cousin.</alert> Polls of expert opinion
+        are different from polls of public opinion. <q>97% of
+        climate scientists agree that human activity is the primary
+        driver of recent warming</q> is not an appeal to popularity
+        in the fallacious sense — the scientists are the relevant
+        epistemic community for the question, and their convergence
+        is real evidence. The appeal-to-popularity fallacy is when
+        the popularity is among people whose views are not
+        specifically reliable on the question, or when the
+        popularity is being used to settle a question of fact rather
+        than a question of public sentiment.
+      </p>
+    </paragraphs>
+
+    <paragraphs xml:id="paragraphs-appeal-to-authority">
+      <title>Appeal to (illegitimate) authority</title>
+      <example xml:id="ex-appeal-to-authority-pattern">
+        <title>Appeal to authority (relevance, when illegitimate)</title>
+        <statement>
+          <p><alert>Pattern.</alert> Authority A says P. Therefore P. (Where A's authority does not actually extend to whether P is true.)</p>
+        </statement>
+      </example>
+      <p>
+        Citing an <term>authority</term> in support of a claim is
+        not always fallacious. The fallacy comes in when the cited
+        authority is not genuinely authoritative on the question at
+        hand.
+      </p>
+      <p>
+        Celebrity endorsements offer a clean case. When a recording
+        artist endorses a presidential candidate's economic
+        platform, the endorsement is news but not an argument; the
+        artist's authority does not extend to fiscal policy. The
+        same goes the other way: a tech CEO's pronouncement that a
+        social policy is or is not workable is not, by itself,
+        evidence about the social policy. Elon Musk's frequent
+        public arguments about subjects from immigration to
+        federal spending to vaccine policy are extensively reported
+        but are mostly authority-by-platform, not authority-by-expertise.<fn>
+          <!-- VERIFY: extensively documented in coverage of
+               Musk's X posts and public statements, particularly
+               2023–2025. Sources: NYT, Wired, the Atlantic. -->
+          Placeholder for confirmed citations from 2023–2025
+          coverage of Musk's public political statements.
+        </fn>
+      </p>
+      <p>
+        The fallacy is more dangerous when it is more subtle. A
+        retired general is a real authority on military matters —
+        but not necessarily on the broader political question of
+        whether a war should be fought. An economist may be
+        authoritative on inflation dynamics but not on whether
+        inflation is a more or less important political problem
+        than unemployment. The transition from authority within a
+        field to authority on the political question that touches
+        the field is the move to watch for.
+      </p>
+      <p>
+        <alert>Legitimate cousin.</alert> Genuine appeal to
+        authority is a regular and necessary part of reasoning.
+        Most of what any of us know about science, history, and law
+        comes through authority. The legitimate version cites an
+        authority who is (i) actually expert in the relevant
+        domain, (ii) speaking within that domain, and (iii) part of
+        a broader expert consensus rather than an outlier. Where
+        any of those conditions fails, the appeal becomes
+        fallacious.
+      </p>
+    </paragraphs>
+
+    <paragraphs xml:id="paragraphs-straw-person">
+      <title>Straw person</title>
+      <example xml:id="ex-straw-person-pattern">
+        <title>Straw person (relevance)</title>
+        <statement>
+          <p><alert>Pattern.</alert> Speaker A has position P. Speaker B describes A as having position P′ (a weakened or distorted version of P). B argues against P′ and concludes A is wrong.</p>
+        </statement>
+      </example>
+      <p>
+        A <term>straw person</term> argument misrepresents the
+        opponent's position so that the misrepresentation is easier
+        to attack than the actual position. The opponent never held
+        the weakened version. The attack is real but the target is
+        a fabrication. (The traditional name for the fallacy is
+        <em>straw man</em>; we use <em>straw person</em> to make the
+        gendering go away without changing the meaning.)
+      </p>
+      <p>
+        The Virginia debate over data centers is rich in straw
+        person arguments. Loudoun County and Prince William County
+        residents who oppose particular data center developments
+        have generally argued for stricter siting requirements,
+        impact assessments, and rate protections for residential
+        electricity customers. Industry advocates and county
+        officials have sometimes responded as if the residents were
+        arguing against data centers <em>generally</em> — as if any
+        siting concern were a demand to ban the industry. The
+        actual position is much narrower than the version being
+        attacked. The reverse also happens: opponents sometimes
+        characterize industry's position as <q>data centers anywhere
+        the developers want them, regardless of cost,</q> when the
+        actual industry position is closer to <q>data centers
+        within the existing approval framework, with negotiated
+        local accommodations.</q>
+      </p>
+      <p>
+        Federal-level immigration debate is the same pattern at
+        scale. Restrictionists are sometimes characterized as
+        wanting to deport every unauthorized immigrant including
+        long-resident families with citizen children; that
+        characterization fits some restrictionists but not most.
+        Reformers are sometimes characterized as wanting <q>open
+        borders</q>; this characterization fits almost no one,
+        including the most progressive immigration advocates, who
+        almost universally endorse some kind of border enforcement
+        regime. In both directions, the straw person makes the
+        opponent's position look monstrous and easy to refute,
+        which is exactly its function.
+      </p>
+      <p>
+        <alert>How to spot it.</alert> When you see an argument
+        attacking position P held by group G, ask: is this what G
+        actually says? Or is this what G's opponents <em>say</em> G
+        says? The principle of charity from
+        <xref ref="sec-reconstruction-standard-form"/> is the
+        positive version of avoiding the straw person: when
+        reconstructing an opponent's argument, build the strongest
+        version they could plausibly hold.
+      </p>
+    </paragraphs>
+
+    <paragraphs xml:id="paragraphs-red-herring">
+      <title>Red herring</title>
+      <example xml:id="ex-red-herring-pattern">
+        <title>Red herring (relevance)</title>
+        <statement>
+          <p><alert>Pattern.</alert> Speaker A raises issue X. Speaker B responds by shifting to issue Y, which is more comfortable for B and unrelated or only loosely related to X. The shift is presented as if it answered X.</p>
+        </statement>
+      </example>
+      <p>
+        A <term>red herring</term> is a deliberate or accidental
+        change of subject that distracts from the original
+        question. The name comes from the practice (real or
+        legendary) of dragging a smoked herring across a trail to
+        throw a pursuing dog off the scent.
+      </p>
+      <p>
+        The 2025 ICE raids in cities including Los Angeles,
+        Chicago, and parts of northern Virginia produced widely
+        reported incidents of detentions of U.S. citizens, of
+        long-resident immigrants without criminal records, and of
+        people picked up at workplaces or schools. When asked
+        directly about specific incidents — for example, the
+        detention of a citizen — administration officials have
+        regularly redirected to discussion of border crossing
+        statistics, fentanyl deaths, or crimes committed by
+        unauthorized immigrants in unrelated states.<fn>
+          <!-- VERIFY: pattern documented in press conferences and
+               television interviews throughout 2025. Sources:
+               cable news transcripts, AP coverage of DHS press
+               briefings, transcripts from Senate Judiciary
+               hearings. -->
+          Placeholder for confirmed citations from contemporaneous
+          interviews and briefings.
+        </fn> The redirection is a red herring: it shifts to topics
+        on which the administration has prepared talking points,
+        away from the specific incident that was actually asked
+        about.
+      </p>
+      <p>
+        Red herrings are not partisan. Pressed on inflation
+        outcomes during the Biden administration, communications
+        staff frequently redirected to job-creation statistics —
+        often genuinely impressive — that did not address the
+        specific question about price increases that was being
+        asked. The shift was the same kind of move: change the
+        subject to one where the answer is more flattering.
+      </p>
+      <p>
+        <alert>How to spot it.</alert> Compare the question to the
+        answer. If the answer is responsive — even unflatteringly
+        — it isn't a red herring. If the answer addresses something
+        related but materially different, the move is fallacious.
+        Practiced politicians do this so smoothly that the audience
+        often doesn't notice; learning to notice is one of the
+        practical payoffs of this chapter.
+      </p>
+    </paragraphs>
+
+    <paragraphs xml:id="paragraphs-equivocation">
+      <title>Equivocation</title>
+      <example xml:id="ex-equivocation-pattern">
+        <title>Equivocation (relevance)</title>
+        <statement>
+          <p><alert>Pattern.</alert> An argument uses a single term in two or more distinct senses across its premises and conclusion. The structure looks valid because the same word appears throughout, but the inference fails because the meanings shift.</p>
+        </statement>
+      </example>
+      <p>
+        <term>Equivocation</term> is grouped here with relevance
+        fallacies because, although it appears to be about
+        language, its argumentative effect is to make a premise
+        non-relevant to the conclusion. The premise as stated
+        (under one meaning of the shifting term) does not actually
+        bear on the conclusion (under the other meaning).
+      </p>
+      <p>
+        <q>Free speech</q> debates produce textbook equivocations.
+        A common form: <q>Free speech is a constitutional right.
+        Banning a speaker from this private platform attacks free
+        speech. Therefore the platform is violating the
+        Constitution.</q> The constitutional right to free speech,
+        as the courts have consistently interpreted it, restricts
+        government action; it does not bind private companies. The
+        broader sense of <q>free speech</q> as a cultural value
+        without legal force is what's at issue when a private
+        platform makes moderation decisions. The argument
+        equivocates between the legal sense (in the first premise)
+        and the cultural sense (in the second), producing a
+        conclusion the legal sense doesn't license.
+      </p>
+      <p>
+        <q>Patriotism</q> is another reliable site for
+        equivocation. <q>Patriotism is loving your country.
+        Supporting the troops is patriotic. Therefore loving your
+        country requires supporting whatever military action the
+        troops are engaged in.</q> The first sentence's
+        <q>patriotism</q> is a general affectionate stance toward
+        one's country. The second's is much narrower — a specific
+        political stance about military policy. The third smuggles
+        the narrower into the general. The argument equivocates,
+        and its conclusion is much stronger than the first premise
+        will support.
+      </p>
+      <p>
+        <alert>How to spot it.</alert> When a key term appears more
+        than once in an argument, write each appearance out with a
+        gloss in your own words. If the glosses are different, the
+        argument equivocates. The two arguments above can each be
+        defused immediately by glossing <q>free speech</q> or
+        <q>patriotism</q> at each appearance.
+      </p>
+    </paragraphs>
+  </section>
+
+  <section xml:id="sec-fallacies-of-weak-induction">
+    <title>Fallacies of Weak Inductive Support</title>
+
+    <introduction>
+      <p>
+        These fallacies share a feature: the premises do bear on
+        the conclusion, but only weakly. The reasoning is
+        recognizably inductive — it tries to make the conclusion
+        more likely, not to guarantee it — and it fails not because
+        the relevance is illusory but because the support is too
+        thin for the weight the conclusion is being asked to carry.
+      </p>
+    </introduction>
+
+    <paragraphs xml:id="paragraphs-hasty-generalization">
+      <title>Hasty generalization</title>
+      <example xml:id="ex-hasty-generalization-pattern">
+        <title>Hasty generalization (weak induction)</title>
+        <statement>
+          <p><alert>Pattern.</alert> A handful of cases (or one case) of property P are observed. The argument concludes that the property holds generally.</p>
+        </statement>
+      </example>
+      <p>
+        A <term>hasty generalization</term> draws a sweeping
+        conclusion from too few cases, or from cases too unlike the
+        broader population the conclusion is supposed to cover.
+      </p>
+      <p>
+        The 2025 ICE raids included widely reported incidents of
+        agents detaining U.S. citizens, agents conducting violent
+        arrests outside schools, and agents wearing masks while
+        making arrests. Each of those incidents is real and
+        documented; each is a serious problem. But arguments of the
+        form <q>these incidents prove ICE is uniformly abusive</q>
+        are hasty generalizations. The cases are not nothing — they
+        are evidence of something real about training, oversight,
+        and chain of command — but moving from a published list of
+        incidents to a uniform claim about every agent or every
+        operation overshoots the evidence.
+      </p>
+      <p>
+        The reverse error is just as common. <q>Most ICE agents do
+        their jobs professionally without violating anyone's
+        rights, so the documented abuse cases must be overblown</q>
+        is also a hasty generalization, in the other direction.
+        That most agents are professional does not show that the
+        documented abuses are not happening; it just shows that
+        they are not universal. Generalizing in either direction
+        from the available evidence ignores that the actual question
+        is statistical: what fraction of operations involve abuses,
+        what kinds of operations, and under what conditions.
+      </p>
+      <p>
+        We will get the formal tools for handling this kind of
+        evidence in Part IV, where statistical inference is the
+        whole point. For now, the lesson is to notice when
+        argumentative weight is being put on a small or unsystematic
+        set of cases.
+      </p>
+    </paragraphs>
+
+    <paragraphs xml:id="paragraphs-false-cause">
+      <title>False cause</title>
+      <example xml:id="ex-false-cause-pattern">
+        <title>False cause (weak induction)</title>
+        <statement>
+          <p><alert>Pattern.</alert> Event A occurred before event B. The argument concludes that A caused B. (Or, weaker, A is correlated with B; therefore A caused B.)</p>
+        </statement>
+      </example>
+      <p>
+        A <term>false cause</term> fallacy infers a causal
+        relationship from what is at most a temporal or
+        correlational one. The Latin name <em>post hoc ergo propter
+        hoc</em> — <q>after this, therefore because of this</q> —
+        captures the temporal version: B happened after A, so A
+        caused B.
+      </p>
+      <p>
+        Tariff politics in 2025 produced a steady stream of false
+        cause inferences. When manufacturing employment ticked up
+        in the months following new tariffs, the administration
+        argued that the tariffs caused the increase.<fn>
+          <!-- VERIFY: pattern documented across White House press
+               releases and presidential statements through 2025.
+               Sources: BLS data; NYT, WSJ, Axios coverage of
+               manufacturing employment trends. -->
+          Placeholder for confirmed citations from BLS releases and
+          contemporaneous administration statements.
+        </fn> When manufacturing employment ticked down, opponents
+        argued that the tariffs caused the decrease. Both
+        inferences run ahead of the evidence: manufacturing
+        employment moves in response to many factors at once
+        (interest rates, currency movements, demand cycles,
+        sector-specific shocks), and isolating the tariff
+        contribution requires more than noting a temporal sequence.
+        The actual causal question is hard, and harder than the
+        partisan headlines on either side admit.
+      </p>
+      <p>
+        Data center politics offer a local version. After a
+        substation in northern Virginia experienced load problems,
+        opponents of data center expansion argued that the data
+        centers caused the problem. Industry defenders argued that
+        the substation was already aging and would have failed
+        regardless. Both can be partially right; figuring out the
+        actual causal contribution is genuine engineering work.
+        The fallacy is in skipping the engineering work and going
+        straight from <q>this happened around the same time</q> to
+        <q>this caused that.</q>
+      </p>
+    </paragraphs>
+
+    <paragraphs xml:id="paragraphs-slippery-slope">
+      <title>Slippery slope</title>
+      <example xml:id="ex-slippery-slope-pattern">
+        <title>Slippery slope (weak induction)</title>
+        <statement>
+          <p><alert>Pattern.</alert> If we permit modest action A, then more extreme action A′ becomes likely; A′ would be unacceptable; therefore we should not permit A. (The argument fails when the chain from A to A′ is not actually likely, or when the intermediate steps are themselves contested.)</p>
+        </statement>
+      </example>
+      <p>
+        A <term>slippery slope</term> argument claims that a modest
+        first step will lead, by some causal or psychological chain,
+        to an extreme outcome. The slope is fallacious when the
+        chain is not actually well-supported — when the argument
+        relies on a parade of horribles that don't follow from the
+        first step.
+      </p>
+      <p>
+        Gun policy debate is the canonical site. Arguments that any
+        modest restriction on firearm ownership — universal
+        background checks, limits on certain accessories, age
+        requirements — will inevitably lead to confiscation of all
+        firearms recur in every legislative cycle.<fn>
+          <!-- VERIFY: pattern documented across NRA materials,
+               GOP legislator statements, and conservative media
+               commentary across multiple cycles. -->
+          Placeholder for confirmed citations.
+        </fn> The empirical record does not support the chain: many
+        states and countries have implemented modest restrictions
+        without subsequently confiscating firearms generally. The
+        slope is not in fact slippery in the way the argument
+        requires.
+      </p>
+      <p>
+        Immigration debate produces the parallel slope from the
+        other direction: any path to legalization for long-resident
+        unauthorized immigrants will produce a flood of new
+        unauthorized immigration, will erode the rule of law, and
+        will eventually destabilize the country. Each step in the
+        chain is contested, and the cumulative inference treats a
+        narrow policy choice (legalization for a specific cohort)
+        as if it entailed a much broader transformation. As with
+        the gun-policy slope, modest reforms have happened in many
+        places without producing the predicted catastrophic chain.
+      </p>
+      <p>
+        <alert>Legitimate cousin.</alert> Some causal chains are
+        real, and arguing about them is not fallacious. <q>If we
+        normalize the use of mass surveillance for one purpose, the
+        infrastructure will be available for other purposes</q> is
+        a genuine concern, not a slippery slope, because the
+        technical infrastructure is itself the link. The fallacy
+        appears when the chain from A to A′ depends on
+        psychological or political claims that are not actually
+        established.
+      </p>
+    </paragraphs>
+
+    <paragraphs xml:id="paragraphs-weak-analogy">
+      <title>Weak analogy</title>
+      <example xml:id="ex-weak-analogy-pattern">
+        <title>Weak analogy (weak induction)</title>
+        <statement>
+          <p><alert>Pattern.</alert> X has property P. Y is like X. Therefore Y has property P. (The argument fails when the relevant similarity between X and Y is too weak to support the inference.)</p>
+        </statement>
+      </example>
+      <p>
+        A <term>weak analogy</term> argues from a comparison whose
+        relevant similarity is not strong enough to support the
+        inference. Analogies are useful for explanation and often
+        for generating hypotheses, but they support conclusions
+        only to the degree that the cases compared are alike in
+        the ways that matter for the conclusion.
+      </p>
+      <p>
+        Comparisons of recent U.S. presidents to historical
+        dictators — from either side of the partisan aisle — are
+        almost always weak analogies. Trump has been compared to
+        Mussolini, Hitler, and Stalin in various forms; Biden,
+        Obama, and Harris have been compared to Stalin, Mao, and
+        Castro in others. The actual political systems, historical
+        contexts, institutional structures, and recorded actions of
+        the figures being compared are wildly different. The
+        comparisons borrow the moral force of their referent
+        without earning it through any genuine structural
+        similarity. The inference of the form <q>that figure was
+        evil; this figure is like that figure; therefore this
+        figure is evil</q> is a textbook weak analogy.
+      </p>
+      <p>
+        Foreign-policy debate runs on weak analogies. Iran in 2025
+        is not 2003 Iraq, but the comparison gets made constantly;
+        Iran is also not 1938 Germany, but that comparison gets
+        made too, especially in arguments for preemptive action.
+        Each comparison borrows from a famous historical episode
+        without doing the work of showing that the relevant
+        features carry over.
+      </p>
+      <p>
+        <alert>Legitimate cousin.</alert> Strong analogies — where
+        the cases really are alike in the ways that matter — are
+        legitimate evidence. <q>This bridge has the same design as
+        another bridge that failed under similar load</q> is a
+        strong analogy because the relevant feature (design under
+        load) is exactly the feature being compared. Most political
+        analogies are not like this.
+      </p>
+    </paragraphs>
+  </section>
+
+  <section xml:id="sec-fallacies-of-presumption">
+    <title>Fallacies of Presumption</title>
+
+    <introduction>
+      <p>
+        These fallacies share a structural feature: the argument
+        smuggles in something it has not earned. The smuggled
+        material might be the conclusion itself (begging the
+        question), an answer to a question that hasn't been
+        addressed (complex question), an artificial reduction of
+        the option space (false dichotomy), or evidence that
+        contradicts the conclusion (suppressed evidence). In each
+        case the argument's premises are not innocent.
+      </p>
+    </introduction>
+
+    <paragraphs xml:id="paragraphs-begging-the-question">
+      <title>Begging the question</title>
+      <example xml:id="ex-begging-the-question-pattern">
+        <title>Begging the question (presumption)</title>
+        <statement>
+          <p><alert>Pattern.</alert> The argument's conclusion is, in different words, one of its premises. The argument is circular.</p>
+        </statement>
+      </example>
+      <p>
+        <term>Begging the question</term> — also called
+        <em>circular reasoning</em> or <em>petitio principii</em> —
+        offers as a premise the very conclusion the argument is
+        supposed to support. The argument moves nowhere, even
+        though it appears to.
+      </p>
+      <p>
+        Note that in everyday speech <q>begs the question</q> is
+        often used to mean <q>raises the question</q> or <q>invites
+        the question.</q> That's not what we mean here. Logical
+        question-begging is a specific structural defect:
+        circularity.
+      </p>
+      <p>
+        Religious and moral debates produce question-begging
+        regularly because the conclusions involved are exactly the
+        ones the parties disagree about. <q>The Bible is the word
+        of God because the Bible says it is the word of God</q>
+        begs the question. <q>Abortion is wrong because killing
+        innocent human beings is wrong, and a fetus is an innocent
+        human being</q> can beg the question, depending on what
+        the parties to the dispute mean by <q>innocent human
+        being</q> — if the disputed issue is precisely whether a
+        fetus counts as one, then asserting that it does as a
+        premise smuggles in the answer to the question at issue.
+      </p>
+      <p>
+        Political slogans often have a question-begging structure
+        even when their first premise looks substantive. <q>America
+        first, because America's interests come first</q> repeats
+        itself. <q>The party of the working class supports working
+        people, so working people should support the party</q>
+        embeds the conclusion in its first premise. The hard work
+        in any of those sentences happens before the inference,
+        not in it.
+      </p>
+    </paragraphs>
+
+    <paragraphs xml:id="paragraphs-false-dichotomy">
+      <title>False dichotomy</title>
+      <example xml:id="ex-false-dichotomy-pattern">
+        <title>False dichotomy (presumption)</title>
+        <statement>
+          <p><alert>Pattern.</alert> The argument presents two options as if they were the only options. It then rules one out and concludes the other. (The disjunction is in fact false: there are additional options.)</p>
+        </statement>
+      </example>
+      <p>
+        A <term>false dichotomy</term> (also called a <em>false
+        dilemma</em> or the <em>black-and-white fallacy</em>)
+        artificially reduces a range of options to two, then argues
+        from the disjunction. The argument's structure is a
+        disjunctive syllogism (which we met as a valid form in
+        <xref ref="paragraphs-ds"/>); the fallacy is in the first
+        premise, which is false because the actual option space is
+        larger.
+      </p>
+      <p>
+        The Iran strike debate produced false dichotomies in
+        abundance. <q>Either we strike Iran's nuclear facilities or
+        we let them get a nuclear weapon</q> presented the choice
+        as binary. The actual policy space at the time included
+        sanctions regimes of various intensity, ongoing IAEA
+        inspections, regional security arrangements, negotiation
+        through European and Gulf intermediaries, and several other
+        kinetic options short of a sustained strike campaign.
+        Reducing all of that to two options made the conclusion
+        feel forced; in reality it was one option among many.
+      </p>
+      <p>
+        Trump-era political rhetoric is full of false dichotomies
+        of the form <q>you are with us or you are with the
+        enemy.</q> The Bush administration ran the same fallacy in
+        2001 and 2002. Similar dichotomies appear from the left:
+        <q>you are an antiracist or you are a racist</q> presented
+        as forcing a binary choice obscures a real space of
+        positions a thoughtful person can hold. The fallacy is
+        bipartisan because the rhetorical move it enables is
+        powerful: forcing a binary makes the speaker's preferred
+        conclusion seem like the only option.
+      </p>
+      <p>
+        <alert>How to spot it.</alert> When an argument presents an
+        either/or, ask whether the disjunction is exhaustive. If
+        you can name a third option that fits the situation, the
+        argument has presented a false dichotomy. The valid form of
+        disjunctive syllogism requires the disjunction to be
+        actually exhaustive; smuggling in a non-exhaustive
+        disjunction is the fallacy.
+      </p>
+    </paragraphs>
+
+    <paragraphs xml:id="paragraphs-complex-question">
+      <title>Complex (loaded) question</title>
+      <example xml:id="ex-complex-question-pattern">
+        <title>Complex question (presumption)</title>
+        <statement>
+          <p><alert>Pattern.</alert> A question is asked that presupposes a contested claim. Answering the question — even denying its surface content — concedes the presupposition.</p>
+        </statement>
+      </example>
+      <p>
+        A <term>complex question</term> (also called a <em>loaded
+        question</em>) is a question that presupposes something
+        contested. The classic schoolyard example is <q>have you
+        stopped beating your spouse?</q>: both <q>yes</q> and
+        <q>no</q> concede that you were once beating your spouse.
+        The fallacy is in the question's setup, not in the answer.
+      </p>
+      <p>
+        Cable news interviews are a steady source. <q>When did the
+        senator decide to put corporate donors ahead of
+        constituents?</q> presupposes that the senator did so. <q>Why
+        does the administration tolerate this level of crime?</q>
+        presupposes that the level of crime is what the speaker
+        claims and that the administration is tolerating it.
+        Politicians are usually trained to refuse the
+        presupposition rather than answer the surface question, and
+        that refusal is sometimes itself reported as evasion. The
+        only way to win is not to play.
+      </p>
+      <p>
+        Polling produces complex questions inadvertently and
+        deliberately. A poll question of the form <q>do you
+        approve of the president's failed handling of inflation?</q>
+        presupposes that the handling has failed; respondents who
+        disagree with that characterization don't have a clean
+        answer to the surface question. Respectable polling avoids
+        these constructions; less respectable polling weaponizes
+        them. Both happen.
+      </p>
+      <p>
+        <alert>How to spot it.</alert> When you see a question, ask
+        what claims would have to be true for the question to be
+        well-formed. If those claims are themselves contested, the
+        question is presuming what it should be asking.
+      </p>
+    </paragraphs>
+
+    <paragraphs xml:id="paragraphs-suppressed-evidence">
+      <title>Suppressed evidence</title>
+      <example xml:id="ex-suppressed-evidence-pattern">
+        <title>Suppressed evidence (presumption)</title>
+        <statement>
+          <p><alert>Pattern.</alert> An argument cites evidence in support of its conclusion while omitting evidence that bears against the conclusion. The omission misrepresents the actual state of the evidence.</p>
+        </statement>
+      </example>
+      <p>
+        A <term>suppressed evidence</term> fallacy is a kind of
+        cherry-picking: evidence that supports the conclusion is
+        presented; evidence that undermines it is left out. The
+        argument's premises, taken alone, look strong. With the
+        omitted evidence restored, they don't.
+      </p>
+      <p>
+        Both parties run these arguments on economic data. During
+        the Biden administration, communications staff cited
+        record job creation while saying less about real wage
+        growth and price levels for goods that consumers buy
+        frequently. During the second Trump administration,
+        tariff-friendly statements have cited specific
+        manufacturing reshoring announcements while saying less
+        about retaliatory tariffs against U.S. exporters or
+        about the consumer-side cost effects of the tariffs
+        themselves. Each set of statements is technically accurate
+        about what it covers; each leaves out evidence that, if
+        included, would significantly weaken the conclusion the
+        statements are aimed at.
+      </p>
+      <p>
+        Suppressed evidence arguments are most insidious in
+        contexts where the audience does not have ready access to
+        the omitted evidence. A politician arguing about a defense
+        program, a regulator arguing about a chemical exposure, a
+        scientist arguing about a clinical trial — each has access
+        to evidence the audience does not, and the temptation to
+        present only the favorable subset is structural.
+      </p>
+      <p>
+        <alert>How to spot it.</alert> Two heuristics. First, ask
+        what evidence would tend to weaken the conclusion if it
+        were true; then ask whether you have heard about it. If
+        not, that's worth investigating. Second, consider the
+        argument's source: a political campaign, an industry
+        lobbying group, an advocacy organization, or a partisan
+        publication has obvious incentives to suppress evidence.
+        The presence of those incentives is not proof of
+        suppression, but it is a reason to look harder.
+      </p>
+    </paragraphs>
+  </section>
+
+  <section xml:id="sec-fallacies-where-headed">
+    <title>Where We're Headed</title>
+
+    <introduction>
+      <p>
+        We have surveyed fifteen patterns of bad reasoning, sorted
+        by how they fail. Three points are worth making before we
+        move on.
+      </p>
+    </introduction>
+
+    <paragraphs xml:id="paragraphs-fallacy-recap">
+      <title>What this chapter gave us</title>
+      <p>
+        First, the named fallacies are tools, not verdicts.
+        Identifying an argument as committing a fallacy is the
+        beginning of careful engagement, not the end. A charge of
+        ad hominem invites the response: <q>was the criticism of
+        the speaker actually relevant to the speaker's reliability
+        on this question?</q> A charge of slippery slope invites:
+        <q>is the chain from A to A′ actually well-supported?</q>
+        Naming the fallacy makes the conversation more precise. It
+        does not shut the conversation down.
+      </p>
+      <p>
+        Second, almost every fallacy in this chapter has a
+        legitimate cousin — a closely related move that is not
+        fallacious. Conflict-of-interest disclosure is not ad
+        hominem. Citing actual experts is not appeal to
+        illegitimate authority. Real causal chains are not slippery
+        slopes. Strong analogies are not weak analogies. The
+        skill is being able to tell the legitimate move from the
+        fallacious one, and that skill takes practice.
+      </p>
+      <p>
+        Third, fallacies are committed by people across the
+        political spectrum. The examples in this chapter were drawn
+        from Republican and Democratic politicians, federal and
+        state policy debates, foreign and domestic issues,
+        deliberately. The fallacies are not the property of one
+        political tendency. Anyone who tells you that one party or
+        movement reasons fallaciously while another reasons clearly
+        is themselves committing a fallacy of one kind or another.
+      </p>
+    </paragraphs>
+
+    <paragraphs xml:id="paragraphs-fallacies-pivot">
+      <title>What's coming</title>
+      <p>
+        The next part of the book turns to formal logic.
+        <em>Categorical logic</em> in Part II will give us Venn
+        diagrams as a procedure for evaluating arguments built from
+        category statements. <em>Sentential logic</em> in Part III
+        will give us truth tables and natural deduction for
+        arguments built from compound propositions. <em>Statistical
+        reasoning</em> in Part IV will give us the formal tools for
+        evaluating the inductive arguments that Chapter 3's
+        strength evaluation pointed at — and the tools for
+        diagnosing the fallacies of weak induction we just walked
+        through.
+      </p>
+      <p>
+        Part I, which closes here, has been the informal-logic spine
+        of the book. The skills of recognition (Chapter 1),
+        reconstruction (Chapter 2), evaluation (Chapter 3), and
+        fallacy-spotting (Chapter 5) all run on the same underlying
+        commitment: that good reasoning is worth taking seriously,
+        that bad reasoning is worth recognizing, and that the
+        difference between them is not always obvious until you
+        have practiced.
+      </p>
+    </paragraphs>
+  </section>
+
+  <exercises xml:id="exercises-ch5">
+    <title>End-of-Chapter Exercises</title>
+
+    <exercisegroup xml:id="exgroup-ch5-s01">
+      <title>Exercise Set 1: Identifying Fallacies of Relevance</title>
+      <introduction>
+        <p>
+          For each passage, identify the fallacy of relevance being
+          committed and explain briefly why the argument fails.
+        </p>
+      </introduction>
+      <exercise xml:id="ex-ch5-s01-01">
+        <statement>
+          <p>You can't take Senator Carter's argument about climate policy seriously. She drives a gas-powered SUV.</p>
+        </statement>
+      </exercise>
+      <exercise xml:id="ex-ch5-s01-02">
+        <statement>
+          <p>Most Americans say they want lower taxes. So lowering taxes is the right policy.</p>
+        </statement>
+      </exercise>
+      <exercise xml:id="ex-ch5-s01-03">
+        <statement>
+          <p>If we don't act now, your children will grow up in a country we no longer recognize. So we have to pass this bill.</p>
+        </statement>
+      </exercise>
+      <exercise xml:id="ex-ch5-s01-04">
+        <statement>
+          <p>The opposition wants stronger background checks for firearm purchases. They want to disarm law-abiding Americans. We should reject their proposal.</p>
+        </statement>
+      </exercise>
+      <exercise xml:id="ex-ch5-s01-05">
+        <statement>
+          <p>Reporter: Senator, your office's records show you accepted a donation that may have violated state ethics rules. Senator: Look, the real story here is the way the previous administration left this state in a fiscal crisis.</p>
+        </statement>
+      </exercise>
+      <exercise xml:id="ex-ch5-s01-06">
+        <statement>
+          <p>Freedom is the most American of values. The Constitution protects freedom. So criminalizing the public release of any information must be unconstitutional.</p>
+        </statement>
+      </exercise>
+    </exercisegroup>
+
+    <exercisegroup xml:id="exgroup-ch5-s02">
+      <title>Exercise Set 2: Identifying Fallacies of Weak Inductive Support</title>
+      <introduction>
+        <p>
+          For each passage, identify the fallacy of weak inductive
+          support and explain why the inductive support is weaker
+          than the argument suggests.
+        </p>
+      </introduction>
+      <exercise xml:id="ex-ch5-s02-01">
+        <statement>
+          <p>I know two people who got laid off from data center construction projects last month. Clearly the data center industry is collapsing.</p>
+        </statement>
+      </exercise>
+      <exercise xml:id="ex-ch5-s02-02">
+        <statement>
+          <p>Inflation rose for three months after the new tariffs went into effect. The tariffs are causing the inflation.</p>
+        </statement>
+      </exercise>
+      <exercise xml:id="ex-ch5-s02-03">
+        <statement>
+          <p>If we allow background checks for firearm sales, the next step will be a registry, then licensing requirements, then confiscation. We have to oppose any background check legislation.</p>
+        </statement>
+      </exercise>
+      <exercise xml:id="ex-ch5-s02-04">
+        <statement>
+          <p>The current administration's expansion of executive power is just like what happened in pre-war Germany. We are headed for the same outcome.</p>
+        </statement>
+      </exercise>
+    </exercisegroup>
+
+    <exercisegroup xml:id="exgroup-ch5-s03">
+      <title>Exercise Set 3: Identifying Fallacies of Presumption</title>
+      <introduction>
+        <p>
+          For each passage, identify the fallacy of presumption and
+          explain what is being presumed without argument.
+        </p>
+      </introduction>
+      <exercise xml:id="ex-ch5-s03-01">
+        <statement>
+          <p>Either we secure our borders or we accept lawlessness. We must secure our borders.</p>
+        </statement>
+      </exercise>
+      <exercise xml:id="ex-ch5-s03-02">
+        <statement>
+          <p>Why does the governor continue to ignore the state's struggling rural counties?</p>
+        </statement>
+      </exercise>
+      <exercise xml:id="ex-ch5-s03-03">
+        <statement>
+          <p>The party of working people supports working people. So working people should support the party.</p>
+        </statement>
+      </exercise>
+      <exercise xml:id="ex-ch5-s03-04">
+        <statement>
+          <p>Our state's manufacturing employment grew by 4,000 jobs last year. The new business tax credit was clearly a success.</p>
+          <p>(Hint: what other evidence about the state's economy might bear on whether the tax credit was a success?)</p>
+        </statement>
+      </exercise>
+    </exercisegroup>
+
+    <exercisegroup xml:id="exgroup-ch5-s04">
+      <title>Exercise Set 4: Mixed Identification</title>
+      <introduction>
+        <p>
+          For each passage, identify the fallacy committed (it
+          could be from any of the three groups) and explain
+          briefly. Some passages may commit more than one fallacy.
+        </p>
+      </introduction>
+      <exercise xml:id="ex-ch5-s04-01">
+        <statement>
+          <p>Free speech is a constitutional right. Banning a speaker from a private platform is an attack on free speech. So banning a speaker from a private platform is unconstitutional.</p>
+        </statement>
+      </exercise>
+      <exercise xml:id="ex-ch5-s04-02">
+        <statement>
+          <p>Of course Senator Hayes supports the data center expansion. Her largest donors include data center developers.</p>
+        </statement>
+      </exercise>
+      <exercise xml:id="ex-ch5-s04-03">
+        <statement>
+          <p>The administration says the Iran strikes were necessary. The administration includes generals and security experts. So the strikes were necessary.</p>
+        </statement>
+      </exercise>
+      <exercise xml:id="ex-ch5-s04-04">
+        <statement>
+          <p>You're either with the troops or you're against them. Anyone who criticizes the operation is against the troops.</p>
+        </statement>
+      </exercise>
+      <exercise xml:id="ex-ch5-s04-05">
+        <statement>
+          <p>The bill's opponents say it would hurt small businesses. But the bill's supporters include people who have run small businesses. So the bill won't hurt small businesses.</p>
+        </statement>
+      </exercise>
+    </exercisegroup>
+
+    <exercisegroup xml:id="exgroup-ch5-s05">
+      <title>Exercise Set 5: Legitimate or Fallacious?</title>
+      <introduction>
+        <p>
+          Each of the following passages has the surface appearance
+          of a fallacy from this chapter. For each, decide whether
+          the argument actually commits the fallacy, or whether it
+          is the legitimate cousin. Justify briefly.
+        </p>
+      </introduction>
+      <exercise xml:id="ex-ch5-s05-01">
+        <statement>
+          <p>According to the Centers for Disease Control's most recent report, vaccination rates among five-year-olds in this state have fallen below the threshold required for measles herd immunity. We should expect more outbreaks.</p>
+        </statement>
+      </exercise>
+      <exercise xml:id="ex-ch5-s05-02">
+        <statement>
+          <p>The bridge's design uses the same load-distribution geometry as the bridge that failed in Minneapolis in 2007. We should treat this design as suspect until the engineering review is complete.</p>
+        </statement>
+      </exercise>
+      <exercise xml:id="ex-ch5-s05-03">
+        <statement>
+          <p>Senator Lewis voted for the bill. Her brother-in-law owns a company that stands to benefit from it. The senator should have recused herself.</p>
+        </statement>
+      </exercise>
+      <exercise xml:id="ex-ch5-s05-04">
+        <statement>
+          <p>If we pass this surveillance authorization, the same infrastructure will exist for any future administration to use. We should be cautious about expanding it.</p>
+        </statement>
+      </exercise>
+    </exercisegroup>
+
+    <exercisegroup xml:id="exgroup-ch5-s06">
+      <title>Exercise Set 6: Construct Your Own</title>
+      <introduction>
+        <p>
+          For each fallacy below, write a short example argument
+          that commits it. Use a contemporary political topic of
+          your choice. Then write a one-sentence diagnosis
+          explaining what the fallacy is doing in your example.
+        </p>
+      </introduction>
+      <exercise xml:id="ex-ch5-s06-01">
+        <statement>
+          <p>Straw person.</p>
+        </statement>
+      </exercise>
+      <exercise xml:id="ex-ch5-s06-02">
+        <statement>
+          <p>False dichotomy.</p>
+        </statement>
+      </exercise>
+      <exercise xml:id="ex-ch5-s06-03">
+        <statement>
+          <p>Slippery slope.</p>
+        </statement>
+      </exercise>
+      <exercise xml:id="ex-ch5-s06-04">
+        <statement>
+          <p>Equivocation.</p>
+        </statement>
+      </exercise>
+    </exercisegroup>
+
+  </exercises>
+
+</chapter>

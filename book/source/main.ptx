@@ -71,7 +71,8 @@
       <xi:include href="chapters/ch-what-is-an-argument.ptx"/>
       <xi:include href="chapters/ch-argument-structure.ptx"/>
       <xi:include href="chapters/ch-evaluating-arguments.ptx"/>
-      <!-- Future: ch-language-and-meaning.ptx, ch-informal-fallacies.ptx -->
+      <xi:include href="chapters/ch-language-and-meaning.ptx"/>
+      <xi:include href="chapters/ch-informal-fallacies.ptx"/>
     </part>
 
     <!--

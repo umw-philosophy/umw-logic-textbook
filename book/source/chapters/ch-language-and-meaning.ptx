@@ -1,0 +1,745 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  Chapter 4 — Language and Meaning
+  First full draft.
+
+  Scope:
+  - Why language matters for argument evaluation, given Chapters 1–3.
+  - Vagueness: terms whose application is unclear at the borders.
+  - Ambiguity (lexical and syntactic) and the fallacy of equivocation.
+  - Definitions: lexical, stipulative, precising, theoretical, persuasive.
+  - Criteria for good definitions; a warning about persuasive definitions.
+  - Forward pivot to Chapter 5 (informal fallacies, planned).
+
+  Voice: matter-of-fact, declarative, second-person where it lands,
+  politically-current examples where they land, dry humor reserved
+  for parentheticals. Continues the "is this any good?" thread by
+  showing how language problems can undermine the evaluation work of
+  Chapter 3.
+
+  Topic choice rationale: this chapter sits before informal fallacies
+  in the planned sequence because some fallacy classifications
+  (especially equivocation and persuasive-definition cases) require
+  the vocabulary built here.
+-->
+<chapter xmlns:xi="http://www.w3.org/2001/XInclude" xml:id="ch-language-and-meaning">
+
+  <title>Language and Meaning</title>
+
+  <introduction xml:id="ch-language-and-meaning-intro">
+    <p>
+      So far we have treated statements as if their meanings were
+      fixed and obvious. Recognize the argument, reconstruct it,
+      check whether the structure is valid or strong: Chapters 1
+      through 3 worked at the level of statements arranged into
+      premises and conclusions. The internal life of the statements
+      themselves — the specific words, the meanings of those words,
+      the way meaning can shift between premise and conclusion — has
+      been bracketed.
+    </p>
+    <p>
+      It cannot stay bracketed for long. Real arguments are built
+      from real words, and real words misbehave. They have edges
+      that are unclear. They have more than one meaning. They get
+      defined in ways that smuggle in conclusions. An argument
+      whose form is impeccable can fail entirely because a word
+      shifted between two of its sentences.
+    </p>
+    <p>
+      This chapter is about the words. It builds the vocabulary you
+      need to talk about how language can fail us in arguments —
+      <term>vagueness</term>, <term>ambiguity</term>, the fallacy of
+      <term>equivocation</term> — and it surveys the kinds of
+      <term>definitions</term> people offer when language threatens
+      to break down. A good argument depends on more than the right
+      structure. It depends on words that hold still.
+    </p>
+  </introduction>
+
+  <section xml:id="sec-why-language-matters">
+    <title>Why Language Matters for Arguments</title>
+
+    <introduction>
+      <p>
+        We met language at the very start of the book, in
+        <xref ref="sec-language"/>, when we sorted utterances into
+        kinds of speech: stating, asking, commanding, expressing,
+        explaining, arguing, and a few more. That work was about the
+        <em>functions</em> of language — what we use sentences to do.
+        This chapter is about something else. It is about what
+        happens inside the sentences themselves, in the choices of
+        words and what those words mean.
+      </p>
+    </introduction>
+
+    <paragraphs xml:id="paragraphs-why-words-can-betray">
+      <title>Words can betray a structurally good argument</title>
+      <p>
+        The validity of an argument, as we saw in
+        <xref ref="ch-evaluating-arguments"/>, depends on its form.
+        But form is built out of words, and the same word can carry
+        different meanings in different sentences. If a key word in a
+        premise means one thing, and the same word in the conclusion
+        means another, the form on paper looks fine while the
+        argument is in fact going nowhere. Form-level checks won't
+        catch this; you need to look inside the words.
+      </p>
+      <p>
+        That is the danger this chapter is about. There are also
+        opportunities. A precise definition can fix a vague term and
+        let an argument that was previously stuck make real
+        progress. A careful translation of an ambiguous sentence can
+        clarify which of its readings is meant. The same tools that
+        let us notice language problems also let us repair them.
+      </p>
+    </paragraphs>
+
+    <paragraphs xml:id="paragraphs-language-trouble-types">
+      <title>Two kinds of trouble</title>
+      <p>
+        Two categories of language problem account for most of the
+        difficulties in everyday and political argument. They are
+        worth keeping straight.
+      </p>
+      <p>
+        <alert>Vagueness</alert> is when the application of a term
+        is unclear at the borders. The term has a meaning, but the
+        meaning shades off rather than ending in a clean line. <q>Tall</q>,
+        <q>wealthy</q>, <q>old</q>, <q>reasonable</q>: each picks
+        out a real property, but none of them fixes a precise
+        threshold. A six-foot-tall person is tall in a kindergarten
+        class and short on an NBA roster.
+      </p>
+      <p>
+        <alert>Ambiguity</alert> is when a term has more than one
+        distinct meaning, and context does not always settle which
+        one is in use. <q>Bank</q> means one thing for rivers and
+        another for financial institutions. <q>Free</q> means one
+        thing about beer and another about speech. The trouble is
+        not borders; it is multiplicities.
+      </p>
+      <p>
+        Vagueness is normal — most natural-language words are vague
+        to some degree, and language would be unusable without it.
+        Ambiguity is also normal, but it is more surgical in its
+        effects on argument. We take them in turn.
+      </p>
+    </paragraphs>
+  </section>
+
+  <section xml:id="sec-vagueness">
+    <title>Vagueness</title>
+
+    <introduction>
+      <p>
+        A term is <term>vague</term> when there are clear cases on
+        both sides — clear cases where the term applies and clear
+        cases where it doesn't — but a range of borderline cases
+        where its application is unsettled. Most adjectives in
+        natural language are vague in this sense.
+      </p>
+    </introduction>
+
+    <definition xml:id="def-vagueness">
+      <statement>
+        <p>
+          A term is <term>vague</term> when its application is
+          unclear at the borders: there are cases where the term
+          clearly applies, cases where it clearly does not, and a
+          range of borderline cases where reasonable speakers may
+          disagree.
+        </p>
+      </statement>
+    </definition>
+
+    <paragraphs xml:id="paragraphs-vagueness-ubiquity">
+      <title>Vagueness is normal and useful</title>
+      <p>
+        Almost every adjective and many nouns in natural language
+        are vague. <q>Wealthy</q> applies clearly to a billionaire,
+        clearly fails for someone with no savings and overdue rent,
+        and is genuinely contested in the middle. <q>Adult</q> is
+        precise in U.S. law (eighteen and over) but vague in
+        contexts like <q>act like an adult</q> or <q>adult
+        responsibilities.</q> <q>Reasonable doubt</q> is the
+        standard for criminal conviction in the United States, and
+        every juror is asked to apply it without anyone able to
+        give a numerical threshold.
+      </p>
+      <p>
+        Vagueness is not a flaw in language. A natural language
+        without vague terms would be unusable, because an enormous
+        amount of useful communication concerns properties whose
+        boundaries we have not, and need not, fix. We can point at a
+        green leaf and call it green without first agreeing on
+        exactly which wavelengths count as green. We can say the
+        line is too long without first counting people.
+      </p>
+    </paragraphs>
+
+    <paragraphs xml:id="paragraphs-vagueness-in-argument">
+      <title>When vagueness causes argument trouble</title>
+      <p>
+        Vagueness becomes an argumentative problem when the success
+        of an argument turns on exactly where the line is drawn —
+        and the line is exactly what the term won't fix.
+      </p>
+      <p>
+        Consider an argument like: <q>The proposed tax applies only
+        to the wealthy. Therefore most people will be unaffected.</q>
+        On its face, the structure is clear. But the inference works
+        only if <q>the wealthy</q> picks out a specific group. If
+        <q>wealthy</q> in the proposal means <q>income above two
+        hundred thousand dollars</q>, the conclusion holds for most
+        people. If it means <q>owns a home</q>, the conclusion is
+        much weaker. The argument's strength depends on where the
+        vague term is sharpened, and the unsharpened version is
+        doing rhetorical work that the sharpened version may not
+        sustain.
+      </p>
+      <p>
+        Vague terms in an argument's premises are often a sign that
+        the argument needs a <em>precising definition</em> — a
+        specific way of fixing the borderline for the purpose of
+        this argument. We will come back to those in
+        <xref ref="sec-definitions"/>.
+      </p>
+    </paragraphs>
+
+    <paragraphs xml:id="paragraphs-vagueness-vs-controversy">
+      <title>Vagueness is not the same as controversy</title>
+      <p>
+        It is tempting to call any contested term vague. Don't.
+        Vagueness is a specific feature: borderline cases where
+        application is genuinely unclear. A term can be controversial
+        for reasons that have nothing to do with vagueness. <q>Justice</q>
+        is contested across centuries of political philosophy not
+        because there are borderline cases at the edges of the
+        concept but because different theories give substantially
+        different accounts of what justice is. <q>Marriage</q> has
+        been politically contested over how the term should be used
+        — what it should pick out — rather than over borderline cases
+        of an agreed concept. These are debates about meaning and
+        application, but they are not, in the technical sense,
+        debates about vagueness.
+      </p>
+    </paragraphs>
+  </section>
+
+  <section xml:id="sec-ambiguity">
+    <title>Ambiguity and Equivocation</title>
+
+    <introduction>
+      <p>
+        A term is <term>ambiguous</term> when it has more than one
+        distinct meaning. Ambiguity is a feature of <em>multiplicity</em>,
+        not borderlines. The term <q>bank</q> means a financial
+        institution and the side of a river; the meanings are
+        unrelated. The term <q>light</q> can mean illumination or low
+        weight. The term <q>free</q> can mean unconstrained or
+        without cost.
+      </p>
+    </introduction>
+
+    <definition xml:id="def-ambiguity">
+      <statement>
+        <p>
+          A term is <term>ambiguous</term> when it has two or more
+          distinct meanings, and context does not always settle
+          which meaning is in play.
+        </p>
+      </statement>
+    </definition>
+
+    <paragraphs xml:id="paragraphs-lexical-vs-syntactic">
+      <title>Lexical and syntactic ambiguity</title>
+      <p>
+        Two kinds of ambiguity are worth distinguishing.
+      </p>
+      <p>
+        <alert>Lexical ambiguity</alert> is when a single word has
+        more than one meaning. <q>Bank</q>, <q>light</q>, <q>free</q>,
+        <q>fair</q>, <q>right</q>: each is a single word with
+        multiple, often unrelated, meanings.
+      </p>
+      <p>
+        <alert>Syntactic ambiguity</alert> (sometimes called
+        <em>structural</em> ambiguity) is when a sentence's grammar
+        admits more than one parsing. <q>I shot an elephant in my
+        pajamas</q> can mean either that the speaker, while wearing
+        pajamas, shot an elephant, or that the speaker shot an
+        elephant that was wearing the speaker's pajamas. The same
+        words; two grammatical structures; two distinct meanings.
+        Syntactic ambiguity tends to be funnier than lexical
+        ambiguity in everyday life and more dangerous in legal and
+        regulatory text, where the grammar of a clause can determine
+        what a law actually requires.
+      </p>
+    </paragraphs>
+
+    <paragraphs xml:id="paragraphs-equivocation">
+      <title>Equivocation</title>
+      <p>
+        Ambiguity becomes an argumentative problem when a single
+        term appears in more than one premise (or in a premise and
+        the conclusion) carrying different meanings. The argument
+        looks valid because the same word appears in both places,
+        but the inference fails because the word means different
+        things in each. This is the fallacy of <term>equivocation</term>.
+      </p>
+      <example xml:id="ex-equivocation-cold-pizza">
+        <title>A textbook equivocation</title>
+        <statement>
+          <p>P1: Nothing is better than complete happiness.</p>
+          <p>P2: Cold pizza is better than nothing.</p>
+          <p><m>\therefore</m> C: Cold pizza is better than complete happiness.</p>
+        </statement>
+      </example>
+      <p>
+        On the page, this is a hypothetical syllogism — or close to
+        one. In reality, it equivocates on <q>nothing</q>. In P1,
+        <q>nothing</q> means <q>no thing whatever; there is nothing
+        better than complete happiness</q>. In P2, <q>nothing</q>
+        means <q>not having anything</q> — in particular, not having
+        anything to eat. Different meanings for the same word. The
+        argument's structure looks valid because the word appears in
+        both premises; the inference fails because the meanings
+        don't connect.
+      </p>
+      <p>
+        Real-world equivocations are usually less amusing and harder
+        to spot. A politician might argue: <q>The Constitution
+        guarantees freedom of speech. So I have the right to say
+        whatever I want at this private workplace.</q> The first
+        sentence uses <q>freedom of speech</q> in its constitutional
+        sense — protection against government restriction. The
+        second uses it in a broader sense — freedom from any
+        consequence at all. Two meanings; one term; an inference
+        that looks straightforward and isn't.
+      </p>
+      <p>
+        Or: <q>Real friends help each other no matter what. So if
+        you were a real friend, you'd lie for me.</q> <q>Real
+        friend</q> in the first sentence is a description of strong
+        loyalty. <q>Real friend</q> in the conclusion smuggles in a
+        further commitment — that loyalty includes lying — that the
+        first sentence didn't establish. The inference equivocates
+        on <q>real friend.</q>
+      </p>
+    </paragraphs>
+
+    <paragraphs xml:id="paragraphs-spotting-equivocation">
+      <title>How to spot equivocation</title>
+      <p>
+        The basic test is to ask, of any term that appears in more
+        than one place in an argument, whether it carries the same
+        meaning in each appearance. If you can substitute a careful
+        gloss for the term in each place, and the glosses turn out
+        to be different, the argument equivocates. A good
+        reconstruction often reveals equivocation simply by forcing
+        you to write each premise out clearly: when you write the
+        gloss in place of the term, the argument falls apart and the
+        equivocation becomes visible.
+      </p>
+    </paragraphs>
+  </section>
+
+  <section xml:id="sec-definitions">
+    <title>Definitions and How They Work</title>
+
+    <introduction>
+      <p>
+        Vagueness and ambiguity are problems. <term>Definitions</term>
+        are tools for managing them. A definition fixes the meaning
+        of a term — for some purpose, for some audience, in some
+        context. Different purposes call for different kinds of
+        definitions, and not every definition is doing what it
+        appears to be doing.
+      </p>
+    </introduction>
+
+    <paragraphs xml:id="paragraphs-kinds-of-definitions">
+      <title>Five kinds of definitions</title>
+      <p>
+        Five kinds of definitions are worth distinguishing for
+        purposes of argument analysis. The classification isn't
+        perfect — real definitions sometimes do more than one job at
+        once — but the categories are useful for noticing what a
+        definition is trying to do.
+      </p>
+      <p>
+        <alert>Lexical definitions</alert> report how a term is used
+        in some linguistic community. Dictionary definitions are
+        paradigmatic. <q><em>Cat</em>: a small domesticated
+        carnivorous mammal of the family Felidae.</q> Lexical
+        definitions can be true or false: a dictionary entry is
+        wrong if the community uses the word differently. They are
+        the right kind of definition when the question is <q>what
+        does this word mean?</q>
+      </p>
+      <p>
+        <alert>Stipulative definitions</alert> introduce a new term
+        or fix a term's meaning for a particular discussion.
+        <q>For purposes of this paper, I will use <em>data center</em>
+        to mean any commercial building dedicated primarily to
+        computational hardware</q> is stipulative. Stipulative
+        definitions are not true or false; they are useful or not.
+        They are the right kind of definition when you need a
+        precise term for a discussion and an existing one is too
+        loose, too overloaded, or absent.
+      </p>
+      <p>
+        <alert>Precising definitions</alert> sharpen a vague term in
+        a way that respects ordinary usage but adds enough precision
+        to settle a disputed application. <q><em>Reasonable doubt</em>
+        in this jurisdiction is to be interpreted as the level of
+        certainty a reasonable person would require before making an
+        important personal decision</q> is precising. Precising
+        definitions matter most when an argument hinges on a vague
+        term and the parties to the argument need to agree on where
+        the line falls.
+      </p>
+      <p>
+        <alert>Theoretical definitions</alert> embed a term in a
+        scientific or theoretical framework. <q><em>Mass</em> is the
+        coefficient relating force and acceleration in
+        <m>F = ma</m>.</q> Theoretical definitions are answerable to
+        the framework — if the framework changes, the definition may
+        change with it. They are the right kind of definition when
+        the term is part of a structured account of how something
+        works.
+      </p>
+      <p>
+        <alert>Persuasive definitions</alert> smuggle evaluation into
+        what looks like a neutral definition. <q><em>Patriotism</em>
+        is supporting our troops without question.</q> <q><em>Real
+        equality</em> means treating everyone identically regardless
+        of context.</q> A persuasive definition does not just report
+        usage or sharpen a term; it builds a substantive position
+        into the meaning of the word, so that anyone using the term
+        is silently endorsing that position. Persuasive definitions
+        are the dangerous kind. They are the form most likely to
+        produce arguments whose structure looks fine while the
+        crucial work happens off-stage, in the loaded definition.
+      </p>
+    </paragraphs>
+
+    <paragraphs xml:id="paragraphs-good-definitions">
+      <title>Criteria for good definitions</title>
+      <p>
+        Not all definitions are equally good. The classical criteria
+        for a good lexical or precising definition are worth keeping
+        in mind:
+      </p>
+      <ul>
+        <li>
+          <p>
+            <alert>Not too broad.</alert> The definition should not
+            include things that don't fit. Defining <em>cat</em> as
+            <q>any small mammal</q> is too broad: rabbits and squirrels
+            would qualify.
+          </p>
+        </li>
+        <li>
+          <p>
+            <alert>Not too narrow.</alert> The definition should not
+            exclude things that do fit. Defining <em>cat</em> as
+            <q>a domesticated short-haired Felidae</q> is too narrow:
+            long-haired domesticated cats and undomesticated species
+            are excluded.
+          </p>
+        </li>
+        <li>
+          <p>
+            <alert>Not circular.</alert> The definition should not
+            use the term being defined. <q><em>Logic</em> is the
+            study of logical reasoning</q> tells the reader nothing.
+          </p>
+        </li>
+        <li>
+          <p>
+            <alert>Not in obscure or figurative language.</alert>
+            Definitions are supposed to clarify. If the definition
+            is harder to understand than the term, something has
+            gone wrong.
+          </p>
+        </li>
+        <li>
+          <p>
+            <alert>Affirmative when possible.</alert> Telling someone
+            what a thing is, rather than what it isn't, is usually
+            more useful. Some terms (<q>colorblind</q>, <q>orphan</q>)
+            naturally take negative definitions, but the default is
+            to say what the thing is.
+          </p>
+        </li>
+      </ul>
+      <p>
+        Persuasive definitions usually fail at least one of the
+        first three criteria — a persuasive definition of <em>patriotism</em>
+        is likely to be too narrow (excluding kinds of love of
+        country the definer dislikes) or to import controversial
+        content as if it were neutral. Spotting where a definition
+        is doing its sneaky work is often a matter of asking which
+        of these criteria it fails.
+      </p>
+    </paragraphs>
+
+    <paragraphs xml:id="paragraphs-genus-and-difference">
+      <title>Definition by genus and difference</title>
+      <p>
+        The classical method for constructing a definition, going
+        back to Aristotle, is <term>definition by genus and difference</term>.
+        Identify a broader category (the <em>genus</em>) that
+        contains the thing being defined, and then specify the
+        feature or features that distinguish the thing from other
+        members of the genus (the <em>difference</em>). <q><em>Cat</em>:
+        a small carnivorous mammal (genus: small carnivorous mammals)
+        of the family Felidae (difference: belonging to Felidae).</q>
+        <q><em>Triangle</em>: a polygon (genus) with exactly three
+        sides (difference).</q>
+      </p>
+      <p>
+        Genus and difference is not the only good way to define a
+        term, but it is a reliable starting point. When a definition
+        feels evasive or off, asking <q>what is the genus and what
+        is the difference?</q> often reveals the trouble.
+      </p>
+    </paragraphs>
+  </section>
+
+  <section xml:id="sec-where-headed-ch4">
+    <title>Where We're Headed</title>
+
+    <introduction>
+      <p>
+        Vagueness, ambiguity, equivocation, and definitions:
+        Chapter 4 has been a tour of the ways language can shape,
+        and undermine, the arguments built from it.
+      </p>
+    </introduction>
+
+    <paragraphs xml:id="paragraphs-where-headed-ch4-summary">
+      <title>What this chapter gave us</title>
+      <p>
+        We can now see that argument evaluation has another layer
+        beyond what Chapter 3 covered. Validity tells us about the
+        relation between premises and conclusion. But the truth and
+        the meaning of the premises themselves depend on words, and
+        words can be vague, ambiguous, or defined in ways that bias
+        the argument. An argument can pass the structural tests of
+        Chapter 3 and still fail because of language trouble. The
+        question <em>is this argument any good?</em> now has another
+        front: are the words holding still?
+      </p>
+    </paragraphs>
+
+    <paragraphs xml:id="paragraphs-where-headed-ch4-pivot">
+      <title>What's coming</title>
+      <p>
+        The next chapter introduces the family of <term>informal
+        fallacies</term> — patterns of bad reasoning that recur
+        often enough to have names. Some of those fallacies are
+        language-based (equivocation, which we have already met,
+        plus relatives like the fallacy of accent and a few others),
+        and the vocabulary of this chapter feeds directly into them.
+        Others are about the relation between premises and
+        conclusions in subtler ways than validity captures.
+      </p>
+      <p>
+        After the fallacies chapter, the book turns to the formal
+        machinery: categorical logic in Part II, sentential logic in
+        Part III, statistical reasoning in Part IV. Each of those
+        domains will give us procedures for evaluating arguments
+        more rigorously than the hand-classification of forms we
+        have done so far. The language tools of this chapter will
+        keep mattering throughout — formal machinery cannot save an
+        argument whose key term equivocates.
+      </p>
+    </paragraphs>
+  </section>
+
+  <exercises xml:id="exercises-ch4">
+    <title>End-of-Chapter Exercises</title>
+
+    <exercisegroup xml:id="exgroup-ch4-s01">
+      <title>Exercise Set 1: Identifying Vague Terms</title>
+      <introduction>
+        <p>
+          For each sentence, identify any vague term and explain
+          briefly why it is vague. If the sentence is part of an
+          argument, note whether the vagueness is doing
+          argumentative work.
+        </p>
+      </introduction>
+      <exercise xml:id="ex-ch4-s01-01">
+        <statement>
+          <p>The new policy will only affect wealthy households.</p>
+        </statement>
+      </exercise>
+      <exercise xml:id="ex-ch4-s01-02">
+        <statement>
+          <p>The defendant should be acquitted because there is reasonable doubt.</p>
+        </statement>
+      </exercise>
+      <exercise xml:id="ex-ch4-s01-03">
+        <statement>
+          <p>This product contains only natural ingredients.</p>
+        </statement>
+      </exercise>
+      <exercise xml:id="ex-ch4-s01-04">
+        <statement>
+          <p>The water in the kettle is now hot.</p>
+        </statement>
+      </exercise>
+    </exercisegroup>
+
+    <exercisegroup xml:id="exgroup-ch4-s02">
+      <title>Exercise Set 2: Ambiguity (Lexical and Syntactic)</title>
+      <introduction>
+        <p>
+          For each sentence, identify whether it is ambiguous; if
+          so, explain whether the ambiguity is lexical or syntactic
+          and give the two readings.
+        </p>
+      </introduction>
+      <exercise xml:id="ex-ch4-s02-01">
+        <statement>
+          <p>I went to the bank yesterday.</p>
+        </statement>
+      </exercise>
+      <exercise xml:id="ex-ch4-s02-02">
+        <statement>
+          <p>Visiting relatives can be exhausting.</p>
+        </statement>
+      </exercise>
+      <exercise xml:id="ex-ch4-s02-03">
+        <statement>
+          <p>The chicken is ready to eat.</p>
+        </statement>
+      </exercise>
+      <exercise xml:id="ex-ch4-s02-04">
+        <statement>
+          <p>You have the right to remain silent.</p>
+        </statement>
+      </exercise>
+    </exercisegroup>
+
+    <exercisegroup xml:id="exgroup-ch4-s03">
+      <title>Exercise Set 3: Spotting Equivocation</title>
+      <introduction>
+        <p>
+          Each of the following arguments equivocates on a term.
+          Identify the term, explain the two meanings, and say where
+          the inference fails.
+        </p>
+      </introduction>
+      <exercise xml:id="ex-ch4-s03-01">
+        <statement>
+          <p>The end of life is death. The end of life is what gives life its meaning. So death is what gives life its meaning.</p>
+        </statement>
+      </exercise>
+      <exercise xml:id="ex-ch4-s03-02">
+        <statement>
+          <p>The Constitution protects free speech. Banning a speaker from this private platform is an attack on free speech. So the Constitution prohibits the platform from banning the speaker.</p>
+        </statement>
+      </exercise>
+      <exercise xml:id="ex-ch4-s03-03">
+        <statement>
+          <p>All laws can be broken. The law of gravity is a law. So the law of gravity can be broken.</p>
+        </statement>
+      </exercise>
+    </exercisegroup>
+
+    <exercisegroup xml:id="exgroup-ch4-s04">
+      <title>Exercise Set 4: Classifying Definitions</title>
+      <introduction>
+        <p>
+          For each definition below, classify it as lexical,
+          stipulative, precising, theoretical, or persuasive.
+          Briefly justify your classification.
+        </p>
+      </introduction>
+      <exercise xml:id="ex-ch4-s04-01">
+        <statement>
+          <p><q>For the purposes of this study, a <em>frequent visitor</em> is anyone who has visited the website at least three times in the past month.</q></p>
+        </statement>
+      </exercise>
+      <exercise xml:id="ex-ch4-s04-02">
+        <statement>
+          <p><q><em>Common sense</em> is the kind of judgment that any sensible person would agree with.</q></p>
+        </statement>
+      </exercise>
+      <exercise xml:id="ex-ch4-s04-03">
+        <statement>
+          <p><q>True freedom is the freedom to live by traditional values without interference from government bureaucrats.</q></p>
+        </statement>
+      </exercise>
+      <exercise xml:id="ex-ch4-s04-04">
+        <statement>
+          <p><q><em>Velocity</em> is the rate of change of position with respect to time.</q></p>
+        </statement>
+      </exercise>
+    </exercisegroup>
+
+    <exercisegroup xml:id="exgroup-ch4-s05">
+      <title>Exercise Set 5: Critiquing Definitions</title>
+      <introduction>
+        <p>
+          Each of the following definitions fails one or more of the
+          standard criteria for a good definition. Identify which
+          criterion or criteria the definition fails, and explain.
+        </p>
+      </introduction>
+      <exercise xml:id="ex-ch4-s05-01">
+        <statement>
+          <p><q><em>Logic</em> is the study of how to reason logically.</q></p>
+        </statement>
+      </exercise>
+      <exercise xml:id="ex-ch4-s05-02">
+        <statement>
+          <p><q><em>Chair</em>: a piece of furniture.</q></p>
+        </statement>
+      </exercise>
+      <exercise xml:id="ex-ch4-s05-03">
+        <statement>
+          <p><q><em>Cat</em>: a four-legged carnivorous mammal that is not a dog.</q></p>
+        </statement>
+      </exercise>
+      <exercise xml:id="ex-ch4-s05-04">
+        <statement>
+          <p><q><em>Justice</em> is the harmonious arrangement of the soul that mirrors the harmonious arrangement of the well-ordered city.</q></p>
+        </statement>
+      </exercise>
+    </exercisegroup>
+
+    <exercisegroup xml:id="exgroup-ch4-s06">
+      <title>Exercise Set 6: Mixed Application</title>
+      <introduction>
+        <p>
+          For each passage, identify whatever language problems are
+          present (vagueness, ambiguity, equivocation, persuasive
+          definition) and briefly explain how each problem affects
+          the argument.
+        </p>
+      </introduction>
+      <exercise xml:id="ex-ch4-s06-01">
+        <statement>
+          <p>Real environmentalists support nuclear power because nuclear power is the only large-scale low-carbon energy source. Senator X opposes nuclear power. So Senator X is not a real environmentalist.</p>
+        </statement>
+      </exercise>
+      <exercise xml:id="ex-ch4-s06-02">
+        <statement>
+          <p>The administration says it values academic freedom. Academic freedom means professors can teach what they want. So the administration should not have any curriculum requirements.</p>
+        </statement>
+      </exercise>
+      <exercise xml:id="ex-ch4-s06-03">
+        <statement>
+          <p>Healthy foods are foods that don't contain artificial ingredients. So organic candy is healthy.</p>
+        </statement>
+      </exercise>
+    </exercisegroup>
+
+  </exercises>
+
+</chapter>
