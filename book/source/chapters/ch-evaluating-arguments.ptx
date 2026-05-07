@@ -661,6 +661,119 @@
     </paragraphs>
   </section>
 
+  <conclusion xml:id="conclusion-ch3">
+    <title>Chapter Summary</title>
+
+    <p>
+      This chapter developed the basic standards for evaluating
+      arguments. The core ideas, section by section:
+    </p>
+
+    <p>
+      <alert>The Two Questions (§3.1).</alert> Evaluating an
+      argument requires two different questions. First, do the
+      premises support the conclusion in the right way? Second, are
+      the premises actually true or acceptable? These questions are
+      independent: an argument can have strong structure and false
+      premises, or true premises and weak structure.
+    </p>
+
+    <p>
+      <alert>Validity and Soundness (§3.2).</alert> A deductive
+      argument is valid when it is impossible for all its premises to
+      be true and its conclusion false. Soundness adds truth: a sound
+      argument is valid and has all true premises. Validity is about
+      structure, not whether the conclusion happens to be true.
+    </p>
+
+    <p>
+      <alert>Some Valid Forms (§3.3).</alert> Modus ponens, modus
+      tollens, disjunctive syllogism, and hypothetical syllogism are
+      common valid deductive forms. Their validity does not depend on
+      the subject matter of the argument. If an argument really has
+      one of these forms, then true premises would guarantee a true
+      conclusion.
+    </p>
+
+    <p>
+      <alert>Two Invalid Forms and the Counterexample Method (§3.4).</alert>
+      Affirming the consequent and denying the antecedent are invalid
+      conditional forms. The counterexample method tests invalidity by
+      asking whether the same form could have true premises and a
+      false conclusion.
+    </p>
+
+    <p>
+      <alert>Inductive Strength and Cogency (§3.5).</alert> Inductive
+      arguments aim to make their conclusions probable rather than
+      certain. A strong inductive argument makes its conclusion highly
+      probable if its premises are true. A cogent argument is strong
+      and has true or acceptable premises.
+    </p>
+
+    <p>
+      <alert>Where We're Headed (§3.6).</alert> The standards from
+      this chapter organize the rest of the book. Categorical logic,
+      sentential logic, natural deduction, and statistical reasoning
+      are all more precise tools for answering the support question.
+    </p>
+
+  </conclusion>
+
+  <section xml:id="sec-ch3-key-terms">
+    <title>Key Terms</title>
+
+    <p>Listed alphabetically, with section references.</p>
+
+    <dl>
+      <li xml:id="term-ch3-affirming-consequent">
+        <title>Affirming the consequent</title>
+        <p>An invalid conditional form: if P then Q; Q; therefore P. (§3.4)</p>
+      </li>
+      <li xml:id="term-ch3-cogency">
+        <title>Cogency</title>
+        <p>The inductive parallel to soundness: a cogent argument is strong and has true or acceptable premises. (§3.5)</p>
+      </li>
+      <li xml:id="term-ch3-counterexample-method">
+        <title>Counterexample method</title>
+        <p>A method for showing invalidity by constructing an argument with the same form, true premises, and a false conclusion. (§3.4)</p>
+      </li>
+      <li xml:id="term-ch3-denying-antecedent">
+        <title>Denying the antecedent</title>
+        <p>An invalid conditional form: if P then Q; not P; therefore not Q. (§3.4)</p>
+      </li>
+      <li xml:id="term-ch3-disjunctive-syllogism">
+        <title>Disjunctive syllogism</title>
+        <p>A valid form: either P or Q; not P; therefore Q. (§3.3)</p>
+      </li>
+      <li xml:id="term-ch3-hypothetical-syllogism">
+        <title>Hypothetical syllogism</title>
+        <p>A valid form that chains conditionals: if P then Q; if Q then R; therefore if P then R. (§3.3)</p>
+      </li>
+      <li xml:id="term-ch3-modus-ponens">
+        <title>Modus ponens</title>
+        <p>A valid form: if P then Q; P; therefore Q. (§3.3)</p>
+      </li>
+      <li xml:id="term-ch3-modus-tollens">
+        <title>Modus tollens</title>
+        <p>A valid form: if P then Q; not Q; therefore not P. (§3.3)</p>
+      </li>
+      <li xml:id="term-ch3-soundness">
+        <title>Soundness</title>
+        <p>A property of deductive arguments: a sound argument is valid and has all true premises. (§3.2)</p>
+      </li>
+      <li xml:id="term-ch3-strength">
+        <title>Strength</title>
+        <p>A property of inductive arguments: a strong argument makes its conclusion highly probable if its premises are true. (§3.5)</p>
+      </li>
+      <li xml:id="term-ch3-validity">
+        <title>Validity</title>
+        <p>A property of deductive arguments: if the premises were all true, the conclusion would have to be true. (§3.2)</p>
+      </li>
+    </dl>
+
+  </section>
+
   <exercises xml:id="exercises-ch3">
     <title>End-of-Chapter Exercises</title>
 

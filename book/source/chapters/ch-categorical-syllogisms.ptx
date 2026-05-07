@@ -1,0 +1,901 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  Chapter 7 — Categorical Syllogisms
+  Drafted in passes due to token-budget constraints.
+
+  PROGRESS:
+  - §7.1 (Standard Form Syllogisms): drafted.
+  - §7.2 onward: stubbed; to be filled in subsequent passes.
+
+  Diagram conventions (per the lead author's hand-drawn reference):
+  - 3-circle Venn diagram with M at top, S at bottom-left, P at
+    bottom-right.
+  - Eight numbered regions:
+      1 = S only
+      2 = S∩P, not M
+      3 = P only
+      4 = outside all three
+      5 = S∩M, not P
+      6 = S∩P∩M (center)
+      7 = P∩M, not S
+      8 = M only
+  - 2-circle diagram for the conclusion uses the standard 4-area
+    numbering from Chapter 6 (1 = S only; 2 = S∩P; 3 = P only;
+    4 = outside both).
+  - Validity testing: the premise diagram is a 3-circle; the
+    conclusion diagram is a 2-circle; both share S on the left
+    and P on the right at the bottom. The validity check is
+    whether the marks the conclusion would put on its 2-circle
+    diagram are already present in the premise diagram, mapped
+    through the correspondence:
+      Conclusion area 1 ↔ premise areas 1 and 5
+      Conclusion area 2 ↔ premise areas 2 and 6
+      Conclusion area 3 ↔ premise areas 3 and 7
+      Conclusion area 4 ↔ premise areas 4 and 8
+
+  Validity checks by conclusion form:
+  - A: are BOTH areas 1 and 5 shaded in the premise diagram?
+  - E: are BOTH areas 2 and 6 shaded in the premise diagram?
+  - I: is there an X in EITHER area 1 or 5 of the premise diagram
+       (not floating between, since that wouldn't commit to one)?
+  - O: is there an X in EITHER area 2 or 6 of the premise diagram?
+
+  Mood and figure are deferred to a later section in this chapter
+  as the alternate encoding suitable for blind students. The Venn-
+  diagram method is the primary technique.
+
+  Voice: matter-of-fact, declarative, real-world examples where
+  they land. Continues conventions from Chapter 6.
+-->
+<chapter xmlns:xi="http://www.w3.org/2001/XInclude" xml:id="ch-categorical-syllogisms">
+
+  <title>Categorical Syllogisms</title>
+
+  <introduction xml:id="ch-categorical-syllogisms-intro">
+    <p>
+      Chapter 6 gave us the basic units of categorical logic: the
+      four standard form propositions A, E, I, O, with their Venn
+      diagrams, immediate inferences, and translation patterns.
+      This chapter combines those propositions into arguments and
+      gives us a procedure for evaluating those arguments for
+      validity.
+    </p>
+    <p>
+      The shape of argument we evaluate is the <term>categorical
+      syllogism</term>: a three-statement argument with two
+      premises and a conclusion, all standard-form categorical
+      propositions, sharing exactly three terms among them. This
+      is not every argument we will ever care about, but it is a
+      surprising number of them. Once we have the procedure for
+      evaluating syllogisms, we will have answered the first
+      formal validity question this book promised.
+    </p>
+    <p>
+      The procedure is geometric. We draw two diagrams: a
+      three-circle Venn diagram representing the premises, and a
+      two-circle Venn diagram representing what the conclusion
+      claims. The syllogism is valid if the premise diagram
+      already shows what the conclusion claims; invalid otherwise.
+      Mood and figure — an alternate notation worth learning, and
+      necessary as an accessible alternative for readers who do
+      not work visually — appears later in the chapter as a
+      second tool that does the same evaluative job.
+    </p>
+  </introduction>
+
+  <section xml:id="sec-standard-form-syllogisms">
+    <title>Standard Form Syllogisms</title>
+
+    <introduction>
+      <p>
+        Before we can evaluate a syllogism, we have to know what
+        one looks like in standard form. A categorical syllogism
+        is in <term>standard form</term> when (i) every statement
+        in it is a standard form categorical proposition (A, E, I,
+        or O); (ii) it has exactly two premises and a conclusion;
+        (iii) the three statements use exactly three terms in
+        total, each appearing twice; and (iv) the major premise is
+        listed first, the minor premise second, the conclusion
+        third.
+      </p>
+    </introduction>
+
+    <paragraphs xml:id="paragraphs-three-terms">
+      <title>Three terms: major, minor, middle</title>
+      <p>
+        A categorical syllogism contains exactly three category
+        terms, each appearing in exactly two of the three
+        statements.
+      </p>
+      <ul>
+        <li>
+          <p>
+            The <term>major term</term> is the predicate of the
+            conclusion. We label it <em>P</em>.
+          </p>
+        </li>
+        <li>
+          <p>
+            The <term>minor term</term> is the subject of the
+            conclusion. We label it <em>S</em>.
+          </p>
+        </li>
+        <li>
+          <p>
+            The <term>middle term</term> is the term that appears
+            in both premises but not in the conclusion. We label
+            it <em>M</em>. The middle term's job is to connect
+            the major and minor terms; it disappears from the
+            conclusion because the syllogism has used it up making
+            the connection.
+          </p>
+        </li>
+      </ul>
+      <p>
+        The conclusion gives us S and P; the premises share M
+        with the conclusion's terms.
+      </p>
+    </paragraphs>
+
+    <paragraphs xml:id="paragraphs-major-minor-premises">
+      <title>The major and minor premises</title>
+      <p>
+        With S, P, and M identified, we name the two premises by
+        which conclusion-term each one shares with the conclusion:
+      </p>
+      <ul>
+        <li>
+          <p>
+            The <term>major premise</term> is the premise that
+            contains the major term P. (It also contains the
+            middle term M, since each premise shares the middle
+            term with the other premise.)
+          </p>
+        </li>
+        <li>
+          <p>
+            The <term>minor premise</term> is the premise that
+            contains the minor term S. (It also contains M.)
+          </p>
+        </li>
+      </ul>
+      <p>
+        In standard form, the major premise is written first, the
+        minor premise second, and the conclusion third. The order
+        is not part of what makes the syllogism logically work
+        (the same premises in either order have the same logical
+        force), but it is part of the standard format we use to
+        present and evaluate syllogisms.
+      </p>
+      <example xml:id="ex-syllogism-anatomy">
+        <title>Anatomy of a syllogism</title>
+        <statement>
+          <p>Consider the syllogism:</p>
+          <p>P1: All ozone molecules are good absorbers of UV rays.</p>
+          <p>P2: All ozone molecules are substances destroyed by chlorine.</p>
+          <p><m>\therefore</m> C: Some substances destroyed by chlorine are good absorbers of UV rays.</p>
+          <p>The conclusion identifies the major and minor terms:</p>
+          <ul>
+            <li><p><alert>S (minor):</alert> substances destroyed by chlorine.</p></li>
+            <li><p><alert>P (major):</alert> good absorbers of UV rays.</p></li>
+          </ul>
+          <p>The remaining term is the middle term:</p>
+          <ul>
+            <li><p><alert>M (middle):</alert> ozone molecules.</p></li>
+          </ul>
+          <p>P1 contains the major term and the middle term — it is the major premise. P2 contains the minor term and the middle term — it is the minor premise. The order is correct for standard form.</p>
+        </statement>
+      </example>
+    </paragraphs>
+
+    <paragraphs xml:id="paragraphs-validity-procedure-overview">
+      <title>The validity procedure: two diagrams</title>
+      <p>
+        To evaluate a categorical syllogism for validity, we draw
+        two diagrams and compare them.
+      </p>
+      <ul>
+        <li>
+          <p>
+            <alert>The premise diagram</alert> is a three-circle
+            Venn diagram. The S circle is at the bottom left; the
+            P circle is at the bottom right; the M circle is at
+            the top, overlapping both. We mark this diagram to
+            represent what the two premises claim.
+          </p>
+        </li>
+        <li>
+          <p>
+            <alert>The conclusion diagram</alert> is a two-circle
+            Venn diagram, identical in form to the diagrams from
+            Chapter 6. The S circle is on the left; the P circle
+            is on the right. We mark this diagram to represent
+            what the conclusion claims.
+          </p>
+        </li>
+      </ul>
+      <p>
+        The syllogism is valid if everything claimed in the
+        conclusion diagram is already claimed by the premise
+        diagram. The syllogism is invalid if the conclusion
+        diagram requires something the premise diagram does not
+        already show.
+      </p>
+      <p>
+        The procedure, step by step:
+      </p>
+      <ol>
+        <li><p>Identify S, P, and M from the conclusion and premises.</p></li>
+        <li><p>Draw the three-circle premise diagram with S, P, M positioned as described above.</p></li>
+        <li><p>Mark the premises on the premise diagram, one at a time. Universal premises are shaded; particular premises get an X. (Important: shade universal premises <em>first</em>; particulars second. Shading first sometimes constrains where an X must go.)</p></li>
+        <li><p>Draw the two-circle conclusion diagram and mark it with what the conclusion claims.</p></li>
+        <li><p>Compare. Does the premise diagram already show what the conclusion diagram requires?</p></li>
+      </ol>
+    </paragraphs>
+
+    <paragraphs xml:id="paragraphs-three-circle-numbering">
+      <title>The eight regions of the three-circle diagram</title>
+      <p>
+        The three-circle premise diagram has eight regions, each
+        of which we will refer to by number throughout the
+        remainder of the chapter. The numbering convention,
+        matching the description in the alt text of every diagram
+        we draw:
+      </p>
+      <ul>
+        <li><p><alert>Area 1:</alert> inside S only — not in P, not in M.</p></li>
+        <li><p><alert>Area 2:</alert> inside S and P but not M.</p></li>
+        <li><p><alert>Area 3:</alert> inside P only — not in S, not in M.</p></li>
+        <li><p><alert>Area 4:</alert> outside all three circles.</p></li>
+        <li><p><alert>Area 5:</alert> inside S and M but not P.</p></li>
+        <li><p><alert>Area 6:</alert> inside all three (the center).</p></li>
+        <li><p><alert>Area 7:</alert> inside P and M but not S.</p></li>
+        <li><p><alert>Area 8:</alert> inside M only — not in S, not in P.</p></li>
+      </ul>
+      <figure xml:id="fig-three-circle-numbering">
+        <caption>The standard three-circle Venn diagram with the eight regions numbered.</caption>
+        <image xml:id="image-three-circle-numbering" width="60%">
+          <description>
+            <p>
+              A three-circle Venn diagram. The S circle is at the
+              bottom left. The P circle is at the bottom right.
+              The M circle is at the top, overlapping both. The
+              eight regions are numbered as follows: area 1 is
+              the part of S that is outside both P and M; area 2
+              is the part of S and P that is outside M; area 3
+              is the part of P that is outside both S and M;
+              area 4 is the region outside all three circles;
+              area 5 is the part of S and M that is outside P;
+              area 6 is the center, inside all three; area 7 is
+              the part of P and M that is outside S; area 8 is
+              the part of M that is outside both S and P.
+            </p>
+          </description>
+          <latex-image>
+            \begin{tikzpicture}[scale=1.2]
+              \def\Sleft{(-0.7,-0.4) circle (1.3)}
+              \def\Pright{(0.7,-0.4) circle (1.3)}
+              \def\Mtop{(0,0.6) circle (1.3)}
+              \draw \Sleft;
+              \draw \Pright;
+              \draw \Mtop;
+              \node at (-1.7,-1.4) {$S$};
+              \node at (1.7,-1.4) {$P$};
+              \node at (0,1.9) {$M$};
+              \node at (-1.3,-0.7) {\small 1};
+              \node at (0,-1.0) {\small 2};
+              \node at (1.3,-0.7) {\small 3};
+              \node at (-2.1,-1.7) {\small 4};
+              \node at (-0.85,0.35) {\small 5};
+              \node at (0,0) {\small 6};
+              \node at (0.85,0.35) {\small 7};
+              \node at (0,1.3) {\small 8};
+            \end{tikzpicture}
+          </latex-image>
+        </image>
+      </figure>
+    </paragraphs>
+
+    <paragraphs xml:id="paragraphs-comparing-diagrams">
+      <title>Comparing the two diagrams: how the conclusion checks against the premises</title>
+      <p>
+        The conclusion's two-circle diagram has only four areas
+        (1, 2, 3, 4), but those areas correspond to pairs of
+        regions in the three-circle premise diagram. Each area of
+        the conclusion's two-circle diagram covers two regions of
+        the premise's three-circle diagram — the pair that differs
+        only in whether M is included.
+      </p>
+      <ul>
+        <li><p>Conclusion-diagram area 1 (S only) corresponds to premise-diagram areas <alert>1 and 5</alert>.</p></li>
+        <li><p>Conclusion-diagram area 2 (S∩P) corresponds to premise-diagram areas <alert>2 and 6</alert>.</p></li>
+        <li><p>Conclusion-diagram area 3 (P only) corresponds to premise-diagram areas 3 and 7.</p></li>
+        <li><p>Conclusion-diagram area 4 (outside both) corresponds to premise-diagram areas 4 and 8.</p></li>
+      </ul>
+      <p>
+        Validity, then, becomes a check: does the premise diagram
+        already mark these paired regions in the way the
+        conclusion's diagram requires?
+      </p>
+      <p>
+        The check depends on the conclusion's form (A, E, I, or
+        O). For each form, here is the question to ask of the
+        premise diagram:
+      </p>
+      <ul>
+        <li>
+          <p>
+            <alert>A conclusion (All S are P).</alert> The
+            conclusion shades area 1 of its two-circle diagram.
+            Validity check: are <em>both</em> areas 1 <em>and</em>
+            5 shaded in the premise diagram? If yes, the syllogism
+            is valid. If either is unshaded, it is invalid.
+          </p>
+        </li>
+        <li>
+          <p>
+            <alert>E conclusion (No S are P).</alert> The
+            conclusion shades area 2 of its two-circle diagram.
+            Validity check: are <em>both</em> areas 2 <em>and</em>
+            6 shaded in the premise diagram? If yes, the syllogism
+            is valid. If either is unshaded, it is invalid.
+          </p>
+        </li>
+        <li>
+          <p>
+            <alert>I conclusion (Some S are P).</alert> The
+            conclusion places an X in area 2 of its two-circle
+            diagram. Validity check: is there an X in <em>area 2
+            or area 6</em> of the premise diagram, definitely
+            placed in one of those areas (not on a boundary
+            between an in-the-conclusion-area region and an
+            outside-it region)? If yes, the syllogism is valid.
+            If no X is committed to either of those areas, it is
+            invalid.
+          </p>
+        </li>
+        <li>
+          <p>
+            <alert>O conclusion (Some S are not P).</alert> The
+            conclusion places an X in area 1 of its two-circle
+            diagram. Validity check: is there an X in <em>area 1
+            or area 5</em> of the premise diagram, definitely
+            placed in one of those areas? If yes, the syllogism
+            is valid. If no X is committed to either of those
+            areas, it is invalid.
+          </p>
+        </li>
+      </ul>
+      <p>
+        The pattern: for universal conclusions, we need
+        <em>both</em> regions in the relevant pair to be shaded.
+        For particular conclusions, we need an X <em>in either</em>
+        of the regions in the relevant pair. The next section
+        works through the procedure on actual syllogisms.
+      </p>
+    </paragraphs>
+  </section>
+
+  <section xml:id="sec-diagramming-a-syllogism">
+    <title>Diagramming a Syllogism</title>
+
+    <introduction>
+      <p>
+        With the eight-region numbering and the conclusion-form
+        validity checks from <xref ref="sec-standard-form-syllogisms"/>
+        in hand, we can now actually mark a premise diagram. Each
+        premise is a categorical proposition involving two of the
+        three terms (S, P, M); each premise either shades some
+        regions (if it is universal) or places an X (if it is
+        particular). The procedure has three rules that become
+        natural as students work through diagrams.
+      </p>
+    </introduction>
+
+    <paragraphs xml:id="paragraphs-diagramming-rules">
+      <title>Three rules for marking the premises</title>
+      <p>
+        <alert>Rule 1: Shade universals first, place X marks
+        second.</alert> Universal premises (A and E) tell us a
+        region is empty; particular premises (I and O) tell us a
+        region has at least one member. Always mark the universals
+        first. The reason becomes clear in Rule 3: shading from a
+        universal sometimes constrains where a particular's X has
+        to go.
+      </p>
+      <p>
+        <alert>Rule 2: Each premise involves only two of the three
+        circles. The mark covers both of the corresponding
+        regions in the three-circle diagram.</alert> A categorical
+        premise mentions only two terms — say, M and P — but in
+        the three-circle diagram, the M-and-P relationship is
+        spread across two regions: the region with S and the
+        region without S. The premise alone does not say which.
+        It says something about M and P regardless of S, so we
+        mark <em>both</em> regions.
+      </p>
+      <p>
+        Concretely, here is what each premise type does, organized
+        by which two terms the premise involves.
+      </p>
+      <p>
+        <alert>Premises involving M and P</alert> (typical major premise):
+      </p>
+      <ul>
+        <li><p><q>All M are P</q>: shade the part of M that is outside P, which is areas 5 and 8.</p></li>
+        <li><p><q>No M are P</q>: shade the overlap of M and P, which is areas 6 and 7.</p></li>
+        <li><p><q>Some M are P</q>: place an X in the overlap of M and P, which is areas 6 or 7. (See Rule 3.)</p></li>
+        <li><p><q>Some M are not P</q>: place an X in M outside P, which is areas 5 or 8. (See Rule 3.)</p></li>
+      </ul>
+      <p>
+        <alert>Premises involving M and S</alert> (typical minor premise):
+      </p>
+      <ul>
+        <li><p><q>All S are M</q>: shade the part of S that is outside M, which is areas 1 and 2.</p></li>
+        <li><p><q>No S are M</q>: shade the overlap of S and M, which is areas 5 and 6.</p></li>
+        <li><p><q>Some S are M</q>: place an X in the overlap of S and M, which is areas 5 or 6. (See Rule 3.)</p></li>
+        <li><p><q>Some S are not M</q>: place an X in S outside M, which is areas 1 or 2. (See Rule 3.)</p></li>
+      </ul>
+      <p>
+        Premises involving both S and P are uncommon as premises
+        (they don't fit our definition of standard form syllogisms,
+        since S and P are usually distributed across the two
+        premises through the middle term M), but they follow the
+        same pattern: <q>All S are P</q> shades areas 1 and 5;
+        <q>No S are P</q> shades areas 2 and 6; the particular
+        forms place an X in 1 or 5, or in 2 or 6, respectively.
+      </p>
+      <p>
+        <alert>Rule 3: When a particular premise's X could be in
+        either of two regions, place the X on the boundary between
+        them — unless one of those regions is already shaded, in
+        which case the X must be in the unshaded one.</alert>
+        Because a particular premise mentions only two terms, the
+        X has two candidate regions. The premise itself does not
+        commit to one. We represent that uncommitted state by
+        drawing the X on the boundary, indicating <q>somewhere in
+        one of these two, but we don't know which.</q> If the
+        universals already shaded one of the two candidates, the
+        X cannot go in the shaded region (which the universal has
+        declared empty), so the X must go in the unshaded one.
+        This is the central reason we shade universals first.
+      </p>
+    </paragraphs>
+
+    <paragraphs xml:id="paragraphs-worked-example-EAE-1">
+      <title>Worked Example 1: a valid syllogism (EAE-1)</title>
+      <p>
+        Consider the following syllogism, drawn from a science-fiction
+        textbook example:
+      </p>
+      <example xml:id="ex-eae-1-syllogism">
+        <title>Tralfamadorians and human life</title>
+        <statement>
+          <p>P1: No alien creatures are creatures that would understand human life.</p>
+          <p>P2: All Tralfamadorians are alien creatures.</p>
+          <p><m>\therefore</m> C: No Tralfamadorians are creatures that would understand human life.</p>
+        </statement>
+      </example>
+      <p>
+        Identify the terms from the conclusion. The minor term S
+        is <em>Tralfamadorians</em>; the major term P is
+        <em>creatures that would understand human life</em>. The
+        middle term M is <em>alien creatures</em>.
+      </p>
+      <p>
+        P1 (<q>No alien creatures are creatures that would
+        understand human life</q>) is an E proposition involving M
+        and P. By Rule 2, this shades the overlap of M and P,
+        which is areas 6 and 7. Mark them shaded.
+      </p>
+      <p>
+        P2 (<q>All Tralfamadorians are alien creatures</q>) is an
+        A proposition involving S and M. By Rule 2, this shades
+        the part of S outside M, which is areas 1 and 2. Mark
+        them shaded.
+      </p>
+      <p>
+        Both premises are universals, so Rule 1 is automatic: we
+        shade and we are done. No X marks to place.
+      </p>
+      <figure xml:id="fig-eae-1-premises">
+        <caption>The premise diagram for EAE-1: areas 1, 2, 6, and 7 are shaded.</caption>
+        <image xml:id="image-eae-1-premises" width="60%">
+          <description>
+            <p>
+              A three-circle Venn diagram with M at top, S at
+              bottom-left, and P at bottom-right. In this example,
+              S is Tralfamadorians, P is creatures that would
+              understand human life, and M is alien creatures.
+              Areas 6 and 7 are shaded — these are the overlap of
+              M and P, both with S (area 6, the center) and
+              without S (area 7). Areas 1 and 2 are also shaded —
+              these are the part of S that is outside M, both
+              outside P (area 1) and inside P (area 2). Areas 3,
+              4, 5, and 8 are unshaded.
+            </p>
+          </description>
+          <latex-image>
+            \begin{tikzpicture}[scale=1.2]
+              \def\Sleft{(-0.7,-0.4) circle (1.3)}
+              \def\Pright{(0.7,-0.4) circle (1.3)}
+              \def\Mtop{(0,0.6) circle (1.3)}
+              % Shade areas 1 and 2 (S minus M)
+              \begin{scope}
+                \clip \Sleft;
+                \fill[gray!40] (-3,-3) rectangle (3,3);
+                \fill[white] \Mtop;
+              \end{scope}
+              % Shade areas 6 and 7 (M ∩ P)
+              \begin{scope}
+                \clip \Pright;
+                \clip \Mtop;
+                \fill[gray!40] (-3,-3) rectangle (3,3);
+              \end{scope}
+              \draw \Sleft;
+              \draw \Pright;
+              \draw \Mtop;
+              \node at (-1.7,-1.4) {$S$};
+              \node at (1.7,-1.4) {$P$};
+              \node at (0,1.9) {$M$};
+              \node at (-1.3,-0.7) {\small 1};
+              \node at (0,-1.0) {\small 2};
+              \node at (1.3,-0.7) {\small 3};
+              \node at (-2.1,-1.7) {\small 4};
+              \node at (-0.85,0.35) {\small 5};
+              \node at (0,0) {\small 6};
+              \node at (0.85,0.35) {\small 7};
+              \node at (0,1.3) {\small 8};
+            \end{tikzpicture}
+          </latex-image>
+        </image>
+      </figure>
+      <figure xml:id="fig-eae-1-conclusion">
+        <caption>The conclusion diagram for EAE-1: area 2 is shaded.</caption>
+        <image xml:id="image-eae-1-conclusion" width="50%">
+          <description>
+            <p>
+              A two-circle Venn diagram for the conclusion, with S
+              on the left and P on the right. In this example, S is
+              Tralfamadorians and P is creatures that would
+              understand human life. The overlap of S and P, area
+              2, is shaded. This represents the conclusion <q>No S
+              are P.</q> Areas 1, 3, and 4 are unshaded.
+            </p>
+          </description>
+          <latex-image>
+            \begin{tikzpicture}[scale=1.2]
+              \def\Sleft{(-0.55,0) circle (1.2)}
+              \def\Pright{(0.55,0) circle (1.2)}
+              % Shade area 2 (S ∩ P)
+              \begin{scope}
+                \clip \Sleft;
+                \clip \Pright;
+                \fill[gray!40] (-3,-3) rectangle (3,3);
+              \end{scope}
+              \draw \Sleft;
+              \draw \Pright;
+              \node at (-1.35,-1.15) {$S$};
+              \node at (1.35,-1.15) {$P$};
+              \node at (-0.85,0) {\small 1};
+              \node at (0,0) {\small 2};
+              \node at (0.85,0) {\small 3};
+              \node at (0,-1.65) {\small 4};
+            \end{tikzpicture}
+          </latex-image>
+        </image>
+      </figure>
+      <p>
+        Now check the conclusion. The conclusion is an E
+        proposition: <q>No S are P.</q> The validity check from
+        <xref ref="sec-standard-form-syllogisms"/> says: are
+        <em>both</em> areas 2 and 6 shaded?
+      </p>
+      <p>
+        Area 2: shaded (by P2). Area 6: shaded (by P1). Both
+        regions are shaded. The premise diagram shows what the
+        conclusion claims. The syllogism is <alert>valid</alert>.
+      </p>
+    </paragraphs>
+
+    <paragraphs xml:id="paragraphs-worked-example-EIO-2">
+      <title>Worked Example 2: a syllogism with a particular premise (EIO-2)</title>
+      <p>
+        The next example shows what happens when one premise is
+        particular and the universal premise has already shaded
+        one of the X's candidate regions.
+      </p>
+      <example xml:id="ex-eio-2-syllogism">
+        <title>Right-wing hate mongers, socialists, and Americans</title>
+        <statement>
+          <p>P1: No right-wing hate mongers are socialists.</p>
+          <p>P2: Some Americans are socialists.</p>
+          <p><m>\therefore</m> C: Some Americans are not right-wing hate mongers.</p>
+        </statement>
+      </example>
+      <p>
+        From the conclusion: S is <em>Americans</em>; P is
+        <em>right-wing hate mongers</em>. M is the term in both
+        premises but not the conclusion: <em>socialists</em>.
+      </p>
+      <p>
+        P1 (<q>No right-wing hate mongers are socialists</q>) is
+        an E proposition involving P and M. <q>No P are M</q>
+        shades the overlap of P and M, which is areas 6 and 7.
+        Mark them shaded.
+      </p>
+      <p>
+        P2 (<q>Some Americans are socialists</q>) is an I
+        proposition involving S and M. <q>Some S are M</q> places
+        an X in the overlap of S and M, which is areas 5 or 6.
+        But area 6 is <em>already shaded</em> by P1 — declared
+        empty — so the X cannot go there. The X must therefore
+        go in area 5.
+      </p>
+      <p>
+        This is the practical reason for Rule 1. If we had drawn
+        the X first (as a boundary X between 5 and 6) and then
+        shaded P1, we would have had to revisit the X anyway. By
+        shading first, the X's placement is forced and there is
+        no boundary to redraw.
+      </p>
+      <figure xml:id="fig-eio-2-premises">
+        <caption>The premise diagram for EIO-2: areas 6 and 7 shaded; X in area 5.</caption>
+        <image xml:id="image-eio-2-premises" width="60%">
+          <description>
+            <p>
+              A three-circle Venn diagram with M at top, S at
+              bottom-left, and P at bottom-right. In this example,
+              S is Americans, P is right-wing hate mongers, and M
+              is socialists. Areas 6 and 7 are shaded — these are
+              the overlap of M and P, both with S (area 6, the
+              center) and without S (area 7). An X is placed in
+              area 5, which is the overlap of S and M outside P.
+              Areas 1, 2, 3, 4, and 8 are unshaded and unmarked.
+              Although the I premise alone would have allowed the X
+              to be in area 5 or 6, the shading from the E premise
+              forces the X into area 5.
+            </p>
+          </description>
+          <latex-image>
+            \begin{tikzpicture}[scale=1.2]
+              \def\Sleft{(-0.7,-0.4) circle (1.3)}
+              \def\Pright{(0.7,-0.4) circle (1.3)}
+              \def\Mtop{(0,0.6) circle (1.3)}
+              % Shade areas 6 and 7 (M ∩ P)
+              \begin{scope}
+                \clip \Pright;
+                \clip \Mtop;
+                \fill[gray!40] (-3,-3) rectangle (3,3);
+              \end{scope}
+              \draw \Sleft;
+              \draw \Pright;
+              \draw \Mtop;
+              \node at (-1.7,-1.4) {$S$};
+              \node at (1.7,-1.4) {$P$};
+              \node at (0,1.9) {$M$};
+              \node at (-1.3,-0.7) {\small 1};
+              \node at (0,-1.0) {\small 2};
+              \node at (1.3,-0.7) {\small 3};
+              \node at (-2.1,-1.7) {\small 4};
+              \node at (-0.85,0.55) {\small 5};
+              \node at (0,0) {\small 6};
+              \node at (0.85,0.35) {\small 7};
+              \node at (0,1.3) {\small 8};
+              % X in area 5
+              \node at (-0.85,0.2) {$\times$};
+            \end{tikzpicture}
+          </latex-image>
+        </image>
+      </figure>
+      <figure xml:id="fig-eio-2-conclusion">
+        <caption>The conclusion diagram for EIO-2: X in area 1.</caption>
+        <image xml:id="image-eio-2-conclusion" width="50%">
+          <description>
+            <p>
+              A two-circle Venn diagram for the conclusion, with S
+              on the left and P on the right. In this example, S is
+              Americans and P is right-wing hate mongers. An X is
+              placed in area 1, the part of S outside P. This
+              represents the conclusion <q>Some S are not P.</q>
+              No areas are shaded.
+            </p>
+          </description>
+          <latex-image>
+            \begin{tikzpicture}[scale=1.2]
+              \def\Sleft{(-0.55,0) circle (1.2)}
+              \def\Pright{(0.55,0) circle (1.2)}
+              \draw \Sleft;
+              \draw \Pright;
+              \node at (-1.35,-1.15) {$S$};
+              \node at (1.35,-1.15) {$P$};
+              \node at (-0.85,0) {\small 1};
+              \node at (0,0) {\small 2};
+              \node at (0.85,0) {\small 3};
+              \node at (0,-1.65) {\small 4};
+              \node at (-0.75,0.35) {$\times$};
+            \end{tikzpicture}
+          </latex-image>
+        </image>
+      </figure>
+      <p>
+        Now check the conclusion. The conclusion is O: <q>Some S
+        are not P.</q> The validity check says: is there an X in
+        either area 1 or area 5 of the premise diagram?
+      </p>
+      <p>
+        There is an X in area 5. The premise diagram shows what
+        the conclusion claims. The syllogism is
+        <alert>valid</alert>.
+      </p>
+    </paragraphs>
+
+    <paragraphs xml:id="paragraphs-worked-example-iii-boundary">
+      <title>Worked Example 3: all particulars and boundary Xs</title>
+      <p>
+        Sometimes nothing constrains a particular premise's X.
+        When that happens, the X stays on the boundary between
+        its two candidate regions. An all-particular syllogism is
+        a clean way to see this.
+      </p>
+      <example xml:id="ex-iii-boundary-syllogism">
+        <title>Two uncommitted Xs</title>
+        <statement>
+          <p>P1: Some vibe coded apps are excellent programs.</p>
+          <p>P2: Some Codex produced code bases are vibe coded apps.</p>
+          <p><m>\therefore</m> C: Some Codex produced code bases are excellent programs.</p>
+        </statement>
+      </example>
+      <p>
+        From the conclusion: S is <em>Codex produced code bases</em>;
+        P is <em>excellent programs</em>. The middle term M is
+        <em>vibe coded apps</em>.
+      </p>
+      <p>
+        P1 (<q>Some vibe coded apps are excellent programs</q>) is
+        an I proposition involving M and P, so it places an X
+        somewhere in the overlap of M and P: area 6 or area 7.
+        Since neither area is shaded, the X goes on the boundary
+        between 6 and 7.
+      </p>
+      <p>
+        P2 (<q>Some Codex produced code bases are vibe coded apps</q>)
+        is an I proposition involving S and M, so it places an X
+        somewhere in the overlap of S and M: area 5 or area 6.
+        Since neither area is shaded, this X goes on the boundary
+        between 5 and 6.
+      </p>
+      <figure xml:id="fig-iii-boundary-premises">
+        <caption>The premise diagram for the all-particular example: one X on the boundary between areas 6 and 7, and one X on the boundary between areas 5 and 6.</caption>
+        <image xml:id="image-iii-boundary-premises" width="60%">
+          <description>
+            <p>
+              A three-circle Venn diagram with M at top, S at
+              bottom-left, and P at bottom-right. In this example,
+              S is Codex produced code bases, P is excellent
+              programs, and M is vibe coded apps. One X lies on the
+              boundary between areas 6 and 7, representing
+              <q>Some vibe coded apps are excellent programs.</q>
+              That X is somewhere in the overlap of M and P, but it
+              is not committed to being inside or outside S. A
+              second X lies on the boundary between areas 5 and 6,
+              representing <q>Some Codex produced code bases are
+              vibe coded apps.</q> That X is somewhere in the
+              overlap of S and M, but it is not committed to being
+              inside or outside P. No regions are shaded.
+            </p>
+          </description>
+          <latex-image>
+            \begin{tikzpicture}[scale=1.2]
+              \def\Sleft{(-0.7,-0.4) circle (1.3)}
+              \def\Pright{(0.7,-0.4) circle (1.3)}
+              \def\Mtop{(0,0.6) circle (1.3)}
+              \draw \Sleft;
+              \draw \Pright;
+              \draw \Mtop;
+              \node at (-1.7,-1.4) {$S$};
+              \node at (1.7,-1.4) {$P$};
+              \node at (0,1.9) {$M$};
+              \node at (-1.3,-0.7) {\small 1};
+              \node at (0,-1.0) {\small 2};
+              \node at (1.3,-0.7) {\small 3};
+              \node at (-2.1,-1.7) {\small 4};
+              \node at (-0.85,0.35) {\small 5};
+              \node at (0,0) {\small 6};
+              \node at (0.85,0.35) {\small 7};
+              \node at (0,1.3) {\small 8};
+              % Boundary Xs
+              \node at (0.35,0.35) {$\times$};
+              \node at (-0.35,0.35) {$\times$};
+            \end{tikzpicture}
+          </latex-image>
+        </image>
+      </figure>
+      <figure xml:id="fig-iii-boundary-conclusion">
+        <caption>The conclusion diagram for the all-particular example: X in area 2.</caption>
+        <image xml:id="image-iii-boundary-conclusion" width="50%">
+          <description>
+            <p>
+              A two-circle Venn diagram for the conclusion, with S
+              on the left and P on the right. In this example, S is
+              Codex produced code bases and P is excellent
+              programs. An X is placed in area 2, the overlap of S
+              and P. This represents the conclusion <q>Some Codex
+              produced code bases are excellent programs.</q> No
+              areas are shaded.
+            </p>
+          </description>
+          <latex-image>
+            \begin{tikzpicture}[scale=1.2]
+              \def\Sleft{(-0.55,0) circle (1.2)}
+              \def\Pright{(0.55,0) circle (1.2)}
+              \draw \Sleft;
+              \draw \Pright;
+              \node at (-1.35,-1.15) {$S$};
+              \node at (1.35,-1.15) {$P$};
+              \node at (-0.85,0) {\small 1};
+              \node at (0,0) {\small 2};
+              \node at (0.85,0) {\small 3};
+              \node at (0,-1.65) {\small 4};
+              \node at (0,0.35) {$\times$};
+            \end{tikzpicture}
+          </latex-image>
+        </image>
+      </figure>
+      <p>
+        For the validity check, an uncommitted X on a boundary
+        does <em>not</em> satisfy the requirement that the X be
+        definitely in one of the conclusion's required regions.
+        The premises must commit the X to one of the regions the
+        conclusion requires. If the X is on a boundary between a
+        region the conclusion requires and a region it does not,
+        the syllogism is invalid: the premises haven't done
+        enough work to settle the issue the conclusion claims to
+        settle.
+      </p>
+      <p>
+        In this example, the conclusion requires an X in area 2
+        or area 6 of the premise diagram. The premise diagram has
+        no X in area 2. It has two boundary Xs that touch area 6,
+        but neither is definitely in area 6. So the premise
+        diagram does not show what the conclusion claims. The
+        syllogism is <alert>invalid</alert>.
+      </p>
+    </paragraphs>
+  </section>
+
+  <!--
+    REMAINING SECTIONS — TO BE DRAFTED IN SUBSEQUENT PASSES:
+
+    §7.3 Common Validity Patterns and Failure Points. A focused
+         set of worked cases showing what students should learn
+         to notice when comparing premise and conclusion diagrams:
+         one clean valid example, one invalid example where the
+         conclusion overreaches, one modern-vs-Aristotelian
+         existential import case (such as the AAI-3 family), and
+         one boundary-X case summarized as a common failure point
+         rather than rediagrammed in full. Draw on the lead
+         author's Spring 2026 Exam 2 study guide where appropriate.
+
+    §7.4 Mood and Figure. Definition of mood (the three letters
+         of the syllogism's propositions, in order: major, minor,
+         conclusion) and figure (1, 2, 3, or 4 — based on the
+         position of the middle term). Mood-and-figure as the
+         alternate encoding for accessibility purposes; the
+         method delivers the same validity verdict as the
+         Venn-diagram method.
+
+    §7.5 Translating arguments into syllogism form. When a real
+         argument is close to but not yet in syllogism form, what
+         reductions and rephrasings are legitimate.
+
+    §7.6 Where We're Headed. Closing pivot to Part III (sentential
+         logic).
+
+    EOC exercises (probably 5–7 sets covering: identifying terms,
+    diagramming premises, full validity testing by Venn, mood and
+    figure identification, mood-and-figure validity testing, mixed
+    review).
+  -->
+
+</chapter>

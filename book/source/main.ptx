@@ -2,11 +2,12 @@
 <!--
   Root document for the UMW Logic Textbook.
   Each chapter is included from its own file under source/chapters/.
-  Examples are included from source/examples/ via xinclude inside each chapter.
+  Some future example sets may be included from modular example files; the
+  current draft still authors many examples inline in chapter source.
 
   The structure mirrors the four-part outline in PROJECT_PLAN.md §3.
-  Part V (Predicate Logic) is included by default but adopters who do not
-  teach predicate logic can comment it out without breaking other parts.
+  Part V (Predicate Logic) is planned as optional adopter content. It is
+  currently commented out until those chapters are drafted.
 -->
 <pretext xmlns:xi="http://www.w3.org/2001/XInclude">
 
@@ -79,12 +80,11 @@
       Part II — Categorical Logic (Venn-first)
       Mood and Figure de-emphasized in favor of Venn diagram method.
     -->
-    <!--
     <part xml:id="part-categorical">
       <title>Categorical Logic</title>
-      <xi:include href="chapters/ch-categorical-statements.ptx"/>
+      <xi:include href="chapters/ch-categorical-propositions.ptx"/>
+      <xi:include href="chapters/ch-categorical-syllogisms.ptx"/>
     </part>
-    -->
 
     <!--
       Part III — Sentential Logic

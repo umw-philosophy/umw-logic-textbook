@@ -16,7 +16,7 @@ Each decision is dated, numbered, and tagged with the section of `PROJECT_PLAN.m
 - (b) Adopt Knachel's *Fundamental Methods of Logic* wholesale — rejected: contains errors (notably in the probability section the lead author already uses), and structural choices that diverge from how the lead author teaches.
 - (c) Adapt Knachel under his CC license, fixing errors and reorganizing — rejected in favor of writing fresh.
 - (d) Write a new book — **chosen**.
-**Rationale**: A new book lets the project optimize for the lead author's pedagogical preferences (notation, Venn-only categorical, four-section structure tied to UMW's quantitative-reasoning gen-ed requirement) and produces a deliverable that can grow into an integrated platform with the proof checker, truth table checker, and Canvas modules.
+**Rationale**: A new book lets the project optimize for the lead author's pedagogical preferences (notation, Venn-first categorical logic, four-section structure tied to UMW's quantitative-reasoning gen-ed requirement) and produces a deliverable that can grow into an integrated platform with companion tools and Canvas modules.
 
 ---
 
@@ -36,7 +36,7 @@ Each decision is dated, numbered, and tagged with the section of `PROJECT_PLAN.m
 
 **Date**: 2026-04-26
 **Plan section**: 4
-**Decision**: Use Copi notation (`⊃`, `·`, `∨`, `≡`, `∼`) in all materials.
+**Decision**: Use Copi notation (`⊃`, `·`, `∨`, `≡`, `~`) in all materials. Negation is written with the plain ASCII tilde `~` (Unicode U+007E), not the Unicode tilde operator `∼` (U+223C) and not the negation sign `¬`.
 **Alternatives considered**:
 - Modern notation (`→`, `∧`, `∨`, `¬`, `↔`).
 - Both, with reader/student choice.
@@ -83,9 +83,9 @@ Each decision is dated, numbered, and tagged with the section of `PROJECT_PLAN.m
 
 **Date**: 2026-04-26
 **Plan section**: 5
-**Decision**: Politically-current examples live in modular files under `examples/`, referenced from chapters via PreTeXt `xinclude`. Example sets are versioned so adopters can pin to a stable set.
+**Decision**: Politically-current examples should move toward modular files under `examples/`, referenced from chapters via PreTeXt `xinclude` or another stable include mechanism where practical. Example sets are versioned so adopters can pin to a stable set. The current draft may keep some examples inline until the example library is mature enough to justify the refactor.
 **Alternatives considered**: Inline examples in chapter source, hand-edited each cycle.
-**Rationale**: The lead author updates examples frequently to track current events. Architecture-level support for cheap swapping prevents the bottleneck where re-publishing the whole book to update one example becomes a chore that gets skipped.
+**Rationale**: The lead author updates examples frequently to track current events. Architecture-level support for cheap swapping prevents the bottleneck where re-publishing the whole book to update one example becomes a chore that gets skipped, while allowing the first full draft to prioritize prose quality over premature file splitting.
 
 ---
 
@@ -183,7 +183,7 @@ Each decision is dated, numbered, and tagged with the section of `PROJECT_PLAN.m
 
 **Date**: 2026-04-26
 **Plan section**: 8
-**Decision**: One GitHub repository containing book, both tools, Canvas exports, examples, and docs. Public from day 1.
+**Decision**: One GitHub repository containing book, companion tools, Canvas exports, examples, and docs. Public from day 1.
 **Alternatives considered**:
 - Multiple repositories with independent versioning.
 - Private during development, opened at v1.0.
@@ -266,7 +266,7 @@ Each decision is dated, numbered, and tagged with the section of `PROJECT_PLAN.m
 
 **Date**: 2026-04-26
 **Plan section**: 13
-**Decision**: Each chapter has chapter opener (no formal learning-outcomes), 3–6 sections (intro, definitions in boxed callouts, worked examples in boxed callouts, practice problems with reveal-on-click solutions, cross-references to tools), chapter summary, key terms, end-of-chapter exercises (mixed difficulty, organized by section), optional "Going Further." PreTeXt combined per-section numbering. Selected solutions in PDF appendix; full solutions in instructor's manual. Figures via PreTeXt's `<diagram>` element with SVG output.
+**Decision**: Each chapter has chapter opener (no formal learning-outcomes), 3–6 sections (intro, definitions in boxed callouts, worked examples in boxed callouts, practice problems with reveal-on-click solutions where appropriate, cross-references to relevant companion tools), chapter summary, key terms, end-of-chapter exercises (mixed difficulty, organized by section), optional "Going Further." PreTeXt combined per-section numbering. Selected solutions in PDF appendix; full solutions in instructor's manual. Figures are authored as semantic PreTeXt figures/images with text descriptions; the underlying source may be TikZ/LaTeX image code or PreTeXt diagram markup depending on which renders the content most reliably.
 **Alternatives considered**: Multiple options listed in the alignment interview.
 **Rationale**: Optimized for the lookup-friendly use case (students do not read books cover-to-cover) while preserving the option for students who do want to read it as a book.
 
@@ -276,7 +276,7 @@ Each decision is dated, numbered, and tagged with the section of `PROJECT_PLAN.m
 
 **Date**: 2026-04-26
 **Plan section**: 7
-**Decision**: WCAG 2.1 AA target across book HTML, both tools, and Canvas modules. Hard requirements include keyboard-only operation, screen-reader testing as part of the Chapter 1 vertical slice, semantic markup, no color-only feedback, alt-text on every figure. No chapter ships without screen-reader verification.
+**Decision**: WCAG 2.1 AA target across book HTML, companion tools, and Canvas modules. Hard requirements include keyboard-only operation, screen-reader testing as part of the Chapter 1 vertical slice, semantic markup, no color-only feedback, and alt-text or equivalent text alternatives on every figure. No chapter ships without screen-reader verification.
 **Alternatives considered**: Accessibility as a Phase 2 polish.
 **Rationale**: Required by the grant. Required by the project's values. Cheaper to bake in at the template stage than to retrofit later.
 
@@ -324,4 +324,12 @@ Each decision is dated, numbered, and tagged with the section of `PROJECT_PLAN.m
 
 ---
 
-*End of decision log as of project alignment, April 26, 2026. New decisions appended below.*
+## D-028 — Companion tools and item banks are first-class deliverables
+
+**Date**: 2026-05-07
+**Plan section**: 1, 6
+**Decision**: Treat the practice tools and Canvas item banks as part of the project deliverable set. The companion tools include the proof checker, truth table checker, Venn diagram checker, and argument reconstruction editor. Canvas item banks are produced alongside thin module shells so adopters can build their own quizzes from portable question pools.
+**Alternatives considered**:
+- Treat the Venn checker and reconstruction editor as informal side projects outside the project plan.
+- Ship only fixed Canvas quiz shells, without item banks.
+**Rationale**: The new tools directly support chapters already drafted or planned, and item banks are more portable for adopters than fixed quiz shells. Naming them in the plan keeps the repository, grant narrative, accessibility obligations, and actual development work aligned.

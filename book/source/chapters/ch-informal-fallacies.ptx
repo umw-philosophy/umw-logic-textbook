@@ -44,7 +44,7 @@
     </p>
     <p>
       The word <em>informal</em> matters. The fallacies in this
-      chapter are not failures of formal logic like denying the antecedent and affirming the consquence from Chapter 3. They are failures that show up in real
+      chapter are not failures of formal logic like denying the antecedent and affirming the consequent from Chapter 3. They are failures that show up in real
       arguments built from real prose, where the trouble is usually
       in how a premise is being deployed rather than in a misapplied
       rule. Some fallacies make an argument invalid; others make it
@@ -702,7 +702,7 @@
         centers caused the problem. Industry defenders argued that
         the substation was already aging and would have failed
         regardless.<fn>
-          This reflects ongoing grid reliability debates with Dominion Energy in Northern Virginia. For instance, following a July 2024 transmission line fault that disconnected 60 data centers and caused massive 1,500 MW load swings, debates ensued over whether rapid data center expansion or aging grid infrastructure was the primary cause of grid instability. See coverage by Grid Status (https://gridstatus.io/).
+          See, for example, Evan Halper, "Internet data centers are fueling drive to old power source: Coal," The Washington Post, April 17, 2024 (https://www.washingtonpost.com/climate-solutions/2024/04/17/data-centers-energy-grid-virginia-coal/), documenting how data center electricity demand in Northern Virginia is straining the grid and driving debates over infrastructure capacity. On July 10, 2024, a failed lightning arrestor on the Ox-Possum 230-kV transmission line near Fairfax triggered the simultaneous disconnection of approximately 60 data centers, causing a sudden 1,500 MW load loss that nearly destabilized the PJM Interconnection grid, prompting NERC to launch a Large Load Task Force to study the issue.
         </fn> Both can be partially right; figuring out the
         actual causal contribution is genuine engineering work.
         The fallacy is in skipping the engineering work and going
@@ -1106,6 +1106,133 @@
         have practiced.
       </p>
     </paragraphs>
+  </section>
+
+  <conclusion xml:id="conclusion-ch5">
+    <title>Chapter Summary</title>
+
+    <p>
+      This chapter introduced informal fallacies as recurring patterns
+      of bad reasoning in ordinary argumentative prose. The core ideas,
+      section by section:
+    </p>
+
+    <p>
+      <alert>What a Fallacy Is and Isn't (§5.1).</alert> A fallacy is
+      a pattern of bad reasoning, not merely a false statement or a
+      conclusion we dislike. Naming a fallacy is the beginning of an
+      analysis: we still have to explain what the argument is doing and
+      why that move fails.
+    </p>
+
+    <p>
+      <alert>Fallacies of Relevance (§5.2).</alert> These fallacies
+      use premises that distract from, replace, or distort the issue
+      the argument is supposed to address. The group includes ad
+      hominem, appeal to emotion, appeal to popularity, illegitimate
+      appeal to authority, straw person, red herring, and equivocation.
+    </p>
+
+    <p>
+      <alert>Fallacies of Weak Inductive Support (§5.3).</alert> These
+      fallacies offer premises that bear on the conclusion but do not
+      support it strongly enough. The group includes hasty
+      generalization, rigid application of a generalization, false
+      cause, slippery slope, and weak analogy.
+    </p>
+
+    <p>
+      <alert>Fallacies of Presumption (§5.4).</alert> These fallacies
+      smuggle something into the argument that still needs to be shown.
+      The group includes begging the question, false dichotomy, complex
+      question, and suppressed evidence.
+    </p>
+
+    <p>
+      <alert>Where We're Headed (§5.5).</alert> Fallacy-spotting is a
+      practical extension of argument recognition, reconstruction, and
+      evaluation. Part II turns next to categorical logic, where some
+      arguments can be tested with precise formal methods.
+    </p>
+
+  </conclusion>
+
+  <section xml:id="sec-ch5-key-terms">
+    <title>Key Terms</title>
+
+    <p>Listed alphabetically, with section references.</p>
+
+    <dl>
+      <li xml:id="term-ch5-ad-hominem">
+        <title>Ad hominem</title>
+        <p>A fallacy that attacks a person instead of addressing the argument or issue. (§5.2)</p>
+      </li>
+      <li xml:id="term-ch5-appeal-to-authority">
+        <title>Appeal to illegitimate authority</title>
+        <p>A fallacy that relies on a source that is not an appropriate authority for the claim at issue, or that misuses authority in place of evidence. (§5.2)</p>
+      </li>
+      <li xml:id="term-ch5-appeal-to-emotion">
+        <title>Appeal to emotion</title>
+        <p>A fallacy that substitutes emotional pressure for relevant support. (§5.2)</p>
+      </li>
+      <li xml:id="term-ch5-appeal-to-popularity">
+        <title>Appeal to popularity</title>
+        <p>A fallacy that treats a claim as true or reasonable merely because many people believe or favor it. (§5.2)</p>
+      </li>
+      <li xml:id="term-ch5-begging-the-question">
+        <title>Begging the question</title>
+        <p>A fallacy in which the argument assumes what it is supposed to prove. (§5.4)</p>
+      </li>
+      <li xml:id="term-ch5-complex-question">
+        <title>Complex question</title>
+        <p>A fallacy in which a question presupposes something controversial or unsupported. (§5.4)</p>
+      </li>
+      <li xml:id="term-ch5-equivocation">
+        <title>Equivocation</title>
+        <p>A fallacy in which a key term shifts meaning across an argument. (§5.2)</p>
+      </li>
+      <li xml:id="term-ch5-fallacy">
+        <title>Fallacy</title>
+        <p>A recurring pattern of bad reasoning. (§5.1)</p>
+      </li>
+      <li xml:id="term-ch5-false-cause">
+        <title>False cause</title>
+        <p>A fallacy that infers a causal connection without adequate causal evidence. (§5.3)</p>
+      </li>
+      <li xml:id="term-ch5-false-dichotomy">
+        <title>False dichotomy</title>
+        <p>A fallacy that presents too few options as if they exhausted the possibilities. (§5.4)</p>
+      </li>
+      <li xml:id="term-ch5-hasty-generalization">
+        <title>Hasty generalization</title>
+        <p>A fallacy that draws a broad conclusion from too little or unrepresentative evidence. (§5.3)</p>
+      </li>
+      <li xml:id="term-ch5-red-herring">
+        <title>Red herring</title>
+        <p>A fallacy that diverts attention to an issue that is not relevant to the conclusion under discussion. (§5.2)</p>
+      </li>
+      <li xml:id="term-ch5-rigid-application">
+        <title>Rigid application of a generalization</title>
+        <p>A fallacy that applies a general rule too mechanically, ignoring relevant exceptions or context. (§5.3)</p>
+      </li>
+      <li xml:id="term-ch5-slippery-slope">
+        <title>Slippery slope</title>
+        <p>A fallacy that moves from a first step to an extreme outcome without adequate support for the chain of consequences. (§5.3)</p>
+      </li>
+      <li xml:id="term-ch5-straw-person">
+        <title>Straw person</title>
+        <p>A fallacy that attacks a distorted or weakened version of an opponent's position. (§5.2)</p>
+      </li>
+      <li xml:id="term-ch5-suppressed-evidence">
+        <title>Suppressed evidence</title>
+        <p>A fallacy that leaves out important information that would weaken or change the argument. (§5.4)</p>
+      </li>
+      <li xml:id="term-ch5-weak-analogy">
+        <title>Weak analogy</title>
+        <p>A fallacy that relies on a comparison whose relevant similarities are too weak to support the conclusion. (§5.3)</p>
+      </li>
+    </dl>
+
   </section>
 
   <exercises xml:id="exercises-ch5">

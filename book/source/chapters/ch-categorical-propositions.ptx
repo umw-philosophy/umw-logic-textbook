@@ -1,0 +1,1173 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  Chapter 6 — Categorical Propositions
+  First full draft. Opening chapter of Part II.
+
+  Scope:
+  - The four standard form categorical propositions: A, E, I, O.
+  - Two-circle Venn diagrams for each, using the standard 4-area
+    numbering (1 = S only; 2 = S∩P; 3 = P only; 4 = outside both).
+  - Basic translation from English into standard form.
+  - The (modern) square of opposition: just contradictories.
+  - Existential commitment: modern interpretation only; universals
+    interpreted as conditionals. Aristotelian interpretation is
+    deferred to an appendix per PROJECT_PLAN.md §3.
+  - Immediate inferences: conversion, obversion, contraposition,
+    with the modern-interp validity table.
+  - More complex translations: singular statements via identity,
+    "only" and "none but," and other patterns.
+
+  Voice: matter-of-fact, declarative, real-world / political
+  examples where they land. Several translation examples are
+  adapted from the lead author's Spring 2026 Exam 2 study guide.
+
+  Diagrams: 2-circle Venn diagrams generated in TikZ. Each
+  <image> includes a <description> with full alt text using the
+  4-area convention so screen-reader users get an alternate
+  encoding equivalent to the visual diagram.
+
+  Notes for review:
+  - Venn diagrams should continue to be checked visually after
+    any geometry or rendering changes.
+  - Mood and figure are deferred to Chapter 7 (syllogisms).
+-->
+<chapter xmlns:xi="http://www.w3.org/2001/XInclude" xml:id="ch-categorical-propositions">
+
+  <title>Categorical Propositions</title>
+
+  <introduction xml:id="ch-categorical-propositions-intro">
+    <p>
+      Part I gave us the conceptual frame for evaluating arguments:
+      validity and soundness, strength and cogency, the recognition
+      and reconstruction skills that let us put an argument into a
+      form we can examine. Part II turns to procedure. We start
+      with the oldest formal system in the Western tradition:
+      <term>categorical logic</term>, which goes back to Aristotle
+      and which still does real work for a particular class of
+      everyday arguments.
+    </p>
+    <p>
+      Categorical logic is the logic of arguments built from
+      statements about <em>categories</em>: claims of the form
+      <q>All parking apps are tiny tests of patience,</q> <q>No
+      group projects are acts of divine mercy,</q> <q>Some
+      vibe-coded tools are excellent programs,</q> and <q>Some
+      emails marked urgent are not actual emergencies.</q> A
+      surprising amount of ordinary reasoning has this shape —
+      about voters, programs, defendants, species, students, and
+      policies. Once we can put such reasoning into standard form,
+      a small piece of geometric machinery (Venn diagrams) decides
+      validity for us.
+    </p>
+    <p>
+      This chapter is about the basic units: the four standard form
+      categorical propositions. We'll learn what they are, how to
+      translate ordinary English into them, the relations among
+      them, and the inferences that move from one to another. The
+      next chapter combines them into syllogisms and uses
+      three-circle Venn diagrams to evaluate the syllogisms for
+      validity.
+    </p>
+  </introduction>
+
+  <section xml:id="sec-standard-form-propositions">
+    <title>The Four Standard Form Categorical Propositions</title>
+
+    <introduction>
+      <p>
+        A <term>categorical proposition</term> is a statement that
+        relates two categories — a <term>subject term</term> S and a
+        <term>predicate term</term> P — by claiming one of four
+        things about them. The four are called A, E, I, and O. The
+        letter names are traditional and useful because every later
+        piece of categorical machinery refers back to them. The
+        labels become familiar by translating and diagramming
+        examples, not by treating them as isolated vocabulary.
+      </p>
+    </introduction>
+
+    <paragraphs xml:id="paragraphs-quantity-and-quality">
+      <title>Quantity and quality</title>
+      <p>
+        Each categorical proposition has a <term>quantity</term> and
+        a <term>quality</term>.
+      </p>
+      <p>
+        <alert>Quantity</alert> is universal or particular. A
+        <em>universal</em> proposition says something about every
+        member of S. A <em>particular</em> proposition says
+        something about at least one member of S.
+      </p>
+      <p>
+        <alert>Quality</alert> is affirmative or negative. An
+        <em>affirmative</em> proposition says S members are P. A
+        <em>negative</em> proposition says S members are not P.
+      </p>
+      <p>
+        Two values for quantity, two for quality, gives four
+        combinations:
+      </p>
+      <ul>
+        <li><p><alert>A</alert> — universal affirmative: <q>All S are P.</q></p></li>
+        <li><p><alert>E</alert> — universal negative: <q>No S are P.</q></p></li>
+        <li><p><alert>I</alert> — particular affirmative: <q>Some S are P.</q></p></li>
+        <li><p><alert>O</alert> — particular negative: <q>Some S are not P.</q></p></li>
+      </ul>
+      <p>
+        The letters supposedly come from medieval Latin: A and I
+        from <em>affirmo</em> (I affirm), E and O from <em>nego</em>
+        (I deny). I actually don't know if that's true, but the
+        convention of using A, E, I, and O to refer to these
+        standard form propositions is very old. Even older than I am.
+      </p>
+    </paragraphs>
+
+    <paragraphs xml:id="paragraphs-venn-numbering">
+      <title>The four areas of a two-circle Venn diagram</title>
+      <p>
+        We will represent each categorical proposition with a
+        two-circle Venn diagram. Two overlapping circles labeled S
+        (left) and P (right) divide the universe into four areas.
+        The standard numbering of these areas, used throughout this
+        chapter and again when we describe diagrams in alt text:
+      </p>
+      <ul>
+        <li><p><alert>Area 1</alert>: inside S but outside P. (Things that are S and not P.)</p></li>
+        <li><p><alert>Area 2</alert>: inside both S and P. (Things that are both S and P.)</p></li>
+        <li><p><alert>Area 3</alert>: inside P but outside S. (Things that are P and not S.)</p></li>
+        <li><p><alert>Area 4</alert>: outside both circles. (Things that are neither S nor P.)</p></li>
+      </ul>
+      <p>
+        Two conventions communicate the propositions:
+      </p>
+      <ul>
+        <li>
+          <p>
+            <alert>Shading</alert> an area means that area is
+            empty. There is nothing in that area.
+          </p>
+        </li>
+        <li>
+          <p>
+            An <alert>X</alert> in an area means that area has at
+            least one member. There is at least one thing there.
+          </p>
+        </li>
+      </ul>
+      <p>
+        Shading is for universal propositions; X is for particular
+        propositions. With those two conventions, the four standard
+        form propositions get four characteristic diagrams.
+      </p>
+    </paragraphs>
+
+    <paragraphs xml:id="paragraphs-A-proposition">
+      <title>The A proposition: All S are P</title>
+      <p>
+        The A proposition says every member of S is also a member of
+        P. In Venn-diagram terms, that means there are no members of
+        S outside P — area 1 is empty.
+      </p>
+      <figure xml:id="fig-A-proposition">
+        <caption>The A proposition, <q>All S are P.</q> Area 1 is shaded.</caption>
+        <image xml:id="image-A-proposition" width="55%">
+          <description>
+            <p>
+              A two-circle Venn diagram with the S circle on the
+              left and the P circle on the right, overlapping in
+              the middle. The standard numbering assigns area 1 to
+              the part of S outside P, area 2 to the overlap of S
+              and P, area 3 to the part of P outside S, and area 4
+              to the universe outside both circles. In this
+              diagram, area 1 is shaded, indicating that nothing
+              that is S fails to also be P. Areas 2, 3, and 4 are
+              unshaded.
+            </p>
+          </description>
+          <latex-image>
+            \begin{tikzpicture}[scale=1.1]
+              \def\Sleft{(-0.7,0) circle (1.3)}
+              \def\Pright{(0.7,0) circle (1.3)}
+              \begin{scope}
+                \clip \Sleft;
+                \fill[gray!40] (-3,-2) rectangle (3,2);
+                \fill[white] \Pright;
+              \end{scope}
+              \draw \Sleft;
+              \draw \Pright;
+              \node at (-1.7,1.4) {$S$};
+              \node at (1.7,1.4) {$P$};
+              \node at (-1.3,0) {\small 1};
+              \node at (0,0) {\small 2};
+              \node at (1.3,0) {\small 3};
+              \node at (-2.3,1.7) {\small 4};
+            \end{tikzpicture}
+          </latex-image>
+        </image>
+      </figure>
+    </paragraphs>
+
+    <paragraphs xml:id="paragraphs-E-proposition">
+      <title>The E proposition: No S are P</title>
+      <p>
+        The E proposition says no member of S is also a member of
+        P. In Venn-diagram terms: nothing is in both circles at
+        once. Area 2 is empty.
+      </p>
+      <figure xml:id="fig-E-proposition">
+        <caption>The E proposition, <q>No S are P.</q> Area 2 is shaded.</caption>
+        <image xml:id="image-E-proposition" width="55%">
+          <description>
+            <p>
+              A two-circle Venn diagram with the S circle on the
+              left and the P circle on the right, overlapping in
+              the middle. Area 1 is the part of S outside P; area
+              2 is the overlap of S and P; area 3 is the part of P
+              outside S; area 4 is outside both circles. Area 2 is
+              shaded, indicating that nothing is both S and P.
+              Areas 1, 3, and 4 are unshaded.
+            </p>
+          </description>
+          <latex-image>
+            \begin{tikzpicture}[scale=1.1]
+              \def\Sleft{(-0.7,0) circle (1.3)}
+              \def\Pright{(0.7,0) circle (1.3)}
+              \begin{scope}
+                \clip \Sleft;
+                \fill[gray!40] \Pright;
+              \end{scope}
+              \draw \Sleft;
+              \draw \Pright;
+              \node at (-1.7,1.4) {$S$};
+              \node at (1.7,1.4) {$P$};
+              \node at (-1.3,0) {\small 1};
+              \node at (0,0) {\small 2};
+              \node at (1.3,0) {\small 3};
+              \node at (-2.3,1.7) {\small 4};
+            \end{tikzpicture}
+          </latex-image>
+        </image>
+      </figure>
+    </paragraphs>
+
+    <paragraphs xml:id="paragraphs-I-proposition">
+      <title>The I proposition: Some S are P</title>
+      <p>
+        The I proposition says at least one S is also a P. In
+        Venn-diagram terms: there is at least one thing in the
+        overlap. Area 2 contains an X.
+      </p>
+      <figure xml:id="fig-I-proposition">
+        <caption>The I proposition, <q>Some S are P.</q> An X appears in area 2.</caption>
+        <image xml:id="image-I-proposition" width="55%">
+          <description>
+            <p>
+              A two-circle Venn diagram with the S circle on the
+              left and the P circle on the right, overlapping in
+              the middle. Area 1 is the part of S outside P; area
+              2 is the overlap of S and P; area 3 is the part of P
+              outside S; area 4 is outside both circles. An X is
+              placed in area 2, indicating that at least one thing
+              is both S and P. No areas are shaded.
+            </p>
+          </description>
+          <latex-image>
+            \begin{tikzpicture}[scale=1.1]
+              \def\Sleft{(-0.7,0) circle (1.3)}
+              \def\Pright{(0.7,0) circle (1.3)}
+              \draw \Sleft;
+              \draw \Pright;
+              \node at (-1.7,1.4) {$S$};
+              \node at (1.7,1.4) {$P$};
+              \node at (-1.3,0) {\small 1};
+              \node at (0,0.3) {\small 2};
+              \node at (1.3,0) {\small 3};
+              \node at (-2.3,1.7) {\small 4};
+              \node at (0,-0.1) {$\times$};
+            \end{tikzpicture}
+          </latex-image>
+        </image>
+      </figure>
+    </paragraphs>
+
+    <paragraphs xml:id="paragraphs-O-proposition">
+      <title>The O proposition: Some S are not P</title>
+      <p>
+        The O proposition says at least one S is not a P. In
+        Venn-diagram terms: there is at least one thing in S that
+        is outside P. Area 1 contains an X.
+      </p>
+      <figure xml:id="fig-O-proposition">
+        <caption>The O proposition, <q>Some S are not P.</q> An X appears in area 1.</caption>
+        <image xml:id="image-O-proposition" width="55%">
+          <description>
+            <p>
+              A two-circle Venn diagram with the S circle on the
+              left and the P circle on the right, overlapping in
+              the middle. Area 1 is the part of S outside P; area
+              2 is the overlap of S and P; area 3 is the part of P
+              outside S; area 4 is outside both circles. An X is
+              placed in area 1, indicating that at least one thing
+              is S but not P. No areas are shaded.
+            </p>
+          </description>
+          <latex-image>
+            \begin{tikzpicture}[scale=1.1]
+              \def\Sleft{(-0.7,0) circle (1.3)}
+              \def\Pright{(0.7,0) circle (1.3)}
+              \draw \Sleft;
+              \draw \Pright;
+              \node at (-1.7,1.4) {$S$};
+              \node at (1.7,1.4) {$P$};
+              \node at (-1.3,0.3) {\small 1};
+              \node at (0,0) {\small 2};
+              \node at (1.3,0) {\small 3};
+              \node at (-2.3,1.7) {\small 4};
+              \node at (-1.3,-0.1) {$\times$};
+            \end{tikzpicture}
+          </latex-image>
+        </image>
+      </figure>
+      <p>
+        Four propositions, four diagrams. The pattern becomes
+        familiar through use: A and E are universal (shading); I
+        and O are particular (X). A and I are affirmative (the
+        marked area is the overlap side, area 2); E shades area 2
+        to deny it. O places an X in area 1 to affirm at least one
+        S that is not a P. These four propositions, with these four
+        diagrams, are the starter kit for everything that follows.
+      </p>
+    </paragraphs>
+  </section>
+
+  <section xml:id="sec-basic-translation">
+    <title>Basic Translation into Categorical Propositions</title>
+
+    <introduction>
+      <p>
+        Real arguments are not written in standard form. To use
+        categorical machinery on them, we have to <em>translate</em>
+        ordinary English sentences into the A, E, I, or O form.
+        Translation is a skill, not a procedure: there are common
+        patterns, but judgment is required at the edges.
+      </p>
+    </introduction>
+
+    <paragraphs xml:id="paragraphs-translation-patterns">
+      <title>Patterns and signal words</title>
+      <p>
+        A few signal words and phrases reliably indicate each form.
+      </p>
+      <p>
+        <alert>A (universal affirmative).</alert> Indicators include
+        <em>all</em>, <em>every</em>, <em>any</em>, <em>each</em>,
+        and bare plurals interpreted universally (<q>kangaroos are
+        marsupials</q> goes to <q>All kangaroos are marsupials</q>).
+        A definite-article generic — <q>the platypus is a mammal</q>
+        — is also typically A.
+      </p>
+      <p>
+        <alert>E (universal negative).</alert> Indicators include
+        <em>no</em>, <em>none</em>, <em>not any</em>, <em>nothing
+        is</em>. <q>No spiders are insects</q> is canonically E.
+        <q>There aren't any X who are Y</q> is also E.
+      </p>
+      <p>
+        <alert>I (particular affirmative).</alert> Indicators include
+        <em>some</em>, <em>a few</em>, <em>many</em>, <em>most</em>,
+        <em>there are</em>. <q>Many voters are dissatisfied</q>
+        translates to <q>Some voters are dissatisfied people.</q>
+      </p>
+      <p>
+        <alert>O (particular negative).</alert> Indicators include
+        <em>some are not</em>, <em>not all</em>, <em>not every</em>.
+        <q>Not all jerks are mean</q> translates to <q>Some jerks
+        are not mean.</q>
+      </p>
+    </paragraphs>
+
+    <paragraphs xml:id="paragraphs-translation-examples">
+      <title>A small set of worked translations</title>
+      <p>
+        Each example below takes an English sentence and translates
+        it into one of the four standard forms. The translations
+        sometimes need a tiny bit of rephrasing to make the subject
+        and predicate genuinely class terms.
+      </p>
+      <example xml:id="ex-translation-set">
+        <title>Translations into standard form</title>
+        <statement>
+          <p><alert>1.</alert> <q>No human being can swim across the Atlantic Ocean.</q></p>
+          <p>→ <q>No human beings are creatures that can swim across the Atlantic Ocean.</q> (E)</p>
+          <p><alert>2.</alert> <q>Kangaroos are marsupials.</q></p>
+          <p>→ <q>All kangaroos are marsupials.</q> (A)</p>
+          <p><alert>3.</alert> <q>Not all politicians are liars.</q></p>
+          <p>→ <q>Some politicians are not liars.</q> (O)</p>
+          <p><alert>4.</alert> <q>Some Vikings practiced ritual human sacrifice.</q></p>
+          <p>→ <q>Some Vikings are people who practiced ritual human sacrifice.</q> (I)</p>
+          <p><alert>5.</alert> <q>Spiders aren't insects.</q></p>
+          <p>→ <q>No spiders are insects.</q> (E)</p>
+          <p><alert>6.</alert> <q>It's false that no college students voted for Trump.</q></p>
+          <p>→ <q>Some college students are people who voted for Trump.</q> (I)</p>
+          <p><alert>7.</alert> <q>There aren't any Sanders supporters who are Republicans.</q></p>
+          <p>→ <q>No Sanders supporters are Republicans.</q> (E)</p>
+          <p><alert>8.</alert> <q>Some people don't vote.</q></p>
+          <p>→ <q>Some people are not voters.</q> (O)</p>
+          <p><alert>9.</alert> <q>Not all wizards demean goblins.</q></p>
+          <p>→ <q>Some wizards are not goblin demeaners.</q> (O)</p>
+          <p><alert>10.</alert> <q>Some voters aren't sure how they'll vote in the 2026 midterms.</q></p>
+          <p>→ <q>Some voters are not people who are sure how they'll vote in the 2026 midterms.</q> (O)</p>
+        </statement>
+      </example>
+      <p>
+        Two of the trickiest translation moves — singular sentences
+        like <q>Today is Monday</q> and <q>only</q> sentences like
+        <q>Only Trump supporters are true Americans</q> — are
+        deferred to <xref ref="sec-complex-translations"/>, where
+        we have the additional tools to handle them cleanly.
+      </p>
+    </paragraphs>
+  </section>
+
+  <section xml:id="sec-square-of-opposition">
+    <title>The Square of Opposition</title>
+
+    <introduction>
+      <p>
+        The four propositions A, E, I, O are related to each other.
+        Knowing one of them sometimes lets us infer the truth or
+        falsity of others without further evidence. The diagram of
+        these relations is called the <term>square of
+        opposition</term>.
+      </p>
+    </introduction>
+
+    <paragraphs xml:id="paragraphs-modern-square">
+      <title>The modern square: just contradictories</title>
+      <p>
+        The modern square keeps one relation: <term>contradiction</term>.
+        Two propositions are contradictory when one is the exact
+        denial of the other — they cannot both be true and they
+        cannot both be false. There are exactly two pairs of
+        contradictories among the four standard forms:
+      </p>
+      <ul>
+        <li><p><alert>A and O</alert> are contradictories. <q>All S are P</q> is the denial of <q>Some S are not P,</q> and vice versa.</p></li>
+        <li><p><alert>E and I</alert> are contradictories. <q>No S are P</q> is the denial of <q>Some S are P,</q> and vice versa.</p></li>
+      </ul>
+      <p>
+        In the medieval square, three more relations appeared:
+        contraries (between A and E), subcontraries (between I and
+        O), and subalternation (between A and I, and between E and
+        O). The modern square drops these because each of them
+        depends on the assumption that the subject term picks out
+        at least one existing thing — an assumption we'll examine
+        and let go of in <xref ref="sec-existential-commitment"/>.
+        For now we keep only the relations that survive without
+        that assumption, which is contradiction.
+      </p>
+    </paragraphs>
+
+    <paragraphs xml:id="paragraphs-immediate-inference-by-contradiction">
+      <title>Immediate inference by contradiction</title>
+      <p>
+        An <term>immediate inference</term> is an inference from
+        one categorical proposition to another, with no premises in
+        between. The contradictory relation gives us our first
+        family of immediate inferences. Knowing the truth value of
+        any A, E, I, or O proposition lets us read off the truth
+        value of its contradictory immediately.
+      </p>
+      <example xml:id="ex-immediate-by-contradiction">
+        <title>Inferences via contradiction</title>
+        <statement>
+          <p><alert>From A to ~O.</alert> If <q>All voters are registered</q> is true, then <q>Some voters are not registered</q> is false. The symbol <q>~</q> is read <q>it is not the case that</q> or <q>it is false that.</q> So <q>~O</q> means <q>it is false that the O proposition is true.</q></p>
+          <p><alert>From ~A to O.</alert> If <q>All voters are registered</q> is false, then <q>Some voters are not registered</q> is true.</p>
+          <p><alert>From E to ~I.</alert> If <q>No senators voted against the bill</q> is true, then <q>Some senators voted against the bill</q> is false.</p>
+          <p><alert>From ~E to I.</alert> If <q>No senators voted against the bill</q> is false, then <q>Some senators voted against the bill</q> is true.</p>
+        </statement>
+      </example>
+      <p>
+        Several translations from <xref ref="sec-basic-translation"/>
+        used this move silently. <q>It's false that no college
+        students voted for Trump</q> is the negation of an E
+        proposition, so by contradiction it is equivalent to the
+        corresponding I proposition — <q>some college students are
+        people who voted for Trump.</q> The translation is just
+        the inference made explicit. <q>Not all politicians are
+        liars</q> is the negation of an A proposition, equivalent
+        by contradiction to the corresponding O proposition —
+        <q>some politicians are not liars.</q>
+      </p>
+    </paragraphs>
+  </section>
+
+  <section xml:id="sec-existential-commitment">
+    <title>Existential Commitment</title>
+
+    <introduction>
+      <p>
+        A categorical proposition is a claim about a subject class.
+        Does asserting <q>All S are P</q> commit us to the existence
+        of at least one S? It seems like it should — if no S exist,
+        what does the claim even say?
+      </p>
+      <p>
+        The answer turns out to depend on which interpretation of
+        categorical logic we adopt. The traditional Aristotelian
+        interpretation says yes: A and E propositions carry
+        existential commitment, so <q>all unicorns are magical</q>
+        would be false on that reading, because there are no
+        unicorns. The modern interpretation says no: A and E are
+        treated as conditional claims, and they can be true even
+        when their subject class is empty. This book uses the
+        modern interpretation throughout. The Aristotelian
+        interpretation is reserved for a short appendix for adopters
+        who want to teach it.
+      </p>
+    </introduction>
+
+    <paragraphs xml:id="paragraphs-modern-existential">
+      <title>The modern interpretation</title>
+      <p>
+        On the modern interpretation, the four forms commit us to
+        existence as follows:
+      </p>
+      <ul>
+        <li><p><alert>A (All S are P).</alert> No existential commitment. Equivalent to the conditional: <em>for any thing, if it is an S, then it is a P</em>. If there are no Ss at all, the conditional is vacuously true.</p></li>
+        <li><p><alert>E (No S are P).</alert> No existential commitment. Equivalent to: <em>for any thing, if it is an S, then it is not a P</em>. Again, if there are no Ss, vacuously true.</p></li>
+        <li><p><alert>I (Some S are P).</alert> Existential commitment. Says <em>there is at least one thing</em> that is both S and P. Cannot be true if there are no Ss.</p></li>
+        <li><p><alert>O (Some S are not P).</alert> Existential commitment. Says <em>there is at least one thing</em> that is S and not P. Cannot be true if there are no Ss.</p></li>
+      </ul>
+      <p>
+        In other words, the universals are conditional and so do
+        not require their subject term to pick out anything. The
+        particulars are existential and so do.
+      </p>
+    </paragraphs>
+
+    <paragraphs xml:id="paragraphs-empty-subjects">
+      <title>What happens when the subject is empty</title>
+      <p>
+        On the modern interpretation, <q>All unicorns are magical
+        beasts</q> comes out true, because there are no unicorns
+        and the conditional <em>if anything is a unicorn, then it
+        is a magical beast</em> is vacuously satisfied. The same
+        goes for <q>No unicorns are felines</q> — vacuously true.
+        But <q>Some unicorns are magical</q> and <q>Some unicorns
+        are not magical</q> are both false, because each requires
+        at least one actual unicorn.
+      </p>
+      <p>
+        This may feel counterintuitive on first encounter. The
+        intuition that <q>all unicorns are magical</q> is somehow
+        not quite a real claim is exactly the intuition the
+        Aristotelian interpretation tries to capture. The modern
+        interpretation gains something in exchange: it gives us a
+        clean, simple system that aligns with how universals work
+        in mathematics, science, and modern logic. We accept the
+        small initial weirdness for the larger payoff.
+      </p>
+      <p>
+        Several inferences that are valid on the Aristotelian
+        interpretation become invalid on the modern one — most
+        notably the inference from a universal to its corresponding
+        particular (<q>All S are P; therefore some S are P</q> is
+        valid on the Aristotelian view but invalid on the modern
+        view, because the universal does not entail the existence
+        of any S). This is why the modern square keeps only
+        contradiction. We will see the consequences for syllogisms
+        in <xref ref="ch-categorical-syllogisms"/> when certain
+        traditionally-valid forms come out invalid in the modern
+        system.
+      </p>
+    </paragraphs>
+  </section>
+
+  <section xml:id="sec-other-immediate-inferences">
+    <title>Conversion, Obversion, and Contraposition</title>
+
+    <introduction>
+      <p>
+        Three additional operations on a categorical proposition
+        sometimes produce a logically equivalent proposition and
+        sometimes produce a non-equivalent one. Knowing which
+        operation is valid for which form is the second family of
+        immediate inferences.
+      </p>
+    </introduction>
+
+    <paragraphs xml:id="paragraphs-conversion">
+      <title>Conversion</title>
+      <p>
+        <term>Conversion</term> swaps the subject and predicate
+        terms.
+      </p>
+      <ul>
+        <li><p>The converse of <q>All S are P</q> is <q>All P are S.</q></p></li>
+        <li><p>The converse of <q>No S are P</q> is <q>No P are S.</q></p></li>
+        <li><p>The converse of <q>Some S are P</q> is <q>Some P are S.</q></p></li>
+        <li><p>The converse of <q>Some S are not P</q> is <q>Some P are not S.</q></p></li>
+      </ul>
+      <p>
+        On the modern interpretation, conversion is valid for E
+        and I and invalid for A and O.
+      </p>
+      <ul>
+        <li><p><alert>E is convertible.</alert> <q>No senators are unanimous voters</q> is equivalent to <q>No unanimous voters are senators.</q> Negative universals work in either direction.</p></li>
+        <li><p><alert>I is convertible.</alert> <q>Some voters are independents</q> is equivalent to <q>Some independents are voters.</q> Particular affirmatives are symmetric.</p></li>
+        <li><p><alert>A is not convertible.</alert> <q>All cats are mammals</q> is true; <q>All mammals are cats</q> is false. The original and the converse are not equivalent.</p></li>
+        <li><p><alert>O is not convertible.</alert> <q>Some students are not residents</q> can be true while <q>Some residents are not students</q> is also true (or false) independently — the truth value of the converse does not follow from the truth value of the original.</p></li>
+      </ul>
+    </paragraphs>
+
+    <paragraphs xml:id="paragraphs-obversion">
+      <title>Obversion</title>
+      <p>
+        <term>Obversion</term> changes the quality of the
+        proposition (affirmative becomes negative or vice versa)
+        and replaces the predicate term with its complement (<em>P</em>
+        becomes <em>non-P</em>).
+      </p>
+      <ul>
+        <li><p>The obverse of <q>All S are P</q> is <q>No S are non-P.</q></p></li>
+        <li><p>The obverse of <q>No S are P</q> is <q>All S are non-P.</q></p></li>
+        <li><p>The obverse of <q>Some S are P</q> is <q>Some S are not non-P.</q></p></li>
+        <li><p>The obverse of <q>Some S are not P</q> is <q>Some S are non-P.</q></p></li>
+      </ul>
+      <p>
+        Obversion is valid for all four forms. Each proposition is
+        equivalent to its obverse.
+      </p>
+      <example xml:id="ex-obversion-uses">
+        <title>Obversion in translation</title>
+        <statement>
+          <p><q>All crayons are non-toxic things</q> obverts to <q>No crayons are toxic things,</q> and the two are logically equivalent.</p>
+          <p><q>Some smart people are dupes of TikTok culture</q> obverts to <q>Some smart people are not non-dupes-of-TikTok-culture,</q> a clunkier but logically equivalent claim.</p>
+        </statement>
+      </example>
+    </paragraphs>
+
+    <paragraphs xml:id="paragraphs-contraposition">
+      <title>Contraposition</title>
+      <p>
+        <term>Contraposition</term> replaces the subject term with
+        the complement of the predicate term, and the predicate
+        term with the complement of the subject term.
+      </p>
+      <ul>
+        <li><p>The contrapositive of <q>All S are P</q> is <q>All non-P are non-S.</q></p></li>
+        <li><p>The contrapositive of <q>No S are P</q> is <q>No non-P are non-S.</q></p></li>
+        <li><p>The contrapositive of <q>Some S are P</q> is <q>Some non-P are non-S.</q></p></li>
+        <li><p>The contrapositive of <q>Some S are not P</q> is <q>Some non-P are not non-S.</q></p></li>
+      </ul>
+      <p>
+        On the modern interpretation, contraposition is valid for A
+        and O and invalid for E and I.
+      </p>
+      <ul>
+        <li><p><alert>A is contrapositive.</alert> <q>All citizens are voters</q> is equivalent to <q>All non-voters are non-citizens.</q></p></li>
+        <li><p><alert>O is contrapositive.</alert> <q>Some students are not seniors</q> is equivalent to <q>Some non-seniors are not non-students.</q></p></li>
+        <li><p><alert>E is not contrapositive.</alert> <q>No school board members are ridiculous clowns</q> is not equivalent to <q>No non-ridiculous-clowns are non-school-board-members.</q></p></li>
+        <li><p><alert>I is not contrapositive.</alert> <q>Some voters are independents</q> is not equivalent to <q>Some non-independents are non-voters.</q></p></li>
+      </ul>
+      <p>
+        Use the validity table at the end of this section while you
+        practice. Conversion: E and I valid, A and O invalid.
+        Obversion: all four valid. Contraposition: A and O valid,
+        E and I invalid. The pattern becomes practically useful
+        when you apply it to examples.
+      </p>
+    </paragraphs>
+
+    <paragraphs xml:id="paragraphs-validity-table">
+      <title>The validity table for immediate inferences</title>
+      <p>
+        Summary, on the modern interpretation:
+      </p>
+      <p>
+        <alert>Conversion</alert> — valid for E and I; invalid for A and O.
+      </p>
+      <p>
+        <alert>Obversion</alert> — valid for all four (A, E, I, O).
+      </p>
+      <p>
+        <alert>Contraposition</alert> — valid for A and O; invalid for E and I.
+      </p>
+      <p>
+        Combining these with contradiction (from
+        <xref ref="sec-square-of-opposition"/>) gives us a small
+        toolkit. Many real arguments depend on chaining several of
+        these moves; the toolkit is what makes that chaining
+        precise.
+      </p>
+    </paragraphs>
+  </section>
+
+  <section xml:id="sec-complex-translations">
+    <title>More Complex Translations</title>
+
+    <introduction>
+      <p>
+        The straightforward translation patterns from
+        <xref ref="sec-basic-translation"/> handle most ordinary
+        sentences. A few patterns require a bit more work, and in
+        particular two patterns are common enough that we treat
+        them in detail: <em>singular statements</em> and the
+        <em>only</em> family.
+      </p>
+    </introduction>
+
+    <paragraphs xml:id="paragraphs-singular-and-identity">
+      <title>Singular statements via identity</title>
+      <p>
+        A <term>singular statement</term> is a statement about a
+        specific individual rather than about a category — for
+        example, <q>Donald Trump is the 47th president of the
+        United States.</q> Categorical logic is a logic of
+        categories, but with a small trick we can fit singular
+        statements into the framework. We turn the individual into
+        a category — the category of things identical to that
+        individual.
+      </p>
+      <p>
+        <q>Today is Monday</q> becomes <q>All days identical to
+        today are Mondays.</q> The subject class is the category of
+        days that are identical with today (a class with exactly
+        one member, namely today itself); the predicate class is
+        the category of Mondays. The translation is technically a
+        universal A proposition; it works because the subject class
+        has a single member.
+      </p>
+      <p>
+        Identity statements work the same way but require care.
+        Consider the sentence <q>Donald Trump is the 47th president
+        of the United States.</q> One natural translation:
+      </p>
+      <p>
+        <q>All people identical to Donald Trump are people
+        identical to the 47th president of the United States.</q>
+      </p>
+      <p>
+        That captures one direction of the identity. But identity
+        is symmetric — Trump <em>is</em> the 47th president if and
+        only if the 47th president <em>is</em> Trump. To express
+        the full identity claim in categorical form, we need
+        <em>both</em> directions:
+      </p>
+      <example xml:id="ex-identity-translation">
+        <title>Translating an identity claim</title>
+        <statement>
+          <p><q>Donald Trump is the 47th president of the United States.</q></p>
+          <p>→ <q>All people identical to Donald Trump are people identical to the 47th president of the United States.</q> (A)</p>
+          <p>→ AND <q>All people identical to the 47th president of the United States are people identical to Donald Trump.</q> (A)</p>
+          <p>You need both directions to capture the identity claim.</p>
+        </statement>
+      </example>
+      <p>
+        The same holds for any identity claim: <q>The murder weapon
+        was the candlestick</q>; <q>Aristotle is the author of the
+        <em>Nicomachean Ethics</em></q>; <q>Twain is Clemens.</q>
+        Each requires both directions in standard form.
+      </p>
+      <p>
+        Singular non-identity statements (where the predicate is a
+        general category rather than another individual) need only
+        one direction. <q>Trump was nominated for a Nobel Peace
+        Prize</q> becomes <q>All people identical to Trump are
+        people nominated for a Nobel Peace Prize.</q> Just one A
+        proposition; the predicate is a class, not a specific
+        individual.
+      </p>
+    </paragraphs>
+
+    <paragraphs xml:id="paragraphs-only-and-none-but">
+      <title>Only and none but</title>
+      <p>
+        The word <em>only</em> reverses the order of the subject
+        and predicate in standard-form translation. This trips
+        students up reliably, so it is worth taking slowly.
+      </p>
+      <p>
+        Consider <q>Only Trump supporters are true Americans.</q>
+        The natural reading: if you are a true American, then you
+        are a Trump supporter. (The sentence does <em>not</em> say
+        all Trump supporters are true Americans; it restricts true
+        Americans to that group.) The standard-form translation:
+      </p>
+      <p>
+        <q>All true Americans are Trump supporters.</q> (A)
+      </p>
+      <p>
+        Notice that the subject and predicate of the standard form
+        are reversed from the surface order of the English. <q>Only
+        X are Y</q> becomes <q>All Y are X.</q> The same goes for
+        <q>None but</q>: <q>None but registered voters can vote</q>
+        becomes <q>All voters are registered voters.</q>
+      </p>
+      <p>
+        Similar pairs:
+      </p>
+      <example xml:id="ex-only-translations">
+        <title>Translating <em>only</em></title>
+        <statement>
+          <p><q>Only planets support life.</q></p>
+          <p>→ <q>All life-supporting bodies are planets.</q> (A)</p>
+          <p><q>Only true Americans are Trump supporters.</q></p>
+          <p>→ <q>All Trump supporters are true Americans.</q> (A)</p>
+          <p><q>None but Sanders supporters supported Sanders.</q></p>
+          <p>→ <q>All people who supported Sanders are Sanders supporters.</q> (A; trivially true)</p>
+        </statement>
+      </example>
+      <p>
+        A common mistake is to read <q>only X are Y</q> as <q>all X
+        are Y.</q> They are different claims. <q>Only people with
+        Virginia driver's licenses can vote in Virginia</q> says
+        every voter has a Virginia license. It does <em>not</em>
+        say everyone with a Virginia license votes (most of them
+        don't, in any election cycle).
+      </p>
+    </paragraphs>
+
+    <paragraphs xml:id="paragraphs-other-tricky-translations">
+      <title>A few other tricky cases</title>
+      <p>
+        Some patterns need a small reframing to translate cleanly.
+      </p>
+      <p>
+        <alert>Adverbial sentences.</alert> <q>America became great
+        again</q> isn't quite about a class of things by surface
+        grammar, but rephrased as a categorical claim it becomes
+        <q>All countries identical to America are countries that
+        are great again.</q>
+      </p>
+      <p>
+        <alert>Conditional-style imperatives.</alert> <q>America!
+        Love it or leave it</q> is exhortation, not assertion, but
+        if we read its propositional content, it claims something
+        like <q>All those who do not love America are those who
+        should leave America.</q>
+      </p>
+      <p>
+        <alert>Negated existence.</alert> <q>It's false that no X
+        are Y</q> is the denial of an E proposition, equivalent by
+        contradiction to the corresponding I — <q>some X are Y.</q>
+      </p>
+      <p>
+        <alert>Negated universality.</alert> <q>It's false that
+        only X are Y</q> means there are some Ys who are not X — a
+        denial of <q>All Y are X,</q> equivalent by contradiction
+        to <q>Some Y are not X.</q> So <q>it's false that only
+        Republican die-hards voted for Trump</q> becomes <q>Some
+        Trump voters are not Republican die-hards.</q>
+      </p>
+      <p>
+        Translation rewards practice. The end-of-chapter exercises
+        contain a wider variety of cases.
+      </p>
+    </paragraphs>
+  </section>
+
+  <section xml:id="sec-categorical-where-headed">
+    <title>Where We're Headed</title>
+
+    <introduction>
+      <p>
+        We have the four standard form propositions, the basic
+        translation patterns, the modern square of opposition, the
+        existential-commitment story, and the validity table for
+        conversion, obversion, and contraposition. This is the
+        starter kit.
+      </p>
+    </introduction>
+
+    <paragraphs xml:id="paragraphs-categorical-pivot">
+      <title>What's coming</title>
+      <p>
+        The next chapter combines categorical propositions into
+        <term>syllogisms</term> — three-proposition arguments with
+        two premises and a conclusion, all in standard form. Two
+        evaluation methods will appear there: <em>Venn diagrams</em>
+        for syllogisms (using three overlapping circles and the
+        same shading and X conventions we used here, just with a
+        third circle for the middle term), and <em>mood and
+        figure</em> classification, which encodes a syllogism's
+        structure in a short label like <q>AAA-1</q> or
+        <q>EIO-2.</q> The Venn-diagram method is the primary
+        technique. The mood-and-figure classification serves as an
+        alternate encoding equivalent to the diagram for purposes
+        of validity assessment, useful in particular for blind
+        students for whom diagrams are not the natural medium.
+      </p>
+      <p>
+        Once we can evaluate syllogisms, we will have answered the
+        first formal question this book promised: <em>is this
+        argument valid?</em> The answer will hold for any argument
+        that fits the categorical-syllogism shape. Many real
+        arguments do fit that shape. Many do not, and for them we
+        will turn in Part III to sentential logic.
+      </p>
+    </paragraphs>
+  </section>
+
+  <conclusion xml:id="conclusion-ch6">
+    <title>Chapter Summary</title>
+
+    <p>
+      This chapter introduced categorical propositions and their
+      two-circle Venn diagrams. The core ideas, section by section:
+    </p>
+
+    <p>
+      <alert>The Four Standard Form Categorical Propositions (§6.1).</alert>
+      Categorical propositions relate a subject term S and a predicate
+      term P. The four standard forms are A (<q>All S are P</q>), E
+      (<q>No S are P</q>), I (<q>Some S are P</q>), and O (<q>Some S
+      are not P</q>). Universal forms shade regions; particular forms
+      place Xs.
+    </p>
+
+    <p>
+      <alert>Basic Translation into Categorical Propositions (§6.2).</alert>
+      Ordinary English often has to be cleaned up before it fits the
+      A/E/I/O forms. Translation requires identifying the subject and
+      predicate classes, preserving the intended quantity and quality,
+      and avoiding changes that alter the claim.
+    </p>
+
+    <p>
+      <alert>The Square of Opposition (§6.3).</alert> On the modern
+      interpretation, the square of opposition keeps contradiction as
+      the load-bearing relation: A contradicts O, and E contradicts I.
+      This gives valid immediate inferences from a proposition to the
+      denial of its contradictory, and from the denial of a proposition
+      to its contradictory.
+    </p>
+
+    <p>
+      <alert>Existential Commitment (§6.4).</alert> This book uses the
+      modern interpretation. Universal propositions do not imply that
+      their subject classes have members. That is why <q>All unicorns
+      are mammals</q> and <q>No unicorns are mammals</q> can both come
+      out true when there are no unicorns.
+    </p>
+
+    <p>
+      <alert>Conversion, Obversion, and Contraposition (§6.5).</alert>
+      These immediate-inference operations transform categorical
+      propositions by swapping terms, changing quality, or replacing
+      terms with complements. Some transformations preserve truth for
+      some forms but not others, so the validity table matters.
+    </p>
+
+    <p>
+      <alert>More Complex Translations (§6.6).</alert> Singular claims,
+      identity claims, <q>only</q> claims, and related English patterns
+      can often be translated into categorical form. The goal is not to
+      memorize slogans, but to practice preserving the original claim in
+      standard form.
+    </p>
+
+    <p>
+      <alert>Where We're Headed (§6.7).</alert> Chapter 7 combines
+      categorical propositions into syllogisms and uses three-circle
+      Venn diagrams to test validity.
+    </p>
+
+  </conclusion>
+
+  <section xml:id="sec-ch6-key-terms">
+    <title>Key Terms</title>
+
+    <p>Listed alphabetically, with section references.</p>
+
+    <dl>
+      <li xml:id="term-ch6-a-proposition">
+        <title>A proposition</title>
+        <p>The universal affirmative categorical form: All S are P. (§6.1)</p>
+      </li>
+      <li xml:id="term-ch6-categorical-logic">
+        <title>Categorical logic</title>
+        <p>The logic of statements and arguments about categories or classes. (§6.1)</p>
+      </li>
+      <li xml:id="term-ch6-categorical-proposition">
+        <title>Categorical proposition</title>
+        <p>A statement that relates two categories, a subject term and a predicate term, in one of the four standard forms. (§6.1)</p>
+      </li>
+      <li xml:id="term-ch6-contradiction">
+        <title>Contradiction</title>
+        <p>A relation in which two propositions cannot both be true and cannot both be false. (§6.3)</p>
+      </li>
+      <li xml:id="term-ch6-contraposition">
+        <title>Contraposition</title>
+        <p>An immediate-inference operation that replaces the subject and predicate terms with their complements and swaps their positions. (§6.5)</p>
+      </li>
+      <li xml:id="term-ch6-conversion">
+        <title>Conversion</title>
+        <p>An immediate-inference operation that swaps the subject and predicate terms. (§6.5)</p>
+      </li>
+      <li xml:id="term-ch6-e-proposition">
+        <title>E proposition</title>
+        <p>The universal negative categorical form: No S are P. (§6.1)</p>
+      </li>
+      <li xml:id="term-ch6-existential-commitment">
+        <title>Existential commitment</title>
+        <p>A commitment that a category has at least one member. Universal categorical propositions have no existential commitment on the modern interpretation. (§6.4)</p>
+      </li>
+      <li xml:id="term-ch6-i-proposition">
+        <title>I proposition</title>
+        <p>The particular affirmative categorical form: Some S are P. (§6.1)</p>
+      </li>
+      <li xml:id="term-ch6-immediate-inference">
+        <title>Immediate inference</title>
+        <p>An inference from one categorical proposition to another. (§6.3, §6.5)</p>
+      </li>
+      <li xml:id="term-ch6-modern-interpretation">
+        <title>Modern interpretation</title>
+        <p>The interpretation of categorical logic on which universal propositions do not imply that their subject classes have members. (§6.4)</p>
+      </li>
+      <li xml:id="term-ch6-o-proposition">
+        <title>O proposition</title>
+        <p>The particular negative categorical form: Some S are not P. (§6.1)</p>
+      </li>
+      <li xml:id="term-ch6-obversion">
+        <title>Obversion</title>
+        <p>An immediate-inference operation that changes a proposition's quality and replaces the predicate term with its complement. (§6.5)</p>
+      </li>
+      <li xml:id="term-ch6-predicate-term">
+        <title>Predicate term</title>
+        <p>The category represented by P in a standard form categorical proposition. (§6.1)</p>
+      </li>
+      <li xml:id="term-ch6-quality">
+        <title>Quality</title>
+        <p>Whether a categorical proposition is affirmative or negative. (§6.1)</p>
+      </li>
+      <li xml:id="term-ch6-quantity">
+        <title>Quantity</title>
+        <p>Whether a categorical proposition is universal or particular. (§6.1)</p>
+      </li>
+      <li xml:id="term-ch6-singular-statement">
+        <title>Singular statement</title>
+        <p>A statement about an individual rather than directly about a general category. (§6.6)</p>
+      </li>
+      <li xml:id="term-ch6-square-of-opposition">
+        <title>Square of opposition</title>
+        <p>A diagram or classification of logical relations among A, E, I, and O propositions. (§6.3)</p>
+      </li>
+      <li xml:id="term-ch6-subject-term">
+        <title>Subject term</title>
+        <p>The category represented by S in a standard form categorical proposition. (§6.1)</p>
+      </li>
+    </dl>
+
+  </section>
+
+  <exercises xml:id="exercises-ch6">
+    <title>End-of-Chapter Exercises</title>
+
+    <exercisegroup xml:id="exgroup-ch6-s01">
+      <title>Exercise Set 1: Identifying the Form</title>
+      <introduction>
+        <p>
+          For each standard-form proposition, identify whether it
+          is A, E, I, or O.
+        </p>
+      </introduction>
+      <exercise xml:id="ex-ch6-s01-01"><statement><p>All voters are people who can be polled.</p></statement></exercise>
+      <exercise xml:id="ex-ch6-s01-02"><statement><p>Some senators are not freshmen.</p></statement></exercise>
+      <exercise xml:id="ex-ch6-s01-03"><statement><p>No data centers in this district are exempt from new permit requirements.</p></statement></exercise>
+      <exercise xml:id="ex-ch6-s01-04"><statement><p>Some supreme court justices are former federal judges.</p></statement></exercise>
+      <exercise xml:id="ex-ch6-s01-05"><statement><p>All immigration cases this year are cases reviewed by the new tribunal.</p></statement></exercise>
+      <exercise xml:id="ex-ch6-s01-06"><statement><p>Some bills are not bills passed unanimously.</p></statement></exercise>
+    </exercisegroup>
+
+    <exercisegroup xml:id="exgroup-ch6-s02">
+      <title>Exercise Set 2: Translation into Standard Form</title>
+      <introduction>
+        <p>
+          Translate each English sentence into a single standard-form
+          categorical proposition. Identify the form (A, E, I, or O).
+        </p>
+      </introduction>
+      <exercise xml:id="ex-ch6-s02-01"><statement><p>Every senator voted on the bill.</p></statement></exercise>
+      <exercise xml:id="ex-ch6-s02-02"><statement><p>Some immigration enforcement actions are not authorized by warrant.</p></statement></exercise>
+      <exercise xml:id="ex-ch6-s02-03"><statement><p>Not all data center proposals get approved by the county.</p></statement></exercise>
+      <exercise xml:id="ex-ch6-s02-04"><statement><p>No tariffs imposed in 2025 are tariffs that lowered consumer prices.</p></statement></exercise>
+      <exercise xml:id="ex-ch6-s02-05"><statement><p>There are voters who voted for the third-party candidate.</p></statement></exercise>
+      <exercise xml:id="ex-ch6-s02-06"><statement><p>Many Virginia counties have rejected new data center applications.</p></statement></exercise>
+      <exercise xml:id="ex-ch6-s02-07"><statement><p>Spiders aren't insects.</p></statement></exercise>
+      <exercise xml:id="ex-ch6-s02-08"><statement><p>It's false that no member of Congress opposed the strikes.</p></statement></exercise>
+    </exercisegroup>
+
+    <exercisegroup xml:id="exgroup-ch6-s03">
+      <title>Exercise Set 3: Drawing the Diagram</title>
+      <introduction>
+        <p>
+          For each proposition, describe the two-circle Venn
+          diagram that represents it: which area is shaded, or
+          which area contains an X. Use the standard area numbering
+          (1 = S only; 2 = S∩P; 3 = P only; 4 = outside both).
+        </p>
+      </introduction>
+      <exercise xml:id="ex-ch6-s03-01"><statement><p>All registered voters are people eligible to vote in this election.</p></statement></exercise>
+      <exercise xml:id="ex-ch6-s03-02"><statement><p>No data center applications submitted this year are applications approved without environmental review.</p></statement></exercise>
+      <exercise xml:id="ex-ch6-s03-03"><statement><p>Some tariffs are tariffs that have produced retaliatory measures.</p></statement></exercise>
+      <exercise xml:id="ex-ch6-s03-04"><statement><p>Some Supreme Court justices are not justices appointed in the last decade.</p></statement></exercise>
+    </exercisegroup>
+
+    <exercisegroup xml:id="exgroup-ch6-s04">
+      <title>Exercise Set 4: Immediate Inferences via Contradiction</title>
+      <introduction>
+        <p>
+          For each pair of propositions, decide whether the second
+          follows from the first by contradiction. (That is, is the
+          second the contradictory of the first, and does the truth
+          value of the second follow from the truth value of the
+          first?)
+        </p>
+      </introduction>
+      <exercise xml:id="ex-ch6-s04-01"><statement><p>Premise: It's not the case that all dumpster fires are bad things. Conclusion: Some dumpster fires are not bad things.</p></statement></exercise>
+      <exercise xml:id="ex-ch6-s04-02"><statement><p>Premise: No Joe Rogan fans are mainstream Democrats. Conclusion: It's not the case that some Joe Rogan fans are mainstream Democrats.</p></statement></exercise>
+      <exercise xml:id="ex-ch6-s04-03"><statement><p>Premise: All bitcoin maximalists are speculators. Conclusion: Some bitcoin maximalists are speculators.</p></statement></exercise>
+      <exercise xml:id="ex-ch6-s04-04"><statement><p>Premise: Some Silicon Valley billionaires are people who should stay in their lane. Conclusion: Some Silicon Valley billionaires are not people who should stay in their lane.</p></statement></exercise>
+    </exercisegroup>
+
+    <exercisegroup xml:id="exgroup-ch6-s05">
+      <title>Exercise Set 5: Conversion, Obversion, Contraposition</title>
+      <introduction>
+        <p>
+          For each pair, identify the operation (conversion,
+          obversion, or contraposition) and decide whether the
+          inference is valid on the modern interpretation.
+        </p>
+      </introduction>
+      <exercise xml:id="ex-ch6-s05-01"><statement><p>Premise: No school board members are ridiculous clowns. Conclusion: No non-ridiculous-clowns are non-school-board-members.</p></statement></exercise>
+      <exercise xml:id="ex-ch6-s05-02"><statement><p>Premise: Some logic smarties are philosophy cool kids. Conclusion: Some philosophy cool kids are logic smarties.</p></statement></exercise>
+      <exercise xml:id="ex-ch6-s05-03"><statement><p>Premise: All crayons are non-toxic things. Conclusion: No crayons are toxic things.</p></statement></exercise>
+      <exercise xml:id="ex-ch6-s05-04"><statement><p>Premise: Some anti-vaxxers are not conspiracy theorists. Conclusion: Some conspiracy theorists are not anti-vaxxers.</p></statement></exercise>
+      <exercise xml:id="ex-ch6-s05-05"><statement><p>Premise: Some Kyrie Irving fans are not Dallas Mavericks fans. Conclusion: Some Kyrie Irving fans are non-Dallas-Mavericks-fans.</p></statement></exercise>
+      <exercise xml:id="ex-ch6-s05-06"><statement><p>Premise: All registered voters are people on the rolls. Conclusion: All non-people-on-the-rolls are non-registered-voters.</p></statement></exercise>
+    </exercisegroup>
+
+    <exercisegroup xml:id="exgroup-ch6-s06">
+      <title>Exercise Set 6: Complex Translations</title>
+      <introduction>
+        <p>
+          Translate each sentence into one or more standard-form
+          categorical propositions. For identity claims, give both
+          directions.
+        </p>
+      </introduction>
+      <exercise xml:id="ex-ch6-s06-01"><statement><p>Today is Monday.</p></statement></exercise>
+      <exercise xml:id="ex-ch6-s06-02"><statement><p>Donald Trump is the 47th President of the United States.</p></statement></exercise>
+      <exercise xml:id="ex-ch6-s06-03"><statement><p>Only registered voters can vote in this election.</p></statement></exercise>
+      <exercise xml:id="ex-ch6-s06-04"><statement><p>Trump was nominated for a Nobel Peace Prize.</p></statement></exercise>
+      <exercise xml:id="ex-ch6-s06-05"><statement><p>Only Trump supporters are true Americans.</p></statement></exercise>
+      <exercise xml:id="ex-ch6-s06-06"><statement><p>It's false that only Republican die-hards voted for Trump.</p></statement></exercise>
+      <exercise xml:id="ex-ch6-s06-07"><statement><p>Hillary Clinton should have been President of the United States.</p></statement></exercise>
+      <exercise xml:id="ex-ch6-s06-08"><statement><p>None but registered voters can vote in this election.</p></statement></exercise>
+    </exercisegroup>
+
+  </exercises>
+
+</chapter>

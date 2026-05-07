@@ -10,8 +10,8 @@ This is the synthesized plan from the alignment interview held on April 26, 2026
 We are building an open educational resource that replaces commercial intro-logic textbooks (Baronett, Hurley) at the University of Mary Washington and offers an adoptable resource for other Virginia institutions and beyond. The project comprises three deliverables:
 
 1. **A free, openly-licensed textbook** authored in PreTeXt and published as accessible PDF (Phase 1) and accessible interactive HTML (Phase 2).
-2. **Two web-based logic tools** — a natural deduction proof checker (already built; maintained going forward) and a truth-table checker (to be built fresh).
-3. **A complete Canvas course shell** (modules, quizzes, seatwork) exportable as Canvas Course Export and Common Cartridge for adopters using other LMS platforms.
+2. **A suite of web-based companion tools** — including the natural deduction proof checker, a truth-table checker, a Venn diagram checker, and an argument reconstruction editor.
+3. **A complete Canvas course shell and item-bank package** (modules, quizzes, seatwork, and chapter item banks) exportable as Canvas Course Export and Common Cartridge for adopters using other LMS platforms.
 
 The anchoring course is **PHIL 151B Introductory Logic** at UMW. The book is a *superset* of the course — it includes optional chapters on predicate logic and a deeper treatment of conditional and indirect proof so that other instructors can adopt the book without being constrained to the UMW syllabus.
 
@@ -29,7 +29,7 @@ The book is divided into four parts that align with the four exam blocks of the 
 
 - **Part I — Arguments and Reasoning** (informal logic): what arguments are, deductive vs. inductive, validity and soundness, language and meaning, informal fallacies. *Chapter 4 (Language and Meaning) is treated as an optional/non-load-bearing chapter:* other chapters do not reference it, and any concept introduced there that is needed elsewhere (e.g., equivocation in the fallacies chapter) is re-introduced locally rather than imported by cross-reference. This lets adopters skip Ch. 4 without breaking the rest of the book.
 - **Part II — Categorical Logic** (Venn-first): categorical statements, the square of opposition, Venn diagrams for statements, categorical syllogisms via Venn diagrams, translating English into categorical form. Mood and Figure are de-emphasized; the Venn diagram method is treated as the primary tool for assessing validity. Only modern categorical logic is taught in the body of the text. Existential commitment is discussed. But, the Aristotelian categorical logic is placed in an appendix. 
-- **Part III — Sentential Logic**: symbolizing sentences using Copi notation (⊃, ·, ∨, ≡, ∼), truth tables, natural deduction with the 8 implication rules and the 10 replacement rules, and conditional and indirect proof. CP and IP are taught but assessments are designed to be solvable using only the 18 rules.
+- **Part III — Sentential Logic**: symbolizing sentences using Copi notation (⊃, ·, ∨, ≡, ~), truth tables, natural deduction with the 8 implication rules and the 10 replacement rules, and conditional and indirect proof. CP and IP are taught but assessments are designed to be solvable using only the 18 rules.
 - **Part IV — Inductive and Statistical Reasoning**: inductive reasoning, probability basics, descriptive statistics, statistical inference, and a closing chapter that draws on Hacking-flavored material to give students a richer appreciation of statistical reasoning than typical intro texts offer.
 - **Part V — Predicate Logic** (optional adopter chapters): symbolization with quantifiers, the four standard quantifier rules, and (optionally) identity. PHIL 151B does not (currently) cover this material; adopters who want it can include it.
 
@@ -37,7 +37,9 @@ A target of approximately 17–18 chapters total. The exact chapter list will fi
 
 ## 4. Notation and Proof System
 
-The book uses **Copi notation** throughout: `⊃` for the conditional, `·` for conjunction, `∨` for disjunction, `≡` for the biconditional, and `∼` for negation. This choice is both pedagogical (consistent with the Copi/Hurley/Baronett tradition the lead author has taught from for years) and a soft deterrent against students copy-pasting from external sources that use the modern `→`, `∧`, `∨`, `¬`, `↔` notation. The deterrent's effectiveness will decay as AI tools improve at Copi notation; the in-person exam remains the real assessment.
+The book uses **Copi notation** throughout: `⊃` for the conditional, `·` for conjunction, `∨` for disjunction, `≡` for the biconditional, and the plain ASCII tilde `~` (Unicode U+007E) for negation. This choice is both pedagogical (consistent with the Copi/Hurley/Baronett tradition the lead author has taught from for years) and a soft deterrent against students copy-pasting from external sources that use the modern `→`, `∧`, `∨`, `¬`, `↔` notation. The deterrent's effectiveness will decay as AI tools improve at Copi notation; the in-person exam remains the real assessment.
+
+For negation, the source files, generated text, and student-facing tools should use `~` (Unicode U+007E), not the Unicode tilde operator `∼` (U+223C) or the negation sign `¬`. The plain tilde is easier for students to type, aligns with checker keyboard shortcuts, and avoids introducing multiple visually similar negation symbols for screen-reader users.
 
 The natural deduction system has **18 inference rules** (taken from the lead author's existing `NaturalDeductionRules.pdf`):
 
@@ -59,7 +61,7 @@ Writing in PreTeXt now means Phase 2 is a matter of *adding* features rather tha
 
 All chapters are written fresh. Existing texts (Baronett, Hurley, Knachel, Hacking) serve as reference material to ensure logical correctness, but no copyrighted prose, examples, or exercises are reused. The lead author's own teaching materials — Spring 2026 seatwork, study guides, exams, summer notes, and forthcoming written notes — are the primary source material from which prose is drafted.
 
-**Examples are stored in modular files** under `examples/` so that politically-current references can be swapped in a single file edit each election cycle, without re-authoring chapter prose. Example sets are versioned (e.g., "Spring 2026 examples," "Spring 2028 examples") so adopters can pin to a stable set.
+**Example modularity remains a design goal.** In the current draft, many examples are still authored inline in chapter files. Over time, politically-current examples should move into modular files under `examples/` so that they can be swapped in a single edit each election cycle, without re-authoring chapter prose. Example sets should be versioned (e.g., "Spring 2026 examples," "Spring 2028 examples") so adopters can pin to a stable set.
 
 ## 6. Tools
 
@@ -78,7 +80,7 @@ To be built fresh. Specification:
 
 - **Check-only.** Students input cell values; the tool grades them. The tool does not generate completed tables.
 - **Three modes**: single-statement classification (tautology / self-contradiction / contingent), pair classification (logically equivalent / contradictory / consistent-but-not-equivalent / inconsistent-but-not-contradictory), and argument validity (any number of premises, validity tested by checking for rows where all premises are true and the conclusion is false).
-- **Copi notation** with the same keyboard shortcuts as the proof checker (`->` for ⊃, `&` for ·, `v` for ∨, `<->` for ≡, `~` for ∼).
+- **Copi notation** with the same keyboard shortcuts as the proof checker (`->` for ⊃, `&` for ·, `v` for ∨, `<->` for ≡, `~` for negation). The canonical negation character in source files and tools is the ASCII tilde `~` (Unicode U+007E).
 - **Auto-filled variable reference columns** in the standard binary-counting pattern (rightmost column alternates every row, next-left every two rows, next-left every four, next-left every eight). Capped at **4 variables / 16 rows**.
 - **Two check modes, student-toggleable**: immediate feedback per cell (default for practice) and check-on-button (default for exam-prep mode).
 - **No hint system** in v1 (would require pre-computed answers per problem).
@@ -92,6 +94,22 @@ To be built fresh. Specification:
 
 Realistic engineering estimate: 1–2 focused weeks for the truth table checker plus 1–2 weeks for the proof checker accessibility remediation. Both well inside the May 2027 deadline.
 
+### Venn Diagram Checker
+
+A standalone static Venn diagram checker exists at `vennchecker/`. It supports two-circle categorical proposition practice and three-circle categorical syllogism practice under the modern interpretation. Its role is practice and feedback, not Canvas assessment. Going forward:
+
+- It should remain aligned with Chapters 6 and 7: S on the left and P on the right for two-circle diagrams; S/minor bottom-left, P/major bottom-right, and M/middle top for three-circle diagrams.
+- It should keep the conclusion diagram and validity judgment student-facing: students mark the conclusion diagram and answer the validity question, then the tool checks both.
+- It needs the same accessibility commitments as the other tools: keyboard marking, no color-only feedback, clear text status, and screen-reader labels for regions and diagram states.
+
+### Argument Reconstruction Editor
+
+A standalone static reconstruction editor exists at `reconstructioneditor/`. It supports the Chapter 2 workflow: preparing source statements, tagging premises/conclusions/omissions, adding implicit premises, writing support notes, and copying a standard-form reconstruction with a process receipt. Its role is guided drafting and process evidence, not automated grading. Going forward:
+
+- It should remain aligned with Chapter 2's verbal-diagram rule: every conclusion and sub-conclusion must state what it follows from.
+- Its health check should flag structural issues without saying that a reconstruction is simply right or wrong.
+- Its telemetry is anti-AI friction and process evidence only, not secure authorship verification.
+
 ### Canvas Modules
 
 Canvas hosts **assessment and administrative infrastructure only** — not chapter content. The book's content lives in the PreTeXt source and its rendered outputs (PDF in Phase 1, accessible HTML in Phase 2). Canvas modules link to those outputs; they do not reproduce or summarize them. See `docs/DECISIONS.md` D-026 for the rationale: PDF accessibility is stronger than what Canvas Pages can practically replicate, single-source maintenance avoids re-syncing content across systems, and a thin Canvas shell is more portable for adopting institutions.
@@ -99,13 +117,13 @@ Canvas hosts **assessment and administrative infrastructure only** — not chapt
 - **One module per book chapter** (~17 modules + optional Part V modules). Timing modulated manually by the instructor.
 - **Each module contains:** (a) a brief framing page (1–3 paragraphs) introducing the chapter and what students should do that week, (b) a link to the published PDF or specific chapter section, (c) any required readings or videos, (d) the quiz(zes) for that chapter, (e) the writing-assignment prompts. **No reproduction of chapter content.**
 - **Quiz design uses Canvas's native question types**, not iframe embedding of the checkers. For truth tables, students enter the column of T/F values for a specified subexpression as a string (e.g., `TFTFTFTF`) into a fill-in-blank question with pattern matching. For natural deduction, students choose from candidate next lines (one valid use of a rule, others invalid uses) in multiple-choice questions. This keeps quizzes accessible, LMS-portable, and free of iframe headaches.
-- **Item banks** (separate per chapter section, tagged by topic) are the most adopter-portable artifact. Adopting instructors import the banks and build their own quizzes from them.
+- **Item banks are a first-class deliverable** (separate per chapter section, tagged by topic). Adopting instructors import the banks and build their own quizzes from them. Where Canvas import behavior is finicky, the build pipeline should prefer item-bank packages and validated QTI/Common Cartridge structures over quiz shells that can import without questions.
 - **Exported in two formats**: Canvas Course Export (Canvas-native) and Common Cartridge (cross-LMS portable for Brightspace, Moodle, etc.). The Common Cartridge bundles the Canvas shell plus the PDF.
 - **Adaptable to fully-online sections**: the book and Canvas modules support both in-person and online delivery. For online sections, exams are still done on paper and uploaded as scans or photos.
 - **Exams are not a grant deliverable.** They remain the lead author's IP. The grant covers the textbook, the truth table checker, and the Canvas module shell.
 - **No instructional designer** required. The lead author has been authoring Canvas modules for years and owns this work.
 
-A Canvas Common Cartridge build pipeline exists at `canvas/build_chapter1_v2.py` and `canvas/build_chapter1_item_banks.py`. The bundles produced (`canvas/chapter1-v2.imscc`, `canvas/build_item_banks_ch1/`) are importable into Canvas and other LMS platforms and incorporate the published PDF as a course file.
+A Canvas Common Cartridge build pipeline exists at `canvas/build_chapter1_v2.py` and `canvas/build_chapter1_item_banks.py`. The bundles produced (`canvas/chapter1-v2.imscc`, `canvas/build_item_banks_ch1/`) are importable into Canvas and other LMS platforms and incorporate the published PDF as a course file. Future chapter pipelines should produce both a thin module shell and item-bank exports, with item banks treated as the portable assessment core.
 
 ## 7. Accessibility (Cross-Cutting Principle)
 
@@ -113,7 +131,7 @@ Accessibility is treated as a foundational requirement, not a Phase 2 polish. Co
 
 - **Target standard**: WCAG 2.1 Level AA across the book HTML, the proof checker, the truth table checker, and Canvas modules.
 - **Screen-reader testing as part of the Chapter 1 vertical slice**, so accessibility problems surface at the template stage, not at v1.
-- **Keyboard-only operation** as a hard requirement for both tools.
+- **Keyboard-only operation** as a hard requirement for companion tools.
 - **No color-only feedback** anywhere — all status information must also be conveyed by text, icon, or screen-reader announcement.
 - **Semantic markup** throughout PreTeXt (proper headings, lists, definitions, examples).
 - **Alt-text discipline** on every figure; figures generated via PreTeXt's `<diagram>` element so alt-text is part of the figure source.
@@ -218,7 +236,7 @@ Every chapter follows this structure:
    - Definitions in boxed callouts using PreTeXt's `<definition>` element.
    - Worked Examples in boxed callouts using PreTeXt's `<example>` element with accessible titles.
    - Practice Problems (2–4 per section) inline at end of section, with reveal-on-click solutions in HTML and selected solutions in a PDF appendix.
-   - Cross-references to the proof checker / truth table checker where appropriate, using a standard "Try this in [tool]" callout.
+   - Cross-references to relevant companion tools where appropriate, using a standard "Try this in [tool]" callout.
 3. **Chapter Summary** — boxed list of key concepts, optimized for fast lookup before exam.
 4. **Key Terms** — alphabetized list of bolded terms with section pointers.
 5. **End-of-Chapter Exercises** — larger problem set, organized by section, with mixed difficulty. Selected solutions in PDF appendix; full solutions in instructor's manual.
@@ -229,7 +247,7 @@ Every chapter follows this structure:
 - **Numbering**: PreTeXt's combined per-section numbering (Item 1.2.1 = chapter 1, section 2, item 1; type indicated by label). Lookup-friendly.
 - **Definition and example labels**: use PreTeXt's auto-numbering; never hand-numbered.
 - **Solutions split**: selected end-of-chapter solutions in PDF appendix; full solutions in instructor's manual that ships separately. Practice problems' solutions are inline / reveal-on-click in HTML.
-- **Figures**: all generated via PreTeXt's `<diagram>` element with SVG output, so PDF and HTML get the same scalable graphic and alt-text is part of the source. This is especially important for the Venn diagrams in Part II.
+- **Figures**: authored as semantic PreTeXt figures/images with text descriptions, so PDF and HTML get scalable graphics and the alternate text is part of the source. The underlying figure source may be TikZ/LaTeX image code or PreTeXt's `<diagram>` element, depending on which renders the content most reliably. This is especially important for the Venn diagrams in Part II.
 
 ## 14. Failure Mode Mitigations
 
@@ -278,6 +296,18 @@ Items planted in earlier chapters that *must* be paid off in later chapters. Add
 ## 18. Planned Appendices
 
 Documented future content in the back-matter, in addition to the existing `appendix-solutions.ptx`.
+
+### Appendix on Aristotelian Categorical Logic
+
+**Status.** Planned. The body of Chapters 6 and 7 uses the modern interpretation of categorical logic. A short appendix should explain the Aristotelian interpretation for adopters who want to teach it or compare it with the modern approach.
+
+**Planned appendix contents.**
+
+1. *Existential import for A, E, I, and O.* Explain that, on the Aristotelian interpretation, universal propositions carry existential commitment for their subject terms, unlike the modern interpretation used in the body of the book.
+2. *Immediate inferences in classical categorical logic.* Present the traditional square of opposition and the classical treatment of conversion, obversion, and contraposition, clearly marking where the validity results differ from the modern table in Chapter 6.
+3. *Venn diagrams under the Aristotelian interpretation.* Show how to add existential commitment when diagramming universal claims, and explain how this changes selected validity results.
+4. *Mood and figure under the Aristotelian interpretation.* Give a brief procedure for assessing syllogistic validity by mood and figure when existential import is assumed, including examples such as AAI-3 that are valid classically but invalid on the modern interpretation.
+5. *Comparison note.* Close by reminding readers that the main text and course tools use the modern interpretation unless an exercise explicitly says otherwise.
 
 ### Appendix on Argument Diagrams
 

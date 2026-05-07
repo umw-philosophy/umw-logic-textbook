@@ -559,6 +559,97 @@
     </paragraphs>
   </section>
 
+  <conclusion xml:id="conclusion-ch4">
+    <title>Chapter Summary</title>
+
+    <p>
+      This chapter treated language as part of argument evaluation. The
+      core ideas, section by section:
+    </p>
+
+    <p>
+      <alert>Why Language Matters for Arguments (§4.1).</alert>
+      Structurally good reasoning can still go wrong when the language
+      in the premises or conclusion is unclear. Vagueness, ambiguity,
+      and bad definitions can hide the actual issue, shift the argument,
+      or make a conclusion seem better supported than it is.
+    </p>
+
+    <p>
+      <alert>Vagueness (§4.2).</alert> A vague term has borderline
+      cases. Vagueness is normal and often useful, but it becomes a
+      problem when an argument depends on a boundary that the arguer has
+      not made clear.
+    </p>
+
+    <p>
+      <alert>Ambiguity and Equivocation (§4.3).</alert> An ambiguous
+      expression has more than one meaning. Lexical ambiguity involves
+      words or phrases with multiple meanings; syntactic ambiguity
+      involves sentence structure. Equivocation occurs when an argument
+      shifts between meanings and makes the inference look stronger than
+      it is.
+    </p>
+
+    <p>
+      <alert>Definitions and How They Work (§4.4).</alert> Definitions
+      can report usage, stipulate a meaning, clarify a term, recommend a
+      way of speaking, or persuade. Good definitions fit their purpose,
+      avoid circularity, and mark the relevant boundaries clearly enough
+      for the argument at hand.
+    </p>
+
+    <p>
+      <alert>Where We're Headed (§4.5).</alert> The language skills in
+      this chapter prepare us for informal fallacies, especially
+      equivocation and persuasive definitions. Chapter 5 uses these
+      tools while keeping Chapter 4 optional for adopters who skip it.
+    </p>
+
+  </conclusion>
+
+  <section xml:id="sec-ch4-key-terms">
+    <title>Key Terms</title>
+
+    <p>Listed alphabetically, with section references.</p>
+
+    <dl>
+      <li xml:id="term-ch4-ambiguity">
+        <title>Ambiguity</title>
+        <p>A feature of language in which an expression has more than one meaning. (§4.3)</p>
+      </li>
+      <li xml:id="term-ch4-definition-by-genus-difference">
+        <title>Definition by genus and difference</title>
+        <p>A definition that places something in a general class and then states what distinguishes it from other members of that class. (§4.4)</p>
+      </li>
+      <li xml:id="term-ch4-equivocation">
+        <title>Equivocation</title>
+        <p>A shift in meaning within an argument that makes the reasoning look stronger than it is. (§4.3)</p>
+      </li>
+      <li xml:id="term-ch4-lexical-ambiguity">
+        <title>Lexical ambiguity</title>
+        <p>Ambiguity that comes from a word or phrase having more than one meaning. (§4.3)</p>
+      </li>
+      <li xml:id="term-ch4-persuasive-definition">
+        <title>Persuasive definition</title>
+        <p>A definition that tries to influence attitudes toward what is being defined, not merely report or clarify usage. (§4.4)</p>
+      </li>
+      <li xml:id="term-ch4-stipulative-definition">
+        <title>Stipulative definition</title>
+        <p>A definition that assigns a meaning to a term for a particular context or discussion. (§4.4)</p>
+      </li>
+      <li xml:id="term-ch4-syntactic-ambiguity">
+        <title>Syntactic ambiguity</title>
+        <p>Ambiguity that comes from the structure or grammar of a sentence. (§4.3)</p>
+      </li>
+      <li xml:id="term-ch4-vagueness">
+        <title>Vagueness</title>
+        <p>A feature of language in which a term has borderline cases. (§4.2)</p>
+      </li>
+    </dl>
+
+  </section>
+
   <exercises xml:id="exercises-ch4">
     <title>End-of-Chapter Exercises</title>
 

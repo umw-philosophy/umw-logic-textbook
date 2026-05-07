@@ -263,4 +263,157 @@
     <p><term>(d)</term> <em>What Chapter 2's tools added.</em></p>
     <p>The Chapter 1 reconstruction identified the structure of the argument but did not say <em>how</em> the support worked at each step. Chapter 2's tools added three things: explicit dependent/independent labels showing which premises rely on which others; an implicit premise that makes the move to the conclusion licensed rather than left for the reader to supply silently; and a finer reading of what each sentence in the original passage is doing — premise, sub-conclusion, or rhetorical addition. The reconstruction is the same in outline but more rigorous about the relations between the parts.</p>
   </section>
+
+  <section xml:id="sol-ch3-exercise-set-1-identifying-valid-forms">
+    <title>Chapter 3, Exercise Set 1: Identifying Valid Forms</title>
+    <p><term>1.</term> <em>Modus ponens.</em> The first premise has the form <q>If P, then Q</q>; the second premise affirms P; the conclusion affirms Q.</p>
+    <p><term>3.</term> <em>Disjunctive syllogism.</em> The first premise gives an either/or: either the data center applies for a new permit or construction stops. The second premise denies the first disjunct, so the conclusion affirms the other disjunct.</p>
+  </section>
+
+  <section xml:id="sol-ch3-exercise-set-2-spotting-invalid-forms">
+    <title>Chapter 3, Exercise Set 2: Spotting Invalid Forms</title>
+    <p><term>1.</term> <em>Affirming the consequent.</em> The argument says: if a senator is corrupt, then they accept dark-money donations; Senator X accepts dark-money donations; therefore Senator X is corrupt. Accepting such donations is treated as if it proves the antecedent, but the conditional does not say that only corrupt senators accept such donations.</p>
+    <p><term>3.</term> <em>Affirming the consequent.</em> The argument says: if a country has a stable currency, foreign investment increases; foreign investment increased; therefore the country has a stable currency. The increase in investment could have another cause.</p>
+  </section>
+
+  <section xml:id="sol-ch3-exercise-set-3-constructing-counterexamples">
+    <title>Chapter 3, Exercise Set 3: Constructing Counterexamples</title>
+    <p><term>1.</term> One counterexample: If something is a dog, then it is a mammal. This animal is a mammal. Therefore this animal is a dog. The premises can both be true while the conclusion is false, since the animal might be a cat. That shows affirming the consequent is invalid.</p>
+    <p><term>3.</term> One counterexample: All dogs are mammals. All mammals are animals. Therefore all animals are dogs. The premises are true, but the conclusion is false. The form moves in the wrong direction at the last step.</p>
+  </section>
+
+  <section xml:id="sol-ch3-exercise-set-4-validity-soundness-or-neither">
+    <title>Chapter 3, Exercise Set 4: Validity, Soundness, or Neither</title>
+    <p><term>1.</term> <em>Valid and sound.</em> The argument is an instance of modus ponens. The premises are true: two plus two equals four, and if that is true, arithmetic works as we have learned it.</p>
+    <p><term>3.</term> <em>Valid and sound.</em> The argument is an instance of modus ponens. The moon does orbit the Earth, and the conditional connecting that fact to the existence of tides is true enough for the purposes of the example.</p>
+  </section>
+
+  <section xml:id="sol-ch3-exercise-set-5-strength-and-cogency">
+    <title>Chapter 3, Exercise Set 5: Strength and Cogency</title>
+    <p><term>1.</term> <em>Strong; probably cogent if the statistic is accurate.</em> Ninety-three out of one hundred past winters is a substantial pattern, so the premise gives strong inductive support. Cogency depends on whether the historical claim is true and relevant to the coming winter.</p>
+    <p><term>3.</term> <em>Strong; cogent if the survey information is true.</em> The argument cites a large percentage and says the survey went to a representative sample. If those claims are true, the argument is a good inductive argument for the conclusion that the ordinance probably increases costs for small businesses generally.</p>
+  </section>
+
+  <section xml:id="sol-ch3-exercise-set-6-mixed-evaluation">
+    <title>Chapter 3, Exercise Set 6: Mixed Evaluation</title>
+    <p><term>1.</term> <em>Deductive.</em> The argument is modus ponens: if the city raises the property tax rate, then school revenue will increase; the city did raise the rate; therefore school revenue will increase. It is valid. Soundness depends on whether both premises are true, especially the conditional about revenue.</p>
+    <p><term>3.</term> <em>Deductive.</em> The argument is disjunctive syllogism: either the proposal cleared committee or the chair tabled it; it did not clear committee; therefore the chair tabled it. It is valid. It is sound if the either/or premise and the denial of the first disjunct are true.</p>
+  </section>
+
+  <section xml:id="sol-ch4-exercise-set-1-identifying-vague-terms">
+    <title>Chapter 4, Exercise Set 1: Identifying Vague Terms</title>
+    <p><term>1.</term> <em>Wealthy</em> is vague. There are clear cases of wealthy and clear cases of not wealthy, but there are borderline households where the classification is unclear. If the sentence is used to defend the policy, the vagueness matters because the audience needs to know who is actually affected.</p>
+    <p><term>3.</term> <em>Natural</em> is vague. It may mean not synthetic, minimally processed, plant-derived, non-artificial, or something else. In product marketing, that vagueness can do argumentative work by making the product sound healthier or safer without saying exactly what property it has.</p>
+  </section>
+
+  <section xml:id="sol-ch4-exercise-set-2-ambiguity">
+    <title>Chapter 4, Exercise Set 2: Ambiguity</title>
+    <p><term>1.</term> <em>Ambiguous; lexical.</em> <q>Bank</q> can mean a financial institution or the side of a river. The sentence does not tell us which meaning is intended.</p>
+    <p><term>3.</term> <em>Ambiguous; syntactic.</em> It can mean that the chicken is prepared and ready for someone to eat, or that the chicken itself is ready to eat some food. The grammar allows both readings.</p>
+  </section>
+
+  <section xml:id="sol-ch4-exercise-set-3-spotting-equivocation">
+    <title>Chapter 4, Exercise Set 3: Spotting Equivocation</title>
+    <p><term>1.</term> The argument equivocates on <q>end.</q> In the first premise, <q>end of life</q> means the termination of life. In the second premise, <q>end</q> means aim, purpose, or goal. The inference fails because death is being substituted for purpose by using the same word in two different senses.</p>
+    <p><term>3.</term> The argument equivocates on <q>law.</q> In <q>all laws can be broken,</q> the word means human rules or legal requirements. In <q>law of gravity,</q> it means a scientific regularity. The inference fails because a law of nature is not the same kind of thing as a rule one can violate.</p>
+  </section>
+
+  <section xml:id="sol-ch4-exercise-set-4-classifying-definitions">
+    <title>Chapter 4, Exercise Set 4: Classifying Definitions</title>
+    <p><term>1.</term> <em>Stipulative definition.</em> The phrase <q>for the purposes of this study</q> signals that the author is assigning a precise meaning for a specific context.</p>
+    <p><term>3.</term> <em>Persuasive definition.</em> The definition builds approval of <q>traditional values</q> and disapproval of <q>government bureaucrats</q> into the meaning of <q>true freedom.</q> It is trying to steer evaluation, not just report usage.</p>
+  </section>
+
+  <section xml:id="sol-ch4-exercise-set-5-critiquing-definitions">
+    <title>Chapter 4, Exercise Set 5: Critiquing Definitions</title>
+    <p><term>1.</term> The definition is circular. Defining <q>logic</q> as the study of reasoning <q>logically</q> uses a close relative of the term being defined, so it does not explain the concept to someone who does not already understand it.</p>
+    <p><term>3.</term> The definition is too broad and too narrow, and partly negative. Many four-legged carnivorous mammals that are not dogs are not cats. It also risks excluding cats that do not have four legs. Saying <q>not a dog</q> does not identify what makes something a cat.</p>
+  </section>
+
+  <section xml:id="sol-ch4-exercise-set-6-mixed-application">
+    <title>Chapter 4, Exercise Set 6: Mixed Application</title>
+    <p><term>1.</term> The passage uses a persuasive definition of <q>real environmentalist.</q> It builds support for nuclear power into the meaning of the term, then uses that loaded definition to exclude Senator X. The language problem matters because the conclusion follows only if we accept the author's controversial definition.</p>
+    <p><term>3.</term> The passage relies on a problematic definition of <q>healthy foods</q> as foods without artificial ingredients. That definition is too broad: organic candy may lack artificial ingredients and still be unhealthy in ordinary nutritional terms. The argument's conclusion depends on that questionable definition.</p>
+  </section>
+
+  <section xml:id="sol-ch5-exercise-set-1-fallacies-of-relevance">
+    <title>Chapter 5, Exercise Set 1: Identifying Fallacies of Relevance</title>
+    <p><term>1.</term> <em>Ad hominem.</em> The response attacks Senator Carter's personal behavior rather than addressing the merits of her argument about climate policy. Her driving an SUV may raise a charge of inconsistency, but it does not by itself show that her policy argument is false.</p>
+    <p><term>3.</term> <em>Appeal to emotion.</em> The argument relies on fear about children growing up in an unrecognizable country rather than giving concrete reasons for the bill. Emotional concern may be relevant, but here it substitutes for evidence.</p>
+    <p><term>5.</term> <em>Red herring.</em> The reporter asks about a possible ethics violation. The senator shifts to the previous administration's fiscal record, which may matter politically but does not answer the question asked.</p>
+  </section>
+
+  <section xml:id="sol-ch5-exercise-set-2-weak-inductive-support">
+    <title>Chapter 5, Exercise Set 2: Identifying Fallacies of Weak Inductive Support</title>
+    <p><term>1.</term> <em>Hasty generalization.</em> Two layoffs are too small a sample to support a sweeping claim that the entire data center industry is collapsing.</p>
+    <p><term>3.</term> <em>Slippery slope.</em> The argument moves from background checks to registry, licensing, and confiscation without showing that each step is likely or that the first step would make the later steps unavoidable.</p>
+    <p><term>5.</term> <em>Rigid application of a generalization.</em> Even if most members of Congress usually follow constituent preferences, that generalization does not justify dismissing a specific contrary vote without looking at the evidence. The argument treats a broad pattern as if it settles every individual case.</p>
+  </section>
+
+  <section xml:id="sol-ch5-exercise-set-3-fallacies-of-presumption">
+    <title>Chapter 5, Exercise Set 3: Identifying Fallacies of Presumption</title>
+    <p><term>1.</term> <em>False dichotomy.</em> The argument presents only two options: secure the borders or accept lawlessness. It ignores other possible positions, such as changing enforcement policy without accepting lawlessness.</p>
+    <p><term>3.</term> <em>Begging the question.</em> The argument assumes what it needs to prove. Calling the party <q>the party of working people</q> already builds in the conclusion that it supports working people.</p>
+  </section>
+
+  <section xml:id="sol-ch5-exercise-set-4-mixed-identification">
+    <title>Chapter 5, Exercise Set 4: Mixed Identification</title>
+    <p><term>1.</term> <em>Equivocation.</em> <q>Free speech</q> shifts between a constitutional right against government restriction and a broader cultural value about open expression. The constitutional conclusion does not follow from the broader use of the term.</p>
+    <p><term>3.</term> <em>Appeal to illegitimate authority, or at least weak appeal to authority.</em> Generals and security experts may be relevant authorities, but the argument gives no actual evidence for the necessity of the strikes and treats membership in the administration as enough to settle the matter.</p>
+    <p><term>5.</term> <em>Weak appeal to authority / suppressed evidence.</em> The fact that some supporters have run small businesses is not enough to show the bill will not hurt small businesses. The argument ignores the opponents' specific concern rather than answering it.</p>
+  </section>
+
+  <section xml:id="sol-ch5-exercise-set-5-legitimate-or-fallacious">
+    <title>Chapter 5, Exercise Set 5: Legitimate or Fallacious?</title>
+    <p><term>1.</term> <em>Legitimate appeal to authority.</em> The CDC is an appropriate expert source on vaccination rates and herd immunity. If the report is accurately represented, the conclusion about likely outbreaks is a reasonable expert-based inference, not a fallacious appeal to authority.</p>
+    <p><term>3.</term> <em>Legitimate cousin of ad hominem.</em> The point is not merely that Senator Lewis has a bad relative. The family financial connection is relevant to whether she had a conflict of interest and should have recused herself.</p>
+  </section>
+
+  <section xml:id="sol-ch5-exercise-set-6-construct-your-own">
+    <title>Chapter 5, Exercise Set 6: Construct Your Own</title>
+    <p><term>1.</term> Model answer for <em>straw person</em>: <q>My opponent wants to review police funding priorities, which means she wants to abolish public safety. We should reject her proposal.</q> Diagnosis: the argument replaces a more modest proposal with an exaggerated version that is easier to attack.</p>
+    <p><term>3.</term> Model answer for <em>slippery slope</em>: <q>If the city allows one supervised homeless shelter downtown, businesses will leave, tourism will collapse, and the whole downtown will fail. So we must reject the shelter.</q> Diagnosis: the argument predicts a chain of increasingly severe consequences without showing that the chain is likely.</p>
+  </section>
+
+  <section xml:id="sol-ch6-exercise-set-1-identifying-the-form">
+    <title>Chapter 6, Exercise Set 1: Identifying the Form</title>
+    <p><term>1.</term> <em>A proposition.</em> It has the form <q>All S are P.</q></p>
+    <p><term>3.</term> <em>E proposition.</em> It has the form <q>No S are P.</q></p>
+    <p><term>5.</term> <em>A proposition.</em> It has the form <q>All S are P.</q></p>
+  </section>
+
+  <section xml:id="sol-ch6-exercise-set-2-translation-into-standard-form">
+    <title>Chapter 6, Exercise Set 2: Translation into Standard Form</title>
+    <p><term>1.</term> <q>All senators are people who voted on the bill.</q> Form: A.</p>
+    <p><term>3.</term> <q>Some data center proposals are not proposals approved by the county.</q> Form: O. <q>Not all</q> translates as <q>some are not.</q></p>
+    <p><term>5.</term> <q>Some voters are voters who voted for the third-party candidate.</q> Form: I.</p>
+    <p><term>7.</term> <q>No spiders are insects.</q> Form: E.</p>
+  </section>
+
+  <section xml:id="sol-ch6-exercise-set-3-drawing-the-diagram">
+    <title>Chapter 6, Exercise Set 3: Drawing the Diagram</title>
+    <p><term>1.</term> This is an A proposition: all registered voters are people eligible to vote in this election. Shade area 1, the S-only region. That marks the region of registered voters who are not eligible voters as empty.</p>
+    <p><term>3.</term> This is an I proposition: some tariffs are tariffs that have produced retaliatory measures. Place an X in area 2, the overlap between S and P.</p>
+  </section>
+
+  <section xml:id="sol-ch6-exercise-set-4-immediate-inferences-via-contradiction">
+    <title>Chapter 6, Exercise Set 4: Immediate Inferences via Contradiction</title>
+    <p><term>1.</term> <em>Valid.</em> <q>It is not the case that all dumpster fires are bad things</q> is the denial of an A proposition. Its contradictory is the O proposition: <q>Some dumpster fires are not bad things.</q></p>
+    <p><term>3.</term> <em>Invalid on the modern interpretation.</em> From <q>All bitcoin maximalists are speculators</q> it does not follow that some bitcoin maximalists exist. The conclusion is an I proposition, not the contradictory of the premise.</p>
+  </section>
+
+  <section xml:id="sol-ch6-exercise-set-5-conversion-obversion-contraposition">
+    <title>Chapter 6, Exercise Set 5: Conversion, Obversion, Contraposition</title>
+    <p><term>1.</term> <em>Contraposition; invalid.</em> The premise is an E proposition, and the conclusion is its contrapositive. On the modern interpretation, contraposition is valid for A and O propositions, but not for E propositions.</p>
+    <p><term>3.</term> <em>Obversion; valid.</em> <q>All crayons are non-toxic things</q> obverts to <q>No crayons are toxic things.</q> Obversion is valid for all four categorical forms.</p>
+    <p><term>5.</term> <em>Obversion; valid.</em> <q>Some Kyrie Irving fans are not Dallas Mavericks fans</q> obverts to <q>Some Kyrie Irving fans are non-Dallas-Mavericks-fans.</q> Obversion is valid for O propositions.</p>
+  </section>
+
+  <section xml:id="sol-ch6-exercise-set-6-complex-translations">
+    <title>Chapter 6, Exercise Set 6: Complex Translations</title>
+    <p><term>1.</term> <q>All days identical to today are Mondays.</q> Form: A. This treats <q>today</q> as a one-member subject class.</p>
+    <p><term>3.</term> <q>All people who can vote in this election are registered voters.</q> Form: A. <q>Only registered voters can vote</q> reverses the surface order.</p>
+    <p><term>5.</term> <q>All true Americans are Trump supporters.</q> Form: A. <q>Only Trump supporters are true Americans</q> means that anyone in the true-American class is in the Trump-supporter class.</p>
+    <p><term>7.</term> <q>All people identical to Hillary Clinton are people who should have been President of the United States.</q> Form: A. This is a singular statement translated by treating the named individual as a one-member class.</p>
+  </section>
 </appendix>
