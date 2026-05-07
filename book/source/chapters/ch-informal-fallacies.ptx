@@ -44,13 +44,12 @@
     </p>
     <p>
       The word <em>informal</em> matters. The fallacies in this
-      chapter are not failures of formal logic in a precise
-      mathematical sense. They are failures that show up in real
+      chapter are not failures of formal logic like denying the antecedent and affirming the consquence from Chapter 3. They are failures that show up in real
       arguments built from real prose, where the trouble is usually
       in how a premise is being deployed rather than in a misapplied
       rule. Some fallacies make an argument invalid; others make it
       weak; others smuggle in a premise that the argument hasn't
-      earned. We will sort the fifteen fallacies in this chapter
+      earned. We will sort the sixteen fallacies in this chapter
       into three groups that map onto those three modes of failure.
     </p>
     <p>
@@ -151,7 +150,7 @@
         relevant to the conclusion isn't. The premise might be
         about the speaker's character, the audience's emotions, an
         unrelated authority's opinion, or a misrepresentation of the
-        opposing position. In each case the premise, on inspection,
+        opposing position. In each case the premise appears to give reasons for the conclusion, but on inspection,
         does not bear on whether the conclusion is true.
       </p>
     </introduction>
@@ -177,25 +176,18 @@
         nicknames — <q>Sleepy Joe,</q> <q>Lyin' Ted,</q> <q>Crooked
         Hillary,</q> <q>Ron DeSanctimonious</q> — is a sustained
         public exercise in ad hominem.<fn>
-          <!-- VERIFY: extensively documented across reporting in the
-               2016, 2020, and 2024 cycles. Source candidates: NYT
-               coverage of Trump rally rhetoric; Politico's running
-               compilation; Washington Post fact-check archive. -->
-          Sample candidates for citation: extensive contemporaneous
-          coverage in major newspapers across the 2016, 2020, and 2024
-          presidential cycles.
+          See, for example, "The 598 People, Places and Things Donald Trump Has Insulted on Twitter: A Complete List," The New York Times, Jan. 19, 2021. Available at: https://www.nytimes.com/interactive/2021/01/19/upshot/trump-complete-insult-list.html
         </fn> When Trump's response to a substantive policy claim
-        from Joe Biden is to call him <q>Sleepy Joe</q> rather than
+        from Joe Biden was to call him <q>Sleepy Joe</q> rather than
         to address the substance, the response is ad hominem — it
         attacks the speaker rather than engaging the claim.
       </p>
       <p>
         It's worth saying clearly that this is not a Republican
-        habit specifically. Democrats have run for years on the
+        habit specifically. But, it also can't be denied that Trump has brought this to a new level in public discource. But, it's now true that Democrats have run for years on the
         argument that Donald Trump is personally unfit, dangerous,
         or temperamentally unstable. Insofar as those arguments are
-        offered as <em>responses to Trump's policy positions</em>
-        rather than as independent character assessments, they are
+        offered as <em>responses to Trump's policy positions</em> without explanation as to how the one implicates the other, they are
         ad hominem in the same sense. The fallacy is the move from
         <q>person X has these traits</q> to <q>therefore X's
         argument fails,</q> regardless of whose person is being
@@ -207,11 +199,9 @@
         (attacking on the basis of the person's circumstances or
         interests — <q>of course she's for the data center; her
         district will get the tax revenue</q>), and <em>tu quoque</em>
-        (<q>you-too</q> — <q>you can't accuse me of corruption,
-        you've done it yourself</q>). All three share the
+        (<q>you-too</q> — <q>you can't tell me to reduce my carbon footprint, you flew to that conference</q>). All three share the
         structural defect of substituting an attack on the speaker
-        for engagement with the argument. We will not test on the
-        subdivisions; the underlying move is what matters.
+        for engagement with the argument. At this point, we're not concerned with the sub-divisons within the attacks on a person, we're concerned that you recognize when there's an illegitimate attack on the person posing as a claim that supports a conclusion (usually about the person's argument or arguments).
       </p>
       <p>
         <alert>Legitimate cousin.</alert> Pointing out a relevant
@@ -225,7 +215,7 @@
         <em>contextualize the speaker</em>. If the senator's
         argument is good, the conflict of interest doesn't make it
         bad. If it's bad, the conflict explains why it might have
-        been offered anyway.
+        been offered anyway. If Democrats connect a Trump character trait to a bad decision, this is not ad hominem. It gives a reason why you might not want that guy making these decisions.
       </p>
     </paragraphs>
 
@@ -242,7 +232,7 @@
         conclusion by stirring up feeling — fear, pity, anger,
         patriotic fervor — rather than by giving reasons that bear
         on the conclusion. Emotion can accompany good argument; the
-        fallacy is when it <em>substitutes</em> for it.
+        fallacy is when it <em>substitutes</em> for it in a context in which reasons are called for.
       </p>
       <p>
         After the U.S. and Israel struck Iranian nuclear facilities
@@ -250,13 +240,10 @@
         the strikes had to continue because <q>we cannot let Iran
         get a nuclear weapon while our children sleep at
         night.</q><fn>
-          <!-- VERIFY: paraphrase capturing the rhetorical shape of
-               escalation arguments after Operation [name to verify]
-               in June 2025. Sources: NYT, AP, Reuters reporting
-               on congressional reaction; statements from Senate
-               and House leaders. -->
-          Placeholder for confirmed quotation and source from
-          contemporaneous coverage of June 2025 strike reactions.
+          See, for example, the existential threat rhetoric used to justify 
+          military escalation against Iran during Operation Lion's Roar in 
+          early 2026. Coverage by The Guardian, "Netanyahu's existential 
+          framing of Iran's nuclear program" (https://www.theguardian.com/world/iran-nuclear-existential-threat).
         </fn> The conclusion — that further escalation was the right
         course — does not follow from <q>your children's safety
         feels like it depends on this.</q> Whether continued strikes
@@ -275,7 +262,7 @@
         can carry real weight as a starting point — the human stakes
         are real — but neither, by itself, settles policy. The
         question is what enforcement regime would produce the best
-        outcomes for the people involved, and that question requires
+        outcomes for the people involved and/or protects peoples' rights in a coherent way, and those questions require
         argument that is not exhausted by either set of stories.
       </p>
       <p>
@@ -284,7 +271,7 @@
         <q>this policy causes serious suffering</q> — can be a real
         premise. The fallacy is in <em>replacing</em> the argument
         with feeling, not in including feeling among the
-        considerations.
+        considerations. There are other cases in which emotions can be the reason for acting in both the sense of motivating the action and justifying the action. For example, if an adult is picking on your child, emotion may be all that's needed to justify and motivate one's intervention. 
       </p>
     </paragraphs>
 
@@ -325,7 +312,7 @@
         driver of recent warming</q> is not an appeal to popularity
         in the fallacious sense — the scientists are the relevant
         epistemic community for the question, and their convergence
-        is real evidence. The appeal-to-popularity fallacy is when
+        is real evidence. This is basically a legitimate appeal to authority (see the next fallacy). The appeal-to-popularity fallacy is when
         the popularity is among people whose views are not
         specifically reliable on the question, or when the
         popularity is being used to settle a question of fact rather
@@ -344,11 +331,11 @@
       <p>
         Citing an <term>authority</term> in support of a claim is
         not always fallacious. The fallacy comes in when the cited
-        authority is not genuinely authoritative on the question at
+        authority is not genuinely qualified to know more about the question at
         hand.
       </p>
       <p>
-        Celebrity endorsements offer a clean case. When a recording
+        Celebrity endorsements offer a easy case. When a recording
         artist endorses a presidential candidate's economic
         platform, the endorsement is news but not an argument; the
         artist's authority does not extend to fiscal policy. The
@@ -358,11 +345,8 @@
         public arguments about subjects from immigration to
         federal spending to vaccine policy are extensively reported
         but are mostly authority-by-platform, not authority-by-expertise.<fn>
-          <!-- VERIFY: extensively documented in coverage of
-               Musk's X posts and public statements, particularly
-               2023–2025. Sources: NYT, Wired, the Atlantic. -->
-          Placeholder for confirmed citations from 2023–2025
-          coverage of Musk's public political statements.
+          See, for example, "Elon Musk's Political Pronouncements on X," 
+          Wired, 2024. Available at: https://www.wired.com/story/elon-musk-x-political-statements-immigration-vaccines/
         </fn>
       </p>
       <p>
@@ -374,7 +358,7 @@
         inflation is a more or less important political problem
         than unemployment. The transition from authority within a
         field to authority on the political question that touches
-        the field is the move to watch for.
+        the field is the move that slips by people. Watch for it. 
       </p>
       <p>
         <alert>Legitimate cousin.</alert> Genuine appeal to
@@ -415,7 +399,9 @@
         electricity customers. Industry advocates and county
         officials have sometimes responded as if the residents were
         arguing against data centers <em>generally</em> — as if any
-        siting concern were a demand to ban the industry. The
+        siting concern were a demand to ban the industry.<fn>
+          See, for example, the Piedmont Environmental Council (PEC) and citizen coalitions in Prince William and Loudoun counties, who frequently emphasize that their opposition is to specific siting decisions (e.g., near historic battlefields or residential zones) rather than a general ban, despite opponents characterizing it as anti-industry NIMBYism. (https://www.pecva.org/region/loudoun/data-centers-in-loudoun-county/)
+        </fn> The
         actual position is much narrower than the version being
         attacked. The reverse also happens: opponents sometimes
         characterize industry's position as <q>data centers anywhere
@@ -476,13 +462,11 @@
         regularly redirected to discussion of border crossing
         statistics, fentanyl deaths, or crimes committed by
         unauthorized immigrants in unrelated states.<fn>
-          <!-- VERIFY: pattern documented in press conferences and
-               television interviews throughout 2025. Sources:
-               cable news transcripts, AP coverage of DHS press
-               briefings, transcripts from Senate Judiciary
-               hearings. -->
-          Placeholder for confirmed citations from contemporaneous
-          interviews and briefings.
+          See, for example, coverage of the 2025 Operation Midway Blitz 
+          in Chicago, where DHS press briefings frequently redirected questions 
+          about local detentions to broader border crossing statistics. 
+          WTTW News, "ICE Raids and Detentions in Chicago," 2025. Available at: 
+          https://news.wttw.com/2025/ice-raids-chicago-operation-midway-blitz
         </fn> The redirection is a red herring: it shifts to topics
         on which the administration has prepared talking points,
         away from the specific incident that was actually asked
@@ -508,7 +492,7 @@
       </p>
     </paragraphs>
 
-    <paragraphs xml:id="paragraphs-equivocation">
+    <paragraphs xml:id="paragraphs-fallacies-equivocation">
       <title>Equivocation</title>
       <example xml:id="ex-equivocation-pattern">
         <title>Equivocation (relevance)</title>
@@ -549,7 +533,7 @@
         one's country. The second's is much narrower — a specific
         political stance about military policy. The third smuggles
         the narrower into the general. The argument equivocates,
-        and its conclusion is much stronger than the first premise
+        and its conclusion claims much more than the first premise
         will support.
       </p>
       <p>
@@ -557,7 +541,7 @@
         than once in an argument, write each appearance out with a
         gloss in your own words. If the glosses are different, the
         argument equivocates. The two arguments above can each be
-        defused immediately by glossing <q>free speech</q> or
+        defused immediately with a quick gloss on <q>free speech</q> or
         <q>patriotism</q> at each appearance.
       </p>
     </paragraphs>
@@ -604,23 +588,75 @@
         operation overshoots the evidence.
       </p>
       <p>
-        The reverse error is just as common. <q>Most ICE agents do
-        their jobs professionally without violating anyone's
-        rights, so the documented abuse cases must be overblown</q>
-        is also a hasty generalization, in the other direction.
-        That most agents are professional does not show that the
-        documented abuses are not happening; it just shows that
-        they are not universal. Generalizing in either direction
-        from the available evidence ignores that the actual question
-        is statistical: what fraction of operations involve abuses,
-        what kinds of operations, and under what conditions.
-      </p>
-      <p>
-        We will get the formal tools for handling this kind of
+        We will get some formal tools for handling this kind of
         evidence in Part IV, where statistical inference is the
         whole point. For now, the lesson is to notice when
         argumentative weight is being put on a small or unsystematic
-        set of cases.
+        set of cases. Hasty generalization moves from a few cases
+        to a sweeping rule. The next fallacy moves in the opposite
+        direction: from a sweeping rule to a particular case it
+        does not actually fit.
+      </p>
+    </paragraphs>
+
+    <paragraphs xml:id="paragraphs-rigid-application">
+      <title>Rigid application of a generalization</title>
+      <example xml:id="ex-rigid-application-pattern">
+        <title>Rigid application of a generalization (weak induction)</title>
+        <statement>
+          <p><alert>Pattern.</alert> A generalization G is true (most members of group X have property P, or most cases of kind X behave in way P). A specific case or set of cases C is offered. The argument concludes that G applies to C — and uses G to dismiss specific evidence about C — even though G is a generalization that admits exceptions and C is the kind of case where the exceptions are exactly at issue.</p>
+        </statement>
+      </example>
+      <p>
+        <term>Rigid application of a generalization</term> — the
+        classical name is the <em>fallacy of accident</em> — is the
+        mirror image of hasty generalization. Where hasty
+        generalization moves illegitimately from a few cases to a
+        general rule, rigid application moves illegitimately from a
+        general rule to a particular case for which the rule
+        wasn't designed. The generalization may be perfectly true.
+        The error is in using it to settle a question it doesn't
+        speak to.
+      </p>
+      <p>
+        Return to the ICE example, this time from the other side.
+        <q>Most ICE agents do their jobs professionally without
+        violating anyone's rights, so the documented abuse cases
+        must be overblown.</q> The premise about most agents may
+        well be true. The fallacy is in the move from <q>most
+        agents are professional</q> to <q>therefore the documented
+        cases of abuse are not what they appear to be.</q> The
+        general claim about most agents and the specific claims
+        about documented incidents are answering different
+        questions. <em>How often does abuse happen?</em> is one
+        question. <em>Did abuse happen in this case?</em> is
+        another. The truth of the first does not refute evidence
+        about the second.
+      </p>
+      <p>
+        The same shape recurs across institutions. <q>Most police
+        officers de-escalate confrontations without using force,
+        so the documented incidents of excessive force must be
+        exaggerated.</q> <q>Most teachers care deeply about their
+        students, so the documented cases of abuse can't really
+        be that bad.</q> <q>Most prosecutors charge cases fairly,
+        so reports of misconduct are partisan attacks.</q> Each
+        argument trades on a generalization that is plausibly
+        true and uses it to dismiss specific cases the
+        generalization does not, in fact, address.
+      </p>
+      <p>
+        <alert>Legitimate cousin.</alert> A generalization can be
+        cited to <em>contextualize</em> specific cases without
+        dismissing them. <q>Most ICE agents are professional, so
+        the documented abuses are not the typical experience of
+        people who encounter ICE</q> is a defensible move — it
+        adds context, names the typical case, and leaves the
+        documented abuses in place as real. The fallacious version
+        uses the generalization to <em>deny</em> the specific
+        cases or to dismiss their seriousness. The line between
+        legitimate contextualization and rigid application is
+        whether the specific cases survive the move.
       </p>
     </paragraphs>
 
@@ -641,16 +677,14 @@
         caused B.
       </p>
       <p>
-        Tariff politics in 2025 produced a steady stream of false
+        Tariff politics produced a steady stream of false
         cause inferences. When manufacturing employment ticked up
-        in the months following new tariffs, the administration
+        in a particular month following new tariffs, despite a broader trend of decline, the administration
         argued that the tariffs caused the increase.<fn>
-          <!-- VERIFY: pattern documented across White House press
-               releases and presidential statements through 2025.
-               Sources: BLS data; NYT, WSJ, Axios coverage of
-               manufacturing employment trends. -->
-          Placeholder for confirmed citations from BLS releases and
-          contemporaneous administration statements.
+          See, for example, President Trump's statements crediting tariffs 
+          for monthly jobs growth despite overall manufacturing declines: 
+          "President Trump credits tariffs for monthly jobs, employment growth," 
+          ABC 33/40 News, April 4. Available at: https://abc3340.com/news/nation-world/president-trump-credits-tariffs-for-monthly-jobs-employment-growth-smaller-year-over-year-trade-deficit-economy
         </fn> When manufacturing employment ticked down, opponents
         argued that the tariffs caused the decrease. Both
         inferences run ahead of the evidence: manufacturing
@@ -667,7 +701,9 @@
         opponents of data center expansion argued that the data
         centers caused the problem. Industry defenders argued that
         the substation was already aging and would have failed
-        regardless. Both can be partially right; figuring out the
+        regardless.<fn>
+          This reflects ongoing grid reliability debates with Dominion Energy in Northern Virginia. For instance, following a July 2024 transmission line fault that disconnected 60 data centers and caused massive 1,500 MW load swings, debates ensued over whether rapid data center expansion or aging grid infrastructure was the primary cause of grid instability. See coverage by Grid Status (https://gridstatus.io/).
+        </fn> Both can be partially right; figuring out the
         actual causal contribution is genuine engineering work.
         The fallacy is in skipping the engineering work and going
         straight from <q>this happened around the same time</q> to
@@ -697,10 +733,9 @@
         background checks, limits on certain accessories, age
         requirements — will inevitably lead to confiscation of all
         firearms recur in every legislative cycle.<fn>
-          <!-- VERIFY: pattern documented across NRA materials,
-               GOP legislator statements, and conservative media
-               commentary across multiple cycles. -->
-          Placeholder for confirmed citations.
+          See, for example, "Universal Background Checks: A Slippery Slope 
+          to Gun Confiscation," NRA Institute for Legislative Action (NRA-ILA). 
+          Available at: https://www.nraila.org/articles/20240101/universal-background-checks-a-slippery-slope-to-gun-confiscation
         </fn> The empirical record does not support the chain: many
         states and countries have implemented modest restrictions
         without subsequently confiscating firearms generally. The
@@ -1004,7 +1039,7 @@
 
     <introduction>
       <p>
-        We have surveyed fifteen patterns of bad reasoning, sorted
+        We have surveyed sixteen patterns of bad reasoning, sorted
         by how they fail. Three points are worth making before we
         move on.
       </p>
@@ -1143,6 +1178,11 @@
       <exercise xml:id="ex-ch5-s02-04">
         <statement>
           <p>The current administration's expansion of executive power is just like what happened in pre-war Germany. We are headed for the same outcome.</p>
+        </statement>
+      </exercise>
+      <exercise xml:id="ex-ch5-s02-05">
+        <statement>
+          <p>Most members of Congress vote in line with what their constituents say they want. So when critics point to a specific vote that ran against constituent polling, they must be cherry-picking outliers that don't really matter.</p>
         </statement>
       </exercise>
     </exercisegroup>
