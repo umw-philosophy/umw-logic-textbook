@@ -6,7 +6,8 @@
   Scope:
   - The four standard form categorical propositions: A, E, I, O.
   - Two-circle Venn diagrams for each, using the standard 4-area
-    numbering (1 = S only; 2 = S∩P; 3 = P only; 4 = outside both).
+    numbering (1 = S only; 2 = S-and-P overlap; 3 = P only;
+    4 = outside both).
   - Basic translation from English into standard form.
   - The (modern) square of opposition: just contradictories.
   - Existential commitment: modern interpretation only; universals
@@ -466,6 +467,22 @@
         For now we keep only the relations that survive without
         that assumption, which is contradiction.
       </p>
+      <p>
+        This means that I and O propositions do not logically imply
+        each other. From <q>Some S are P</q> it does not follow
+        that <q>Some S are not P.</q> Maybe every S is a P. And
+        from <q>Some S are not P</q> it does not follow that
+        <q>Some S are P.</q> Maybe no S is a P. In ordinary
+        conversation, though, the word <q>some</q> often suggests
+        <q>some but not all.</q> If I say, <q>Some students passed
+        the exam,</q> you may reasonably hear me as suggesting that
+        some students did not pass. That suggestion is
+        <term>pragmatic</term>: it comes from how the sentence is
+        used in context. The logical content we are testing here is
+        <term>semantic</term>: what the sentence strictly says. In
+        categorical logic, <q>some</q> means <q>at least one.</q>
+        It does not mean <q>at least one but not all.</q>
+      </p>
     </paragraphs>
 
     <paragraphs xml:id="paragraphs-immediate-inference-by-contradiction">
@@ -522,8 +539,9 @@
         treated as conditional claims, and they can be true even
         when their subject class is empty. This book uses the
         modern interpretation throughout. The Aristotelian
-        interpretation is reserved for a short appendix for adopters
-        who want to teach it.
+        interpretation is treated in
+        <xref ref="appendix-aristotelian-categorical"/> for
+        adopters who want to teach it.
       </p>
     </introduction>
 
@@ -941,7 +959,9 @@
       the load-bearing relation: A contradicts O, and E contradicts I.
       This gives valid immediate inferences from a proposition to the
       denial of its contradictory, and from the denial of a proposition
-      to its contradictory.
+      to its contradictory. I and O do not logically imply each other,
+      even though ordinary uses of <q>some</q> sometimes suggest
+      <q>some but not all</q> pragmatically.
     </p>
 
     <p>
@@ -1038,6 +1058,10 @@
         <title>Predicate term</title>
         <p>The category represented by P in a standard form categorical proposition. (§6.1)</p>
       </li>
+      <li xml:id="term-ch6-pragmatics">
+        <title>Pragmatics</title>
+        <p>What a sentence suggests or communicates in context, beyond its strict logical content. (§6.3)</p>
+      </li>
       <li xml:id="term-ch6-quality">
         <title>Quality</title>
         <p>Whether a categorical proposition is affirmative or negative. (§6.1)</p>
@@ -1045,6 +1069,10 @@
       <li xml:id="term-ch6-quantity">
         <title>Quantity</title>
         <p>Whether a categorical proposition is universal or particular. (§6.1)</p>
+      </li>
+      <li xml:id="term-ch6-semantics">
+        <title>Semantics</title>
+        <p>The strict meaning or truth-conditions of a sentence, as opposed to what it may suggest in context. (§6.3)</p>
       </li>
       <li xml:id="term-ch6-singular-statement">
         <title>Singular statement</title>
@@ -1106,7 +1134,8 @@
           For each proposition, describe the two-circle Venn
           diagram that represents it: which area is shaded, or
           which area contains an X. Use the standard area numbering
-          (1 = S only; 2 = S∩P; 3 = P only; 4 = outside both).
+          (1 = S only; 2 = S-and-P overlap; 3 = P only;
+          4 = outside both).
         </p>
       </introduction>
       <exercise xml:id="ex-ch6-s03-01"><statement><p>All registered voters are people eligible to vote in this election.</p></statement></exercise>

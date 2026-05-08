@@ -333,3 +333,16 @@ Each decision is dated, numbered, and tagged with the section of `PROJECT_PLAN.m
 - Treat the Venn checker and reconstruction editor as informal side projects outside the project plan.
 - Ship only fixed Canvas quiz shells, without item banks.
 **Rationale**: The new tools directly support chapters already drafted or planned, and item banks are more portable for adopters than fixed quiz shells. Naming them in the plan keeps the repository, grant narrative, accessibility obligations, and actual development work aligned.
+
+---
+
+## D-029 — Aristotelian categorical logic as an optional appendix
+
+**Date**: 2026-05-07
+**Plan section**: 18
+**Decision**: The body of Chapters 6 and 7 teaches modern categorical logic only. The Aristotelian interpretation, including existential import, the traditional square of opposition, additional immediate inferences, Aristotelian Venn diagramming, and the traditional mood-and-figure validity table, is presented in a dedicated appendix (`book/source/appendix-aristotelian-categorical.ptx`). The appendix appears in the back matter before the argument-diagram and selected-solutions appendices.
+**Alternatives considered**:
+- Teach modern and Aristotelian results side-by-side in Chapters 6 and 7.
+- Omit Aristotelian logic entirely.
+- Mention Aristotelian logic only in footnotes.
+**Rationale**: Keeping the main text modern preserves a single default interpretation for students and for the Venn checker. Placing Aristotelian logic in an appendix gives adopters who teach it a complete, assignable comparison without making the main body carry two parallel validity systems.

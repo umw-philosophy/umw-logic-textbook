@@ -416,4 +416,80 @@
     <p><term>5.</term> <q>All true Americans are Trump supporters.</q> Form: A. <q>Only Trump supporters are true Americans</q> means that anyone in the true-American class is in the Trump-supporter class.</p>
     <p><term>7.</term> <q>All people identical to Hillary Clinton are people who should have been President of the United States.</q> Form: A. This is a singular statement translated by treating the named individual as a one-member class.</p>
   </section>
+
+  <section xml:id="sol-ch7-exercise-set-1-terms-and-standard-form">
+    <title>Chapter 7, Exercise Set 1: Terms and Standard Form</title>
+    <p><term>1.</term> S = campaign surrogates; P = people who ask inconvenient questions; M = journalists.</p>
+    <p>Standard form:</p>
+    <p>P1: All journalists are people who ask inconvenient questions.</p>
+    <p>P2: No campaign surrogates are journalists.</p>
+    <p>Therefore C: No campaign surrogates are people who ask inconvenient questions.</p>
+    <p><term>3.</term> S = online investment schemes; P = transparent business practices; M = successful scams.</p>
+    <p>Standard form:</p>
+    <p>P1: No successful scams are transparent business practices.</p>
+    <p>P2: Some online investment schemes are successful scams.</p>
+    <p>Therefore C: Some online investment schemes are not transparent business practices.</p>
+  </section>
+
+  <section xml:id="sol-ch7-exercise-set-2-venn-diagram-validity">
+    <title>Chapter 7, Exercise Set 2: Venn-Diagram Validity</title>
+    <p><term>1.</term> <em>Valid.</em> S = Americans; P = right-wing hate mongers; M = socialists. The first premise shades the P-and-M overlap. The second premise places an X in S-and-M. Since the P-and-M overlap is shaded, the X must be in S and M but outside P. That is enough for the O conclusion: some Americans are not right-wing hate mongers.</p>
+    <p><term>3.</term> <em>Invalid.</em> S = widely read books; P = Kilgore Trout stories; M = works of neglected genius. The particular premise says that some works of neglected genius are not widely read books, which places an X outside S. The conclusion needs an X inside S and outside P. The premise diagram does not supply that.</p>
+    <p><term>5.</term> <em>Valid.</em> S = students; P = people who notice hidden assumptions; M = people who read carefully. The particular premise places an X in S-and-M. The universal premise forces the M part outside P to be empty, so the X must also be in P. The conclusion's I claim follows.</p>
+  </section>
+
+  <section xml:id="sol-ch7-exercise-set-3-mood-and-figure">
+    <title>Chapter 7, Exercise Set 3: Mood and Figure</title>
+    <p><term>1.</term> EAE-1. The major premise is M-P and the minor premise is S-M, so this is Figure 1. EAE-1 appears in the modern-valid form table, so the syllogism is valid.</p>
+    <p><term>3.</term> AAI-3. Both premises have M as subject, so this is Figure 3. AAI-3 does not appear in the modern-valid form table, so the syllogism is invalid on the modern interpretation. It tries to get a particular conclusion from universal premises without an existence claim.</p>
+    <p><term>5.</term> EIO-2. The major premise is P-M and the minor premise is S-M, so this is Figure 2. EIO-2 appears in the modern-valid form table, so the syllogism is valid.</p>
+  </section>
+
+  <section xml:id="sol-ch7-exercise-set-4-putting-prose-into-syllogism-form">
+    <title>Chapter 7, Exercise Set 4: Putting Prose into Syllogism Form</title>
+    <p><term>1.</term> Standard form:</p>
+    <p>P1: All people who believe that technology can solve all moral problems are overly optimistic people.</p>
+    <p>P2: Some futurists are people who believe that technology can solve all moral problems.</p>
+    <p>Therefore C: Some futurists are overly optimistic people.</p>
+    <p>This is AII-1, so it is valid.</p>
+    <p><term>3.</term> Standard form:</p>
+    <p>P1: All people who miss important context are poorly informed people.</p>
+    <p>P2: All people who get their news only from social media are people who miss important context.</p>
+    <p>Therefore C: All people who get their news only from social media are poorly informed people.</p>
+    <p>This is AAA-1, so it is valid.</p>
+    <p><term>5.</term> Standard form:</p>
+    <p>P1: All laws that degrade human personality are unjust laws.</p>
+    <p>P2: All segregation statutes are laws that degrade human personality.</p>
+    <p>Therefore C: All segregation statutes are unjust laws.</p>
+    <p>This is AAA-1, so it is valid. A negative reconstruction is also acceptable: no laws that degrade human personality are just laws; all segregation statutes are laws that degrade human personality; therefore no segregation statutes are just laws. That version is EAE-1 and is also valid.</p>
+  </section>
+
+  <section xml:id="sol-ch7-exercise-set-5-explaining-invalidity">
+    <title>Chapter 7, Exercise Set 5: Explaining Invalidity</title>
+    <p><term>1.</term> <em>Invalid.</em> This has two negative premises. The premises shade parts of the M circle, but they do not shade all of S outside P. In particular, the S-only region is left open. The conclusion claims that all S are P, but the premise diagram does not show that.</p>
+    <p><term>3.</term> <em>Invalid.</em> This has two particular premises. One X is in M outside P, and the other is in S and M. Neither X is forced into the S-and-not-P region. The X marks could refer to different things, and neither one is committed to the region needed by the conclusion.</p>
+    <p><term>5.</term> <em>Invalid.</em> This also has two particular premises. The first X is somewhere in P-and-M, and the second is somewhere in S-and-M. Nothing forces either X into S-and-P, and the two X marks need not represent the same object. The conclusion's I claim is not shown.</p>
+  </section>
+
+  <section xml:id="sol-ch7-exercise-set-6-mixed-review">
+    <title>Chapter 7, Exercise Set 6: Mixed Review</title>
+    <p><term>1.</term> S = people calling for slower deployment; P = accelerationists; M = AI safety researchers.</p>
+    <p>Standard form:</p>
+    <p>P1: No AI safety researchers are accelerationists.</p>
+    <p>P2: All people calling for slower deployment are AI safety researchers.</p>
+    <p>Therefore C: No people calling for slower deployment are accelerationists.</p>
+    <p>This is EAE-1, so it is valid.</p>
+    <p><term>3.</term> S = eligible citizens; P = people who returned a ballot; M = non-voters.</p>
+    <p>Standard form:</p>
+    <p>P1: No non-voters are people who returned a ballot.</p>
+    <p>P2: Some eligible citizens are non-voters.</p>
+    <p>Therefore C: Some eligible citizens are not people who returned a ballot.</p>
+    <p>This is EIO-1, so it is valid.</p>
+    <p><term>5.</term> S = records produced by the council; P = public documents; M = committee reports.</p>
+    <p>Standard form:</p>
+    <p>P1: Some committee reports are not public documents.</p>
+    <p>P2: All committee reports are records produced by the council.</p>
+    <p>Therefore C: Some records produced by the council are not public documents.</p>
+    <p>This is OAO-3, so it is valid. The O premise places an X in M outside P; the A premise rules out the part of M outside S, forcing that X into S outside P.</p>
+  </section>
 </appendix>

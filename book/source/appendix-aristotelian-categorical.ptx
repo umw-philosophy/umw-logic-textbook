@@ -1,0 +1,279 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  Appendix: Aristotelian Categorical Logic.
+  Optional comparison appendix for adopters who teach existential import.
+-->
+<appendix xml:id="appendix-aristotelian-categorical">
+
+  <title>Aristotelian Categorical Logic</title>
+
+  <introduction>
+    <p>
+      The body of this book uses the modern interpretation of
+      categorical logic. On that interpretation, universal
+      propositions do not imply that their subject classes have
+      members. <q>All S are P</q> and <q>No S are P</q> can be true
+      even when there are no Ss.
+    </p>
+    <p>
+      The older Aristotelian interpretation works differently. It
+      treats categorical propositions as making claims about
+      nonempty subject classes. In practice, that means universal
+      propositions carry <term>existential import</term>: asserting
+      <q>All S are P</q> or <q>No S are P</q> also commits us to
+      there being at least one S. This one difference changes the
+      square of opposition, some immediate inferences, and some
+      syllogism verdicts.
+    </p>
+  </introduction>
+
+  <section xml:id="sec-aristotelian-existential-import">
+    <title>Existential Import</title>
+
+    <p>
+      On the Aristotelian interpretation, the four categorical
+      forms are read with a nonempty subject class in view:
+    </p>
+    <ul>
+      <li><p><alert>A (All S are P).</alert> Says every S is P and assumes that at least one S exists.</p></li>
+      <li><p><alert>E (No S are P).</alert> Says no S is P and assumes that at least one S exists.</p></li>
+      <li><p><alert>I (Some S are P).</alert> Says at least one S exists and is P.</p></li>
+      <li><p><alert>O (Some S are not P).</alert> Says at least one S exists and is not P.</p></li>
+    </ul>
+    <p>
+      The difference from the modern interpretation concerns the
+      universals. In the modern system, A and E are conditional
+      claims and can be true when the subject class is empty. In
+      the Aristotelian system, A and E bring subject-existence
+      with them. So <q>All unicorns are magical beasts</q> is not
+      treated as vacuously true; it fails because there are no
+      unicorns.
+    </p>
+  </section>
+
+  <section xml:id="sec-aristotelian-square">
+    <title>The Traditional Square</title>
+
+    <p>
+      Once subject classes are assumed to be nonempty, the full
+      traditional square of opposition returns.
+    </p>
+    <ul>
+      <li><p><alert>Contradiction.</alert> A and O are contradictories; E and I are contradictories. Contradictories cannot both be true and cannot both be false.</p></li>
+      <li><p><alert>Contraries.</alert> A and E are contraries. They cannot both be true, though they can both be false.</p></li>
+      <li><p><alert>Subcontraries.</alert> I and O are subcontraries. They can both be true, but they cannot both be false.</p></li>
+      <li><p><alert>Subalternation.</alert> A implies I, and E implies O. If all S are P, then some S are P. If no S are P, then some S are not P.</p></li>
+    </ul>
+    <p>
+      These are the new immediate inferences that the modern
+      square does not allow. From A we may infer I; from E we may
+      infer O. From A we may also infer that E is false, and from
+      E we may infer that A is false. From the falsity of I we may
+      infer O, and from the falsity of O we may infer I. These
+      moves all depend on the same assumption: the subject class
+      has at least one member.
+    </p>
+  </section>
+
+  <section xml:id="sec-aristotelian-other-immediate-inferences">
+    <title>Conversion, Obversion, and Contraposition</title>
+
+    <p>
+      The familiar immediate-inference operations also change
+      slightly when universal claims carry existential import.
+    </p>
+
+    <paragraphs xml:id="paragraphs-aristotelian-conversion">
+      <title>Conversion</title>
+      <p>
+        Conversion swaps the subject and predicate terms.
+      </p>
+      <ul>
+        <li><p><alert>E converts simply.</alert> From <q>No S are P</q>, infer <q>No P are S.</q></p></li>
+        <li><p><alert>I converts simply.</alert> From <q>Some S are P</q>, infer <q>Some P are S.</q></p></li>
+        <li><p><alert>A converts by limitation.</alert> From <q>All S are P</q>, infer <q>Some P are S.</q> This is valid only because A now implies that some S exists.</p></li>
+        <li><p><alert>O does not convert.</alert> From <q>Some S are not P</q>, it does not follow that <q>Some P are not S.</q></p></li>
+      </ul>
+    </paragraphs>
+
+    <paragraphs xml:id="paragraphs-aristotelian-obversion">
+      <title>Obversion</title>
+      <p>
+        Obversion works exactly as it did in the modern system:
+        change the quality and replace the predicate term with its
+        complement. Obversion is valid for all four forms.
+      </p>
+      <ul>
+        <li><p>A obverts to E: <q>All S are P</q> becomes <q>No S are non-P.</q></p></li>
+        <li><p>E obverts to A: <q>No S are P</q> becomes <q>All S are non-P.</q></p></li>
+        <li><p>I obverts to O: <q>Some S are P</q> becomes <q>Some S are not non-P.</q></p></li>
+        <li><p>O obverts to I: <q>Some S are not P</q> becomes <q>Some S are non-P.</q></p></li>
+      </ul>
+    </paragraphs>
+
+    <paragraphs xml:id="paragraphs-aristotelian-contraposition">
+      <title>Contraposition</title>
+      <p>
+        Contraposition replaces both terms with their complements
+        and swaps their positions.
+      </p>
+      <ul>
+        <li><p><alert>A contraposes simply.</alert> From <q>All S are P</q>, infer <q>All non-P are non-S.</q></p></li>
+        <li><p><alert>O contraposes simply.</alert> From <q>Some S are not P</q>, infer <q>Some non-P are not non-S.</q></p></li>
+        <li><p><alert>E contraposes by limitation.</alert> From <q>No S are P</q>, infer <q>Some non-P are not non-S.</q> This follows because E says that at least one S exists and that any S is outside P.</p></li>
+        <li><p><alert>I does not contrapose.</alert> From <q>Some S are P</q>, it does not follow that <q>Some non-P are non-S.</q></p></li>
+      </ul>
+    </paragraphs>
+  </section>
+
+  <section xml:id="sec-aristotelian-venn-validity">
+    <title>Venn Diagrams Under Existential Import</title>
+
+    <p>
+      The Venn-diagram method still works, but universal
+      propositions now do two jobs. They shade a region, as before,
+      and they also require an X somewhere in the subject class.
+    </p>
+    <ul>
+      <li><p><alert>A: All S are P.</alert> Shade the S-only region. Then place an X in the remaining S region, the overlap of S and P.</p></li>
+      <li><p><alert>E: No S are P.</alert> Shade the S-and-P overlap. Then place an X in the remaining S region, the S-only region.</p></li>
+      <li><p><alert>I and O.</alert> Diagram I and O as before, since they already place an X.</p></li>
+    </ul>
+    <p>
+      For syllogisms, do the shading first. Then, for each distinct
+      subject term of a universal premise, make sure the diagram
+      contains an X somewhere in that subject class. If the
+      remaining part of the subject class is split between two
+      regions, place the X on the boundary. If later shading
+      forces the X into one region, move it into that region.
+    </p>
+
+    <paragraphs xml:id="paragraphs-aristotelian-aai-3">
+      <title>Example: AAI-3</title>
+      <p>
+        Consider the ozone example from Chapter 7:
+      </p>
+      <p>P1: All M are P.</p>
+      <p>P2: All M are S.</p>
+      <p><m>\therefore</m> C: Some S are P.</p>
+      <p>
+        On the modern interpretation, the argument is invalid:
+        both premises are universal, so neither premise places an
+        X. On the Aristotelian interpretation, the subject of both
+        universal premises is M, so M is assumed to exist. P1
+        shades the M-outside-P regions. P2 shades the M-outside-S
+        regions. After those shadings, the only unshaded part of M
+        is the center region, where S, P, and M overlap. The
+        existential X for M must go there. That supplies the X
+        needed for the conclusion <q>Some S are P.</q>
+      </p>
+      <figure xml:id="fig-aristotelian-aai-3-premises">
+        <caption>AAI-3 under the Aristotelian interpretation: areas 5, 7, and 8 are shaded, and the existential X for M is forced into area 6.</caption>
+        <image xml:id="image-aristotelian-aai-3-premises" width="60%">
+          <description>
+            <p>
+              A three-circle Venn diagram with M at top, S at
+              bottom-left, and P at bottom-right. Areas 5, 7, and
+              8 are shaded. Area 6, the overlap of S, P, and M,
+              contains an X. Areas 1, 2, 3, and 4 are unshaded.
+            </p>
+          </description>
+          <latex-image>
+            \begin{tikzpicture}[scale=1.2]
+              \def\Sleft{(-0.7,-0.4) circle (1.3)}
+              \def\Pright{(0.7,-0.4) circle (1.3)}
+              \def\Mtop{(0,0.6) circle (1.3)}
+              \begin{scope}
+                \clip \Mtop;
+                \fill[gray!40] (-3,-3) rectangle (3,3);
+                \begin{scope}
+                  \clip \Sleft;
+                  \clip \Pright;
+                  \fill[white] (-3,-3) rectangle (3,3);
+                \end{scope}
+              \end{scope}
+              \draw \Sleft;
+              \draw \Pright;
+              \draw \Mtop;
+              \node at (-1.7,-1.4) {$S$};
+              \node at (1.7,-1.4) {$P$};
+              \node at (0,1.9) {$M$};
+              \node at (-1.3,-0.7) {\small 1};
+              \node at (0,-1.0) {\small 2};
+              \node at (1.3,-0.7) {\small 3};
+              \node at (-2.1,-1.7) {\small 4};
+              \node at (-0.85,0.35) {\small 5};
+              \node at (0,0.28) {\small 6};
+              \node at (0.85,0.35) {\small 7};
+              \node at (0,1.3) {\small 8};
+              \node at (0,-0.12) {$\times$};
+            \end{tikzpicture}
+          </latex-image>
+        </image>
+      </figure>
+    </paragraphs>
+  </section>
+
+  <section xml:id="sec-aristotelian-mood-and-figure">
+    <title>Mood and Figure Under the Aristotelian Interpretation</title>
+
+    <p>
+      The mood-and-figure method also changes. The procedure is the
+      same as in Chapter 7: identify S, P, and M; identify the
+      forms of the two premises and conclusion; identify the
+      figure; then check the valid-form table. The difference is
+      the table. Because universal premises now carry existential
+      import, some additional forms are valid.
+    </p>
+    <p>
+      The traditional valid forms are:
+    </p>
+    <p>
+      <alert>Figure 1:</alert> AAA-1, AAI-1, AII-1, EAE-1, EAO-1,
+      EIO-1.
+    </p>
+    <p>
+      <alert>Figure 2:</alert> AEE-2, AEO-2, AOO-2, EAE-2, EAO-2,
+      EIO-2.
+    </p>
+    <p>
+      <alert>Figure 3:</alert> AAI-3, AII-3, EAO-3, EIO-3, IAI-3,
+      OAO-3.
+    </p>
+    <p>
+      <alert>Figure 4:</alert> AAI-4, AEE-4, AEO-4, EAO-4, EIO-4,
+      IAI-4.
+    </p>
+    <p>
+      Many of the added forms are weakened forms: a universal
+      conclusion is weakened to a particular conclusion because
+      existential import supplies an existing member of the
+      relevant class. For example, AAA-1 is already modern-valid.
+      Under the Aristotelian interpretation, AAI-1 is also valid:
+      if all M are P and all S are M, then all S are P; and
+      because S exists, some S are P.
+    </p>
+    <p>
+      The ozone example is AAI-3. It does not appear in the
+      modern-valid table from Chapter 7, but it does appear in the
+      Aristotelian table above. The table and the Venn diagram give
+      the same verdict for the same reason: existential import
+      supplies the X that the modern interpretation withholds.
+    </p>
+  </section>
+
+  <section xml:id="sec-aristotelian-default-note">
+    <title>Default for This Book</title>
+
+    <p>
+      Unless an exercise explicitly says otherwise, this book uses
+      the modern interpretation. That is also the interpretation
+      used by the Venn diagram checker and by the Chapter 6 and
+      Chapter 7 validity tables. The Aristotelian interpretation is
+      included here as an optional comparison system and as a way
+      to understand why some older logic textbooks classify more
+      immediate inferences and syllogism forms as valid.
+    </p>
+  </section>
+
+</appendix>

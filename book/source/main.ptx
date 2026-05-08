@@ -17,6 +17,10 @@
       \newcommand{\true}{\mathsf{T}}
       \newcommand{\false}{\mathsf{F}}
     </macros>
+    <latex-image-preamble>
+      \usepackage{graphicx}
+      \usepackage{tikz}
+    </latex-image-preamble>
     <math-package latex-name="amsmath" pretext-name="amsmath"/>
   </docinfo>
 
@@ -91,12 +95,10 @@
       Copi notation. 18-rule natural deduction system. CP and IP taught but
       assessment problems solvable using only the 18 rules.
     -->
-    <!--
     <part xml:id="part-sentential">
       <title>Sentential Logic</title>
       <xi:include href="chapters/ch-symbolizing.ptx"/>
     </part>
-    -->
 
     <!--
       Part IV — Inductive and Statistical Reasoning
@@ -122,6 +124,7 @@
     -->
 
     <backmatter xml:id="backmatter">
+      <xi:include href="appendix-aristotelian-categorical.ptx"/>
       <xi:include href="appendix-diagramming.ptx"/>
       <xi:include href="appendix-solutions.ptx"/>
       <colophon xml:id="back-colophon">

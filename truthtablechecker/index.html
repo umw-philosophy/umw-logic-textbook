@@ -1,0 +1,1106 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Truth Table Checker</title>
+  <style>
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+    }
+
+    :root {
+      --blue: #1e3a5f;
+      --blue-mid: #2d5a8e;
+      --blue-light: #e8eef8;
+      --green: #17633a;
+      --green-bg: #effaf3;
+      --red: #b91c1c;
+      --red-bg: #fff5f5;
+      --amber: #8a5a00;
+      --amber-bg: #fff8e5;
+      --gray-100: #f7f8fa;
+      --gray-200: #edf0f4;
+      --gray-300: #d1d9e0;
+      --gray-500: #65758a;
+      --gray-700: #354256;
+      --text: #172033;
+      --shadow: 0 2px 10px rgba(0, 0, 0, .10);
+      --radius: 8px;
+    }
+
+    html,
+    body {
+      margin: 0;
+      min-height: 100%;
+      font-family: system-ui, -apple-system, "Segoe UI", Helvetica, Arial, sans-serif;
+      background: var(--gray-100);
+      color: var(--text);
+      font-size: 15px;
+      line-height: 1.5;
+    }
+
+    header {
+      background: var(--blue);
+      color: white;
+      padding: 14px 22px;
+      display: flex;
+      gap: 12px;
+      align-items: baseline;
+      flex-wrap: wrap;
+    }
+
+    header h1 {
+      margin: 0;
+      font-size: 1.15rem;
+    }
+
+    header p {
+      margin: 0;
+      opacity: .78;
+      font-size: .86rem;
+    }
+
+    main {
+      width: min(1280px, calc(100% - 28px));
+      margin: 22px auto 36px;
+      display: grid;
+      gap: 16px;
+    }
+
+    .panel {
+      background: white;
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      padding: 18px;
+      min-width: 0;
+    }
+
+    .workspace {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) 330px;
+      gap: 16px;
+      align-items: start;
+    }
+
+    h2,
+    h3 {
+      margin: 0 0 12px;
+      color: var(--blue);
+    }
+
+    h2 {
+      font-size: 1rem;
+    }
+
+    h3 {
+      font-size: .88rem;
+      text-transform: uppercase;
+      letter-spacing: .05em;
+    }
+
+    p {
+      margin: 0 0 12px;
+    }
+
+    button,
+    input,
+    select {
+      font: inherit;
+    }
+
+    label,
+    .group-label {
+      display: block;
+      color: var(--gray-500);
+      font-size: .78rem;
+      font-weight: 700;
+      letter-spacing: .04em;
+      text-transform: uppercase;
+      margin-bottom: 5px;
+    }
+
+    input[type="text"],
+    select {
+      width: 100%;
+      border: 1px solid var(--gray-300);
+      border-radius: 6px;
+      padding: 9px 10px;
+      background: white;
+      color: var(--text);
+    }
+
+    input:focus,
+    select:focus,
+    button:focus {
+      outline: none;
+      border-color: var(--blue-mid);
+      box-shadow: 0 0 0 3px rgba(45, 90, 142, .16);
+    }
+
+    .mode-tabs,
+    .tool-row,
+    .action-row,
+    .radio-row,
+    .premise-row,
+    .sym-bar {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      align-items: center;
+    }
+
+    .mode-tabs {
+      margin-bottom: 14px;
+    }
+
+    .tab-btn,
+    .btn,
+    .sym-btn,
+    .cell-btn {
+      border: 1px solid var(--gray-300);
+      border-radius: 6px;
+      background: white;
+      color: var(--gray-700);
+      padding: 8px 12px;
+      cursor: pointer;
+      font-weight: 650;
+    }
+
+    .tab-btn[aria-pressed="true"] {
+      background: var(--blue-light);
+      border-color: var(--blue-mid);
+      color: var(--blue);
+    }
+
+    .btn-primary {
+      background: var(--blue);
+      color: white;
+      border-color: var(--blue);
+    }
+
+    .btn-secondary {
+      background: var(--gray-200);
+    }
+
+    .btn-danger {
+      color: var(--red);
+      border-color: #f0a2a2;
+    }
+
+    .btn-small,
+    .sym-btn {
+      padding: 6px 9px;
+      font-size: .9rem;
+    }
+
+    button:disabled {
+      opacity: .55;
+      cursor: not-allowed;
+    }
+
+    .form-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(220px, 1fr));
+      gap: 12px;
+      align-items: end;
+    }
+
+    .premise-row {
+      margin-bottom: 10px;
+      align-items: end;
+    }
+
+    .premise-row label {
+      flex: 1 1 220px;
+      margin: 0;
+    }
+
+    .hint,
+    .note {
+      color: var(--gray-500);
+      font-size: .9rem;
+    }
+
+    .status {
+      border: 1px solid var(--gray-200);
+      border-radius: 7px;
+      background: var(--gray-100);
+      padding: 10px 12px;
+      margin-top: 12px;
+    }
+
+    .status.ok {
+      color: var(--green);
+      background: var(--green-bg);
+      border-color: #bfe8cb;
+    }
+
+    .status.warn {
+      color: var(--amber);
+      background: var(--amber-bg);
+      border-color: #f3d08b;
+    }
+
+    .status.err {
+      color: var(--red);
+      background: var(--red-bg);
+      border-color: #f0a2a2;
+    }
+
+    .mobile-warning {
+      display: none;
+      border: 1px solid #f3d08b;
+      color: var(--amber);
+      background: var(--amber-bg);
+      border-radius: 7px;
+      padding: 10px 12px;
+    }
+
+    .table-scroll {
+      overflow: auto;
+      border: 1px solid var(--gray-300);
+      border-radius: 7px;
+      background: white;
+      max-height: 72vh;
+    }
+
+    table {
+      border-collapse: separate;
+      border-spacing: 0;
+      width: 100%;
+      min-width: 740px;
+    }
+
+    th,
+    td {
+      border-right: 1px solid var(--gray-300);
+      border-bottom: 1px solid var(--gray-300);
+      padding: 8px;
+      text-align: center;
+      vertical-align: middle;
+      background: white;
+    }
+
+    th {
+      position: sticky;
+      top: 0;
+      z-index: 1;
+      background: #fbfcfe;
+      color: var(--blue);
+      font-size: .9rem;
+    }
+
+    th:first-child,
+    td:first-child {
+      border-left: 0;
+    }
+
+    .row-num {
+      color: var(--gray-500);
+      font-size: .84rem;
+      width: 42px;
+    }
+
+    .given-col,
+    .given-cell {
+      background: #f9fbfd;
+      font-weight: 700;
+    }
+
+    .formula-sep {
+      border-left: 3px solid var(--blue-mid);
+    }
+
+    .column-header {
+      display: grid;
+      gap: 6px;
+      justify-items: center;
+      min-width: 118px;
+    }
+
+    .formula-label {
+      font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace;
+      white-space: nowrap;
+    }
+
+    .target-op {
+      color: var(--blue);
+      border-bottom: 2px solid var(--blue-mid);
+      padding: 0 1px;
+      font-weight: 800;
+    }
+
+    .main-radio {
+      display: inline-flex;
+      gap: 5px;
+      align-items: center;
+      color: var(--gray-700);
+      font-size: .74rem;
+      text-transform: none;
+      letter-spacing: 0;
+      margin: 0;
+      font-weight: 650;
+    }
+
+    .locked {
+      background: #f3f5f8;
+      color: var(--gray-500);
+    }
+
+    .active-col {
+      background: #eef6ff;
+    }
+
+    .correct-col {
+      background: var(--green-bg);
+    }
+
+    .cell-btn {
+      width: 42px;
+      height: 34px;
+      padding: 0;
+      font-weight: 800;
+    }
+
+    .cell-btn[data-value="T"] {
+      color: var(--blue);
+    }
+
+    .cell-btn[data-value="F"] {
+      color: var(--gray-700);
+    }
+
+    .cell-btn.correct {
+      border-color: #7ac693;
+      background: var(--green-bg);
+    }
+
+    .cell-btn.incorrect {
+      border-color: #f0a2a2;
+      background: var(--red-bg);
+      color: var(--red);
+    }
+
+    .counter-cell {
+      min-width: 86px;
+    }
+
+    fieldset {
+      border: 1px solid var(--gray-200);
+      border-radius: 7px;
+      margin: 0 0 12px;
+      padding: 12px;
+    }
+
+    legend {
+      color: var(--blue);
+      font-weight: 700;
+      padding: 0 4px;
+    }
+
+    .radio-row label {
+      display: inline-flex;
+      gap: 7px;
+      align-items: center;
+      color: var(--gray-700);
+      font-size: .94rem;
+      font-weight: 650;
+      letter-spacing: 0;
+      text-transform: none;
+      margin: 0;
+    }
+
+    .sr-only {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      padding: 0;
+      margin: -1px;
+      overflow: hidden;
+      clip: rect(0, 0, 0, 0);
+      white-space: nowrap;
+      border: 0;
+    }
+
+    [hidden] {
+      display: none !important;
+    }
+
+    @media (max-width: 760px) {
+      .workspace,
+      .form-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .mobile-warning {
+        display: block;
+      }
+
+      main {
+        width: min(100% - 18px, 1280px);
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <header>
+    <h1>Truth Table Checker</h1>
+    <p>Sentential Logic</p>
+  </header>
+
+  <main>
+    <div class="mobile-warning" role="note">
+      Truth tables are wide. This checker works on small screens, but a laptop or tablet will be much easier.
+    </div>
+
+    <section class="panel" aria-labelledby="setup-title">
+      <h2 id="setup-title">Build a Table</h2>
+
+      <div class="mode-tabs" role="group" aria-label="Truth table mode">
+        <button class="tab-btn" type="button" data-mode="single" aria-pressed="true">Single Statement</button>
+        <button class="tab-btn" type="button" data-mode="pair" aria-pressed="false">Pair</button>
+        <button class="tab-btn" type="button" data-mode="argument" aria-pressed="false">Argument</button>
+      </div>
+
+      <div class="form-grid">
+        <label for="problem-select">Practice problem
+          <select id="problem-select"></select>
+        </label>
+        <label for="feedback-mode">Feedback mode
+          <select id="feedback-mode">
+            <option value="immediate">Check as I go</option>
+            <option value="button">Check when I click</option>
+          </select>
+        </label>
+      </div>
+
+      <div class="action-row">
+        <button class="btn btn-secondary" type="button" id="load-problem">Load Problem</button>
+        <button class="btn btn-danger" type="button" id="clear-saved">Clear Saved Work</button>
+      </div>
+
+      <div class="sym-bar" role="toolbar" aria-label="Formula symbols">
+        <button class="sym-btn" type="button" data-symbol="~" title="Negation (~)">~</button>
+        <button class="sym-btn" type="button" data-symbol="·" title="Conjunction (·), also type &amp;">·</button>
+        <button class="sym-btn" type="button" data-symbol="∨" title="Disjunction (∨), also type v">∨</button>
+        <button class="sym-btn" type="button" data-symbol="⊃" title="Conditional (⊃), also type ->">⊃</button>
+        <button class="sym-btn" type="button" data-symbol="≡" title="Biconditional (≡), also type &lt;->">≡</button>
+        <button class="sym-btn" type="button" data-symbol="(" title="Open parenthesis">(</button>
+        <button class="sym-btn" type="button" data-symbol=")" title="Close parenthesis">)</button>
+      </div>
+
+      <p class="hint">
+        Shortcuts: <kbd>-&gt;</kbd> for ⊃, <kbd>&amp;</kbd> for ·, <kbd>v</kbd> for ∨, <kbd>&lt;-&gt;</kbd> for ≡, and <kbd>~</kbd> for negation.
+      </p>
+
+      <div id="formula-fields"></div>
+
+      <div class="action-row">
+        <button class="btn btn-primary" type="button" id="build-table">Build Table</button>
+        <button class="btn btn-secondary" type="button" id="check-columns" hidden>Check Active Columns</button>
+      </div>
+      <div id="setup-status" class="status note" role="status" aria-live="polite">Choose a mode, enter formulas, then build a table.</div>
+    </section>
+
+    <section id="work-area" class="workspace" hidden>
+      <div class="panel" aria-labelledby="table-title">
+        <h2 id="table-title">Truth Table</h2>
+        <div id="table-wrap"></div>
+      </div>
+
+      <aside class="panel" aria-labelledby="answer-title">
+        <h2 id="answer-title">Final Answer</h2>
+        <div id="answer-controls"></div>
+        <button class="btn btn-primary" type="button" id="check-answer">Check Answer</button>
+        <div id="feedback" class="status note" role="status" aria-live="polite">Fill the unlocked columns first.</div>
+      </aside>
+    </section>
+
+    <div id="live-region" class="sr-only" role="status" aria-live="polite" aria-atomic="true"></div>
+  </main>
+
+  <script src="truth-table-core.js"></script>
+  <script>
+    'use strict';
+
+    const core = window.UMWTruthTableCore;
+    const STORAGE_KEY = 'umw-truth-table-checker-v1';
+    const MODES = {
+      single: 'single',
+      pair: 'pair',
+      argument: 'argument',
+    };
+
+    const app = {
+      mode: MODES.single,
+      activeInput: null,
+      premiseCount: 2,
+      model: null,
+      cells: {},
+      checkedColumns: {},
+      mainSelections: {},
+      finalAnswer: '',
+      counterexampleRow: '',
+    };
+
+    const $ = sel => document.querySelector(sel);
+    const $$ = sel => [...document.querySelectorAll(sel)];
+
+    function esc(str) {
+      return String(str).replace(/[&<>"']/g, ch => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[ch]));
+    }
+
+    function announce(message) {
+      $('#live-region').textContent = message;
+    }
+
+    function setStatus(el, message, kind = 'note') {
+      el.className = `status ${kind}`;
+      el.textContent = message;
+      announce(message);
+    }
+
+    function currentProblemList() {
+      return core.problems[app.mode] || [];
+    }
+
+    function populateProblems(selectedIndex = '0') {
+      const select = $('#problem-select');
+      const items = currentProblemList();
+      select.innerHTML = '<option value="">Blank table</option>' + items
+        .map((p, i) => `<option value="${i}">${esc(p.difficulty)} — ${esc(p.title)}</option>`)
+        .join('');
+      select.value = selectedIndex === '' ? '' : String(selectedIndex);
+      if (select.value !== String(selectedIndex) && items.length) select.value = '0';
+    }
+
+    function formulaInput(id, label, value = '') {
+      return `<label for="${id}">${label}
+        <input id="${id}" class="formula-input" type="text" value="${esc(value)}" placeholder="e.g. A ⊃ (B · C)">
+      </label>`;
+    }
+
+    function renderFormulaFields() {
+      const wrap = $('#formula-fields');
+      if (app.mode === MODES.single) {
+        wrap.innerHTML = `<div class="form-grid">${formulaInput('single-formula', 'Statement')}</div>`;
+      } else if (app.mode === MODES.pair) {
+        wrap.innerHTML = `<div class="form-grid">
+          ${formulaInput('pair-left', 'Statement 1')}
+          ${formulaInput('pair-right', 'Statement 2')}
+        </div>`;
+      } else {
+        const rows = [];
+        for (let i = 1; i <= app.premiseCount; i++) {
+          rows.push(`<div class="premise-row">
+            ${formulaInput(`premise-${i}`, `Premise ${i}`)}
+            ${i > 1 ? `<button class="btn btn-danger btn-small" type="button" data-remove-premise="${i}">Remove</button>` : ''}
+          </div>`);
+        }
+        wrap.innerHTML = `<div id="premise-fields">${rows.join('')}</div>
+          <button class="btn btn-secondary btn-small" type="button" id="add-premise" ${app.premiseCount >= 3 ? 'disabled' : ''}>+ Add premise</button>
+          <div class="form-grid" style="margin-top:12px">${formulaInput('argument-conclusion', 'Conclusion')}</div>`;
+      }
+      $$('.formula-input').forEach(input => {
+        input.addEventListener('focus', () => { app.activeInput = input; });
+        input.addEventListener('input', () => { normalizeField(input); saveState(); });
+      });
+      const add = $('#add-premise');
+      if (add) add.addEventListener('click', () => {
+        app.premiseCount = Math.min(3, app.premiseCount + 1);
+        renderFormulaFields();
+        saveState();
+      });
+      $$('[data-remove-premise]').forEach(btn => btn.addEventListener('click', () => {
+        app.premiseCount = Math.max(1, app.premiseCount - 1);
+        renderFormulaFields();
+        saveState();
+      }));
+    }
+
+    function normalizeField(input) {
+      const before = input.value;
+      const start = input.selectionStart;
+      input.value = core.normalize(input.value);
+      if (input.value !== before) {
+        input.setSelectionRange(Math.max(0, start - (before.length - input.value.length)), Math.max(0, start - (before.length - input.value.length)));
+      }
+    }
+
+    function insertSymbol(symbol) {
+      const input = app.activeInput || $('.formula-input');
+      if (!input) return;
+      const start = input.selectionStart || 0;
+      const end = input.selectionEnd || start;
+      input.value = input.value.slice(0, start) + symbol + input.value.slice(end);
+      input.focus();
+      input.setSelectionRange(start + symbol.length, start + symbol.length);
+      normalizeField(input);
+      saveState();
+    }
+
+    function switchMode(mode) {
+      app.mode = mode;
+      app.model = null;
+      app.cells = {};
+      app.checkedColumns = {};
+      app.mainSelections = {};
+      app.finalAnswer = '';
+      app.counterexampleRow = '';
+      $$('.tab-btn').forEach(btn => btn.setAttribute('aria-pressed', String(btn.dataset.mode === mode)));
+      populateProblems('0');
+      renderFormulaFields();
+      $('#work-area').hidden = true;
+      $('#check-columns').hidden = true;
+      setStatus($('#setup-status'), 'Choose a mode, enter formulas, then build a table.');
+      saveState();
+    }
+
+    function loadProblem() {
+      const idx = $('#problem-select').value;
+      if (idx === '') {
+        clearFormulaValues();
+        setStatus($('#setup-status'), 'Blank table selected. Choose a practice problem from the menu, or type your own formula.', 'warn');
+        return;
+      }
+      const p = currentProblemList()[Number(idx)];
+      app.model = null;
+      app.cells = {};
+      app.checkedColumns = {};
+      app.mainSelections = {};
+      app.finalAnswer = '';
+      app.counterexampleRow = '';
+      $('#work-area').hidden = true;
+      if (app.mode === MODES.single) {
+        renderFormulaFields();
+        $('#single-formula').value = core.normalize(p.formula);
+      }
+      if (app.mode === MODES.pair) {
+        renderFormulaFields();
+        $('#pair-left').value = core.normalize(p.left);
+        $('#pair-right').value = core.normalize(p.right);
+      }
+      if (app.mode === MODES.argument) {
+        app.premiseCount = p.premises.length;
+        renderFormulaFields();
+        p.premises.forEach((prem, i) => { $(`#premise-${i + 1}`).value = core.normalize(prem); });
+        $('#argument-conclusion').value = core.normalize(p.conclusion);
+      }
+      setStatus($('#setup-status'), `Loaded ${p.title}. Click Build Table when ready.`, 'ok');
+      saveState();
+    }
+
+    function clearFormulaValues() {
+      $$('.formula-input').forEach(input => { input.value = ''; });
+      app.model = null;
+      app.cells = {};
+      app.checkedColumns = {};
+      app.mainSelections = {};
+      app.finalAnswer = '';
+      app.counterexampleRow = '';
+      $('#work-area').hidden = true;
+      saveState();
+    }
+
+    function readRawFormulas() {
+      if (app.mode === MODES.single) {
+        return [{ key: 's1', role: 'statement', label: 'Statement', text: $('#single-formula').value }];
+      }
+      if (app.mode === MODES.pair) {
+        return [
+          { key: 'p1', role: 'statement', label: 'Statement 1', text: $('#pair-left').value },
+          { key: 'p2', role: 'statement', label: 'Statement 2', text: $('#pair-right').value },
+        ];
+      }
+      const premises = [];
+      for (let i = 1; i <= app.premiseCount; i++) {
+        premises.push({ key: `premise${i}`, role: 'premise', label: `Premise ${i}`, text: $(`#premise-${i}`).value });
+      }
+      premises.push({ key: 'conclusion', role: 'conclusion', label: 'Conclusion', text: $('#argument-conclusion').value });
+      return premises;
+    }
+
+    function buildTable() {
+      try {
+        const formulas = readRawFormulas();
+        app.model = core.buildModel(app.mode, formulas);
+        app.cells = {};
+        app.checkedColumns = {};
+        app.mainSelections = {};
+        app.finalAnswer = '';
+        app.counterexampleRow = '';
+        $('#work-area').hidden = false;
+        $('#check-columns').hidden = $('#feedback-mode').value !== 'button';
+        renderTable();
+        renderAnswerControls();
+        setStatus($('#setup-status'), `Built table with ${app.model.vars.length} sentence letter${app.model.vars.length === 1 ? '' : 's'} and ${app.model.rows.length} rows.`, 'ok');
+        setStatus($('#feedback'), 'Fill the unlocked columns first.');
+        saveState();
+      } catch (err) {
+        setStatus($('#setup-status'), err.message || String(err), 'err');
+      }
+    }
+
+    function cellKey(colId, rowIndex) {
+      return `${colId}:${rowIndex}`;
+    }
+
+    function colCells(col) {
+      return app.model.rows.map((_, rowIndex) => app.cells[cellKey(col.id, rowIndex)] || '');
+    }
+
+    function colComplete(col) {
+      return colCells(col).every(Boolean);
+    }
+
+    function colCorrect(col) {
+      return colCells(col).every((value, i) => value === (col.values[i] ? 'T' : 'F'));
+    }
+
+    function colChecked(col) {
+      return !!app.checkedColumns[col.id];
+    }
+
+    function depsCorrect(col) {
+      return col.deps.every(depId => {
+        const dep = app.model.columns.find(candidate => candidate.id === depId);
+        return dep && colCorrect(dep);
+      });
+    }
+
+    function colUnlocked(col) {
+      return depsCorrect(col);
+    }
+
+    function firstColumnForFormula(col) {
+      return app.model.columns.findIndex(candidate => candidate.formulaKey === col.formulaKey) === app.model.columns.indexOf(col);
+    }
+
+    function renderFormulaAst(ast, target = true) {
+      if (ast.type === 'atom') return esc(ast.name);
+      if (ast.type === 'neg') {
+        const op = target ? '<span class="target-op">~</span>' : '~';
+        return `${op}${renderPlainAst(ast.operand)}`;
+      }
+      const sym = { conj: '·', disj: '∨', cond: '⊃', bicond: '≡' }[ast.type];
+      return `${renderPlainAst(ast.left)} <span class="target-op">${sym}</span> ${renderPlainAst(ast.right)}`;
+    }
+
+    function renderPlainAst(ast) {
+      if (ast.type === 'atom') return esc(ast.name);
+      if (ast.type === 'neg') return `~${renderPlainAst(ast.operand)}`;
+      const sym = { conj: '·', disj: '∨', cond: '⊃', bicond: '≡' }[ast.type];
+      return `(${renderPlainAst(ast.left)} ${sym} ${renderPlainAst(ast.right)})`;
+    }
+
+    function headerClass(col) {
+      const classes = [];
+      if (firstColumnForFormula(col)) classes.push('formula-sep');
+      if (!colUnlocked(col)) classes.push('locked');
+      else if (colCorrect(col)) classes.push('correct-col');
+      else classes.push('active-col');
+      return classes.join(' ');
+    }
+
+    function renderTable() {
+      if (!app.model) return;
+      const vars = app.model.vars.map(v => `<th scope="col" class="given-col">${esc(v)}</th>`).join('');
+      const formulaHeaders = app.model.columns.map(col => {
+        const locked = !colUnlocked(col);
+        const mainName = `main-${col.formulaKey}`;
+        const checked = app.mainSelections[col.formulaKey] === col.id ? 'checked' : '';
+        return `<th scope="col" class="${headerClass(col)}">
+          <div class="column-header">
+            <div class="hint">${esc(col.formulaLabel)}</div>
+            <div class="formula-label">${renderFormulaAst(col.ast)}</div>
+            <label class="main-radio">
+              <input type="radio" name="${mainName}" value="${col.id}" ${checked}>
+              Main
+            </label>
+            ${locked ? '<div class="hint">Locked</div>' : ''}
+          </div>
+        </th>`;
+      }).join('');
+      const counterHead = app.mode === MODES.argument
+        ? '<th scope="col" class="counter-cell">Counterexample</th>'
+        : '';
+      const rows = app.model.rows.map((row, rowIndex) => {
+        const given = app.model.vars.map(v => `<td class="given-cell">${row[v] ? 'T' : 'F'}</td>`).join('');
+        const fillable = app.model.columns.map(col => renderCell(col, rowIndex)).join('');
+        const counter = app.mode === MODES.argument
+          ? `<td class="counter-cell"><input type="radio" name="counterexample-row" value="${rowIndex}" ${String(rowIndex) === app.counterexampleRow ? 'checked' : ''} aria-label="Mark row ${rowIndex + 1} as counterexample"></td>`
+          : '';
+        return `<tr><th scope="row" class="row-num">${rowIndex + 1}</th>${given}${fillable}${counter}</tr>`;
+      }).join('');
+      $('#table-wrap').innerHTML = `<div class="table-scroll">
+        <table aria-label="Truth table">
+          <thead><tr><th scope="col" class="row-num">Row</th>${vars}${formulaHeaders}${counterHead}</tr></thead>
+          <tbody>${rows}</tbody>
+        </table>
+      </div>`;
+
+      $$('.cell-btn').forEach(btn => btn.addEventListener('click', () => toggleCell(btn.dataset.col, Number(btn.dataset.row))));
+      $$('.main-radio input').forEach(input => input.addEventListener('change', () => {
+        app.mainSelections[input.name.replace('main-', '')] = input.value;
+        saveState();
+      }));
+      $$('input[name="counterexample-row"]').forEach(input => input.addEventListener('change', () => {
+        app.counterexampleRow = input.value;
+        saveState();
+      }));
+    }
+
+    function renderCell(col, rowIndex) {
+      const unlocked = colUnlocked(col);
+      const key = cellKey(col.id, rowIndex);
+      const value = app.cells[key] || '';
+      const checked = colChecked(col);
+      const expected = col.values[rowIndex] ? 'T' : 'F';
+      const correctness = checked && value ? (value === expected ? 'correct' : 'incorrect') : '';
+      const label = `${col.formulaLabel}, ${col.label}, row ${rowIndex + 1}`;
+      return `<td class="${firstColumnForFormula(col) ? 'formula-sep' : ''}">
+        <button class="cell-btn ${correctness}" type="button" data-col="${col.id}" data-row="${rowIndex}" data-value="${esc(value)}"
+          ${unlocked ? '' : 'disabled'} aria-label="${esc(label)}${value ? `, current value ${value}` : ', blank'}">${value || ''}</button>
+      </td>`;
+    }
+
+    function toggleCell(colId, rowIndex) {
+      const col = app.model.columns.find(candidate => candidate.id === colId);
+      if (!col || !colUnlocked(col)) return;
+      const key = cellKey(colId, rowIndex);
+      const current = app.cells[key] || '';
+      app.cells[key] = current === '' ? 'T' : current === 'T' ? 'F' : '';
+      if ($('#feedback-mode').value === 'immediate') {
+        app.checkedColumns[col.id] = true;
+        const value = app.cells[key] || '';
+        const expected = col.values[rowIndex] ? 'T' : 'F';
+        if (value && value !== expected) {
+          setStatus($('#feedback'), `Check ${col.formulaLabel}, ${col.label}, row ${rowIndex + 1}.`, 'err');
+        } else if (colComplete(col) && colCorrect(col)) {
+          setStatus($('#feedback'), `Correct column: ${col.formulaLabel}, ${col.label}.`, 'ok');
+        } else if (value) {
+          setStatus($('#feedback'), `Correct cell. Continue ${col.formulaLabel}, ${col.label}.`, 'ok');
+        }
+      }
+      renderTable();
+      saveState();
+    }
+
+    function checkActiveColumns() {
+      if (!app.model) return;
+      const active = app.model.columns.filter(col => colUnlocked(col) && !colCorrect(col));
+      if (!active.length) {
+        setStatus($('#feedback'), 'All currently unlocked columns are correct.', 'ok');
+        return;
+      }
+      for (const col of active) {
+        if (!colComplete(col)) {
+          app.checkedColumns[col.id] = true;
+          renderTable();
+          setStatus($('#feedback'), `Complete every cell in ${col.formulaLabel}, ${col.label}.`, 'warn');
+          saveState();
+          return;
+        }
+        app.checkedColumns[col.id] = true;
+        if (!colCorrect(col)) {
+          renderTable();
+          setStatus($('#feedback'), `Check ${col.formulaLabel}, ${col.label}. At least one row is incorrect.`, 'err');
+          saveState();
+          return;
+        }
+      }
+      renderTable();
+      setStatus($('#feedback'), 'Correct. The next column is unlocked.', 'ok');
+      saveState();
+    }
+
+    function finalValuesFor(formulaKey) {
+      const id = app.model.finalColumns[formulaKey];
+      const col = app.model.columns.find(candidate => candidate.id === id);
+      return col ? col.values : app.model.rows.map(row => core.evaluate(app.model.formulas.find(f => f.key === formulaKey).ast, row));
+    }
+
+    function renderAnswerControls() {
+      const options = {
+        single: [
+          ['tautology', 'Tautology'],
+          ['self-contradiction', 'Self-contradiction'],
+          ['contingent', 'Contingent'],
+        ],
+        pair: [
+          ['equivalent', 'Logically equivalent'],
+          ['contradictory', 'Contradictory'],
+          ['consistent-not-equivalent', 'Consistent but not equivalent'],
+          ['inconsistent-not-contradictory', 'Inconsistent but not contradictory'],
+        ],
+        argument: [
+          ['valid', 'Valid'],
+          ['invalid', 'Invalid'],
+        ],
+      }[app.mode];
+      $('#answer-controls').innerHTML = `<fieldset>
+        <legend>${app.mode === MODES.single ? 'Statement type' : app.mode === MODES.pair ? 'Relation' : 'Validity'}</legend>
+        <div class="radio-row">
+          ${options.map(([value, label]) => `<label><input type="radio" name="final-answer" value="${value}" ${app.finalAnswer === value ? 'checked' : ''}>${label}</label>`).join('')}
+        </div>
+      </fieldset>
+      ${app.mode === MODES.argument ? '<p class="hint">If you choose Invalid, mark a counterexample row in the table.</p>' : ''}`;
+      $$('input[name="final-answer"]').forEach(input => input.addEventListener('change', () => {
+        app.finalAnswer = input.value;
+        saveState();
+      }));
+    }
+
+    function allColumnsCorrect() {
+      return app.model.columns.every(col => colCorrect(col));
+    }
+
+    function allMainColumnsCorrect() {
+      return app.model.formulas.every(formula => {
+        const finalColumn = app.model.finalColumns[formula.key];
+        return finalColumn === null || app.mainSelections[formula.key] === finalColumn;
+      });
+    }
+
+    function checkAnswer() {
+      if (!app.model) return;
+      app.model.columns.forEach(col => { app.checkedColumns[col.id] = true; });
+      renderTable();
+      if (!allColumnsCorrect()) {
+        setStatus($('#feedback'), 'There is still at least one incorrect or incomplete truth-value column.', 'err');
+        saveState();
+        return;
+      }
+      if (!allMainColumnsCorrect()) {
+        setStatus($('#feedback'), 'Check the main-column selection. The main operator is the column for the whole statement.', 'err');
+        saveState();
+        return;
+      }
+      if (!app.finalAnswer) {
+        setStatus($('#feedback'), 'Choose the final classification, relation, or validity answer.', 'warn');
+        saveState();
+        return;
+      }
+
+      if (app.mode === MODES.single) {
+        const correct = core.classifyStatement(finalValuesFor(app.model.formulas[0].key));
+        setStatus($('#feedback'), app.finalAnswer === correct ? 'Correct: the table and classification are right.' : 'The table is right, but the statement classification is not.', app.finalAnswer === correct ? 'ok' : 'err');
+      } else if (app.mode === MODES.pair) {
+        const correct = core.classifyPair(finalValuesFor(app.model.formulas[0].key), finalValuesFor(app.model.formulas[1].key));
+        setStatus($('#feedback'), app.finalAnswer === correct ? 'Correct: the tables and relation are right.' : 'The tables are right, but the relation is not.', app.finalAnswer === correct ? 'ok' : 'err');
+      } else {
+        const premises = app.model.formulas.filter(f => f.role === 'premise').map(f => finalValuesFor(f.key));
+        const conclusion = finalValuesFor('conclusion');
+        const result = core.validity(premises, conclusion);
+        const expected = result.valid ? 'valid' : 'invalid';
+        if (app.finalAnswer !== expected) {
+          setStatus($('#feedback'), 'The truth columns are right, but the validity answer is not.', 'err');
+        } else if (!result.valid && !result.counterexamples.includes(Number(app.counterexampleRow))) {
+          setStatus($('#feedback'), 'The argument is invalid. Mark a row where all premises are true and the conclusion is false.', 'err');
+        } else {
+          setStatus($('#feedback'), result.valid ? 'Correct: the argument is valid.' : 'Correct: the selected row is a counterexample.', 'ok');
+        }
+      }
+      saveState();
+    }
+
+    function saveState() {
+      const formulas = {};
+      $$('.formula-input').forEach(input => { formulas[input.id] = input.value; });
+      const payload = {
+        mode: app.mode,
+        premiseCount: app.premiseCount,
+        problemIndex: $('#problem-select') ? $('#problem-select').value : '0',
+        feedbackMode: $('#feedback-mode') ? $('#feedback-mode').value : 'immediate',
+        formulas,
+        hasModel: !!app.model,
+        cells: app.cells,
+        checkedColumns: app.checkedColumns,
+        mainSelections: app.mainSelections,
+        finalAnswer: app.finalAnswer,
+        counterexampleRow: app.counterexampleRow,
+      };
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(payload));
+    }
+
+    function restoreState() {
+      const raw = localStorage.getItem(STORAGE_KEY);
+      if (!raw) return false;
+      try {
+        const payload = JSON.parse(raw);
+        app.mode = payload.mode || MODES.single;
+        app.premiseCount = payload.premiseCount || 2;
+        $$('.tab-btn').forEach(btn => btn.setAttribute('aria-pressed', String(btn.dataset.mode === app.mode)));
+        populateProblems(payload.problemIndex || '0');
+        renderFormulaFields();
+        $('#feedback-mode').value = payload.feedbackMode || 'immediate';
+        Object.entries(payload.formulas || {}).forEach(([id, value]) => {
+          const el = document.getElementById(id);
+          if (el) el.value = value;
+        });
+        const restoredAnyFormula = Object.values(payload.formulas || {}).some(value => String(value || '').trim());
+        app.cells = payload.cells || {};
+        app.checkedColumns = payload.checkedColumns || {};
+        app.mainSelections = payload.mainSelections || {};
+        app.finalAnswer = payload.finalAnswer || '';
+        app.counterexampleRow = payload.counterexampleRow || '';
+        if (payload.hasModel) {
+          app.model = core.buildModel(app.mode, readRawFormulas());
+          $('#work-area').hidden = false;
+          $('#check-columns').hidden = $('#feedback-mode').value !== 'button';
+          renderTable();
+          renderAnswerControls();
+        }
+        if (!payload.hasModel && !restoredAnyFormula && $('#problem-select').value !== '') {
+          loadProblem();
+        }
+        return true;
+      } catch (err) {
+        localStorage.removeItem(STORAGE_KEY);
+        return false;
+      }
+    }
+
+    function clearSavedWork() {
+      localStorage.removeItem(STORAGE_KEY);
+      app.model = null;
+      app.cells = {};
+      app.checkedColumns = {};
+      app.mainSelections = {};
+      app.finalAnswer = '';
+      app.counterexampleRow = '';
+      clearFormulaValues();
+      localStorage.removeItem(STORAGE_KEY);
+      setStatus($('#setup-status'), 'Saved work cleared.', 'ok');
+    }
+
+    function init() {
+      $$('.tab-btn').forEach(btn => btn.addEventListener('click', () => switchMode(btn.dataset.mode)));
+      $$('.sym-btn').forEach(btn => btn.addEventListener('click', () => insertSymbol(btn.dataset.symbol)));
+      $('#load-problem').addEventListener('click', loadProblem);
+      $('#problem-select').addEventListener('change', loadProblem);
+      $('#build-table').addEventListener('click', buildTable);
+      $('#check-columns').addEventListener('click', checkActiveColumns);
+      $('#check-answer').addEventListener('click', checkAnswer);
+      $('#clear-saved').addEventListener('click', clearSavedWork);
+      $('#feedback-mode').addEventListener('change', () => {
+        $('#check-columns').hidden = $('#feedback-mode').value !== 'button' || !app.model;
+        saveState();
+      });
+      if (!restoreState()) {
+        populateProblems('0');
+        renderFormulaFields();
+        loadProblem();
+      }
+    }
+
+    init();
+  </script>
+</body>
+
+</html>

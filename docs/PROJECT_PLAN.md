@@ -295,11 +295,11 @@ Items planted in earlier chapters that *must* be paid off in later chapters. Add
 
 ## 18. Appendices
 
-Documented appendix content in the back matter. The argument diagrams appendix appears before the selected-solutions appendix so students encounter the optional visual method before answer material.
+Documented appendix content in the back matter. The Aristotelian categorical logic appendix appears first, followed by the argument diagrams appendix, followed by the selected-solutions appendix. This keeps optional conceptual extensions before answer material.
 
 ### Appendix on Aristotelian Categorical Logic
 
-**Status.** Planned. The body of Chapters 6 and 7 uses the modern interpretation of categorical logic. A short appendix should explain the Aristotelian interpretation for adopters who want to teach it or compare it with the modern approach.
+**Status.** Drafted. The file lives at `book/source/appendix-aristotelian-categorical.ptx` and is included from `main.ptx` before the argument-diagram and selected-solutions appendices. The body of Chapters 6 and 7 uses the modern interpretation of categorical logic; the appendix explains the Aristotelian interpretation for adopters who want to teach it or compare it with the modern approach.
 
 **Planned appendix contents.**
 

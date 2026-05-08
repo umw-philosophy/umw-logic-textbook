@@ -1,0 +1,782 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  Chapter 8 — Symbolizing Sentential Logic
+
+  Draft status:
+  - Full chapter drafted: sections, chapter summary, key terms,
+    and end-of-chapter exercises.
+  - Uses Copi notation: ~ (U+007E), \cdot, \lor, \supset, \equiv.
+  - Truth tables and proofs are deferred to later chapters.
+-->
+<chapter xmlns:xi="http://www.w3.org/2001/XInclude" xml:id="ch-symbolizing">
+
+  <title>Symbolizing Sentential Logic</title>
+
+  <introduction xml:id="ch-symbolizing-intro">
+    <p>
+      Categorical logic evaluates arguments by looking inside
+      subject and predicate terms. Sentential logic evaluates
+      arguments by looking at how whole statements are joined
+      together. The basic units are not categories such as
+      <q>voters</q> and <q>registered people.</q> The basic units
+      are complete statements such as <q>The bill passed</q> and
+      <q>The governor signed it.</q>
+    </p>
+    <p>
+      This chapter teaches the language of sentential logic. We
+      will learn how to represent ordinary English statements with
+      sentence letters and logical connectives. Later chapters will
+      use that symbolic language to build truth tables and natural
+      deduction proofs.
+    </p>
+  </introduction>
+
+  <section xml:id="sec-sentential-logic-basic-idea">
+    <title>The Basic Idea</title>
+
+    <introduction>
+      <p>
+        Sentential logic is the logic of compound statements. A
+        compound statement is built out of simpler statements using
+        words such as <q>not,</q> <q>and,</q> <q>or,</q> <q>if,</q>
+        and <q>if and only if.</q>
+      </p>
+    </introduction>
+
+    <paragraphs xml:id="paragraphs-simple-and-compound-statements">
+      <title>Simple and compound statements</title>
+      <p>
+        A <term>simple statement</term> is a statement that we are
+        not breaking down any further in sentential logic:
+      </p>
+      <p>The city approved the permit.</p>
+      <p>The protest continued after dark.</p>
+      <p>The model passed the test.</p>
+      <p>
+        A <term>compound statement</term> is built from one or more
+        statements using a logical connective:
+      </p>
+      <p>The city approved the permit <em>and</em> the protest continued after dark.</p>
+      <p><em>If</em> the model passed the test, <em>then</em> the company will release it.</p>
+      <p>The bill will pass <em>or</em> the committee will delay the vote.</p>
+      <p>
+        The same English sentence can be simple for one purpose and
+        compound for another. <q>The city approved the permit</q>
+        contains grammatical parts, but sentential logic treats it
+        as one unit unless we need to analyze a logical connective
+        inside it.
+      </p>
+    </paragraphs>
+
+    <paragraphs xml:id="paragraphs-sentence-letters">
+      <title>Sentence letters</title>
+      <p>
+        We symbolize simple statements with capital letters. The
+        letters do not abbreviate individual words; they stand for
+        complete statements.
+      </p>
+      <p>
+        Let:
+      </p>
+      <p><m>P</m> = The city approved the permit.</p>
+      <p><m>Q</m> = The protest continued after dark.</p>
+      <p>
+        Then:
+      </p>
+      <p><q>The city approved the permit and the protest continued after dark</q> becomes <m>P \cdot Q</m>.</p>
+      <p>
+        The sentence letter <m>P</m> represents the whole statement
+        <q>The city approved the permit.</q> It does not represent
+        <q>permit</q> or <q>approved.</q> That distinction matters:
+        sentential logic is about whole statements and the
+        connectives between them.
+      </p>
+    </paragraphs>
+
+    <paragraphs xml:id="paragraphs-symbolic-tool-conventions">
+      <title>Notation and tool conventions</title>
+      <p>
+        The proof checker and the truth table checker use
+        the same notation as this chapter:
+      </p>
+      <ul>
+        <li><p><c>~</c> for negation.</p></li>
+        <li><p><m>\cdot</m> for conjunction.</p></li>
+        <li><p><m>\lor</m> for disjunction.</p></li>
+        <li><p><m>\supset</m> for the conditional.</p></li>
+        <li><p><m>\equiv</m> for the biconditional.</p></li>
+      </ul>
+      <table xml:id="table-sentential-connectives-reference">
+        <title>Connective Reference</title>
+        <tabular>
+          <row header="yes">
+            <cell>Symbol</cell>
+            <cell>Unicode</cell>
+            <cell>Typing shortcut</cell>
+            <cell>Read as</cell>
+          </row>
+          <row>
+            <cell><c>~</c></cell>
+            <cell>U+007E</cell>
+            <cell><c>~</c></cell>
+            <cell>not; it is not the case that</cell>
+          </row>
+          <row>
+            <cell><m>\cdot</m></cell>
+            <cell>U+00B7</cell>
+            <cell><c>&amp;</c></cell>
+            <cell>and</cell>
+          </row>
+          <row>
+            <cell><m>\lor</m></cell>
+            <cell>U+2228</cell>
+            <cell><c>v</c></cell>
+            <cell>or</cell>
+          </row>
+          <row>
+            <cell><m>\supset</m></cell>
+            <cell>U+2283</cell>
+            <cell><c>-&gt;</c></cell>
+            <cell>if ... then</cell>
+          </row>
+          <row>
+            <cell><m>\equiv</m></cell>
+            <cell>U+2261</cell>
+            <cell><c>&lt;-&gt;</c></cell>
+            <cell>if and only if</cell>
+          </row>
+        </tabular>
+      </table>
+      <p>
+        The tools also use the same typing shortcuts: <c>-&gt;</c>
+        for <m>\supset</m>, <c>&amp;</c> for <m>\cdot</m>, <c>v</c> for
+        <m>\lor</m>, <c>&lt;-&gt;</c> for <m>\equiv</m>, and <c>~</c> for
+        negation. Atomic statements are capital letters
+        <m>A</m>-<m>Z</m>. Parentheses are required around embedded
+        connectives, so write <m>A \supset (B \cdot C)</m>, not
+        <m>A \supset B \cdot C</m>.
+      </p>
+    </paragraphs>
+
+  </section>
+
+  <section xml:id="sec-sentential-connectives">
+    <title>The Five Connectives</title>
+
+    <introduction>
+      <p>
+        This book uses Copi notation. There are five connectives:
+        negation, conjunction, disjunction, conditional, and
+        biconditional.
+      </p>
+    </introduction>
+
+    <paragraphs xml:id="paragraphs-negation">
+      <title>Negation</title>
+      <p>
+        <term>Negation</term> says that a statement is false. We
+        write negation with the tilde: <c>~</c>.
+      </p>
+      <p>
+        Let <m>P</m> = The meeting is public.
+      </p>
+      <p>
+        Then <m>{\text{\textasciitilde}}P</m> = The meeting is not public.
+      </p>
+      <p>
+        Negation attaches to the statement immediately after it.
+        <m>{\text{\textasciitilde}}P</m> denies <m>P</m>. If the negation applies to a
+        larger compound statement, parentheses show that larger
+        scope: <m>{\text{\textasciitilde}}(P \cdot Q)</m>.
+      </p>
+    </paragraphs>
+
+    <paragraphs xml:id="paragraphs-conjunction">
+      <title>Conjunction</title>
+      <p>
+        <term>Conjunction</term> joins two statements with
+        <q>and.</q> We write conjunction with the dot:
+        <m>\cdot</m>.
+      </p>
+      <p>
+        Let <m>P</m> = The meeting is public. Let <m>Q</m> = The
+        minutes are posted.
+      </p>
+      <p>
+        <m>P \cdot Q</m> = The meeting is public and the minutes are
+        posted.
+      </p>
+      <p>
+        English has many ways to express conjunction: <q>and,</q>
+        <q>but,</q> <q>although,</q> <q>however,</q> and
+        <q>nevertheless</q> often do the same truth-functional work.
+        <q>The meeting is public, but the minutes are not posted</q>
+        is symbolized <m>P \cdot {\text{\textasciitilde}}Q</m>. The word <q>but</q> adds a
+        contrast in tone; logically, it still joins two claims.
+      </p>
+    </paragraphs>
+
+    <paragraphs xml:id="paragraphs-disjunction">
+      <title>Disjunction</title>
+      <p>
+        <term>Disjunction</term> joins two statements with
+        <q>or.</q> We write disjunction with the wedge: <m>\lor</m>.
+      </p>
+      <p>
+        <m>P \lor Q</m> = The meeting is public or the minutes are
+        posted.
+      </p>
+      <p>
+        In this book, <q>or</q> is <term>inclusive</term> unless a
+        passage explicitly says otherwise. <m>P \lor Q</m> means
+        <q><m>P</m> or <m>Q</m> or both.</q> If the meeting is public and the
+        minutes are posted, the disjunction is true.
+      </p>
+      <p>
+        Ordinary English sometimes uses <q>or</q> exclusively, as
+        in <q>You may have soup or salad</q> when the restaurant
+        means one but not both. That exclusivity is pragmatic or
+        contextual. The default logical connective <m>\lor</m> is
+        inclusive.
+      </p>
+    </paragraphs>
+
+    <paragraphs xml:id="paragraphs-conditional">
+      <title>Conditional</title>
+      <p>
+        A <term>conditional</term> joins an antecedent to a
+        consequent. We write the conditional with the horseshoe:
+        <m>\supset</m>.
+      </p>
+      <p>
+        <m>P \supset Q</m> = If <m>P</m>, then <m>Q</m>.
+      </p>
+      <p>
+        In <m>P \supset Q</m>, <m>P</m> is the antecedent and <m>Q</m>
+        is the consequent. The antecedent is the condition; the
+        consequent is what follows if that condition is met.
+      </p>
+      <p>
+        English conditionals are flexible. Each of the following
+        has the same basic conditional structure:
+      </p>
+      <ul>
+        <li><p>If the storm reaches campus, then labs will be canceled.</p></li>
+        <li><p>Labs will be canceled if the storm reaches campus.</p></li>
+        <li><p>The storm reaching campus is sufficient for labs to be canceled.</p></li>
+        <li><p>Labs being canceled is necessary for the storm to reach campus.</p></li>
+      </ul>
+      <p>
+        In each case, if <m>P</m> = the storm reaches campus and
+        <m>Q</m> = labs will be canceled, the symbolization is
+        <m>P \supset Q</m>.
+      </p>
+    </paragraphs>
+
+    <paragraphs xml:id="paragraphs-biconditional">
+      <title>Biconditional</title>
+      <p>
+        A <term>biconditional</term> says that two statements stand
+        or fall together. We write the biconditional with the triple
+        bar: <m>\equiv</m>.
+      </p>
+      <p>
+        <m>P \equiv Q</m> = <m>P</m> if and only if <m>Q</m>.
+      </p>
+      <p>
+        <q>If and only if</q> means both directions: if <m>P</m> then <m>Q</m>,
+        and if <m>Q</m> then <m>P</m>. So <m>P \equiv Q</m> is equivalent to
+        <m>(P \supset Q) \cdot (Q \supset P)</m>. In ordinary prose, phrases such
+        as <q>just in case</q> and <q>exactly when</q> often signal
+        a biconditional.
+      </p>
+    </paragraphs>
+
+  </section>
+
+  <section xml:id="sec-main-connective-and-scope">
+    <title>Main Connective and Scope</title>
+
+    <introduction>
+      <p>
+        Once a symbolic statement gets longer than one connective,
+        parentheses become essential. They tell us which connective
+        governs the whole statement.
+      </p>
+    </introduction>
+
+    <paragraphs xml:id="paragraphs-main-connective">
+      <title>Main connective</title>
+      <p>
+        The <term>main connective</term> is the connective that
+        governs the whole compound statement. It tells us the
+        statement's overall logical form.
+      </p>
+      <p>
+        In <m>(P \cdot Q) \supset R</m>, the main connective is <m>\supset</m>.
+        The whole statement is a conditional. Its antecedent is
+        <m>P \cdot Q</m>, and its consequent is <m>R</m>.
+      </p>
+      <p>
+        In <m>P \cdot (Q \supset R)</m>, the main connective is <m>\cdot</m>.
+        The whole statement is a conjunction. Its left conjunct is
+        <m>P</m>, and its right conjunct is <m>Q \supset R</m>.
+      </p>
+      <p>
+        These two formulas contain the same letters and the same
+        connectives, but they say different things. Parentheses are
+        not decoration. They are part of the statement.
+      </p>
+    </paragraphs>
+
+    <paragraphs xml:id="paragraphs-scope">
+      <title>Scope</title>
+      <p>
+        The <term>scope</term> of a connective is the part of the
+        formula governed by that connective. Negation makes this
+        especially clear.
+      </p>
+      <p>
+        <m>{\text{\textasciitilde}}P \cdot Q</m> says: <m>P</m> is false, and <m>Q</m> is true.
+      </p>
+      <p>
+        <m>{\text{\textasciitilde}}(P \cdot Q)</m> says: it is not the case that both <m>P</m> and <m>Q</m>
+        are true.
+      </p>
+      <p>
+        Those are not equivalent. If <m>P</m> is true and <m>Q</m> is false, then
+        <m>{\text{\textasciitilde}}P \cdot Q</m> is false, but <m>{\text{\textasciitilde}}(P \cdot Q)</m> is true.
+      </p>
+    </paragraphs>
+
+    <paragraphs xml:id="paragraphs-formation-rules">
+      <title>Formation rules</title>
+      <p>
+        A symbolic statement has to be well formed. Use these rules:
+      </p>
+      <ul>
+        <li><p>A capital letter by itself is a statement: <m>P</m>.</p></li>
+        <li><p>If <m>P</m> is a statement, then <m>{\text{\textasciitilde}}P</m> is a statement.</p></li>
+        <li><p>If <m>P</m> and <m>Q</m> are statements, then <m>(P \cdot Q)</m>, <m>(P \lor Q)</m>, <m>(P \supset Q)</m>, and <m>(P \equiv Q)</m> are statements.</p></li>
+      </ul>
+      <p>
+        In practice, we often omit the outermost parentheses when
+        the formula is clear. We write <m>P \cdot Q</m> instead of
+        <m>(P \cdot Q)</m>. But we keep internal parentheses whenever
+        leaving them out would make the structure unclear:
+        <m>P \supset (Q \cdot R)</m>, not <m>P \supset Q \cdot R</m>.
+      </p>
+    </paragraphs>
+
+  </section>
+
+  <section xml:id="sec-symbolizing-conditionals">
+    <title>Conditionals in English</title>
+
+    <introduction>
+      <p>
+        Conditionals cause more symbolization mistakes than any
+        other connective. The problem is not the symbol; the
+        problem is ordinary English.
+      </p>
+    </introduction>
+
+    <paragraphs xml:id="paragraphs-if-and-only-if">
+      <title>If, only if, and if and only if</title>
+      <p>
+        The word <q>if</q> introduces a sufficient condition. In
+        the standard form <q>If <m>P</m>, then <m>Q</m>,</q> <m>P</m> is sufficient for
+        <m>Q</m>. Symbolically: <m>P \supset Q</m>.
+      </p>
+      <p>
+        The phrase <q>only if</q> introduces a necessary condition.
+        <q><m>P</m> only if <m>Q</m></q> means that <m>Q</m> is required for <m>P</m>. If <m>P</m> is
+        true, <m>Q</m> must be true. Symbolically: <m>P \supset Q</m>.
+      </p>
+      <p>
+        This is the pattern students most often reverse:
+      </p>
+      <p>
+        <q>The server restarts only if the update installs</q>
+        becomes <m>R \supset U</m>.
+      </p>
+      <p>
+        The update installing is necessary for the restart. The
+        restart is enough to guarantee that the update installed.
+      </p>
+      <p>
+        <q>If and only if</q> gives both directions:
+      </p>
+      <p>
+        <q>The server restarts if and only if the update installs</q>
+        becomes <m>R \equiv U</m>.
+      </p>
+    </paragraphs>
+
+    <paragraphs xml:id="paragraphs-unless">
+      <title>Unless</title>
+      <p>
+        <q>Unless</q> usually means <q>if not.</q> The sentence
+        <q>The hearing will proceed unless the judge grants a
+        delay</q> can be read:
+      </p>
+      <p>
+        If the judge does not grant a delay, then the hearing will
+        proceed.
+      </p>
+      <p>
+        Let <m>D</m> = the judge grants a delay. Let <m>H</m> = the
+        hearing will proceed. The symbolization is:
+      </p>
+      <p><m>{\text{\textasciitilde}}D \supset H</m></p>
+      <p>
+        In many contexts, <q><m>P</m> unless <m>Q</m></q> also suggests that if <m>Q</m>
+        happens, <m>P</m> will not happen. That stronger reading is often
+        a conversational implication, not part of the minimal
+        logical form. When the stronger reading is clearly intended,
+        symbolize it explicitly as a biconditional or as a
+        conjunction of two conditionals.
+      </p>
+    </paragraphs>
+
+    <paragraphs xml:id="paragraphs-neither-nor">
+      <title>Neither/nor</title>
+      <p>
+        <q>Neither <m>P</m> nor <m>Q</m></q> means both <m>P</m> is false and <m>Q</m> is false:
+      </p>
+      <p><m>{\text{\textasciitilde}}P \cdot {\text{\textasciitilde}}Q</m></p>
+      <p>
+        It is also equivalent to <m>{\text{\textasciitilde}}(P \lor Q)</m>. The first version
+        is usually easier for beginners to read.
+      </p>
+    </paragraphs>
+
+  </section>
+
+  <section xml:id="sec-symbolizing-arguments">
+    <title>Symbolizing Arguments</title>
+
+    <introduction>
+      <p>
+        Symbolizing a sentence is useful. Symbolizing an argument
+        is where sentential logic starts to pay off.
+      </p>
+    </introduction>
+
+    <paragraphs xml:id="paragraphs-symbolized-standard-form">
+      <title>Standard form, again</title>
+      <p>
+        The standard-form habit from Chapter 1 still matters. Put
+        each premise on its own line, put the conclusion last, and
+        use a symbolization key.
+      </p>
+      <example xml:id="ex-symbolizing-modus-ponens">
+        <title>A symbolized argument</title>
+        <statement>
+          <p>If the storm reaches campus before noon, afternoon labs will be canceled.</p>
+          <p>The storm will reach campus before noon.</p>
+          <p><m>\therefore</m> Afternoon labs will be canceled.</p>
+        </statement>
+      </example>
+      <p>
+        Let:
+      </p>
+      <p><m>S</m> = The storm reaches campus before noon.</p>
+      <p><m>L</m> = Afternoon labs will be canceled.</p>
+      <p>
+        Symbolized:
+      </p>
+      <p>P1: <m>S \supset L</m></p>
+      <p>P2: <m>S</m></p>
+      <p><m>\therefore</m> C: <m>L</m></p>
+      <p>
+        This is the form we previewed much earlier: modus ponens.
+        Later, the proof system will let us derive <m>L</m> from
+        <m>S \supset L</m> and <m>S</m> by rule. For now, the important
+        skill is recognizing and symbolizing the structure.
+      </p>
+    </paragraphs>
+
+    <paragraphs xml:id="paragraphs-symbolization-keys">
+      <title>Good symbolization keys</title>
+      <p>
+        A good symbolization key assigns one letter to one complete
+        statement. Keep the statement letters stable throughout the
+        problem.
+      </p>
+      <p>
+        Bad key:
+      </p>
+      <p><m>P</m> = policy</p>
+      <p>
+        Better key:
+      </p>
+      <p><m>P</m> = The policy passes.</p>
+      <p>
+        Bad key:
+      </p>
+      <p><m>R</m> = rain</p>
+      <p>
+        Better key:
+      </p>
+      <p><m>R</m> = It rains tonight.</p>
+      <p>
+        The symbolic letter stands for a statement that can be true
+        or false, not for a topic, object, or isolated noun.
+      </p>
+    </paragraphs>
+
+    <paragraphs xml:id="paragraphs-translation-and-charity">
+      <title>Translation and charity</title>
+      <p>
+        Symbolization is a kind of reconstruction. Sometimes the
+        English is loose, compressed, or rhetorically loaded. Your
+        job is to preserve the logical structure without improving
+        the argument.
+      </p>
+      <p>
+        If a passage says <q>The proposal is reckless and unpopular,
+        so the council should reject it,</q> sentential logic can
+        represent the conjunction in the premise:
+      </p>
+      <p><m>R \cdot U</m></p>
+      <p>
+        But sentential logic by itself does not supply the missing
+        principle connecting recklessness and unpopularity to
+        rejection. As in earlier chapters, reconstruction and
+        evaluation remain distinct. Symbolization makes structure
+        visible; it does not make unsupported leaps disappear.
+      </p>
+    </paragraphs>
+
+  </section>
+
+  <section xml:id="sec-symbolizing-where-headed">
+    <title>Where We're Headed</title>
+
+    <p>
+      This chapter gives us the language of sentential logic. The
+      next step is to give that language a precise method of
+      evaluation. Truth tables will let us test single statements,
+      pairs of statements, and whole arguments by considering every
+      possible assignment of truth values to the sentence letters.
+    </p>
+    <p>
+      After truth tables, we will turn to natural deduction. Truth
+      tables tell us whether an argument is valid. Natural
+      deduction shows us how the conclusion follows from the
+      premises, step by step, using rules such as Modus Ponens,
+      Modus Tollens, Disjunctive Syllogism, and Hypothetical
+      Syllogism.
+    </p>
+
+  </section>
+
+  <conclusion xml:id="conclusion-ch8">
+    <title>Chapter Summary</title>
+
+    <p>
+      This chapter introduced the symbolic language of sentential
+      logic. The core ideas, section by section:
+    </p>
+    <p>
+      <alert>The Basic Idea (§8.1).</alert> Sentential logic treats
+      whole statements as units and studies how they are joined by
+      logical connectives. Simple statements are represented by
+      capital sentence letters.
+    </p>
+    <p>
+      <alert>The Five Connectives (§8.2).</alert> The five
+      connectives are negation (<c>~</c>), conjunction (<m>\cdot</m>),
+      disjunction (<m>\lor</m>), conditional (<m>\supset</m>), and
+      biconditional (<m>\equiv</m>).
+    </p>
+    <p>
+      <alert>Main Connective and Scope (§8.3).</alert> Parentheses
+      determine the structure of compound statements. The main
+      connective governs the whole statement; the scope of a
+      connective is the part of the formula it controls.
+    </p>
+    <p>
+      <alert>Conditionals in English (§8.4).</alert> <q>If,</q>
+      <q>only if,</q> <q>if and only if,</q> <q>unless,</q> and
+      <q>neither/nor</q> require special care in translation.
+    </p>
+    <p>
+      <alert>Symbolizing Arguments (§8.5).</alert> Arguments should
+      be put in standard form and symbolized with a clear key. A
+      sentence letter stands for a complete statement, not for a
+      noun or topic.
+    </p>
+    <p>
+      <alert>Where We're Headed (§8.6).</alert> The next chapter
+      uses truth tables to evaluate symbolic statements and
+      arguments.
+    </p>
+
+  </conclusion>
+
+  <section xml:id="sec-ch8-key-terms">
+    <title>Key Terms</title>
+
+    <p>Listed alphabetically, with section references.</p>
+
+    <dl>
+      <li xml:id="term-ch8-antecedent">
+        <title>Antecedent</title>
+        <p>The left side of a conditional; in <m>P \supset Q</m>, <m>P</m> is the antecedent. (§8.2, §8.4)</p>
+      </li>
+      <li xml:id="term-ch8-biconditional">
+        <title>Biconditional</title>
+        <p>A compound statement of the form <m>P \equiv Q</m>, read <q><m>P</m> if and only if <m>Q</m>.</q> (§8.2)</p>
+      </li>
+      <li xml:id="term-ch8-compound-statement">
+        <title>Compound statement</title>
+        <p>A statement built from one or more simpler statements using logical connectives. (§8.1)</p>
+      </li>
+      <li xml:id="term-ch8-conjunction">
+        <title>Conjunction</title>
+        <p>A compound statement of the form <m>P \cdot Q</m>, read <q><m>P</m> and <m>Q</m>.</q> (§8.2)</p>
+      </li>
+      <li xml:id="term-ch8-connective">
+        <title>Connective</title>
+        <p>A logical operator used to build compound statements from simpler statements. (§8.2)</p>
+      </li>
+      <li xml:id="term-ch8-consequent">
+        <title>Consequent</title>
+        <p>The right side of a conditional; in <m>P \supset Q</m>, <m>Q</m> is the consequent. (§8.2, §8.4)</p>
+      </li>
+      <li xml:id="term-ch8-conditional">
+        <title>Conditional</title>
+        <p>A compound statement of the form <m>P \supset Q</m>, read <q>if <m>P</m>, then <m>Q</m>.</q> (§8.2)</p>
+      </li>
+      <li xml:id="term-ch8-disjunction">
+        <title>Disjunction</title>
+        <p>A compound statement of the form <m>P \lor Q</m>, read <q><m>P</m> or <m>Q</m>.</q> In this book, disjunction is inclusive unless specified otherwise. (§8.2)</p>
+      </li>
+      <li xml:id="term-ch8-main-connective">
+        <title>Main connective</title>
+        <p>The connective that governs the whole compound statement. (§8.3)</p>
+      </li>
+      <li xml:id="term-ch8-negation">
+        <title>Negation</title>
+        <p>A statement of the form <m>{\text{\textasciitilde}}P</m>, read <q>not <m>P</m></q> or <q>it is not the case that <m>P</m>.</q> (§8.2)</p>
+      </li>
+      <li xml:id="term-ch8-scope">
+        <title>Scope</title>
+        <p>The part of a formula governed by a connective. (§8.3)</p>
+      </li>
+      <li xml:id="term-ch8-sentence-letter">
+        <title>Sentence letter</title>
+        <p>A capital letter that stands for a complete statement. (§8.1)</p>
+      </li>
+      <li xml:id="term-ch8-simple-statement">
+        <title>Simple statement</title>
+        <p>A statement treated as an unanalyzed unit in sentential logic. (§8.1)</p>
+      </li>
+    </dl>
+
+  </section>
+
+  <exercises xml:id="exercises-ch8">
+    <title>End-of-Chapter Exercises</title>
+
+    <exercisegroup xml:id="exgroup-ch8-s01">
+      <title>Exercise Set 1: Simple and Compound Statements</title>
+      <introduction>
+        <p>
+          For each sentence, say whether it is simple or compound
+          for purposes of sentential logic. If it is compound,
+          identify the main connective in English.
+        </p>
+      </introduction>
+      <exercise xml:id="ex-ch8-s01-01"><statement><p>The mayor vetoed the ordinance.</p></statement></exercise>
+      <exercise xml:id="ex-ch8-s01-02"><statement><p>The mayor vetoed the ordinance and the council scheduled an override vote.</p></statement></exercise>
+      <exercise xml:id="ex-ch8-s01-03"><statement><p>If the server restarts, then the patch installed correctly.</p></statement></exercise>
+      <exercise xml:id="ex-ch8-s01-04"><statement><p>The hearing will proceed unless the judge grants a delay.</p></statement></exercise>
+      <exercise xml:id="ex-ch8-s01-05"><statement><p>The committee did not release the report.</p></statement></exercise>
+    </exercisegroup>
+
+    <exercisegroup xml:id="exgroup-ch8-s02">
+      <title>Exercise Set 2: Symbolizing Single Statements</title>
+      <introduction>
+        <p>
+          Use the provided symbolization key to symbolize each
+          statement.
+        </p>
+        <p><m>P</m> = The proposal passes.</p>
+        <p><m>Q</m> = The mayor signs the proposal.</p>
+        <p><m>R</m> = The policy takes effect.</p>
+      </introduction>
+      <exercise xml:id="ex-ch8-s02-01"><statement><p>The proposal passes and the mayor signs it.</p></statement></exercise>
+      <exercise xml:id="ex-ch8-s02-02"><statement><p>The proposal does not pass.</p></statement></exercise>
+      <exercise xml:id="ex-ch8-s02-03"><statement><p>If the proposal passes, then the policy takes effect.</p></statement></exercise>
+      <exercise xml:id="ex-ch8-s02-04"><statement><p>The policy takes effect only if the mayor signs the proposal.</p></statement></exercise>
+      <exercise xml:id="ex-ch8-s02-05"><statement><p>The proposal passes if and only if the mayor signs it.</p></statement></exercise>
+      <exercise xml:id="ex-ch8-s02-06"><statement><p>Neither the proposal passes nor the policy takes effect.</p></statement></exercise>
+    </exercisegroup>
+
+    <exercisegroup xml:id="exgroup-ch8-s03">
+      <title>Exercise Set 3: Main Connective and Scope</title>
+      <introduction>
+        <p>
+          For each formula, identify the main connective. Then
+          state the immediate components governed by that main
+          connective.
+        </p>
+      </introduction>
+      <exercise xml:id="ex-ch8-s03-01"><statement><p><m>(P \cdot Q) \supset R</m></p></statement></exercise>
+      <exercise xml:id="ex-ch8-s03-02"><statement><p><m>P \cdot (Q \supset R)</m></p></statement></exercise>
+      <exercise xml:id="ex-ch8-s03-03"><statement><p><m>{\text{\textasciitilde}}(P \lor Q)</m></p></statement></exercise>
+      <exercise xml:id="ex-ch8-s03-04"><statement><p><m>(P \supset Q) \equiv ({\text{\textasciitilde}}Q \supset {\text{\textasciitilde}}P)</m></p></statement></exercise>
+      <exercise xml:id="ex-ch8-s03-05"><statement><p><m>{\text{\textasciitilde}}P \lor (Q \cdot R)</m></p></statement></exercise>
+    </exercisegroup>
+
+    <exercisegroup xml:id="exgroup-ch8-s04">
+      <title>Exercise Set 4: Conditionals in English</title>
+      <introduction>
+        <p>
+          Symbolize each sentence. Create your own clear
+          symbolization key.
+        </p>
+      </introduction>
+      <exercise xml:id="ex-ch8-s04-01"><statement><p>If the alarm sounds, the building will be evacuated.</p></statement></exercise>
+      <exercise xml:id="ex-ch8-s04-02"><statement><p>The building will be evacuated if the alarm sounds.</p></statement></exercise>
+      <exercise xml:id="ex-ch8-s04-03"><statement><p>The building will be evacuated only if the alarm sounds.</p></statement></exercise>
+      <exercise xml:id="ex-ch8-s04-04"><statement><p>The building will be evacuated if and only if the alarm sounds.</p></statement></exercise>
+      <exercise xml:id="ex-ch8-s04-05"><statement><p>The hearing will proceed unless the judge grants a delay.</p></statement></exercise>
+      <exercise xml:id="ex-ch8-s04-06"><statement><p>The grant will be renewed only if the report is submitted on time.</p></statement></exercise>
+    </exercisegroup>
+
+    <exercisegroup xml:id="exgroup-ch8-s05">
+      <title>Exercise Set 5: Symbolizing Arguments</title>
+      <introduction>
+        <p>
+          Put each argument in standard form, create a
+          symbolization key, and symbolize the argument.
+        </p>
+      </introduction>
+      <exercise xml:id="ex-ch8-s05-01"><statement><p>If the storm reaches campus before noon, afternoon labs will be canceled. The storm will reach campus before noon. Therefore, afternoon labs will be canceled.</p></statement></exercise>
+      <exercise xml:id="ex-ch8-s05-02"><statement><p>If the city raises the property tax rate, school revenue will increase. School revenue will not increase. Therefore, the city will not raise the property tax rate.</p></statement></exercise>
+      <exercise xml:id="ex-ch8-s05-03"><statement><p>Either the proposal cleared committee or the chair tabled it. The proposal did not clear committee. So, the chair tabled it.</p></statement></exercise>
+      <exercise xml:id="ex-ch8-s05-04"><statement><p>If the software collects sensitive data, then it creates privacy risks. If it creates privacy risks, then the university should require review. Therefore, if the software collects sensitive data, then the university should require review.</p></statement></exercise>
+    </exercisegroup>
+
+    <exercisegroup xml:id="exgroup-ch8-s06">
+      <title>Exercise Set 6: Mixed Translation</title>
+      <introduction>
+        <p>
+          Symbolize each sentence or argument. Watch for main
+          connective, scope, and conditional direction.
+        </p>
+      </introduction>
+      <exercise xml:id="ex-ch8-s06-01"><statement><p>The council will approve the budget only if the revenue forecast improves and the public hearing goes smoothly.</p></statement></exercise>
+      <exercise xml:id="ex-ch8-s06-02"><statement><p>If the model is accurate, then either the forecast improves or the old assumptions were wrong.</p></statement></exercise>
+      <exercise xml:id="ex-ch8-s06-03"><statement><p>It is not the case that both the committee met and the proposal advanced.</p></statement></exercise>
+      <exercise xml:id="ex-ch8-s06-04"><statement><p>The archive opens to researchers if and only if the donor agreement is signed and the catalog is complete.</p></statement></exercise>
+      <exercise xml:id="ex-ch8-s06-05"><statement><p>Unless the server is repaired, the site will stay offline and students will miss the deadline.</p></statement></exercise>
+    </exercisegroup>
+
+  </exercises>
+
+</chapter>

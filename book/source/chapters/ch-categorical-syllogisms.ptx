@@ -8,23 +8,25 @@
   - §7.2 (Diagramming a Syllogism): drafted.
   - §7.3 (Common Validity Patterns and Failure Points): drafted.
   - §7.4 (Mood and Figure): drafted.
-  - §7.5 onward: stubbed; to be filled in subsequent passes.
+  - §7.5 (Putting Prose Arguments into Syllogism Form): drafted.
+  - §7.6 (Where We're Headed): drafted.
+  - Chapter summary, key terms, and end-of-chapter exercises: drafted.
 
   Diagram conventions (per the lead author's hand-drawn reference):
   - 3-circle Venn diagram with M at top, S at bottom-left, P at
     bottom-right.
   - Eight numbered regions:
       1 = S only
-      2 = S∩P, not M
+      2 = S-and-P overlap, not M
       3 = P only
       4 = outside all three
-      5 = S∩M, not P
-      6 = S∩P∩M (center)
-      7 = P∩M, not S
+      5 = S-and-M overlap, not P
+      6 = S, P, and M overlap (center)
+      7 = P-and-M overlap, not S
       8 = M only
   - 2-circle diagram for the conclusion uses the standard 4-area
-    numbering from Chapter 6 (1 = S only; 2 = S∩P; 3 = P only;
-    4 = outside both).
+    numbering from Chapter 6 (1 = S only; 2 = S-and-P overlap;
+    3 = P only; 4 = outside both).
   - Validity testing: the premise diagram is a 3-circle; the
     conclusion diagram is a 2-circle; both share S on the left
     and P on the right at the bottom. The validity check is
@@ -311,7 +313,7 @@
       </p>
       <ul>
         <li><p>Conclusion-diagram area 1 (S only) corresponds to premise-diagram areas <alert>1 and 5</alert>.</p></li>
-        <li><p>Conclusion-diagram area 2 (S∩P) corresponds to premise-diagram areas <alert>2 and 6</alert>.</p></li>
+        <li><p>Conclusion-diagram area 2 (the S-and-P overlap) corresponds to premise-diagram areas <alert>2 and 6</alert>.</p></li>
         <li><p>Conclusion-diagram area 3 (P only) corresponds to premise-diagram areas 3 and 7.</p></li>
         <li><p>Conclusion-diagram area 4 (outside both) corresponds to premise-diagram areas 4 and 8.</p></li>
       </ul>
@@ -529,7 +531,7 @@
                 \fill[gray!40] (-3,-3) rectangle (3,3);
                 \fill[white] \Mtop;
               \end{scope}
-              % Shade areas 6 and 7 (M ∩ P)
+              % Shade areas 6 and 7 (the M-and-P overlap)
               \begin{scope}
                 \clip \Pright;
                 \clip \Mtop;
@@ -570,7 +572,7 @@
             \begin{tikzpicture}[scale=1.2]
               \def\Sleft{(-0.55,0) circle (1.2)}
               \def\Pright{(0.55,0) circle (1.2)}
-              % Shade area 2 (S ∩ P)
+              % Shade area 2 (the S-and-P overlap)
               \begin{scope}
                 \clip \Sleft;
                 \clip \Pright;
@@ -665,7 +667,7 @@
               \def\Sleft{(-0.7,-0.4) circle (1.3)}
               \def\Pright{(0.7,-0.4) circle (1.3)}
               \def\Mtop{(0,0.6) circle (1.3)}
-              % Shade areas 6 and 7 (M ∩ P)
+              % Shade areas 6 and 7 (the M-and-P overlap)
               \begin{scope}
                 \clip \Pright;
                 \clip \Mtop;
@@ -1128,8 +1130,9 @@
         premises tell us about emptiness in the M-area; they say
         nothing about how S relates to P outside of M. The
         conclusion then leaps to a positive claim relating S and P
-        directly. There is no path from <q>nothing in S∩M</q> and
-        <q>nothing in P∩M</q> to <q>everything in S is in P.</q>
+        directly. There is no path from <q>nothing in the S-and-M
+        overlap</q> and <q>nothing in the P-and-M overlap</q> to
+        <q>everything in S is in P.</q>
         The conclusion is overreaching the premises. This is a
         general lesson: <alert>two negative premises rarely give
         you what you need for a positive conclusion.</alert>
@@ -1144,8 +1147,7 @@
         distinction we drew in
         <xref ref="sec-existential-commitment"/>. On the modern
         interpretation, the syllogism is invalid. On the
-        Aristotelian interpretation, it is valid. The diagram is
-        the same; the verdict differs.
+        Aristotelian interpretation, it is valid.
       </p>
       <example xml:id="ex-aai-3-syllogism">
         <title>Ozone molecules</title>
@@ -1182,7 +1184,7 @@
               A three-circle Venn diagram with M at top, S at
               bottom-left, and P at bottom-right. Areas 5, 7, and
               8 are shaded — these together exhaust the part of M
-              that is outside S∩P. Area 6, the overlap of all
+              that is outside the S-and-P overlap. Area 6, the overlap of all
               three circles, is unshaded. Areas 1, 2, 3, and 4
               are also unshaded.
             </p>
@@ -1299,8 +1301,10 @@
         conclusion from two universals. We test only on the
         modern interpretation in this book. The Aristotelian
         interpretation, with its built-in existential commitments,
-        is reserved for a later appendix for adopters who teach
-        it. Still, the diagnostic move — adding an X to test
+        is treated in
+        <xref ref="appendix-aristotelian-categorical"/> for
+        adopters who teach it. Still, the diagnostic move — adding
+        an X to test
         whether existence would change the verdict — is useful
         regardless of which interpretation you formally adopt. It
         tells you what a modern-invalid syllogism is hiding.
@@ -1559,20 +1563,558 @@
 
   </section>
 
-  <!--
-    REMAINING SECTIONS — TO BE DRAFTED IN SUBSEQUENT PASSES:
+  <section xml:id="sec-translating-arguments-into-syllogism-form">
+    <title>Putting Prose Arguments into Syllogism Form</title>
 
-    §7.5 Translating arguments into syllogism form. When a real
-         argument is close to but not yet in syllogism form, what
-         reductions and rephrasings are legitimate.
+    <introduction>
+      <p>
+        So far, most of our syllogisms have already been in
+        standard form. Real arguments usually are not so obliging.
+        They come as prose: sentences with <q>because,</q> unstated
+        assumptions, ordinary verbs, pronouns, and terms that have
+        to be made consistent before the Venn method can be used.
+      </p>
+      <p>
+        The task is not to replace the original argument with a
+        prettier argument. The task is to reconstruct the argument
+        fairly enough that its categorical structure can be tested.
+        A good reconstruction preserves what the passage is trying
+        to prove while making the categories explicit.
+      </p>
+    </introduction>
 
-    §7.6 Where We're Headed. Closing pivot to Part III (sentential
-         logic).
+    <paragraphs xml:id="paragraphs-syllogism-reconstruction-procedure">
+      <title>The procedure</title>
+      <p>
+        Use the reconstruction skills from Chapter 2 and the
+        translation skills from Chapter 6 together.
+      </p>
+      <ol>
+        <li>
+          <p>
+            <alert>Find the conclusion.</alert> Indicator words
+            such as <q>so,</q> <q>therefore,</q> and <q>it follows
+            that</q> help. So do premise indicators such as
+            <q>because</q> and <q>since.</q>
+          </p>
+        </li>
+        <li>
+          <p>
+            <alert>Identify S and P from the conclusion.</alert>
+            The conclusion's subject term is S. The conclusion's
+            predicate term is P.
+          </p>
+        </li>
+        <li>
+          <p>
+            <alert>Find the middle term.</alert> The middle term M
+            appears in the premises but not in the conclusion. It
+            is the category that connects S to P.
+          </p>
+        </li>
+        <li>
+          <p>
+            <alert>Make the wording consistent.</alert> Use the
+            same category term each time the argument is talking
+            about the same class. This often means replacing a
+            verb phrase with a noun phrase: <q>degrades human
+            personality</q> becomes <q>laws that degrade human
+            personality.</q>
+          </p>
+        </li>
+        <li>
+          <p>
+            <alert>Add only fair implicit premises.</alert> If the
+            passage clearly relies on a missing categorical claim,
+            make it explicit. Do not add a premise just to make a
+            bad argument good.
+          </p>
+        </li>
+        <li>
+          <p>
+            <alert>Put the result in standard form.</alert> The
+            major premise contains P and M. The minor premise
+            contains S and M. The conclusion contains S and P.
+            Then evaluate the syllogism by Venn diagram or by the
+            modern-valid form table.
+          </p>
+        </li>
+      </ol>
+    </paragraphs>
 
-    EOC exercises (probably 5–7 sets covering: identifying terms,
-    diagramming premises, full validity testing by Venn, mood and
-    figure identification, mood-and-figure validity testing, mixed
-    review).
-  -->
+    <paragraphs xml:id="paragraphs-paraphrase-boundaries">
+      <title>Fair paraphrase</title>
+      <p>
+        Paraphrase is allowed because ordinary English is not built
+        in categorical notation. <q>Fads aren't healthy</q> can be
+        paraphrased as <q>No fads are healthy things.</q> <q>Anyone
+        who is honest is naive</q> can be paraphrased as <q>All
+        honest people are naive people.</q> <q>Only models trained
+        on code can pass a coding interview</q> becomes <q>All
+        things that can pass a coding interview are models trained
+        on code.</q>
+      </p>
+      <p>
+        But the paraphrase has to preserve the argument's meaning.
+        Do not strengthen a claim, weaken a claim, or quietly
+        change the subject matter. <q>Some futurists believe that
+        technology can solve all moral problems</q> does not become
+        <q>All futurists believe that technology can solve all
+        moral problems.</q> <q>People who get their news from
+        social media miss what is actually happening</q> does not
+        become <q>People who use social media are ignorant.</q>
+        The categories may be cleaned up; the claim itself may not
+        be improved.
+      </p>
+    </paragraphs>
+
+    <paragraphs xml:id="paragraphs-mlk-syllogism-reconstruction">
+      <title>Worked example: Martin Luther King Jr.</title>
+      <p>
+        Consider this passage from <em>Letter from a Birmingham
+        Jail</em>:
+      </p>
+      <blockquote>
+        <p>
+          <q>Any law that degrades human personality is unjust.
+          All segregation statutes are unjust because segregation
+          distorts the soul and damages the personality.</q><fn>
+            Martin Luther King Jr., <em>Letter from a Birmingham
+            Jail</em>, 1963.
+          </fn>
+        </p>
+      </blockquote>
+      <p>
+        The second sentence contains both the conclusion and the
+        reason for it. The conclusion is that segregation statutes
+        are unjust. The reason is that segregation degrades human
+        personality. To put the passage into categorical form, we
+        need the category terms to line up.
+      </p>
+      <p>
+        The conclusion is:
+      </p>
+      <p>
+        C: All segregation statutes are unjust laws.
+      </p>
+      <p>
+        So S is <em>segregation statutes</em>, and P is
+        <em>unjust laws</em>. The middle term is
+        <em>laws that degrade human personality</em>.
+      </p>
+      <p>
+        The standard-form syllogism is:
+      </p>
+      <example xml:id="ex-mlk-standard-form-syllogism">
+        <title>Segregation statutes</title>
+        <statement>
+          <p>P1: All laws that degrade human personality are unjust laws.</p>
+          <p>P2: All segregation statutes are laws that degrade human personality.</p>
+          <p><m>\therefore</m> C: All segregation statutes are unjust laws.</p>
+        </statement>
+      </example>
+      <p>
+        This is a valid syllogism. In mood-and-figure notation, it
+        has the form AAA-1, which appears in the modern-valid
+        table. By Venn diagram, P1 shades the part of M outside P;
+        P2 shades the part of S outside M. Together, those shadings
+        shade all of S outside P, which is exactly what the
+        conclusion requires.
+      </p>
+      <p>
+        There is also a natural negative reconstruction of the same
+        argument:
+      </p>
+      <example xml:id="ex-mlk-obverse-standard-form-syllogism">
+        <title>Segregation statutes, negative form</title>
+        <statement>
+          <p>P1: No laws that degrade human personality are just laws.</p>
+          <p>P2: All segregation statutes are laws that degrade human personality.</p>
+          <p><m>\therefore</m> C: No segregation statutes are just laws.</p>
+        </statement>
+      </example>
+      <p>
+        This version is valid too: EAE-1. It is not a competing
+        argument so much as a different categorical rendering of
+        the same point. Its P1 and conclusion are effectively the
+        obverses of the corresponding claims in the first
+        reconstruction: <q>All M are unjust laws</q> becomes
+        <q>No M are just laws,</q> and <q>All S are unjust laws</q>
+        becomes <q>No S are just laws.</q>
+      </p>
+      <p>
+        Notice the reconstructive choice. The original passage says
+        that segregation distorts and damages personality. The
+        syllogism treats segregation statutes as laws that degrade
+        human personality. That is a fair paraphrase because it
+        captures the role that sentence plays in the argument. It
+        would not be fair to add a separate premise that all unjust
+        laws must be disobeyed, because that is not the conclusion
+        being tested here.
+      </p>
+    </paragraphs>
+
+    <paragraphs xml:id="paragraphs-enthymeme-example">
+      <title>When a premise is missing</title>
+      <p>
+        Sometimes the passage gives a premise and a conclusion, but
+        leaves out the general rule that would connect them:
+      </p>
+      <example xml:id="ex-pro-life-legislation-enthymeme">
+        <title>A missing premise</title>
+        <statement>
+          <p>All pro-life legislation restricts freedom.</p>
+          <p>So, no pro-life legislation should be passed.</p>
+        </statement>
+      </example>
+      <p>
+        As written, this is an enthymeme: a premise is unstated.
+        The argument is relying on something like this:
+      </p>
+      <p>
+        No legislation that restricts freedom is legislation that
+        should be passed.
+      </p>
+      <p>
+        With that premise made explicit, the standard-form
+        syllogism is:
+      </p>
+      <example xml:id="ex-pro-life-legislation-standard-form">
+        <title>Restricting freedom</title>
+        <statement>
+          <p>P1: No legislation that restricts freedom is legislation that should be passed.</p>
+          <p>P2: All pro-life legislation is legislation that restricts freedom.</p>
+          <p><m>\therefore</m> C: No pro-life legislation is legislation that should be passed.</p>
+        </statement>
+      </example>
+      <p>
+        The reconstructed syllogism is valid: EAE-1. But that does
+        not settle whether the original argument is sound. It only
+        tells us that if the stated premise and the implicit
+        premise are true, the conclusion follows.
+      </p>
+    </paragraphs>
+
+    <paragraphs xml:id="paragraphs-particular-prose-example">
+      <title>When the conclusion is particular</title>
+      <p>
+        Particular claims often hide inside ordinary phrases such
+        as <q>there are,</q> <q>some,</q> or <q>according to this
+        evidence, some.</q> Consider:
+      </p>
+      <example xml:id="ex-futurists-standard-form">
+        <title>Futurists</title>
+        <statement>
+          <p>Anyone who believes that technology can solve all moral problems is overly optimistic.</p>
+          <p>According to surveys, some futurists believe that technology can solve all moral problems.</p>
+          <p>It follows that there are futurists who are overly optimistic.</p>
+        </statement>
+      </example>
+      <p>
+        The conclusion is <q>Some futurists are overly optimistic
+        people.</q> So S is <em>futurists</em> and P is
+        <em>overly optimistic people</em>. The middle term is
+        <em>people who believe that technology can solve all moral
+        problems</em>.
+      </p>
+      <p>
+        In standard form:
+      </p>
+      <example xml:id="ex-futurists-reconstructed-syllogism">
+        <title>Technology and optimism</title>
+        <statement>
+          <p>P1: All people who believe that technology can solve all moral problems are overly optimistic people.</p>
+          <p>P2: Some futurists are people who believe that technology can solve all moral problems.</p>
+          <p><m>\therefore</m> C: Some futurists are overly optimistic people.</p>
+        </statement>
+      </example>
+      <p>
+        This is valid: AII-1. The particular premise places an X
+        in the S-and-M region. The universal premise forces any
+        such X into P. The conclusion needs an X in S-and-P, and
+        the premise diagram supplies it.
+      </p>
+    </paragraphs>
+
+    <paragraphs xml:id="paragraphs-not-every-passage-fits">
+      <title>Not every passage fits</title>
+      <p>
+        The categorical syllogism is a powerful form, but it is
+        still only one form. Some arguments need conditionals,
+        disjunctions, causal claims, probabilities, or more than
+        three category terms. Do not force every passage into a
+        syllogism.
+      </p>
+      <p>
+        A passage is a good candidate for categorical reconstruction
+        when it has three recurring categories and the conclusion
+        relates two of them. If you need four or five categories to
+        state the argument honestly, or if the argument turns on
+        <q>if ... then</q> structure rather than category inclusion
+        or exclusion, save it for another logical tool.
+      </p>
+    </paragraphs>
+
+  </section>
+
+  <section xml:id="sec-categorical-syllogisms-where-headed">
+    <title>Where We're Headed</title>
+
+    <p>
+      Categorical logic gives us one formal machine for testing
+      validity. If an argument can be reconstructed as a
+      three-term syllogism, then the Venn method gives a precise
+      answer to the validity question: the argument is valid if
+      the premise diagram already contains what the conclusion
+      claims.
+    </p>
+    <p>
+      But categorical logic does not cover every valid argument.
+      Some arguments turn on the internal structure of whole
+      sentences rather than on relations among categories. Consider
+      the difference between these two patterns:
+    </p>
+    <p>
+      All M are P. All S are M. Therefore, all S are P.
+    </p>
+    <p>
+      If P, then Q. P. Therefore, Q.
+    </p>
+    <p>
+      The first is categorical. It works by relating classes. The
+      second is sentential. It works by relating whole statements.
+      The next part of the book turns to that second kind of
+      structure: conditionals, disjunctions, negations,
+      conjunctions, and the rules that govern them.
+    </p>
+    <p>
+      This is not a rejection of categorical logic. It is an
+      expansion of the toolkit. Part II taught one disciplined way
+      to ask whether a conclusion follows from premises. Part III
+      gives us another, better suited to arguments whose logical
+      force depends on words such as <q>if,</q> <q>not,</q>
+      <q>and,</q> and <q>or.</q>
+    </p>
+
+  </section>
+
+  <conclusion xml:id="conclusion-ch7">
+    <title>Chapter Summary</title>
+
+    <p>
+      This chapter combined categorical propositions into
+      categorical syllogisms and tested them for validity. The
+      core ideas, section by section:
+    </p>
+
+    <p>
+      <alert>Standard Form Syllogisms (§7.1).</alert> A categorical
+      syllogism has two premises and a conclusion, all in
+      standard-form categorical propositions, using exactly three
+      terms: S, P, and M. The conclusion determines S and P; the
+      remaining term is M.
+    </p>
+
+    <p>
+      <alert>Diagramming a Syllogism (§7.2).</alert> The premises
+      go on a three-circle Venn diagram. The conclusion is tested
+      against the premise diagram. The syllogism is valid when the
+      premise diagram already contains what the conclusion claims.
+    </p>
+
+    <p>
+      <alert>Common Validity Patterns and Failure Points (§7.3).</alert>
+      Some invalid syllogisms fail because a required region is not
+      shaded, because an X remains on a boundary, or because
+      universal premises provide no existential commitment. The
+      ozone example shows why some traditionally valid forms are
+      invalid on the modern interpretation.
+    </p>
+
+    <p>
+      <alert>Mood and Figure (§7.4).</alert> Mood records the A, E,
+      I, O sequence of the major premise, minor premise, and
+      conclusion. Figure records the position of the middle term.
+      Together, mood and figure give a compact text label for a
+      syllogism.
+    </p>
+
+    <p>
+      <alert>Putting Prose Arguments into Syllogism Form (§7.5).</alert>
+      Real arguments often need reconstruction before they can be
+      tested. The fair task is to identify the conclusion, fix the
+      category terms, add only legitimate implicit premises, put
+      the argument in standard form, and then evaluate it.
+    </p>
+
+    <p>
+      <alert>Where We're Headed (§7.6).</alert> Categorical logic
+      handles arguments about classes. Part III turns to
+      sentential logic, where validity depends on the structure of
+      whole statements.
+    </p>
+
+  </conclusion>
+
+  <section xml:id="sec-ch7-key-terms">
+    <title>Key Terms</title>
+
+    <p>Listed alphabetically, with section references.</p>
+
+    <dl>
+      <li xml:id="term-ch7-boundary-x">
+        <title>Boundary X</title>
+        <p>An X placed on a boundary between regions because the relevant particular claim does not yet determine which region contains the object. (§7.2, §7.3)</p>
+      </li>
+      <li xml:id="term-ch7-categorical-syllogism">
+        <title>Categorical syllogism</title>
+        <p>A three-statement argument with two premises and a conclusion, all standard-form categorical propositions, using exactly three terms. (§7.1)</p>
+      </li>
+      <li xml:id="term-ch7-enthymeme">
+        <title>Enthymeme</title>
+        <p>An argument with an unstated premise or conclusion. In syllogism reconstruction, fair implicit premises may be made explicit. (§7.5)</p>
+      </li>
+      <li xml:id="term-ch7-figure">
+        <title>Figure</title>
+        <p>The arrangement of the middle term in the major and minor premises of a categorical syllogism. (§7.4)</p>
+      </li>
+      <li xml:id="term-ch7-major-premise">
+        <title>Major premise</title>
+        <p>The premise containing the major term P and the middle term M. (§7.1)</p>
+      </li>
+      <li xml:id="term-ch7-major-term">
+        <title>Major term</title>
+        <p>The predicate term of the conclusion, represented by P. (§7.1)</p>
+      </li>
+      <li xml:id="term-ch7-middle-term">
+        <title>Middle term</title>
+        <p>The term that appears in both premises but not in the conclusion, represented by M. (§7.1)</p>
+      </li>
+      <li xml:id="term-ch7-minor-premise">
+        <title>Minor premise</title>
+        <p>The premise containing the minor term S and the middle term M. (§7.1)</p>
+      </li>
+      <li xml:id="term-ch7-minor-term">
+        <title>Minor term</title>
+        <p>The subject term of the conclusion, represented by S. (§7.1)</p>
+      </li>
+      <li xml:id="term-ch7-mood">
+        <title>Mood</title>
+        <p>The sequence of A, E, I, and O forms in a syllogism's major premise, minor premise, and conclusion. (§7.4)</p>
+      </li>
+      <li xml:id="term-ch7-standard-form-syllogism">
+        <title>Standard form syllogism</title>
+        <p>A categorical syllogism arranged with the major premise first, the minor premise second, and the conclusion last. (§7.1)</p>
+      </li>
+      <li xml:id="term-ch7-validity-table">
+        <title>Validity table</title>
+        <p>A list of mood-and-figure forms that are valid on the modern interpretation. (§7.4)</p>
+      </li>
+    </dl>
+
+  </section>
+
+  <exercises xml:id="exercises-ch7">
+    <title>End-of-Chapter Exercises</title>
+
+    <exercisegroup xml:id="exgroup-ch7-s01">
+      <title>Exercise Set 1: Terms and Standard Form</title>
+      <introduction>
+        <p>
+          For each syllogism, identify S, P, and M. Then rewrite
+          the argument in standard form: major premise, minor
+          premise, conclusion.
+        </p>
+      </introduction>
+      <exercise xml:id="ex-ch7-s01-01"><statement><p>All journalists are people who ask inconvenient questions. No campaign surrogates are journalists. So, no campaign surrogates are people who ask inconvenient questions.</p></statement></exercise>
+      <exercise xml:id="ex-ch7-s01-02"><statement><p>Some federal judges are former prosecutors. All former prosecutors are lawyers. Therefore, some federal judges are lawyers.</p></statement></exercise>
+      <exercise xml:id="ex-ch7-s01-03"><statement><p>No successful scams are transparent business practices. Some online investment schemes are successful scams. So, some online investment schemes are not transparent business practices.</p></statement></exercise>
+      <exercise xml:id="ex-ch7-s01-04"><statement><p>All data centers are heavy users of electricity. Some heavy users of electricity are not good fits for weak power grids. Therefore, some good fits for weak power grids are not data centers.</p></statement></exercise>
+    </exercisegroup>
+
+    <exercisegroup xml:id="exgroup-ch7-s02">
+      <title>Exercise Set 2: Venn-Diagram Validity</title>
+      <introduction>
+        <p>
+          Each syllogism is already in standard form. Evaluate it
+          for validity on the modern interpretation using a
+          three-circle Venn diagram. State whether it is valid or
+          invalid.
+        </p>
+      </introduction>
+      <exercise xml:id="ex-ch7-s02-01"><statement><p>No right-wing hate mongers are socialists. Some Americans are socialists. Therefore, some Americans are not right-wing hate mongers.</p></statement></exercise>
+      <exercise xml:id="ex-ch7-s02-02"><statement><p>No vegetarians are meat eaters. No consistent thinkers are meat eaters. Therefore, all consistent thinkers are vegetarians.</p></statement></exercise>
+      <exercise xml:id="ex-ch7-s02-03"><statement><p>All Kilgore Trout stories are works of neglected genius. Some works of neglected genius are not widely read books. Therefore, some widely read books are not Kilgore Trout stories.</p></statement></exercise>
+      <exercise xml:id="ex-ch7-s02-04"><statement><p>All ozone molecules are good absorbers of UV rays. All ozone molecules are substances destroyed by chlorine. Therefore, some substances destroyed by chlorine are good absorbers of UV rays.</p></statement></exercise>
+      <exercise xml:id="ex-ch7-s02-05"><statement><p>All people who read carefully are people who notice hidden assumptions. Some students are people who read carefully. Therefore, some students are people who notice hidden assumptions.</p></statement></exercise>
+    </exercisegroup>
+
+    <exercisegroup xml:id="exgroup-ch7-s03">
+      <title>Exercise Set 3: Mood and Figure</title>
+      <introduction>
+        <p>
+          For each standard-form syllogism, identify its mood and
+          figure. Then use the modern-valid form table to say
+          whether it is valid.
+        </p>
+      </introduction>
+      <exercise xml:id="ex-ch7-s03-01"><statement><p>No M are P. All S are M. Therefore, no S are P.</p></statement></exercise>
+      <exercise xml:id="ex-ch7-s03-02"><statement><p>All P are M. No S are M. Therefore, no S are P.</p></statement></exercise>
+      <exercise xml:id="ex-ch7-s03-03"><statement><p>All M are P. All M are S. Therefore, some S are P.</p></statement></exercise>
+      <exercise xml:id="ex-ch7-s03-04"><statement><p>Some M are P. All M are S. Therefore, some S are P.</p></statement></exercise>
+      <exercise xml:id="ex-ch7-s03-05"><statement><p>No P are M. Some S are M. Therefore, some S are not P.</p></statement></exercise>
+      <exercise xml:id="ex-ch7-s03-06"><statement><p>All P are M. Some M are S. Therefore, some S are P.</p></statement></exercise>
+    </exercisegroup>
+
+    <exercisegroup xml:id="exgroup-ch7-s04">
+      <title>Exercise Set 4: Putting Prose into Syllogism Form</title>
+      <introduction>
+        <p>
+          Translate each prose argument into a standard-form
+          categorical syllogism. Add only fair implicit premises.
+          Then evaluate for validity on the modern interpretation.
+        </p>
+      </introduction>
+      <exercise xml:id="ex-ch7-s04-01"><statement><p>Anyone who believes that technology can solve all moral problems is overly optimistic. Some futurists believe that technology can solve all moral problems. It follows that some futurists are overly optimistic.</p></statement></exercise>
+      <exercise xml:id="ex-ch7-s04-02"><statement><p>Fads are not healthy things. Every crash diet is a fad. So, crash diets are not healthy things.</p></statement></exercise>
+      <exercise xml:id="ex-ch7-s04-03"><statement><p>People who get their news only from social media miss important context. Those who miss important context are poorly informed. Therefore, people who get their news only from social media are poorly informed.</p></statement></exercise>
+      <exercise xml:id="ex-ch7-s04-04"><statement><p>All pro-life legislation restricts freedom. So, no pro-life legislation should be passed.</p></statement></exercise>
+      <exercise xml:id="ex-ch7-s04-05"><statement><p>Every law that degrades human personality is unjust. Segregation statutes degrade human personality. Therefore, segregation statutes are unjust.</p></statement></exercise>
+    </exercisegroup>
+
+    <exercisegroup xml:id="exgroup-ch7-s05">
+      <title>Exercise Set 5: Explaining Invalidity</title>
+      <introduction>
+        <p>
+          Each syllogism is invalid on the modern interpretation.
+          Explain the failure point in words: missing shading,
+          missing X, boundary X, two negative premises, two
+          particular premises, or existential import.
+        </p>
+      </introduction>
+      <exercise xml:id="ex-ch7-s05-01"><statement><p>No M are P. No S are M. Therefore, all S are P.</p></statement></exercise>
+      <exercise xml:id="ex-ch7-s05-02"><statement><p>All M are P. All M are S. Therefore, some S are P.</p></statement></exercise>
+      <exercise xml:id="ex-ch7-s05-03"><statement><p>Some M are not P. Some M are S. Therefore, some S are not P.</p></statement></exercise>
+      <exercise xml:id="ex-ch7-s05-04"><statement><p>All P are M. Some S are not M. Therefore, some S are not P.</p></statement></exercise>
+      <exercise xml:id="ex-ch7-s05-05"><statement><p>Some P are M. Some S are M. Therefore, some S are P.</p></statement></exercise>
+    </exercisegroup>
+
+    <exercisegroup xml:id="exgroup-ch7-s06">
+      <title>Exercise Set 6: Mixed Review</title>
+      <introduction>
+        <p>
+          For each item, do whatever is needed: identify terms,
+          put the argument in standard form, diagram it or identify
+          mood and figure, and evaluate for validity.
+        </p>
+      </introduction>
+      <exercise xml:id="ex-ch7-s06-01"><statement><p>No AI safety researchers are accelerationists. All people calling for slower deployment are AI safety researchers. Therefore, no people calling for slower deployment are accelerationists.</p></statement></exercise>
+      <exercise xml:id="ex-ch7-s06-02"><statement><p>Only models trained on code can pass a coding interview. Some chatbots can pass coding interviews. Therefore, some chatbots are models trained on code.</p></statement></exercise>
+      <exercise xml:id="ex-ch7-s06-03"><statement><p>No non-voters are people who returned a ballot. Some eligible citizens are non-voters. Therefore, some eligible citizens are not people who returned a ballot.</p></statement></exercise>
+      <exercise xml:id="ex-ch7-s06-04"><statement><p>All laws identical to this ordinance are laws that restrict camping downtown. No laws that restrict camping downtown are laws supported by the housing coalition. Therefore, no laws identical to this ordinance are laws supported by the housing coalition.</p></statement></exercise>
+      <exercise xml:id="ex-ch7-s06-05"><statement><p>Some committee reports are not public documents. All committee reports are records produced by the council. Therefore, some records produced by the council are not public documents.</p></statement></exercise>
+    </exercisegroup>
+
+  </exercises>
 
 </chapter>
