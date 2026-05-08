@@ -251,6 +251,25 @@
       border-color: #f0a2a2;
     }
 
+    .table-meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-bottom: 10px;
+      color: var(--gray-500);
+      font-size: .9rem;
+    }
+
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      border: 1px solid var(--gray-300);
+      border-radius: 999px;
+      background: #fbfcfe;
+      padding: 3px 9px;
+      font-weight: 650;
+    }
+
     .mobile-warning {
       display: none;
       border: 1px solid #f3d08b;
@@ -565,6 +584,10 @@
       announce(message);
     }
 
+    function currentFeedbackMode() {
+      return $('#feedback-mode').value;
+    }
+
     function currentProblemList() {
       return core.problems[app.mode] || [];
     }
@@ -583,6 +606,19 @@
       return `<label for="${id}">${label}
         <input id="${id}" class="formula-input" type="text" value="${esc(value)}" placeholder="e.g. A ⊃ (B · C)">
       </label>`;
+    }
+
+    function currentFormulaValues() {
+      const values = {};
+      $$('.formula-input').forEach(input => { values[input.id] = input.value; });
+      return values;
+    }
+
+    function restoreFormulaValues(values) {
+      Object.entries(values || {}).forEach(([id, value]) => {
+        const el = document.getElementById(id);
+        if (el) el.value = value;
+      });
     }
 
     function renderFormulaFields() {
@@ -612,13 +648,17 @@
       });
       const add = $('#add-premise');
       if (add) add.addEventListener('click', () => {
+        const values = currentFormulaValues();
         app.premiseCount = Math.min(3, app.premiseCount + 1);
         renderFormulaFields();
+        restoreFormulaValues(values);
         saveState();
       });
       $$('[data-remove-premise]').forEach(btn => btn.addEventListener('click', () => {
+        const values = currentFormulaValues();
         app.premiseCount = Math.max(1, app.premiseCount - 1);
         renderFormulaFields();
+        restoreFormulaValues(values);
         saveState();
       }));
     }
@@ -633,7 +673,7 @@
     }
 
     function insertSymbol(symbol) {
-      const input = app.activeInput || $('.formula-input');
+      const input = app.activeInput && document.contains(app.activeInput) ? app.activeInput : $('.formula-input');
       if (!input) return;
       const start = input.selectionStart || 0;
       const end = input.selectionEnd || start;
@@ -739,7 +779,8 @@
         renderTable();
         renderAnswerControls();
         setStatus($('#setup-status'), `Built table with ${app.model.vars.length} sentence letter${app.model.vars.length === 1 ? '' : 's'} and ${app.model.rows.length} rows.`, 'ok');
-        setStatus($('#feedback'), 'Fill the unlocked columns first.');
+        const next = nextUnlockedColumn();
+        setStatus($('#feedback'), next ? `Start with ${next.formulaLabel}, ${next.label}.` : 'No truth-value columns are needed. Choose the final answer.', next ? 'note' : 'warn');
         saveState();
       } catch (err) {
         setStatus($('#setup-status'), err.message || String(err), 'err');
@@ -769,12 +810,17 @@
     function depsCorrect(col) {
       return col.deps.every(depId => {
         const dep = app.model.columns.find(candidate => candidate.id === depId);
-        return dep && colCorrect(dep);
+        return dep && colCorrect(dep) && (currentFeedbackMode() === 'immediate' || colChecked(dep));
       });
     }
 
     function colUnlocked(col) {
       return depsCorrect(col);
+    }
+
+    function nextUnlockedColumn() {
+      if (!app.model) return null;
+      return app.model.columns.find(col => colUnlocked(col) && (currentFeedbackMode() === 'immediate' ? !colCorrect(col) : !colChecked(col)));
     }
 
     function firstColumnForFormula(col) {
@@ -802,7 +848,7 @@
       const classes = [];
       if (firstColumnForFormula(col)) classes.push('formula-sep');
       if (!colUnlocked(col)) classes.push('locked');
-      else if (colCorrect(col)) classes.push('correct-col');
+      else if (colCorrect(col) && (currentFeedbackMode() === 'immediate' || colChecked(col))) classes.push('correct-col');
       else classes.push('active-col');
       return classes.join(' ');
     }
@@ -814,12 +860,13 @@
         const locked = !colUnlocked(col);
         const mainName = `main-${col.formulaKey}`;
         const checked = app.mainSelections[col.formulaKey] === col.id ? 'checked' : '';
+        const mainLabel = `Select ${col.label} as the main column for ${col.formulaLabel}`;
         return `<th scope="col" class="${headerClass(col)}">
           <div class="column-header">
             <div class="hint">${esc(col.formulaLabel)}</div>
             <div class="formula-label">${renderFormulaAst(col.ast)}</div>
             <label class="main-radio">
-              <input type="radio" name="${mainName}" value="${col.id}" ${checked}>
+              <input type="radio" name="${mainName}" value="${col.id}" ${checked} aria-label="${esc(mainLabel)}">
               Main
             </label>
             ${locked ? '<div class="hint">Locked</div>' : ''}
@@ -837,8 +884,17 @@
           : '';
         return `<tr><th scope="row" class="row-num">${rowIndex + 1}</th>${given}${fillable}${counter}</tr>`;
       }).join('');
-      $('#table-wrap').innerHTML = `<div class="table-scroll">
+      const modeNote = currentFeedbackMode() === 'button'
+        ? 'Fill each unlocked column, then check it to unlock the next column.'
+        : 'Correct cells unlock later columns automatically.';
+      $('#table-wrap').innerHTML = `<div class="table-meta" id="table-summary">
+          <span class="badge">${app.model.rows.length} rows</span>
+          <span class="badge">${app.model.vars.length} sentence letter${app.model.vars.length === 1 ? '' : 's'}</span>
+          <span>${modeNote}</span>
+        </div>
+        <div class="table-scroll">
         <table aria-label="Truth table">
+          <caption class="sr-only">Truth table. Sentence-letter columns are filled in. Fill unlocked compound-statement columns with T or F.</caption>
           <thead><tr><th scope="col" class="row-num">Row</th>${vars}${formulaHeaders}${counterHead}</tr></thead>
           <tbody>${rows}</tbody>
         </table>
@@ -882,7 +938,8 @@
         if (value && value !== expected) {
           setStatus($('#feedback'), `Check ${col.formulaLabel}, ${col.label}, row ${rowIndex + 1}.`, 'err');
         } else if (colComplete(col) && colCorrect(col)) {
-          setStatus($('#feedback'), `Correct column: ${col.formulaLabel}, ${col.label}.`, 'ok');
+          const next = nextUnlockedColumn();
+          setStatus($('#feedback'), next && next.id !== col.id ? `Correct column. Next: ${next.formulaLabel}, ${next.label}.` : `Correct column: ${col.formulaLabel}, ${col.label}.`, 'ok');
         } else if (value) {
           setStatus($('#feedback'), `Correct cell. Continue ${col.formulaLabel}, ${col.label}.`, 'ok');
         }
@@ -893,9 +950,9 @@
 
     function checkActiveColumns() {
       if (!app.model) return;
-      const active = app.model.columns.filter(col => colUnlocked(col) && !colCorrect(col));
+      const active = app.model.columns.filter(col => colUnlocked(col) && !colChecked(col));
       if (!active.length) {
-        setStatus($('#feedback'), 'All currently unlocked columns are correct.', 'ok');
+        setStatus($('#feedback'), 'All unlocked columns have already been checked.', 'ok');
         return;
       }
       for (const col of active) {
@@ -915,7 +972,8 @@
         }
       }
       renderTable();
-      setStatus($('#feedback'), 'Correct. The next column is unlocked.', 'ok');
+      const next = nextUnlockedColumn();
+      setStatus($('#feedback'), next ? `Correct. Next: ${next.formulaLabel}, ${next.label}.` : 'Correct. All truth-value columns are checked.', 'ok');
       saveState();
     }
 
@@ -1074,6 +1132,7 @@
       app.mainSelections = {};
       app.finalAnswer = '';
       app.counterexampleRow = '';
+      app.activeInput = null;
       clearFormulaValues();
       localStorage.removeItem(STORAGE_KEY);
       setStatus($('#setup-status'), 'Saved work cleared.', 'ok');
@@ -1090,6 +1149,12 @@
       $('#clear-saved').addEventListener('click', clearSavedWork);
       $('#feedback-mode').addEventListener('change', () => {
         $('#check-columns').hidden = $('#feedback-mode').value !== 'button' || !app.model;
+        app.checkedColumns = {};
+        if (app.model) {
+          renderTable();
+          const next = nextUnlockedColumn();
+          setStatus($('#feedback'), next ? `Feedback mode changed. Start with ${next.formulaLabel}, ${next.label}.` : 'Feedback mode changed.', 'warn');
+        }
         saveState();
       });
       if (!restoreState()) {
