@@ -291,11 +291,11 @@ Items planted in earlier chapters that *must* be paid off in later chapters. Add
 
 - **Chapter 1 §1.1** plants the explanation-vs-argument distinction with a one-line preview ("we'll come back to that resemblance later"). This requires a dedicated subsection in the later chapter on *recognizing arguments in the wild*. The subsection should make the contrast precise: an argument tries to get the audience to *accept* a claim by giving reasons for it; an explanation assumes the claim is already accepted and gives reasons *why it is true*. Same shape, different work.
 - **Chapter 1 §1.1** previews *valid* and *sound* as labels, with a note that they apply to argument structure and not content. Definitions come in Chapter 3.
-- **Chapter 2 §2.3** points readers forward to *Appendix on Argument Diagrams* (planned). The pointer is a two-sentence reference at the end of the *verbal diagram rule* paragraphs block. The appendix itself remains to be drafted; see §18 of this plan for what it will contain.
+- **Chapter 2 §2.3** points readers forward to *Appendix on Argument Diagrams*. The pointer is a two-sentence reference at the end of the *verbal diagram rule* paragraphs block. The appendix is drafted in `book/source/appendix-diagramming.ptx`; see §18 of this plan for its scope and rationale.
 
-## 18. Planned Appendices
+## 18. Appendices
 
-Documented future content in the back-matter, in addition to the existing `appendix-solutions.ptx`.
+Documented appendix content in the back matter. The argument diagrams appendix appears before the selected-solutions appendix so students encounter the optional visual method before answer material.
 
 ### Appendix on Aristotelian Categorical Logic
 
@@ -311,7 +311,7 @@ Documented future content in the back-matter, in addition to the existing `appen
 
 ### Appendix on Argument Diagrams
 
-**Status.** Planned. A placeholder file lives at `book/source/appendix-diagramming.ptx` and is included from `main.ptx` so the build picks it up. Full content to be drafted later.
+**Status.** Drafted. The file lives at `book/source/appendix-diagramming.ptx` and is included from `main.ptx` before `appendix-solutions.ptx` so the build places it before the selected solutions.
 
 **Why an appendix and not body content.** Three reasons:
 
@@ -329,14 +329,14 @@ Documented future content in the back-matter, in addition to the existing `appen
 4. *Divergent.* A single premise that supports multiple conclusions has arrows leaving it for each conclusion. Multiple arrows leaving one premise = the premise supports more than one thing.
 5. *Convergent layered.* When a sub-conclusion C1 is itself supported by P1 and P2, the diagram has arrows from those premises (bracketed if dependent) into C1, and then a further arrow from C1 onward to whatever it in turn supports. Not a fifth fundamental convention — a consequence of applying the four to layered arguments — but worth showing as a worked diagram so students see how the conventions compose.
 
-**Planned appendix contents.**
+**Appendix contents.**
 
 1. *Frame.* One paragraph stating that diagrams are optional, what they add (visual at-a-glance overview of structure), what they don't add (no information beyond the verbal reconstruction). Names the accessibility commitment.
 2. *The four conventions* with the simplest possible example of each — one arrow, then bracket-dependent, then independent multi-arrow, then divergent.
 3. *Worked diagrams of arguments students have already met:* the library example from §1.3, the two God arguments from §1.3, the running shoes argument from §1.4, the Oxfam paragraph from §1.4 (especially good — it shows layered + dependent + independent + sub-conclusions all in one), and the food pantry from §2.4. Each diagram paired with its already-published verbal reconstruction so the equivalence is right there.
 4. *A worked example of a divergent argument* — students haven't seen one yet in the body of the book. One tailor-made example is worth including so the convention has a concrete instance.
 5. *Accessibility note.* Brief paragraph stating the appendix's commitment: every diagram has a `<description>` for screen readers that fully describes the support structure; the verbal reconstruction is primary; nothing in the assessments depends on producing or reading a diagram.
-6. *Optional exercises.* If we want any. Could be a small set asking students to take a verbal reconstruction from Chapters 1 or 2 and produce a diagram. Optional and explicitly so. No corresponding solutions — exploratory territory.
+6. *Optional exercises.* A small set asks students to take verbal reconstructions and produce matching diagrams. The exercises are optional and have no corresponding solutions.
 
 **Implementation notes.** Diagrams are generated via PreTeXt's `<figure>` + `<image>` elements, with TikZ source (or PreTeXt's `<diagram>` element) compiled to SVG for both PDF and HTML. Each `<image>` has a required `<description>` element holding the alt-text — for these diagrams the description must walk through the support structure for screen-reader users (e.g., *"P1 and P2 are bracketed together; one arrow leaves the bracket and arrives at C, indicating dependent support."*). Descriptions are non-trivial to write but are write-once.
 

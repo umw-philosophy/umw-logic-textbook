@@ -1,9 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
   Appendix: Argument Diagrams.
-  Placeholder. Full content to be drafted later.
-  See docs/PROJECT_PLAN.md §18 and docs/DECISIONS.md D-027 for the
-  appendix's planned scope, contents, and rationale.
+  Optional visual supplement to Chapter 2's verbal reconstruction method.
 -->
 <appendix xml:id="appendix-diagramming">
 
@@ -11,53 +9,563 @@
 
   <introduction>
     <p>
-      <em>This appendix is in preparation.</em>
+      Argument diagrams are optional. They give a visual overview of an
+      argument's structure, but they do not replace the reconstruction.
+      The reconstruction remains the primary form because it states every
+      claim and every support relation in words.
     </p>
     <p>
-      It will describe the optional visual conventions for diagramming
-      argument structure — single arrows from premises to conclusions,
-      brackets for dependent premises, separate arrows for independent
-      support, divergent arguments where one premise supports more than
-      one conclusion, and the convergent-layered composition — and will
-      present worked diagrams of several arguments students have already
-      met in the body of the book. Each diagram will be paired with the
-      verbal reconstruction it represents.
-    </p>
-    <p>
-      The verbal reconstruction is the primary form. Diagrams are an
-      alternate visual representation that does not add information
-      beyond what the reconstruction already conveys. Nothing in the
-      assessments depends on producing or reading a diagram.
-    </p>
-    <p>
-      Until this appendix is drafted, students who would benefit from
-      visual representations can draw their own diagrams from the
-      verbal reconstructions in Chapter 2.
+      The diagrams in this appendix use compact labels such as P1, P2,
+      C1, and C. The full reconstruction appears with each diagram. If
+      you cannot see or do not want to use the diagram, the reconstruction
+      gives the same structural information in words.
     </p>
   </introduction>
 
-  <!--
-    PLANNED CONTENTS (per PROJECT_PLAN.md §18):
-    1. Frame: optional, accessibility-first, what diagrams add and don't add.
-    2. The four conventions: single arrow; bracket for dependent;
-       separate arrows for independent; divergent (one premise → many
-       conclusions). Plus the convergent-layered composition as a
-       consequence of the four applied together.
-    3. Worked diagrams of arguments students have already met:
-       - Library example (§1.3)
-       - Modus tollens for God's existence (§1.3)
-       - Modus ponens against God's existence (§1.3)
-       - Running shoes (§1.4)
-       - Oxfam (§1.4) — shows layered + dependent + independent + sub-conclusions
-       - Food pantry (§2.4)
-    4. A worked example of a divergent argument (newly written for this appendix).
-    5. Accessibility statement up front and at the bottom.
-    6. Optional exercises (no required solutions; exploratory).
+  <section xml:id="sec-diagramming-conventions">
+    <title>Diagramming Conventions</title>
 
-    Implementation: each diagram is a <figure>+<image> with an
-    embedded <description> giving the support structure in words for
-    screen-reader users. Source for the diagrams in TikZ or PreTeXt's
-    <diagram> element; SVG output for both PDF and HTML.
-  -->
+    <introduction>
+      <p>
+        The conventions are simple. Arrows show support. A bracket shows
+        that statements support a conclusion dependently. Separate arrows
+        into the same conclusion show independent support. A single
+        statement can also support more than one later conclusion.
+      </p>
+    </introduction>
+
+    <paragraphs xml:id="paragraphs-diagram-single-arrow">
+      <title>Single support</title>
+      <p>
+        When one statement supports another statement, draw one arrow
+        from the supporting statement to the supported statement.
+      </p>
+      <p>
+        Reconstruction:
+      </p>
+      <p>P1: The seminar meets in Monroe Hall.</p>
+      <p>C: The seminar meets on campus. (from P1)</p>
+      <figure xml:id="fig-diagram-single-arrow">
+        <caption>A single arrow from P1 to C.</caption>
+        <image xml:id="image-diagram-single-arrow" width="50%">
+          <description>
+            <p>
+              A diagram with P1 on the left and C on the right. One
+              arrow runs from P1 to C, indicating that P1 supports C.
+            </p>
+          </description>
+          <latex-image>
+            \begin{tikzpicture}[x=1cm,y=1cm,>=stealth]
+              \tikzstyle{statement}=[draw,rounded corners=2pt,minimum width=1.2cm,minimum height=0.55cm,align=center,inner sep=4pt]
+              \node[statement] (p1) at (0,0) {$P1$};
+              \node[statement] (c) at (3,0) {$C$};
+              \draw[->,thick] (p1) -- (c);
+            \end{tikzpicture}
+          </latex-image>
+        </image>
+      </figure>
+    </paragraphs>
+
+    <paragraphs xml:id="paragraphs-diagram-dependent-support">
+      <title>Dependent support</title>
+      <p>
+        When two or more statements have to work together, group them
+        with a bracket and draw one arrow from the bracket to the
+        conclusion.
+      </p>
+      <p>
+        Reconstruction:
+      </p>
+      <p>
+        P1: If the only available exam time conflicts with a required
+        lab, the department should offer a make-up exam.
+      </p>
+      <p>
+        P2: The only available exam time conflicts with a required lab.
+      </p>
+      <p>
+        C: The department should offer a make-up exam. (from P1 and P2,
+        which are dependent)
+      </p>
+      <figure xml:id="fig-diagram-dependent-support">
+        <caption>A bracket groups P1 and P2; one arrow runs from the bracket to C.</caption>
+        <image xml:id="image-diagram-dependent-support" width="60%">
+          <description>
+            <p>
+              P1 appears above P2 on the left. A bracket groups P1
+              and P2 together. One arrow leaves the bracket and points
+              to C, indicating that P1 and P2 support C dependently.
+            </p>
+          </description>
+          <latex-image>
+            \begin{tikzpicture}[x=1cm,y=1cm,>=stealth]
+              \tikzstyle{statement}=[draw,rounded corners=2pt,minimum width=1.2cm,minimum height=0.55cm,align=center,inner sep=4pt]
+              \node[statement] (p1) at (0,0.45) {$P1$};
+              \node[statement] (p2) at (0,-0.45) {$P2$};
+              \node[statement] (c) at (3.2,0) {$C$};
+              \draw[thick] (0.85,0.75) -- (1.1,0.75) -- (1.1,-0.75) -- (0.85,-0.75);
+              \draw[->,thick] (1.1,0) -- (c);
+            \end{tikzpicture}
+          </latex-image>
+        </image>
+      </figure>
+    </paragraphs>
+
+    <paragraphs xml:id="paragraphs-diagram-independent-support">
+      <title>Independent support</title>
+      <p>
+        When two or more statements each give support on their own, draw
+        a separate arrow from each supporting statement to the conclusion.
+      </p>
+      <p>
+        Reconstruction:
+      </p>
+      <p>P1: The early bus is usually less crowded.</p>
+      <p>
+        P2: The early bus gets to campus before the coffee line gets
+        ridiculous.
+      </p>
+      <p>C: You should take the early bus. (from P1 and P2 independently)</p>
+      <figure xml:id="fig-diagram-independent-support">
+        <caption>Separate arrows from P1 and P2 to C.</caption>
+        <image xml:id="image-diagram-independent-support" width="60%">
+          <description>
+            <p>
+              P1 appears above P2 on the left, and C appears on the
+              right. One arrow runs from P1 to C. A separate arrow runs
+              from P2 to C. The separate arrows indicate independent
+              support.
+            </p>
+          </description>
+          <latex-image>
+            \begin{tikzpicture}[x=1cm,y=1cm,>=stealth]
+              \tikzstyle{statement}=[draw,rounded corners=2pt,minimum width=1.2cm,minimum height=0.55cm,align=center,inner sep=4pt]
+              \node[statement] (p1) at (0,0.55) {$P1$};
+              \node[statement] (p2) at (0,-0.55) {$P2$};
+              \node[statement] (c) at (3.2,0) {$C$};
+              \draw[->,thick] (p1) -- (c);
+              \draw[->,thick] (p2) -- (c);
+            \end{tikzpicture}
+          </latex-image>
+        </image>
+      </figure>
+    </paragraphs>
+
+    <paragraphs xml:id="paragraphs-diagram-divergent-support">
+      <title>Divergent support</title>
+      <p>
+        Sometimes one statement supports more than one later conclusion.
+        In that case, draw more than one arrow out of the same statement.
+      </p>
+      <p>
+        Reconstruction:
+      </p>
+      <p>P1: The main quad will be closed for repairs this week.</p>
+      <p>
+        C1: The outdoor club should move its information table to the
+        student center. (from P1)
+      </p>
+      <p>
+        C2: First-year orientation should change its walking route.
+        (from P1)
+      </p>
+      <figure xml:id="fig-diagram-divergent-support">
+        <caption>One premise supports two conclusions.</caption>
+        <image xml:id="image-diagram-divergent-support" width="60%">
+          <description>
+            <p>
+              P1 appears on the left. C1 appears above C2 on the right.
+              One arrow runs from P1 to C1, and another arrow runs from
+              P1 to C2. The two outgoing arrows indicate that P1 supports
+              more than one conclusion.
+            </p>
+          </description>
+          <latex-image>
+            \begin{tikzpicture}[x=1cm,y=1cm,>=stealth]
+              \tikzstyle{statement}=[draw,rounded corners=2pt,minimum width=1.2cm,minimum height=0.55cm,align=center,inner sep=4pt]
+              \node[statement] (p1) at (0,0) {$P1$};
+              \node[statement] (c1) at (3.2,0.55) {$C1$};
+              \node[statement] (c2) at (3.2,-0.55) {$C2$};
+              \draw[->,thick] (p1) -- (c1);
+              \draw[->,thick] (p1) -- (c2);
+            \end{tikzpicture}
+          </latex-image>
+        </image>
+      </figure>
+    </paragraphs>
+
+    <paragraphs xml:id="paragraphs-diagram-layered-support">
+      <title>Layered support</title>
+      <p>
+        Layered arguments combine the same conventions. A premise may
+        support a sub-conclusion, and that sub-conclusion may then help
+        support a later conclusion.
+      </p>
+    </paragraphs>
+
+  </section>
+
+  <section xml:id="sec-diagramming-worked-examples">
+    <title>Worked Examples</title>
+
+    <introduction>
+      <p>
+        The examples below come from Chapters 1 and 2. The reconstruction
+        states the structure. The diagram shows the same structure
+        visually.
+      </p>
+    </introduction>
+
+    <paragraphs xml:id="paragraphs-diagram-library">
+      <title>The library is closed</title>
+      <p>
+        Reconstruction:
+      </p>
+      <p>P1: The library closes at nine.</p>
+      <p>P2: It is now ten past nine.</p>
+      <p>C: The library is closed. (from P1 and P2, which are dependent)</p>
+      <figure xml:id="fig-diagram-library">
+        <caption>The library argument diagrammed as dependent support.</caption>
+        <image xml:id="image-diagram-library" width="60%">
+          <description>
+            <p>
+              P1 and P2 are grouped by a bracket. One arrow leaves the
+              bracket and points to C. The bracket indicates that P1 and
+              P2 work together to support C dependently.
+            </p>
+          </description>
+          <latex-image>
+            \begin{tikzpicture}[x=1cm,y=1cm,>=stealth]
+              \tikzstyle{statement}=[draw,rounded corners=2pt,minimum width=1.2cm,minimum height=0.55cm,align=center,inner sep=4pt]
+              \node[statement] (p1) at (0,0.45) {$P1$};
+              \node[statement] (p2) at (0,-0.45) {$P2$};
+              \node[statement] (c) at (3.2,0) {$C$};
+              \draw[thick] (0.85,0.75) -- (1.1,0.75) -- (1.1,-0.75) -- (0.85,-0.75);
+              \draw[->,thick] (1.1,0) -- (c);
+            \end{tikzpicture}
+          </latex-image>
+        </image>
+      </figure>
+    </paragraphs>
+
+    <paragraphs xml:id="paragraphs-diagram-god-mt">
+      <title>An argument for God's existence</title>
+      <p>
+        Reconstruction:
+      </p>
+      <p>P1: If there is no God, then life is meaningless.</p>
+      <p>P2: Life is not meaningless.</p>
+      <p>C: God exists. (from P1 and P2, which are dependent)</p>
+      <figure xml:id="fig-diagram-god-mt">
+        <caption>The modus tollens argument diagrammed as dependent support.</caption>
+        <image xml:id="image-diagram-god-mt" width="60%">
+          <description>
+            <p>
+              P1 and P2 are grouped by a bracket. One arrow leaves the
+              bracket and points to C. The bracket indicates that the
+              conditional premise and the denial of its consequent work
+              together to support the conclusion.
+            </p>
+          </description>
+          <latex-image>
+            \begin{tikzpicture}[x=1cm,y=1cm,>=stealth]
+              \tikzstyle{statement}=[draw,rounded corners=2pt,minimum width=1.2cm,minimum height=0.55cm,align=center,inner sep=4pt]
+              \node[statement] (p1) at (0,0.45) {$P1$};
+              \node[statement] (p2) at (0,-0.45) {$P2$};
+              \node[statement] (c) at (3.2,0) {$C$};
+              \draw[thick] (0.85,0.75) -- (1.1,0.75) -- (1.1,-0.75) -- (0.85,-0.75);
+              \draw[->,thick] (1.1,0) -- (c);
+            \end{tikzpicture}
+          </latex-image>
+        </image>
+      </figure>
+    </paragraphs>
+
+    <paragraphs xml:id="paragraphs-diagram-god-mp">
+      <title>An argument against God's existence</title>
+      <p>
+        Reconstruction:
+      </p>
+      <p>P1: If there is evil in the world, then God does not exist.</p>
+      <p>P2: There is evil in the world.</p>
+      <p>C: God does not exist. (from P1 and P2, which are dependent)</p>
+      <figure xml:id="fig-diagram-god-mp">
+        <caption>The modus ponens argument diagrammed as dependent support.</caption>
+        <image xml:id="image-diagram-god-mp" width="60%">
+          <description>
+            <p>
+              P1 and P2 are grouped by a bracket. One arrow leaves the
+              bracket and points to C. The bracket indicates that the
+              conditional premise and the affirmation of its antecedent
+              work together to support the conclusion.
+            </p>
+          </description>
+          <latex-image>
+            \begin{tikzpicture}[x=1cm,y=1cm,>=stealth]
+              \tikzstyle{statement}=[draw,rounded corners=2pt,minimum width=1.2cm,minimum height=0.55cm,align=center,inner sep=4pt]
+              \node[statement] (p1) at (0,0.45) {$P1$};
+              \node[statement] (p2) at (0,-0.45) {$P2$};
+              \node[statement] (c) at (3.2,0) {$C$};
+              \draw[thick] (0.85,0.75) -- (1.1,0.75) -- (1.1,-0.75) -- (0.85,-0.75);
+              \draw[->,thick] (1.1,0) -- (c);
+            \end{tikzpicture}
+          </latex-image>
+        </image>
+      </figure>
+    </paragraphs>
+
+    <paragraphs xml:id="paragraphs-diagram-running-shoes">
+      <title>Running shoes</title>
+      <p>
+        Reconstruction:
+      </p>
+      <p>
+        P1: Archaeologists have found rope-soled sandals from twenty
+        thousand years ago with wear patterns associated with running.
+      </p>
+      <p>
+        P2: Similar running-adapted sandals have appeared independently
+        in widely separated cultures.
+      </p>
+      <p>
+        C: The deliberate design of footwear for running is a much older
+        human practice than people assume. (from P1 and P2 independently)
+      </p>
+      <p>
+        This reconstruction treats P1 and P2 as independent support.
+        There are probably alternative correct ways to diagram this
+        argument, provided the reconstruction explains the support
+        relation clearly.
+      </p>
+      <figure xml:id="fig-diagram-running-shoes">
+        <caption>The running shoes argument diagrammed as independent support.</caption>
+        <image xml:id="image-diagram-running-shoes" width="60%">
+          <description>
+            <p>
+              P1 appears above P2 on the left. C appears on the right.
+              A separate arrow runs from P1 to C, and another separate
+              arrow runs from P2 to C. The separate arrows indicate that
+              P1 and P2 are being treated as independent support.
+            </p>
+          </description>
+          <latex-image>
+            \begin{tikzpicture}[x=1cm,y=1cm,>=stealth]
+              \tikzstyle{statement}=[draw,rounded corners=2pt,minimum width=1.2cm,minimum height=0.55cm,align=center,inner sep=4pt]
+              \node[statement] (p1) at (0,0.55) {$P1$};
+              \node[statement] (p2) at (0,-0.55) {$P2$};
+              \node[statement] (c) at (3.2,0) {$C$};
+              \draw[->,thick] (p1) -- (c);
+              \draw[->,thick] (p2) -- (c);
+            \end{tikzpicture}
+          </latex-image>
+        </image>
+      </figure>
+    </paragraphs>
+
+    <paragraphs xml:id="paragraphs-diagram-food-pantry">
+      <title>The campus food pantry</title>
+      <p>
+        Reconstruction:
+      </p>
+      <p>P1: The campus food pantry buys staple foods in bulk.</p>
+      <p>
+        C1: Each dollar donated to the campus food pantry goes farther
+        than it would at a grocery store. (from P1)
+      </p>
+      <p>P2: The campus food pantry lets students choose what they need.</p>
+      <p>
+        C2: The campus food pantry respects students' dignity and reduces
+        waste. (from P2)
+      </p>
+      <p>
+        P3: Programs that use money efficiently and respect the people
+        they serve deserve support.
+      </p>
+      <p>
+        C: You should donate to the campus food pantry. (from C1, C2,
+        and P3, which are dependent)
+      </p>
+      <figure xml:id="fig-diagram-food-pantry">
+        <caption>The food pantry argument diagrammed as a layered argument.</caption>
+        <image xml:id="image-diagram-food-pantry" width="75%">
+          <description>
+            <p>
+              P1 points to C1, showing that P1 supports the first
+              sub-conclusion. P2 points to C2, showing that P2 supports
+              the second sub-conclusion. C1, C2, and P3 are then grouped
+              by a bracket, and one arrow leaves that bracket and points
+              to C. The final bracket indicates that C1, C2, and P3
+              support the final conclusion dependently.
+            </p>
+          </description>
+          <latex-image>
+            \begin{tikzpicture}[x=1cm,y=1cm,>=stealth]
+              \tikzstyle{statement}=[draw,rounded corners=2pt,minimum width=1.15cm,minimum height=0.55cm,align=center,inner sep=4pt]
+              \node[statement] (p1) at (0,1.0) {$P1$};
+              \node[statement] (c1) at (2.3,1.0) {$C1$};
+              \node[statement] (p2) at (0,0) {$P2$};
+              \node[statement] (c2) at (2.3,0) {$C2$};
+              \node[statement] (p3) at (2.3,-1.0) {$P3$};
+              \node[statement] (c) at (5.4,0) {$C$};
+              \draw[->,thick] (p1) -- (c1);
+              \draw[->,thick] (p2) -- (c2);
+              \draw[thick] (3.05,1.3) -- (3.3,1.3) -- (3.3,-1.3) -- (3.05,-1.3);
+              \draw[->,thick] (3.3,0) -- (c);
+            \end{tikzpicture}
+          </latex-image>
+        </image>
+      </figure>
+    </paragraphs>
+
+    <paragraphs xml:id="paragraphs-diagram-oxfam">
+      <title>Oxfam, revisited</title>
+      <p>
+        Reconstruction:
+      </p>
+      <p>P1: 89 cents of every dollar goes directly to organizations on the ground.</p>
+      <p>P2: The aid provides for things like goats and schoolbooks.</p>
+      <p>
+        C1: The aid Oxfam provides makes it so a family can provide for
+        itself and the next generation has options. (from P2)
+      </p>
+      <p>
+        C2: Oxfam efficiently uses contributions to help end long-term
+        poverty by providing the tools for people to get an education and
+        support their families. (from P1 and C1, which are dependent)
+      </p>
+      <p>P3: It feels good to help people.</p>
+      <p>
+        P4: You should donate to programs that efficiently end long-term
+        poverty and that you find rewarding to support. (implicit)
+      </p>
+      <p>
+        C3: You should donate to Oxfam. (from C2, P3, and P4, which are
+        dependent)
+      </p>
+      <p>
+        This diagram keeps P3 as part of the argument and supplies an
+        implicit bridging premise. A more critical reconstruction might
+        treat P3 as rhetorical rather than as a premise.
+      </p>
+      <figure xml:id="fig-diagram-oxfam">
+        <caption>The Oxfam argument diagrammed with layered dependent support.</caption>
+        <image xml:id="image-diagram-oxfam" width="80%">
+          <description>
+            <p>
+              P2 points to C1. P1 and C1 are grouped by a bracket, and
+              one arrow leaves that bracket and points to C2, indicating
+              dependent support. C2, P3, and P4 are then grouped by a
+              second bracket, and one arrow leaves that bracket and points
+              to C3, indicating dependent support for the final conclusion.
+            </p>
+          </description>
+          <latex-image>
+            \begin{tikzpicture}[x=1cm,y=1cm,>=stealth]
+              \tikzstyle{statement}=[draw,rounded corners=2pt,minimum width=1.15cm,minimum height=0.55cm,align=center,inner sep=4pt]
+              \node[statement] (p2) at (0,0) {$P2$};
+              \node[statement] (c1) at (2.1,0) {$C1$};
+              \node[statement] (p1) at (2.1,1.0) {$P1$};
+              \node[statement] (c2) at (4.6,0.5) {$C2$};
+              \node[statement] (p3) at (4.6,-0.5) {$P3$};
+              \node[statement] (p4) at (4.6,-1.5) {$P4$};
+              \node[statement] (c3) at (7.8,-0.5) {$C3$};
+              \draw[->,thick] (p2) -- (c1);
+              \draw[thick] (2.85,1.3) -- (3.1,1.3) -- (3.1,-0.3) -- (2.85,-0.3);
+              \draw[->,thick] (3.1,0.5) -- (c2);
+              \draw[thick] (5.35,0.8) -- (5.6,0.8) -- (5.6,-1.8) -- (5.35,-1.8);
+              \draw[->,thick] (5.6,-0.5) -- (c3);
+            \end{tikzpicture}
+          </latex-image>
+        </image>
+      </figure>
+    </paragraphs>
+
+  </section>
+
+  <section xml:id="sec-diagramming-accessibility">
+    <title>Accessibility Note</title>
+
+    <p>
+      Every diagram in this appendix has a text description that states
+      the support structure in words. Those descriptions are not a
+      secondary version of the argument. They express the same structure
+      the reconstruction already states: which claims support which
+      conclusions, and whether the support is dependent or independent.
+      Nothing in the course assessments depends on producing or reading
+      a visual argument diagram.
+    </p>
+
+  </section>
+
+  <exercises xml:id="exercises-appendix-diagramming">
+    <title>Optional Exercises</title>
+
+    <introduction>
+      <p>
+        These exercises are optional practice. For each one, start with
+        a verbal reconstruction. Then draw a diagram that matches the
+        reconstruction. Your diagram should not contain information that
+        is missing from the reconstruction.
+      </p>
+    </introduction>
+
+    <exercisegroup xml:id="exgroup-appendix-diagramming-practice">
+      <title>Diagramming Practice</title>
+
+      <exercise xml:id="ex-appendix-diagramming-01">
+        <statement>
+          <p>
+            Choose one reconstruction from Chapter 2 that has dependent
+            support. Draw the diagram and write one sentence explaining
+            why the premises are grouped.
+          </p>
+        </statement>
+      </exercise>
+
+      <exercise xml:id="ex-appendix-diagramming-02">
+        <statement>
+          <p>
+            Choose one reconstruction from Chapter 2 that has independent
+            support. Draw the diagram and write one sentence explaining
+            why the arrows are separate.
+          </p>
+        </statement>
+      </exercise>
+
+      <exercise xml:id="ex-appendix-diagramming-03">
+        <statement>
+          <p>
+            Diagram the food pantry argument from Chapter 2 without
+            looking back at the diagram in this appendix. Then compare
+            your diagram with the one above. If they differ, decide
+            whether the difference is a real structural disagreement or
+            only a difference in layout.
+          </p>
+        </statement>
+      </exercise>
+
+      <exercise xml:id="ex-appendix-diagramming-04">
+        <statement>
+          <p>
+            Write a short argument in which one premise supports two
+            different conclusions. Reconstruct it, then draw the divergent
+            diagram.
+          </p>
+        </statement>
+      </exercise>
+
+      <exercise xml:id="ex-appendix-diagramming-05">
+        <statement>
+          <p>
+            Find a passage from outside this book that contains at least
+            one sub-conclusion. Reconstruct it in words first. Then draw
+            a diagram only after the verbal reconstruction is complete.
+          </p>
+        </statement>
+      </exercise>
+
+    </exercisegroup>
+
+  </exercises>
 
 </appendix>

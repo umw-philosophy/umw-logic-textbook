@@ -5,7 +5,10 @@
 
   PROGRESS:
   - §7.1 (Standard Form Syllogisms): drafted.
-  - §7.2 onward: stubbed; to be filled in subsequent passes.
+  - §7.2 (Diagramming a Syllogism): drafted.
+  - §7.3 (Common Validity Patterns and Failure Points): drafted.
+  - §7.4 (Mood and Figure): drafted.
+  - §7.5 onward: stubbed; to be filled in subsequent passes.
 
   Diagram conventions (per the lead author's hand-drawn reference):
   - 3-circle Venn diagram with M at top, S at bottom-left, P at
@@ -864,26 +867,700 @@
     </paragraphs>
   </section>
 
+  <section xml:id="sec-validity-patterns-failure-points">
+    <title>Common Validity Patterns and Failure Points</title>
+
+    <introduction>
+      <p>
+        With the diagramming procedure from
+        <xref ref="sec-diagramming-a-syllogism"/> and the
+        conclusion-form validity checks from
+        <xref ref="sec-standard-form-syllogisms"/>, you can in
+        principle evaluate any standard-form categorical syllogism
+        for validity. In practice, a few patterns come up over and
+        over — both valid patterns that are worth recognizing on
+        sight, and failure points that are worth being able to
+        diagnose without redoing the whole diagram. This section
+        works through three diagrammed cases and one summarized
+        failure point.
+      </p>
+    </introduction>
+
+    <paragraphs xml:id="paragraphs-aee-2-valid">
+      <title>A clean valid case (AEE-2)</title>
+      <example xml:id="ex-aee-2-syllogism">
+        <title>Death penalty opponents and Trump supporters</title>
+        <statement>
+          <p>P1: All morally righteous people are death penalty opponents.</p>
+          <p>P2: No Trump supporters are death penalty opponents.</p>
+          <p><m>\therefore</m> C: No Trump supporters are morally righteous people.</p>
+        </statement>
+      </example>
+      <p>
+        From the conclusion, S is <em>Trump supporters</em>; P is
+        <em>morally righteous people</em>; M is the middle term,
+        <em>death penalty opponents</em>.
+      </p>
+      <p>
+        P1 (<q>All morally righteous people are death penalty
+        opponents</q>) is an A proposition involving P and M, with
+        P as the subject and M as the predicate. <q>All P are M</q>
+        shades the part of P that is outside M, which is areas 2
+        and 3. Mark them shaded.
+      </p>
+      <p>
+        P2 (<q>No Trump supporters are death penalty opponents</q>)
+        is an E proposition involving S and M. <q>No S are M</q>
+        shades the overlap of S and M, which is areas 5 and 6.
+        Mark them shaded.
+      </p>
+      <p>
+        Both premises are universal, so the X mark step does not
+        apply. The premise diagram is complete.
+      </p>
+      <figure xml:id="fig-aee-2-premises">
+        <caption>The premise diagram for AEE-2: areas 2, 3, 5, and 6 are shaded.</caption>
+        <image xml:id="image-aee-2-premises" width="60%">
+          <description>
+            <p>
+              A three-circle Venn diagram with M at top, S at
+              bottom-left, and P at bottom-right. Areas 2 and 3
+              are shaded — the part of P outside M, both inside S
+              (area 2) and outside S (area 3). Areas 5 and 6 are
+              also shaded — the overlap of S and M, both outside
+              P (area 5) and inside P (area 6). Areas 1, 4, 7,
+              and 8 are unshaded.
+            </p>
+          </description>
+          <latex-image>
+            \begin{tikzpicture}[scale=1.2]
+              \def\Sleft{(-0.7,-0.4) circle (1.3)}
+              \def\Pright{(0.7,-0.4) circle (1.3)}
+              \def\Mtop{(0,0.6) circle (1.3)}
+              \begin{scope}
+                \clip \Pright;
+                \fill[gray!40] (-3,-3) rectangle (3,3);
+                \fill[white] \Mtop;
+              \end{scope}
+              \begin{scope}
+                \clip \Sleft;
+                \clip \Mtop;
+                \fill[gray!40] (-3,-3) rectangle (3,3);
+              \end{scope}
+              \draw \Sleft;
+              \draw \Pright;
+              \draw \Mtop;
+              \node at (-1.7,-1.4) {$S$};
+              \node at (1.7,-1.4) {$P$};
+              \node at (0,1.9) {$M$};
+              \node at (-1.3,-0.7) {\small 1};
+              \node at (0,-1.0) {\small 2};
+              \node at (1.3,-0.7) {\small 3};
+              \node at (-2.1,-1.7) {\small 4};
+              \node at (-0.85,0.35) {\small 5};
+              \node at (0,0) {\small 6};
+              \node at (0.85,0.35) {\small 7};
+              \node at (0,1.3) {\small 8};
+            \end{tikzpicture}
+          </latex-image>
+        </image>
+      </figure>
+      <p>
+        The conclusion is E: <q>No S are P.</q> The validity check
+        asks whether <em>both</em> areas 2 and 6 are shaded.
+      </p>
+      <figure xml:id="fig-aee-2-conclusion">
+        <caption>The conclusion diagram for AEE-2: area 2 shaded.</caption>
+        <image xml:id="image-aee-2-conclusion" width="45%">
+          <description>
+            <p>
+              A two-circle Venn diagram with S, Trump supporters,
+              on the left and P, morally righteous people, on the
+              right. Area 2, the overlap of S and P, is shaded.
+              Areas 1, 3, and 4 are unshaded.
+            </p>
+          </description>
+          <latex-image>
+            \begin{tikzpicture}[scale=1.2]
+              \def\Sleft{(-0.55,0) circle (1.2)}
+              \def\Pright{(0.55,0) circle (1.2)}
+              \begin{scope}
+                \clip \Sleft;
+                \clip \Pright;
+                \fill[gray!40] (-3,-3) rectangle (3,3);
+              \end{scope}
+              \draw \Sleft;
+              \draw \Pright;
+              \node at (-1.35,-1.15) {$S$};
+              \node at (1.35,-1.15) {$P$};
+              \node at (-0.85,0) {\small 1};
+              \node at (0,0) {\small 2};
+              \node at (0.85,0) {\small 3};
+              \node at (0,-1.65) {\small 4};
+            \end{tikzpicture}
+          </latex-image>
+        </image>
+      </figure>
+      <p>
+        Area 2 was shaded by P1; area 6 was shaded by P2. Both
+        shaded. The premise diagram shows exactly what the
+        conclusion diagram requires. The syllogism is
+        <alert>valid</alert>.
+      </p>
+    </paragraphs>
+
+    <paragraphs xml:id="paragraphs-eee-2-invalid">
+      <title>An invalid case where the conclusion overreaches (EEE-2)</title>
+      <example xml:id="ex-eee-2-syllogism">
+        <title>Vegetarians, meat eaters, and consistent thinkers</title>
+        <statement>
+          <p>P1: No vegetarians are meat eaters.</p>
+          <p>P2: No consistent thinkers are meat eaters.</p>
+          <p><m>\therefore</m> C: All consistent thinkers are vegetarians.</p>
+        </statement>
+      </example>
+      <p>
+        From the conclusion, S is <em>consistent thinkers</em>;
+        P is <em>vegetarians</em>; M is the middle term,
+        <em>meat eaters</em>.
+      </p>
+      <p>
+        P1 (<q>No vegetarians are meat eaters</q>) is an E
+        proposition involving P and M. <q>No P are M</q> shades
+        the overlap of P and M, which is areas 6 and 7.
+      </p>
+      <p>
+        P2 (<q>No consistent thinkers are meat eaters</q>) is an E
+        proposition involving S and M. <q>No S are M</q> shades
+        the overlap of S and M, which is areas 5 and 6. Area 6 is
+        already shaded; we just shade area 5 in addition.
+      </p>
+      <figure xml:id="fig-eee-2-premises">
+        <caption>The premise diagram for EEE-2: areas 5, 6, and 7 are shaded.</caption>
+        <image xml:id="image-eee-2-premises" width="60%">
+          <description>
+            <p>
+              A three-circle Venn diagram with M at top, S at
+              bottom-left, and P at bottom-right. Areas 5, 6, and
+              7 are shaded — the entire portion of M that
+              overlaps either S or P. Area 8, the part of M
+              outside both S and P, is unshaded. Areas 1, 2, 3,
+              and 4 are also unshaded.
+            </p>
+          </description>
+          <latex-image>
+            \begin{tikzpicture}[scale=1.2]
+              \def\Sleft{(-0.7,-0.4) circle (1.3)}
+              \def\Pright{(0.7,-0.4) circle (1.3)}
+              \def\Mtop{(0,0.6) circle (1.3)}
+              \begin{scope}
+                \clip \Pright;
+                \clip \Mtop;
+                \fill[gray!40] (-3,-3) rectangle (3,3);
+              \end{scope}
+              \begin{scope}
+                \clip \Sleft;
+                \clip \Mtop;
+                \fill[gray!40] (-3,-3) rectangle (3,3);
+              \end{scope}
+              \draw \Sleft;
+              \draw \Pright;
+              \draw \Mtop;
+              \node at (-1.7,-1.4) {$S$};
+              \node at (1.7,-1.4) {$P$};
+              \node at (0,1.9) {$M$};
+              \node at (-1.3,-0.7) {\small 1};
+              \node at (0,-1.0) {\small 2};
+              \node at (1.3,-0.7) {\small 3};
+              \node at (-2.1,-1.7) {\small 4};
+              \node at (-0.85,0.35) {\small 5};
+              \node at (0,0) {\small 6};
+              \node at (0.85,0.35) {\small 7};
+              \node at (0,1.3) {\small 8};
+            \end{tikzpicture}
+          </latex-image>
+        </image>
+      </figure>
+      <p>
+        The conclusion is A: <q>All S are P.</q> The validity
+        check asks whether <em>both</em> areas 1 and 5 are shaded.
+      </p>
+      <figure xml:id="fig-eee-2-conclusion">
+        <caption>The conclusion diagram for EEE-2: area 1 shaded.</caption>
+        <image xml:id="image-eee-2-conclusion" width="45%">
+          <description>
+            <p>
+              A two-circle Venn diagram with S, consistent
+              thinkers, on the left and P, vegetarians, on the
+              right. Area 1, the part of S outside P, is shaded.
+              Areas 2, 3, and 4 are unshaded.
+            </p>
+          </description>
+          <latex-image>
+            \begin{tikzpicture}[scale=1.2]
+              \def\Sleft{(-0.55,0) circle (1.2)}
+              \def\Pright{(0.55,0) circle (1.2)}
+              \begin{scope}
+                \clip \Sleft;
+                \fill[gray!40] (-3,-3) rectangle (3,3);
+                \fill[white] \Pright;
+              \end{scope}
+              \draw \Sleft;
+              \draw \Pright;
+              \node at (-1.35,-1.15) {$S$};
+              \node at (1.35,-1.15) {$P$};
+              \node at (-0.85,0) {\small 1};
+              \node at (0,0) {\small 2};
+              \node at (0.85,0) {\small 3};
+              \node at (0,-1.65) {\small 4};
+            \end{tikzpicture}
+          </latex-image>
+        </image>
+      </figure>
+      <p>
+        Area 5 is shaded (by P2). Area 1 is not shaded by either
+        premise. The premise diagram does not show what the
+        conclusion diagram requires. The syllogism is
+        <alert>invalid</alert>.
+      </p>
+      <p>
+        This is a useful pattern to see clearly. The two negative
+        premises tell us about emptiness in the M-area; they say
+        nothing about how S relates to P outside of M. The
+        conclusion then leaps to a positive claim relating S and P
+        directly. There is no path from <q>nothing in S∩M</q> and
+        <q>nothing in P∩M</q> to <q>everything in S is in P.</q>
+        The conclusion is overreaching the premises. This is a
+        general lesson: <alert>two negative premises rarely give
+        you what you need for a positive conclusion.</alert>
+      </p>
+    </paragraphs>
+
+    <paragraphs xml:id="paragraphs-aai-3-existential-import">
+      <title>The modern-vs-Aristotelian case (AAI-3)</title>
+      <p>
+        The next case is the one most likely to feel paradoxical,
+        because it depends on the existential-commitment
+        distinction we drew in
+        <xref ref="sec-existential-commitment"/>. On the modern
+        interpretation, the syllogism is invalid. On the
+        Aristotelian interpretation, it is valid. The diagram is
+        the same; the verdict differs.
+      </p>
+      <example xml:id="ex-aai-3-syllogism">
+        <title>Ozone molecules</title>
+        <statement>
+          <p>P1: All ozone molecules are good absorbers of UV rays.</p>
+          <p>P2: All ozone molecules are substances destroyed by chlorine.</p>
+          <p><m>\therefore</m> C: Some substances destroyed by chlorine are good absorbers of UV rays.</p>
+        </statement>
+      </example>
+      <p>
+        From the conclusion, S is <em>substances destroyed by
+        chlorine</em>; P is <em>good absorbers of UV rays</em>; M
+        is <em>ozone molecules</em>.
+      </p>
+      <p>
+        P1 (<q>All M are P</q>) shades areas 5 and 8.
+      </p>
+      <p>
+        P2 (<q>All M are S</q>) shades areas 7 and 8. Area 8 is
+        already shaded by P1.
+      </p>
+      <p>
+        Both premises are universal. After shading, areas 5, 7,
+        and 8 are shaded. Area 6 — the overlap of all three
+        circles, the only remaining piece of M — is the only
+        place where any ozone molecules could exist if they exist
+        at all.
+      </p>
+      <figure xml:id="fig-aai-3-premises">
+        <caption>The premise diagram for AAI-3: areas 5, 7, and 8 shaded; area 6 is the only remaining region of M.</caption>
+        <image xml:id="image-aai-3-premises" width="60%">
+          <description>
+            <p>
+              A three-circle Venn diagram with M at top, S at
+              bottom-left, and P at bottom-right. Areas 5, 7, and
+              8 are shaded — these together exhaust the part of M
+              that is outside S∩P. Area 6, the overlap of all
+              three circles, is unshaded. Areas 1, 2, 3, and 4
+              are also unshaded.
+            </p>
+          </description>
+          <latex-image>
+            \begin{tikzpicture}[scale=1.2]
+              \def\Sleft{(-0.7,-0.4) circle (1.3)}
+              \def\Pright{(0.7,-0.4) circle (1.3)}
+              \def\Mtop{(0,0.6) circle (1.3)}
+              \begin{scope}
+                \clip \Mtop;
+                \fill[gray!40] (-3,-3) rectangle (3,3);
+                \begin{scope}
+                  \clip \Sleft;
+                  \clip \Pright;
+                  \fill[white] (-3,-3) rectangle (3,3);
+                \end{scope}
+              \end{scope}
+              \draw \Sleft;
+              \draw \Pright;
+              \draw \Mtop;
+              \node at (-1.7,-1.4) {$S$};
+              \node at (1.7,-1.4) {$P$};
+              \node at (0,1.9) {$M$};
+              \node at (-1.3,-0.7) {\small 1};
+              \node at (0,-1.0) {\small 2};
+              \node at (1.3,-0.7) {\small 3};
+              \node at (-2.1,-1.7) {\small 4};
+              \node at (-0.85,0.35) {\small 5};
+              \node at (0,0) {\small 6};
+              \node at (0.85,0.35) {\small 7};
+              \node at (0,1.3) {\small 8};
+            \end{tikzpicture}
+          </latex-image>
+        </image>
+      </figure>
+      <p>
+        The conclusion is I: <q>Some S are P.</q> The validity
+        check asks whether there is an X in area 2 or area 6 of
+        the premise diagram.
+      </p>
+      <figure xml:id="fig-aai-3-conclusion">
+        <caption>The conclusion diagram for AAI-3: X in area 2.</caption>
+        <image xml:id="image-aai-3-conclusion" width="45%">
+          <description>
+            <p>
+              A two-circle Venn diagram with S, substances
+              destroyed by chlorine, on the left and P, good
+              absorbers of UV rays, on the right. An X appears in
+              area 2, the overlap of S and P. Areas 1, 3, and 4
+              are unshaded.
+            </p>
+          </description>
+          <latex-image>
+            \begin{tikzpicture}[scale=1.2]
+              \def\Sleft{(-0.55,0) circle (1.2)}
+              \def\Pright{(0.55,0) circle (1.2)}
+              \draw \Sleft;
+              \draw \Pright;
+              \node at (-1.35,-1.15) {$S$};
+              \node at (1.35,-1.15) {$P$};
+              \node at (-0.85,0) {\small 1};
+              \node at (0,0.35) {\small 2};
+              \node at (0.85,0) {\small 3};
+              \node at (0,-1.65) {\small 4};
+              \node at (0,-0.05) {$\times$};
+            \end{tikzpicture}
+          </latex-image>
+        </image>
+      </figure>
+      <p>
+        On the modern interpretation, no X has been placed
+        anywhere. Universal premises do not carry existential
+        commitment. <q>All M are P</q> does not assert that any M
+        exists. The conclusion diagram requires an X, but the
+        premise diagram has only shading; nothing commits to the
+        existence of any ozone molecule. So no X is in area 2 or
+        6. The syllogism is
+        <alert>invalid on the modern interpretation</alert>.
+      </p>
+      <p>
+        Suppose we ask a different question: <em>what would
+        happen if at least one ozone molecule actually exists?</em>
+        We can answer that question directly on the diagram. Area
+        6 is the only unshaded region of the M circle, so any
+        existing ozone molecule has to be there. Place an X in
+        area 6. Now run the validity check for the I conclusion:
+        is there an X in area 2 or 6? Yes — there is an X in area
+        6. Under the assumption that at least one ozone molecule
+        exists, the syllogism is valid.
+      </p>
+      <p>
+        This is the conceptual move worth keeping. Whenever a
+        syllogism comes out invalid on the modern interpretation
+        because no X has been placed, you can ask: <em>would
+        adding an X to the diagram — that is, asserting that at
+        least one entity in the relevant category actually exists
+        — change the verdict?</em> Place the X and run the check.
+        If the syllogism would be valid <em>given</em> that
+        existence claim, then the modern verdict of invalidity is
+        tracking the existential-commitment question and nothing
+        else. The argument is fine if you accept the existence
+        claim and bad if you don't. That is exactly the place
+        where the modern and traditional interpretations come
+        apart: the modern interpretation declines to assume
+        existence, and the traditional one builds it into
+        universal premises.
+      </p>
+      <p>
+        A whole family of syllogisms — AAI-3, AAI-4, EAO-1,
+        EAO-2, EAO-3, EAO-4 — comes out invalid on the modern
+        interpretation and valid on the traditional, all for this
+        reason. They share the structure of inferring a particular
+        conclusion from two universals. We test only on the
+        modern interpretation in this book. The Aristotelian
+        interpretation, with its built-in existential commitments,
+        is reserved for a later appendix for adopters who teach
+        it. Still, the diagnostic move — adding an X to test
+        whether existence would change the verdict — is useful
+        regardless of which interpretation you formally adopt. It
+        tells you what a modern-invalid syllogism is hiding.
+      </p>
+    </paragraphs>
+
+    <paragraphs xml:id="paragraphs-boundary-x-summary">
+      <title>The boundary-X failure point (summarized)</title>
+      <p>
+        One more failure pattern is worth describing in words even
+        though we will not rediagram it in full here. It comes up
+        whenever both premises are particular.
+      </p>
+      <p>
+        Consider OIO-2:
+      </p>
+      <example xml:id="ex-oio-2-syllogism">
+        <title>Picard fans, DS9 fans, Discovery fans</title>
+        <statement>
+          <p>P1: Some <q>Picard</q> fans are not <q>Star Trek Deep Space 9</q> fans.</p>
+          <p>P2: Some <q>Picard</q> fans are <q>Star Trek Discovery</q> fans.</p>
+          <p><m>\therefore</m> C: Some <q>Star Trek Discovery</q> fans are not <q>Star Trek Deep Space 9</q> fans.</p>
+        </statement>
+      </example>
+      <p>
+        Mapping to standard letters: S is <em>Discovery fans</em>;
+        P is <em>DS9 fans</em>; M is <em>Picard fans</em>. Both
+        premises are particular: P1 places an X in M outside P
+        (areas 5 or 8), and P2 places an X in the overlap of S and
+        M (areas 5 or 6). Neither premise is shaded by anything,
+        because neither premise is universal. So both X marks sit
+        on their boundaries, uncommitted.
+      </p>
+      <p>
+        The conclusion (O) requires an X in area 1 or area 5,
+        committed to one of those regions. P2's X is on the
+        boundary between 5 and 6. P1's X is on the boundary
+        between 5 and 8. Neither X is committed to area 5; either
+        could be in area 6 or area 8 instead. The premise diagram
+        does not show what the conclusion requires. The syllogism
+        is <alert>invalid</alert>.
+      </p>
+      <p>
+        The general lesson here is stronger than <q>often
+        invalid</q>: <alert>two particular premises never give you
+        a valid syllogism.</alert> The reasoning is structural.
+        Particular premises produce X marks; X marks need
+        universal-premise shading to be committed to a single
+        region. With no universals on offer, both X marks sit on
+        boundaries, uncommitted, and the validity check fails for
+        any particular conclusion. A universal conclusion is also
+        impossible from two particular premises, since universal
+        conclusions require shading and two particular premises
+        provide no shading. So if both premises are particular,
+        the syllogism is invalid no matter what the conclusion is.
+        Spot the two-particular-premises pattern and you can stop
+        diagramming.
+      </p>
+    </paragraphs>
+  </section>
+
+  <section xml:id="sec-mood-and-figure">
+    <title>Mood and Figure</title>
+
+    <introduction>
+      <p>
+        The Venn-diagram method is the primary technique in this
+        chapter. It shows why a syllogism is valid or invalid. But
+        there is also a compact text notation for the same
+        structure: <term>mood and figure</term>. Mood and figure
+        let us encode a syllogism as a short label such as
+        <q>EAE-1</q> or <q>AEE-2.</q> Once a syllogism is encoded
+        this way, we can compare it with a validity table.
+      </p>
+      <p>
+        This notation is especially useful as an accessible
+        alternative to diagrams. A reader who is not working
+        visually can identify the proposition forms, identify the
+        position of the middle term, and use the table below to
+        reach the same validity verdict the Venn diagram would
+        give.
+      </p>
+    </introduction>
+
+    <paragraphs xml:id="paragraphs-mood">
+      <title>Mood</title>
+      <p>
+        The <term>mood</term> of a categorical syllogism is the
+        sequence of its three proposition forms, in standard-form
+        order: major premise, minor premise, conclusion. Each
+        statement contributes one letter: A, E, I, or O.
+      </p>
+      <p>
+        Consider the first worked example from this chapter:
+      </p>
+      <p>P1: No alien creatures are creatures that would understand human life.</p>
+      <p>P2: All Tralfamadorians are alien creatures.</p>
+      <p>C: No Tralfamadorians are creatures that would understand human life.</p>
+      <p>
+        P1 is E, P2 is A, and C is E. So the mood is
+        <alert>EAE</alert>.
+      </p>
+      <p>
+        Mood records only the forms of the three statements. It
+        does not yet tell us where the middle term appears. For
+        that, we need figure.
+      </p>
+    </paragraphs>
+
+    <paragraphs xml:id="paragraphs-figure">
+      <title>Figure</title>
+      <p>
+        The <term>figure</term> of a categorical syllogism records
+        the position of the middle term M in the two premises.
+        The conclusion is always S-P in standard form, so the
+        conclusion does not determine the figure. The figure is
+        determined entirely by the two premises.
+      </p>
+      <p>
+        There are four possible figures. In the patterns below,
+        X-Y means that X is the subject term and Y is the predicate
+        term of that premise.
+      </p>
+      <ul>
+        <li><p><alert>Figure 1:</alert> major premise M-P; minor premise S-M.</p></li>
+        <li><p><alert>Figure 2:</alert> major premise P-M; minor premise S-M.</p></li>
+        <li><p><alert>Figure 3:</alert> major premise M-P; minor premise M-S.</p></li>
+        <li><p><alert>Figure 4:</alert> major premise P-M; minor premise M-S.</p></li>
+      </ul>
+      <p>
+        In the Tralfamadorian example above, P1 is <q>No M are
+        P</q> and P2 is <q>All S are M.</q> That is Figure 1:
+        major premise M-P, minor premise S-M. Since the mood is
+        EAE and the figure is 1, the full label is
+        <alert>EAE-1</alert>.
+      </p>
+    </paragraphs>
+
+    <paragraphs xml:id="paragraphs-identifying-mood-figure">
+      <title>How to identify mood and figure</title>
+      <p>
+        Use the same first steps you use for the Venn method.
+        First identify the conclusion. The subject of the
+        conclusion is S; the predicate of the conclusion is P.
+        The remaining term, the one that appears in both premises
+        but not in the conclusion, is M. Then identify the form of
+        each statement and the position of M in the premises.
+      </p>
+      <example xml:id="ex-identifying-aee-2">
+        <title>Identifying AEE-2</title>
+        <statement>
+          <p>P1: All morally righteous people are death penalty opponents.</p>
+          <p>P2: No Trump supporters are death penalty opponents.</p>
+          <p><m>\therefore</m> C: No Trump supporters are morally righteous people.</p>
+          <p>
+            From the conclusion, S is <em>Trump supporters</em>
+            and P is <em>morally righteous people</em>. The middle
+            term M is <em>death penalty opponents</em>.
+          </p>
+          <p>
+            P1 has the form <q>All P are M</q>, so the first mood
+            letter is A. P2 has the form <q>No S are M</q>, so the
+            second mood letter is E. The conclusion has the form
+            <q>No S are P</q>, so the third mood letter is E. The
+            mood is AEE.
+          </p>
+          <p>
+            The major premise is P-M and the minor premise is S-M.
+            That is Figure 2. The full label is
+            <alert>AEE-2</alert>.
+          </p>
+        </statement>
+      </example>
+    </paragraphs>
+
+    <paragraphs xml:id="paragraphs-modern-valid-forms">
+      <title>The modern-valid forms</title>
+      <p>
+        The following table gives the valid categorical syllogism
+        forms on the modern interpretation used in this book. If a
+        standard-form syllogism has one of these mood-and-figure
+        labels, it is valid. If it does not, it is invalid.
+      </p>
+      <p>
+        <alert>Figure 1:</alert> AAA-1, AII-1, EAE-1, EIO-1.
+      </p>
+      <p>
+        <alert>Figure 2:</alert> AEE-2, AOO-2, EAE-2, EIO-2.
+      </p>
+      <p>
+        <alert>Figure 3:</alert> AII-3, EIO-3, IAI-3, OAO-3.
+      </p>
+      <p>
+        <alert>Figure 4:</alert> AEE-4, EIO-4, IAI-4.
+      </p>
+      <p>
+        The table is deliberately modern. Forms that depend on
+        existential commitment from universal premises are not
+        listed. For example, AAI-3 was discussed in the previous
+        section: it becomes valid if we add the existence claim,
+        but it is invalid on the modern interpretation because the
+        universal premises alone do not place an X anywhere in the
+        diagram.
+      </p>
+    </paragraphs>
+
+    <paragraphs xml:id="paragraphs-mood-figure-examples">
+      <title>Checking examples from the chapter</title>
+      <p>
+        Mood and figure should agree with the Venn-diagram verdict.
+        We can check that against examples we have already worked.
+      </p>
+      <p>
+        <alert>EAE-1.</alert> The Tralfamadorian example has mood
+        EAE and Figure 1. EAE-1 appears in the valid-form table, so
+        the syllogism is valid. That matches the Venn diagram.
+      </p>
+      <p>
+        <alert>EIO-2.</alert> The Americans/socialists/right-wing
+        hate mongers example has mood EIO and Figure 2. EIO-2
+        appears in the valid-form table, so the syllogism is
+        valid. Again, that matches the Venn diagram.
+      </p>
+      <p>
+        <alert>EEE-2.</alert> The vegetarians/meat eaters/consistent
+        thinkers example has mood EEE and Figure 2. EEE-2 does not
+        appear in the valid-form table, so the syllogism is
+        invalid. That matches the Venn diagram, where the conclusion
+        overreached the premises.
+      </p>
+      <p>
+        <alert>AAI-3.</alert> The ozone example has mood AAI and
+        Figure 3. AAI-3 does not appear in the modern-valid table,
+        so it is invalid on the modern interpretation. That matches
+        the Venn diagram: no X is placed by the universal premises.
+      </p>
+    </paragraphs>
+
+    <paragraphs xml:id="paragraphs-mood-figure-limits">
+      <title>What the table does and does not do</title>
+      <p>
+        The table is a shortcut for evaluation, not a replacement
+        for understanding. It tells you whether a standard-form
+        syllogism is valid once you have correctly identified its
+        mood and figure. It does not explain why the form is valid
+        or invalid. The Venn-diagram method gives that explanation.
+      </p>
+      <p>
+        So the two methods have different strengths. Venn diagrams
+        are slower but explanatory. Mood and figure are compact and
+        text-based. Used together, they give you both the visual
+        structure and the portable label for the same argument
+        form.
+      </p>
+    </paragraphs>
+
+  </section>
+
   <!--
     REMAINING SECTIONS — TO BE DRAFTED IN SUBSEQUENT PASSES:
-
-    §7.3 Common Validity Patterns and Failure Points. A focused
-         set of worked cases showing what students should learn
-         to notice when comparing premise and conclusion diagrams:
-         one clean valid example, one invalid example where the
-         conclusion overreaches, one modern-vs-Aristotelian
-         existential import case (such as the AAI-3 family), and
-         one boundary-X case summarized as a common failure point
-         rather than rediagrammed in full. Draw on the lead
-         author's Spring 2026 Exam 2 study guide where appropriate.
-
-    §7.4 Mood and Figure. Definition of mood (the three letters
-         of the syllogism's propositions, in order: major, minor,
-         conclusion) and figure (1, 2, 3, or 4 — based on the
-         position of the middle term). Mood-and-figure as the
-         alternate encoding for accessibility purposes; the
-         method delivers the same validity verdict as the
-         Venn-diagram method.
 
     §7.5 Translating arguments into syllogism form. When a real
          argument is close to but not yet in syllogism form, what
