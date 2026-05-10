@@ -1,0 +1,1186 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  Chapter 9 — Truth Tables
+
+  Draft status:
+  - First full draft: sections, chapter summary, key terms, and
+    end-of-chapter exercises.
+  - Introduces connectives as truth functions, well-formed formulas,
+    order of operations, full truth tables, statement classification,
+    pair relations, and argument validity.
+  - Aligned with truthtablechecker/ V1.
+-->
+<chapter xmlns:xi="http://www.w3.org/2001/XInclude" xml:id="ch-truth-tables">
+
+  <title>Truth Tables</title>
+
+  <introduction xml:id="ch-truth-tables-intro">
+    <p>
+      Chapter 8 taught the symbolic language of sentential logic.
+      This chapter gives that language a method of evaluation. The
+      method is the truth table. Truth tables let us determine the
+      truth value of a compound statement from the truth values of
+      its parts.
+    </p>
+    <p>
+      The key idea is simple: the operators of sentential logic
+      are <term>truth functions</term>. But, don't be scared. A function is just something that takes something and does something to it. A truth function takes truth
+      values as inputs and returns a truth value as output. Since
+      the only truth values in this system are T and F, these are
+      among the simplest functions we can study.
+    </p>
+  </introduction>
+
+  <section xml:id="sec-truth-functions">
+    <title>Connectives as Truth Functions</title>
+
+    <introduction>
+      <p>
+        A truth table is just a compact way of showing a function.
+        The inputs go on the left. The output goes on the right.
+      </p>
+    </introduction>
+
+    <definition xml:id="def-ch9-truth-table">
+      <statement>
+        <p>
+          A <term>truth table</term> is a table that lists possible
+          truth-value assignments and shows the truth value of a
+          compound statement under each assignment.
+        </p>
+      </statement>
+    </definition>
+
+    <definition xml:id="def-ch9-truth-function">
+      <statement>
+        <p>
+          A <term>truth function</term> is a function whose inputs and
+          output are truth values.
+        </p>
+      </statement>
+    </definition>
+
+    <paragraphs xml:id="paragraphs-truth-values-as-inputs">
+      <title>Truth values as inputs</title>
+      <p>
+        In sentential logic, every statement is either true or
+        false. Recall, that's how we've set up the whole system in
+        this course, going back to <xref ref="def-statement"/>. We
+        write those truth values as T and F. A simple statement such
+        as <m>P</m> can have either value:
+      </p>
+      <table xml:id="table-single-statement-values">
+        <title>Possible Truth Values for One Statement</title>
+        <tabular halign="center">
+          <row header="yes">
+            <cell><m>P</m></cell>
+          </row>
+          <row>
+            <cell>T</cell>
+          </row>
+          <row>
+            <cell>F</cell>
+          </row>
+        </tabular>
+      </table>
+      <p>
+        If an operator takes one statement as input, there are two
+        possible input rows. Negation is like that. If a connective
+        takes two statements as input, there are four possible input
+        rows: TT, TF, FT, and FF. Conjunction, disjunction,
+        conditional, and biconditional are like that.
+      </p>
+    </paragraphs>
+
+    <paragraphs xml:id="paragraphs-connectives-defined-by-output">
+      <title>Connectives are defined by their outputs</title>
+      <p>
+        A connective is defined by what output it gives for each
+        possible input. The horseshoe, for example, is the
+        truth function that gives T for the TT, FT, and FF rows,
+        and gives F for the TF row. Presented as a truth table:
+      </p>
+      <table xml:id="table-conditional-as-function">
+        <title>The Conditional as a Truth Function</title>
+        <tabular halign="center">
+          <row header="yes">
+            <cell><m>P</m></cell>
+            <cell right="medium"><m>Q</m></cell>
+            <cell><m>P</m></cell>
+            <cell><m>\supset</m></cell>
+            <cell><m>Q</m></cell>
+          </row>
+          <row>
+            <cell>T</cell>
+            <cell right="medium">T</cell>
+            <cell><m>{}</m></cell>
+            <cell>T</cell>
+            <cell><m>{}</m></cell>
+          </row>
+          <row>
+            <cell>T</cell>
+            <cell right="medium">F</cell>
+            <cell><m>{}</m></cell>
+            <cell>F</cell>
+            <cell><m>{}</m></cell>
+          </row>
+          <row>
+            <cell>F</cell>
+            <cell right="medium">T</cell>
+            <cell><m>{}</m></cell>
+            <cell>T</cell>
+            <cell><m>{}</m></cell>
+          </row>
+          <row>
+            <cell>F</cell>
+            <cell right="medium">F</cell>
+            <cell><m>{}</m></cell>
+            <cell>T</cell>
+            <cell><m>{}</m></cell>
+          </row>
+        </tabular>
+      </table>
+      <p>
+        That table is not a shortcut for the definition. It is the
+        definition. In this system, the conditional just is the
+        function displayed by that table.
+      </p>
+    </paragraphs>
+
+    <paragraphs xml:id="paragraphs-truth-functional-limits">
+      <title>What truth functions ignore</title>
+      <p>
+        Truth functions care only about truth values. They do not
+        care about topic, tone, causation, timing, explanation, or
+        whether the two statements have anything to do with each
+        other. That can feel strange, especially for conditionals.
+      </p>
+      <p>
+        <q>If the library closes early, then the train station is
+        downtown</q> is odd English. But sentential logic asks only
+        whether the antecedent is true and whether the consequent
+        is true. The truth value of the whole conditional is then
+        fixed by the conditional truth table.
+      </p>
+      <p>
+        This is a deliberate simplification. Sentential logic does
+        not capture every feature of ordinary language. It captures
+        one feature cleanly: how the truth value of a compound
+        statement depends on the truth values of its parts.
+      </p>
+    </paragraphs>
+
+  </section>
+
+  <section xml:id="sec-basic-truth-tables">
+    <title>The Basic Truth Tables</title>
+
+    <introduction>
+      <p>
+        The five connectives are defined by five basic truth
+        tables. Learn these tables before trying to build longer
+        ones.
+      </p>
+    </introduction>
+
+    <paragraphs xml:id="paragraphs-negation-truth-table">
+      <title>Negation</title>
+      <p>
+        Negation reverses the truth value of the statement it
+        governs. If <m>P</m> is true, <m>{\text{\textasciitilde}}P</m>
+        is false. If <m>P</m> is false,
+        <m>{\text{\textasciitilde}}P</m> is true.
+      </p>
+      <table xml:id="table-negation">
+        <title>Negation</title>
+        <tabular halign="center">
+          <row header="yes">
+            <cell right="medium"><m>P</m></cell>
+            <cell><m>{\text{\textasciitilde}}</m></cell>
+            <cell><m>P</m></cell>
+          </row>
+          <row>
+            <cell right="medium">T</cell>
+            <cell>F</cell>
+            <cell><m>{}</m></cell>
+          </row>
+          <row>
+            <cell right="medium">F</cell>
+            <cell>T</cell>
+            <cell><m>{}</m></cell>
+          </row>
+        </tabular>
+      </table>
+    </paragraphs>
+
+    <paragraphs xml:id="paragraphs-binary-truth-tables">
+      <title>The four two-input connectives</title>
+      <p>
+        The remaining connectives take two statements as inputs.
+        The reference columns always appear in the same order:
+      </p>
+      <table xml:id="table-two-statement-reference">
+        <title>Reference Rows for Two Statements</title>
+        <tabular halign="center">
+          <row header="yes">
+            <cell><m>P</m></cell>
+            <cell><m>Q</m></cell>
+          </row>
+          <row>
+            <cell>T</cell>
+            <cell>T</cell>
+          </row>
+          <row>
+            <cell>T</cell>
+            <cell>F</cell>
+          </row>
+          <row>
+            <cell>F</cell>
+            <cell>T</cell>
+          </row>
+          <row>
+            <cell>F</cell>
+            <cell>F</cell>
+          </row>
+        </tabular>
+      </table>
+      <p>
+        Conjunction is true only on the TT row. Disjunction is
+        false only on the FF row. The conditional is false only on
+        the TF row. The biconditional is true when the two inputs
+        match.
+      </p>
+      <table xml:id="table-basic-binary-connectives">
+        <title>Basic Truth Tables for Binary Connectives</title>
+        <tabular halign="center">
+          <row header="yes">
+            <cell><m>P</m></cell>
+            <cell right="medium"><m>Q</m></cell>
+            <cell><m>P</m></cell>
+            <cell><m>\cdot</m></cell>
+            <cell><m>Q</m></cell>
+            <cell><m>P</m></cell>
+            <cell><m>\lor</m></cell>
+            <cell><m>Q</m></cell>
+            <cell><m>P</m></cell>
+            <cell><m>\supset</m></cell>
+            <cell><m>Q</m></cell>
+            <cell><m>P</m></cell>
+            <cell><m>\equiv</m></cell>
+            <cell><m>Q</m></cell>
+          </row>
+          <row>
+            <cell>T</cell>
+            <cell right="medium">T</cell>
+            <cell><m>{}</m></cell>
+            <cell>T</cell>
+            <cell><m>{}</m></cell>
+            <cell><m>{}</m></cell>
+            <cell>T</cell>
+            <cell><m>{}</m></cell>
+            <cell><m>{}</m></cell>
+            <cell>T</cell>
+            <cell><m>{}</m></cell>
+            <cell><m>{}</m></cell>
+            <cell>T</cell>
+            <cell><m>{}</m></cell>
+          </row>
+          <row>
+            <cell>T</cell>
+            <cell right="medium">F</cell>
+            <cell><m>{}</m></cell>
+            <cell>F</cell>
+            <cell><m>{}</m></cell>
+            <cell><m>{}</m></cell>
+            <cell>T</cell>
+            <cell><m>{}</m></cell>
+            <cell><m>{}</m></cell>
+            <cell>F</cell>
+            <cell><m>{}</m></cell>
+            <cell><m>{}</m></cell>
+            <cell>F</cell>
+            <cell><m>{}</m></cell>
+          </row>
+          <row>
+            <cell>F</cell>
+            <cell right="medium">T</cell>
+            <cell><m>{}</m></cell>
+            <cell>F</cell>
+            <cell><m>{}</m></cell>
+            <cell><m>{}</m></cell>
+            <cell>T</cell>
+            <cell><m>{}</m></cell>
+            <cell><m>{}</m></cell>
+            <cell>T</cell>
+            <cell><m>{}</m></cell>
+            <cell><m>{}</m></cell>
+            <cell>F</cell>
+            <cell><m>{}</m></cell>
+          </row>
+          <row>
+            <cell>F</cell>
+            <cell right="medium">F</cell>
+            <cell><m>{}</m></cell>
+            <cell>F</cell>
+            <cell><m>{}</m></cell>
+            <cell><m>{}</m></cell>
+            <cell>F</cell>
+            <cell><m>{}</m></cell>
+            <cell><m>{}</m></cell>
+            <cell>T</cell>
+            <cell><m>{}</m></cell>
+            <cell><m>{}</m></cell>
+            <cell>T</cell>
+            <cell><m>{}</m></cell>
+          </row>
+        </tabular>
+      </table>
+    </paragraphs>
+
+    <paragraphs xml:id="paragraphs-reading-basic-tables">
+      <title>Reading a truth table</title>
+      <p>
+        Read across a row. The row tells you what the compound
+        statement does under one possible assignment of truth
+        values to its sentence letters.
+      </p>
+      <p>
+        In the second row of the conditional table, <m>P</m> is T
+        and <m>Q</m> is F. The output for <m>P \supset Q</m> is F.
+        That row says: a conditional is false when its antecedent
+        is true and its consequent is false.
+      </p>
+      <p>
+        Every other row for the conditional is true. Again, that is
+        not because of a story about causation or evidence. It is
+        because the truth function for <m>\supset</m> is defined
+        that way.
+      </p>
+    </paragraphs>
+
+  </section>
+
+  <section xml:id="sec-well-formed-formulas">
+    <title>Well-Formed Formulas and Order of Operations</title>
+
+    <introduction>
+      <p>
+        Truth tables work only when the formula has a definite
+        structure. Before we evaluate a formula, we need to know
+        that it is well formed and know which parts to evaluate
+        first.
+      </p>
+    </introduction>
+
+    <definition xml:id="def-ch9-well-formed-formula">
+      <statement>
+        <p>
+          A <term>well-formed formula</term> is a symbolic statement
+          built according to the formation rules of the language.
+        </p>
+      </statement>
+    </definition>
+
+    <paragraphs xml:id="paragraphs-well-formed-formula">
+      <title>Well-formed formulas</title>
+      <p>
+        A <term>well-formed formula</term> is a symbolic statement
+        built according to the formation rules of the language. In
+        this book, the rules are:
+      </p>
+      <ul>
+        <li><p>A capital sentence letter is a well-formed formula.</p></li>
+        <li><p>If <m>P</m> is a well-formed formula, then <m>{\text{\textasciitilde}}P</m> is a well-formed formula.</p></li>
+        <li><p>If <m>P</m> and <m>Q</m> are well-formed formulas, then <m>(P \cdot Q)</m>, <m>(P \lor Q)</m>, <m>(P \supset Q)</m>, and <m>(P \equiv Q)</m> are well-formed formulas.</p></li>
+      </ul>
+      <p>
+        These rules are recursive: we can build larger formulas
+        out of smaller formulas. <m>P</m> and <m>Q</m> are
+        well-formed formulas. So <m>(P \cdot Q)</m> is a
+        well-formed formula. Since <m>(P \cdot Q)</m> and
+        <m>R</m> are well-formed formulas,
+        <m>((P \cdot Q) \supset R)</m> is also a well-formed
+        formula.
+      </p>
+    </paragraphs>
+
+    <paragraphs xml:id="paragraphs-outer-parentheses-convention">
+      <title>Outer parentheses convention</title>
+      <p>
+        Strictly speaking, fully built formulas use parentheses
+        around binary connectives. In ordinary practice, we often
+        omit the outermost parentheses. So we write
+        <m>P \cdot Q</m> rather than <m>(P \cdot Q)</m>, and
+        <m>(P \cdot Q) \supset R</m> rather than
+        <m>((P \cdot Q) \supset R)</m>.
+      </p>
+      <p>
+        That convention is harmless because the omitted parentheses
+        would wrap the whole formula. Internal parentheses are
+        different. They often determine what the formula means.
+      </p>
+      <p>
+        Compare:
+      </p>
+      <p><m>(P \cdot Q) \supset R</m></p>
+      <p><m>P \cdot (Q \supset R)</m></p>
+      <p>
+        The first formula is a conditional. The second formula is a
+        conjunction. Same letters, same connectives, different
+        structure. Why? Because of the order of operations. 
+      </p>
+    </paragraphs>
+
+    <paragraphs xml:id="paragraphs-order-of-operations">
+      <title>Order of operations</title>
+      <p>
+        To build a truth table, evaluate the formula from the
+        inside out:
+      </p>
+      <ol>
+        <li><p>Fill the reference columns for the sentence letters.</p></li>
+        <li><p>Evaluate innermost compounds first.</p></li>
+        <li><p>Work outward one connective at a time.</p></li>
+        <li><p>Finish with the main connective of the whole formula.</p></li>
+      </ol>
+      <definition xml:id="def-ch9-main-column">
+        <statement>
+          <p>
+            The <term>main column</term> is the column of truth values
+            under the main connective of the whole statement.
+          </p>
+        </statement>
+      </definition>
+      <p>
+        For <m>{\text{\textasciitilde}}(P \cdot Q)</m>, the
+        conjunction <m>P \cdot Q</m> must be evaluated before the
+        negation of the whole conjunction. Put each truth value
+        directly under the operator being evaluated: first under
+        <m>\cdot</m>, then under <m>{\text{\textasciitilde}}</m>.
+        The order row beneath the table records that sequence.
+      </p>
+      <table xml:id="table-negated-conjunction-order">
+        <title>Order of Operations for a Negated Conjunction</title>
+        <tabular halign="center">
+          <row header="yes">
+            <cell><m>P</m></cell>
+            <cell right="medium"><m>Q</m></cell>
+            <cell><m>{\text{\textasciitilde}}</m></cell>
+            <cell><m>(</m></cell>
+            <cell><m>P</m></cell>
+            <cell><m>\cdot</m></cell>
+            <cell><m>Q</m></cell>
+            <cell><m>)</m></cell>
+          </row>
+          <row>
+            <cell>T</cell>
+            <cell right="medium">T</cell>
+            <cell>F</cell>
+            <cell><m>{}</m></cell>
+            <cell><m>{}</m></cell>
+            <cell>T</cell>
+            <cell><m>{}</m></cell>
+            <cell><m>{}</m></cell>
+          </row>
+          <row>
+            <cell>T</cell>
+            <cell right="medium">F</cell>
+            <cell>T</cell>
+            <cell><m>{}</m></cell>
+            <cell><m>{}</m></cell>
+            <cell>F</cell>
+            <cell><m>{}</m></cell>
+            <cell><m>{}</m></cell>
+          </row>
+          <row>
+            <cell>F</cell>
+            <cell right="medium">T</cell>
+            <cell>T</cell>
+            <cell><m>{}</m></cell>
+            <cell><m>{}</m></cell>
+            <cell>F</cell>
+            <cell><m>{}</m></cell>
+            <cell><m>{}</m></cell>
+          </row>
+          <row>
+            <cell>F</cell>
+            <cell right="medium">F</cell>
+            <cell>T</cell>
+            <cell><m>{}</m></cell>
+            <cell><m>{}</m></cell>
+            <cell>F</cell>
+            <cell><m>{}</m></cell>
+            <cell><m>{}</m></cell>
+          </row>
+          <row>
+            <cell><m>{}</m></cell>
+            <cell right="medium"><m>{}</m></cell>
+            <cell>2</cell>
+            <cell><m>{}</m></cell>
+            <cell><m>{}</m></cell>
+            <cell>1</cell>
+            <cell><m>{}</m></cell>
+            <cell><m>{}</m></cell>
+          </row>
+        </tabular>
+      </table>
+      <p>
+        The truth table checker follows this same order, but it
+        expands the work into separate checkable columns so it can
+        lock, grade, save, and describe each step accessibly.
+      </p>
+    </paragraphs>
+
+  </section>
+
+  <section xml:id="sec-building-truth-tables">
+    <title>Building Full Truth Tables</title>
+
+    <introduction>
+      <p>
+        A full truth table considers every possible assignment of
+        truth values to the sentence letters in a formula or
+        argument.
+      </p>
+    </introduction>
+
+    <paragraphs xml:id="paragraphs-number-of-rows">
+      <title>How many rows?</title>
+      <p>
+        The number of rows depends on the number of different
+        sentence letters. One sentence letter gives two rows. Two
+        sentence letters give four rows. Three sentence letters
+        give eight rows. Four sentence letters give sixteen rows.
+      </p>
+      <p>
+        The pattern is powers of two:
+      </p>
+      <table xml:id="table-truth-table-row-counts">
+        <title>Rows in a Truth Table</title>
+        <tabular halign="center">
+          <row header="yes">
+            <cell>Sentence letters</cell>
+            <cell>Rows</cell>
+          </row>
+          <row>
+            <cell>1</cell>
+            <cell>2</cell>
+          </row>
+          <row>
+            <cell>2</cell>
+            <cell>4</cell>
+          </row>
+          <row>
+            <cell>3</cell>
+            <cell>8</cell>
+          </row>
+          <row>
+            <cell>4</cell>
+            <cell>16</cell>
+          </row>
+        </tabular>
+      </table>
+      <p>
+        In this course, most tables stay at two or three sentence
+        letters. Four-letter tables are possible, but they get wide
+        quickly.
+      </p>
+    </paragraphs>
+
+    <paragraphs xml:id="paragraphs-reference-column-pattern">
+      <title>The reference-column pattern</title>
+      <p>
+        Write the sentence letters in order of first appearance.
+        Then fill the reference columns in a regular binary-counting
+        pattern. The rightmost sentence-letter column alternates T,
+        F, T, F. The next column changes every two rows. The next
+        column changes every four rows.
+      </p>
+      <table xml:id="table-three-letter-reference-pattern">
+        <title>Reference Columns for Three Sentence Letters</title>
+        <tabular halign="center">
+          <row header="yes">
+            <cell><m>P</m></cell>
+            <cell><m>Q</m></cell>
+            <cell><m>R</m></cell>
+          </row>
+          <row><cell>T</cell><cell>T</cell><cell>T</cell></row>
+          <row><cell>T</cell><cell>T</cell><cell>F</cell></row>
+          <row><cell>T</cell><cell>F</cell><cell>T</cell></row>
+          <row><cell>T</cell><cell>F</cell><cell>F</cell></row>
+          <row><cell>F</cell><cell>T</cell><cell>T</cell></row>
+          <row><cell>F</cell><cell>T</cell><cell>F</cell></row>
+          <row><cell>F</cell><cell>F</cell><cell>T</cell></row>
+          <row><cell>F</cell><cell>F</cell><cell>F</cell></row>
+        </tabular>
+      </table>
+    </paragraphs>
+
+    <paragraphs xml:id="paragraphs-worked-full-table">
+      <title>A worked table</title>
+      <p>
+        Build the table for
+        <m>(P \supset Q) \equiv ({\text{\textasciitilde}}P \lor Q)</m>.
+        First evaluate the conditional <m>P \supset Q</m>. Then
+        evaluate <m>{\text{\textasciitilde}}P</m>. Then evaluate
+        <m>{\text{\textasciitilde}}P \lor Q</m>. Finally evaluate
+        the biconditional joining the two larger parts. The truth
+        values go under the operators that produce them.
+      </p>
+      <table xml:id="table-material-implication-worked">
+        <title>A Complete Truth Table</title>
+        <tabular halign="center">
+          <row header="yes">
+            <cell><m>P</m></cell>
+            <cell right="medium"><m>Q</m></cell>
+            <cell><m>(</m></cell>
+            <cell><m>P</m></cell>
+            <cell><m>\supset</m></cell>
+            <cell><m>Q</m></cell>
+            <cell><m>)</m></cell>
+            <cell><m>\equiv</m></cell>
+            <cell><m>(</m></cell>
+            <cell><m>{\text{\textasciitilde}}</m></cell>
+            <cell><m>P</m></cell>
+            <cell><m>\lor</m></cell>
+            <cell><m>Q</m></cell>
+            <cell><m>)</m></cell>
+          </row>
+          <row>
+            <cell>T</cell>
+            <cell right="medium">T</cell>
+            <cell><m>{}</m></cell>
+            <cell><m>{}</m></cell>
+            <cell>T</cell>
+            <cell><m>{}</m></cell>
+            <cell><m>{}</m></cell>
+            <cell>T</cell>
+            <cell><m>{}</m></cell>
+            <cell>F</cell>
+            <cell><m>{}</m></cell>
+            <cell>T</cell>
+            <cell><m>{}</m></cell>
+            <cell><m>{}</m></cell>
+          </row>
+          <row>
+            <cell>T</cell>
+            <cell right="medium">F</cell>
+            <cell><m>{}</m></cell>
+            <cell><m>{}</m></cell>
+            <cell>F</cell>
+            <cell><m>{}</m></cell>
+            <cell><m>{}</m></cell>
+            <cell>T</cell>
+            <cell><m>{}</m></cell>
+            <cell>F</cell>
+            <cell><m>{}</m></cell>
+            <cell>F</cell>
+            <cell><m>{}</m></cell>
+            <cell><m>{}</m></cell>
+          </row>
+          <row>
+            <cell>F</cell>
+            <cell right="medium">T</cell>
+            <cell><m>{}</m></cell>
+            <cell><m>{}</m></cell>
+            <cell>T</cell>
+            <cell><m>{}</m></cell>
+            <cell><m>{}</m></cell>
+            <cell>T</cell>
+            <cell><m>{}</m></cell>
+            <cell>T</cell>
+            <cell><m>{}</m></cell>
+            <cell>T</cell>
+            <cell><m>{}</m></cell>
+            <cell><m>{}</m></cell>
+          </row>
+          <row>
+            <cell>F</cell>
+            <cell right="medium">F</cell>
+            <cell><m>{}</m></cell>
+            <cell><m>{}</m></cell>
+            <cell>T</cell>
+            <cell><m>{}</m></cell>
+            <cell><m>{}</m></cell>
+            <cell>T</cell>
+            <cell><m>{}</m></cell>
+            <cell>T</cell>
+            <cell><m>{}</m></cell>
+            <cell>T</cell>
+            <cell><m>{}</m></cell>
+            <cell><m>{}</m></cell>
+          </row>
+          <row>
+            <cell><m>{}</m></cell>
+            <cell right="medium"><m>{}</m></cell>
+            <cell><m>{}</m></cell>
+            <cell><m>{}</m></cell>
+            <cell>2</cell>
+            <cell><m>{}</m></cell>
+            <cell><m>{}</m></cell>
+            <cell>4</cell>
+            <cell><m>{}</m></cell>
+            <cell>1</cell>
+            <cell><m>{}</m></cell>
+            <cell>3</cell>
+            <cell><m>{}</m></cell>
+            <cell><m>{}</m></cell>
+          </row>
+        </tabular>
+      </table>
+      <p>
+        The main column is the column under <m>\equiv</m>. Because the two inputs into the triple bar, the results under horseshoe and the results under the wedge, all match, the triple bar outputs all T. The whole statement is true under every possible
+        assignment of truth values to <m>P</m> and <m>Q</m>. This tells us that the statement is a tautology.      </p>
+    </paragraphs>
+
+  </section>
+
+  <section xml:id="sec-using-truth-tables">
+    <title>Using Truth Tables</title>
+
+    <introduction>
+      <p>
+        Once a truth table is complete, the values under the main
+        operator can answer three kinds of questions: What kind of
+        statement is this? How do these two statements relate? Is
+        this argument valid?
+      </p>
+    </introduction>
+
+    <paragraphs xml:id="paragraphs-statement-classification">
+      <title>Classifying single statements</title>
+      <p>
+        A statement is a <term>tautology</term> if the values under
+        its main operator are all T. It is a
+        <term>self-contradiction</term> if the values under its main
+        operator are all F. It is <term>contingent</term> if those
+        values contain at least one T and at least one F.
+      </p>
+      <definition xml:id="def-ch9-tautology">
+        <statement>
+          <p>
+            A <term>tautology</term> is a statement whose main
+            truth-table column is all T.
+          </p>
+        </statement>
+      </definition>
+      <definition xml:id="def-ch9-self-contradiction">
+        <statement>
+          <p>
+            A <term>self-contradiction</term> is a statement whose
+            main truth-table column is all F.
+          </p>
+        </statement>
+      </definition>
+      <definition xml:id="def-ch9-contingent">
+        <statement>
+          <p>
+            A <term>contingent</term> statement has a main
+            truth-table column with at least one T and at least one F.
+          </p>
+        </statement>
+      </definition>
+      <table xml:id="table-statement-classification">
+        <title>Classifying Statements</title>
+        <tabular halign="center">
+          <row header="yes">
+            <cell>Values under main operator</cell>
+            <cell>Classification</cell>
+          </row>
+          <row>
+            <cell>All T</cell>
+            <cell>Tautology</cell>
+          </row>
+          <row>
+            <cell>All F</cell>
+            <cell>Self-contradiction</cell>
+          </row>
+          <row>
+            <cell>At least one T and at least one F</cell>
+            <cell>Contingent</cell>
+          </row>
+        </tabular>
+      </table>
+    </paragraphs>
+
+    <paragraphs xml:id="paragraphs-pair-relations">
+      <title>Comparing pairs of statements</title>
+      <p>
+        To compare two statements, compare the values under their
+        main operators row by row.
+      </p>
+      <definition xml:id="def-ch9-logically-equivalent">
+        <statement>
+          <p>
+            Two statements are <term>logically equivalent</term> when
+            the values under their main operators match on every row.
+          </p>
+        </statement>
+      </definition>
+      <definition xml:id="def-ch9-contradictory">
+        <statement>
+          <p>
+            Two statements are <term>contradictory</term> when their
+            values under their main operators differ on every row.
+          </p>
+        </statement>
+      </definition>
+      <definition xml:id="def-ch9-consistent-not-equivalent">
+        <statement>
+          <p>
+            Two statements are <term>consistent but not equivalent</term>
+            when the values under their main operators share at least
+            one T row, but do not match on every row.
+          </p>
+        </statement>
+      </definition>
+      <definition xml:id="def-ch9-inconsistent-not-contradictory">
+        <statement>
+          <p>
+            Two statements are
+            <term>inconsistent but not contradictory</term> when their
+            values under their main operators never share a T row,
+            but are not opposites on every row.
+          </p>
+        </statement>
+      </definition>
+      <p>
+        These four labels match the truth table checker. The
+        checker will not choose the relation for you; it will ask
+        you to compare the main-operator values and choose the right
+        relation.
+      </p>
+    </paragraphs>
+
+    <paragraphs xml:id="paragraphs-argument-validity-truth-tables">
+      <title>Testing arguments</title>
+      <p>
+        A truth table tests an argument by looking for a
+        counterexample row.
+      </p>
+      <definition xml:id="def-ch9-counterexample-row">
+        <statement>
+          <p>
+            A <term>counterexample row</term> is a truth-table row
+            where every premise is true and the conclusion is false.
+          </p>
+        </statement>
+      </definition>
+      <p>
+        If there is no counterexample row, the argument is valid.
+        If there is at least one counterexample row, the argument
+        is invalid.
+      </p>
+      <example xml:id="ex-truth-table-invalid-argument">
+        <title>An Invalid Argument</title>
+        <statement>
+          <p>P1: <m>P \supset Q</m></p>
+          <p>P2: <m>Q</m></p>
+          <p><m>\therefore</m> C: <m>P</m></p>
+        </statement>
+      </example>
+      <table xml:id="table-invalid-argument-counterexample">
+        <title>Testing for a Counterexample Row</title>
+        <tabular halign="center">
+          <row header="yes">
+            <cell><m>P</m></cell>
+            <cell right="medium"><m>Q</m></cell>
+            <cell>P1:</cell>
+            <cell><m>P</m></cell>
+            <cell><m>\supset</m></cell>
+            <cell><m>Q</m></cell>
+            <cell right="medium">P2: <m>Q</m></cell>
+            <cell>C: <m>P</m></cell>
+          </row>
+          <row>
+            <cell>T</cell>
+            <cell right="medium">T</cell>
+            <cell><m>{}</m></cell>
+            <cell><m>{}</m></cell>
+            <cell>T</cell>
+            <cell><m>{}</m></cell>
+            <cell>T</cell>
+            <cell>T</cell>
+          </row>
+          <row>
+            <cell>T</cell>
+            <cell right="medium">F</cell>
+            <cell><m>{}</m></cell>
+            <cell><m>{}</m></cell>
+            <cell>F</cell>
+            <cell><m>{}</m></cell>
+            <cell>F</cell>
+            <cell>T</cell>
+          </row>
+          <row>
+            <cell>F</cell>
+            <cell right="medium">T</cell>
+            <cell><m>{}</m></cell>
+            <cell><m>{}</m></cell>
+            <cell>T</cell>
+            <cell><m>{}</m></cell>
+            <cell>T</cell>
+            <cell>F</cell>
+          </row>
+          <row>
+            <cell>F</cell>
+            <cell right="medium">F</cell>
+            <cell><m>{}</m></cell>
+            <cell><m>{}</m></cell>
+            <cell>T</cell>
+            <cell><m>{}</m></cell>
+            <cell>F</cell>
+            <cell>F</cell>
+          </row>
+        </tabular>
+      </table>
+      <p>
+        The third row is a counterexample row: both premises are
+        true, but the conclusion is false. So the argument is
+        invalid.
+      </p>
+    </paragraphs>
+
+  </section>
+
+  <section xml:id="sec-truth-tables-where-headed">
+    <title>Where We're Headed</title>
+
+    <p>
+      Truth tables are powerful because they are mechanical. If a
+      symbolic statement has four or fewer sentence letters, you
+      can test it by listing the possible truth-value assignments
+      and calculating the values under the main operator. The method is slow by hand,
+      but it is exact.
+    </p>
+    <p>
+      The next chapter turns to natural deduction. Truth tables
+      tell us whether an argument is valid. Natural deduction gives
+      us a different kind of understanding: it shows how to move
+      from premises to conclusion step by step using rules.
+    </p>
+
+  </section>
+
+  <conclusion xml:id="conclusion-ch9">
+    <title>Chapter Summary</title>
+
+    <p>
+      This chapter introduced truth tables as a method for
+      evaluating sentential formulas and arguments.
+    </p>
+    <p>
+      <alert>Connectives as Truth Functions (§9.1).</alert> A
+      connective is defined by the output it gives for each
+      possible input of truth values.
+    </p>
+    <p>
+      <alert>The Basic Truth Tables (§9.2).</alert> Negation,
+      conjunction, disjunction, conditional, and biconditional each
+      have a defining truth table.
+    </p>
+    <p>
+      <alert>Well-Formed Formulas and Order of Operations (§9.3).</alert>
+      Truth tables require well-formed formulas. Work from the
+      inside out and finish with the main connective.
+    </p>
+    <p>
+      <alert>Building Full Truth Tables (§9.4).</alert> A full
+      truth table lists every possible assignment of truth values
+      to the sentence letters and then evaluates the compound
+      formulas column by column.
+    </p>
+    <p>
+      <alert>Using Truth Tables (§9.5).</alert> Truth tables
+      classify single statements, compare pairs of statements, and
+      test arguments for validity by looking for counterexample
+      rows.
+    </p>
+
+  </conclusion>
+
+  <section xml:id="sec-ch9-key-terms">
+    <title>Key Terms</title>
+
+    <p>Listed alphabetically, with section references.</p>
+
+    <dl>
+      <li xml:id="term-ch9-consistent-not-equivalent">
+        <title>Consistent but not equivalent</title>
+        <p>A relation between two statements whose main-operator values share at least one T row but do not match on every row. (§9.5)</p>
+      </li>
+      <li xml:id="term-ch9-contingent">
+        <title>Contingent</title>
+        <p>A statement whose main truth-table column contains at least one T and at least one F. (§9.5)</p>
+      </li>
+      <li xml:id="term-ch9-contradictory">
+        <title>Contradictory</title>
+        <p>A relation between two statements whose main-operator values differ on every row. (§9.5)</p>
+      </li>
+      <li xml:id="term-ch9-counterexample-row">
+        <title>Counterexample row</title>
+        <p>A truth-table row where every premise is true and the conclusion is false. (§9.5)</p>
+      </li>
+      <li xml:id="term-ch9-inconsistent-not-contradictory">
+        <title>Inconsistent but not contradictory</title>
+        <p>A relation between two statements whose main-operator values never share a T row but are not opposites on every row. (§9.5)</p>
+      </li>
+      <li xml:id="term-ch9-logically-equivalent">
+        <title>Logically equivalent</title>
+        <p>A relation between two statements whose main-operator values match on every row. (§9.5)</p>
+      </li>
+      <li xml:id="term-ch9-main-column">
+        <title>Main column</title>
+        <p>The column of truth values under the main connective of the whole statement. (§9.3, §9.4)</p>
+      </li>
+      <li xml:id="term-ch9-self-contradiction">
+        <title>Self-contradiction</title>
+        <p>A statement whose main truth-table column is all F. (§9.5)</p>
+      </li>
+      <li xml:id="term-ch9-tautology">
+        <title>Tautology</title>
+        <p>A statement whose main truth-table column is all T. (§9.5)</p>
+      </li>
+      <li xml:id="term-ch9-truth-function">
+        <title>Truth function</title>
+        <p>A function whose inputs and output are truth values. (§9.1)</p>
+      </li>
+      <li xml:id="term-ch9-truth-table">
+        <title>Truth table</title>
+        <p>A table that lists possible truth-value assignments and shows the truth value of a compound statement under each assignment. (§9.1)</p>
+      </li>
+      <li xml:id="term-ch9-well-formed-formula">
+        <title>Well-formed formula</title>
+        <p>A symbolic statement built according to the formation rules of the language. (§9.3)</p>
+      </li>
+    </dl>
+
+  </section>
+
+  <exercises xml:id="exercises-ch9">
+    <title>End-of-Chapter Exercises</title>
+
+    <exercisegroup xml:id="exgroup-ch9-s01">
+      <title>Exercise Set 1: Basic Truth Tables</title>
+      <introduction>
+        <p>
+          For each formula, write the truth values under the main
+          operator.
+        </p>
+      </introduction>
+      <exercise xml:id="ex-ch9-s01-01"><statement><p><m>{\text{\textasciitilde}}P</m></p></statement></exercise>
+      <exercise xml:id="ex-ch9-s01-02"><statement><p><m>P \cdot Q</m></p></statement></exercise>
+      <exercise xml:id="ex-ch9-s01-03"><statement><p><m>P \lor Q</m></p></statement></exercise>
+      <exercise xml:id="ex-ch9-s01-04"><statement><p><m>P \supset Q</m></p></statement></exercise>
+      <exercise xml:id="ex-ch9-s01-05"><statement><p><m>P \equiv Q</m></p></statement></exercise>
+    </exercisegroup>
+
+    <exercisegroup xml:id="exgroup-ch9-s02">
+      <title>Exercise Set 2: Well-Formed Formulas</title>
+      <introduction>
+        <p>
+          For each expression, say whether it is well formed. If it
+          is not, briefly explain the problem.
+        </p>
+      </introduction>
+      <exercise xml:id="ex-ch9-s02-01"><statement><p><m>(P \cdot Q)</m></p></statement></exercise>
+      <exercise xml:id="ex-ch9-s02-02"><statement><p><m>P \supset (Q \lor R)</m></p></statement></exercise>
+      <exercise xml:id="ex-ch9-s02-03"><statement><p><m>P \cdot \lor Q</m></p></statement></exercise>
+      <exercise xml:id="ex-ch9-s02-04"><statement><p><m>{\text{\textasciitilde}}(P \equiv Q)</m></p></statement></exercise>
+      <exercise xml:id="ex-ch9-s02-05"><statement><p><m>(P \supset Q</m></p></statement></exercise>
+      <exercise xml:id="ex-ch9-s02-06"><statement><p><m>P Q \cdot R</m></p></statement></exercise>
+    </exercisegroup>
+
+    <exercisegroup xml:id="exgroup-ch9-s03">
+      <title>Exercise Set 3: Order of Operations</title>
+      <introduction>
+        <p>
+          For each formula, number the operators in the order they
+          should be completed in a truth table.
+        </p>
+      </introduction>
+      <exercise xml:id="ex-ch9-s03-01"><statement><p><m>{\text{\textasciitilde}}(P \cdot Q)</m></p></statement></exercise>
+      <exercise xml:id="ex-ch9-s03-02"><statement><p><m>P \supset (Q \cdot R)</m></p></statement></exercise>
+      <exercise xml:id="ex-ch9-s03-03"><statement><p><m>(P \lor Q) \cdot {\text{\textasciitilde}}R</m></p></statement></exercise>
+      <exercise xml:id="ex-ch9-s03-04"><statement><p><m>(P \supset Q) \equiv ({\text{\textasciitilde}}P \lor Q)</m></p></statement></exercise>
+    </exercisegroup>
+
+    <exercisegroup xml:id="exgroup-ch9-s04">
+      <title>Exercise Set 4: Classifying Statements</title>
+      <introduction>
+        <p>
+          Build a full truth table for each statement and classify
+          it as a tautology, self-contradiction, or contingent.
+        </p>
+      </introduction>
+      <exercise xml:id="ex-ch9-s04-01"><statement><p><m>P \lor {\text{\textasciitilde}}P</m></p></statement></exercise>
+      <exercise xml:id="ex-ch9-s04-02"><statement><p><m>P \cdot {\text{\textasciitilde}}P</m></p></statement></exercise>
+      <exercise xml:id="ex-ch9-s04-03"><statement><p><m>P \supset Q</m></p></statement></exercise>
+      <exercise xml:id="ex-ch9-s04-04"><statement><p><m>(P \cdot Q) \supset P</m></p></statement></exercise>
+      <exercise xml:id="ex-ch9-s04-05"><statement><p><m>{\text{\textasciitilde}}(P \lor Q)</m></p></statement></exercise>
+    </exercisegroup>
+
+    <exercisegroup xml:id="exgroup-ch9-s05">
+      <title>Exercise Set 5: Comparing Pairs</title>
+      <introduction>
+        <p>
+          Build truth tables and classify each pair as logically
+          equivalent, contradictory, consistent but not equivalent,
+          or inconsistent but not contradictory.
+        </p>
+      </introduction>
+      <exercise xml:id="ex-ch9-s05-01"><statement><p><m>P \supset Q</m> and <m>{\text{\textasciitilde}}P \lor Q</m></p></statement></exercise>
+      <exercise xml:id="ex-ch9-s05-02"><statement><p><m>P \cdot Q</m> and <m>{\text{\textasciitilde}}(P \cdot Q)</m></p></statement></exercise>
+      <exercise xml:id="ex-ch9-s05-03"><statement><p><m>P</m> and <m>P \lor Q</m></p></statement></exercise>
+      <exercise xml:id="ex-ch9-s05-04"><statement><p><m>P \cdot Q</m> and <m>{\text{\textasciitilde}}P</m></p></statement></exercise>
+    </exercisegroup>
+
+    <exercisegroup xml:id="exgroup-ch9-s06">
+      <title>Exercise Set 6: Testing Arguments</title>
+      <introduction>
+        <p>
+          Use a truth table to determine whether each argument is
+          valid. If it is invalid, identify a counterexample row.
+        </p>
+      </introduction>
+      <exercise xml:id="ex-ch9-s06-01">
+        <statement>
+          <tabular halign="left" margins="0% 65%">
+            <row><cell>P1:</cell><cell><m>P \supset Q</m></cell></row>
+            <row><cell>P2:</cell><cell><m>P</m></cell></row>
+            <row><cell><m>\therefore</m> C:</cell><cell><m>Q</m></cell></row>
+          </tabular>
+        </statement>
+      </exercise>
+      <exercise xml:id="ex-ch9-s06-02">
+        <statement>
+          <tabular halign="left" margins="0% 65%">
+            <row><cell>P1:</cell><cell><m>P \supset Q</m></cell></row>
+            <row><cell>P2:</cell><cell><m>Q</m></cell></row>
+            <row><cell><m>\therefore</m> C:</cell><cell><m>P</m></cell></row>
+          </tabular>
+        </statement>
+      </exercise>
+      <exercise xml:id="ex-ch9-s06-03">
+        <statement>
+          <tabular halign="left" margins="0% 65%">
+            <row><cell>P1:</cell><cell><m>P \lor Q</m></cell></row>
+            <row><cell>P2:</cell><cell><m>{\text{\textasciitilde}}P</m></cell></row>
+            <row><cell><m>\therefore</m> C:</cell><cell><m>Q</m></cell></row>
+          </tabular>
+        </statement>
+      </exercise>
+      <exercise xml:id="ex-ch9-s06-04">
+        <statement>
+          <tabular halign="left" margins="0% 65%">
+            <row><cell>P1:</cell><cell><m>P \supset Q</m></cell></row>
+            <row><cell>P2:</cell><cell><m>Q \supset R</m></cell></row>
+            <row><cell><m>\therefore</m> C:</cell><cell><m>P \supset R</m></cell></row>
+          </tabular>
+        </statement>
+      </exercise>
+    </exercisegroup>
+
+  </exercises>
+
+</chapter>

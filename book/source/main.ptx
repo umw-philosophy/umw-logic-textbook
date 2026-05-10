@@ -98,6 +98,8 @@
     <part xml:id="part-sentential">
       <title>Sentential Logic</title>
       <xi:include href="chapters/ch-symbolizing.ptx"/>
+      <xi:include href="chapters/ch-truth-tables.ptx"/>
+      <xi:include href="chapters/ch-natural-deduction.ptx"/>
     </part>
 
     <!--

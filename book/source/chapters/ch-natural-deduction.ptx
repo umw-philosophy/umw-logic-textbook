@@ -1,0 +1,801 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  Chapter 10 - Natural Deduction
+
+  Draft status:
+  - First full draft of the first natural deduction chapter.
+  - Introduces proof layout, the goal of a derivation, and the eight
+    implication rules.
+  - Proof examples follow the compact Exam 3 answer-key style: numbered
+    lines, the conclusion after a slash in the premise block, and
+    justifications by line number plus rule abbreviation.
+  - Replacement rules, conditional proof, and indirect proof are reserved
+    for later chapters, except for a brief Double Negation preview in one
+    answer-key-style proof.
+-->
+<chapter xmlns:xi="http://www.w3.org/2001/XInclude" xml:id="ch-natural-deduction">
+
+  <title>Natural Deduction</title>
+
+  <introduction xml:id="ch-natural-deduction-intro">
+    <p>
+      Truth tables gave us a mechanical test for validity. They tell us
+      whether a symbolic argument has a counterexample row. Natural
+      deduction asks a different question: can we get from the premises
+      to the conclusion one small, justified step at a time?
+    </p>
+    <p>
+      The answer key style for this course is intentionally compact. A
+      proof is a numbered list of lines. Premises go first. The target
+      conclusion appears after a slash. Every line after the premises
+      must cite earlier line numbers and a rule abbreviation. A finished
+      proof ends when the target conclusion appears as a justified line.
+    </p>
+  </introduction>
+
+  <section xml:id="sec-what-natural-deduction-does">
+    <title>What Natural Deduction Does</title>
+
+    <introduction>
+      <p>
+        A truth table checks validity all at once. A natural deduction
+        proof shows validity step by step.
+      </p>
+    </introduction>
+
+    <definition xml:id="def-natural-deduction-proof">
+      <statement>
+        <p>
+          A <term>natural deduction proof</term> is a sequence of
+          statements in which each non-premise line is licensed by a rule
+          of inference applied to earlier lines.
+        </p>
+      </statement>
+    </definition>
+
+    <paragraphs xml:id="paragraphs-nd-proof-not-discovery">
+      <title>Proof is not the same as discovery</title>
+      <p>
+        When you work a proof, you may try lines that go nowhere. That
+        is normal. A submitted proof does not have to look like the
+        shortest possible path to the conclusion. But every line in it
+        must be legitimate: each non-premise line must be genuinely
+        justified by the rules from earlier lines.
+      </p>
+      <p>
+        The rules are strict. You cannot write a line just because it
+        feels obvious. You have to be able to point to earlier lines and
+        say which rule permits the new line.
+      </p>
+    </paragraphs>
+
+    <paragraphs xml:id="paragraphs-nd-compared-with-truth-tables">
+      <title>Why proofs after truth tables?</title>
+      <p>
+        Truth tables are complete for sentential logic, but they get
+        large quickly. An argument with five different sentence letters
+        requires thirty-two rows. An argument with six requires
+        sixty-four. Natural deduction can often show the same validity
+        much more directly.
+      </p>
+      <p>
+        Proofs also make the structure of an argument visible. A truth
+        table tells you that an argument is valid. A proof shows how the
+        conclusion is forced by the premises.
+      </p>
+    </paragraphs>
+
+  </section>
+
+  <section xml:id="sec-anatomy-of-a-proof">
+    <title>The Anatomy of a Proof</title>
+
+    <introduction>
+      <p>
+        Every proof in this chapter has three parts: line numbers,
+        formulas, and justifications.
+      </p>
+    </introduction>
+
+    <paragraphs xml:id="paragraphs-proof-layout">
+      <title>The basic layout</title>
+      <p>
+        Here is the form used in the course answer keys:
+      </p>
+      <table xml:id="table-nd-basic-layout">
+        <title>A Basic Natural Deduction Layout</title>
+        <tabular halign="left" margins="0% 45%">
+          <row><cell>1.</cell><cell><m>P \supset Q</m></cell><cell></cell></row>
+          <row><cell>2.</cell><cell><m>P</m></cell><cell>/ <m>Q</m></cell></row>
+          <row><cell>3.</cell><cell><m>Q</m></cell><cell>1,2 MP</cell></row>
+        </tabular>
+      </table>
+      <p>
+        Lines 1 and 2 are premises. The slash on line 2 marks the target:
+        prove <m>Q</m>. Line 3 is the conclusion, and the justification
+        tells us why it is allowed: lines 1 and 2 by Modus Ponens.
+      </p>
+    </paragraphs>
+
+    <paragraphs xml:id="paragraphs-why-abstract-rules">
+      <title>Why abstract away?</title>
+      <p>
+        That first proof is a particular application of Modus Ponens. But
+        the rule is not really about the specific letters <m>P</m> and
+        <m>Q</m>. It is about a pattern: if we have a conditional, and we
+        also have that conditional's antecedent, then we may infer its
+        consequent.
+      </p>
+      <p>
+        To state that pattern clearly, we need to talk about formulas
+        without naming one particular formula every time. The symbols
+        <m>P</m>, <m>Q</m>, <m>R</m>, <m>\supset</m>, <m>\cdot</m>,
+        <m>\lor</m>, <m>\equiv</m>, and
+        <m>{\text{\textasciitilde}}</m> belong to the symbolic language
+        we are studying. Call that the <term>object language</term>.
+      </p>
+      <p>
+        To talk about formulas of that language in a more general way,
+        we will use a small <term>metalanguage</term>. The letters
+        <m>\mathcal{A}</m>, <m>\mathcal{B}</m>, <m>\mathcal{C}</m>, and
+        <m>\mathcal{D}</m> are not sentence letters. They are
+        <term>metavariables</term>: placeholders for any well-formed
+        formula.
+      </p>
+      <p>
+        So <m>\mathcal{A}</m> might stand for <m>P</m>. It might also
+        stand for <m>{\text{\textasciitilde}}(P \cdot Q)</m>, or
+        <m>(R \lor S) \supset T</m>, or any other well-formed formula.
+        This lets us state a rule once and then recognize many different
+        applications of it.
+      </p>
+    </paragraphs>
+
+    <paragraphs xml:id="paragraphs-nd-justifications">
+      <title>Justifications</title>
+      <p>
+        A justification has two pieces. First, cite the line or lines you
+        used. Second, name the rule. For example, <q>1,2 MP</q> means
+        that line 3 follows from lines 1 and 2 by Modus Ponens.
+      </p>
+      <p>
+        A one-line rule cites one earlier line. A two-line rule cites two
+        earlier lines. A three-line rule cites three earlier lines. The
+        order of the citations should make the rule easy to check, but
+        the deeper habit is this: every derived line must be traceable
+        to something already written.
+      </p>
+    </paragraphs>
+
+    <paragraphs xml:id="paragraphs-nd-target-line">
+      <title>The slash is the target</title>
+      <p>
+        The formula after the slash is not another premise. It is what
+        you are trying to prove. In the answer-key style, it is usually
+        written on the same line as the final premise:
+      </p>
+      <table xml:id="table-nd-target-line">
+        <title>Premises and Target</title>
+        <tabular halign="left" margins="0% 45%">
+          <row><cell>1.</cell><cell><m>P \supset {\text{\textasciitilde}}S</m></cell><cell></cell></row>
+          <row><cell>2.</cell><cell><m>S</m></cell><cell>/ <m>{\text{\textasciitilde}}P</m></cell></row>
+        </tabular>
+      </table>
+      <p>
+        This says: given <m>P \supset {\text{\textasciitilde}}S</m> and
+        <m>S</m>, prove <m>{\text{\textasciitilde}}P</m>. The proof is
+        not complete until <m>{\text{\textasciitilde}}P</m> appears on a
+        numbered line with a correct justification.
+      </p>
+    </paragraphs>
+
+  </section>
+
+  <section xml:id="sec-eight-implication-rules">
+    <title>The Eight Implication Rules</title>
+
+    <introduction>
+      <p>
+        The first group of natural deduction rules is called the
+        implication rules. The name is historical. Not all of them use
+        the horseshoe. What they have in common is that they permit
+        direct moves from earlier lines to a new line.
+      </p>
+      <p>
+        The rules below are written as schemas. The metavariables
+        <m>\mathcal{A}</m>, <m>\mathcal{B}</m>, <m>\mathcal{C}</m>, and
+        <m>\mathcal{D}</m> may be replaced by any well-formed formulas,
+        as long as the same metavariable is replaced by the same formula
+        throughout that instance of the rule.
+      </p>
+    </introduction>
+
+    <paragraphs xml:id="paragraphs-nd-mp-mt">
+      <title>Modus Ponens and Modus Tollens</title>
+      <p>
+        <term>Modus Ponens</term> (MP) says that if you have a
+        conditional and you have its antecedent, you may infer its
+        consequent.
+      </p>
+      <table xml:id="table-rule-mp">
+        <title>Modus Ponens Schema</title>
+        <tabular halign="center" margins="0% 70%">
+          <row><cell><m>\mathcal{A} \supset \mathcal{B}</m></cell></row>
+          <row><cell bottom="medium"><m>\mathcal{A}</m></cell></row>
+          <row><cell><m>\mathcal{B}</m></cell></row>
+        </tabular>
+      </table>
+      <p>
+        The proof above with <m>P \supset Q</m>, <m>P</m>, and
+        <m>Q</m> is one <term>substitution instance</term> of this
+        schema: replace <m>\mathcal{A}</m> with <m>P</m> and
+        <m>\mathcal{B}</m> with <m>Q</m>. But the antecedent and
+        consequent do not have to be single sentence letters.
+      </p>
+      <table xml:id="table-mp-compound-instance">
+        <title>A Compound Instance of Modus Ponens</title>
+        <tabular halign="left" margins="0% 45%">
+          <row><cell>1.</cell><cell><m>{\text{\textasciitilde}}(P \cdot Q)</m></cell><cell></cell></row>
+          <row><cell>2.</cell><cell><m>{\text{\textasciitilde}}(P \cdot Q) \supset R</m></cell><cell>/ <m>R</m></cell></row>
+          <row><cell>3.</cell><cell><m>R</m></cell><cell>2,1 MP</cell></row>
+        </tabular>
+      </table>
+      <p>
+        In this instance, <m>\mathcal{A}</m> is
+        <m>{\text{\textasciitilde}}(P \cdot Q)</m>, and
+        <m>\mathcal{B}</m> is <m>R</m>. The order of the cited lines
+        does not change the logical point. What matters is that one line
+        has the form <m>\mathcal{A} \supset \mathcal{B}</m> and the
+        other line is that same <m>\mathcal{A}</m>. Then MP permits
+        <m>\mathcal{B}</m>.
+      </p>
+      <p>
+        <term>Modus Tollens</term> (MT) says that if you have a
+        conditional and you have the negation of its consequent, you may
+        infer the negation of its antecedent.
+      </p>
+      <table xml:id="table-rule-mt">
+        <title>Modus Tollens Schema</title>
+        <tabular halign="center" margins="0% 70%">
+          <row><cell><m>\mathcal{A} \supset \mathcal{B}</m></cell></row>
+          <row><cell bottom="medium"><m>{\text{\textasciitilde}}\mathcal{B}</m></cell></row>
+          <row><cell><m>{\text{\textasciitilde}}\mathcal{A}</m></cell></row>
+        </tabular>
+      </table>
+      <p>
+        Do not confuse MT with the invalid move of affirming the
+        consequent. From <m>P \supset Q</m> and <m>Q</m>, you cannot
+        infer <m>P</m>.
+      </p>
+    </paragraphs>
+
+    <paragraphs xml:id="paragraphs-nd-hs-ds">
+      <title>Hypothetical Syllogism and Disjunctive Syllogism</title>
+      <p>
+        <term>Hypothetical Syllogism</term> (HS) chains conditionals.
+        If one conditional takes you from <m>P</m> to <m>Q</m>, and
+        another takes you from <m>Q</m> to <m>R</m>, you may infer the
+        direct conditional from <m>P</m> to <m>R</m>.
+      </p>
+      <table xml:id="table-rule-hs">
+        <title>Hypothetical Syllogism Schema</title>
+        <tabular halign="center" margins="0% 70%">
+          <row><cell><m>\mathcal{A} \supset \mathcal{B}</m></cell></row>
+          <row><cell bottom="medium"><m>\mathcal{B} \supset \mathcal{C}</m></cell></row>
+          <row><cell><m>\mathcal{A} \supset \mathcal{C}</m></cell></row>
+        </tabular>
+      </table>
+      <p>
+        <term>Disjunctive Syllogism</term> (DS) uses a disjunction and
+        the denial of one disjunct to infer the other.
+      </p>
+      <table xml:id="table-rule-ds">
+        <title>Disjunctive Syllogism Schema</title>
+        <tabular halign="center" margins="0% 70%">
+          <row><cell><m>\mathcal{A} \lor \mathcal{B}</m></cell></row>
+          <row><cell bottom="medium"><m>{\text{\textasciitilde}}\mathcal{A}</m></cell></row>
+          <row><cell><m>\mathcal{B}</m></cell></row>
+        </tabular>
+      </table>
+      <p>
+        DS works on either side. From <m>P \lor Q</m> and
+        <m>{\text{\textasciitilde}}Q</m>, you may infer <m>P</m>.
+      </p>
+    </paragraphs>
+
+    <paragraphs xml:id="paragraphs-nd-simp-conj-add">
+      <title>Simplification, Conjunction, and Addition</title>
+      <p>
+        <term>Simplification</term> (Simp) lets you take either part of
+        a conjunction.
+      </p>
+      <table xml:id="table-rule-simp">
+        <title>Simplification Schema</title>
+        <tabular halign="center" margins="0% 70%">
+          <row><cell bottom="medium"><m>\mathcal{A} \cdot \mathcal{B}</m></cell></row>
+          <row><cell><m>\mathcal{A}</m></cell></row>
+        </tabular>
+      </table>
+      <p>
+        <term>Conjunction</term> (Conj) lets you join two available
+        lines with a dot.
+      </p>
+      <table xml:id="table-rule-conj">
+        <title>Conjunction Schema</title>
+        <tabular halign="center" margins="0% 70%">
+          <row><cell><m>\mathcal{A}</m></cell></row>
+          <row><cell bottom="medium"><m>\mathcal{B}</m></cell></row>
+          <row><cell><m>\mathcal{A} \cdot \mathcal{B}</m></cell></row>
+        </tabular>
+      </table>
+      <p>
+        <term>Addition</term> (Add) lets you introduce a disjunction
+        from a line you already have. This rule feels strange at first,
+        but it is truth-preserving: if <m>P</m> is true, then
+        <m>P \lor Q</m> is true no matter what <m>Q</m> is.
+      </p>
+      <table xml:id="table-rule-add">
+        <title>Addition Schema</title>
+        <tabular halign="center" margins="0% 70%">
+          <row><cell bottom="medium"><m>\mathcal{A}</m></cell></row>
+          <row><cell><m>\mathcal{A} \lor \mathcal{B}</m></cell></row>
+        </tabular>
+      </table>
+    </paragraphs>
+
+    <paragraphs xml:id="paragraphs-nd-cd">
+      <title>Constructive Dilemma</title>
+      <p>
+        <term>Constructive Dilemma</term> (CD) is the longest of the
+        eight implication rules. It uses two conditionals and a
+        disjunction of their antecedents to infer a disjunction of their
+        consequents.
+      </p>
+      <table xml:id="table-rule-cd">
+        <title>Constructive Dilemma Schema</title>
+        <tabular halign="center" margins="0% 70%">
+          <row><cell><m>\mathcal{A} \supset \mathcal{B}</m></cell></row>
+          <row><cell><m>\mathcal{C} \supset \mathcal{D}</m></cell></row>
+          <row><cell bottom="medium"><m>\mathcal{A} \lor \mathcal{C}</m></cell></row>
+          <row><cell><m>\mathcal{B} \lor \mathcal{D}</m></cell></row>
+        </tabular>
+      </table>
+      <p>
+        CD is useful when an argument says, in effect, either the first
+        route is open or the second route is open; if the first route is
+        open, one result follows; if the second route is open, another
+        result follows; so one of those results follows.
+      </p>
+    </paragraphs>
+
+  </section>
+
+  <section xml:id="sec-first-worked-proofs">
+    <title>First Worked Proofs</title>
+
+    <introduction>
+      <p>
+        The easiest way to learn proofs is to watch the rules in action.
+        The examples in this section use the same compact format as the
+        course answer key.
+      </p>
+      <p>
+        The first example briefly uses Double Negation (DN), a replacement
+        rule covered systematically in the next chapter. It is included
+        here because this is a common move in the course's worked proofs.
+      </p>
+    </introduction>
+
+    <example xml:id="ex-nd-mt-with-double-negation">
+      <title>A short Modus Tollens proof</title>
+      <statement>
+        <table xml:id="table-ex-nd-mt-with-double-negation">
+          <title>Deriving <m>{\text{\textasciitilde}}P</m></title>
+          <tabular halign="left" margins="0% 45%">
+            <row><cell>1.</cell><cell><m>P \supset {\text{\textasciitilde}}S</m></cell><cell></cell></row>
+            <row><cell>2.</cell><cell><m>S</m></cell><cell>/ <m>{\text{\textasciitilde}}P</m></cell></row>
+            <row><cell>3.</cell><cell><m>{\text{\textasciitilde}}{\text{\textasciitilde}}S</m></cell><cell>2 DN</cell></row>
+            <row><cell>4.</cell><cell><m>{\text{\textasciitilde}}P</m></cell><cell>1,3 MT</cell></row>
+          </tabular>
+        </table>
+      </statement>
+    </example>
+    <p>
+      Line 1 says that <m>P</m> would give us
+      <m>{\text{\textasciitilde}}S</m>. Line 2 gives us <m>S</m>. To use
+      MT, we need the negation of the consequent of line 1, which is
+      <m>{\text{\textasciitilde}}{\text{\textasciitilde}}S</m>. Line 3
+      gets that by Double Negation. Then MT gives the target
+      <m>{\text{\textasciitilde}}P</m>.
+    </p>
+
+    <example xml:id="ex-nd-simp-mp-conj">
+      <title>Building a conjunction</title>
+      <statement>
+        <table xml:id="table-ex-nd-simp-mp-conj">
+          <title>Deriving <m>P \cdot S</m></title>
+          <tabular halign="left" margins="0% 45%">
+            <row><cell>1.</cell><cell><m>(P \lor R) \supset S</m></cell><cell></cell></row>
+            <row><cell>2.</cell><cell><m>P \cdot Q</m></cell><cell>/ <m>P \cdot S</m></cell></row>
+            <row><cell>3.</cell><cell><m>P</m></cell><cell>2 Simp</cell></row>
+            <row><cell>4.</cell><cell><m>P \lor R</m></cell><cell>3 Add</cell></row>
+            <row><cell>5.</cell><cell><m>S</m></cell><cell>1,4 MP</cell></row>
+            <row><cell>6.</cell><cell><m>P \cdot S</m></cell><cell>3,5 Conj</cell></row>
+          </tabular>
+        </table>
+      </statement>
+    </example>
+    <p>
+      This proof works backward from the target. To prove
+      <m>P \cdot S</m>, we need <m>P</m> and <m>S</m>. Line 2 gives
+      <m>P</m> by Simplification. To get <m>S</m>, line 1 needs
+      <m>P \lor R</m>. Since we already have <m>P</m>, Addition gives
+      <m>P \lor R</m>, and then MP gives <m>S</m>.
+    </p>
+
+    <example xml:id="ex-nd-constructive-dilemma">
+      <title>A constructive dilemma</title>
+      <statement>
+        <table xml:id="table-ex-nd-constructive-dilemma">
+          <title>Deriving <m>S \lor I</m></title>
+          <tabular halign="left" margins="0% 45%">
+            <row><cell>1.</cell><cell><m>F \supset S</m></cell><cell></cell></row>
+            <row><cell>2.</cell><cell><m>{\text{\textasciitilde}}F \supset I</m></cell><cell></cell></row>
+            <row><cell>3.</cell><cell><m>F \lor {\text{\textasciitilde}}F</m></cell><cell>/ <m>S \lor I</m></cell></row>
+            <row><cell>4.</cell><cell><m>S \lor I</m></cell><cell>1,2,3 CD</cell></row>
+          </tabular>
+        </table>
+      </statement>
+    </example>
+    <p>
+      Constructive Dilemma is a three-line rule. Line 3 gives the
+      disjunction of the antecedents from lines 1 and 2. So CD allows
+      the disjunction of the consequents, <m>S \lor I</m>.
+    </p>
+
+  </section>
+
+  <section xml:id="sec-basic-proof-strategy">
+    <title>Basic Proof Strategy</title>
+
+    <introduction>
+      <p>
+        There is no single recipe for every proof, but there are good
+        habits.
+      </p>
+    </introduction>
+
+    <paragraphs xml:id="paragraphs-nd-work-backward">
+      <title>Look at the target first</title>
+      <p>
+        If the target is a conjunction, expect to prove each side and
+        then use Conj. If the target is a disjunction, see whether you
+        can get one side and use Add, or whether DS or CD will give you
+        the whole disjunction. If the target is a negation, look for MT
+        or DS.
+      </p>
+      <p>
+        In other words, try to match the target to the output line of a
+        rule schema. If the target has the form
+        <m>\mathcal{A} \cdot \mathcal{B}</m>, Conj is a natural
+        candidate. If the target has the form
+        <m>{\text{\textasciitilde}}\mathcal{A}</m>, MT may be relevant.
+        The schemas turn strategy into pattern matching.
+      </p>
+    </paragraphs>
+
+    <paragraphs xml:id="paragraphs-nd-mine-premises">
+      <title>Mine the premises</title>
+      <p>
+        Conjunctions are often useful because Simp lets you extract
+        their parts. Conditionals are useful when you can find their
+        antecedents. Disjunctions are useful when one disjunct has been
+        ruled out.
+      </p>
+    </paragraphs>
+
+    <paragraphs xml:id="paragraphs-nd-do-not-overwrite-lines">
+      <title>Do not change old lines</title>
+      <p>
+        A proof does not transform a line by erasing it. If you use a
+        rule, write the result on a new line. The old line stays where it
+        is. This is why line numbers matter: they let another reader see
+        the exact path from premises to conclusion.
+      </p>
+    </paragraphs>
+
+    <paragraphs xml:id="paragraphs-nd-when-stuck">
+      <title>When you are stuck</title>
+      <p>
+        Ask three questions. First, what shape is the conclusion?
+        Second, which rule could produce a line of that shape? Third,
+        what earlier lines would that rule need? This turns proof search
+        from a guessing game into a small planning problem.
+      </p>
+    </paragraphs>
+
+  </section>
+
+  <section xml:id="sec-natural-deduction-where-headed">
+    <title>Where We're Headed</title>
+
+    <p>
+      This chapter introduced the basic proof format and the eight
+      implication rules. Those rules are enough for many short proofs,
+      especially when the conclusion follows directly from conditionals,
+      conjunctions, and disjunctions already present in the premises.
+    </p>
+    <p>
+      The next natural deduction chapter adds the replacement rules.
+      Replacement rules let us rewrite a statement into an equivalent
+      form. They are especially important for De Morgan transformations,
+      double negation, material implication, and material equivalence.
+    </p>
+
+  </section>
+
+  <conclusion xml:id="conclusion-ch-natural-deduction">
+    <title>Chapter Summary</title>
+
+    <p>
+      This chapter introduced natural deduction as a method for proving
+      sentential arguments valid.
+    </p>
+    <p>
+      <alert>What Natural Deduction Does (§10.1).</alert> Natural
+      deduction shows that a conclusion follows by deriving it from the
+      premises one rule-governed step at a time.
+    </p>
+    <p>
+      <alert>The Anatomy of a Proof (§10.2).</alert> A proof has
+      numbered lines, formulas, and justifications. In this course's
+      compact format, the target conclusion appears after a slash in the
+      premise block. After the first concrete proof, we introduce
+      metavariables so that rules can be stated as general schemas rather
+      than as single examples.
+    </p>
+    <p>
+      <alert>The Eight Implication Rules (§10.3).</alert> MP, MT, HS,
+      DS, Simp, Conj, Add, and CD are direct inference rules. Each is
+      stated as a schema that can have many substitution instances.
+    </p>
+    <p>
+      <alert>First Worked Proofs (§10.4).</alert> Short proofs often
+      combine several rules: simplify conjunctions, use addition to make
+      useful disjunctions, apply MP or MT to conditionals, and use Conj
+      to assemble a conjunctive target.
+    </p>
+    <p>
+      <alert>Basic Proof Strategy (§10.5).</alert> Work backward from
+      the target, match formulas to rule schemas, mine the premises for
+      usable parts, and write every result on a new numbered line.
+    </p>
+
+  </conclusion>
+
+  <section xml:id="sec-ch10-key-terms">
+    <title>Key Terms</title>
+
+    <p>Listed alphabetically, with section references.</p>
+
+    <dl>
+      <li xml:id="term-ch10-addition">
+        <title>Addition</title>
+        <p>An implication rule that permits inferring <m>P \lor Q</m> from <m>P</m>. (§10.3)</p>
+      </li>
+      <li xml:id="term-ch10-conjunction">
+        <title>Conjunction</title>
+        <p>An implication rule that permits joining two available lines as a conjunction. (§10.3)</p>
+      </li>
+      <li xml:id="term-ch10-constructive-dilemma">
+        <title>Constructive Dilemma</title>
+        <p>An implication rule that uses two conditionals and a disjunction of their antecedents to infer a disjunction of their consequents. (§10.3)</p>
+      </li>
+      <li xml:id="term-ch10-disjunctive-syllogism">
+        <title>Disjunctive Syllogism</title>
+        <p>An implication rule that permits inferring one disjunct from a disjunction and the negation of the other disjunct. (§10.3)</p>
+      </li>
+      <li xml:id="term-ch10-hypothetical-syllogism">
+        <title>Hypothetical Syllogism</title>
+        <p>An implication rule that chains two conditionals into a new conditional. (§10.3)</p>
+      </li>
+      <li xml:id="term-ch10-instantiation">
+        <title>Instantiation</title>
+        <p>Another name for a substitution instance: a particular use of a general rule schema. (§10.3)</p>
+      </li>
+      <li xml:id="term-ch10-justification">
+        <title>Justification</title>
+        <p>The citation on a proof line that names the earlier line or lines used and the rule applied. (§10.2)</p>
+      </li>
+      <li xml:id="term-ch10-metalanguage">
+        <title>Metalanguage</title>
+        <p>A language used to talk about another language. In this chapter, metavariables such as <m>\mathcal{A}</m> and <m>\mathcal{B}</m> let us talk generally about formulas of sentential logic. (§10.2)</p>
+      </li>
+      <li xml:id="term-ch10-metavariable">
+        <title>Metavariable</title>
+        <p>A placeholder in the metalanguage that can stand for any well-formed formula of the object language. (§10.2)</p>
+      </li>
+      <li xml:id="term-ch10-modus-ponens">
+        <title>Modus Ponens</title>
+        <p>An implication rule that permits inferring the consequent of a conditional when the antecedent is given. (§10.3)</p>
+      </li>
+      <li xml:id="term-ch10-modus-tollens">
+        <title>Modus Tollens</title>
+        <p>An implication rule that permits inferring the negation of a conditional's antecedent when the negation of its consequent is given. (§10.3)</p>
+      </li>
+      <li xml:id="term-ch10-natural-deduction-proof">
+        <title>Natural deduction proof</title>
+        <p>A numbered derivation in which each non-premise line follows from earlier lines by a stated rule. (§10.1)</p>
+      </li>
+      <li xml:id="term-ch10-object-language">
+        <title>Object language</title>
+        <p>The symbolic language being studied, including sentence letters and connectives such as <m>\supset</m>, <m>\cdot</m>, <m>\lor</m>, <m>\equiv</m>, and <m>{\text{\textasciitilde}}</m>. (§10.2)</p>
+      </li>
+      <li xml:id="term-ch10-rule-schema">
+        <title>Rule schema</title>
+        <p>A general statement of a rule using metavariables rather than one particular formula or proof. (§10.3)</p>
+      </li>
+      <li xml:id="term-ch10-simplification">
+        <title>Simplification</title>
+        <p>An implication rule that permits inferring either conjunct from a conjunction. (§10.3)</p>
+      </li>
+      <li xml:id="term-ch10-substitution-instance">
+        <title>Substitution instance</title>
+        <p>A particular application of a rule schema, produced by replacing each metavariable with a specific well-formed formula. (§10.3)</p>
+      </li>
+    </dl>
+
+  </section>
+
+  <exercises xml:id="exercises-ch10">
+    <title>End-of-Chapter Exercises</title>
+
+    <exercisegroup xml:id="exgroup-ch10-s01">
+      <title>Exercise Set 1: Identifying Rules</title>
+      <introduction>
+        <p>
+          For each line, identify the rule that would justify the
+          inference.
+        </p>
+      </introduction>
+      <exercise xml:id="ex-ch10-s01-01">
+        <statement>
+          <p>From <m>P \supset Q</m> and <m>P</m>, infer <m>Q</m>.</p>
+        </statement>
+      </exercise>
+      <exercise xml:id="ex-ch10-s01-02">
+        <statement>
+          <p>From <m>P \supset Q</m> and <m>{\text{\textasciitilde}}Q</m>, infer <m>{\text{\textasciitilde}}P</m>.</p>
+        </statement>
+      </exercise>
+      <exercise xml:id="ex-ch10-s01-03">
+        <statement>
+          <p>From <m>P \cdot Q</m>, infer <m>Q</m>.</p>
+        </statement>
+      </exercise>
+      <exercise xml:id="ex-ch10-s01-04">
+        <statement>
+          <p>From <m>P</m>, infer <m>P \lor R</m>.</p>
+        </statement>
+      </exercise>
+      <exercise xml:id="ex-ch10-s01-05">
+        <statement>
+          <p>From <m>P \supset Q</m> and <m>Q \supset R</m>, infer <m>P \supset R</m>.</p>
+        </statement>
+      </exercise>
+    </exercisegroup>
+
+    <exercisegroup xml:id="exgroup-ch10-s02">
+      <title>Exercise Set 2: Supply the Missing Line</title>
+      <introduction>
+        <p>
+          Complete each proof by adding the missing line and
+          justification.
+        </p>
+      </introduction>
+      <exercise xml:id="ex-ch10-s02-01">
+        <statement>
+          <tabular halign="left" margins="0% 45%">
+            <row><cell>1.</cell><cell><m>P \supset Q</m></cell><cell></cell></row>
+            <row><cell>2.</cell><cell><m>P</m></cell><cell>/ <m>Q</m></cell></row>
+            <row><cell>3.</cell><cell></cell><cell></cell></row>
+          </tabular>
+        </statement>
+      </exercise>
+      <exercise xml:id="ex-ch10-s02-02">
+        <statement>
+          <tabular halign="left" margins="0% 45%">
+            <row><cell>1.</cell><cell><m>P \lor Q</m></cell><cell></cell></row>
+            <row><cell>2.</cell><cell><m>{\text{\textasciitilde}}P</m></cell><cell>/ <m>Q</m></cell></row>
+            <row><cell>3.</cell><cell></cell><cell></cell></row>
+          </tabular>
+        </statement>
+      </exercise>
+      <exercise xml:id="ex-ch10-s02-03">
+        <statement>
+          <tabular halign="left" margins="0% 45%">
+            <row><cell>1.</cell><cell><m>P \cdot Q</m></cell><cell>/ <m>P \lor R</m></cell></row>
+            <row><cell>2.</cell><cell><m>P</m></cell><cell>1 Simp</cell></row>
+            <row><cell>3.</cell><cell></cell><cell></cell></row>
+          </tabular>
+        </statement>
+      </exercise>
+    </exercisegroup>
+
+    <exercisegroup xml:id="exgroup-ch10-s03">
+      <title>Exercise Set 3: Short Proofs</title>
+      <introduction>
+        <p>
+          Prove each argument valid using the implication rules.
+        </p>
+      </introduction>
+      <exercise xml:id="ex-ch10-s03-01">
+        <statement>
+          <tabular halign="left" margins="0% 45%">
+            <row><cell>1.</cell><cell><m>P \supset Q</m></cell><cell></cell></row>
+            <row><cell>2.</cell><cell><m>Q \supset R</m></cell><cell>/ <m>P \supset R</m></cell></row>
+          </tabular>
+        </statement>
+      </exercise>
+      <exercise xml:id="ex-ch10-s03-02">
+        <statement>
+          <tabular halign="left" margins="0% 45%">
+            <row><cell>1.</cell><cell><m>P \cdot Q</m></cell><cell>/ <m>Q \lor S</m></cell></row>
+          </tabular>
+        </statement>
+      </exercise>
+      <exercise xml:id="ex-ch10-s03-03">
+        <statement>
+          <tabular halign="left" margins="0% 45%">
+            <row><cell>1.</cell><cell><m>P \lor Q</m></cell><cell></cell></row>
+            <row><cell>2.</cell><cell><m>{\text{\textasciitilde}}Q</m></cell><cell>/ <m>P \lor R</m></cell></row>
+          </tabular>
+        </statement>
+      </exercise>
+      <exercise xml:id="ex-ch10-s03-04">
+        <statement>
+          <tabular halign="left" margins="0% 45%">
+            <row><cell>1.</cell><cell><m>P \supset Q</m></cell><cell></cell></row>
+            <row><cell>2.</cell><cell><m>R \supset S</m></cell><cell></cell></row>
+            <row><cell>3.</cell><cell><m>P \lor R</m></cell><cell>/ <m>Q \lor S</m></cell></row>
+          </tabular>
+        </statement>
+      </exercise>
+      <exercise xml:id="ex-ch10-s03-05">
+        <statement>
+          <tabular halign="left" margins="0% 45%">
+            <row><cell>1.</cell><cell><m>(P \lor R) \supset S</m></cell><cell></cell></row>
+            <row><cell>2.</cell><cell><m>P \cdot Q</m></cell><cell>/ <m>P \cdot S</m></cell></row>
+          </tabular>
+        </statement>
+      </exercise>
+    </exercisegroup>
+
+    <exercisegroup xml:id="exgroup-ch10-s04">
+      <title>Exercise Set 4: Explain the Strategy</title>
+      <introduction>
+        <p>
+          For each proof goal, write one or two sentences explaining
+          which rule you would try first and why.
+        </p>
+      </introduction>
+      <exercise xml:id="ex-ch10-s04-01">
+        <statement>
+          <p>The target is <m>P \cdot Q</m>.</p>
+        </statement>
+      </exercise>
+      <exercise xml:id="ex-ch10-s04-02">
+        <statement>
+          <p>The target is <m>{\text{\textasciitilde}}P</m>, and one premise is <m>P \supset Q</m>.</p>
+        </statement>
+      </exercise>
+      <exercise xml:id="ex-ch10-s04-03">
+        <statement>
+          <p>The target is <m>Q \lor S</m>, and you already have <m>Q</m>.</p>
+        </statement>
+      </exercise>
+    </exercisegroup>
+
+  </exercises>
+
+</chapter>

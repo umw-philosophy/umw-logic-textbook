@@ -492,4 +492,155 @@
     <p>Therefore C: Some records produced by the council are not public documents.</p>
     <p>This is OAO-3, so it is valid. The O premise places an X in M outside P; the A premise rules out the part of M outside S, forcing that X into S outside P.</p>
   </section>
+
+  <section xml:id="sol-ch8-exercise-set-1-simple-and-compound-statements">
+    <title>Chapter 8, Exercise Set 1: Simple and Compound Statements</title>
+    <p><term>1.</term> Simple. For purposes of sentential logic, this is one atomic statement.</p>
+    <p><term>3.</term> Compound. The main connective in English is the conditional: <q>if ... then.</q></p>
+    <p><term>5.</term> Compound. The main connective in English is negation: <q>did not.</q></p>
+  </section>
+
+  <section xml:id="sol-ch8-exercise-set-2-symbolizing-single-statements">
+    <title>Chapter 8, Exercise Set 2: Symbolizing Single Statements</title>
+    <p>Using the provided key: <m>P</m> = the proposal passes; <m>Q</m> = the mayor signs the proposal; <m>R</m> = the policy takes effect.</p>
+    <p><term>1.</term> <m>P \cdot Q</m>.</p>
+    <p><term>3.</term> <m>P \supset R</m>.</p>
+    <p><term>5.</term> <m>P \equiv Q</m>.</p>
+  </section>
+
+  <section xml:id="sol-ch8-exercise-set-3-main-connective-and-scope">
+    <title>Chapter 8, Exercise Set 3: Main Connective and Scope</title>
+    <p><term>1.</term> Main connective: <m>\supset</m>. Immediate components: <m>(P \cdot Q)</m> and <m>R</m>.</p>
+    <p><term>3.</term> Main connective: <m>{\text{\textasciitilde}}</m>. Immediate component: <m>(P \lor Q)</m>.</p>
+    <p><term>5.</term> Main connective: <m>\lor</m>. Immediate components: <m>{\text{\textasciitilde}}P</m> and <m>(Q \cdot R)</m>.</p>
+  </section>
+
+  <section xml:id="sol-ch8-exercise-set-4-conditionals-in-english">
+    <title>Chapter 8, Exercise Set 4: Conditionals in English</title>
+    <p><term>1.</term> Let <m>A</m> = the alarm sounds. Let <m>B</m> = the building will be evacuated. Symbolization: <m>A \supset B</m>.</p>
+    <p><term>3.</term> Let <m>A</m> = the alarm sounds. Let <m>B</m> = the building will be evacuated. Symbolization: <m>B \supset A</m>. The phrase <q>only if</q> points to the necessary condition.</p>
+    <p><term>5.</term> Let <m>D</m> = the judge grants a delay. Let <m>H</m> = the hearing will proceed. Minimal symbolization: <m>{\text{\textasciitilde}}D \supset H</m>.</p>
+  </section>
+
+  <section xml:id="sol-ch8-exercise-set-5-symbolizing-arguments">
+    <title>Chapter 8, Exercise Set 5: Symbolizing Arguments</title>
+    <p><term>1.</term> Let <m>S</m> = the storm reaches campus before noon. Let <m>L</m> = afternoon labs will be canceled.</p>
+    <p>Standard form:</p>
+    <p>P1: <m>S \supset L</m></p>
+    <p>P2: <m>S</m></p>
+    <p>Therefore C: <m>L</m></p>
+    <p><term>3.</term> Let <m>P</m> = the proposal cleared committee. Let <m>T</m> = the chair tabled the proposal.</p>
+    <p>Standard form:</p>
+    <p>P1: <m>P \lor T</m></p>
+    <p>P2: <m>{\text{\textasciitilde}}P</m></p>
+    <p>Therefore C: <m>T</m></p>
+  </section>
+
+  <section xml:id="sol-ch8-exercise-set-6-mixed-translation">
+    <title>Chapter 8, Exercise Set 6: Mixed Translation</title>
+    <p><term>1.</term> Let <m>A</m> = the council will approve the budget. Let <m>R</m> = the revenue forecast improves. Let <m>H</m> = the public hearing goes smoothly. Symbolization: <m>A \supset (R \cdot H)</m>.</p>
+    <p><term>3.</term> Let <m>M</m> = the committee met. Let <m>P</m> = the proposal advanced. Symbolization: <m>{\text{\textasciitilde}}(M \cdot P)</m>.</p>
+    <p><term>5.</term> Let <m>R</m> = the server is repaired. Let <m>O</m> = the site will stay offline. Let <m>D</m> = students will miss the deadline. Minimal symbolization: <m>{\text{\textasciitilde}}R \supset (O \cdot D)</m>.</p>
+  </section>
+
+  <section xml:id="sol-ch9-exercise-set-1-basic-truth-tables">
+    <title>Chapter 9, Exercise Set 1: Basic Truth Tables</title>
+    <p>Truth values are listed in the standard row order. For one letter: T, F. For two letters: TT, TF, FT, FF.</p>
+    <p><term>1.</term> <m>{\text{\textasciitilde}}P</m>: F, T.</p>
+    <p><term>3.</term> <m>P \lor Q</m>: T, T, T, F.</p>
+    <p><term>5.</term> <m>P \equiv Q</m>: T, F, F, T.</p>
+  </section>
+
+  <section xml:id="sol-ch9-exercise-set-2-well-formed-formulas">
+    <title>Chapter 9, Exercise Set 2: Well-Formed Formulas</title>
+    <p><term>1.</term> Well formed. <m>(P \cdot Q)</m> combines two sentence letters with a binary connective and has the required parentheses.</p>
+    <p><term>3.</term> Not well formed. <m>P \cdot \lor Q</m> places two binary connectives together, so <m>\cdot</m> does not have a complete formula on its right and <m>\lor</m> does not have a complete formula on its left.</p>
+    <p><term>5.</term> Not well formed. <m>(P \supset Q</m> is missing the closing parenthesis.</p>
+  </section>
+
+  <section xml:id="sol-ch9-exercise-set-3-order-of-operations">
+    <title>Chapter 9, Exercise Set 3: Order of Operations</title>
+    <p><term>1.</term> In <m>{\text{\textasciitilde}}(P \cdot Q)</m>, complete <m>\cdot</m> first and <m>{\text{\textasciitilde}}</m> second.</p>
+    <p><term>3.</term> In <m>(P \lor Q) \cdot {\text{\textasciitilde}}R</m>, complete <m>\lor</m> first, <m>{\text{\textasciitilde}}</m> second, and the main <m>\cdot</m> third.</p>
+  </section>
+
+  <section xml:id="sol-ch9-exercise-set-4-classifying-statements">
+    <title>Chapter 9, Exercise Set 4: Classifying Statements</title>
+    <p>Truth values are values under the main operator in the standard row order.</p>
+    <p><term>1.</term> <m>P \lor {\text{\textasciitilde}}P</m>: T, T. This is a tautology.</p>
+    <p><term>3.</term> <m>P \supset Q</m>: T, F, T, T. This is contingent.</p>
+    <p><term>5.</term> <m>{\text{\textasciitilde}}(P \lor Q)</m>: F, F, F, T. This is contingent.</p>
+  </section>
+
+  <section xml:id="sol-ch9-exercise-set-5-comparing-pairs">
+    <title>Chapter 9, Exercise Set 5: Comparing Pairs</title>
+    <p><term>1.</term> <m>P \supset Q</m> and <m>{\text{\textasciitilde}}P \lor Q</m> are logically equivalent. Both have main-operator values T, F, T, T.</p>
+    <p><term>3.</term> <m>P</m> and <m>P \lor Q</m> are consistent but not equivalent. They are both true on the TT and TF rows, but they differ on the FT row.</p>
+  </section>
+
+  <section xml:id="sol-ch9-exercise-set-6-testing-arguments">
+    <title>Chapter 9, Exercise Set 6: Testing Arguments</title>
+    <p><term>1.</term> Valid. There is no row where <m>P \supset Q</m> and <m>P</m> are both true while <m>Q</m> is false.</p>
+    <p><term>3.</term> Valid. There is no row where <m>P \lor Q</m> and <m>{\text{\textasciitilde}}P</m> are both true while <m>Q</m> is false.</p>
+  </section>
+
+  <section xml:id="sol-ch10-exercise-set-1-identifying-rules">
+    <title>Chapter 10, Exercise Set 1: Identifying Rules</title>
+    <p><term>1.</term> <em>Modus Ponens (MP).</em> The first given line has the form <m>P \supset Q</m>, and the second given line affirms the antecedent, <m>P</m>. Modus Ponens permits us to infer the consequent, <m>Q</m>.</p>
+    <p><term>3.</term> <em>Simplification (Simp).</em> The given line is the conjunction <m>P \cdot Q</m>. Simplification permits us to infer either conjunct from a conjunction, so it permits the inference to <m>Q</m>.</p>
+    <p><term>5.</term> <em>Hypothetical Syllogism (HS).</em> The two given lines are conditionals that chain together: <m>P \supset Q</m> takes us from <m>P</m> to <m>Q</m>, and <m>Q \supset R</m> takes us from <m>Q</m> to <m>R</m>. Hypothetical Syllogism permits the direct conditional <m>P \supset R</m>.</p>
+  </section>
+
+  <section xml:id="sol-ch10-exercise-set-2-supply-the-missing-line">
+    <title>Chapter 10, Exercise Set 2: Supply the Missing Line</title>
+    <p><term>1.</term> The missing line is:</p>
+    <tabular halign="left" margins="0% 45%">
+      <row><cell>1.</cell><cell><m>P \supset Q</m></cell><cell></cell></row>
+      <row><cell>2.</cell><cell><m>P</m></cell><cell>/ <m>Q</m></cell></row>
+      <row><cell>3.</cell><cell><m>Q</m></cell><cell>1,2 MP</cell></row>
+    </tabular>
+    <p>Line 1 is a conditional, and line 2 gives its antecedent. By Modus Ponens, the consequent <m>Q</m> follows on line 3.</p>
+    <p><term>3.</term> The missing line is:</p>
+    <tabular halign="left" margins="0% 45%">
+      <row><cell>1.</cell><cell><m>P \cdot Q</m></cell><cell>/ <m>P \lor R</m></cell></row>
+      <row><cell>2.</cell><cell><m>P</m></cell><cell>1 Simp</cell></row>
+      <row><cell>3.</cell><cell><m>P \lor R</m></cell><cell>2 Add</cell></row>
+    </tabular>
+    <p>Line 2 already extracts <m>P</m> from the conjunction on line 1. Addition then permits us to infer <m>P \lor R</m> from <m>P</m>, because if <m>P</m> is true, the disjunction <m>P \lor R</m> is true regardless of whether <m>R</m> is true.</p>
+  </section>
+
+  <section xml:id="sol-ch10-exercise-set-3-short-proofs">
+    <title>Chapter 10, Exercise Set 3: Short Proofs</title>
+    <p><term>1.</term> A complete proof is:</p>
+    <tabular halign="left" margins="0% 45%">
+      <row><cell>1.</cell><cell><m>P \supset Q</m></cell><cell></cell></row>
+      <row><cell>2.</cell><cell><m>Q \supset R</m></cell><cell>/ <m>P \supset R</m></cell></row>
+      <row><cell>3.</cell><cell><m>P \supset R</m></cell><cell>1,2 HS</cell></row>
+    </tabular>
+    <p>The two premises form a conditional chain. Line 1 says that <m>P</m> leads to <m>Q</m>, and line 2 says that <m>Q</m> leads to <m>R</m>. Hypothetical Syllogism licenses the direct route from <m>P</m> to <m>R</m>.</p>
+    <p><term>3.</term> A complete proof is:</p>
+    <tabular halign="left" margins="0% 45%">
+      <row><cell>1.</cell><cell><m>P \lor Q</m></cell><cell></cell></row>
+      <row><cell>2.</cell><cell><m>{\text{\textasciitilde}}Q</m></cell><cell>/ <m>P \lor R</m></cell></row>
+      <row><cell>3.</cell><cell><m>P</m></cell><cell>1,2 DS</cell></row>
+      <row><cell>4.</cell><cell><m>P \lor R</m></cell><cell>3 Add</cell></row>
+    </tabular>
+    <p>Line 1 says that either <m>P</m> or <m>Q</m> is true. Line 2 rules out <m>Q</m>, so Disjunctive Syllogism gives <m>P</m> on line 3. Once <m>P</m> is available, Addition gives the target disjunction <m>P \lor R</m>.</p>
+    <p><term>5.</term> A complete proof is:</p>
+    <tabular halign="left" margins="0% 45%">
+      <row><cell>1.</cell><cell><m>(P \lor R) \supset S</m></cell><cell></cell></row>
+      <row><cell>2.</cell><cell><m>P \cdot Q</m></cell><cell>/ <m>P \cdot S</m></cell></row>
+      <row><cell>3.</cell><cell><m>P</m></cell><cell>2 Simp</cell></row>
+      <row><cell>4.</cell><cell><m>P \lor R</m></cell><cell>3 Add</cell></row>
+      <row><cell>5.</cell><cell><m>S</m></cell><cell>1,4 MP</cell></row>
+      <row><cell>6.</cell><cell><m>P \cdot S</m></cell><cell>3,5 Conj</cell></row>
+    </tabular>
+    <p>The target is a conjunction, so we need both <m>P</m> and <m>S</m>. Line 2 gives <m>P</m> by Simplification. From <m>P</m>, Addition gives <m>P \lor R</m>, which is the antecedent needed for line 1. Modus Ponens then gives <m>S</m>. Finally, Conjunction joins the available <m>P</m> and <m>S</m> into the target <m>P \cdot S</m>.</p>
+  </section>
+
+  <section xml:id="sol-ch10-exercise-set-4-explain-the-strategy">
+    <title>Chapter 10, Exercise Set 4: Explain the Strategy</title>
+    <p><term>1.</term> Since the target is <m>P \cdot Q</m>, I would try to use Conjunction as the final rule. Conjunction requires both conjuncts separately, so the proof strategy is to derive or locate <m>P</m> on one line and <m>Q</m> on another line, then cite those two lines with Conj to get <m>P \cdot Q</m>.</p>
+    <p><term>3.</term> Since the target is <m>Q \lor S</m> and <m>Q</m> is already available, I would use Addition. Addition allows us to infer a disjunction from either one of its disjuncts, so from <m>Q</m> alone we may infer <m>Q \lor S</m>. We do not need to prove <m>S</m> separately.</p>
+  </section>
 </appendix>
