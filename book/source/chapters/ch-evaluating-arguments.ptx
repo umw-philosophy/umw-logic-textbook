@@ -346,6 +346,27 @@
         is about.
       </p>
     </paragraphs>
+
+    <exploration xml:id="field-3-3-1">
+      <title>Field Exercise: Find a valid argument and a persuasive-but-invalid one</title>
+      <statement>
+        <p>
+          Find two arguments from real sources — news articles,
+          podcasts, essays, conversations, social media. One should
+          have a structure that matches one of the four valid forms
+          (MP, MT, DS, HS). The other should be an argument that
+          <em>sounds</em> persuasive but commits one of the two
+          invalid forms (affirming the consequent or denying the
+          antecedent). Write both in standard form and identify the
+          form.
+        </p>
+        <p>
+          If the fit isn't perfect, find the closest match and
+          explain where it breaks down.
+        </p>
+      </statement>
+    </exploration>
+
   </section>
 
   <section xml:id="sec-invalid-forms-counterexamples">
@@ -954,6 +975,28 @@
       <exercise xml:id="ex-ch3-s06-04">
         <statement>
           <p>If a defendant has reasonable doubt established against the prosecution's case, they should be acquitted. Reasonable doubt has been established. So the defendant should be acquitted.</p>
+        </statement>
+      </exercise>
+    </exercisegroup>
+
+    <exercisegroup xml:id="exgroup-ch3-writing">
+      <title>Writing Prompt</title>
+      <introduction>
+        <p>
+          This prompt connects to Field Exercise 3-1.
+        </p>
+      </introduction>
+      <exercise xml:id="ex-ch3-writing-01">
+        <statement>
+          <p>
+            Take the invalid argument you found in Field Exercise 3-1.
+            Build a counterexample: an argument with the same
+            <em>form</em> but obviously true premises and an obviously
+            false conclusion. Then write a short paragraph explaining
+            what your counterexample reveals. What does this tell you
+            about the original argument? Does the form alone explain
+            why the argument fails, or is something else going on?
+          </p>
         </statement>
       </exercise>
     </exercisegroup>

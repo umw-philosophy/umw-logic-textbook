@@ -14,13 +14,16 @@
 
   <introduction xml:id="ch-symbolizing-intro">
     <p>
-      Categorical logic evaluates arguments by looking inside
-      subject and predicate terms. Sentential logic evaluates
+      Categorical logic evaluates arguments by understanding how
+      subject and predicate terms relate to one another through a quantifier and a copula. Sentential logic evaluates
       arguments by looking at how whole statements are joined
       together. The basic units are not categories such as
       <q>voters</q> and <q>registered people.</q> The basic units
       are complete statements such as <q>The bill passed</q> and
       <q>The governor signed it.</q>
+    </p>
+    <p>
+    Categorical logic is only concerned with the categories things belong or don't belong to. Sentential logic is in many ways much simpler: it doesn't care what anything is. It only cares about statements (insert internal link back to definition of statement in ch. 1) and how they are connected to one another, what someone claimed and how they connected those claims.
     </p>
     <p>
       This chapter teaches the language of sentential logic. We
@@ -64,7 +67,7 @@
         compound for another. <q>The city approved the permit</q>
         contains grammatical parts, but sentential logic treats it
         as one unit unless we need to analyze a logical connective
-        inside it.
+        inside it. For the most part, however, we'll be breaking things down as far as they go. That is, we'll ask you to reconstruct or translate "in the finest-grained way possible."
       </p>
     </paragraphs>
 
@@ -212,7 +215,7 @@
         <q>nevertheless</q> often do the same truth-functional work.
         <q>The meeting is public, but the minutes are not posted</q>
         is symbolized <m>P \cdot {\text{\textasciitilde}}Q</m>. The word <q>but</q> adds a
-        contrast in tone; logically, it still joins two claims.
+        contrast in tone; logically, it still joins two claims. Logic is not interested in the tone, or these shades of meaning. It is only interested in the fact that all these act as conjunctions. They all link two indpendent claims together into one claim. 
       </p>
     </paragraphs>
 
@@ -549,8 +552,22 @@
       </p>
     </paragraphs>
 
-  </section>
+    <exploration xml:id="field-8-5-1">
+      <title>Field Exercise: Symbolize something you actually heard</title>
+      <statement>
+        <p>
+          Find a short argument from your day — a conversation,
+          something you read online, a news clip — that uses at
+          least one conditional, disjunction, or conjunction. Write
+          the argument in standard form in English, create a
+          symbolization key, and translate it into symbolic notation.
+          Note any places where the English was ambiguous about which
+          connective was intended.
+        </p>
+      </statement>
+    </exploration>
 
+  </section>
   <section xml:id="sec-symbolizing-where-headed">
     <title>Where We're Headed</title>
 
@@ -563,11 +580,11 @@
     </p>
     <p>
       After truth tables, we will turn to natural deduction. Truth
-      tables tell us whether an argument is valid. Natural
-      deduction shows us how the conclusion follows from the
+      tables tell us whether an argument is valid or invalid. Natural
+      deduction can only show us how the conclusion follows from the
       premises, step by step, using rules such as Modus Ponens,
       Modus Tollens, Disjunctive Syllogism, and Hypothetical
-      Syllogism.
+      Syllogism; it only works for valid arguments. 
     </p>
 
   </section>
@@ -736,8 +753,8 @@
       <title>Exercise Set 4: Conditionals in English</title>
       <introduction>
         <p>
-          Symbolize each sentence. Create your own clear
-          symbolization key.
+          Symbolize each sentence. Do so in the finest-grained way possible. Create your own clear
+          symbolization key. 
         </p>
       </introduction>
       <exercise xml:id="ex-ch8-s04-01"><statement><p>If the alarm sounds, the building will be evacuated.</p></statement></exercise>
@@ -775,6 +792,28 @@
       <exercise xml:id="ex-ch8-s06-03"><statement><p>It is not the case that both the committee met and the proposal advanced.</p></statement></exercise>
       <exercise xml:id="ex-ch8-s06-04"><statement><p>The archive opens to researchers if and only if the donor agreement is signed and the catalog is complete.</p></statement></exercise>
       <exercise xml:id="ex-ch8-s06-05"><statement><p>Unless the server is repaired, the site will stay offline and students will miss the deadline.</p></statement></exercise>
+    </exercisegroup>
+
+    <exercisegroup xml:id="exgroup-ch8-writing">
+      <title>Writing Prompt</title>
+      <introduction>
+        <p>
+          This prompt connects to Field Exercise 8-1.
+        </p>
+      </introduction>
+      <exercise xml:id="ex-ch8-writing-01">
+        <statement>
+          <p>
+            Return to the argument you symbolized in Field Exercise
+            8-1. What, if anything, got lost in translation? Did the
+            symbolic version capture everything the original speaker
+            meant, or did the process of symbolization strip away
+            something important — tone, emphasis, implied meaning?
+            Write a short reflection on what sentential logic can and
+            cannot preserve about ordinary reasoning.
+          </p>
+        </statement>
+      </exercise>
     </exercisegroup>
 
   </exercises>

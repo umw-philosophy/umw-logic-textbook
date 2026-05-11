@@ -100,6 +100,8 @@
       <xi:include href="chapters/ch-symbolizing.ptx"/>
       <xi:include href="chapters/ch-truth-tables.ptx"/>
       <xi:include href="chapters/ch-natural-deduction.ptx"/>
+      <xi:include href="chapters/ch-replacement-rules.ptx"/>
+      <xi:include href="chapters/ch-conditional-indirect-proof.ptx"/>
     </part>
 
     <!--
@@ -126,6 +128,7 @@
     -->
 
     <backmatter xml:id="backmatter">
+      <xi:include href="appendix-rules-of-inference.ptx"/>
       <xi:include href="appendix-aristotelian-categorical.ptx"/>
       <xi:include href="appendix-diagramming.ptx"/>
       <xi:include href="appendix-solutions.ptx"/>

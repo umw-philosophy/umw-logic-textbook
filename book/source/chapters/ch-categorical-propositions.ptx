@@ -81,9 +81,7 @@
         <term>predicate term</term> P — by claiming one of four
         things about them. The four are called A, E, I, and O. The
         letter names are traditional and useful because every later
-        piece of categorical machinery refers back to them. The
-        labels become familiar by translating and diagramming
-        examples, not by treating them as isolated vocabulary.
+        piece of categorical machinery refers back to them.
       </p>
     </introduction>
 
@@ -139,13 +137,13 @@
         <li><p><alert>Area 4</alert>: outside both circles. (Things that are neither S nor P.)</p></li>
       </ul>
       <p>
-        Two conventions communicate the propositions:
+        We can do two things once we have the 2 circles: Shading and placing an X.
       </p>
       <ul>
         <li>
           <p>
             <alert>Shading</alert> an area means that area is
-            empty. There is nothing in that area.
+            empty. There is nothing in that area. (Note that this differs from the way that set theory in mathematics teaches about this idea. We're following John Venn here.)
           </p>
         </li>
         <li>
@@ -428,6 +426,22 @@
         we have the additional tools to handle them cleanly.
       </p>
     </paragraphs>
+
+    <exploration xml:id="field-6-2-1">
+      <title>Field Exercise: Translate what you hear</title>
+      <statement>
+        <p>
+          Pay attention to quantified language — <q>all,</q>
+          <q>some,</q> <q>none,</q> <q>every,</q> <q>most,</q>
+          <q>only</q> — as you go about your day. Write down five
+          claims that use quantified language. Translate each into a
+          standard-form categorical proposition (A, E, I, or O). Note
+          where the translation required significant rephrasing and
+          where the original was already close to standard form.
+        </p>
+      </statement>
+    </exploration>
+
   </section>
 
   <section xml:id="sec-square-of-opposition">
@@ -1195,6 +1209,30 @@
       <exercise xml:id="ex-ch6-s06-06"><statement><p>It's false that only Republican die-hards voted for Trump.</p></statement></exercise>
       <exercise xml:id="ex-ch6-s06-07"><statement><p>Hillary Clinton should have been President of the United States.</p></statement></exercise>
       <exercise xml:id="ex-ch6-s06-08"><statement><p>None but registered voters can vote in this election.</p></statement></exercise>
+    </exercisegroup>
+
+    <exercisegroup xml:id="exgroup-ch6-writing">
+      <title>Writing Prompt</title>
+      <introduction>
+        <p>
+          This prompt connects to Field Exercise 6-1.
+        </p>
+      </introduction>
+      <exercise xml:id="ex-ch6-writing-01">
+        <statement>
+          <p>
+            Choose two of your translations from Field Exercise
+            6-1 — one that was easy and one that was hard. For the
+            easy one, explain what made it straightforward. For the
+            hard one, explain what made it difficult: Was the
+            quantifier ambiguous? Did the English sentence not map
+            neatly onto A/E/I/O? Did you have to decide between
+            competing translations? What does this tell you about
+            the relationship between everyday language and the
+            formal system?
+          </p>
+        </statement>
+      </exercise>
     </exercisegroup>
 
   </exercises>

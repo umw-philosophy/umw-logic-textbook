@@ -139,6 +139,20 @@
         close move that isn't fallacious — we name it.
       </p>
     </paragraphs>
+
+    <exploration xml:id="field-5-1-1">
+      <title>Field Exercise: Is it really a fallacy?</title>
+      <statement>
+        <p>
+          Find an argument that someone else — a commenter, a pundit,
+          a friend — has <em>accused</em> of being fallacious.
+          Evaluate whether the accusation is fair. Is the argument
+          really committing the fallacy it's been charged with, or is
+          the accusation itself a lazy shortcut?
+        </p>
+      </statement>
+    </exploration>
+
   </section>
 
   <section xml:id="sec-fallacies-of-relevance">
@@ -1032,6 +1046,34 @@
         suppression, but it is a reason to look harder.
       </p>
     </paragraphs>
+
+    <exploration xml:id="field-5-4-1">
+      <title>Field Exercise: Catch three in the wild</title>
+      <statement>
+        <p>
+          Find three real arguments — one from each of the three
+          categories (relevance, weak induction, presumption) — that
+          commit a fallacy. These must be arguments you actually
+          encounter, not ones constructed for a textbook. For each:
+        </p>
+        <ul>
+          <li><p>Quote or closely paraphrase the argument.</p></li>
+          <li><p>Identify the fallacy by name.</p></li>
+          <li>
+            <p>
+              Write 2–3 sentences explaining <em>why</em> it commits
+              that fallacy, including what the argument would need to
+              do differently to avoid it.
+            </p>
+          </li>
+        </ul>
+        <p>
+          Naming the fallacy is the beginning of the analysis, not
+          the end. The explanation is the real work.
+        </p>
+      </statement>
+    </exploration>
+
   </section>
 
   <section xml:id="sec-fallacies-where-headed">
@@ -1441,6 +1483,32 @@
       <exercise xml:id="ex-ch5-s06-04">
         <statement>
           <p>Equivocation.</p>
+        </statement>
+      </exercise>
+    </exercisegroup>
+
+    <exercisegroup xml:id="exgroup-ch5-writing">
+      <title>Writing Prompt</title>
+      <introduction>
+        <p>
+          This prompt connects to Field Exercise 5-1.
+        </p>
+      </introduction>
+      <exercise xml:id="ex-ch5-writing-01">
+        <statement>
+          <p>
+            Return to Field Exercise 5-1. Write a short essay
+            defending your verdict. If the accusation was fair,
+            explain why the argument genuinely commits the fallacy and
+            not just a different kind of error. If the accusation was
+            unfair, explain what the accuser got wrong — were they
+            misidentifying the fallacy, misrepresenting the argument,
+            or using <q>fallacy</q> as a way to avoid engaging with
+            the substance? In either case, your explanation should
+            show that you understand the difference between
+            <em>having a bad argument</em> and <em>committing a
+            specific fallacy</em>.
+          </p>
         </statement>
       </exercise>
     </exercisegroup>

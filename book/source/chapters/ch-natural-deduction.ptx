@@ -368,6 +368,17 @@
       </p>
     </paragraphs>
 
+    <paragraphs xml:id="paragraphs-nd-appendix-reference">
+      <title>Quick reference</title>
+      <p>
+        All eight implication rules — together with the ten
+        replacement rules from the next chapter — are collected in
+        <xref ref="appendix-rules-of-inference"/> for quick
+        reference. You may want to bookmark that appendix as you
+        work through the exercises.
+      </p>
+    </paragraphs>
+
   </section>
 
   <section xml:id="sec-first-worked-proofs">
@@ -514,8 +525,22 @@
       </p>
     </paragraphs>
 
-  </section>
+    <exploration xml:id="field-10-5-1">
+      <title>Field Exercise: Narrate a proof</title>
+      <statement>
+        <p>
+          Choose one of the harder proofs from this chapter's
+          exercises — one that took you more than one attempt.
+          After you have a finished proof, write a short narrative
+          of your process. What did you try first? Where did you get
+          stuck? What move got you unstuck? The goal is not to
+          explain the proof to someone else but to observe your own
+          reasoning while it is still fresh.
+        </p>
+      </statement>
+    </exploration>
 
+  </section>
   <section xml:id="sec-natural-deduction-where-headed">
     <title>Where We're Headed</title>
 
@@ -792,6 +817,28 @@
       <exercise xml:id="ex-ch10-s04-03">
         <statement>
           <p>The target is <m>Q \lor S</m>, and you already have <m>Q</m>.</p>
+        </statement>
+      </exercise>
+    </exercisegroup>
+
+    <exercisegroup xml:id="exgroup-ch10-writing">
+      <title>Writing Prompt</title>
+      <introduction>
+        <p>
+          This prompt connects to Field Exercise 10-1.
+        </p>
+      </introduction>
+      <exercise xml:id="ex-ch10-writing-01">
+        <statement>
+          <p>
+            Return to your narrative from Field Exercise 10-1.
+            What kind of mistake or dead end did you encounter?
+            Was it a pattern-matching failure (not recognizing which
+            rule applied), a strategic failure (working forward when
+            you should have worked backward), or something else
+            entirely? What does this tell you about how you reason
+            when the steps are not obvious?
+          </p>
         </statement>
       </exercise>
     </exercisegroup>

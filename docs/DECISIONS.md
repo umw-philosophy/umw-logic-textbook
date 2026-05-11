@@ -346,3 +346,13 @@ Each decision is dated, numbered, and tagged with the section of `PROJECT_PLAN.m
 - Omit Aristotelian logic entirely.
 - Mention Aristotelian logic only in footnotes.
 **Rationale**: Keeping the main text modern preserves a single default interpretation for students and for the Venn checker. Placing Aristotelian logic in an appendix gives adopters who teach it a complete, assignable comparison without making the main body carry two parallel validity systems.
+
+---
+
+## D-030 — Chapter 11 (Replacement Rules) drafted ahead of roadmap
+
+**Date**: 2026-05-10
+**Plan section**: 3, 4, 11
+**Decision**: Chapter 11 (Replacement Rules) was drafted and registered in `main.ptx` on May 10, 2026. This brings the textbook to 11 drafted chapters (Parts I–III nearly complete). The only remaining Part III chapter is Conditional Proof and Indirect Proof.
+**Alternatives considered**: Defer replacement rules and begin Part IV drafting first.
+**Rationale**: The replacement rules chapter follows naturally from Chapter 10 (Natural Deduction / Implication Rules), which was already drafted. Completing the sentential logic sequence while the voice, notation conventions, and proof format are fresh minimizes context-switching costs. The tone analysis from earlier in this session (see `tone_style_analysis.md`) was applied directly: the chapter uses conversational hooks, second-person address, metacognitive asides for counterintuitive rules (De Morgan's, Tautology), dry humor in parentheticals, and the Ch. 1–3 pattern of anticipating student resistance. Part III now needs only one more chapter (CP/IP) to be complete.

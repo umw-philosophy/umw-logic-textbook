@@ -342,6 +342,26 @@
         equivocation becomes visible.
       </p>
     </paragraphs>
+
+    <exploration xml:id="field-4-3-1">
+      <title>Field Exercise: Collect ambiguities</title>
+      <statement>
+        <p>
+          Over the next 24 hours, collect three naturally occurring
+          ambiguities — sentences you actually see or hear (on signs,
+          in ads, in texts, on social media, in class) where the
+          meaning genuinely isn't clear. For each one, identify whether
+          the ambiguity is lexical or syntactic, and write out the two
+          (or more) possible readings.
+        </p>
+        <p>
+          If any of them appear in the context of an argument, note
+          whether the ambiguity could be doing argumentative work —
+          that is, whether it might function as an equivocation.
+        </p>
+      </statement>
+    </exploration>
+
   </section>
 
   <section xml:id="sec-definitions">
@@ -506,6 +526,22 @@
         is the difference?</q> often reveals the trouble.
       </p>
     </paragraphs>
+
+    <exploration xml:id="field-4-4-1">
+      <title>Field Exercise: Evaluate a real definition</title>
+      <statement>
+        <p>
+          Find a definition in actual use — a legal definition, a
+          policy document, a dictionary entry, a terms-of-service
+          agreement, a course syllabus, a campus policy. Classify it
+          (stipulative, lexical, precising, theoretical, or
+          persuasive). Then evaluate it using the criteria from this
+          section: Is it too broad? Too narrow? Circular? Negative
+          when it doesn't need to be?
+        </p>
+      </statement>
+    </exploration>
+
   </section>
 
   <section xml:id="sec-where-headed-ch4">
@@ -827,6 +863,34 @@
       <exercise xml:id="ex-ch4-s06-03">
         <statement>
           <p>Healthy foods are foods that don't contain artificial ingredients. So organic candy is healthy.</p>
+        </statement>
+      </exercise>
+    </exercisegroup>
+
+    <exercisegroup xml:id="exgroup-ch4-writing">
+      <title>Writing Prompt</title>
+      <introduction>
+        <p>
+          This prompt connects to the field exercises in this chapter.
+        </p>
+      </introduction>
+      <exercise xml:id="ex-ch4-writing-01">
+        <statement>
+          <p>
+            Choose one of the ambiguities you collected in Field
+            Exercise 4-1 or the definition you evaluated in Field
+            Exercise 4-2. Write a short analysis.
+          </p>
+          <p>
+            If you are working with an ambiguity: explain why the
+            ambiguity exists, whether it matters in context, and how
+            you would resolve it.
+          </p>
+          <p>
+            If you are working with a definition: explain what the
+            definition does well and what it does poorly, and propose
+            a revision if you think it needs one.
+          </p>
         </statement>
       </exercise>
     </exercisegroup>

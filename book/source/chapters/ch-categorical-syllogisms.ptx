@@ -392,78 +392,262 @@
         premise is a categorical proposition involving two of the
         three terms (S, P, M); each premise either shades some
         regions (if it is universal) or places an X (if it is
-        particular). The procedure has three rules that become
-        natural as students work through diagrams.
+        particular). The point is not to memorize a list of
+        regions. The point is to understand what the premise says
+        and then mark that meaning on the diagram.
       </p>
     </introduction>
 
-    <paragraphs xml:id="paragraphs-diagramming-rules">
-      <title>Three rules for marking the premises</title>
+    <paragraphs xml:id="paragraphs-subject-first-diagramming">
+      <title>Start with the subject term</title>
       <p>
-        <alert>Rule 1: Shade universals first, place X marks
-        second.</alert> Universal premises (A and E) tell us a
-        region is empty; particular premises (I and O) tell us a
-        region has at least one member. Always mark the universals
-        first. The reason becomes clear in Rule 3: shading from a
-        universal sometimes constrains where a particular's X has
-        to go.
+        A categorical premise first tells us which term we are
+        talking about: the <em>subject</em> term. On the
+        three-circle diagram, that subject term takes up four
+        numbered areas. The predicate term then tells us which of
+        those four areas matter.
       </p>
       <p>
-        <alert>Rule 2: Each premise involves only two of the three
-        circles. The mark covers both of the corresponding
-        regions in the three-circle diagram.</alert> A categorical
-        premise mentions only two terms — say, M and P — but in
-        the three-circle diagram, the M-and-P relationship is
-        spread across two regions: the region with S and the
-        region without S. The premise alone does not say which.
-        It says something about M and P regardless of S, so we
-        mark <em>both</em> regions.
+        Take <q>All P are M.</q> The subject is P, so we begin
+        with the four areas inside the P circle: areas 2, 3, 6,
+        and 7. The predicate is M. Of those P areas, areas 6 and
+        7 are also inside M. Areas 2 and 3 are P but not M.
       </p>
       <p>
-        Concretely, here is what each premise type does, organized
-        by which two terms the premise involves.
+        <q>All P are M</q> means every P is also an M. So there
+        cannot be any P outside M. We shade areas 2 and 3. The
+        only P areas left unshaded are areas 6 and 7, the parts
+        of P that are also M.
+      </p>
+      <figure xml:id="fig-all-p-are-m-subject-first">
+        <caption>All P are M: areas 2 and 3 are shaded.</caption>
+        <image xml:id="image-all-p-are-m-subject-first" width="60%">
+          <description>
+            <p>
+              A three-circle Venn diagram with M at top, S at
+              bottom-left, and P at bottom-right. Areas 2, 3, 6,
+              and 7 are inside the P circle. Areas 2 and 3 are
+              shaded, showing that the part of P outside M is
+              empty. Areas 6 and 7, the parts of P that are also
+              inside M, are unshaded. Areas 1, 4, 5, and 8 are
+              also unshaded.
+            </p>
+          </description>
+          <latex-image>
+            \begin{tikzpicture}[scale=1.2]
+              \def\Sleft{(-0.7,-0.4) circle (1.3)}
+              \def\Pright{(0.7,-0.4) circle (1.3)}
+              \def\Mtop{(0,0.6) circle (1.3)}
+              % Shade P outside M: areas 2 and 3
+              \begin{scope}
+                \clip \Pright;
+                \fill[gray!40] (-3,-3) rectangle (3,3);
+                \fill[white] \Mtop;
+              \end{scope}
+              \draw \Sleft;
+              \draw \Pright;
+              \draw \Mtop;
+              \node at (-1.7,-1.4) {$S$};
+              \node at (1.7,-1.4) {$P$};
+              \node at (0,1.9) {$M$};
+              \node at (-1.3,-0.7) {\small 1};
+              \node at (0,-1.0) {\small 2};
+              \node at (1.3,-0.7) {\small 3};
+              \node at (-2.1,-1.7) {\small 4};
+              \node at (-0.85,0.35) {\small 5};
+              \node at (0,0) {\small 6};
+              \node at (0.85,0.35) {\small 7};
+              \node at (0,1.3) {\small 8};
+            \end{tikzpicture}
+          </latex-image>
+        </image>
+      </figure>
+      <p>
+        Notice what the S circle did. It split the P-outside-M
+        region into two pieces: area 2 is inside S, and area 3 is
+        outside S. But the premise did not mention S. It simply
+        said that no P is outside M. So both pieces of P outside
+        M have to be shaded.
+      </p>
+    </paragraphs>
+
+    <paragraphs xml:id="paragraphs-four-premise-forms-on-three-circles">
+      <title>The four forms on a three-circle diagram</title>
+      <p>
+        The same subject-first thinking works for all four
+        categorical forms.
       </p>
       <p>
-        <alert>Premises involving M and P</alert> (typical major premise):
-      </p>
-      <ul>
-        <li><p><q>All M are P</q>: shade the part of M that is outside P, which is areas 5 and 8.</p></li>
-        <li><p><q>No M are P</q>: shade the overlap of M and P, which is areas 6 and 7.</p></li>
-        <li><p><q>Some M are P</q>: place an X in the overlap of M and P, which is areas 6 or 7. (See Rule 3.)</p></li>
-        <li><p><q>Some M are not P</q>: place an X in M outside P, which is areas 5 or 8. (See Rule 3.)</p></li>
-      </ul>
-      <p>
-        <alert>Premises involving M and S</alert> (typical minor premise):
-      </p>
-      <ul>
-        <li><p><q>All S are M</q>: shade the part of S that is outside M, which is areas 1 and 2.</p></li>
-        <li><p><q>No S are M</q>: shade the overlap of S and M, which is areas 5 and 6.</p></li>
-        <li><p><q>Some S are M</q>: place an X in the overlap of S and M, which is areas 5 or 6. (See Rule 3.)</p></li>
-        <li><p><q>Some S are not M</q>: place an X in S outside M, which is areas 1 or 2. (See Rule 3.)</p></li>
-      </ul>
-      <p>
-        Premises involving both S and P are uncommon as premises
-        (they don't fit our definition of standard form syllogisms,
-        since S and P are usually distributed across the two
-        premises through the middle term M), but they follow the
-        same pattern: <q>All S are P</q> shades areas 1 and 5;
-        <q>No S are P</q> shades areas 2 and 6; the particular
-        forms place an X in 1 or 5, or in 2 or 6, respectively.
+        <alert>A propositions eliminate the subject outside the
+        predicate.</alert> We just saw <q>All P are M.</q> Since
+        P is the subject, the P circle is the starting place.
+        Since the predicate is M, the forbidden region is P
+        outside M. That is why areas 2 and 3 are shaded.
       </p>
       <p>
-        <alert>Rule 3: When a particular premise's X could be in
-        either of two regions, place the X on the boundary between
-        them — unless one of those regions is already shaded, in
-        which case the X must be in the unshaded one.</alert>
-        Because a particular premise mentions only two terms, the
-        X has two candidate regions. The premise itself does not
-        commit to one. We represent that uncommitted state by
-        drawing the X on the boundary, indicating <q>somewhere in
-        one of these two, but we don't know which.</q> If the
-        universals already shaded one of the two candidates, the
-        X cannot go in the shaded region (which the universal has
-        declared empty), so the X must go in the unshaded one.
-        This is the central reason we shade universals first.
+        <alert>E propositions eliminate the overlap.</alert> The
+        premise <q>No right-wing hate mongers are socialists</q>
+        has the form <q>No P are M.</q> The subject is P:
+        right-wing hate mongers. The predicate is M: socialists.
+        The premise says that nothing is both P and M. On the
+        three-circle diagram, the P-and-M overlap is split into
+        areas 6 and 7, so both are shaded.
+      </p>
+      <figure xml:id="fig-no-p-are-m-subject-first">
+        <caption>No P are M: areas 6 and 7 are shaded.</caption>
+        <image xml:id="image-no-p-are-m-subject-first" width="60%">
+          <description>
+            <p>
+              A three-circle Venn diagram with M at top, S at
+              bottom-left, and P at bottom-right. Areas 6 and 7
+              are shaded. These two areas make up the overlap of P
+              and M: area 6 is also inside S, and area 7 is
+              outside S. Areas 1, 2, 3, 4, 5, and 8 are unshaded.
+            </p>
+          </description>
+          <latex-image>
+            \begin{tikzpicture}[scale=1.2]
+              \def\Sleft{(-0.7,-0.4) circle (1.3)}
+              \def\Pright{(0.7,-0.4) circle (1.3)}
+              \def\Mtop{(0,0.6) circle (1.3)}
+              % Shade P and M overlap: areas 6 and 7
+              \begin{scope}
+                \clip \Pright;
+                \clip \Mtop;
+                \fill[gray!40] (-3,-3) rectangle (3,3);
+              \end{scope}
+              \draw \Sleft;
+              \draw \Pright;
+              \draw \Mtop;
+              \node at (-1.7,-1.4) {$S$};
+              \node at (1.7,-1.4) {$P$};
+              \node at (0,1.9) {$M$};
+              \node at (-1.3,-0.7) {\small 1};
+              \node at (0,-1.0) {\small 2};
+              \node at (1.3,-0.7) {\small 3};
+              \node at (-2.1,-1.7) {\small 4};
+              \node at (-0.85,0.35) {\small 5};
+              \node at (0,0) {\small 6};
+              \node at (0.85,0.35) {\small 7};
+              \node at (0,1.3) {\small 8};
+            \end{tikzpicture}
+          </latex-image>
+        </image>
+      </figure>
+      <p>
+        <alert>I propositions assert existence in the overlap.</alert>
+        The premise <q>Some Americans are socialists</q> has the
+        form <q>Some S are M.</q> The subject is S: Americans.
+        The predicate is M: socialists. The premise says at least
+        one thing is both S and M. On the three-circle diagram,
+        the S-and-M overlap is areas 5 and 6. The premise does
+        not say whether that thing is also P, so the X sits on
+        the boundary between 5 and 6.
+      </p>
+      <figure xml:id="fig-some-s-are-m-boundary">
+        <caption>Some S are M: an X is on the boundary between areas 5 and 6.</caption>
+        <image xml:id="image-some-s-are-m-boundary" width="60%">
+          <description>
+            <p>
+              A three-circle Venn diagram with M at top, S at
+              bottom-left, and P at bottom-right. An X lies on the
+              boundary between areas 5 and 6. Areas 5 and 6 are
+              the overlap of S and M. Area 5 is outside P; area 6
+              is inside P. The boundary X means that something is
+              in S and M, but the premise alone does not say
+              whether it is outside P or inside P. No areas are
+              shaded.
+            </p>
+          </description>
+          <latex-image>
+            \begin{tikzpicture}[scale=1.2]
+              \def\Sleft{(-0.7,-0.4) circle (1.3)}
+              \def\Pright{(0.7,-0.4) circle (1.3)}
+              \def\Mtop{(0,0.6) circle (1.3)}
+              \draw \Sleft;
+              \draw \Pright;
+              \draw \Mtop;
+              \node at (-1.7,-1.4) {$S$};
+              \node at (1.7,-1.4) {$P$};
+              \node at (0,1.9) {$M$};
+              \node at (-1.3,-0.7) {\small 1};
+              \node at (0,-1.0) {\small 2};
+              \node at (1.3,-0.7) {\small 3};
+              \node at (-2.1,-1.7) {\small 4};
+              \node at (-0.85,0.35) {\small 5};
+              \node at (0,0) {\small 6};
+              \node at (0.85,0.35) {\small 7};
+              \node at (0,1.3) {\small 8};
+              \node at (-0.35,0.35) {$\times$};
+            \end{tikzpicture}
+          </latex-image>
+        </image>
+      </figure>
+      <p>
+        <alert>O propositions assert existence in the subject
+        outside the predicate.</alert> The premise <q>Some S are
+        not M</q> starts with S as the subject. The relevant part
+        of S is the part outside M. That region is split by the P
+        circle into areas 1 and 2. The premise does not say
+        whether the thing is P, so the X sits on the boundary
+        between 1 and 2.
+      </p>
+      <figure xml:id="fig-some-s-are-not-m-boundary">
+        <caption>Some S are not M: an X is on the boundary between areas 1 and 2.</caption>
+        <image xml:id="image-some-s-are-not-m-boundary" width="60%">
+          <description>
+            <p>
+              A three-circle Venn diagram with M at top, S at
+              bottom-left, and P at bottom-right. An X lies on the
+              boundary between areas 1 and 2. Areas 1 and 2 are
+              the part of S outside M. Area 1 is outside P; area
+              2 is inside P. The boundary X means that something
+              is in S and outside M, but the premise alone does
+              not say whether it is outside P or inside P. No
+              areas are shaded.
+            </p>
+          </description>
+          <latex-image>
+            \begin{tikzpicture}[scale=1.2]
+              \def\Sleft{(-0.7,-0.4) circle (1.3)}
+              \def\Pright{(0.7,-0.4) circle (1.3)}
+              \def\Mtop{(0,0.6) circle (1.3)}
+              \draw \Sleft;
+              \draw \Pright;
+              \draw \Mtop;
+              \node at (-1.7,-1.4) {$S$};
+              \node at (1.7,-1.4) {$P$};
+              \node at (0,1.9) {$M$};
+              \node at (-1.3,-0.7) {\small 1};
+              \node at (0,-1.0) {\small 2};
+              \node at (1.3,-0.7) {\small 3};
+              \node at (-2.1,-1.7) {\small 4};
+              \node at (-0.85,0.35) {\small 5};
+              \node at (0,0) {\small 6};
+              \node at (0.85,0.35) {\small 7};
+              \node at (0,1.3) {\small 8};
+              \node at (-0.55,-0.8) {$\times$};
+            \end{tikzpicture}
+          </latex-image>
+        </image>
+      </figure>
+    </paragraphs>
+
+    <paragraphs xml:id="paragraphs-shade-before-particulars">
+      <title>Shade before placing Xs</title>
+      <p>
+        Universal premises tell us that a region is empty.
+        Particular premises tell us that something exists. When a
+        syllogism has both kinds, mark the universal premises
+        first. Shading can remove one of the candidate regions for
+        an X, forcing the X into the only remaining place.
+      </p>
+      <p>
+        The next worked example shows this. If we considered
+        <q>Some Americans are socialists</q> by itself, the X
+        would sit between areas 5 and 6. But another premise has
+        already shaded area 6. Since an X cannot go in an empty
+        region, the X is forced into area 5.
       </p>
     </paragraphs>
 
@@ -490,18 +674,23 @@
       <p>
         P1 (<q>No alien creatures are creatures that would
         understand human life</q>) is an E proposition involving M
-        and P. By Rule 2, this shades the overlap of M and P,
-        which is areas 6 and 7. Mark them shaded.
+        and P. Its subject is M: alien creatures. Its predicate is
+        P: creatures that would understand human life. The premise
+        says that nothing is both M and P, so the M-and-P overlap
+        is empty. On the three-circle diagram, that overlap is
+        areas 6 and 7. Shade both.
       </p>
       <p>
         P2 (<q>All Tralfamadorians are alien creatures</q>) is an
-        A proposition involving S and M. By Rule 2, this shades
-        the part of S outside M, which is areas 1 and 2. Mark
-        them shaded.
+        A proposition involving S and M. Its subject is S:
+        Tralfamadorians. Its predicate is M: alien creatures. The
+        premise says that every S is inside M, so there are no
+        S's outside M. On the three-circle diagram, S outside M is
+        split into areas 1 and 2. Shade both.
       </p>
       <p>
-        Both premises are universals, so Rule 1 is automatic: we
-        shade and we are done. No X marks to place.
+        Both premises are universals, so this premise diagram only
+        needs shading. No X marks are placed.
       </p>
       <figure xml:id="fig-eae-1-premises">
         <caption>The premise diagram for EAE-1: areas 1, 2, 6, and 7 are shaded.</caption>
@@ -625,24 +814,27 @@
       </p>
       <p>
         P1 (<q>No right-wing hate mongers are socialists</q>) is
-        an E proposition involving P and M. <q>No P are M</q>
-        shades the overlap of P and M, which is areas 6 and 7.
-        Mark them shaded.
+        an E proposition involving P and M. Its subject is P:
+        right-wing hate mongers. Its predicate is M: socialists.
+        The premise says that nothing is both P and M, so the
+        P-and-M overlap is empty. On the three-circle diagram,
+        that overlap is areas 6 and 7. Shade both.
       </p>
       <p>
         P2 (<q>Some Americans are socialists</q>) is an I
-        proposition involving S and M. <q>Some S are M</q> places
-        an X in the overlap of S and M, which is areas 5 or 6.
-        But area 6 is <em>already shaded</em> by P1 — declared
-        empty — so the X cannot go there. The X must therefore
-        go in area 5.
+        proposition involving S and M. Its subject is S:
+        Americans. Its predicate is M: socialists. The premise
+        says that at least one thing is both S and M, so the X
+        belongs in the S-and-M overlap. That overlap is areas 5
+        and 6. But area 6 is <em>already shaded</em> by P1:
+        declared empty. So the X cannot go there. It must go in
+        area 5.
       </p>
       <p>
-        This is the practical reason for Rule 1. If we had drawn
-        the X first (as a boundary X between 5 and 6) and then
-        shaded P1, we would have had to revisit the X anyway. By
-        shading first, the X's placement is forced and there is
-        no boundary to redraw.
+        This is the practical reason for shading universals first.
+        If we had drawn the X first as a boundary X between 5 and
+        6, we would have had to revisit it after shading P1. By
+        shading first, the X's placement is forced immediately.
       </p>
       <figure xml:id="fig-eio-2-premises">
         <caption>The premise diagram for EIO-2: areas 6 and 7 shaded; X in area 5.</caption>
@@ -746,48 +938,54 @@
       <example xml:id="ex-iii-boundary-syllogism">
         <title>Two uncommitted Xs</title>
         <statement>
-          <p>P1: Some vibe coded apps are excellent programs.</p>
-          <p>P2: Some Codex produced code bases are vibe coded apps.</p>
-          <p><m>\therefore</m> C: Some Codex produced code bases are excellent programs.</p>
+          <p>P1: Some <em>Picard</em> fans are not <em>Star Trek: Deep Space Nine</em> fans.</p>
+          <p>P2: Some <em>Picard</em> fans are <em>Star Trek: Discovery</em> fans.</p>
+          <p><m>\therefore</m> C: Some <em>Star Trek: Discovery</em> fans are not <em>Star Trek: Deep Space Nine</em> fans.</p>
         </statement>
       </example>
       <p>
-        From the conclusion: S is <em>Codex produced code bases</em>;
-        P is <em>excellent programs</em>. The middle term M is
-        <em>vibe coded apps</em>.
+        From the conclusion: S is <em>Star Trek: Discovery</em>
+        fans; P is <em>Star Trek: Deep Space Nine</em> fans. The
+        middle term M is <em>Picard</em> fans.
       </p>
       <p>
-        P1 (<q>Some vibe coded apps are excellent programs</q>) is
-        an I proposition involving M and P, so it places an X
-        somewhere in the overlap of M and P: area 6 or area 7.
-        Since neither area is shaded, the X goes on the boundary
-        between 6 and 7.
+        P1 (<q>Some <em>Picard</em> fans are not <em>Star Trek:
+        Deep Space Nine</em> fans</q>) is an O proposition. Its
+        subject is M: <em>Picard</em> fans. Its predicate is P:
+        <em>Star Trek: Deep Space Nine</em> fans. The premise says
+        that at least one M is outside P. On the three-circle
+        diagram, M outside P is areas 5 and 8. Since neither area
+        is shaded, the X goes on the boundary between 5 and 8.
       </p>
       <p>
-        P2 (<q>Some Codex produced code bases are vibe coded apps</q>)
-        is an I proposition involving S and M, so it places an X
-        somewhere in the overlap of S and M: area 5 or area 6.
-        Since neither area is shaded, this X goes on the boundary
-        between 5 and 6.
+        P2 (<q>Some <em>Picard</em> fans are <em>Star Trek:
+        Discovery</em> fans</q>) is an I proposition. Its subject
+        is M: <em>Picard</em> fans. Its predicate is S:
+        <em>Star Trek: Discovery</em> fans. The premise says that
+        at least one M is also S. On the three-circle diagram, M
+        and S overlap in areas 5 and 6. Since neither area is
+        shaded, this X goes on the boundary between 5 and 6.
       </p>
       <figure xml:id="fig-iii-boundary-premises">
-        <caption>The premise diagram for the all-particular example: one X on the boundary between areas 6 and 7, and one X on the boundary between areas 5 and 6.</caption>
+        <caption>The premise diagram for the all-particular example: one X on the boundary between areas 5 and 8, and one X on the boundary between areas 5 and 6.</caption>
         <image xml:id="image-iii-boundary-premises" width="60%">
           <description>
             <p>
               A three-circle Venn diagram with M at top, S at
               bottom-left, and P at bottom-right. In this example,
-              S is Codex produced code bases, P is excellent
-              programs, and M is vibe coded apps. One X lies on the
-              boundary between areas 6 and 7, representing
-              <q>Some vibe coded apps are excellent programs.</q>
-              That X is somewhere in the overlap of M and P, but it
-              is not committed to being inside or outside S. A
-              second X lies on the boundary between areas 5 and 6,
-              representing <q>Some Codex produced code bases are
-              vibe coded apps.</q> That X is somewhere in the
-              overlap of S and M, but it is not committed to being
-              inside or outside P. No regions are shaded.
+              S is <em>Star Trek: Discovery</em> fans, P is
+              <em>Star Trek: Deep Space Nine</em> fans, and M is
+              <em>Picard</em> fans. One X lies on the boundary
+              between areas 5 and 8, representing <q>Some
+              <em>Picard</em> fans are not <em>Star Trek: Deep
+              Space Nine</em> fans.</q> That X is somewhere in M
+              outside P, but it is not committed to being inside or
+              outside S. A second X lies on the boundary between
+              areas 5 and 6, representing <q>Some <em>Picard</em>
+              fans are <em>Star Trek: Discovery</em> fans.</q>
+              That X is somewhere in the overlap of S and M, but
+              it is not committed to being inside or outside P. No
+              regions are shaded.
             </p>
           </description>
           <latex-image>
@@ -810,24 +1008,25 @@
               \node at (0.85,0.35) {\small 7};
               \node at (0,1.3) {\small 8};
               % Boundary Xs
-              \node at (0.35,0.35) {$\times$};
+              \node at (-0.55,0.9) {$\times$};
               \node at (-0.35,0.35) {$\times$};
             \end{tikzpicture}
           </latex-image>
         </image>
       </figure>
       <figure xml:id="fig-iii-boundary-conclusion">
-        <caption>The conclusion diagram for the all-particular example: X in area 2.</caption>
+        <caption>The conclusion diagram for the all-particular example: X in area 1.</caption>
         <image xml:id="image-iii-boundary-conclusion" width="50%">
           <description>
             <p>
               A two-circle Venn diagram for the conclusion, with S
               on the left and P on the right. In this example, S is
-              Codex produced code bases and P is excellent
-              programs. An X is placed in area 2, the overlap of S
-              and P. This represents the conclusion <q>Some Codex
-              produced code bases are excellent programs.</q> No
-              areas are shaded.
+              <em>Star Trek: Discovery</em> fans and P is
+              <em>Star Trek: Deep Space Nine</em> fans. An X is
+              placed in area 1, the part of S outside P. This
+              represents the conclusion <q>Some <em>Star Trek:
+              Discovery</em> fans are not <em>Star Trek: Deep
+              Space Nine</em> fans.</q> No areas are shaded.
             </p>
           </description>
           <latex-image>
@@ -842,7 +1041,7 @@
               \node at (0,0) {\small 2};
               \node at (0.85,0) {\small 3};
               \node at (0,-1.65) {\small 4};
-              \node at (0,0.35) {$\times$};
+              \node at (-0.75,0.35) {$\times$};
             \end{tikzpicture}
           </latex-image>
         </image>
@@ -859,10 +1058,10 @@
         settle.
       </p>
       <p>
-        In this example, the conclusion requires an X in area 2
-        or area 6 of the premise diagram. The premise diagram has
-        no X in area 2. It has two boundary Xs that touch area 6,
-        but neither is definitely in area 6. So the premise
+        In this example, the conclusion requires an X in area 1
+        or area 5 of the premise diagram. The premise diagram has
+        no X in area 1. It has two boundary Xs that touch area 5,
+        but neither is definitely in area 5. So the premise
         diagram does not show what the conclusion claims. The
         syllogism is <alert>invalid</alert>.
       </p>
@@ -1011,9 +1210,9 @@
       </p>
     </paragraphs>
 
-    <paragraphs xml:id="paragraphs-eee-2-invalid">
-      <title>An invalid case where the conclusion overreaches (EEE-2)</title>
-      <example xml:id="ex-eee-2-syllogism">
+    <paragraphs xml:id="paragraphs-eea-2-invalid">
+      <title>An invalid case where the conclusion overreaches (EEA-2)</title>
+      <example xml:id="ex-eea-2-syllogism">
         <title>Vegetarians, meat eaters, and consistent thinkers</title>
         <statement>
           <p>P1: No vegetarians are meat eaters.</p>
@@ -1037,9 +1236,9 @@
         the overlap of S and M, which is areas 5 and 6. Area 6 is
         already shaded; we just shade area 5 in addition.
       </p>
-      <figure xml:id="fig-eee-2-premises">
-        <caption>The premise diagram for EEE-2: areas 5, 6, and 7 are shaded.</caption>
-        <image xml:id="image-eee-2-premises" width="60%">
+      <figure xml:id="fig-eea-2-premises">
+        <caption>The premise diagram for EEA-2: areas 5, 6, and 7 are shaded.</caption>
+        <image xml:id="image-eea-2-premises" width="60%">
           <description>
             <p>
               A three-circle Venn diagram with M at top, S at
@@ -1087,9 +1286,9 @@
         The conclusion is A: <q>All S are P.</q> The validity
         check asks whether <em>both</em> areas 1 and 5 are shaded.
       </p>
-      <figure xml:id="fig-eee-2-conclusion">
-        <caption>The conclusion diagram for EEE-2: area 1 shaded.</caption>
-        <image xml:id="image-eee-2-conclusion" width="45%">
+      <figure xml:id="fig-eea-2-conclusion">
+        <caption>The conclusion diagram for EEA-2: area 1 shaded.</caption>
+        <image xml:id="image-eea-2-conclusion" width="45%">
           <description>
             <p>
               A two-circle Venn diagram with S, consistent
@@ -1286,28 +1485,13 @@
         If the syllogism would be valid <em>given</em> that
         existence claim, then the modern verdict of invalidity is
         tracking the existential-commitment question and nothing
-        else. The argument is fine if you accept the existence
-        claim and bad if you don't. That is exactly the place
-        where the modern and traditional interpretations come
-        apart: the modern interpretation declines to assume
-        existence, and the traditional one builds it into
-        universal premises.
+        else. We can easily check if existence makes a difference,
+        but on the modern interpretation, we have to make that
+        commitment explicit, outside of any universal claims.
       </p>
       <p>
-        A whole family of syllogisms — AAI-3, AAI-4, EAO-1,
-        EAO-2, EAO-3, EAO-4 — comes out invalid on the modern
-        interpretation and valid on the traditional, all for this
-        reason. They share the structure of inferring a particular
-        conclusion from two universals. We test only on the
-        modern interpretation in this book. The Aristotelian
-        interpretation, with its built-in existential commitments,
-        is treated in
-        <xref ref="appendix-aristotelian-categorical"/> for
-        adopters who teach it. Still, the diagnostic move — adding
-        an X to test
-        whether existence would change the verdict — is useful
-        regardless of which interpretation you formally adopt. It
-        tells you what a modern-invalid syllogism is hiding.
+        Aristotelian or classical syllogistic logic is more fully
+        explored in <xref ref="appendix-aristotelian-categorical"/>.
       </p>
     </paragraphs>
 
@@ -1529,8 +1713,8 @@
         valid. Again, that matches the Venn diagram.
       </p>
       <p>
-        <alert>EEE-2.</alert> The vegetarians/meat eaters/consistent
-        thinkers example has mood EEE and Figure 2. EEE-2 does not
+        <alert>EEA-2.</alert> The vegetarians/meat eaters/consistent
+        thinkers example has mood EEA and Figure 2. EEA-2 does not
         appear in the valid-form table, so the syllogism is
         invalid. That matches the Venn diagram, where the conclusion
         overreached the premises.
@@ -1855,6 +2039,21 @@
       </p>
     </paragraphs>
 
+    <exploration xml:id="field-7-5-1">
+      <title>Field Exercise: Syllogize a real argument</title>
+      <statement>
+        <p>
+          Find a short argument in an editorial, speech, essay, or
+          other source that looks like it might have a syllogistic
+          structure — three terms, two premises, a conclusion. Follow
+          the procedure from this section: identify the three terms,
+          arrange the premises, supply any missing premise, and put
+          it in standard form. Then diagram it. Is the resulting
+          syllogism valid?
+        </p>
+      </statement>
+    </exploration>
+
   </section>
 
   <section xml:id="sec-categorical-syllogisms-where-headed">
@@ -2113,6 +2312,29 @@
       <exercise xml:id="ex-ch7-s06-03"><statement><p>No non-voters are people who returned a ballot. Some eligible citizens are non-voters. Therefore, some eligible citizens are not people who returned a ballot.</p></statement></exercise>
       <exercise xml:id="ex-ch7-s06-04"><statement><p>All laws identical to this ordinance are laws that restrict camping downtown. No laws that restrict camping downtown are laws supported by the housing coalition. Therefore, no laws identical to this ordinance are laws supported by the housing coalition.</p></statement></exercise>
       <exercise xml:id="ex-ch7-s06-05"><statement><p>Some committee reports are not public documents. All committee reports are records produced by the council. Therefore, some records produced by the council are not public documents.</p></statement></exercise>
+    </exercisegroup>
+
+    <exercisegroup xml:id="exgroup-ch7-writing">
+      <title>Writing Prompt</title>
+      <introduction>
+        <p>
+          This prompt connects to Field Exercise 7-1.
+        </p>
+      </introduction>
+      <exercise xml:id="ex-ch7-writing-01">
+        <statement>
+          <p>
+            Reflect on your experience in Field Exercise 7-1. Did
+            forcing the argument into syllogistic form require you to
+            distort the arguer's intent? Was the translation a fair
+            representation of what the arguer meant, or did the
+            categorical framework squeeze out something important?
+            Write a short response considering both what the
+            syllogistic form <em>reveals</em> about the argument and
+            what it might <em>obscure</em>.
+          </p>
+        </statement>
+      </exercise>
     </exercisegroup>
 
   </exercises>

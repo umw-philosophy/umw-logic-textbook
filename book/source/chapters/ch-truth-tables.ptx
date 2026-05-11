@@ -24,7 +24,7 @@
     </p>
     <p>
       The key idea is simple: the operators of sentential logic
-      are <term>truth functions</term>. But, don't be scared. A function is just something that takes something and does something to it. A truth function takes truth
+      are <term>truth functions</term>. But, don't be put off by our introduction of this term. A function is just something that takes something and does something to it. A truth function takes truth
       values as inputs and returns a truth value as output. Since
       the only truth values in this system are T and F, these are
       among the simplest functions we can study.
@@ -345,16 +345,87 @@
         values to its sentence letters.
       </p>
       <p>
+      4 of the operators understood as truth functions make perfect sense to most people. One, however, trips people up: the horsehoe, which symbolizes the conditional. 
+       In the first row the conditional table, both elements, the antecedent and the consquence are both true. And, the horseshoe outputs true. That is, when both the antecendent and the consequent are true. The whole conditional is true. That makes sense to most people. Similarly with row 2. 
         In the second row of the conditional table, <m>P</m> is T
         and <m>Q</m> is F. The output for <m>P \supset Q</m> is F.
         That row says: a conditional is false when its antecedent
         is true and its consequent is false.
       </p>
       <p>
-        Every other row for the conditional is true. Again, that is
-        not because of a story about causation or evidence. It is
+        But now examine the last two rows. The antecedent is false, yet, the whole conditional is true no matter what the consequent's truth value is in those rows. Why?
+        First, the non-satisfactory answer: It is
         because the truth function for <m>\supset</m> is defined
-        that way.
+        that way. This is just what horseshoe means. It takes the truth values for the antecedent and the consquent and outputs a truth value for the whole conditional. It only outputs false when the antecedent is true and the consequent is false. Otherwise it outputs true. 
+        So, why did we define it this way? 
+      </p>
+    </paragraphs>
+
+    <paragraphs xml:id="paragraphs-conditional-as-promise">
+      <title>The conditional as a promise</title>
+      <p>
+        The best everyday way to understand the material conditional
+        is to think of it as a <term>promise</term>.
+      </p>
+      <p>
+        Suppose I make you this promise:
+      </p>
+      <p>
+        <q>If you mow my lawn today, then I will pay you $20.</q>
+      </p>
+      <p>
+        Let <m>P</m> = You mow my lawn today. Let <m>Q</m> = I pay
+        you $20. The promise is <m>P \supset Q</m>. To figure out
+        the truth value of that conditional, we just have to ask one
+        question: <alert>under what circumstances did I break my
+        promise?</alert>
+      </p>
+      <p>
+        <alert>Row 1: the True/True case.</alert>
+        You mow the lawn (<m>P</m> is true). I pay you $20
+        (<m>Q</m> is true). Did I break my promise? No. I kept my
+        word. The conditional is <alert>true</alert>.
+      </p>
+      <p>
+        <alert>Row 2: the True/False case.</alert>
+        You mow the lawn (<m>P</m> is true). I refuse to pay you
+        (<m>Q</m> is false). Did I break my promise? Yes. You did
+        the work and I stiffed you. I am a liar, and the promise is
+        broken. The conditional is <alert>false</alert>. This is
+        the only way a conditional is false.
+      </p>
+      <p>
+        <alert>Row 3: the False/True case.</alert>
+        You do not mow the lawn (<m>P</m> is false). I give you $20
+        anyway (<m>Q</m> is true). Did I break my promise? No. Maybe
+        I gave you $20 because it's your birthday, or maybe I just
+        felt generous. My promise was <q>if you mow, I pay.</q> I
+        never said <q>I will <em>only</em> pay you if you mow.</q>
+        Since I did not violate the terms of my promise, the
+        conditional is <alert>true</alert>.
+      </p>
+      <p>
+        <alert>Row 4: the False/False case.</alert>
+        You do not mow the lawn (<m>P</m> is false). I do not pay
+        you $20 (<m>Q</m> is false). Did I break my promise? No.
+        You didn't do the work, so I didn't hand over the cash. The
+        terms of the promise are perfectly intact. The conditional is
+        <alert>true</alert>.
+      </p>
+      <p>
+        The pattern: a conditional is like a contract. A contract is
+        only violated — only false — when the condition is met but
+        the promised result fails to happen. If the condition is
+        never met in the first place, the contract cannot be
+        violated. And because every statement in this system must be
+        definitively true or definitively false, a contract that has
+        not been broken is classified as true by default.
+      </p>
+      <p>
+        That is why the last two rows of the conditional truth table
+        are both T. The antecedent being false means the promise was
+        never triggered. An untriggered promise is an unbroken
+        promise.
       </p>
     </paragraphs>
 
@@ -582,8 +653,7 @@
       </table>
       <p>
         In this course, most tables stay at two or three sentence
-        letters. Four-letter tables are possible, but they get wide
-        quickly.
+        letters. Larger tables are possible, but quickly become merely an exercise in visual accuity rather than logic. 
       </p>
     </paragraphs>
 
@@ -941,23 +1011,34 @@
       </p>
     </paragraphs>
 
-  </section>
+    <exploration xml:id="field-9-5-1">
+      <title>Field Exercise: Build a truth table for your own reasoning</title>
+      <statement>
+        <p>
+          Take one of the arguments you symbolized in Chapter 8's
+          field exercise (or find a new short argument). Build a
+          full truth table for it. Is the argument valid or invalid?
+          If invalid, identify the counterexample row and say in
+          plain English what scenario it describes.
+        </p>
+      </statement>
+    </exploration>
 
+  </section>
   <section xml:id="sec-truth-tables-where-headed">
     <title>Where We're Headed</title>
 
     <p>
-      Truth tables are powerful because they are mechanical. If a
-      symbolic statement has four or fewer sentence letters, you
-      can test it by listing the possible truth-value assignments
-      and calculating the values under the main operator. The method is slow by hand,
+      Truth tables are powerful because they are mechanical. You
+      can test an argument by listing the possible truth-value assignments
+      and calculating the values under the main operator and then looking for counter-examples. The method is slow by hand,
       but it is exact.
     </p>
     <p>
       The next chapter turns to natural deduction. Truth tables
-      tell us whether an argument is valid. Natural deduction gives
+      tell us whether an argument is valid or invalid. Natural deduction gives
       us a different kind of understanding: it shows how to move
-      from premises to conclusion step by step using rules.
+      from premises to conclusion step by step using rules. It only works on valid arguments. 
     </p>
 
   </section>
@@ -1177,6 +1258,28 @@
             <row><cell>P2:</cell><cell><m>Q \supset R</m></cell></row>
             <row><cell><m>\therefore</m> C:</cell><cell><m>P \supset R</m></cell></row>
           </tabular>
+        </statement>
+      </exercise>
+    </exercisegroup>
+
+    <exercisegroup xml:id="exgroup-ch9-writing">
+      <title>Writing Prompt</title>
+      <introduction>
+        <p>
+          This prompt connects to Field Exercise 9-1.
+        </p>
+      </introduction>
+      <exercise xml:id="ex-ch9-writing-01">
+        <statement>
+          <p>
+            Reflect on the truth table you built in Field Exercise
+            9-1. Did the result surprise you? If the argument was
+            valid, does that mean the original speaker was right?
+            If it was invalid, does that mean they were wrong? Write
+            a short response exploring what truth-table validity
+            <em>does</em> and <em>does not</em> tell you about
+            real-world reasoning.
+          </p>
         </statement>
       </exercise>
     </exercisegroup>

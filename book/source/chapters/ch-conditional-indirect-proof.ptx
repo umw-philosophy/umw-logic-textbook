@@ -1,0 +1,984 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  Chapter 12 — Conditional Proof and Indirect Proof
+
+  Draft status:
+  - Building section by section.
+  - CP and IP are proof strategies, not new rules of inference.
+  - Proof format based on the lead author's handwritten notation:
+    indented scope with vertical line, "Assume for CP/IP",
+    discharge citing line range.
+  - IP produces ~(the assumption): one tilde prepended.
+  - IP requires an explicit contradiction (P · ~P) via Conj.
+-->
+<chapter xmlns:xi="http://www.w3.org/2001/XInclude" xml:id="ch-conditional-indirect-proof">
+
+  <title>Conditional Proof and Indirect Proof</title>
+
+  <introduction xml:id="ch-cp-ip-intro">
+    <p>
+      Every valid sentential argument can be proven valid using the
+      eighteen rules from Chapters 10 and 11. That is a mathematical
+      fact, and it is meant to be reassuring. But if you have worked
+      the exercises in those chapters, you know that <q>can be
+      proven</q> and <q>can be proven without losing your mind</q>
+      are different claims. Some proofs are brutally hard to find
+      when all you can do is derive new lines from old ones. The
+      conclusion does not appear anywhere in the premises. No rule
+      seems to produce it. You try everything, and nothing connects.
+    </p>
+    <p>
+      This chapter introduces two strategies that solve that problem.
+      <term>Conditional Proof</term> (CP) and
+      <term>Indirect Proof</term> (IP) are not new rules of
+      inference — they do not add to the eighteen. They are
+      strategies for <em>organizing</em> a proof. Both work by
+      letting you <em>temporarily assume</em> something, derive
+      consequences from that assumption using the eighteen rules you
+      already know, and then <em>discharge</em> the assumption to
+      reach a conclusion you could not have reached directly.
+    </p>
+    <p>
+      If the eighteen rules are the tools in your toolbox,
+      Conditional Proof and Indirect Proof are the techniques that
+      tell you how to hold the tools when the usual grip does not
+      work.
+    </p>
+  </introduction>
+
+  <section xml:id="sec-two-new-strategies">
+    <title>Two New Strategies</title>
+
+    <introduction>
+      <p>
+        Before we learn either strategy in detail, we need to
+        understand what they have in common and why they exist.
+      </p>
+    </introduction>
+
+    <paragraphs xml:id="paragraphs-cp-ip-not-rules">
+      <title>Strategies, not rules</title>
+      <p>
+        An implication rule like Modus Ponens tells you: <q>given
+        these inputs, you may write this output.</q> A replacement
+        rule like De Morgan's tells you: <q>this expression may be
+        rewritten as that expression.</q> CP and IP do something
+        different. They tell you: <q>you may temporarily assume a
+        statement, work inside that assumption, and then close the
+        assumption to reach a conclusion.</q>
+      </p>
+      <p>
+        The key word is <em>temporarily</em>. When you make an
+        assumption for CP or IP, you open a <term>scope</term> — a
+        bounded region of the proof where the assumption is in
+        play. Inside that scope, you may use any of the eighteen
+        rules, and you may also use lines from before the scope
+        opened. But when the scope closes, the assumption is
+        <term>discharged</term>, and the lines inside the scope
+        are no longer available. You cannot cite them in later
+        steps. They did their work; now they are sealed off.
+      </p>
+      <p>
+        Think of it this way. A scope is like a thought experiment.
+        You say: <q>Suppose this were true. What would follow?</q>
+        You work out the consequences. Then you step back out of the
+        experiment and report what you learned — not the individual
+        steps inside, but the overall conclusion that the experiment
+        established.
+      </p>
+    </paragraphs>
+
+    <paragraphs xml:id="paragraphs-scope-format">
+      <title>How scopes look on the page</title>
+      <p>
+        In this course, a scope is marked by <alert>indentation and
+        a vertical line</alert> running along the left side of the
+        scoped lines. The first line of the scope is the assumption.
+        The last line is the final result derived inside the scope.
+        When the scope closes, the next line returns to the original
+        indentation level, and its justification cites the line
+        range of the scope plus the strategy name (CP or IP).
+      </p>
+      <p>
+        Here is the skeleton, with no specific formulas — just the
+        shape:
+      </p>
+      <table xml:id="table-scope-skeleton">
+        <title>Scope Skeleton</title>
+        <tabular halign="left" margins="0% 45%">
+          <row><cell>1.</cell><cell>(premise)</cell><cell></cell></row>
+          <row><cell>2.</cell><cell>(premise)</cell><cell>/ (target)</cell></row>
+          <row bottom="minor"><cell>3.</cell><cell>(derived line)</cell><cell>(justification)</cell></row>
+
+          <row><cell>4.</cell><cell><nbsp/><nbsp/><nbsp/>| (assumption)</cell><cell>Assume for CP/IP</cell></row>
+          <row><cell>5.</cell><cell><nbsp/><nbsp/><nbsp/>| (derived)</cell><cell>(justification)</cell></row>
+          <row bottom="minor"><cell>6.</cell><cell><nbsp/><nbsp/><nbsp/>| (derived)</cell><cell>(justification)</cell></row>
+
+          <row><cell>7.</cell><cell>(conclusion)</cell><cell>4–6 CP/IP</cell></row>
+        </tabular>
+      </table>
+      <p>
+        Lines 4–6 are inside the scope. Line 7 discharges the
+        assumption: it cites the range (4–6) and the strategy.
+        After line 7, you may not cite lines 4, 5, or 6 in any
+        further steps.
+      </p>
+    </paragraphs>
+
+    <paragraphs xml:id="paragraphs-when-cp-when-ip">
+      <title>When to use which</title>
+      <p>
+        The decision is usually straightforward:
+      </p>
+      <p>
+        <alert>Use Conditional Proof when your target is a
+        conditional.</alert> If the conclusion you need is
+        <m>\mathcal{A} \supset \mathcal{B}</m>, assume
+        <m>\mathcal{A}</m> (the antecedent), derive
+        <m>\mathcal{B}</m> (the consequent) inside the scope, and
+        discharge. CP hands you the conditional.
+      </p>
+      <p>
+        <alert>Use Indirect Proof when direct proof is stuck and the
+        target is not a conditional</alert> (or when it is, but CP
+        is not working). Assume the negation of what you want to
+        prove, derive an explicit contradiction inside the scope,
+        and discharge. IP hands you the negation of your assumption.
+      </p>
+      <p>
+        Most proofs at this level need only one of the two. A few
+        need both. We will take them one at a time.
+      </p>
+    </paragraphs>
+
+  </section>
+
+  <section xml:id="sec-conditional-proof">
+    <title>Conditional Proof</title>
+
+    <introduction>
+      <p>
+        Conditional Proof is the more intuitive of the two
+        strategies, and it is usually the one students reach for
+        first. The idea is simple: if you want to prove a
+        conditional, assume its antecedent and show that the
+        consequent follows.
+      </p>
+    </introduction>
+
+    <paragraphs xml:id="paragraphs-cp-procedure">
+      <title>The CP procedure</title>
+      <p>
+        Suppose your target is
+        <m>\mathcal{A} \supset \mathcal{B}</m>. Here is the
+        procedure:
+      </p>
+      <ol>
+        <li><p>
+          <alert>Assume <m>\mathcal{A}</m>.</alert> Write
+          <m>\mathcal{A}</m> on a new line. Its justification is
+          <q>Assume for CP.</q> This opens a scope.
+        </p></li>
+        <li><p>
+          <alert>Derive <m>\mathcal{B}</m>.</alert> Inside the
+          scope, use the eighteen rules plus any lines from before
+          the scope to derive <m>\mathcal{B}</m>. You may take as
+          many steps as you need.
+        </p></li>
+        <li><p>
+          <alert>Discharge.</alert> Close the scope. On the next
+          line (back at the original indentation), write
+          <m>\mathcal{A} \supset \mathcal{B}</m>. Its justification
+          cites the line range of the scope and the label CP.
+        </p></li>
+      </ol>
+      <p>
+        That is the entire strategy. Assume the antecedent, derive
+        the consequent, discharge the conditional. Everything inside
+        the scope is sealed off after discharge.
+      </p>
+    </paragraphs>
+
+    <paragraphs xml:id="paragraphs-cp-simple-example">
+      <title>A simple CP proof</title>
+      <p>
+        Consider this argument:
+      </p>
+      <example xml:id="ex-cp-simple">
+        <title>A two-premise CP proof</title>
+        <statement>
+          <table xml:id="table-ex-cp-simple">
+            <title>Deriving <m>P \supset R</m></title>
+            <tabular halign="left" margins="0% 45%">
+              <row><cell>1.</cell><cell><m>P \supset Q</m></cell><cell></cell></row>
+              <row bottom="minor"><cell>2.</cell><cell><m>Q \supset R</m></cell><cell>/ <m>P \supset R</m></cell></row>
+
+              <row><cell>3.</cell><cell><nbsp/><nbsp/><nbsp/>| <m>P</m></cell><cell>Assume for CP</cell></row>
+              <row><cell>4.</cell><cell><nbsp/><nbsp/><nbsp/>| <m>Q</m></cell><cell>1,3 MP</cell></row>
+              <row bottom="minor"><cell>5.</cell><cell><nbsp/><nbsp/><nbsp/>| <m>R</m></cell><cell>2,4 MP</cell></row>
+
+              <row><cell>6.</cell><cell><m>P \supset R</m></cell><cell>3–5 CP</cell></row>
+            </tabular>
+          </table>
+        </statement>
+      </example>
+      <p>
+        You might notice that this argument can also be proven in
+        one step by Hypothetical Syllogism (lines 1 and 2 give
+        <m>P \supset R</m> by HS). That is true, and in practice
+        you should use HS when it works. But the CP proof illustrates
+        the strategy clearly: assume <m>P</m> (the antecedent of the
+        target), derive <m>R</m> (the consequent) by chaining MP
+        twice, then discharge.
+      </p>
+    </paragraphs>
+
+    <paragraphs xml:id="paragraphs-cp-full-example">
+      <title>A longer CP proof</title>
+      <p>
+        Now a proof where CP earns its keep — where the conclusion
+        is a conditional and no direct path is obvious.
+      </p>
+      <example xml:id="ex-cp-full">
+        <title>CP with replacement rules</title>
+        <statement>
+          <table xml:id="table-ex-cp-full">
+            <title>Deriving <m>R \supset S</m></title>
+            <tabular halign="left" margins="0% 45%">
+              <row><cell>1.</cell><cell><m>{\text{\textasciitilde}}(P \cdot {\text{\textasciitilde}}Q)</m></cell><cell></cell></row>
+              <row><cell>2.</cell><cell><m>{\text{\textasciitilde}}P \supset {\text{\textasciitilde}}R</m></cell><cell></cell></row>
+              <row><cell>3.</cell><cell><m>(R \cdot Q) \supset S</m></cell><cell>/ <m>R \supset S</m></cell></row>
+              <row><cell>4.</cell><cell><m>{\text{\textasciitilde}}P \lor {\text{\textasciitilde}}{\text{\textasciitilde}}Q</m></cell><cell>1 DeM</cell></row>
+              <row><cell>5.</cell><cell><m>P \supset {\text{\textasciitilde}}{\text{\textasciitilde}}Q</m></cell><cell>4 Impl</cell></row>
+              <row><cell>6.</cell><cell><m>P \supset Q</m></cell><cell>5 DN</cell></row>
+              <row><cell>7.</cell><cell><m>{\text{\textasciitilde}}Q \supset {\text{\textasciitilde}}P</m></cell><cell>6 Trans</cell></row>
+              <row bottom="minor"><cell>8.</cell><cell><m>{\text{\textasciitilde}}Q \supset {\text{\textasciitilde}}R</m></cell><cell>2,7 HS</cell></row>
+
+              <row><cell>9.</cell><cell><nbsp/><nbsp/><nbsp/>| <m>R</m></cell><cell>Assume for CP</cell></row>
+              <row><cell>10.</cell><cell><nbsp/><nbsp/><nbsp/>| <m>{\text{\textasciitilde}}{\text{\textasciitilde}}R</m></cell><cell>9 DN</cell></row>
+              <row><cell>11.</cell><cell><nbsp/><nbsp/><nbsp/>| <m>{\text{\textasciitilde}}{\text{\textasciitilde}}Q</m></cell><cell>8,10 MT</cell></row>
+              <row><cell>12.</cell><cell><nbsp/><nbsp/><nbsp/>| <m>Q</m></cell><cell>11 DN</cell></row>
+              <row><cell>13.</cell><cell><nbsp/><nbsp/><nbsp/>| <m>R \cdot Q</m></cell><cell>9,12 Conj</cell></row>
+              <row bottom="minor"><cell>14.</cell><cell><nbsp/><nbsp/><nbsp/>| <m>S</m></cell><cell>3,13 MP</cell></row>
+
+              <row><cell>15.</cell><cell><m>R \supset S</m></cell><cell>9–14 CP</cell></row>
+            </tabular>
+          </table>
+        </statement>
+      </example>
+      <p>
+        This proof has two phases. Lines 1–8 are setup: replacement
+        rules reshape the premises into forms that will be useful
+        inside the scope. Lines 9–14 are the CP scope: we assume
+        <m>R</m> (the antecedent of the target
+        <m>R \supset S</m>), use the reshaped premises to derive
+        <m>Q</m>, combine <m>R</m> and <m>Q</m> into the
+        conjunction that line 3 needs, and MP gives us <m>S</m>.
+        Line 15 discharges: <m>R \supset S</m>, citing lines 9–14.
+      </p>
+      <p>
+        Notice that the scope used lines from <em>before</em> the
+        scope opened — lines 3 and 8 were both cited from inside
+        the scope. That is always permitted. Lines before the scope
+        are established facts, not assumptions. What you cannot do
+        is cite lines from inside a closed scope after it closes.
+      </p>
+    </paragraphs>
+
+    <paragraphs xml:id="paragraphs-cp-notes">
+      <title>Notes on Conditional Proof</title>
+      <p>
+        <alert>You can use CP even when the target is not a
+        conditional.</alert> Occasionally a proof benefits from
+        establishing an intermediate conditional via CP, then using
+        that conditional in subsequent steps. This is legal. CP
+        produces a conditional; what you do with it afterward is up
+        to you.
+      </p>
+      <p>
+        <alert>What you assume matters.</alert> For CP, you always
+        assume the antecedent of the conditional you want to
+        produce. If your target is <m>P \supset Q</m>, assume
+        <m>P</m>. If your target is
+        <m>{\text{\textasciitilde}}R \supset S</m>, assume
+        <m>{\text{\textasciitilde}}R</m>. The assumption determines
+        the left side of the conditional you get when you discharge.
+      </p>
+      <p>
+        <alert>Do not forget to discharge.</alert> A proof that ends
+        inside an open scope is not a completed proof. The scope must
+        close, and the discharge line must appear at the original
+        indentation level with the CP justification.
+      </p>
+    </paragraphs>
+
+  </section>
+
+  <section xml:id="sec-indirect-proof">
+    <title>Indirect Proof</title>
+
+    <introduction>
+      <p>
+        Indirect Proof is the strategy you reach for when you want
+        to prove something and no direct path works. The idea has a
+        long history in mathematics and philosophy: assume the
+        opposite of what you want to prove, show that the opposite
+        leads to a contradiction, and conclude that the opposite
+        must be false — which means what you wanted to prove must
+        be true. Logicians sometimes call it <em>reductio ad
+        absurdum</em>: reduction to absurdity. You assume something,
+        blow it up, and walk away with the negation.
+      </p>
+    </introduction>
+
+    <paragraphs xml:id="paragraphs-ip-procedure">
+      <title>The IP procedure</title>
+      <p>
+        Suppose you want to prove <m>\mathcal{A}</m>. Here is the
+        procedure:
+      </p>
+      <ol>
+        <li><p>
+          <alert>Assume
+          <m>{\text{\textasciitilde}}\mathcal{A}</m>.</alert> Write
+          the negation of what you want to prove on a new line. Its
+          justification is <q>Assume for IP.</q> This opens a scope.
+        </p></li>
+        <li><p>
+          <alert>Derive a contradiction.</alert> Inside the scope,
+          use the eighteen rules plus any lines from before the
+          scope to derive two lines: some statement
+          <m>\mathcal{B}</m> and its negation
+          <m>{\text{\textasciitilde}}\mathcal{B}</m>. Then join
+          them into an <em>explicit</em> contradiction using
+          Conjunction:
+          <m>\mathcal{B} \cdot {\text{\textasciitilde}}\mathcal{B}</m>.
+        </p></li>
+        <li><p>
+          <alert>Discharge.</alert> Close the scope. On the next
+          line (back at the original indentation), write
+          <m>{\text{\textasciitilde}}</m> followed by whatever
+          appeared on the assumption line. Its justification cites
+          the line range of the scope and the label IP.
+        </p></li>
+      </ol>
+      <p>
+        Read step 3 carefully.
+        <alert>IP gives you one tilde prepended to the assumption
+        line.</alert> If your assumption was
+        <m>{\text{\textasciitilde}}Q</m>, then IP gives you
+        <m>{\text{\textasciitilde}}{\text{\textasciitilde}}Q</m>.
+        If your assumption was <m>P</m>, then IP gives you
+        <m>{\text{\textasciitilde}}P</m>. The discharge line is
+        always: tilde + whatever you assumed. This means that if you
+        assumed a negation (which is the usual case, since you
+        typically assume the negation of your target), you will need
+        Double Negation as a cleanup step after IP to remove the
+        double tilde and reach your target.
+      </p>
+    </paragraphs>
+
+    <paragraphs xml:id="paragraphs-ip-contradiction-explicit">
+      <title>The contradiction must be explicit</title>
+      <p>
+        This is a point students sometimes miss.
+        It is not enough to derive two lines that happen to
+        contradict each other. You must <em>build</em> the
+        contradiction on a single line using Conjunction. The
+        contradiction takes the form
+        <m>\mathcal{B} \cdot {\text{\textasciitilde}}\mathcal{B}</m>
+        — a statement conjoined with its own negation. If you have
+        <m>S</m> on one line and
+        <m>{\text{\textasciitilde}}S</m> on another, you must write
+        <m>S \cdot {\text{\textasciitilde}}S</m> (or
+        <m>{\text{\textasciitilde}}S \cdot S</m> — order does not
+        matter) using Conj before you can discharge. The explicit
+        conjunction is what licenses the discharge.
+      </p>
+    </paragraphs>
+
+    <paragraphs xml:id="paragraphs-ip-simple-example">
+      <title>A simple IP proof</title>
+      <example xml:id="ex-ip-simple">
+        <title>A short Indirect Proof</title>
+        <statement>
+          <table xml:id="table-ex-ip-simple">
+            <title>Deriving <m>P</m></title>
+            <tabular halign="left" margins="0% 45%">
+              <row><cell>1.</cell><cell><m>{\text{\textasciitilde}}P \supset Q</m></cell><cell></cell></row>
+              <row bottom="minor"><cell>2.</cell><cell><m>{\text{\textasciitilde}}P \supset {\text{\textasciitilde}}Q</m></cell><cell>/ <m>P</m></cell></row>
+
+              <row><cell>3.</cell><cell><nbsp/><nbsp/><nbsp/>| <m>{\text{\textasciitilde}}P</m></cell><cell>Assume for IP</cell></row>
+              <row><cell>4.</cell><cell><nbsp/><nbsp/><nbsp/>| <m>Q</m></cell><cell>1,3 MP</cell></row>
+              <row><cell>5.</cell><cell><nbsp/><nbsp/><nbsp/>| <m>{\text{\textasciitilde}}Q</m></cell><cell>2,3 MP</cell></row>
+              <row bottom="minor"><cell>6.</cell><cell><nbsp/><nbsp/><nbsp/>| <m>Q \cdot {\text{\textasciitilde}}Q</m></cell><cell>4,5 Conj</cell></row>
+
+              <row><cell>7.</cell><cell><m>{\text{\textasciitilde}}{\text{\textasciitilde}}P</m></cell><cell>3–6 IP</cell></row>
+              <row><cell>8.</cell><cell><m>P</m></cell><cell>7 DN</cell></row>
+            </tabular>
+          </table>
+        </statement>
+      </example>
+      <p>
+        Walk through it. We want <m>P</m>. We assume
+        <m>{\text{\textasciitilde}}P</m> (the negation of our
+        target). From that assumption and the two premises, MP gives
+        us both <m>Q</m> (line 4) and
+        <m>{\text{\textasciitilde}}Q</m> (line 5). We conjoin them
+        into the explicit contradiction
+        <m>Q \cdot {\text{\textasciitilde}}Q</m> (line 6). The
+        assumption led to absurdity, so we discharge: IP gives us
+        <m>{\text{\textasciitilde}}{\text{\textasciitilde}}P</m>
+        (line 7) — one tilde prepended to the assumption
+        <m>{\text{\textasciitilde}}P</m>. Double Negation cleans
+        it up to <m>P</m> (line 8).
+      </p>
+    </paragraphs>
+
+    <paragraphs xml:id="paragraphs-ip-full-example">
+      <title>A longer IP proof</title>
+      <example xml:id="ex-ip-full">
+        <title>IP with setup work</title>
+        <statement>
+          <table xml:id="table-ex-ip-full">
+            <title>Deriving <m>Q</m></title>
+            <tabular halign="left" margins="0% 45%">
+              <row><cell>1.</cell><cell><m>({\text{\textasciitilde}}Q \supset {\text{\textasciitilde}}S) \cdot ({\text{\textasciitilde}}S \supset S)</m></cell><cell>/ <m>Q</m></cell></row>
+              <row><cell>2.</cell><cell><m>{\text{\textasciitilde}}Q \supset {\text{\textasciitilde}}S</m></cell><cell>1 Simp</cell></row>
+              <row bottom="minor"><cell>3.</cell><cell><m>{\text{\textasciitilde}}S \supset S</m></cell><cell>1 Simp</cell></row>
+
+              <row><cell>4.</cell><cell><nbsp/><nbsp/><nbsp/>| <m>{\text{\textasciitilde}}Q</m></cell><cell>Assume for IP</cell></row>
+              <row><cell>5.</cell><cell><nbsp/><nbsp/><nbsp/>| <m>{\text{\textasciitilde}}S</m></cell><cell>2,4 MP</cell></row>
+              <row><cell>6.</cell><cell><nbsp/><nbsp/><nbsp/>| <m>S</m></cell><cell>3,5 MP</cell></row>
+              <row bottom="minor"><cell>7.</cell><cell><nbsp/><nbsp/><nbsp/>| <m>S \cdot {\text{\textasciitilde}}S</m></cell><cell>5,6 Conj</cell></row>
+
+              <row><cell>8.</cell><cell><m>{\text{\textasciitilde}}{\text{\textasciitilde}}Q</m></cell><cell>4–7 IP</cell></row>
+              <row><cell>9.</cell><cell><m>Q</m></cell><cell>8 DN</cell></row>
+            </tabular>
+          </table>
+        </statement>
+      </example>
+      <p>
+        The target is <m>Q</m>, and it does not appear anywhere in
+        the premise. There is no conditional with <m>Q</m> as a
+        consequent, no disjunction with <m>Q</m> as a disjunct.
+        Direct proof has nothing to work with. IP solves the problem.
+      </p>
+      <p>
+        We assume <m>{\text{\textasciitilde}}Q</m>. From that
+        assumption, MP with line 2 gives
+        <m>{\text{\textasciitilde}}S</m>. From
+        <m>{\text{\textasciitilde}}S</m>, MP with line 3 gives
+        <m>S</m>. Now we have both <m>S</m> and
+        <m>{\text{\textasciitilde}}S</m>. We conjoin them into the
+        explicit contradiction
+        <m>S \cdot {\text{\textasciitilde}}S</m> (line 7). IP
+        discharges:
+        <m>{\text{\textasciitilde}}{\text{\textasciitilde}}Q</m>
+        (line 8) — one tilde prepended to the assumption
+        <m>{\text{\textasciitilde}}Q</m>. DN gives us <m>Q</m>
+        (line 9).
+      </p>
+    </paragraphs>
+
+    <paragraphs xml:id="paragraphs-ip-notes">
+      <title>Notes on Indirect Proof</title>
+      <p>
+        <alert>IP always produces ~(the assumption).</alert> This
+        is worth repeating because it is the single most confusing
+        aspect of IP. The discharge line is not the target. The
+        discharge line is one tilde prepended to whatever appeared
+        on the assumption line. If the assumption was
+        <m>{\text{\textasciitilde}}Q</m>, the discharge gives you
+        <m>{\text{\textasciitilde}}{\text{\textasciitilde}}Q</m>,
+        and you need DN to reach <m>Q</m>. If the assumption was
+        <m>P</m>, the discharge gives you
+        <m>{\text{\textasciitilde}}P</m>, and that might be your
+        target directly.
+      </p>
+      <p>
+        <alert>Any contradiction will do.</alert> The contradiction
+        does not have to involve the assumption or the target. If
+        your assumption leads to a world where
+        <m>R \cdot {\text{\textasciitilde}}R</m> is derivable,
+        that is a perfectly good contradiction even if <m>R</m>
+        has nothing to do with what you are trying to prove. A
+        contradiction is a contradiction; the universe does not
+        care which statement was contradicted.
+      </p>
+      <p>
+        <alert>Choose your contradiction strategically.</alert>
+        That said, some contradictions are easier to reach than
+        others. Look at what the assumption gives you access to.
+        If assuming <m>{\text{\textasciitilde}}Q</m> lets you
+        derive both <m>S</m> and
+        <m>{\text{\textasciitilde}}S</m> in two steps, use that
+        pair. Do not hunt for a more elegant contradiction when a
+        fast one is available.
+      </p>
+      <p>
+        <alert>Build the conjunction.</alert> Do not skip the
+        Conj step. Even if you have <m>S</m> on line 6 and
+        <m>{\text{\textasciitilde}}S</m> on line 5, you must
+        write
+        <m>S \cdot {\text{\textasciitilde}}S</m> on a new line
+        using Conj before you discharge. The explicit conjunction
+        is the trigger for IP. (Think of it as showing your work.
+        The contradiction has to be on the page, not just in your
+        head.)
+      </p>
+    </paragraphs>
+
+  </section>
+
+  <section xml:id="sec-cp-ip-strategy">
+    <title>Choosing and Using CP and IP</title>
+
+    <introduction>
+      <p>
+        You now know the mechanics of both strategies. This section
+        gives you a decision procedure for choosing between them and
+        warns you about the mistakes that cost students the most
+        points.
+      </p>
+    </introduction>
+
+    <paragraphs xml:id="paragraphs-cp-ip-decision">
+      <title>The decision procedure</title>
+      <p>
+        When you sit down with a proof, ask yourself these questions
+        in order:
+      </p>
+      <ol>
+        <li><p>
+          <alert>Can you prove it directly?</alert> Scan the
+          premises. If you see a clear path using the eighteen rules
+          alone, take it. CP and IP are powerful, but unnecessary
+          complexity is still unnecessary.
+        </p></li>
+        <li><p>
+          <alert>Is the target a conditional?</alert> If yes, try
+          CP. Assume the antecedent, try to derive the consequent.
+          CP is almost always the right move when the conclusion has
+          <m>\supset</m> as its main connective.
+        </p></li>
+        <li><p>
+          <alert>Is direct proof stuck and the target is not a
+          conditional?</alert> Try IP. Assume the negation of the
+          target and hunt for a contradiction.
+        </p></li>
+        <li><p>
+          <alert>Is the target a conditional but CP is not
+          working?</alert> Try IP instead. Assume the negation of
+          the entire conditional (which you can then break apart
+          with De Morgan's or Material Implication) and look for a
+          contradiction. This is rarer but sometimes necessary.
+        </p></li>
+      </ol>
+      <p>
+        Most proofs at this level are settled by questions 1–3. If
+        you reach question 4, the proof is likely one of the harder
+        exercises, and that is okay — you have the tools for it.
+      </p>
+    </paragraphs>
+
+    <paragraphs xml:id="paragraphs-cp-ip-common-errors">
+      <title>Common errors</title>
+      <p>
+        <alert>Citing a scoped line after the scope closes.</alert>
+        This is the most common CP/IP error. Once you discharge, the
+        lines inside the scope are sealed off. If line 5 was inside
+        a scope that closed at line 8, you cannot cite line 5 on
+        line 9 or later. The scope did its job; its internal lines
+        no longer exist as available resources.
+      </p>
+      <p>
+        <alert>Forgetting to discharge.</alert> A proof that ends
+        inside an open scope is incomplete. The last line of your
+        proof must be at the original indentation level. If you
+        derived the consequent inside a CP scope, you still need
+        the discharge line that produces the conditional.
+      </p>
+      <p>
+        <alert>Skipping the explicit contradiction in IP.</alert>
+        You must build the conjunction
+        <m>\mathcal{B} \cdot {\text{\textasciitilde}}\mathcal{B}</m>
+        on a line inside the scope using Conj. Having
+        <m>\mathcal{B}</m> on one line and
+        <m>{\text{\textasciitilde}}\mathcal{B}</m> on another is
+        not enough. Write the conjunction.
+      </p>
+      <p>
+        <alert>Confusing what IP produces.</alert> IP gives you
+        one tilde prepended to the assumption. It does not give you
+        the target directly (unless the target happens to be the
+        negation of the assumption). If you assumed
+        <m>{\text{\textasciitilde}}P</m>, IP gives you
+        <m>{\text{\textasciitilde}}{\text{\textasciitilde}}P</m>.
+        You still need DN to get <m>P</m>.
+      </p>
+      <p>
+        <alert>Assuming the wrong thing for CP.</alert> For CP, you
+        assume the <em>antecedent</em> of the conditional you want.
+        If your target is <m>P \supset Q</m>, assume <m>P</m>, not
+        <m>Q</m>, and not
+        <m>{\text{\textasciitilde}}P</m>. The assumption becomes
+        the left side of the conditional you get when you discharge.
+      </p>
+    </paragraphs>
+
+    <paragraphs xml:id="paragraphs-cp-ip-nesting">
+      <title>Can you nest scopes?</title>
+      <p>
+        Yes. You can open a CP scope inside an IP scope, or an IP
+        scope inside a CP scope, or even a CP inside a CP. Each
+        scope must be properly closed before the enclosing scope
+        closes, and the same rule applies: lines inside a closed
+        inner scope cannot be cited outside it.
+      </p>
+      <p>
+        Nested scopes are rare at this level. If you find yourself
+        nesting, step back and ask whether a simpler approach
+        exists. But if the proof genuinely requires it, the
+        mechanics are the same — just keep the indentation clean
+        and close scopes in the right order.
+      </p>
+    </paragraphs>
+
+    <exploration xml:id="field-12-4-1">
+      <title>Field Exercise: Reflect on the decision to assume</title>
+      <statement>
+        <p>
+          Choose a proof from this chapter's exercises where you
+          used CP or IP. Reconstruct the moment you decided to open
+          a scope. What were you looking at? What told you that
+          direct proof wasn't going to work? Was the decision
+          immediate or did you try direct proof first and then
+          switch? Write a short account of that decision.
+        </p>
+      </statement>
+    </exploration>
+
+  </section>
+  <section xml:id="sec-cp-ip-where-headed">
+    <title>Where We're Headed</title>
+
+    <p>
+      This chapter completes the sentential logic toolkit. You now
+      have eighteen rules of inference plus two proof strategies.
+      Every valid argument in sentential logic can be proven with
+      these resources — and with CP and IP available, most proofs
+      that would have been painfully long are now manageable.
+    </p>
+    <p>
+      Part IV of this book shifts direction. Sentential logic asks
+      whether conclusions follow <em>necessarily</em> from premises.
+      Inductive and statistical reasoning asks a different question:
+      how <em>strongly</em> do the premises support the conclusion?
+      The tools change — no more proof lines and rule citations — but
+      the underlying project is the same one we started in Chapter 1:
+      evaluating whether reasons are good reasons for believing what
+      they claim to support.
+    </p>
+
+  </section>
+
+  <conclusion xml:id="conclusion-ch-cp-ip">
+    <title>Chapter Summary</title>
+
+    <p>
+      This chapter introduced Conditional Proof and Indirect Proof
+      as strategies for organizing proofs that the eighteen rules
+      alone make difficult.
+    </p>
+    <p>
+      <alert>Two New Strategies (§12.1).</alert> CP and IP are not
+      new rules of inference. They are strategies that let you
+      temporarily assume a statement, work inside a bounded scope,
+      and discharge the assumption to reach a conclusion. Lines
+      inside a closed scope cannot be cited afterward.
+    </p>
+    <p>
+      <alert>Conditional Proof (§12.2).</alert> When the target is a
+      conditional <m>\mathcal{A} \supset \mathcal{B}</m>, assume the
+      antecedent <m>\mathcal{A}</m>, derive the consequent
+      <m>\mathcal{B}</m> inside the scope, and discharge to obtain
+      the conditional. Justification: <q>Assume for CP</q> on the
+      assumption line; <q>n–m CP</q> on the discharge line.
+    </p>
+    <p>
+      <alert>Indirect Proof (§12.3).</alert> When direct proof is
+      stuck, assume the negation of the target, derive an explicit
+      contradiction
+      (<m>\mathcal{B} \cdot {\text{\textasciitilde}}\mathcal{B}</m>
+      via Conj) inside the scope, and discharge. IP produces one
+      tilde prepended to the assumption. DN is typically needed
+      afterward to reach the target. Justification: <q>Assume for
+      IP</q> on the assumption line; <q>n–m IP</q> on the discharge
+      line.
+    </p>
+    <p>
+      <alert>Choosing and Using CP and IP (§12.4).</alert> Try direct
+      proof first. If the target is a conditional, try CP. If direct
+      proof is stuck and the target is not a conditional, try IP.
+      Common errors include citing scoped lines after discharge,
+      forgetting to discharge, skipping the explicit conjunction in
+      IP, and confusing what IP produces.
+    </p>
+
+  </conclusion>
+
+  <section xml:id="sec-ch12-key-terms">
+    <title>Key Terms</title>
+
+    <p>Listed alphabetically, with section references.</p>
+
+    <dl>
+      <li xml:id="term-ch12-assumption">
+        <title>Assumption</title>
+        <p>A statement temporarily introduced at the start of a CP or IP scope, serving as a hypothesis from which consequences are derived. (§12.1)</p>
+      </li>
+      <li xml:id="term-ch12-conditional-proof">
+        <title>Conditional Proof (CP)</title>
+        <p>A proof strategy in which the antecedent of a target conditional is assumed, the consequent is derived, and the assumption is discharged to produce the conditional. (§12.2)</p>
+      </li>
+      <li xml:id="term-ch12-contradiction">
+        <title>Contradiction (explicit)</title>
+        <p>A conjunction of a statement with its own negation (<m>\mathcal{B} \cdot {\text{\textasciitilde}}\mathcal{B}</m>), built using Conj inside an IP scope. (§12.3)</p>
+      </li>
+      <li xml:id="term-ch12-discharge">
+        <title>Discharge</title>
+        <p>The step that closes a scope and produces the conclusion licensed by CP or IP. The discharge line cites the scope's line range. (§12.1)</p>
+      </li>
+      <li xml:id="term-ch12-indirect-proof">
+        <title>Indirect Proof (IP)</title>
+        <p>A proof strategy in which the negation of the target is assumed, a contradiction is derived, and the assumption is discharged to produce the negation of the assumption (one tilde prepended). Also called <em>reductio ad absurdum</em>. (§12.3)</p>
+      </li>
+      <li xml:id="term-ch12-reductio">
+        <title>Reductio ad absurdum</title>
+        <p>Latin for <q>reduction to absurdity.</q> Another name for Indirect Proof. (§12.3)</p>
+      </li>
+      <li xml:id="term-ch12-scope">
+        <title>Scope</title>
+        <p>The bounded region of a proof, marked by indentation and a vertical line, in which an assumption is active. Lines inside a closed scope cannot be cited afterward. (§12.1)</p>
+      </li>
+    </dl>
+
+  </section>
+
+  <exercises xml:id="exercises-ch12">
+    <title>End-of-Chapter Exercises</title>
+
+    <exercisegroup xml:id="exgroup-ch12-s01">
+      <title>Exercise Set 1: Identify the Strategy</title>
+      <introduction>
+        <p>
+          For each proof goal, state whether you would try
+          Conditional Proof, Indirect Proof, or direct proof, and
+          explain your reasoning in one sentence.
+        </p>
+      </introduction>
+      <exercise xml:id="ex-ch12-s01-01">
+        <statement>
+          <p>The target is <m>P \supset Q</m>.</p>
+        </statement>
+      </exercise>
+      <exercise xml:id="ex-ch12-s01-02">
+        <statement>
+          <p>The target is <m>P</m>, and no premise contains <m>P</m> or a conditional with <m>P</m> as a consequent.</p>
+        </statement>
+      </exercise>
+      <exercise xml:id="ex-ch12-s01-03">
+        <statement>
+          <p>The target is <m>P \supset R</m>, and the premises include <m>P \supset Q</m> and <m>Q \supset R</m>.</p>
+        </statement>
+      </exercise>
+      <exercise xml:id="ex-ch12-s01-04">
+        <statement>
+          <p>The target is <m>{\text{\textasciitilde}}P</m>, and the premises include <m>P \supset Q</m> and <m>P \supset {\text{\textasciitilde}}Q</m>.</p>
+        </statement>
+      </exercise>
+      <exercise xml:id="ex-ch12-s01-05">
+        <statement>
+          <p>The target is <m>(P \cdot Q) \supset R</m>.</p>
+        </statement>
+      </exercise>
+    </exercisegroup>
+
+    <exercisegroup xml:id="exgroup-ch12-s02">
+      <title>Exercise Set 2: Complete the CP Proof</title>
+      <introduction>
+        <p>
+          Each proof has the scope opened for you. Supply the
+          missing lines inside the scope and the discharge line.
+        </p>
+      </introduction>
+      <exercise xml:id="ex-ch12-s02-01">
+        <statement>
+          <tabular halign="left" margins="0% 45%">
+            <row><cell>1.</cell><cell><m>P \supset Q</m></cell><cell></cell></row>
+            <row bottom="minor"><cell>2.</cell><cell><m>Q \supset R</m></cell><cell>/ <m>P \supset R</m></cell></row>
+
+            <row><cell>3.</cell><cell><nbsp/><nbsp/><nbsp/>| <m>P</m></cell><cell>Assume for CP</cell></row>
+            <row><cell>4.</cell><cell><nbsp/><nbsp/><nbsp/>| </cell><cell></cell></row>
+            <row bottom="minor"><cell>5.</cell><cell><nbsp/><nbsp/><nbsp/>| </cell><cell></cell></row>
+
+            <row><cell>6.</cell><cell></cell><cell></cell></row>
+          </tabular>
+        </statement>
+      </exercise>
+      <exercise xml:id="ex-ch12-s02-02">
+        <statement>
+          <tabular halign="left" margins="0% 45%">
+            <row bottom="minor"><cell>1.</cell><cell><m>P \supset (Q \cdot R)</m></cell><cell>/ <m>P \supset Q</m></cell></row>
+
+            <row><cell>2.</cell><cell><nbsp/><nbsp/><nbsp/>| <m>P</m></cell><cell>Assume for CP</cell></row>
+            <row><cell>3.</cell><cell><nbsp/><nbsp/><nbsp/>| </cell><cell></cell></row>
+            <row bottom="minor"><cell>4.</cell><cell><nbsp/><nbsp/><nbsp/>| </cell><cell></cell></row>
+
+            <row><cell>5.</cell><cell></cell><cell></cell></row>
+          </tabular>
+        </statement>
+      </exercise>
+      <exercise xml:id="ex-ch12-s02-03">
+        <statement>
+          <tabular halign="left" margins="0% 45%">
+            <row><cell>1.</cell><cell><m>P \supset Q</m></cell><cell></cell></row>
+            <row bottom="minor"><cell>2.</cell><cell><m>R \supset S</m></cell><cell>/ <m>(P \cdot R) \supset (Q \cdot S)</m></cell></row>
+
+            <row><cell>3.</cell><cell><nbsp/><nbsp/><nbsp/>| <m>P \cdot R</m></cell><cell>Assume for CP</cell></row>
+            <row><cell>4.</cell><cell><nbsp/><nbsp/><nbsp/>| </cell><cell></cell></row>
+          </tabular>
+        </statement>
+      </exercise>
+    </exercisegroup>
+
+    <exercisegroup xml:id="exgroup-ch12-s03">
+      <title>Exercise Set 3: Complete the IP Proof</title>
+      <introduction>
+        <p>
+          Each proof has the scope opened for you. Supply the
+          missing lines, including the explicit contradiction, the
+          discharge, and any cleanup steps.
+        </p>
+      </introduction>
+      <exercise xml:id="ex-ch12-s03-01">
+        <statement>
+          <tabular halign="left" margins="0% 45%">
+            <row><cell>1.</cell><cell><m>{\text{\textasciitilde}}P \supset Q</m></cell><cell></cell></row>
+            <row bottom="minor"><cell>2.</cell><cell><m>{\text{\textasciitilde}}P \supset {\text{\textasciitilde}}Q</m></cell><cell>/ <m>P</m></cell></row>
+
+            <row><cell>3.</cell><cell><nbsp/><nbsp/><nbsp/>| <m>{\text{\textasciitilde}}P</m></cell><cell>Assume for IP</cell></row>
+            <row><cell>4.</cell><cell><nbsp/><nbsp/><nbsp/>| </cell><cell></cell></row>
+          </tabular>
+        </statement>
+      </exercise>
+      <exercise xml:id="ex-ch12-s03-02">
+        <statement>
+          <tabular halign="left" margins="0% 45%">
+            <row><cell>1.</cell><cell><m>P \supset Q</m></cell><cell></cell></row>
+            <row bottom="minor"><cell>2.</cell><cell><m>P \supset {\text{\textasciitilde}}Q</m></cell><cell>/ <m>{\text{\textasciitilde}}P</m></cell></row>
+
+            <row><cell>3.</cell><cell><nbsp/><nbsp/><nbsp/>| <m>P</m></cell><cell>Assume for IP</cell></row>
+            <row><cell>4.</cell><cell><nbsp/><nbsp/><nbsp/>| </cell><cell></cell></row>
+          </tabular>
+        </statement>
+      </exercise>
+      <exercise xml:id="ex-ch12-s03-03">
+        <statement>
+          <tabular halign="left" margins="0% 45%">
+            <row><cell>1.</cell><cell><m>(P \lor Q) \supset R</m></cell><cell></cell></row>
+            <row bottom="minor"><cell>2.</cell><cell><m>{\text{\textasciitilde}}R</m></cell><cell>/ <m>{\text{\textasciitilde}}P</m></cell></row>
+
+            <row><cell>3.</cell><cell><nbsp/><nbsp/><nbsp/>| <m>P</m></cell><cell>Assume for IP</cell></row>
+            <row><cell>4.</cell><cell><nbsp/><nbsp/><nbsp/>| </cell><cell></cell></row>
+          </tabular>
+        </statement>
+      </exercise>
+    </exercisegroup>
+
+    <exercisegroup xml:id="exgroup-ch12-s04">
+      <title>Exercise Set 4: Full Proofs</title>
+      <introduction>
+        <p>
+          Prove each argument valid. You may use any of the eighteen
+          rules, CP, and IP.
+        </p>
+      </introduction>
+      <exercise xml:id="ex-ch12-s04-01">
+        <statement>
+          <tabular halign="left" margins="0% 45%">
+            <row><cell>1.</cell><cell><m>P \supset Q</m></cell><cell></cell></row>
+            <row><cell>2.</cell><cell><m>P \supset R</m></cell><cell>/ <m>P \supset (Q \cdot R)</m></cell></row>
+          </tabular>
+        </statement>
+      </exercise>
+      <exercise xml:id="ex-ch12-s04-02">
+        <statement>
+          <tabular halign="left" margins="0% 45%">
+            <row><cell>1.</cell><cell><m>P \supset {\text{\textasciitilde}}P</m></cell><cell>/ <m>{\text{\textasciitilde}}P</m></cell></row>
+          </tabular>
+        </statement>
+      </exercise>
+      <exercise xml:id="ex-ch12-s04-03">
+        <statement>
+          <tabular halign="left" margins="0% 45%">
+            <row><cell>1.</cell><cell><m>P \supset Q</m></cell><cell></cell></row>
+            <row><cell>2.</cell><cell><m>{\text{\textasciitilde}}P \supset Q</m></cell><cell>/ <m>Q</m></cell></row>
+          </tabular>
+        </statement>
+      </exercise>
+      <exercise xml:id="ex-ch12-s04-04">
+        <statement>
+          <tabular halign="left" margins="0% 45%">
+            <row><cell>1.</cell><cell><m>(P \cdot Q) \supset R</m></cell><cell></cell></row>
+            <row><cell>2.</cell><cell><m>{\text{\textasciitilde}}R</m></cell><cell></cell></row>
+            <row><cell>3.</cell><cell><m>P</m></cell><cell>/ <m>{\text{\textasciitilde}}Q</m></cell></row>
+          </tabular>
+        </statement>
+      </exercise>
+      <exercise xml:id="ex-ch12-s04-05">
+        <statement>
+          <tabular halign="left" margins="0% 45%">
+            <row><cell>1.</cell><cell><m>P \supset (Q \supset R)</m></cell><cell>/ <m>(P \cdot Q) \supset R</m></cell></row>
+          </tabular>
+        </statement>
+      </exercise>
+      <exercise xml:id="ex-ch12-s04-06">
+        <statement>
+          <tabular halign="left" margins="0% 45%">
+            <row><cell>1.</cell><cell><m>P \supset Q</m></cell><cell></cell></row>
+            <row><cell>2.</cell><cell><m>R \supset S</m></cell><cell></cell></row>
+            <row><cell>3.</cell><cell><m>{\text{\textasciitilde}}Q \lor {\text{\textasciitilde}}S</m></cell><cell>/ <m>{\text{\textasciitilde}}P \lor {\text{\textasciitilde}}R</m></cell></row>
+          </tabular>
+        </statement>
+      </exercise>
+    </exercisegroup>
+
+    <exercisegroup xml:id="exgroup-ch12-writing">
+      <title>Writing Prompt</title>
+      <introduction>
+        <p>
+          This prompt connects to Field Exercise 12-1.
+        </p>
+      </introduction>
+      <exercise xml:id="ex-ch12-writing-01">
+        <statement>
+          <p>
+            Return to your account from Field Exercise 12-1.
+            Compare the experience of proving something directly
+            (with the eighteen rules alone) to proving something
+            by temporarily assuming. Does the assumption strategy
+            feel like <q>cheating</q>? Does it feel more natural?
+            What does it mean to <em>assume the opposite</em> of
+            what you want to prove and then show that it blows up?
+            Write a short reflection on what Indirect Proof reveals
+            about the relationship between contradiction and truth.
+          </p>
+        </statement>
+      </exercise>
+    </exercisegroup>
+
+  </exercises>
+
+</chapter>

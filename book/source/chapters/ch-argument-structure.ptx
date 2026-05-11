@@ -131,6 +131,20 @@
       conclusion.
     </p>
 
+    <exploration xml:id="field-2-1-1">
+      <title>Field Exercise: Reconstruct something you actually read</title>
+      <statement>
+        <p>
+          Find an opinion piece, editorial, review, or social media post
+          that makes an argument about something you care about.
+          Reconstruct the argument in standard form. Apply the principle
+          of charity: represent the argument as strongly as you honestly
+          can. Note what you left out and why — what was background,
+          what was rhetoric, and what was doing argumentative work.
+        </p>
+      </statement>
+    </exploration>
+
   </section>
 
   <section xml:id="sec-include-omit">
@@ -563,6 +577,21 @@
         does not replace the existing argument with a better one.
       </p>
     </paragraphs>
+
+    <exploration xml:id="field-2-5-1">
+      <title>Field Exercise: Spot the missing premise</title>
+      <statement>
+        <p>
+          Find a short argument in the wild — a headline, a meme with
+          a caption, something someone said to you — where a premise
+          is clearly unstated. Write the argument in standard form,
+          including the implicit premise. Then consider: does adding
+          the implicit premise make the argument <em>stronger</em> or
+          does it reveal that the argument was <em>weaker</em> than it
+          first appeared?
+        </p>
+      </statement>
+    </exploration>
 
   </section>
 
@@ -1038,6 +1067,28 @@
               </p>
             </li>
           </ol>
+        </statement>
+      </exercise>
+    </exercisegroup>
+
+    <exercisegroup xml:id="exgroup-ch2-writing">
+      <title>Writing Prompt</title>
+      <introduction>
+        <p>
+          This prompt connects to Field Exercise 2-1.
+        </p>
+      </introduction>
+      <exercise xml:id="ex-ch2-writing-01">
+        <statement>
+          <p>
+            Return to your reconstruction from Field Exercise 2-1.
+            Now that you've worked through the full chapter, revise it.
+            Does the argument have dependent or independent support?
+            Are there sub-conclusions? Did you miss an implicit premise?
+            Write a short reflection comparing your original
+            reconstruction with your revised one. What did you see the
+            second time that you missed the first?
+          </p>
         </statement>
       </exercise>
     </exercisegroup>

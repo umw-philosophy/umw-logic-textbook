@@ -1,6 +1,6 @@
 # UMW Logic Textbook — Project Plan
 
-**Living document.** Last updated: April 26, 2026.
+**Living document.** Last updated: May 10, 2026.
 This is the synthesized plan from the alignment interview held on April 26, 2026 between Dr. Michael Reno (PI) and Claude (Anthropic). It is editable as we discover issues during the Chapter 1 vertical slice and beyond. New decisions get logged in `DECISIONS.md`; this document is updated to reflect the current state of the plan.
 
 ---
@@ -195,8 +195,8 @@ The project proceeds whether or not the grant is awarded. The grant compensates 
 
 | Date | Milestone |
 | --- | --- |
-| **Apr–Aug 2026** | Chapter 1 vertical slice (Completed May 2026). Steady-state chapter drafting (Parts I–II). Recruit librarian. Begin grant application drafting. |
-| **Sep–Nov 2026** | Drafting Parts III–IV. Submit grant application (~Nov 5). |
+| **Apr–Aug 2026** | Chapter 1 vertical slice (Completed May 2026). Steady-state chapter drafting (Parts I–III). Chapters 1–11 drafted as of May 10, 2026 — ahead of roadmap. Recruit librarian. Begin grant application drafting. |
+| **Sep–Nov 2026** | Complete Part III (CP/IP chapter). Draft Part IV. Submit grant application (~Nov 5). |
 | **Dec 2026** | Grant notification. PDF v1 of textbook complete (independent of grant). |
 | **Jan–May 2027** | Truth table checker built. Proof checker accessibility remediation. Canvas modules built alongside. |
 | **Mar 2027** | Initial grant payment (if awarded). |

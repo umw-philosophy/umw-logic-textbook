@@ -643,4 +643,168 @@
     <p><term>1.</term> Since the target is <m>P \cdot Q</m>, I would try to use Conjunction as the final rule. Conjunction requires both conjuncts separately, so the proof strategy is to derive or locate <m>P</m> on one line and <m>Q</m> on another line, then cite those two lines with Conj to get <m>P \cdot Q</m>.</p>
     <p><term>3.</term> Since the target is <m>Q \lor S</m> and <m>Q</m> is already available, I would use Addition. Addition allows us to infer a disjunction from either one of its disjuncts, so from <m>Q</m> alone we may infer <m>Q \lor S</m>. We do not need to prove <m>S</m> separately.</p>
   </section>
+
+  <section xml:id="sol-ch11-exercise-set-1-identifying-replacement-rules">
+    <title>Chapter 11, Exercise Set 1: Identifying Replacement Rules</title>
+    <p><term>1.</term> <em>De Morgan's Theorems (DeM).</em> A negated conjunction is rewritten as a disjunction of negations.</p>
+    <p><term>3.</term> <em>Transposition (Trans).</em> A conditional is rewritten as its contrapositive: the antecedent and consequent swap positions and each is negated.</p>
+    <p><term>5.</term> <em>Commutation (Com).</em> The order of the disjuncts is swapped. Com applies to disjunctions and conjunctions, not to conditionals.</p>
+    <p><term>7.</term> <em>De Morgan's Theorems (DeM).</em> A negated disjunction is rewritten as a conjunction of negations. (This is the second form of DeM.)</p>
+  </section>
+
+  <section xml:id="sol-ch11-exercise-set-2-apply-the-rule">
+    <title>Chapter 11, Exercise Set 2: Apply the Rule</title>
+    <p><term>1.</term> DeM applied to <m>{\text{\textasciitilde}}(R \lor S)</m> gives <m>{\text{\textasciitilde}}R \cdot {\text{\textasciitilde}}S</m>. The negation distributes and the disjunction becomes a conjunction.</p>
+    <p><term>3.</term> Trans applied to <m>P \supset {\text{\textasciitilde}}Q</m> gives <m>{\text{\textasciitilde}}{\text{\textasciitilde}}Q \supset {\text{\textasciitilde}}P</m>, which simplifies by DN to <m>Q \supset {\text{\textasciitilde}}P</m>. (Either form is acceptable; the Trans step itself produces the double-negated version.)</p>
+    <p><term>5.</term> Dist applied to <m>P \cdot (Q \lor R)</m> gives <m>(P \cdot Q) \lor (P \cdot R)</m>. The conjunction distributes across the disjunction.</p>
+    <p><term>7.</term> Exp applied to <m>(P \cdot Q) \supset R</m> gives <m>P \supset (Q \supset R)</m>. The conjoined antecedent is separated into two nested conditionals.</p>
+  </section>
+
+  <section xml:id="sol-ch11-exercise-set-3-proofs-using-replacement-rules">
+    <title>Chapter 11, Exercise Set 3: Proofs Using Replacement Rules</title>
+    <p><term>1.</term> A complete proof is:</p>
+    <tabular halign="left" margins="0% 45%">
+      <row><cell>1.</cell><cell><m>{\text{\textasciitilde}}(P \lor Q)</m></cell><cell>/ <m>{\text{\textasciitilde}}P</m></cell></row>
+      <row><cell>2.</cell><cell><m>{\text{\textasciitilde}}P \cdot {\text{\textasciitilde}}Q</m></cell><cell>1 DeM</cell></row>
+      <row><cell>3.</cell><cell><m>{\text{\textasciitilde}}P</m></cell><cell>2 Simp</cell></row>
+    </tabular>
+    <p>De Morgan's breaks the negated disjunction into a conjunction of negations. Simplification extracts the first conjunct.</p>
+    <p><term>3.</term> A complete proof is:</p>
+    <tabular halign="left" margins="0% 45%">
+      <row><cell>1.</cell><cell><m>P \supset (Q \supset R)</m></cell><cell></cell></row>
+      <row><cell>2.</cell><cell><m>P \cdot Q</m></cell><cell>/ <m>R</m></cell></row>
+      <row><cell>3.</cell><cell><m>(P \cdot Q) \supset R</m></cell><cell>1 Exp</cell></row>
+      <row><cell>4.</cell><cell><m>R</m></cell><cell>2,3 MP</cell></row>
+    </tabular>
+    <p>Exportation rewrites the nested conditional so that the conjunction <m>P \cdot Q</m> is the antecedent. MP with line 2 finishes the proof.</p>
+    <p><term>5.</term> A complete proof is:</p>
+    <tabular halign="left" margins="0% 45%">
+      <row><cell>1.</cell><cell><m>P \equiv Q</m></cell><cell></cell></row>
+      <row><cell>2.</cell><cell><m>P</m></cell><cell>/ <m>Q</m></cell></row>
+      <row><cell>3.</cell><cell><m>(P \supset Q) \cdot (Q \supset P)</m></cell><cell>1 Equiv</cell></row>
+      <row><cell>4.</cell><cell><m>P \supset Q</m></cell><cell>3 Simp</cell></row>
+      <row><cell>5.</cell><cell><m>Q</m></cell><cell>2,4 MP</cell></row>
+    </tabular>
+    <p>Material Equivalence unpacks the biconditional into two conditionals. Simplification extracts the one we need, and MP finishes.</p>
+    <p><term>7.</term> A complete proof is:</p>
+    <tabular halign="left" margins="0% 45%">
+      <row><cell>1.</cell><cell><m>{\text{\textasciitilde}}(P \lor Q)</m></cell><cell></cell></row>
+      <row><cell>2.</cell><cell><m>R \supset P</m></cell><cell>/ <m>{\text{\textasciitilde}}R</m></cell></row>
+      <row><cell>3.</cell><cell><m>{\text{\textasciitilde}}P \cdot {\text{\textasciitilde}}Q</m></cell><cell>1 DeM</cell></row>
+      <row><cell>4.</cell><cell><m>{\text{\textasciitilde}}P</m></cell><cell>3 Simp</cell></row>
+      <row><cell>5.</cell><cell><m>{\text{\textasciitilde}}R</m></cell><cell>2,4 MT</cell></row>
+    </tabular>
+    <p>DeM breaks line 1 open. Simplification gives <m>{\text{\textasciitilde}}P</m>. Since <m>{\text{\textasciitilde}}P</m> is the negation of the consequent of line 2, Modus Tollens gives <m>{\text{\textasciitilde}}R</m>.</p>
+  </section>
+
+  <section xml:id="sol-ch11-exercise-set-4-explain-the-strategy">
+    <title>Chapter 11, Exercise Set 4: Explain the Strategy</title>
+    <p><term>1.</term> I would use De Morgan's Theorems. <m>{\text{\textasciitilde}}(P \cdot Q)</m> is a negated conjunction, and De Morgan's rewrites it as <m>{\text{\textasciitilde}}P \lor {\text{\textasciitilde}}Q</m> in one step. The trigger pattern is a tilde in front of parentheses containing a conjunction.</p>
+    <p><term>3.</term> I would use Transposition. Trans rewrites <m>P \supset Q</m> as <m>{\text{\textasciitilde}}Q \supset {\text{\textasciitilde}}P</m>, which is exactly the contrapositive needed for the HS chain. The trigger is needing a conditional with swapped and negated terms.</p>
+    <p><term>5.</term> I would use Exportation. Exp rewrites <m>P \supset (Q \supset R)</m> as <m>(P \cdot Q) \supset R</m>. Since <m>P \cdot Q</m> is already available, MP can then fire directly to give <m>R</m>.</p>
+  </section>
+
+  <section xml:id="sol-ch12-exercise-set-1-identify-the-strategy">
+    <title>Chapter 12, Exercise Set 1: Identify the Strategy</title>
+    <p><term>1.</term> <em>Conditional Proof.</em> The target is a conditional (<m>P \supset Q</m>), so assume the antecedent <m>P</m> and try to derive the consequent <m>Q</m> inside the scope.</p>
+    <p><term>3.</term> <em>Direct proof.</em> The premises <m>P \supset Q</m> and <m>Q \supset R</m> chain together by Hypothetical Syllogism to give <m>P \supset R</m> in one step. No assumption is needed.</p>
+    <p><term>5.</term> <em>Conditional Proof.</em> The target <m>(P \cdot Q) \supset R</m> is a conditional, so assume the antecedent <m>P \cdot Q</m> and try to derive <m>R</m> inside the scope.</p>
+  </section>
+
+  <section xml:id="sol-ch12-exercise-set-2-complete-the-cp-proof">
+    <title>Chapter 12, Exercise Set 2: Complete the CP Proof</title>
+    <p><term>1.</term> Completed proof:</p>
+    <tabular halign="left" margins="0% 45%">
+      <row><cell>1.</cell><cell><m>P \supset Q</m></cell><cell></cell></row>
+      <row bottom="minor"><cell>2.</cell><cell><m>Q \supset R</m></cell><cell>/ <m>P \supset R</m></cell></row>
+
+      <row><cell>3.</cell><cell><nbsp/><nbsp/><nbsp/>| <m>P</m></cell><cell>Assume for CP</cell></row>
+      <row><cell>4.</cell><cell><nbsp/><nbsp/><nbsp/>| <m>Q</m></cell><cell>1,3 MP</cell></row>
+      <row bottom="minor"><cell>5.</cell><cell><nbsp/><nbsp/><nbsp/>| <m>R</m></cell><cell>2,4 MP</cell></row>
+
+      <row><cell>6.</cell><cell><m>P \supset R</m></cell><cell>3–5 CP</cell></row>
+    </tabular>
+    <p><term>3.</term> Completed proof:</p>
+    <tabular halign="left" margins="0% 45%">
+      <row><cell>1.</cell><cell><m>P \supset Q</m></cell><cell></cell></row>
+      <row bottom="minor"><cell>2.</cell><cell><m>R \supset S</m></cell><cell>/ <m>(P \cdot R) \supset (Q \cdot S)</m></cell></row>
+
+      <row><cell>3.</cell><cell><nbsp/><nbsp/><nbsp/>| <m>P \cdot R</m></cell><cell>Assume for CP</cell></row>
+      <row><cell>4.</cell><cell><nbsp/><nbsp/><nbsp/>| <m>P</m></cell><cell>3 Simp</cell></row>
+      <row><cell>5.</cell><cell><nbsp/><nbsp/><nbsp/>| <m>R</m></cell><cell>3 Simp</cell></row>
+      <row><cell>6.</cell><cell><nbsp/><nbsp/><nbsp/>| <m>Q</m></cell><cell>1,4 MP</cell></row>
+      <row><cell>7.</cell><cell><nbsp/><nbsp/><nbsp/>| <m>S</m></cell><cell>2,5 MP</cell></row>
+      <row bottom="minor"><cell>8.</cell><cell><nbsp/><nbsp/><nbsp/>| <m>Q \cdot S</m></cell><cell>6,7 Conj</cell></row>
+
+      <row><cell>9.</cell><cell><m>(P \cdot R) \supset (Q \cdot S)</m></cell><cell>3–8 CP</cell></row>
+    </tabular>
+  </section>
+
+  <section xml:id="sol-ch12-exercise-set-3-complete-the-ip-proof">
+    <title>Chapter 12, Exercise Set 3: Complete the IP Proof</title>
+    <p><term>1.</term> Completed proof:</p>
+    <tabular halign="left" margins="0% 45%">
+      <row><cell>1.</cell><cell><m>{\text{\textasciitilde}}P \supset Q</m></cell><cell></cell></row>
+      <row bottom="minor"><cell>2.</cell><cell><m>{\text{\textasciitilde}}P \supset {\text{\textasciitilde}}Q</m></cell><cell>/ <m>P</m></cell></row>
+
+      <row><cell>3.</cell><cell><nbsp/><nbsp/><nbsp/>| <m>{\text{\textasciitilde}}P</m></cell><cell>Assume for IP</cell></row>
+      <row><cell>4.</cell><cell><nbsp/><nbsp/><nbsp/>| <m>Q</m></cell><cell>1,3 MP</cell></row>
+      <row><cell>5.</cell><cell><nbsp/><nbsp/><nbsp/>| <m>{\text{\textasciitilde}}Q</m></cell><cell>2,3 MP</cell></row>
+      <row bottom="minor"><cell>6.</cell><cell><nbsp/><nbsp/><nbsp/>| <m>Q \cdot {\text{\textasciitilde}}Q</m></cell><cell>4,5 Conj</cell></row>
+
+      <row><cell>7.</cell><cell><m>{\text{\textasciitilde}}{\text{\textasciitilde}}P</m></cell><cell>3–6 IP</cell></row>
+      <row><cell>8.</cell><cell><m>P</m></cell><cell>7 DN</cell></row>
+    </tabular>
+    <p><term>3.</term> Completed proof:</p>
+    <tabular halign="left" margins="0% 45%">
+      <row><cell>1.</cell><cell><m>(P \lor Q) \supset R</m></cell><cell></cell></row>
+      <row bottom="minor"><cell>2.</cell><cell><m>{\text{\textasciitilde}}R</m></cell><cell>/ <m>{\text{\textasciitilde}}P</m></cell></row>
+
+      <row><cell>3.</cell><cell><nbsp/><nbsp/><nbsp/>| <m>P</m></cell><cell>Assume for IP</cell></row>
+      <row><cell>4.</cell><cell><nbsp/><nbsp/><nbsp/>| <m>P \lor Q</m></cell><cell>3 Add</cell></row>
+      <row><cell>5.</cell><cell><nbsp/><nbsp/><nbsp/>| <m>R</m></cell><cell>1,4 MP</cell></row>
+      <row bottom="minor"><cell>6.</cell><cell><nbsp/><nbsp/><nbsp/>| <m>R \cdot {\text{\textasciitilde}}R</m></cell><cell>5,2 Conj</cell></row>
+
+      <row><cell>7.</cell><cell><m>{\text{\textasciitilde}}P</m></cell><cell>3–6 IP</cell></row>
+    </tabular>
+    <p>Note that the target is <m>{\text{\textasciitilde}}P</m>, so we assume <m>P</m> (the opposite). IP gives <m>{\text{\textasciitilde}}P</m> directly — no DN needed because the assumption was not negated.</p>
+  </section>
+
+  <section xml:id="sol-ch12-exercise-set-4-full-proofs">
+    <title>Chapter 12, Exercise Set 4: Full Proofs</title>
+    <p><term>1.</term> A complete proof is:</p>
+    <tabular halign="left" margins="0% 45%">
+      <row><cell>1.</cell><cell><m>P \supset Q</m></cell><cell></cell></row>
+      <row bottom="minor"><cell>2.</cell><cell><m>P \supset R</m></cell><cell>/ <m>P \supset (Q \cdot R)</m></cell></row>
+
+      <row><cell>3.</cell><cell><nbsp/><nbsp/><nbsp/>| <m>P</m></cell><cell>Assume for CP</cell></row>
+      <row><cell>4.</cell><cell><nbsp/><nbsp/><nbsp/>| <m>Q</m></cell><cell>1,3 MP</cell></row>
+      <row><cell>5.</cell><cell><nbsp/><nbsp/><nbsp/>| <m>R</m></cell><cell>2,3 MP</cell></row>
+      <row bottom="minor"><cell>6.</cell><cell><nbsp/><nbsp/><nbsp/>| <m>Q \cdot R</m></cell><cell>4,5 Conj</cell></row>
+
+      <row><cell>7.</cell><cell><m>P \supset (Q \cdot R)</m></cell><cell>3–6 CP</cell></row>
+    </tabular>
+    <p>The target is a conditional, so CP is the natural strategy. Assume <m>P</m>, derive both <m>Q</m> and <m>R</m> by MP, and Conj gives the consequent.</p>
+    <p><term>3.</term> A complete proof is:</p>
+    <tabular halign="left" margins="0% 45%">
+      <row><cell>1.</cell><cell><m>P \supset Q</m></cell><cell></cell></row>
+      <row bottom="minor"><cell>2.</cell><cell><m>{\text{\textasciitilde}}P \supset Q</m></cell><cell>/ <m>Q</m></cell></row>
+
+      <row><cell>3.</cell><cell><nbsp/><nbsp/><nbsp/>| <m>{\text{\textasciitilde}}Q</m></cell><cell>Assume for IP</cell></row>
+      <row><cell>4.</cell><cell><nbsp/><nbsp/><nbsp/>| <m>{\text{\textasciitilde}}P</m></cell><cell>1,3 MT</cell></row>
+      <row><cell>5.</cell><cell><nbsp/><nbsp/><nbsp/>| <m>Q</m></cell><cell>2,4 MP</cell></row>
+      <row bottom="minor"><cell>6.</cell><cell><nbsp/><nbsp/><nbsp/>| <m>Q \cdot {\text{\textasciitilde}}Q</m></cell><cell>5,3 Conj</cell></row>
+
+      <row><cell>7.</cell><cell><m>{\text{\textasciitilde}}{\text{\textasciitilde}}Q</m></cell><cell>3–6 IP</cell></row>
+      <row><cell>8.</cell><cell><m>Q</m></cell><cell>7 DN</cell></row>
+    </tabular>
+    <p>The target is not a conditional, and <m>Q</m> cannot be derived directly. Assume <m>{\text{\textasciitilde}}Q</m>. MT with line 1 gives <m>{\text{\textasciitilde}}P</m>. MP with line 2 gives <m>Q</m> — which contradicts the assumption. Build the explicit contradiction, discharge, and DN to finish.</p>
+    <p><term>5.</term> A complete proof is:</p>
+    <tabular halign="left" margins="0% 45%">
+      <row><cell>1.</cell><cell><m>P \supset (Q \supset R)</m></cell><cell>/ <m>(P \cdot Q) \supset R</m></cell></row>
+      <row><cell>2.</cell><cell><m>(P \cdot Q) \supset R</m></cell><cell>1 Exp</cell></row>
+    </tabular>
+    <p>Exportation handles this in one step. Alternatively, a CP proof works: assume <m>P \cdot Q</m>, simplify to get <m>P</m> and <m>Q</m>, MP twice, and discharge. But Exp is shorter.</p>
+  </section>
+
 </appendix>

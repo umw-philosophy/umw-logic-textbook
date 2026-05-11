@@ -1,0 +1,225 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<appendix xml:id="appendix-rules-of-inference">
+
+  <title>The Eighteen Rules of Inference</title>
+
+  <section xml:id="sec-appendix-rules-explanation">
+    <title>How to Use This Appendix</title>
+
+    <p>
+      Chapters 10 and 11 introduce eighteen rules for constructing
+      natural deduction proofs in sentential logic. This appendix
+      collects them for quick reference. The next section presents
+      all eighteen schemas on a single page — tear it out or
+      bookmark it for use during exercises and exams.
+    </p>
+
+    <paragraphs xml:id="paragraphs-appendix-implication-v-replacement">
+      <title>Implication rules vs. replacement rules</title>
+      <p>
+        The eight <em>implication rules</em> (rules 1–8) are
+        one-directional. Each takes one or more whole lines as input
+        and produces a new line as output. You may apply them only to
+        entire lines, not to subformulas within a line.
+      </p>
+      <p>
+        The ten <em>replacement rules</em> (rules 9–18) are
+        bidirectional equivalences. The expression on either side of
+        the double colon (<m>::</m>) may replace the other. Unlike
+        implication rules, replacement rules may be applied to any
+        subformula within a line — you do not need to match the
+        entire line.
+      </p>
+    </paragraphs>
+
+    <paragraphs xml:id="paragraphs-appendix-conventions">
+      <title>Conventions</title>
+      <p>
+        Script letters
+        (<m>\mathcal{A}</m>, <m>\mathcal{B}</m>,
+        <m>\mathcal{C}</m>, <m>\mathcal{D}</m>) stand for any
+        well-formed formula — a single sentence letter, a negation,
+        a compound expression in parentheses, or any other WFF.
+        The horizontal line in an implication rule separates the
+        input(s) above from the output below. The tilde
+        (<m>{\text{\textasciitilde}}</m>) is negation. One
+        application of one rule per line.
+      </p>
+    </paragraphs>
+
+  </section>
+
+  <section xml:id="sec-appendix-rules-reference-sheet">
+    <title>Reference Sheet: All Eighteen Rules</title>
+    <!-- The PDF build overrides this section in xsl/custom-latex.xsl
+         so the reference sheet prints as a single-page handout. -->
+
+    <paragraphs xml:id="paragraphs-appendix-impl-rules-header">
+      <title>Implication Rules (Chapter 10)</title>
+      <p></p>
+    </paragraphs>
+
+    <sidebyside widths="45% 45%" margins="2% 2%">
+      <stack>
+        <p><alert>1. Modus Ponens (MP)</alert></p>
+        <tabular halign="center">
+          <row><cell><m>\mathcal{A} \supset \mathcal{B}</m></cell></row>
+          <row><cell bottom="medium"><m>\mathcal{A}</m></cell></row>
+          <row><cell><m>\mathcal{B}</m></cell></row>
+        </tabular>
+      </stack>
+      <stack>
+        <p><alert>2. Modus Tollens (MT)</alert></p>
+        <tabular halign="center">
+          <row><cell><m>\mathcal{A} \supset \mathcal{B}</m></cell></row>
+          <row><cell bottom="medium"><m>{\text{\textasciitilde}}\mathcal{B}</m></cell></row>
+          <row><cell><m>{\text{\textasciitilde}}\mathcal{A}</m></cell></row>
+        </tabular>
+      </stack>
+    </sidebyside>
+
+    <sidebyside widths="45% 45%" margins="2% 2%">
+      <stack>
+        <p><alert>3. Hypothetical Syllogism (HS)</alert></p>
+        <tabular halign="center">
+          <row><cell><m>\mathcal{A} \supset \mathcal{B}</m></cell></row>
+          <row><cell bottom="medium"><m>\mathcal{B} \supset \mathcal{C}</m></cell></row>
+          <row><cell><m>\mathcal{A} \supset \mathcal{C}</m></cell></row>
+        </tabular>
+      </stack>
+      <stack>
+        <p><alert>4. Disjunctive Syllogism (DS)</alert></p>
+        <tabular halign="center">
+          <row><cell><m>\mathcal{A} \lor \mathcal{B}</m></cell></row>
+          <row><cell bottom="medium"><m>{\text{\textasciitilde}}\mathcal{A}</m></cell></row>
+          <row><cell><m>\mathcal{B}</m></cell></row>
+        </tabular>
+      </stack>
+    </sidebyside>
+
+    <sidebyside widths="45% 45%" margins="2% 2%">
+      <stack>
+        <p><alert>5. Simplification (Simp)</alert></p>
+        <tabular halign="center">
+          <row><cell bottom="medium"><m>\mathcal{A} \cdot \mathcal{B}</m></cell></row>
+          <row><cell><m>\mathcal{A}</m></cell></row>
+        </tabular>
+      </stack>
+      <stack>
+        <p><alert>6. Conjunction (Conj)</alert></p>
+        <tabular halign="center">
+          <row><cell><m>\mathcal{A}</m></cell></row>
+          <row><cell bottom="medium"><m>\mathcal{B}</m></cell></row>
+          <row><cell><m>\mathcal{A} \cdot \mathcal{B}</m></cell></row>
+        </tabular>
+      </stack>
+    </sidebyside>
+
+    <sidebyside widths="45% 45%" margins="2% 2%">
+      <stack>
+        <p><alert>7. Addition (Add)</alert></p>
+        <tabular halign="center">
+          <row><cell bottom="medium"><m>\mathcal{A}</m></cell></row>
+          <row><cell><m>\mathcal{A} \lor \mathcal{B}</m></cell></row>
+        </tabular>
+      </stack>
+      <stack>
+        <p><alert>8. Constructive Dilemma (CD)</alert></p>
+        <tabular halign="center">
+          <row><cell><m>\mathcal{A} \supset \mathcal{B}</m></cell></row>
+          <row><cell><m>\mathcal{C} \supset \mathcal{D}</m></cell></row>
+          <row><cell bottom="medium"><m>\mathcal{A} \lor \mathcal{C}</m></cell></row>
+          <row><cell><m>\mathcal{B} \lor \mathcal{D}</m></cell></row>
+        </tabular>
+      </stack>
+    </sidebyside>
+
+    <paragraphs xml:id="paragraphs-appendix-repl-rules-header">
+      <title>Replacement Rules (Chapter 11)</title>
+      <p></p>
+    </paragraphs>
+
+    <sidebyside widths="45% 45%" margins="2% 2%">
+      <stack>
+        <p><alert>9. De Morgan's (DeM)</alert></p>
+        <tabular halign="center">
+          <row><cell><m>{\text{\textasciitilde}}(\mathcal{A} \cdot \mathcal{B}) :: {\text{\textasciitilde}}\mathcal{A} \lor {\text{\textasciitilde}}\mathcal{B}</m></cell></row>
+          <row><cell><m>{\text{\textasciitilde}}(\mathcal{A} \lor \mathcal{B}) :: {\text{\textasciitilde}}\mathcal{A} \cdot {\text{\textasciitilde}}\mathcal{B}</m></cell></row>
+        </tabular>
+      </stack>
+      <stack>
+        <p><alert>10. Double Negation (DN)</alert></p>
+        <tabular halign="center">
+          <row><cell><m>\mathcal{A} :: {\text{\textasciitilde}}{\text{\textasciitilde}}\mathcal{A}</m></cell></row>
+        </tabular>
+      </stack>
+    </sidebyside>
+
+    <sidebyside widths="45% 45%" margins="2% 2%">
+      <stack>
+        <p><alert>11. Commutation (Com)</alert></p>
+        <tabular halign="center">
+          <row><cell><m>\mathcal{A} \cdot \mathcal{B} :: \mathcal{B} \cdot \mathcal{A}</m></cell></row>
+          <row><cell><m>\mathcal{A} \lor \mathcal{B} :: \mathcal{B} \lor \mathcal{A}</m></cell></row>
+        </tabular>
+      </stack>
+      <stack>
+        <p><alert>12. Association (Assoc)</alert></p>
+        <tabular halign="center">
+          <row><cell><m>\mathcal{A} \cdot (\mathcal{B} \cdot \mathcal{C}) :: (\mathcal{A} \cdot \mathcal{B}) \cdot \mathcal{C}</m></cell></row>
+          <row><cell><m>\mathcal{A} \lor (\mathcal{B} \lor \mathcal{C}) :: (\mathcal{A} \lor \mathcal{B}) \lor \mathcal{C}</m></cell></row>
+        </tabular>
+      </stack>
+    </sidebyside>
+
+    <sidebyside widths="45% 45%" margins="2% 2%">
+      <stack>
+        <p><alert>13. Distribution (Dist)</alert></p>
+        <tabular halign="center">
+          <row><cell><m>\mathcal{A} \cdot (\mathcal{B} \lor \mathcal{C}) :: (\mathcal{A} \cdot \mathcal{B}) \lor (\mathcal{A} \cdot \mathcal{C})</m></cell></row>
+          <row><cell><m>\mathcal{A} \lor (\mathcal{B} \cdot \mathcal{C}) :: (\mathcal{A} \lor \mathcal{B}) \cdot (\mathcal{A} \lor \mathcal{C})</m></cell></row>
+        </tabular>
+      </stack>
+      <stack>
+        <p><alert>14. Transposition (Trans)</alert></p>
+        <tabular halign="center">
+          <row><cell><m>\mathcal{A} \supset \mathcal{B} :: {\text{\textasciitilde}}\mathcal{B} \supset {\text{\textasciitilde}}\mathcal{A}</m></cell></row>
+        </tabular>
+      </stack>
+    </sidebyside>
+
+    <sidebyside widths="45% 45%" margins="2% 2%">
+      <stack>
+        <p><alert>15. Material Implication (Impl)</alert></p>
+        <tabular halign="center">
+          <row><cell><m>\mathcal{A} \supset \mathcal{B} :: {\text{\textasciitilde}}\mathcal{A} \lor \mathcal{B}</m></cell></row>
+        </tabular>
+      </stack>
+      <stack>
+        <p><alert>16. Material Equivalence (Equiv)</alert></p>
+        <tabular halign="center">
+          <row><cell><m>\mathcal{A} \equiv \mathcal{B} :: (\mathcal{A} \supset \mathcal{B}) \cdot (\mathcal{B} \supset \mathcal{A})</m></cell></row>
+          <row><cell><m>\mathcal{A} \equiv \mathcal{B} :: (\mathcal{A} \cdot \mathcal{B}) \lor ({\text{\textasciitilde}}\mathcal{A} \cdot {\text{\textasciitilde}}\mathcal{B})</m></cell></row>
+        </tabular>
+      </stack>
+    </sidebyside>
+
+    <sidebyside widths="45% 45%" margins="2% 2%">
+      <stack>
+        <p><alert>17. Exportation (Exp)</alert></p>
+        <tabular halign="center">
+          <row><cell><m>(\mathcal{A} \cdot \mathcal{B}) \supset \mathcal{C} :: \mathcal{A} \supset (\mathcal{B} \supset \mathcal{C})</m></cell></row>
+        </tabular>
+      </stack>
+      <stack>
+        <p><alert>18. Tautology (Taut)</alert></p>
+        <tabular halign="center">
+          <row><cell><m>\mathcal{A} :: \mathcal{A} \cdot \mathcal{A}</m></cell></row>
+          <row><cell><m>\mathcal{A} :: \mathcal{A} \lor \mathcal{A}</m></cell></row>
+        </tabular>
+      </stack>
+    </sidebyside>
+
+  </section>
+
+</appendix>
