@@ -32,6 +32,93 @@
   </xsl:param>
 
   <!--
+    Tagged-PDF table hygiene:
+
+    PreTeXt's <tabular> is used both for actual data tables and for
+    display layouts such as proof schemas.  With LaTeX's tagged-PDF
+    machinery active, every LaTeX tabular is otherwise exposed as a
+    semantic PDF Table.  Accessibility checkers then report "table has
+    no header" for proof layouts that are not really data tables.
+
+    If the source tabular has an explicit header row (or row headers),
+    pass that header information through to LaTeX's table tagging.
+    Otherwise, tag the tabular as a Div so the text remains available
+    without pretending the display is a data table.
+  -->
+  <xsl:template match="tabular[row[@header] or @row-headers = 'yes']">
+    <xsl:text>\tagpdfsetup{</xsl:text>
+    <xsl:if test="row[@header]">
+      <xsl:text>table/header-rows={</xsl:text>
+      <xsl:call-template name="integer-list">
+        <xsl:with-param name="start" select="1"/>
+        <xsl:with-param name="finish" select="count(row[@header])"/>
+      </xsl:call-template>
+      <xsl:text>}</xsl:text>
+    </xsl:if>
+    <xsl:if test="row[@header] and @row-headers = 'yes'">
+      <xsl:text>,</xsl:text>
+    </xsl:if>
+    <xsl:if test="@row-headers = 'yes'">
+      <xsl:text>table/header-columns={1}</xsl:text>
+    </xsl:if>
+    <xsl:text>}&#xa;</xsl:text>
+    <xsl:apply-imports/>
+    <xsl:text>\tagpdfsetup{table/header-rows={},table/header-columns={}}&#xa;</xsl:text>
+  </xsl:template>
+
+  <xsl:template match="tabular[not(row[@header] or @row-headers = 'yes')]">
+    <xsl:text>\tagpdfsetup{table/tagging=div}&#xa;</xsl:text>
+    <xsl:apply-imports/>
+    <xsl:text>\tagpdfsetup{table/tagging=true}&#xa;</xsl:text>
+  </xsl:template>
+
+  <xsl:template name="integer-list">
+    <xsl:param name="start"/>
+    <xsl:param name="finish"/>
+    <xsl:if test="$start &lt;= $finish">
+      <xsl:value-of select="$start"/>
+      <xsl:if test="$start &lt; $finish">
+        <xsl:text>,</xsl:text>
+        <xsl:call-template name="integer-list">
+          <xsl:with-param name="start" select="$start + 1"/>
+          <xsl:with-param name="finish" select="$finish"/>
+        </xsl:call-template>
+      </xsl:if>
+    </xsl:if>
+  </xsl:template>
+
+  <!--
+    PreTeXt emits image descriptions for accessible HTML, but this
+    tagged-PDF build also needs a short /Alt entry on the graphic
+    itself.  LaTeX's graphics tagging support reads the "alt" option on
+    \includegraphics, so pass PreTeXt <shortdescription> through when it
+    is present.  Long <description> content stays in the source for
+    readers who need fuller context.
+  -->
+  <xsl:template match="image[@source][shortdescription]" mode="image-inclusion">
+    <xsl:variable name="extension">
+      <xsl:call-template name="file-extension">
+        <xsl:with-param name="filename" select="@source"/>
+      </xsl:call-template>
+    </xsl:variable>
+    <xsl:text>\includegraphics[width=\linewidth,alt={</xsl:text>
+    <xsl:apply-templates select="shortdescription"/>
+    <xsl:text>}</xsl:text>
+    <xsl:if test="@rotate">
+      <xsl:text>,angle=</xsl:text>
+      <xsl:value-of select="@rotate"/>
+      <xsl:text>,origin=c</xsl:text>
+    </xsl:if>
+    <xsl:text>]{</xsl:text>
+    <xsl:value-of select="$external-directory"/>
+    <xsl:value-of select="@source"/>
+    <xsl:if test="$extension = ''">
+      <xsl:text>.pdf</xsl:text>
+    </xsl:if>
+    <xsl:text>}&#xa;</xsl:text>
+  </xsl:template>
+
+  <!--
     Accessibility experiment promoted to the production print build:
     LaTeX's tagged-PDF machinery must be enabled before \documentclass,
     which is earlier than PreTeXt's latex.preamble.early hook. This book

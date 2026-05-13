@@ -1084,6 +1084,7 @@
             <image xml:id="image-ch15-truncated-axis-housing"
                    source="ch15-truncated-axis-housing.jpg"
                    width="70%">
+              <shortdescription>A housing bar graph with a y-axis truncated near 200,000, making a modest gap look much larger.</shortdescription>
               <description>
                 <p>
                   A campaign-style bar graph titled <q>Number of new
@@ -1152,6 +1153,7 @@
             <image xml:id="image-ch15-gas-price-car-size-distortion"
                    source="ch15-gas-price-car-size-distortion.png"
                    width="95%">
+              <shortdescription>A gas-price comparison where the later truck icon is scaled much larger than the price increase warrants.</shortdescription>
               <description>
                 <p>
                   A whiteboard-style graphic titled <q>Gas Price
@@ -1195,6 +1197,7 @@
             <image xml:id="image-ch15-gas-price-bar-comparison"
                    source="ch15-gas-price-bar-comparison.png"
                    width="95%">
+              <shortdescription>A gas-price bar chart with a zero-based vertical axis showing the increase without exaggerated icon scaling.</shortdescription>
               <description>
                 <p>
                   A whiteboard-style graph titled <q>Gas Price Increase

@@ -25,7 +25,7 @@
       to the conclusion one small, justified step at a time?
     </p>
     <p>
-      The answer key style for this course is intentionally compact. A
+      The style for this course is intentionally compact. A
       proof is a numbered list of lines. Premises go first. The target
       conclusion appears after a slash. Every line after the premises
       must cite earlier line numbers and a rule abbreviation. A finished
@@ -100,7 +100,7 @@
     <paragraphs xml:id="paragraphs-proof-layout">
       <title>The basic layout</title>
       <p>
-        Here is the form used in the course answer keys:
+        Here is the format we'll use in the course:
       </p>
       <table xml:id="table-nd-basic-layout">
         <title>A Basic Natural Deduction Layout</title>
@@ -171,8 +171,7 @@
       <title>The slash is the target</title>
       <p>
         The formula after the slash is not another premise. It is what
-        you are trying to prove. In the answer-key style, it is usually
-        written on the same line as the final premise:
+        you are trying to prove.  The conclusion is written on the same line as the final premise:
       </p>
       <table xml:id="table-nd-target-line">
         <title>Premises and Target</title>
@@ -386,9 +385,8 @@
 
     <introduction>
       <p>
-        The easiest way to learn proofs is to watch the rules in action.
-        The examples in this section use the same compact format as the
-        course answer key.
+        The easiest way to learn proofs is to watch the rules in action and then try them yourself.
+       
       </p>
       <p>
         The first example briefly uses Double Negation (DN), a replacement

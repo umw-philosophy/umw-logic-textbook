@@ -29,13 +29,20 @@ From inside `book/`:
 pretext build web
 
 # Build the print (PDF) version
-pretext build print
+./build-pdf.sh
 
 # Serve the web version locally for browser preview
 pretext view web
 ```
 
 Outputs appear in `book/output/`.
+
+> **Note**: The print target is built via `./build-pdf.sh` (not
+> `pretext build print` directly). The wrapper runs `pretext build print`
+> and then `scripts/postbuild_fix_figure_namespace.py`, which repoints
+> `/Figure` structure elements from the PDF 2.0 namespace to PDF 1.7 so
+> that Panorama and other PDF/UA-1 validators can read the figure alt text.
+> See the comment block in `build-pdf.sh` for the full rationale.
 
 > **Note**: The first `pretext build web` run downloads supporting files from
 > `runestone.academy`. If you are behind a restrictive firewall or have no
