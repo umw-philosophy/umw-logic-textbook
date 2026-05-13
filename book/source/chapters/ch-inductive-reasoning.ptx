@@ -1,0 +1,908 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  Chapter 13 — Inductive Reasoning
+  First draft for Part IV.
+-->
+<chapter xmlns:xi="http://www.w3.org/2001/XInclude" xml:id="ch-inductive-reasoning">
+
+  <title>Inductive Reasoning</title>
+
+  <introduction xml:id="ch-inductive-reasoning-intro">
+    <p>
+      Up to this point, we have spent a lot of time with arguments that
+      are supposed to be airtight. A valid deductive argument has a kind
+      of beautiful stubbornness: if the premises are true, the conclusion
+      has to be true. There is no wiggle room, no matter how badly someone
+      wants to wiggle.
+    </p>
+    <p>
+      Most of life is not like that. The mechanic hears a sound and thinks
+      the alternator is failing. The coach watches practice and predicts
+      who will start on Saturday. The doctor looks at a rash, a fever, and
+      a lab result, then decides which diagnosis is most likely. The
+      evidence can be good. It can be excellent. But it usually does not
+      force one conclusion with deductive necessity.
+    </p>
+    <p>
+      This chapter begins our study of <term>inductive reasoning</term>:
+      reasoning in which the premises are intended to make the conclusion
+      probable, plausible, or reasonable, without guaranteeing it. That
+      shift changes the question. We are no longer asking only, <q>do these premises guarantee the conclusion?</q> We are asking, <q>how much
+      support do these premises give this conclusion?</q>
+    </p>
+  </introduction>
+
+  <section xml:id="sec-induction-guarantee-support">
+    <title>From Guarantee to Support</title>
+
+    <introduction>
+      <p>
+        The first step is to stop measuring inductive arguments by the
+        wrong standard. If an inductive argument fails to guarantee its
+        conclusion, that is not automatically a defect. It was never
+        trying to do that job. Another way to put this is that all inductive arguments are invalid, but who cares? 
+      </p>
+    </introduction>
+
+    <paragraphs xml:id="paragraphs-deduction-and-induction">
+      <title>Two different ambitions</title>
+      <p>
+        Deductive and inductive arguments have different ambitions.
+        A <term>deductive argument</term> aims at guarantee. An
+        <term>inductive argument</term> aims at support.
+      </p>
+      <definition xml:id="def-ch13-inductive-argument">
+        <statement>
+          <p>
+            An <term>inductive argument</term> is an argument in which
+            the premises are intended to make the conclusion probable,
+            plausible, or reasonable, but not certain.
+          </p>
+        </statement>
+      </definition>
+      <p>
+        Consider a deductive argument:
+      </p>
+      <p>
+        P1: All UMW students are enrolled in a college course.
+      </p>
+      <p>
+        P2: Mina is a UMW student.
+      </p>
+      <p>
+        C: Mina is enrolled in a college course.
+      </p>
+      <p>
+        If the premises are true, the conclusion cannot be false. That is
+        the deductive standard.
+      </p>
+      <p>
+        Now consider an inductive argument:
+      </p>
+      <p>
+        P1: The last six times the 7:40 train was delayed, the delay was
+        caused by signal problems near Union Station.
+      </p>
+      <p>
+        P2: The 7:40 train is delayed again this morning.
+      </p>
+      <p>
+        C: The delay is probably caused by signal problems near Union
+        Station.
+      </p>
+      <p>
+        The conclusion might be false even if both premises are true. Maybe
+        there is a power outage. Maybe a tree fell on the tracks. Maybe the
+        signal problems finally got fixed and a new problem showed up. But
+        the premises still give us a reason to think the conclusion is
+        likely. That is the inductive standard.
+      </p>
+    </paragraphs>
+
+    <paragraphs xml:id="paragraphs-induction-not-lesser">
+      <title>Inductive does not mean sloppy</title>
+      <p>
+        It is tempting to hear <q>not guaranteed</q> as <q>not serious.</q>
+        Resist that temptation. Inductive reasoning is not failed
+        deduction. It is a different kind of reasoning, with different
+        standards.
+      </p>
+      <p>
+        A weather forecast can be excellent even if rain does not arrive.
+        A medical diagnosis can be responsible even if later evidence
+        overturns it. A scientific theory can be well supported even though
+        future research might revise it. In all of these cases, the
+        important question is not whether the evidence makes error
+        impossible. The important question is whether the evidence makes
+        the conclusion reasonable.
+      </p>
+    </paragraphs>
+
+    <example xml:id="ex-ch13-rain-forecast">
+      <title>A forecast is not a proof</title>
+      <statement>
+        <p>
+          Suppose the forecast says there is an 80 percent chance of rain
+          this afternoon. Dark clouds are moving in, the humidity is high,
+          and radar shows a storm line to the west. You conclude that you
+          should bring an umbrella.
+        </p>
+        <p>
+          That reasoning is not deductively valid. You might carry the
+          umbrella all day and never open it. Still, the reasoning is good.
+          The evidence raises the probability of rain enough to make the
+          conclusion practical.
+        </p>
+      </statement>
+    </example>
+
+  </section>
+
+  <section xml:id="sec-inductive-strength">
+    <title>Inductive Strength</title>
+
+    <introduction>
+      <p>
+        Since inductive arguments do not aim at validity, we need a
+        different evaluative vocabulary. The central term is
+        <term>strength</term>.
+      </p>
+    </introduction>
+
+    <definition xml:id="def-ch13-strong-inductive-argument">
+      <statement>
+        <p>
+          A <term>strong inductive argument</term> is an inductive
+          argument whose premises, if true, make its conclusion highly
+          probable.
+        </p>
+      </statement>
+    </definition>
+
+    <definition xml:id="def-ch13-weak-inductive-argument">
+      <statement>
+        <p>
+          A <term>weak inductive argument</term> is an inductive argument
+          whose premises, even if true, do not make its conclusion very
+          probable.
+        </p>
+      </statement>
+    </definition>
+
+    <p>
+      Here is a strong inductive argument:
+    </p>
+    <p>
+      P1: Every section of this course taught in the last five years has
+      required a final exam.
+    </p>
+    <p>
+      P2: This semester's section is taught by the same department, using
+      the same course requirements.
+    </p>
+    <p>
+      C: This semester's section will probably require a final exam.
+    </p>
+    <p>
+      The conclusion is not guaranteed. The department could change its
+      policy. The instructor could try something new. But the premises
+      provide substantial support.
+    </p>
+    <p>
+      Here is a weak inductive argument:
+    </p>
+    <p>
+      P1: The first person I saw walking out of the library today was
+      carrying a coffee.
+    </p>
+    <p>
+      C: Most people who use the library carry coffee.
+    </p>
+    <p>
+      That is not much to go on. The premise may be true, but one person
+      leaving one building at one moment does not tell us much about most
+      library users.
+    </p>
+
+    <paragraphs xml:id="paragraphs-cogency">
+      <title>Strength and truth</title>
+      <p>
+        The distinction between strong and weak arguments concerns the
+        support relation: if the premises were true, how much support
+        would they give the conclusion? That means strength is like
+        validity in one important respect: it is not the same thing as
+        having true premises.
+      </p>
+      <p>
+        For inductive arguments, the rough analogue of soundness is
+        <term>cogency</term>.
+      </p>
+      <definition xml:id="def-ch13-cogent-argument">
+        <statement>
+          <p>
+            A <term>cogent argument</term> is a strong inductive argument
+            with true premises.
+          </p>
+        </statement>
+      </definition>
+      <p>
+        A strong argument with false premises is not cogent. A weak
+        argument with true premises is not cogent either. A cogent
+        argument needs both pieces: good support and true starting points.
+      </p>
+    </paragraphs>
+
+    <paragraphs xml:id="paragraphs-defeasible">
+      <title>Inductive arguments can be defeated</title>
+      <p>
+        Inductive support is <term>defeasible</term>. That means new
+        information can weaken or overturn it without showing that the
+        original reasoning was deductively invalid. This is one reason
+        inductive reasoning feels so ordinary. We update all the time.
+      </p>
+      <p>
+        Suppose the 7:40 train is delayed and past delays point toward
+        signal problems. Then a station announcement says, <q>All trains
+        are delayed because of a medical emergency.</q> The earlier
+        inference was reasonable before the announcement. After the
+        announcement, it is no longer reasonable. The evidence changed,
+        so the best conclusion changed with it.
+      </p>
+    </paragraphs>
+
+    <exploration xml:id="field-13-1-1">
+      <title>Field Exercise: Track a live inductive inference</title>
+      <statement>
+        <p>
+          For one day, watch for a real-life conclusion you draw without
+          certainty. It can be ordinary: whether to bring an umbrella,
+          whether a dining hall line will move quickly, whether a team is
+          likely to win, whether a news claim is probably accurate, or
+          whether a friend is upset from the way they texted.
+        </p>
+        <p>
+          Write down:
+        </p>
+        <ul>
+          <li><p>the conclusion you drew;</p></li>
+          <li><p>the evidence you used;</p></li>
+          <li><p>whether the inference was strong, moderate, or weak;</p></li>
+          <li><p>one piece of information that would strengthen it;</p></li>
+          <li><p>one piece of information that would weaken it.</p></li>
+        </ul>
+        <p>
+          The point is not to find a dramatic case. The point is to notice
+          how often we reason responsibly without proof.
+        </p>
+      </statement>
+    </exploration>
+
+  </section>
+
+  <section xml:id="sec-generalization-samples">
+    <title>Generalizing from Samples</title>
+
+    <introduction>
+      <p>
+        One common form of inductive reasoning moves from observed cases
+        to a broader conclusion. We look at some members of a group and
+        draw a conclusion about the group as a whole.
+      </p>
+    </introduction>
+
+    <definition xml:id="def-ch13-inductive-generalization">
+      <statement>
+        <p>
+          An <term>inductive generalization</term> is an argument that
+          draws a conclusion about a larger population from observations
+          of a sample.
+        </p>
+      </statement>
+    </definition>
+
+    <definition xml:id="def-ch13-sample-population">
+      <statement>
+        <p>
+          A <term>sample</term> is the group actually observed. The
+          <term>population</term> is the larger group the argument draws
+          a conclusion about.
+        </p>
+      </statement>
+    </definition>
+
+    <p>
+      Here is the basic pattern:
+    </p>
+    <p>
+      P1: The observed members of group G have feature F.
+    </p>
+    <p>
+      C: Most, many, or some specified proportion of all members of group
+      G probably have feature F.
+    </p>
+    <p>
+      This pattern is everywhere. Course evaluations, polls, product
+      reviews, medical studies, political surveys, and campus rumors all
+      rely on some version of it. Sometimes the reasoning is careful.
+      Sometimes it is a mess wearing a nice jacket.
+    </p>
+
+    <paragraphs xml:id="paragraphs-sample-size">
+      <title>Sample size matters</title>
+      <p>
+        Other things being equal, larger samples usually provide better
+        support than smaller samples. If you ask two students whether the
+        new registration system works well, you have learned something,
+        but not much. If you ask two hundred students from different years,
+        majors, and registration times, you have learned more.
+      </p>
+      <p>
+        Larger samples are not magic. A large bad sample can still mislead
+        us. But tiny samples are especially dangerous because they make
+        accident look like pattern.
+      </p>
+    </paragraphs>
+
+    <paragraphs xml:id="paragraphs-representative-samples">
+      <title>Representativeness matters more</title>
+      <p>
+        A sample also needs to be <term>representative</term>. A
+        representative sample resembles the population in the respects
+        that matter for the question being asked.
+      </p>
+      <p>
+        Suppose you want to know whether UMW students support extending
+        library hours during finals. If you survey only students who are
+        already inside the library at 11:45 p.m., you may get a very clear
+        answer, but your sample is tilted. Those students are exactly the
+        people most likely to want later hours. Their answers matter, but
+        they may not represent the whole student body.
+      </p>
+      <definition xml:id="def-ch13-biased-sample">
+        <statement>
+          <p>
+            A <term>biased sample</term> is a sample that differs from
+            the target population in a way that is likely to distort the
+            conclusion.
+          </p>
+        </statement>
+      </definition>
+    </paragraphs>
+
+    <paragraphs xml:id="paragraphs-ch13-hasty-generalization">
+      <title>Hasty generalization</title>
+      <p>
+        A <term>hasty generalization</term> occurs when someone draws a
+        broad conclusion from too little evidence or from an unrepresentative
+        sample.
+      </p>
+      <p>
+        <q>Two people in my discussion section hated the reading, so
+        nobody liked it</q> is a hasty generalization. Maybe the whole
+        class hated it. That is possible. But two irritated classmates are
+        not enough evidence to support a conclusion about everyone.
+      </p>
+      <p>
+        Notice that the problem is not that the conclusion must be false.
+        It might be true. The problem is that the evidence does not yet
+        earn it.
+      </p>
+    </paragraphs>
+
+  </section>
+
+  <section xml:id="sec-causal-reasoning">
+    <title>Causal Reasoning</title>
+
+    <introduction>
+      <p>
+        Another central form of inductive reasoning tries to identify
+        causes. We see one thing happen, then another, and we ask whether
+        the first helped bring about the second.
+      </p>
+    </introduction>
+
+    <definition xml:id="def-ch13-causal-argument">
+      <statement>
+        <p>
+          A <term>causal argument</term> is an argument whose conclusion
+          claims that one event, condition, or factor causes or contributes
+          to another.
+        </p>
+      </statement>
+    </definition>
+
+    <p>
+      Causal reasoning is powerful because causes matter. If a tutoring
+      program improves pass rates, we may want to expand it. If a drug
+      causes harmful side effects, we may want to restrict it. If a
+      policy reduces crashes, we may want to keep it.
+    </p>
+    <p>
+      Causal reasoning is also hard because the world does not politely
+      isolate one variable at a time. Lots of things change together.
+    </p>
+
+    <paragraphs xml:id="paragraphs-correlation">
+      <title>Correlation is not causation</title>
+      <p>
+        A <term>correlation</term> is an association between two things:
+        as one changes, the other tends to change too. Correlations can
+        be important evidence. But a correlation by itself does not prove
+        causation.
+      </p>
+      <p>
+        Suppose students who attend optional review sessions tend to earn
+        higher exam scores. That correlation is real evidence, but it does
+        not settle the causal question by itself. Maybe the review sessions
+        improve exam scores. Maybe students who were already more motivated
+        are more likely to attend review sessions and also more likely to
+        study. Maybe both are happening.
+      </p>
+    </paragraphs>
+
+    <paragraphs xml:id="paragraphs-alternative-causes">
+      <title>Ruling out alternatives</title>
+      <p>
+        Good causal reasoning asks what else might explain the pattern.
+        Three alternatives are especially common.
+      </p>
+      <dl>
+        <li>
+          <title>Reverse causation</title>
+          <p>
+            Maybe B causes A rather than A causing B. People with better
+            grades might attend review sessions because they are already
+            more engaged.
+          </p>
+        </li>
+        <li>
+          <title>Common cause</title>
+          <p>
+            Maybe a third factor causes both A and B. Motivation might
+            cause both review attendance and higher scores.
+          </p>
+        </li>
+        <li>
+          <title>Coincidence</title>
+          <p>
+            Maybe the pattern is a fluke, especially if the sample is
+            small or the comparison was chosen after looking at the data.
+          </p>
+        </li>
+      </dl>
+      <p>
+        Causal reasoning improves when we design observations or
+        experiments that reduce these alternatives. That is one reason
+        controlled studies matter.
+      </p>
+    </paragraphs>
+
+    <example xml:id="ex-ch13-sleep-grades">
+      <title>Sleep and grades</title>
+      <statement>
+        <p>
+          Suppose a campus health survey finds that students who sleep at
+          least seven hours a night have higher average grades than students
+          who sleep less than seven hours. It is tempting to conclude that
+          sleeping more causes better grades.
+        </p>
+        <p>
+          That conclusion may be right. But the survey alone leaves open
+          other possibilities. Students with less stressful schedules might
+          both sleep more and study more effectively. Students with strong
+          time-management skills might both protect their sleep and keep up
+          with coursework. The survey gives us a place to start, not a
+          deductive proof.
+        </p>
+      </statement>
+    </example>
+
+  </section>
+
+  <section xml:id="sec-analogy-explanation">
+    <title>Analogy and Best Explanation</title>
+
+    <introduction>
+      <p>
+        Not all induction moves from samples to populations or from
+        correlations to causes. Two other common patterns are arguments
+        by analogy and inferences to the best explanation.
+      </p>
+    </introduction>
+
+    <paragraphs xml:id="paragraphs-analogy">
+      <title>Arguments by analogy</title>
+      <p>
+        An <term>argument by analogy</term> reasons from similarities
+        between two things. The basic thought is simple: these things are
+        alike in certain known respects, so they are probably alike in
+        some further respect.
+      </p>
+      <definition xml:id="def-ch13-argument-by-analogy">
+        <statement>
+          <p>
+            An <term>argument by analogy</term> is an inductive argument
+            that concludes that because two things are similar in some
+            respects, they are probably similar in another respect.
+          </p>
+        </statement>
+      </definition>
+      <p>
+        Suppose two courses are taught by the same instructor, use the
+        same textbook, assign the same kinds of quizzes, and have the same
+        exam format. A student who did well in the first course might infer
+        that the same study strategy will probably work in the second.
+        That is analogical reasoning.
+      </p>
+      <p>
+        The strength of an analogy depends on the relevance of the
+        similarities. If the two courses only meet in the same building,
+        the analogy is weak. If they share the same instructor, assignments,
+        grading style, and exam format, the analogy is stronger.
+      </p>
+    </paragraphs>
+
+    <paragraphs xml:id="paragraphs-best-explanation">
+      <title>Inference to the best explanation</title>
+      <p>
+        Sometimes we have a set of facts and several possible explanations.
+        We reason toward the explanation that would make the facts least
+        surprising. This is often called <term>inference to the best
+        explanation</term>.
+      </p>
+      <definition xml:id="def-ch13-best-explanation">
+        <statement>
+          <p>
+            An <term>inference to the best explanation</term> is an
+            inductive argument that treats a hypothesis as likely because
+            it would best explain the available evidence.
+          </p>
+        </statement>
+      </definition>
+      <p>
+        You walk into a classroom and see wet umbrellas by the door,
+        students shaking water from their sleeves, and dark clouds through
+        the window. The best explanation is that it is raining. You have
+        not proven rain deductively. A sprinkler accident is possible.
+        A film crew with prop umbrellas is possible. But the rain
+        explanation is simpler, more natural, and fits the evidence better.
+      </p>
+      <p>
+        Good explanatory reasoning compares alternatives. It asks: which
+        explanation fits the evidence? Which explains more of it? Which
+        requires the fewest extra assumptions? Which survives when we look
+        for counterevidence?
+      </p>
+    </paragraphs>
+
+  </section>
+
+  <section xml:id="sec-induction-where-headed">
+    <title>Where We're Headed</title>
+
+    <p>
+      Inductive reasoning is the broad category. Probability gives us a
+      way to talk more precisely about degrees of support. Instead of
+      saying only that a conclusion is likely, unlikely, strong, weak, or
+      plausible, probability lets us ask how likely it is and how new
+      evidence should change our confidence.
+    </p>
+    <p>
+      The next chapter begins that work. We will not treat probability as
+      a bag of formulas to memorize. We will treat it as a way of thinking
+      carefully about uncertainty, evidence, and change of mind.
+    </p>
+
+  </section>
+
+  <conclusion xml:id="conclusion-ch13">
+    <title>Chapter Summary</title>
+
+    <p>
+      This chapter introduced inductive reasoning. The core ideas, section
+      by section:
+    </p>
+    <p>
+      <alert>From Guarantee to Support (§13.1).</alert> Deductive
+      arguments aim at guarantee. Inductive arguments aim at support.
+      An inductive argument can be good even though its premises do not
+      make its conclusion certain.
+    </p>
+    <p>
+      <alert>Inductive Strength (§13.2).</alert> Inductive arguments are
+      evaluated as strong or weak. A strong inductive argument has premises
+      that, if true, make the conclusion highly probable. A cogent argument
+      is strong and has true premises. Inductive support is defeasible:
+      new evidence can weaken or overturn it.
+    </p>
+    <p>
+      <alert>Generalizing from Samples (§13.3).</alert> Inductive
+      generalizations move from observations about a sample to conclusions
+      about a population. Good samples are large enough and representative.
+      Bad generalizations often rely on samples that are too small or
+      biased.
+    </p>
+    <p>
+      <alert>Causal Reasoning (§13.4).</alert> Causal arguments claim
+      that one factor causes or contributes to another. Correlation can be
+      evidence for causation, but it is not enough by itself. Good causal
+      reasoning considers reverse causation, common causes, coincidence,
+      and other alternatives.
+    </p>
+    <p>
+      <alert>Analogy and Best Explanation (§13.5).</alert> Arguments by
+      analogy reason from relevant similarities. Inferences to the best
+      explanation treat a hypothesis as likely because it explains the
+      available evidence better than its competitors.
+    </p>
+    <p>
+      <alert>Where We're Headed (§13.6).</alert> Probability gives us a
+      more precise vocabulary for degrees of support and changing
+      confidence in light of evidence.
+    </p>
+
+  </conclusion>
+
+  <section xml:id="sec-ch13-key-terms">
+    <title>Key Terms</title>
+
+    <p>Listed alphabetically, with section references.</p>
+
+    <dl>
+      <li xml:id="term-ch13-argument-by-analogy">
+        <title>Argument by analogy</title>
+        <p>An inductive argument that concludes that because two things are similar in some respects, they are probably similar in another respect. (§13.5)</p>
+      </li>
+      <li xml:id="term-ch13-biased-sample">
+        <title>Biased sample</title>
+        <p>A sample that differs from the target population in a way that is likely to distort the conclusion. (§13.3)</p>
+      </li>
+      <li xml:id="term-ch13-causal-argument">
+        <title>Causal argument</title>
+        <p>An argument whose conclusion claims that one event, condition, or factor causes or contributes to another. (§13.4)</p>
+      </li>
+      <li xml:id="term-ch13-cogent-argument">
+        <title>Cogent argument</title>
+        <p>A strong inductive argument with true premises. (§13.2)</p>
+      </li>
+      <li xml:id="term-ch13-correlation">
+        <title>Correlation</title>
+        <p>An association between two things, where changes in one tend to be connected with changes in the other. (§13.4)</p>
+      </li>
+      <li xml:id="term-ch13-defeasible">
+        <title>Defeasible</title>
+        <p>Capable of being weakened or overturned by new evidence. Inductive support is defeasible. (§13.2)</p>
+      </li>
+      <li xml:id="term-ch13-hasty-generalization">
+        <title>Hasty generalization</title>
+        <p>An inductive generalization drawn from too little evidence or from an unrepresentative sample. (§13.3)</p>
+      </li>
+      <li xml:id="term-ch13-inductive-argument">
+        <title>Inductive argument</title>
+        <p>An argument in which the premises are intended to make the conclusion probable, plausible, or reasonable, but not certain. (§13.1)</p>
+      </li>
+      <li xml:id="term-ch13-inductive-generalization">
+        <title>Inductive generalization</title>
+        <p>An argument that draws a conclusion about a larger population from observations of a sample. (§13.3)</p>
+      </li>
+      <li xml:id="term-ch13-inference-best-explanation">
+        <title>Inference to the best explanation</title>
+        <p>An inductive argument that treats a hypothesis as likely because it would best explain the available evidence. (§13.5)</p>
+      </li>
+      <li xml:id="term-ch13-population">
+        <title>Population</title>
+        <p>The larger group an inductive generalization draws a conclusion about. (§13.3)</p>
+      </li>
+      <li xml:id="term-ch13-representative-sample">
+        <title>Representative sample</title>
+        <p>A sample that resembles the target population in the respects that matter for the question being asked. (§13.3)</p>
+      </li>
+      <li xml:id="term-ch13-sample">
+        <title>Sample</title>
+        <p>The group actually observed in an inductive generalization. (§13.3)</p>
+      </li>
+      <li xml:id="term-ch13-strong-inductive-argument">
+        <title>Strong inductive argument</title>
+        <p>An inductive argument whose premises, if true, make its conclusion highly probable. (§13.2)</p>
+      </li>
+      <li xml:id="term-ch13-weak-inductive-argument">
+        <title>Weak inductive argument</title>
+        <p>An inductive argument whose premises, even if true, do not make its conclusion very probable. (§13.2)</p>
+      </li>
+    </dl>
+
+  </section>
+
+  <exercises xml:id="exercises-ch13">
+    <title>End-of-Chapter Exercises</title>
+
+    <exercisegroup xml:id="exgroup-ch13-s01">
+      <title>Exercise Set 1: Deductive or Inductive?</title>
+      <introduction>
+        <p>
+          For each argument, say whether it is best understood as
+          deductive or inductive. Then briefly explain your answer.
+        </p>
+      </introduction>
+      <exercise xml:id="ex-ch13-s01-01">
+        <statement>
+          <p>All biology majors must complete a lab science requirement. Ana is a biology major. Therefore, Ana must complete a lab science requirement.</p>
+        </statement>
+      </exercise>
+      <exercise xml:id="ex-ch13-s01-02">
+        <statement>
+          <p>The last four buses on this route arrived late during heavy rain. It is raining heavily now. So this bus will probably arrive late.</p>
+        </statement>
+      </exercise>
+      <exercise xml:id="ex-ch13-s01-03">
+        <statement>
+          <p>If the server is down, the login page will not load. The server is down. Therefore, the login page will not load.</p>
+        </statement>
+      </exercise>
+      <exercise xml:id="ex-ch13-s01-04">
+        <statement>
+          <p>Most students who submitted the practice quiz earned higher scores on the exam. Jordan submitted the practice quiz. So Jordan probably earned a higher score on the exam.</p>
+        </statement>
+      </exercise>
+      <exercise xml:id="ex-ch13-s01-05">
+        <statement>
+          <p>No committee members voted against the proposal. Lee is a committee member. Therefore, Lee did not vote against the proposal.</p>
+        </statement>
+      </exercise>
+      <exercise xml:id="ex-ch13-s01-06">
+        <statement>
+          <p>The restaurant has hundreds of recent reviews, and nearly all mention slow service. So service at the restaurant is probably slow.</p>
+        </statement>
+      </exercise>
+    </exercisegroup>
+
+    <exercisegroup xml:id="exgroup-ch13-s02">
+      <title>Exercise Set 2: Strong or Weak?</title>
+      <introduction>
+        <p>
+          For each inductive argument, say whether it is strong, moderate,
+          or weak. Identify the feature of the evidence that matters most.
+        </p>
+      </introduction>
+      <exercise xml:id="ex-ch13-s02-01">
+        <statement>
+          <p>I asked one person in the dining hall whether the new meal plan is popular. They said no. So the new meal plan is unpopular with students.</p>
+        </statement>
+      </exercise>
+      <exercise xml:id="ex-ch13-s02-02">
+        <statement>
+          <p>A random survey of 850 students found that 71 percent support extending library hours during finals. So most students probably support extending library hours during finals.</p>
+        </statement>
+      </exercise>
+      <exercise xml:id="ex-ch13-s02-03">
+        <statement>
+          <p>The last three assignments in this course were due on Sunday night. So the next assignment will probably be due on Sunday night.</p>
+        </statement>
+      </exercise>
+      <exercise xml:id="ex-ch13-s02-04">
+        <statement>
+          <p>Every charger I have borrowed from this brand has broken within two months, and I have borrowed six of them. So the next charger from this brand will probably break quickly.</p>
+        </statement>
+      </exercise>
+      <exercise xml:id="ex-ch13-s02-05">
+        <statement>
+          <p>The first five people who commented on the article were angry. So everyone who read the article was angry.</p>
+        </statement>
+      </exercise>
+    </exercisegroup>
+
+    <exercisegroup xml:id="exgroup-ch13-s03">
+      <title>Exercise Set 3: Samples and Generalizations</title>
+      <introduction>
+        <p>
+          For each case, identify the sample, the population, and one
+          possible problem with the generalization.
+        </p>
+      </introduction>
+      <exercise xml:id="ex-ch13-s03-01">
+        <statement>
+          <p>A student asks ten friends in her residence hall whether first-year parking should be expanded. Nine say yes. She concludes that UMW students strongly support expanding first-year parking.</p>
+        </statement>
+      </exercise>
+      <exercise xml:id="ex-ch13-s03-02">
+        <statement>
+          <p>A campus office emails a survey to every student and receives 1,200 responses from students across all class years. Most respondents say they use the tutoring center at least once a semester. The office concludes that tutoring-center use is common among UMW students.</p>
+        </statement>
+      </exercise>
+      <exercise xml:id="ex-ch13-s03-03">
+        <statement>
+          <p>A podcast host reads five negative comments about a new movie and concludes that audiences hate it.</p>
+        </statement>
+      </exercise>
+      <exercise xml:id="ex-ch13-s03-04">
+        <statement>
+          <p>A professor surveys only students who attended an optional exam review and concludes that almost everyone in the class found the review helpful.</p>
+        </statement>
+      </exercise>
+    </exercisegroup>
+
+    <exercisegroup xml:id="exgroup-ch13-s04">
+      <title>Exercise Set 4: Causal Reasoning</title>
+      <introduction>
+        <p>
+          For each causal claim, identify at least one alternative
+          explanation that should be considered.
+        </p>
+      </introduction>
+      <exercise xml:id="ex-ch13-s04-01">
+        <statement>
+          <p>Students who sit near the front of the classroom tend to earn higher grades. Therefore, sitting near the front causes higher grades.</p>
+        </statement>
+      </exercise>
+      <exercise xml:id="ex-ch13-s04-02">
+        <statement>
+          <p>People who use a budgeting app save more money than people who do not. Therefore, the app causes people to save more money.</p>
+        </statement>
+      </exercise>
+      <exercise xml:id="ex-ch13-s04-03">
+        <statement>
+          <p>After the city added bike lanes downtown, reported bike accidents decreased. Therefore, the bike lanes caused the decrease.</p>
+        </statement>
+      </exercise>
+      <exercise xml:id="ex-ch13-s04-04">
+        <statement>
+          <p>A study finds that people who eat breakfast regularly have higher average energy levels. Therefore, eating breakfast causes higher energy levels.</p>
+        </statement>
+      </exercise>
+    </exercisegroup>
+
+    <exercisegroup xml:id="exgroup-ch13-s05">
+      <title>Exercise Set 5: Analogy and Explanation</title>
+      <introduction>
+        <p>
+          For each item, identify whether the reasoning is mainly an
+          argument by analogy or an inference to the best explanation.
+          Then briefly evaluate it.
+        </p>
+      </introduction>
+      <exercise xml:id="ex-ch13-s05-01">
+        <statement>
+          <p>This course uses the same textbook, quiz format, and instructor as the course I took last semester. My old study schedule worked well there, so it will probably work well here too.</p>
+        </statement>
+      </exercise>
+      <exercise xml:id="ex-ch13-s05-02">
+        <statement>
+          <p>The sidewalk is wet, students are carrying umbrellas, and thunder is audible outside. The best explanation is that it is raining.</p>
+        </statement>
+      </exercise>
+      <exercise xml:id="ex-ch13-s05-03">
+        <statement>
+          <p>The two phones are the same color and size. My phone has excellent battery life, so that phone probably has excellent battery life too.</p>
+        </statement>
+      </exercise>
+      <exercise xml:id="ex-ch13-s05-04">
+        <statement>
+          <p>The office door is locked, the lights are off, and nobody answered three knocks. The professor is probably not in the office.</p>
+        </statement>
+      </exercise>
+    </exercisegroup>
+
+    <exercisegroup xml:id="exgroup-ch13-writing">
+      <title>Writing Prompt</title>
+      <introduction>
+        <p>
+          This prompt connects to Field Exercise 13-1.
+        </p>
+      </introduction>
+      <exercise xml:id="ex-ch13-writing-01">
+        <statement>
+          <p>
+            Return to the inductive inference you tracked in Field
+            Exercise 13-1. Reconstruct it in standard form. Then explain
+            whether you now think the inference was strong, moderate, or
+            weak. What evidence would have made you more confident? What
+            evidence would have made you change your mind?
+          </p>
+        </statement>
+      </exercise>
+    </exercisegroup>
+
+  </exercises>
+
+</chapter>

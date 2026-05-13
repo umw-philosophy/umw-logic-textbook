@@ -1,0 +1,1898 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  Chapter 15 — Statistical Reasoning
+  First draft for Part IV.
+
+  Drafted in the Chapter 1 / Chapter 14 style:
+    - chapter opener as a short multi-paragraph <introduction>
+    - sections decomposed into named <paragraphs> subsections
+    - <definition> callouts for technical vocabulary
+    - <example> callouts for worked cases
+    - <exploration> field exercise at end of each section
+    - "Where we're headed" subsection at end of each section
+    - chapter <conclusion> for summary and key terms
+    - <exercises> with <exercisegroup> sets at end of chapter
+
+  Style conventions (carried over from Ch. 1, Ch. 14):
+    <term> = first introduction of a technical term (italic + indexed)
+    <em>   = emphasis only, used sparingly
+    Second-person for explanation; third-person impersonal for definitions.
+
+  Sections:
+    §15.1  Measuring the Middle — mean, median, mode; when they diverge; which to use
+    §15.2  Measuring Spread — range, variance, standard deviation (6-step sample SD)
+    §15.3  The Normal Distribution — bell curve; empirical rule (68-95-99.7)
+    §15.4  Confidence Intervals and Margin of Error — polling; 1/√n approximation
+    §15.5  Diagnostic Thresholds — threshold tradeoff;
+             bridge back to Bayes (Ch. 14)
+    §15.6  Lying with Statistics — truncated axes; area distortion; cherry-picking
+
+  Relationship to adjacent chapters:
+    Ch. 13 introduced inductive reasoning.
+    Ch. 14 covered probability, including Bayes' theorem and base rates.
+    Ch. 15 (this chapter) develops the statistical tools for describing data
+    and for reading statistical claims critically.
+    Ch. 16 (Statistical Inference) will build on both.
+
+  Key examples drawn from Exam 4 / SW materials:
+    - Income data (SW9 analog): mean vs. median with an extreme outlier
+    - Exam scores: worked SD calculation
+    - Tree diameters (Exam 4 §I.3): mean 150 cm, SD 30 cm
+    - Cholesterol (Exam 4 §I.4): mean 160 mg/dL, SD 50 mg/dL; sens/spec
+    - Polling (Exam 4 §I.2): n = 600, 52% vs. 48%
+    - Misleading graphs (Exam 4 §III): truncated axes; area/size distortion
+
+  NOTE: main.ptx currently includes ch-inductive-reasoning in Part IV.
+  This chapter should be xi:included immediately after ch-probability.ptx
+  once both are ready for inclusion.
+-->
+<chapter xmlns:xi="http://www.w3.org/2001/XInclude" xml:id="ch-statistical-reasoning">
+
+  <title>Statistical Reasoning</title>
+
+  <introduction xml:id="ch-statistical-reasoning-intro">
+    <p>
+      Chapter 14 gave us a framework for reasoning about uncertainty.
+      Probability does not make the world predictable; it makes
+      uncertainty precise. A probability of 0.7 for rain tomorrow is not
+      a guess — it is a disciplined, quantified commitment: if forecasters
+      assign 0.7 on a thousand similar days, they expect to be right about
+      seven hundred of them.
+    </p>
+    <p>
+      This chapter turns to the data side of the same problem. Probability
+      tells us how to reason when we do not yet know what will happen.
+      Statistics asks: given what we have already observed, what can we
+      say about it? A doctor collects blood pressure readings from fifty
+      patients and wants to know what is typical, how spread out the
+      values are, and whether any of them are worryingly high. A journalist
+      gets a dataset of 600 poll responses and needs to say something honest
+      about what it shows. A researcher measures the trunk diameters of five
+      hundred pine trees and wants to know how many fall within a particular
+      range. In each case, the tools are the same: a small set of numbers
+      that summarize what a larger pile of numbers says.
+    </p>
+    <p>
+      That is the work of this chapter. We will develop tools for measuring
+      a typical value, tools for measuring how spread out values are, and
+      tools for using the normal distribution to connect those two numbers
+      to precise probabilities. Along the way we will look at how to
+      interpret the margin-of-error language that appears in virtually
+      every news story that cites a poll, how to think about diagnostic
+      tests (which connects back to Bayes from Chapter 14), and how to
+      read statistics that are being presented to mislead.
+    </p>
+  </introduction>
+
+
+  <!-- ============================================================ -->
+  <!--  §15.1  Measuring the Middle                                  -->
+  <!-- ============================================================ -->
+
+  <section xml:id="sec-ch15-measuring-middle">
+    <title>Measuring the Middle</title>
+
+    <introduction>
+      <p>
+        A dataset is a pile of numbers. The first thing anyone wants
+        from a pile of numbers is a single number that represents the whole
+        pile — something you can point to and say, <q>this is what is
+        typical.</q> There are three standard ways to do this, and they
+        disagree with each other more often than you would expect.
+      </p>
+    </introduction>
+
+    <paragraphs xml:id="paragraphs-ch15-three-measures">
+      <title>Three ways to find the middle</title>
+      <p>
+        The three standard measures of a typical value in a dataset are
+        the <term>mean</term>, the <term>median</term>, and the
+        <term>mode</term>.
+      </p>
+      <definition xml:id="def-ch15-mean">
+        <statement>
+          <p>
+            The <term>mean</term> of a dataset is the arithmetic average:
+            the sum of all values divided by the number of values.
+            To find it, add all the values and divide by how many values
+            there are.
+          </p>
+        </statement>
+      </definition>
+      <definition xml:id="def-ch15-median">
+        <statement>
+          <p>
+            The <term>median</term> of a dataset is the middle value when
+            values are arranged in order from smallest to largest. If the
+            dataset has an odd number of values, the median is the single
+            middle value. If the dataset has an even number of values, the
+            median is the average of the two middle values.
+          </p>
+        </statement>
+      </definition>
+      <definition xml:id="def-ch15-mode">
+        <statement>
+          <p>
+            The <term>mode</term> of a dataset is the value (or values)
+            that appears most often. A dataset with one mode is
+            <term>unimodal</term>; one with two distinct peaks is
+            <term>bimodal</term>. A dataset in which every value appears
+            exactly once has no mode.
+          </p>
+        </statement>
+      </definition>
+      <p>
+        For small, symmetric datasets, these three measures often land near
+        each other — which creates the false impression that it does not
+        matter which you use. It matters. The example below shows why.
+      </p>
+    </paragraphs>
+
+    <paragraphs xml:id="paragraphs-ch15-income-example">
+      <title>When the three measures come apart</title>
+      <p>
+        Here are annual incomes, in dollars, for ten people in a workplace:
+      </p>
+      <p>
+        Lower five: 15,000; 17,000; 23,000; 25,600; 45,000.
+      </p>
+      <p>
+        Upper five: 54,000; 56,000; 75,000; 99,000; 1,203,000.
+      </p>
+      <example xml:id="ex-ch15-income-measures">
+        <title>Incomes: mean, median, and mode</title>
+        <statement>
+          <p>
+            Find the mean, median, and mode for the ten incomes listed
+            above. Then explain which measure best describes a typical
+            income in this group.
+          </p>
+        </statement>
+        <solution>
+          <p>
+            <alert>Mean.</alert> The ten incomes add up to
+            <m>\$1{,}612{,}600</m>. Divide that total by 10:
+            the mean is <m>\$161{,}260</m>.
+          </p>
+          <p>
+            <alert>Median.</alert> The data is already in order. With ten
+            values, the median is the average of the 5th and 6th values.
+            The average of 45,000 and 54,000 is 49,500.
+          </p>
+          <p>
+            <alert>Mode.</alert> No value appears more than once.
+            There is no mode.
+          </p>
+          <p>
+            <alert>Interpretation.</alert> The mean is
+            <m>\$161{,}260</m>. Nine of the ten people earn less than
+            that — and seven of the ten earn less than half of it.
+            The mean is inflated by the one person earning
+            <m>\$1{,}203{,}000</m>. The median, at <m>\$49{,}500</m>,
+            is much closer to what most people in this group actually
+            earn. For describing a typical income here, the median is the
+            more informative number.
+          </p>
+        </solution>
+      </example>
+      <p>
+        This is not a pathological example. It is essentially how income
+        distributions work across whole economies: a small number of very
+        high earners pull the mean well above what most people earn. When
+        income statistics appear in the news, the mean and the median are
+        usually both reported — and they tell different stories. Knowing
+        which story you are being told matters.
+      </p>
+    </paragraphs>
+
+    <paragraphs xml:id="paragraphs-ch15-which-measure">
+      <title>Choosing the right measure</title>
+      <p>
+        There is no single rule for which measure to use, but there are
+        useful heuristics.
+      </p>
+      <p>
+        Use the <em>mean</em> when the data is fairly symmetric and has no
+        extreme outliers. The mean uses all the values in the dataset and
+        is mathematically convenient for further calculations. It is the
+        right tool when the values cluster together without a long tail
+        pulling it to one side.
+      </p>
+      <p>
+        Use the <em>median</em> when the data is skewed — when there are
+        extreme values on one end that pull the mean away from where most
+        of the data actually sits. Income, home prices, and hospital bills
+        are classic cases. The median is also more resistant to errors: a
+        single misrecorded value can wildly distort the mean, but it takes
+        a lot to move the median.
+      </p>
+      <p>
+        Use the <em>mode</em> when you care about frequency, especially
+        for categorical data where mean and median do not apply. The most
+        common shoe size in a store's inventory, the most popular major in
+        a graduating class, the most frequently assigned grade — these are
+        mode questions. For numerical data, the mode is often less useful
+        than the mean or median, but when a dataset is bimodal (two
+        distinct clusters), that shape is itself informative: it suggests
+        there may be two distinct subgroups in the data worth examining
+        separately.
+      </p>
+    </paragraphs>
+
+    <paragraphs xml:id="paragraphs-ch15-middle-where-headed">
+      <title>Where we're headed</title>
+      <p>
+        The mean, median, and mode each describe where the center of a
+        distribution is. But knowing the center does not tell you how much
+        the data spreads around it. Two datasets can have the same mean
+        and be completely different in character. The next section
+        introduces the tools for measuring that spread.
+      </p>
+    </paragraphs>
+
+    <exploration xml:id="field-15-1-1">
+      <title>Field Exercise: Find a skewed distribution</title>
+      <statement>
+        <p>
+          Find a small dataset from a source you trust — salary data from
+          a public database, enrollment figures for university departments,
+          housing prices in a neighborhood, or any other numerical dataset
+          with at least eight values. Calculate the mean and the median.
+          If they differ by more than a few percent, investigate why: are
+          there outliers? Is the distribution skewed to one side? Write a
+          sentence or two explaining which measure better describes what
+          is typical in your dataset, and why.
+        </p>
+      </statement>
+    </exploration>
+
+  </section>
+
+
+  <!-- ============================================================ -->
+  <!--  §15.2  Measuring Spread                                      -->
+  <!-- ============================================================ -->
+
+  <section xml:id="sec-ch15-measuring-spread">
+    <title>Measuring Spread</title>
+
+    <introduction>
+      <p>
+        The mean tells you where the center of a distribution is. It does
+        not tell you how tightly packed the data is around that center.
+        Two instructors can both give courses with a class average of 75,
+        but in one course every student scores between 70 and 80, while
+        in the other half the class fails and half aces it. The center is
+        the same; the distribution is not. To capture that difference, you
+        need a measure of spread.
+      </p>
+    </introduction>
+
+    <paragraphs xml:id="paragraphs-ch15-range">
+      <title>The range</title>
+      <p>
+        The simplest measure of spread is the <term>range</term>: the
+        difference between the largest and smallest values in a dataset.
+        A class in which scores run from 70 to 80 has a range of 10.
+        A class with scores from 20 to 100 has a range of 80.
+      </p>
+      <p>
+        The range is easy to compute, but it has a serious weakness: it
+        depends entirely on the two extreme values and ignores everything
+        in between. A single unusually high or low score can make a tight
+        distribution look wide. For most purposes, the standard deviation
+        is a better tool.
+      </p>
+    </paragraphs>
+
+    <paragraphs xml:id="paragraphs-ch15-standard-deviation">
+      <title>Standard deviation</title>
+      <p>
+        The <term>standard deviation</term> measures, roughly speaking,
+        how far each value in the dataset is from the mean, on average. A
+        small standard deviation means the values cluster close to the
+        mean; a large one means they spread out.
+      </p>
+      <definition xml:id="def-ch15-variance-sd">
+        <statement>
+          <p>
+            The <term>variance</term> of a dataset is based on the squared
+            distances between each value and the mean. The
+            <term>standard deviation</term> is the square root of the
+            variance, which brings the result back into the original units
+            of measurement.
+          </p>
+          <p>
+            Spreadsheets handle this calculation automatically. The point
+            here is to understand what the number means: how tightly the
+            values cluster around the mean.
+          </p>
+        </statement>
+      </definition>
+      <p>
+        The variance is the average of the squared deviations from the
+        mean. We square the deviations so that negative and positive
+        deviations do not cancel each other out. The standard deviation
+        brings the result back to the original units by taking the square
+        root, which is why it is the more useful of the two numbers: a
+        standard deviation of 10 points in a dataset of exam scores means
+        something, while a variance of 100 (square exam-points) is harder
+        to interpret.
+      </p>
+    </paragraphs>
+
+    <paragraphs xml:id="paragraphs-ch15-sd-six-steps">
+      <title>Computing the standard deviation: a six-step procedure</title>
+      <p>
+        To compute the sample standard deviation by hand, follow these
+        steps:
+      </p>
+      <ol>
+        <li><p>Calculate the mean.</p></li>
+        <li><p>For each value, find how far it is from the mean.</p></li>
+        <li><p>Square each of those differences.</p></li>
+        <li><p>Add up all the squared differences.</p></li>
+        <li><p>Divide by one less than the number of values. This gives
+        the variance.</p></li>
+        <li><p>Take the square root. This gives the standard deviation.</p></li>
+      </ol>
+      <example xml:id="ex-ch15-sd-calculation">
+        <title>Computing a standard deviation: exam scores</title>
+        <statement>
+          <p>
+            Five students scored 60, 70, 75, 80, and 90 on an exam.
+            Find the sample standard deviation.
+          </p>
+        </statement>
+        <solution>
+          <p>
+            <alert>Step 1. Mean:</alert>
+            the scores add up to 375. Divide by 5, and the mean is 75.
+          </p>
+          <p>
+            <alert>Steps 2 and 3. Deviations and squared deviations:</alert>
+          </p>
+          <ul>
+            <li><p>For 60: deviation -15; squared deviation 225.</p></li>
+            <li><p>For 70: deviation -5; squared deviation 25.</p></li>
+            <li><p>For 75: deviation 0; squared deviation 0.</p></li>
+            <li><p>For 80: deviation 5; squared deviation 25.</p></li>
+            <li><p>For 90: deviation 15; squared deviation 225.</p></li>
+          </ul>
+          <p>
+            <alert>Step 4. Sum of squared deviations:</alert>
+            225 + 25 + 0 + 25 + 225 = 500.
+          </p>
+          <p>
+            <alert>Step 5. Variance:</alert>
+            Divide 500 by 4, since this is sample data. The variance is
+            125.
+          </p>
+          <p>
+            <alert>Step 6. Standard deviation:</alert>
+            The square root of 125 is about 11.18.
+          </p>
+          <p>
+            The standard deviation is approximately 11.18 points. A
+            typical student in this group scored about 11 points above
+            or below the mean of 75.
+          </p>
+        </solution>
+      </example>
+      <p>
+        A note on computing: spreadsheets do this in a single function.
+        In Excel or Google Sheets, <c>=STDEV.S()</c> computes the sample
+        standard deviation, and <c>=STDEV.P()</c> computes the population
+        standard deviation. For datasets larger than a handful of values,
+        use a spreadsheet. The six-step procedure exists so that you
+        understand what the function is doing, not so that you do it by
+        hand for a hundred-item dataset.
+      </p>
+    </paragraphs>
+
+    <paragraphs xml:id="paragraphs-ch15-interpreting-sd">
+      <title>Interpreting the standard deviation</title>
+      <p>
+        The standard deviation is useful not just as a number but as a
+        unit of measurement within a dataset. Once you know the mean and
+        the standard deviation, you can describe any value by how many
+        standard deviations it sits above or below the mean. A score two
+        standard deviations above the mean is high; two below is low; one
+        on either side of the mean is comfortably in the middle of the
+        pack. Whether those distances matter depends on what the data
+        represents — but the comparisons work across very different
+        datasets, regardless of what the original units are.
+      </p>
+      <p>
+        The next section formalizes this idea with the normal distribution,
+        which gives precise probabilities for how many values fall within
+        1, 2, and 3 standard deviations of the mean.
+      </p>
+    </paragraphs>
+
+    <paragraphs xml:id="paragraphs-ch15-spread-where-headed">
+      <title>Where we're headed</title>
+      <p>
+        We have measured the center of a distribution and its spread.
+        The next step is to understand what those two numbers imply about
+        the shape of the distribution — in particular, the bell-shaped
+        pattern that shows up often enough to have its own name and its
+        own set of rules.
+      </p>
+    </paragraphs>
+
+    <exploration xml:id="field-15-2-1">
+      <title>Field Exercise: Same mean, different spread</title>
+      <statement>
+        <p>
+          Construct two small datasets — five values each — that have
+          exactly the same mean but noticeably different standard
+          deviations. Compute the standard deviation for each using the
+          six-step procedure. Then write a sentence explaining what a
+          reader would miss about each dataset if they were given only
+          the mean.
+        </p>
+      </statement>
+    </exploration>
+
+  </section>
+
+
+  <!-- ============================================================ -->
+  <!--  §15.3  The Normal Distribution                               -->
+  <!-- ============================================================ -->
+
+  <section xml:id="sec-ch15-normal-distribution">
+    <title>The Normal Distribution</title>
+
+    <introduction>
+      <p>
+        Take a large number of measurements of something that results from
+        many small, independent influences — the heights of adults in a
+        city, the diameters of machine-turned bolts from a factory, the
+        number of points a basketball player scores per game across a long
+        season — and the resulting distribution tends to take a
+        characteristic shape: a bell curve, symmetric, with values
+        clustering near the mean and thinning out in both directions. This
+        shape is the <term>normal distribution</term>, and it appears
+        frequently enough that it is worth studying on its own terms.
+      </p>
+    </introduction>
+
+    <paragraphs xml:id="paragraphs-ch15-bell-curve">
+      <title>What the bell curve is, and what it isn't</title>
+      <p>
+        The normal distribution is not a law of nature. It is a
+        mathematical model that fits certain kinds of data well — and a
+        poor model for others. Data is approximately normally distributed
+        when values cluster symmetrically around the mean, with
+        progressively smaller proportions of values at greater and greater
+        distances from the center. Income, as we saw in §15.1, is
+        skewed right: a long tail on the high end pulls the mean above
+        the median, and the distribution is anything but bell-shaped.
+        The distribution of people's heights is approximately normal;
+        the distribution of their net worths emphatically is not.
+      </p>
+      <p>
+        When data is approximately normally distributed, the mean and
+        standard deviation together describe the entire distribution —
+        not just the center and the typical spread, but the full shape.
+        That is the payoff: two numbers tell you almost everything.
+      </p>
+      <definition xml:id="def-ch15-normal-distribution">
+        <statement>
+          <p>
+            A dataset is said to be <term>normally distributed</term>
+            when its values cluster symmetrically around the mean, with
+            the frequency of values decreasing smoothly as they move
+            farther from the mean in either direction. When graphed, the
+            distribution takes the characteristic bell shape.
+          </p>
+        </statement>
+      </definition>
+    </paragraphs>
+
+    <paragraphs xml:id="paragraphs-ch15-empirical-rule">
+      <title>The empirical rule</title>
+      <p>
+        For any approximately normal distribution, the following
+        relationships hold with good approximation:
+      </p>
+      <definition xml:id="def-ch15-empirical-rule">
+        <statement>
+          <p>
+            The <term>empirical rule</term> (also called the
+            <term>68-95-99.7 rule</term>) states that in any
+            approximately normal distribution:
+          </p>
+          <ul>
+            <li>
+              <p>approximately 68% of values fall within
+              1 standard deviation of the mean;</p>
+            </li>
+            <li>
+              <p>approximately 95% of values fall within
+              2 standard deviations of the mean;</p>
+            </li>
+            <li>
+              <p>approximately 99.7% of values fall within
+              3 standard deviations of the mean.</p>
+            </li>
+          </ul>
+        </statement>
+      </definition>
+      <p>
+        These percentages are approximations — the normal distribution
+        is a continuous mathematical object, and real data is never
+        perfectly normal — but they are close enough to be genuinely
+        useful across a wide range of practical calculations.
+      </p>
+      <example xml:id="ex-ch15-tree-diameters">
+        <title>Pine tree trunk diameters</title>
+        <statement>
+          <p>
+            A certain variety of pine tree has a mean trunk diameter of
+            150 cm and a standard deviation of 30 cm. The diameters are
+            approximately normally distributed. A forest contains 500 of
+            these trees. Approximately how many trees have a diameter
+            between 120 cm and 180 cm?
+          </p>
+        </statement>
+        <solution>
+          <p>
+            The range 120 to 180 cm spans exactly one standard deviation on
+            either side of the mean:
+            <m>150 - 30 = 120</m> and <m>150 + 30 = 180</m>.
+            By the empirical rule, approximately 68% of values in a
+            normal distribution fall within one standard deviation of
+            the mean. So approximately 68% of the 500 trees fall in
+            this range:
+            <me>500 \times 0.682 \approx 341 \text{ trees.}</me>
+          </p>
+        </solution>
+      </example>
+      <example xml:id="ex-ch15-cholesterol">
+        <title>Cholesterol levels</title>
+        <statement>
+          <p>
+            Serum cholesterol levels in a reference healthy population
+            are approximately normally distributed with a mean of
+            160 mg/dL and a standard deviation of 50 mg/dL. What range
+            of cholesterol values falls within two standard deviations
+            of the mean, and approximately what percentage of the
+            population falls in this range?
+          </p>
+        </statement>
+        <solution>
+          <p>
+            Two standard deviations above the mean:
+            <m>160 + 2(50) = 260</m> mg/dL.
+          </p>
+          <p>
+            Two standard deviations below the mean:
+            <m>160 - 2(50) = 60</m> mg/dL.
+          </p>
+          <p>
+            By the empirical rule, approximately 95% of values in a
+            normal distribution fall within 2 standard deviations of
+            the mean. So approximately 95% of the reference population
+            has cholesterol between 60 and 260 mg/dL.
+          </p>
+          <p>
+            We return to this example in <xref
+            ref="sec-ch15-sensitivity-specificity"/>, where it
+            illustrates how moving the boundary for what counts as
+            <q>abnormal</q> affects a test's sensitivity and
+            specificity.
+          </p>
+        </solution>
+      </example>
+    </paragraphs>
+
+    <paragraphs xml:id="paragraphs-ch15-normal-where-headed">
+      <title>Where we're headed</title>
+      <p>
+        The empirical rule tells us what proportion of a normal
+        distribution falls within 1, 2, or 3 standard deviations of the
+        mean. This is useful for describing a population. A related
+        question — and one that comes up every time a poll is reported —
+        is how confident we should be that a sample's findings reflect the
+        population it was drawn from. That is the subject of the next
+        section.
+      </p>
+    </paragraphs>
+
+    <exploration xml:id="field-15-3-1">
+      <title>Field Exercise: Apply the empirical rule</title>
+      <statement>
+        <p>
+          Find a dataset or a news report that gives both a mean and a
+          standard deviation for some real-world measurement — test scores,
+          heights, reaction times, prices, anything with an approximately
+          normal distribution. Use the empirical rule to calculate what
+          range of values should contain the middle 95% of the
+          distribution. Then check whether the source provides any
+          information that lets you assess whether this is approximately
+          right. Report what you found in a short paragraph.
+        </p>
+      </statement>
+    </exploration>
+
+  </section>
+
+
+  <!-- ============================================================ -->
+  <!--  §15.4  Confidence Intervals and Margin of Error             -->
+  <!-- ============================================================ -->
+
+  <section xml:id="sec-ch15-confidence-intervals">
+    <title>Confidence Intervals and Margin of Error</title>
+
+    <introduction>
+      <p>
+        Almost every poll you read reports a margin of error. Almost no
+        one stops to ask what that phrase actually means. This section
+        explains it. The basic idea is not complicated, but it is precise
+        — and getting it slightly wrong is the source of a remarkable
+        number of bad arguments.
+      </p>
+    </introduction>
+
+    <paragraphs xml:id="paragraphs-ch15-why-intervals">
+      <title>Why a single number is not enough</title>
+      <p>
+        A poll contacts 600 randomly chosen voters and asks which
+        candidate they support. Fifty-two percent say Candidate A;
+        48 percent say Candidate B. A news anchor announces:
+        <q>Candidate A leads by four points.</q>
+      </p>
+      <p>
+        This is misleading — not because the numbers are wrong, but
+        because a sample of 600 is not the entire population. Sampling
+        is inherently uncertain: a different random sample of 600 people
+        drawn on the same day would likely produce slightly different
+        numbers. The question is how much different, and that question
+        has a precise answer.
+      </p>
+      <p>
+        Statisticians handle this uncertainty by reporting not a single
+        number but an interval — a range of values consistent with what
+        the sample found. That interval, combined with a stated confidence
+        level, is a <term>confidence interval</term>.
+      </p>
+      <definition xml:id="def-ch15-confidence-interval">
+        <statement>
+          <p>
+            A <term>confidence interval</term> is a range of values
+            computed from a sample. It is reported at a specified
+            <term>confidence level</term> — typically 95% — which means
+            that if the same sampling and calculation procedure were
+            repeated many times, approximately 95% of the resulting
+            intervals would contain the true population value.
+          </p>
+        </statement>
+      </definition>
+      <definition xml:id="def-ch15-margin-of-error">
+        <statement>
+          <p>
+            The <term>margin of error</term> of a confidence interval
+            is half its width — the amount added to and subtracted from
+            the sample estimate to form the interval. A result of
+            <q>52%, plus or minus 4%</q> means the confidence interval runs from
+            48% to 56%, with a margin of error of 4 percentage points.
+          </p>
+        </statement>
+      </definition>
+    </paragraphs>
+
+    <paragraphs xml:id="paragraphs-ch15-moe-formula">
+      <title>A rule of thumb for margin of error</title>
+      <p>
+        The practical lesson is simple: bigger random samples have smaller
+        margins of error, but the improvement slows down. Doubling a
+        sample does not cut the margin of error in half. You get a
+        better estimate, but each improvement costs more.
+      </p>
+      <p>
+        For public-opinion polling at the 95% confidence level, the
+        following approximations are close enough for this course:
+      </p>
+      <ul>
+        <li><p>400 people: about plus or minus 4.9%.</p></li>
+        <li><p>500 people: about plus or minus 4.4%.</p></li>
+        <li><p>600 people: about plus or minus 4.1%.</p></li>
+        <li><p>1,000 people: about plus or minus 3.1%.</p></li>
+        <li><p>1,500 people: about plus or minus 2.5%.</p></li>
+        <li><p>2,000 people: about plus or minus 2.2%.</p></li>
+      </ul>
+      <p>
+        These figures come from a square-root approximation, but you do not
+        need to do that calculation every time.
+        The point is to read the margin of error correctly and to notice
+        when a headline treats an uncertain estimate as if it were exact.
+      </p>
+      <example xml:id="ex-ch15-polling-interval">
+        <title>Interpreting a poll</title>
+        <statement>
+          <p>
+            A random sample of 600 voters finds that 52% support
+            Candidate A and 48% support Candidate B. A news anchor says,
+            <q>Candidate A will almost certainly win.</q> Is this claim
+            supported by the data?
+          </p>
+        </statement>
+        <solution>
+          <p>
+            A random sample of 600 gives a margin of error of about
+            plus or minus 4 percentage points at the 95% confidence level.
+          </p>
+          <p>
+            So the confidence interval for Candidate A's true support is
+            52%, plus or minus 4 percentage points, which runs from 48%
+            to 56%. The confidence interval for Candidate B's support is
+            48%, plus or minus 4 percentage points, which runs from 44%
+            to 52%.
+          </p>
+          <p>
+            These intervals overlap. It is consistent with the data — at
+            the 95% confidence level — that Candidate B is actually ahead.
+            The anchor's claim overstates what the poll supports. A more
+            accurate headline: <q>The race is within the margin of
+            error.</q>
+          </p>
+        </solution>
+      </example>
+    </paragraphs>
+
+    <paragraphs xml:id="paragraphs-ch15-what-ci-means">
+      <title>What a confidence interval means — and what it doesn't</title>
+      <p>
+        A 95% confidence interval is consistently misinterpreted, in
+        both news coverage and everyday conversation. Here is what it
+        means and two things it does not mean.
+      </p>
+      <p>
+        <alert>What it means.</alert> If we repeatedly drew random
+        samples of the same size and computed a confidence interval from
+        each, approximately 95% of those intervals would contain the true
+        population value. The 95% describes the <em>procedure</em> over
+        many repetitions, not any particular interval.
+      </p>
+      <p>
+        <alert>What it does not mean (1).</alert> It does not mean there
+        is a 95% probability that the true value lies in this specific
+        interval. The true value is a fixed number — it either is or is
+        not in the interval. The probability language applies to the
+        long-run behavior of the method.
+      </p>
+      <p>
+        <alert>What it does not mean (2).</alert> It is not a guarantee.
+        Five percent of 95% confidence intervals, by definition, do not
+        contain the true population value. If a study runs twenty
+        significance tests all at the 95% confidence level, we should
+        expect roughly one to give a misleading result even when
+        everything is done correctly. This is part of why replication
+        matters in science and why single studies should be interpreted
+        cautiously.
+      </p>
+    </paragraphs>
+
+    <paragraphs xml:id="paragraphs-ch15-ci-where-headed">
+      <title>Where we're headed</title>
+      <p>
+        Confidence intervals tell us how much to trust a sample estimate.
+        A related question — one that comes up constantly in medicine,
+        public health, and hiring — is how much to trust a test result.
+        When a test comes back positive, what is the probability that the
+        thing being tested for is actually there? Answering that question
+        properly requires the tools of the next section.
+      </p>
+    </paragraphs>
+
+    <exploration xml:id="field-15-4-1">
+      <title>Field Exercise: Read a poll's margin of error</title>
+      <statement>
+        <p>
+          Find a recent poll — from a news organization, a university
+          research center, or a public opinion polling firm — and locate
+          its reported margin of error and sample size. Compare the sample
+          size to the rule-of-thumb list in this section. Then read the
+          article accompanying the poll and note whether the authors
+          correctly interpret the margin of error, or whether they treat
+          the estimates as more certain than the data supports. Write a
+          short paragraph reporting what you found.
+        </p>
+      </statement>
+    </exploration>
+
+  </section>
+
+
+  <!-- ============================================================ -->
+  <!--  §15.5  Diagnostic Thresholds                                -->
+  <!-- ============================================================ -->
+
+  <section xml:id="sec-ch15-sensitivity-specificity">
+    <title>Diagnostic Thresholds</title>
+
+    <introduction>
+      <p>
+        Chapter 14 introduced Bayes' theorem, which lets us update
+        probabilities when new evidence arrives. One of its most
+        important applications is interpreting diagnostic tests: if a
+        test comes back positive, what is the probability that the thing
+        being tested for is actually present? The answer depends on how
+        good the test is — which is where sensitivity and specificity
+        come in.
+      </p>
+    </introduction>
+
+    <paragraphs xml:id="paragraphs-ch15-test-error">
+      <title>Tests are not facts</title>
+      <p>
+        No diagnostic test is perfect. A strep test can come back
+        positive when no strep is present (a <term>false positive</term>)
+        or negative when strep is present (a <term>false negative</term>).
+        A smoke detector can go off from burnt toast or fail to trigger
+        in an actual fire. A spam filter can mark legitimate email as spam
+        or let a phishing message through. In each case, the test has two
+        distinct ways of being wrong, and the tradeoff between them turns
+        out to be both fundamental and controllable.
+      </p>
+      <definition xml:id="def-ch15-sensitivity">
+        <statement>
+          <p>
+            The <term>sensitivity</term> of a test is the probability
+            that the test returns a positive result given that the
+            condition is actually present.
+            A highly sensitive test rarely misses cases that are there.
+            A test with low sensitivity produces many false negatives.
+          </p>
+        </statement>
+      </definition>
+      <definition xml:id="def-ch15-specificity">
+        <statement>
+          <p>
+            The <term>specificity</term> of a test is the probability
+            that the test returns a negative result given that the
+            condition is not present.
+            A highly specific test rarely sounds false alarms. A test
+            with low specificity produces many false positives.
+          </p>
+        </statement>
+      </definition>
+    </paragraphs>
+
+    <paragraphs xml:id="paragraphs-ch15-threshold-tradeoff">
+      <title>The threshold tradeoff</title>
+      <p>
+        For many tests — especially those that measure a continuous
+        variable such as a biomarker level, a credit score, or an image
+        classification confidence — there is no single natural dividing
+        line between <q>positive</q> and <q>negative.</q> A threshold
+        has to be set somewhere. Move the threshold, and you change both
+        sensitivity and specificity.
+      </p>
+      <p>
+        Sensitivity and specificity trade off against each other. Making
+        a test more sensitive (catching more true cases) requires lowering
+        the threshold, which also flags more people who do not have the
+        condition — increasing the false-positive rate and decreasing
+        specificity. Making a test more specific (fewer false alarms)
+        requires raising the threshold, which lets more true cases slip
+        through — increasing the false-negative rate and decreasing
+        sensitivity.
+      </p>
+      <p>
+        This tradeoff is not a defect in any particular test. It is a
+        logical consequence of drawing a line through a continuous
+        distribution of measurements.
+      </p>
+      <example xml:id="ex-ch15-cholesterol-threshold">
+        <title>Cholesterol testing and diagnostic thresholds</title>
+        <statement>
+          <p>
+            Return to the cholesterol example from
+            <xref ref="sec-ch15-normal-distribution"/>. Serum cholesterol
+            in the reference healthy population is normally distributed
+            with mean 160 mg/dL and standard deviation 50 mg/dL. A
+            clinical test currently flags anyone outside the 2-SD range
+            (60 to 260 mg/dL) as abnormal. How would sensitivity and
+            specificity change if the test instead flagged values outside
+            the 3-SD range? Outside the 1-SD range?
+          </p>
+        </statement>
+        <solution>
+          <p>
+            First, recall what the empirical rule says about the healthy
+            reference population:
+          </p>
+          <ul>
+            <li>
+              <p>Within 1 SD (110 to 210 mg/dL):
+              approximately 68% of the healthy population.</p>
+            </li>
+            <li>
+              <p>Within 2 SD (60 to 260 mg/dL):
+              approximately 95% of the healthy population.</p>
+            </li>
+            <li>
+              <p>Within 3 SD (10 to 310 mg/dL):
+              approximately 99.7% of the healthy population.</p>
+            </li>
+          </ul>
+          <p>
+            At the current threshold (2 SD), approximately 5% of healthy
+            people have values outside 60 to 260 mg/dL and are flagged as
+            abnormal — false positives. The test also has some sensitivity
+            advantage: genuinely elevated cholesterol is more likely to
+            fall outside this range.
+          </p>
+          <p>
+            <alert>Expanding to 3 SD.</alert> Flagging only values outside
+            10 to 310 mg/dL means flagging just the 0.3% of healthy people at
+            the extremes. Specificity increases (fewer healthy people are
+            flagged), but sensitivity decreases: people with genuinely
+            elevated cholesterol who still fall within 3 SD of the
+            healthy-population mean will not be detected. Fewer false
+            positives, but more false negatives.
+          </p>
+          <p>
+            <alert>Narrowing to 1 SD.</alert> Flagging anyone outside
+            110 to 210 mg/dL means flagging roughly 32% of the healthy
+            population as abnormal. Sensitivity increases sharply — the
+            test is very unlikely to miss anyone with a genuine problem
+            — but specificity falls dramatically. Almost a third of
+            healthy people now receive false positives, triggering
+            unnecessary follow-up tests, patient anxiety, and wasted
+            clinical resources.
+          </p>
+          <p>
+            There is no universally correct threshold. The right choice
+            depends on the stakes of each type of error. For a condition
+            where missing a true case is catastrophic (a rare but
+            treatable cancer), err toward higher sensitivity. For a
+            condition where a false positive triggers a dangerous or
+            expensive intervention, err toward higher specificity.
+          </p>
+        </solution>
+      </example>
+    </paragraphs>
+
+    <paragraphs xml:id="paragraphs-ch15-bayes-bridge">
+      <title>Connecting back to Bayes</title>
+      <p>
+        Sensitivity and specificity describe what a test does in the
+        abstract. They do not tell you what a positive result means for
+        any given patient. As Chapter 14 showed, that calculation requires
+        one more ingredient: the base rate — the prior probability that
+        the patient has the condition before the test is administered.
+      </p>
+      <p>
+        A test with 90% sensitivity and 90% specificity sounds reliable.
+        But if the condition affects only 1% of the population being
+        screened (a low base rate), then — as the Bayes' theorem
+        calculation from Chapter 14 showed — the majority of positive
+        results will still be false positives. Sensitivity and specificity
+        together with the base rate determine how much a positive result
+        actually tells you.
+      </p>
+      <p>
+        The practical upshot: a screening test applied to a low-risk
+        population will produce many false positives even when the test
+        is technically excellent. This is not a failure of the test — it
+        is a consequence of the math. Understanding the tradeoff makes for
+        both better medical decision-making and more skeptical reading of
+        headlines about diagnostic breakthroughs.
+      </p>
+    </paragraphs>
+
+    <paragraphs xml:id="paragraphs-ch15-sensitivity-where-headed">
+      <title>Where we're headed</title>
+      <p>
+        Sensitivity and specificity show one way statistical reasoning
+        goes wrong in practice: technically correct numbers get applied
+        without enough attention to what they actually mean. The closing
+        section of this chapter is about that broader problem: how the
+        same data can be made to look like almost anything, depending on
+        how it is presented.
+      </p>
+    </paragraphs>
+
+    <exploration xml:id="field-15-5-1">
+      <title>Field Exercise: Find a screening scenario</title>
+      <statement>
+        <p>
+          Identify a real-world screening or testing scenario — a medical
+          test, a security screening protocol, a spam filter, a fraud
+          detection algorithm, or anything analogous. Find or estimate
+          the sensitivity and specificity. Then describe what happens to
+          false positives and false negatives if the threshold is made
+          more conservative (fewer flags overall). Write a short paragraph
+          explaining the tradeoff and whether, in your view, the current
+          threshold is set appropriately given the relative costs of each
+          type of error.
+        </p>
+      </statement>
+    </exploration>
+
+  </section>
+
+
+  <!-- ============================================================ -->
+  <!--  §15.6  Lying with Statistics                                 -->
+  <!-- ============================================================ -->
+
+  <section xml:id="sec-ch15-lying-statistics">
+    <title>Lying with Statistics</title>
+
+    <introduction>
+      <p>
+        Mark Twain popularized the observation — though he did not
+        originate it — that there are three kinds of lies: lies, damned
+        lies, and statistics. The quip exaggerates. Statistics, done
+        carefully, are among the least deceptive tools we have for
+        understanding large datasets. But statistics can be deployed
+        deceptively, and they are, constantly. This section is about how.
+      </p>
+    </introduction>
+
+    <paragraphs xml:id="paragraphs-ch15-truncated-axes">
+      <title>Truncated axes</title>
+      <p>
+        The most common visual distortion in data presentation is the
+        truncated y-axis: a bar graph or line chart whose vertical axis
+        does not begin at zero. Starting at zero is a convention that
+        makes the height of each bar proportional to the value it
+        represents. When the axis starts somewhere in the middle of the
+        data range, small differences are made to look large.
+      </p>
+      <example xml:id="ex-ch15-truncated-axis">
+        <title>A truncated axis in political graphics</title>
+        <statement>
+          <p>
+            During a British election campaign, a graph circulated
+            showing housing construction statistics for Labour- and
+            Conservative-led governments. The y-axis began not at zero
+            but far up the scale — near the minimum data value. The
+            bar for Labour appeared to be roughly half the height of
+            the Conservative bar, strongly suggesting that Conservative
+            governments built twice as many homes.
+          </p>
+          <p>
+            Reading the actual numbers on the axis revealed a gap of
+            about 10% — not 100%. The visual impression of a two-to-one
+            ratio was an artifact of the truncation. How would this
+            graph look if the y-axis were redrawn starting at zero?
+          </p>
+        </statement>
+        <solution>
+          <p>
+            With a y-axis starting at zero, the two bars would be nearly
+            the same height. The genuine 10% difference would be visible
+            but modest — because it is modest. The truncated axis
+            converted a modest gap into an apparent chasm.
+          </p>
+        </solution>
+      </example>
+      <p>
+        A truncated axis is not always dishonest. When differences between
+        values are genuinely small and the story is precisely about those
+        small differences, zooming in can be appropriate — as long as the
+        truncation is clearly labeled and visually flagged. The problem
+        arises when the truncation is invisible and used to make a minor
+        difference look decisive.
+      </p>
+    </paragraphs>
+
+    <paragraphs xml:id="paragraphs-ch15-area-distortion">
+      <title>Area and size distortions</title>
+      <p>
+        When data is represented by objects whose size varies — pictures,
+        icons, bubbles, three-dimensional bars — the visual impression
+        depends on how the scaling is done. Doubling a value should double
+        the bar in a bar graph (one dimension). When a value is instead
+        represented by a square, circle, or pictogram whose <em>height</em>
+        doubles, the <em>area</em> of the image quadruples. The eye
+        registers area and volume, not linear dimension alone.
+      </p>
+      <example xml:id="ex-ch15-gas-price-cars">
+        <title>The gas price illustration</title>
+        <statement>
+          <p>
+            A data visualization shows the price of gasoline in two
+            years: <m>\$2.50</m> in 1980 and <m>\$1.50</m> in 2001.
+            Each year is represented by a picture of a car, scaled to
+            reflect the price. The 1980 car appears more than twice as
+            large as the 2001 car — an impression far beyond what the
+            price ratio warrants.
+          </p>
+          <p>
+            The actual price ratio is <m>2.50 / 1.50 \approx 1.67</m>:
+            the 1980 price was about 67% higher. Why does a
+            proportionally drawn car look so much larger, and why is
+            this misleading?
+          </p>
+        </statement>
+        <solution>
+          <p>
+            When the 1980 car is drawn 1.67 times <em>taller</em> to
+            represent a price 1.67 times higher, its width scales up
+            proportionally too. The visible <em>area</em> of the image
+            is therefore approximately <m>1.67 \times 1.67 \approx 2.8</m>
+            times larger — and the impression of volume or
+            three-dimensional size is larger still.
+          </p>
+          <p>
+            A standard bar graph avoids this problem entirely: bars have
+            a fixed width, so height alone carries the comparison, and a
+            1.67× price difference produces a 1.67× bar. Pictograms and
+            icon-based graphics invite area distortion unless the designer
+            takes explicit care to scale by area rather than by height.
+          </p>
+        </solution>
+      </example>
+    </paragraphs>
+
+    <paragraphs xml:id="paragraphs-ch15-cherry-picking">
+      <title>Cherry-picking and baseline choices</title>
+      <p>
+        A third category of statistical distortion involves the choice of
+        what to show and what to omit: the baseline year for a trend line,
+        the subgroup highlighted in a summary, or the particular statistic
+        selected to represent a more complex picture.
+      </p>
+      <p>
+        A company reports revenue <q>up 150% from three years ago.</q>
+        If three years ago was the company's worst year in a decade, a
+        150% gain may represent a recovery to roughly where things were
+        before — not a triumph. A trend line for crime that begins in
+        1990 looks very different from one that starts in 1970, if there
+        was a peak in 1980 and 2024 levels are still above those of
+        1970 to 1975.
+      </p>
+      <p>
+        A related distortion involves the choice between relative and
+        absolute measures. A clinical trial finds that a new drug reduces
+        the <em>relative</em> risk of some outcome by 50%. This sounds
+        large. If the absolute risk without the drug is 2% and with the
+        drug is 1%, the absolute risk reduction is 1 percentage point —
+        which may or may not justify the drug's cost and side effects.
+        Both the relative and the absolute figures are numerically correct;
+        they describe different things. The relative reduction is almost
+        always the larger number, and it is almost always the one the
+        press release leads with.
+      </p>
+    </paragraphs>
+
+    <paragraphs xml:id="paragraphs-ch15-honest-graph">
+      <title>What an honest graph does</title>
+      <p>
+        Negative examples are useful, but the goal is not just to avoid
+        bad graphs — it is to recognize what good ones look like. An
+        honest data visualization:
+      </p>
+      <ul>
+        <li>
+          <p>uses a zero baseline, or makes any truncation obvious with
+          a clear break in the axis;</p>
+        </li>
+        <li>
+          <p>uses area and size consistently with the data (constant bar
+          width; pictograms sized by area, not height);</p>
+        </li>
+        <li>
+          <p>chooses baselines and time ranges that represent the full
+          relevant context, not just the most flattering window;</p>
+        </li>
+        <li>
+          <p>reports both relative and absolute changes when the
+          distinction matters;</p>
+        </li>
+        <li>
+          <p>includes sample sizes and margins of error when the data
+          comes from a survey or study.</p>
+        </li>
+      </ul>
+      <p>
+        Statistical literacy is not primarily the ability to compute
+        standard deviations by hand. It is the habit of asking, when
+        confronted with a graph or a statistic: <em>What comparison is
+        this actually making? What would the same data look like presented
+        differently? What is not being shown?</em>
+      </p>
+    </paragraphs>
+
+    <exploration xml:id="field-15-6-1">
+      <title>Field Exercise: Find a misleading visualization</title>
+      <statement>
+        <p>
+          Find a graph or chart from a news source, social media, a
+          corporate report, or a political communication from the past
+          year that uses at least one of the distortions discussed in
+          this section — truncated axes, area or size distortion,
+          cherry-picked baselines, or a choice of statistic that obscures
+          more than it reveals. Describe the distortion precisely: what
+          does the visualization suggest, and what would a reader conclude
+          if the same data were presented honestly? If possible, sketch
+          or describe an alternative representation that would present
+          the data more accurately.
+        </p>
+      </statement>
+    </exploration>
+
+  </section>
+
+
+  <!-- ============================================================ -->
+  <!--  CHAPTER CONCLUSION: Summary                                 -->
+  <!-- ============================================================ -->
+
+  <conclusion xml:id="ch-statistical-reasoning-conclusion">
+
+    <title>Chapter Summary</title>
+
+    <paragraphs xml:id="paragraphs-ch15-summary">
+      <title>Summary by section</title>
+      <p>
+        <alert>Measuring the Middle (§15.1).</alert> A dataset's center
+        can be described by the mean (arithmetic average), the median
+        (middle value when ordered), or the mode (most frequent value).
+        The three measures agree when data is symmetric and diverge when
+        it is skewed or contains extreme values. The mean is sensitive to
+        outliers; the median is resistant to them. For skewed distributions
+        — income, home prices, hospital costs — the median is typically
+        the more informative description of what is typical.
+      </p>
+      <p>
+        <alert>Measuring Spread (§15.2).</alert> The range (maximum minus
+        minimum) is the simplest measure of spread but the least stable.
+        The standard deviation measures how far, on average, values sit
+        from the mean. For a sample, it is computed in six steps: find the
+        mean, subtract it from each value, square the differences, add
+        them up, divide using the sample-data correction, and take the
+        square root. A
+        large standard deviation means the data is spread out; a small
+        one means it clusters tightly around the mean.
+      </p>
+      <p>
+        <alert>The Normal Distribution (§15.3).</alert> Many natural and
+        social datasets are approximately normally distributed — bell-shaped,
+        symmetric, thinning symmetrically on both sides. The empirical
+        rule states that in any approximately normal distribution, 68% of
+        values fall within 1 SD of the mean, 95% within 2 SD, and 99.7%
+        within 3 SD. Two numbers — the mean and the standard deviation —
+        together characterize the entire distribution when the data is
+        approximately normal.
+      </p>
+      <p>
+        <alert>Confidence Intervals and Margin of Error (§15.4).</alert>
+        A sample gives an estimate of a population value, but any estimate
+        from a sample carries uncertainty. A 95% confidence interval is a
+        range of values that, if the sampling procedure were repeated many
+        times, would contain the true population value in approximately
+        95% of repetitions. Larger random samples have smaller margins of
+        error, but the improvement slows down: a sample of 500 gives a
+        margin of error of about plus or minus 4.4%, while a sample of
+        1,000 gives about plus or minus 3.1%. A four-point lead in a poll
+        with a four-point margin of error is not a lead.
+      </p>
+      <p>
+        <alert>Diagnostic Thresholds (§15.5).</alert> Sensitivity is the
+        probability that a test returns positive given that the condition
+        is present; specificity is the probability that it returns negative
+        given that the condition is absent. For tests measuring a continuous variable,
+        the positive/negative threshold is a choice — and moving it
+        trades sensitivity against specificity. Combined with the base
+        rate from Chapter 14's Bayes' theorem, these two quantities
+        determine how much a positive result actually tells you.
+      </p>
+      <p>
+        <alert>Lying with Statistics (§15.6).</alert> Common forms of
+        statistical distortion include truncated axes (which make small
+        differences look large), area and size distortions (which
+        misrepresent ratios by scaling two- or three-dimensional objects),
+        and cherry-picked baselines or statistics (which present the most
+        favorable slice of a more complex picture). Statistical literacy
+        requires asking what an honest presentation of the same data would
+        look like.
+      </p>
+    </paragraphs>
+
+  </conclusion>
+
+  <!-- ============================================================ -->
+  <!--  KEY TERMS                                                    -->
+  <!-- ============================================================ -->
+
+  <section xml:id="sec-ch15-key-terms">
+    <title>Key Terms</title>
+
+    <p>Listed alphabetically, with section references.</p>
+
+    <dl>
+      <li xml:id="term-ch15-bimodal">
+        <title>Bimodal</title>
+        <p>A dataset with two distinct modes — two values (or ranges)
+        each appearing more often than others, producing two peaks in
+        the distribution. (§15.1)</p>
+      </li>
+      <li xml:id="term-ch15-confidence-interval">
+        <title>Confidence interval</title>
+        <p>A range of values computed from a sample such that, if the
+        same sampling procedure were repeated many times, approximately
+        the stated percentage of intervals would contain the true
+        population value. (§15.4)</p>
+      </li>
+      <li xml:id="term-ch15-confidence-level">
+        <title>Confidence level</title>
+        <p>The percentage of confidence intervals, generated by the
+        same procedure applied repeatedly, that would capture the true
+        population value. Commonly 95%. (§15.4)</p>
+      </li>
+      <li xml:id="term-ch15-empirical-rule">
+        <title>Empirical rule</title>
+        <p>In an approximately normal distribution: approximately 68%
+        of values fall within 1 SD of the mean, 95% within 2 SD, and
+        99.7% within 3 SD. Also called the 68-95-99.7 rule. (§15.3)</p>
+      </li>
+      <li xml:id="term-ch15-false-negative">
+        <title>False negative</title>
+        <p>A test result that is negative when the condition is actually
+        present. (§15.5)</p>
+      </li>
+      <li xml:id="term-ch15-false-positive">
+        <title>False positive</title>
+        <p>A test result that is positive when the condition is actually
+        absent. (§15.5)</p>
+      </li>
+      <li xml:id="term-ch15-margin-of-error">
+        <title>Margin of error</title>
+        <p>Half the width of a confidence interval — the amount added
+        to and subtracted from a sample estimate to form the interval.
+        In public-opinion polling, a random sample of 500 has a margin
+        of error of about plus or minus 4.4% at the 95% confidence level; a random
+        sample of 1,000 has a margin of error of about plus or minus 3.1%. (§15.4)</p>
+      </li>
+      <li xml:id="term-ch15-mean">
+        <title>Mean</title>
+        <p>The arithmetic average of a dataset: the sum of all values
+        divided by the number of values. (§15.1)</p>
+      </li>
+      <li xml:id="term-ch15-median">
+        <title>Median</title>
+        <p>The middle value of a dataset arranged in ascending order;
+        the average of the two middle values for an even-numbered
+        dataset. (§15.1)</p>
+      </li>
+      <li xml:id="term-ch15-mode">
+        <title>Mode</title>
+        <p>The value (or values) that appears most often in a dataset.
+        (§15.1)</p>
+      </li>
+      <li xml:id="term-ch15-normal-distribution">
+        <title>Normal distribution</title>
+        <p>A symmetric, bell-shaped distribution in which values cluster
+        around the mean and decrease in frequency as they move farther
+        from the mean in either direction. Characterized entirely by its
+        mean and standard deviation. (§15.3)</p>
+      </li>
+      <li xml:id="term-ch15-range">
+        <title>Range</title>
+        <p>The simplest measure of spread: the difference between the
+        maximum and minimum values in a dataset. (§15.2)</p>
+      </li>
+      <li xml:id="term-ch15-sensitivity">
+        <title>Sensitivity</title>
+        <p>The probability that a test returns positive given that the
+        condition is present. (§15.5)</p>
+      </li>
+      <li xml:id="term-ch15-specificity">
+        <title>Specificity</title>
+        <p>The probability that a test returns negative given that the
+        condition is absent. (§15.5)</p>
+      </li>
+      <li xml:id="term-ch15-standard-deviation">
+        <title>Standard deviation</title>
+        <p>A measure of spread: the square root of the average squared
+        deviation from the mean. Expressed in the same units as the
+        original data. (§15.2)</p>
+      </li>
+      <li xml:id="term-ch15-unimodal">
+        <title>Unimodal</title>
+        <p>A dataset with a single mode — one value that appears more
+        often than any other. (§15.1)</p>
+      </li>
+      <li xml:id="term-ch15-variance">
+        <title>Variance</title>
+        <p>The average of the squared deviations from the mean; the
+        square of the standard deviation. Expressed in squared units of
+        the original data. (§15.2)</p>
+      </li>
+    </dl>
+
+  </section>
+
+
+  <!-- ============================================================ -->
+  <!--  END-OF-CHAPTER EXERCISES                                    -->
+  <!-- ============================================================ -->
+
+  <exercises xml:id="exercises-ch15">
+    <title>End-of-Chapter Exercises</title>
+    <introduction>
+      <p>
+        Exercises are organized by section. Unless otherwise noted, show
+        all work. Selected solutions appear in the back matter; full
+        solutions are available in the instructor's manual.
+      </p>
+    </introduction>
+
+    <!-- Exercise Set 1: Measuring the Middle -->
+
+    <exercisegroup xml:id="exgroup-ch15-s01">
+      <title>Exercise Set 1: Measuring the Middle</title>
+      <introduction>
+        <p>
+          For each dataset below, find the mean, median, and mode
+          (if one exists). Then answer the interpretation question.
+        </p>
+      </introduction>
+      <exercise xml:id="ex-ch15-s01-01">
+        <statement>
+          <p>
+            A professor records quiz scores for ten students: 62, 74,
+            74, 78, 80, 83, 83, 83, 91, 100. Find the mean, median, and
+            mode. Which measure would you cite if you wanted to argue the
+            class performed well? Which would you cite if you wanted to
+            argue that many students struggled?
+          </p>
+        </statement>
+      </exercise>
+      <exercise xml:id="ex-ch15-s01-02">
+        <statement>
+          <p>
+            Home sale prices (in thousands of dollars) in a neighborhood
+            during one month: 185, 190, 205, 210, 215, 220, 225, 230,
+            240, 1150. Find the mean and median. Which better represents
+            a typical home price here, and why?
+          </p>
+        </statement>
+      </exercise>
+      <exercise xml:id="ex-ch15-s01-03">
+        <statement>
+          <p>
+            A shoe store tracks women's sizes sold over a month:
+            6, 6.5, 7, 7, 7.5, 7.5, 8, 8, 8, 8.5, 9, 10. Explain why
+            the mode is the most useful of the three measures here. What
+            is the mode?
+          </p>
+        </statement>
+      </exercise>
+      <exercise xml:id="ex-ch15-s01-04">
+        <statement>
+          <p>
+            The incomes of a ten-person workplace are:
+            <m>\$32{,}000</m>, <m>\$35{,}000</m>, <m>\$38{,}000</m>,
+            <m>\$41{,}000</m>, <m>\$45{,}000</m>, <m>\$48{,}000</m>,
+            <m>\$52{,}000</m>, <m>\$55{,}000</m>, <m>\$60{,}000</m>,
+            <m>\$890{,}000</m>. The CEO uses the mean income in a press
+            release to describe the company as a great place to work. An
+            employee uses the median income in a complaint to a journalist.
+            Compute both numbers. Which characterization is more
+            informative, and why?
+          </p>
+        </statement>
+      </exercise>
+      <exercise xml:id="ex-ch15-s01-05">
+        <statement>
+          <p>
+            Hours per week twelve students report studying: 2, 3, 5, 5,
+            6, 8, 8, 10, 10, 12, 15, 40. Is this distribution
+            approximately symmetric or skewed? Which measure of center
+            is most appropriate to report? Compute that measure.
+          </p>
+        </statement>
+      </exercise>
+      <exercise xml:id="ex-ch15-s01-06">
+        <statement>
+          <p>
+            A dataset of six values has a mean of 20, a median of 18, and
+            a mode of 15. Without knowing the exact values, what does the
+            relationship between mean and median suggest about the shape
+            of the distribution?
+          </p>
+        </statement>
+      </exercise>
+    </exercisegroup>
+
+    <!-- Exercise Set 2: Standard Deviation -->
+
+    <exercisegroup xml:id="exgroup-ch15-s02">
+      <title>Exercise Set 2: Standard Deviation</title>
+      <introduction>
+        <p>
+          For problems that ask you to compute the standard deviation,
+          show all six steps. Round to two decimal places.
+        </p>
+      </introduction>
+      <exercise xml:id="ex-ch15-s02-01">
+        <statement>
+          <p>
+            Compute the sample standard deviation of these five exam
+            scores: 70, 75, 80, 85, 90.
+          </p>
+        </statement>
+      </exercise>
+      <exercise xml:id="ex-ch15-s02-02">
+        <statement>
+          <p>
+            Compute the sample standard deviation of these five exam
+            scores: 30, 60, 80, 90, 100.
+          </p>
+        </statement>
+      </exercise>
+      <exercise xml:id="ex-ch15-s02-03">
+        <statement>
+          <p>
+            Two sections of the same course have identical class means
+            of 78. Section A has a standard deviation of 4; Section B
+            has a standard deviation of 22. Describe, without further
+            calculation, what these two standard deviations imply about
+            the distribution of scores in each section.
+          </p>
+        </statement>
+      </exercise>
+      <exercise xml:id="ex-ch15-s02-04">
+        <statement>
+          <p>
+            A quality-control process measures bolt diameters (in mm).
+            Ten measurements: 9.98, 10.01, 10.02, 9.99, 10.00, 10.03,
+            9.97, 10.01, 10.00, 9.99. Compute the sample standard
+            deviation. The acceptable range is 10.00 mm, plus or minus
+            0.10 mm.
+            Based on the standard deviation, does the process appear to
+            be under control?
+          </p>
+        </statement>
+      </exercise>
+      <exercise xml:id="ex-ch15-s02-05">
+        <statement>
+          <p>
+            A dataset has mean 50 and standard deviation 10. A value of
+            75 appears in the dataset. How many standard deviations above
+            the mean is this value? If the data is approximately normally
+            distributed, is this value unusual? Explain.
+          </p>
+        </statement>
+      </exercise>
+    </exercisegroup>
+
+    <!-- Exercise Set 3: The Normal Distribution -->
+
+    <exercisegroup xml:id="exgroup-ch15-s03">
+      <title>Exercise Set 3: The Normal Distribution</title>
+      <introduction>
+        <p>
+          Use the empirical rule (68-95-99.7) to answer the questions
+          below. Assume all distributions are approximately normal.
+        </p>
+      </introduction>
+      <exercise xml:id="ex-ch15-s03-01">
+        <statement>
+          <p>
+            The heights of adult women in a city are normally distributed
+            with mean 165 cm and standard deviation 6 cm. What percentage
+            of women have heights between 159 and 171 cm? Between 153 and
+            177 cm?
+          </p>
+        </statement>
+      </exercise>
+      <exercise xml:id="ex-ch15-s03-02">
+        <statement>
+          <p>
+            A factory produces light bulbs with mean lifetime 1,000 hours
+            and standard deviation 50 hours. Out of a batch of 10,000
+            bulbs, approximately how many would you expect to last more
+            than 1,100 hours?
+          </p>
+        </statement>
+      </exercise>
+      <exercise xml:id="ex-ch15-s03-03">
+        <statement>
+          <p>
+            Return to the pine tree example from §15.3: mean diameter
+            150 cm, standard deviation 30 cm, 500 trees. Approximately
+            how many trees have a diameter greater than 210 cm?
+          </p>
+        </statement>
+      </exercise>
+      <exercise xml:id="ex-ch15-s03-04">
+        <statement>
+          <p>
+            A standardized test is normally distributed with mean 500 and
+            standard deviation 100. (a) What score marks the boundary of
+            the top 16% of test-takers? (b) What score marks the boundary
+            of the bottom 2.5%? (c) Between what two scores do the middle
+            99.7% of test-takers fall?
+          </p>
+        </statement>
+      </exercise>
+      <exercise xml:id="ex-ch15-s03-05">
+        <statement>
+          <p>
+            A news article reports that annual rainfall in a certain city
+            is normally distributed with mean 40 inches and standard
+            deviation 5 inches, and describes a year with 55 inches of
+            rainfall as <q>extraordinary.</q> Using the empirical rule,
+            is this description warranted? How many standard deviations
+            from the mean is 55 inches?
+          </p>
+        </statement>
+      </exercise>
+    </exercisegroup>
+
+    <!-- Exercise Set 4: Confidence Intervals -->
+
+    <exercisegroup xml:id="exgroup-ch15-s04">
+      <title>Exercise Set 4: Confidence Intervals and Margin of Error</title>
+      <introduction>
+        <p>
+          Use the rule-of-thumb approximations from §15.4. At the 95%
+          confidence level, samples of 400, 500, 600, 1,000, 1,500, and
+          2,000 have margins of error of about plus or minus 4.9%,
+          plus or minus 4.4%, plus or minus 4.1%, plus or minus 3.1%,
+          plus or minus 2.5%, and plus or minus 2.2%, respectively.
+        </p>
+      </introduction>
+      <exercise xml:id="ex-ch15-s04-01">
+        <statement>
+          <p>
+            A poll of 1,000 randomly selected adults finds that 58%
+            support a proposed ballot measure. Use the rule-of-thumb
+            margin of error to state the confidence interval for the true
+            proportion of supporters. Does the result support the claim
+            that a majority favors the measure? Explain.
+          </p>
+        </statement>
+      </exercise>
+      <exercise xml:id="ex-ch15-s04-02">
+        <statement>
+          <p>
+            A poll of 400 voters finds that Candidate X leads Candidate Y
+            by 6 percentage points (53% to 47%). A headline says:
+            <q>Candidate X has a commanding lead.</q> Is this
+            characterization supported by the data? Use the rule-of-thumb
+            margin of error and explain.
+          </p>
+        </statement>
+      </exercise>
+      <exercise xml:id="ex-ch15-s04-03">
+        <statement>
+          <p>
+            A campus survey of 500 students finds that 61% support
+            extending library hours during finals. A student newspaper
+            reports: <q>Students overwhelmingly support longer library
+            hours.</q> Use the rule-of-thumb margin of error for a sample
+            of 500. What confidence interval should the article have in
+            mind, and does the headline overstate the result?
+          </p>
+        </statement>
+      </exercise>
+      <exercise xml:id="ex-ch15-s04-04">
+        <statement>
+          <p>
+            A news article about a clinical trial reports: <q>The
+            treatment was effective in 62% of patients (95% CI:
+            55% to 69%).</q> (a) What is the margin of error implied by
+            this interval? (b) Does this confidence interval support the
+            claim that the treatment is effective in more than half of all
+            patients? Explain.
+          </p>
+        </statement>
+      </exercise>
+      <exercise xml:id="ex-ch15-s04-05">
+        <statement>
+          <p>
+            Explain in plain language the difference between these two
+            statements: (a) <q>There is a 95% probability that the true
+            proportion lies in this interval.</q> (b) <q>If we repeated
+            this sampling procedure many times, approximately 95% of the
+            resulting intervals would contain the true proportion.</q>
+            Which statement correctly describes what a 95% confidence
+            interval means?
+          </p>
+        </statement>
+      </exercise>
+    </exercisegroup>
+
+    <!-- Exercise Set 5: Diagnostic Thresholds -->
+
+    <exercisegroup xml:id="exgroup-ch15-s05">
+      <title>Exercise Set 5: Diagnostic Thresholds</title>
+      <introduction>
+        <p>
+          For each problem, identify the relevant quantities and answer
+          the question. Where asked, explain what happens to false
+          positives and false negatives when the threshold shifts.
+        </p>
+      </introduction>
+      <exercise xml:id="ex-ch15-s05-01">
+        <statement>
+          <p>
+            A test for a rare condition has sensitivity of 95% and
+            specificity of 90%. (a) What is the false-negative rate?
+            (b) What is the false-positive rate? (c) If missing a true
+            case is catastrophic, which do you prioritize: high
+            sensitivity or high specificity? Why?
+          </p>
+        </statement>
+      </exercise>
+      <exercise xml:id="ex-ch15-s05-02">
+        <statement>
+          <p>
+            Return to the cholesterol example from §15.5: normally
+            distributed with mean 160 mg/dL, standard deviation 50 mg/dL.
+            The current test flags anyone outside the 2-SD range
+            (60 to 260 mg/dL). (a) What percentage of the healthy population
+            is currently flagged as abnormal? (b) If the threshold is
+            moved to 1.5 SDs from the mean, what are the new upper and
+            lower cutoffs? (c) Would this change increase or decrease
+            sensitivity? Increase or decrease specificity?
+          </p>
+        </statement>
+      </exercise>
+      <exercise xml:id="ex-ch15-s05-03">
+        <statement>
+          <p>
+            A university plagiarism-detection tool flags 8% of submitted
+            papers as likely plagiarized. On review, 3 out of every 4
+            flagged papers turn out to be legitimate work. The remaining
+            1 in 4 are genuine cases of plagiarism. Estimate the tool's
+            false-positive rate as a percentage of all papers submitted,
+            and comment on whether this seems like an acceptable tradeoff.
+          </p>
+        </statement>
+      </exercise>
+      <exercise xml:id="ex-ch15-s05-04">
+        <statement>
+          <p>
+            A spam filter is set to be highly sensitive: it catches 99%
+            of spam but also marks 15% of legitimate email as spam. A
+            colleague argues this is fine because 99% sensitivity is
+            excellent. What is missing from this analysis? What
+            additional information would you need to evaluate whether
+            the filter's threshold is set correctly?
+          </p>
+        </statement>
+      </exercise>
+    </exercisegroup>
+
+    <!-- Exercise Set 6: Lying with Statistics -->
+
+    <exercisegroup xml:id="exgroup-ch15-s06">
+      <title>Exercise Set 6: Lying with Statistics</title>
+      <introduction>
+        <p>
+          For each item, identify the statistical distortion present
+          and explain how the presentation would change if the data were
+          presented honestly.
+        </p>
+      </introduction>
+      <exercise xml:id="ex-ch15-s06-01">
+        <statement>
+          <p>
+            A bar graph shows monthly sales for two competing products.
+            Product A's bar is roughly twice the height of Product B's.
+            The y-axis begins at <m>\$980{,}000</m> and ends at
+            <m>\$1{,}050{,}000</m>. Product A's sales are
+            <m>\$1{,}040{,}000</m>; Product B's are
+            <m>\$1{,}010{,}000</m>. What is the actual percentage
+            difference in sales? What would the graph look like if the
+            y-axis began at zero?
+          </p>
+        </statement>
+      </exercise>
+      <exercise xml:id="ex-ch15-s06-02">
+        <statement>
+          <p>
+            An infographic shows national debt over time as a stack of
+            coins, with each coin representing one year's debt level.
+            The coins for the most recent three years are both larger in
+            diameter and taller than earlier coins, to represent higher
+            debt levels. Describe two ways this visualization
+            misrepresents the data.
+          </p>
+        </statement>
+      </exercise>
+      <exercise xml:id="ex-ch15-s06-03">
+        <statement>
+          <p>
+            A pharmaceutical company reports that a new drug reduces the
+            relative risk of heart attack by 33%. The fine print reveals
+            that the control group had a 3% annual heart attack rate and
+            the treatment group had a 2% rate. (a) What is the absolute
+            risk reduction? (b) What does <q>33% relative risk
+            reduction</q> mean here? (c) Which statistic is more
+            informative for a patient deciding whether to take the drug,
+            and why?
+          </p>
+        </statement>
+      </exercise>
+      <exercise xml:id="ex-ch15-s06-04">
+        <statement>
+          <p>
+            A city government presents a graph showing crime rates from
+            2015 to 2024, with a sharp downward trend. A community
+            organizer notes that 2015 was a local peak in crime and that
+            extending the graph back to 2005 would show 2024 rates are
+            still higher than those of 2005 to 2010. What type of distortion
+            is this, and what principle does it violate?
+          </p>
+        </statement>
+      </exercise>
+      <exercise xml:id="ex-ch15-s06-05">
+        <statement>
+          <p>
+            Two news organizations report on the same study about a new
+            nutritional supplement. Organization A says: <q>Supplement
+            users were 40% less likely to develop the condition.</q>
+            Organization B says: <q>The supplement reduced risk by 2
+            percentage points — from 5% to 3%.</q> Both statements are
+            numerically accurate. Explain what each is measuring, which
+            is more informative for a general audience, and why the two
+            framings might lead to different decisions.
+          </p>
+        </statement>
+      </exercise>
+    </exercisegroup>
+
+    <!-- Writing Prompt -->
+
+    <exercisegroup xml:id="exgroup-ch15-writing">
+      <title>Writing Prompt</title>
+      <introduction>
+        <p>
+          Use §15.6 with the reconstruction skills from Part I.
+        </p>
+      </introduction>
+      <exercise xml:id="ex-ch15-writing-01">
+        <statement>
+          <p>
+            Find a recent news article, advertisement, or public
+            statement — political, corporate, or public-health — that
+            uses at least one statistic as evidence for a claim. In
+            approximately 300 words: (1) identify the claim being made
+            and the statistic offered in support of it; (2) identify any
+            distortion in how the statistic is presented — or, if the
+            presentation is honest, explain what makes it honest; and
+            (3) explain whether the statistic, presented accurately,
+            would still support the claim.
+          </p>
+        </statement>
+      </exercise>
+    </exercisegroup>
+
+  </exercises>
+
+</chapter>

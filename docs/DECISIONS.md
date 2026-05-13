@@ -356,3 +356,16 @@ Each decision is dated, numbered, and tagged with the section of `PROJECT_PLAN.m
 **Decision**: Chapter 11 (Replacement Rules) was drafted and registered in `main.ptx` on May 10, 2026. This brings the textbook to 11 drafted chapters (Parts I–III nearly complete). The only remaining Part III chapter is Conditional Proof and Indirect Proof.
 **Alternatives considered**: Defer replacement rules and begin Part IV drafting first.
 **Rationale**: The replacement rules chapter follows naturally from Chapter 10 (Natural Deduction / Implication Rules), which was already drafted. Completing the sentential logic sequence while the voice, notation conventions, and proof format are fresh minimizes context-switching costs. The tone analysis from earlier in this session (see `tone_style_analysis.md`) was applied directly: the chapter uses conversational hooks, second-person address, metacognitive asides for counterintuitive rules (De Morgan's, Tautology), dry humor in parentheticals, and the Ch. 1–3 pattern of anticipating student resistance. Part III now needs only one more chapter (CP/IP) to be complete.
+
+---
+
+## D-031 — Knachel may be adapted with attribution where useful
+
+**Date**: 2026-05-11
+**Plan section**: 5, 12
+**Decision**: Knachel's *Fundamental Methods of Logic* may be drawn on or adapted more directly than copyrighted commercial sources, provided the book gives clear attribution, preserves the lead author's voice and organization, and corrects known errors before use. This refines D-011, which treated Knachel as reference-only.
+**Alternatives considered**:
+- Treat Knachel as reference only, despite its Creative Commons license.
+- Adopt Knachel's inductive/probability/statistics chapters wholesale.
+- Adapt selectively with attribution and revision.
+**Rationale**: The original 2017 Knachel text is openly licensed under Creative Commons Attribution 4.0. Selective adaptation is legally and pedagogically appropriate for Part IV, especially where Knachel's organization or examples are useful. Wholesale adoption remains rejected because this book needs a different structure, tone, and treatment of known probability/Bayes errors.

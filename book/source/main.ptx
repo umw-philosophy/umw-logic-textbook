@@ -109,12 +109,46 @@
       Goes deeper than typical intro texts; Hacking-flavored without being
       Hacking-deep.
     -->
-    <!--
     <part xml:id="part-statistical">
       <title>Inductive and Statistical Reasoning</title>
+      <introduction xml:id="part-statistical-intro">
+        <p>
+          Parts I through III focused mostly on deductive reasoning:
+          arguments where the premises are supposed to guarantee the
+          conclusion. That work matters. It gives us the cleanest
+          examples of logical structure, and it teaches habits of
+          precision that carry over into everything else.
+        </p>
+        <p>
+          But most of the reasoning we actually live with is not like
+          that. A physician reads symptoms and test results. A voter
+          looks at a record and tries to predict what a candidate will
+          do. A scientist studies a sample and draws a conclusion about
+          a population. A student checks the weather, looks at the sky,
+          and decides whether to carry an umbrella. In each case, the
+          evidence matters, but it does not make the conclusion certain.
+        </p>
+        <p>
+          Part IV is about that kind of reasoning. We will study
+          induction, probability, descriptive statistics, and statistical
+          inference. The goal is not to turn logic into arithmetic. The
+          goal is to understand how evidence can make a conclusion more
+          or less reasonable when certainty is not available.
+        </p>
+        <p>
+          This unit draws in part on Matthew Knachel's
+          <url href="https://wisconsin.pressbooks.pub/logicfundamentals/"
+               visual="wisconsin.pressbooks.pub/logicfundamentals/">
+            <em>Fundamental Methods of Logic</em>
+          </url>, an open textbook licensed under a Creative Commons
+          Attribution 4.0 International License. The material here is
+          adapted, reorganized, and revised for this course.
+        </p>
+      </introduction>
       <xi:include href="chapters/ch-inductive-reasoning.ptx"/>
+      <xi:include href="chapters/ch-probability.ptx"/>
+      <xi:include href="chapters/ch-statistical-reasoning.ptx"/>
     </part>
-    -->
 
     <!--
       Part V — Predicate Logic (optional adopter chapters)

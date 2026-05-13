@@ -1,0 +1,1532 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  Chapter 14 — Probability
+  First draft for Part IV. Drafted in the Chapter 1 style:
+    - chapter opener as a short multi-paragraph <introduction>
+    - sections decomposed into named <paragraphs> subsections
+    - <definition> callouts for technical vocabulary
+    - <example> callouts for worked cases
+    - <exploration> field exercise at the end of each section
+    - "Where we're headed" subsection at the end of each section
+    - <conclusion> Chapter Summary + Key Terms + end-of-chapter <exercises>
+
+  Style conventions (carried over from Ch. 1):
+    <term> = first introduction of a technical term (italic + indexed)
+    <em>   = emphasis only, used sparingly
+    italics for word-mention vs. term-introduction:
+      mention only       → <em>probability</em>
+      term-introduction  → <q><term>independent</term></q>
+
+  Notes for review:
+    - Knachel is the closest open-textbook neighbor; per D-031 we may adapt
+      with attribution and corrections, but examples and prose here are
+      drafted fresh. Known Knachel errors in the probability chapter (the
+      base-rate worked example in particular) are deliberately avoided.
+    - This chapter develops Bayes' theorem in §14.5, restricted to the
+      two-hypothesis case (H and ~H). Multi-hypothesis Bayes is left to
+      adopters who want to extend the chapter.
+    - Notation: P(A), P(~A), P(A or B), P(A and B), P(A | B). The tilde
+      `~` is the same tilde the book uses for negation in sentential
+      logic; "and" and "or" are kept in English for events because they
+      are the same conceptual connectives students met in Part III.
+      "Complement" is the same notion that did the work in obversion
+      and contraposition in Chapters 6 and 7.
+-->
+<chapter xmlns:xi="http://www.w3.org/2001/XInclude" xml:id="ch-probability">
+
+  <title>Probability</title>
+
+  <introduction xml:id="ch-probability-intro">
+    <p>
+      Chapter 13 introduced inductive reasoning and asked: when premises
+      do not guarantee a conclusion, how much do they support it?
+      <q>Strong</q> and <q>weak</q> got us started. They are useful labels.
+      But they are coarse. A weather forecast that says <q>likely rain</q>
+      gives a verbal verdict; one that says <q>eighty percent chance
+      of rain</q> gives a number.
+    </p>
+    <p>
+      This chapter is about the numbers. <term>Probability</term> is the
+      branch of reasoning that takes the rough vocabulary of likelihood
+      and tightens it. Instead of saying <q>that's probably true,</q> we
+      try to say how probable. Instead of saying <q>this evidence helps,</q>
+      we try to say how much, and how it should change our confidence.
+    </p>
+    <p>
+      A small warning before we start. People sometimes hear
+      <em>probability</em> and brace for a wall of formulas. This
+      chapter uses formulas as tools for careful thinking. Most
+      everyday probability mistakes are mistakes about the question,
+      the evidence, or the dependence relation. Get those right and
+      the arithmetic mostly takes care of itself.
+    </p>
+  </introduction>
+
+  <section xml:id="sec-from-likely-to-number">
+    <title>From <q>How Likely?</q> to a Number</title>
+
+    <introduction>
+      <p>
+        Inductive reasoning is comfortable saying that one conclusion is
+        more reasonable than another. Probability says how much more.
+        That move — from comparison to quantity — is the central move of
+        this chapter, and like most central moves, it sounds easier than
+        it is.
+      </p>
+    </introduction>
+
+    <paragraphs xml:id="paragraphs-probability-as-bookkeeping">
+      <title>Probability as bookkeeping</title>
+      <p>
+        Think of probability as a kind of bookkeeping for uncertainty.
+        You start with a question — <em>will the bus be on time?</em>,
+        <em>does this patient have strep?</em>, <em>will the next coin
+        flip land heads?</em> — and you try to put a number on it that
+        expresses how confident you should be in each possible answer,
+        given what you know.
+      </p>
+      <p>
+        The number lives between 0 and 1. A probability of 0 means the
+        outcome is impossible given what you know. A probability of 1
+        means it is certain. Everything else is in the middle, with
+        bigger numbers meaning <q>more confident</q> and smaller numbers
+        meaning <q>less confident.</q> A probability of 0.5 means
+        you are equally pulled in either direction; a probability of
+        0.9 means you would be a little surprised if the outcome did not
+        happen; a probability of 0.01 means you would be very surprised
+        if it did.
+      </p>
+      <p>
+        Probabilities are sometimes written as percentages — <q>there is
+        an 80 percent chance of rain</q> instead of <q>the probability
+        is 0.8.</q> Sometimes they are written as odds — <q>three to
+        one against.</q> The percentage form and the decimal form mean
+        the same thing; you just slide the decimal point. The odds form
+        means almost the same thing, with a different bit of arithmetic
+        relating them. We will mostly use decimals in this book, with
+        percentages now and then where they sound more natural.
+      </p>
+    </paragraphs>
+
+    <paragraphs xml:id="paragraphs-first-definition">
+      <title>A first definition</title>
+      <p>
+        Here is a working definition. It is deliberately a little fuzzy.
+        The next section sharpens it by introducing the three main ways
+        people have tried to say what probability really <em>is</em>.
+        For now we just want the working concept.
+      </p>
+      <definition xml:id="def-ch14-probability">
+        <statement>
+          <p>
+            A <term>probability</term> is a number between 0 and 1 that
+            represents how likely some outcome is. A probability of 0
+            means the outcome will not happen. A probability of 1 means
+            it will. Probabilities between 0 and 1 represent
+            intermediate degrees of likelihood.
+          </p>
+        </statement>
+      </definition>
+      <p>
+        Two pieces of vocabulary that go with the definition.
+      </p>
+      <definition xml:id="def-ch14-outcome-event">
+        <statement>
+          <p>
+            An <term>outcome</term> is a possible specific result of
+            some situation under consideration — a particular coin
+            landing heads, a particular patient testing positive, a
+            particular die showing 4.
+          </p>
+          <p>
+            An <term>event</term> is a set of outcomes we care about
+            together — <q>rolling an even number,</q> <q>drawing a heart
+            or a spade,</q> <q>the bus being more than five minutes
+            late.</q> When we write P(<em>E</em>) for an event, we mean
+            the probability that one of the outcomes in <em>E</em>
+            actually occurs.
+          </p>
+        </statement>
+      </definition>
+      <p>
+        Some textbooks distinguish carefully between outcomes and
+        events. We will use whichever word is more natural for the
+        example at hand. The important thing is to keep straight what
+        the probability is <em>of</em>.
+      </p>
+    </paragraphs>
+
+    <paragraphs xml:id="paragraphs-first-examples">
+      <title>A few quick examples</title>
+      <p>
+        Some warmups, to make sure the bookkeeping feels concrete.
+      </p>
+      <example xml:id="ex-ch14-coin">
+        <title>A fair coin</title>
+        <statement>
+          <p>
+            A fair coin has two possible outcomes when flipped: heads
+            or tails. Each has probability 0.5. P(heads) = 0.5;
+            P(tails) = 0.5. The two probabilities add to 1, because one
+            of the two outcomes has to happen.
+          </p>
+        </statement>
+      </example>
+      <example xml:id="ex-ch14-die">
+        <title>A fair six-sided die</title>
+        <statement>
+          <p>
+            A fair six-sided die has six possible outcomes, each with
+            probability 1/6. The probability of rolling an even number
+            is the probability that the outcome is in the set
+            {2, 4, 6}, which is 3/6, or 0.5.
+          </p>
+        </statement>
+      </example>
+      <example xml:id="ex-ch14-weather">
+        <title>A weather forecast</title>
+        <statement>
+          <p>
+            The forecast says <q>70 percent chance of rain tomorrow.</q>
+            That number is a probability: P(rain tomorrow) = 0.7.
+            The forecast still leaves a 30 percent chance of a dry day.
+            One dry day does not discredit the technique or forecaster.
+            A forecaster who says <q>70 percent</q> on a thousand
+            similar days, and who is right roughly 700 of them, is
+            doing the job well.
+          </p>
+        </statement>
+      </example>
+      <p>
+        Two things to notice across these examples. First, the
+        probability is always <em>relative to the situation under
+        consideration</em>. We are not asking the probability of rain
+        in general; we are asking the probability of rain tomorrow in
+        this place given the current forecast. Second, the probability
+        is always <em>relative to what you know</em>. If you had a
+        magical certainty about tomorrow's weather, the probability
+        would collapse to 0 or 1. The whole subject lives in the gap
+        between guaranteed and unknown.
+      </p>
+    </paragraphs>
+
+    <paragraphs xml:id="paragraphs-probability-not-frequency">
+      <title>Probability is not the same as frequency</title>
+      <p>
+        A common early instinct is to say: a probability just <em>is</em>
+        how often something happens. If a coin lands heads about half
+        the time, the probability of heads is 0.5; if it lands heads
+        every time, the probability is 1.
+      </p>
+      <p>
+        Frequency cannot define every probability we care about. Many
+        probability claims concern cases we cannot repeat: a defendant's
+        guilt, a single election, a particular diagnosis. The relationship
+        between probability and frequency is real, but limited. We will
+        spend the next section getting it right.
+      </p>
+    </paragraphs>
+
+    <paragraphs xml:id="paragraphs-where-headed-14-1">
+      <title>Where we're headed</title>
+      <p>
+        We have the working concept. A probability is a number between
+        0 and 1 that measures how likely an outcome is, relative to a
+        situation and to what we know. The next section asks what kind
+        of thing that number actually represents — long-run frequency,
+        a feature of the setup, a degree of personal confidence, or
+        some combination. Different answers to that question have
+        different consequences for how we apply probability to real
+        problems.
+      </p>
+    </paragraphs>
+
+    <exploration xml:id="field-14-1-1">
+      <title>Field Exercise: Estimate some probabilities</title>
+      <statement>
+        <p>
+          Write down your best estimate of the probability of each of
+          the following. Use a decimal between 0 and 1. Then, for each
+          one, write a sentence describing what kind of information
+          would make you revise the estimate up or down.
+        </p>
+        <ol>
+          <li><p>The next student who walks into your next class is wearing headphones.</p></li>
+          <li><p>It will rain at some point in Fredericksburg tomorrow.</p></li>
+          <li><p>Your phone battery makes it to the end of the day without recharging.</p></li>
+          <li><p>The dining hall has run out of the entrée you wanted by the time you get there.</p></li>
+          <li><p>A randomly chosen UMW student is a philosophy major.</p></li>
+          <li><p>A randomly chosen UMW student has taken at least one philosophy course.</p></li>
+        </ol>
+        <p>
+          Notice how different the last two feel even though the
+          sentences look almost identical. We will come back to that
+          contrast when we talk about base rates.
+        </p>
+      </statement>
+    </exploration>
+
+  </section>
+
+  <section xml:id="sec-three-interpretations">
+    <title>Three Ways to Think About Probability</title>
+
+    <introduction>
+      <p>
+        Probability is one of those rare topics where the mathematics
+        is more settled than the philosophy. People have argued for
+        centuries about what a probability <em>is</em> — what real-world
+        thing the number is measuring. Three answers have stuck around
+        long enough to be worth knowing. Each one captures something
+        important. Each one runs into trouble at the edges. Most
+        working scientists, statisticians, and philosophers use a mix.
+      </p>
+    </introduction>
+
+    <paragraphs xml:id="paragraphs-classical">
+      <title>The classical interpretation</title>
+      <p>
+        The oldest answer comes from games of chance. If a situation
+        has a finite number of equally likely outcomes, then the
+        probability of an event is just the fraction of outcomes that
+        count as that event.
+      </p>
+      <definition xml:id="def-ch14-classical">
+        <statement>
+          <p>
+            On the <term>classical interpretation</term>, the
+            probability of an event is the number of outcomes favorable
+            to the event divided by the total number of equally likely
+            outcomes.
+          </p>
+        </statement>
+      </definition>
+      <p>
+        The classical interpretation explains why a fair die has
+        P(roll a 3) = 1/6 and why a randomly drawn card has
+        P(heart) = 13/52 = 1/4. It works beautifully when the
+        equally-likely outcomes are obvious — coins, dice, cards, balls
+        in urns. It struggles once the outcomes get messy. What are
+        the equally likely outcomes for <q>will it rain tomorrow</q>?
+        You can imagine ways to force such cases into the classical
+        form, but the forcing usually feels artificial. The classical
+        interpretation is built around symmetry, and many real-world
+        cases lack that symmetry.
+      </p>
+    </paragraphs>
+
+    <paragraphs xml:id="paragraphs-frequentist">
+      <title>The frequentist interpretation</title>
+      <p>
+        The second answer fixes the symmetry problem by replacing it
+        with repetition. Probability, on this view, is the long-run
+        relative frequency of an event in a large number of similar
+        trials.
+      </p>
+      <definition xml:id="def-ch14-frequentist">
+        <statement>
+          <p>
+            On the <term>frequentist interpretation</term>, the
+            probability of an event is the proportion of times the
+            event would occur in a long run of repeated trials of the
+            same kind.
+          </p>
+        </statement>
+      </definition>
+      <p>
+        Toss a fair coin a thousand times and you expect about 500
+        heads; toss it ten thousand times and the proportion gets
+        closer to one-half. The frequentist says: <em>that</em> is
+        what P(heads) = 0.5 means. It is a fact about the long run.
+        This is the dominant interpretation in classical statistics,
+        which we will use in later chapters of this part of the book.
+      </p>
+      <p>
+        Its weakness is the single case. A frequentist has trouble
+        saying what it means for <em>this</em> coin flip to have
+        probability 0.5, or for <em>this</em> patient to have a 60
+        percent chance of strep. The long run is somewhere out beyond
+        the case in front of us. We often want to reason about the
+        case in front of us.
+      </p>
+    </paragraphs>
+
+    <paragraphs xml:id="paragraphs-subjective">
+      <title>The subjective (Bayesian) interpretation</title>
+      <p>
+        The third answer says: a probability is a degree of belief.
+        It measures how confident a particular reasoner is, given the
+        information they have, that some claim is true. It is in this
+        sense personal — different reasoners with different information
+        can rationally assign different probabilities to the same
+        claim. The personal element is still constrained: subjective
+        probabilities must obey rules of coherence, including all the
+        basic rules we will spell out in the next section.
+      </p>
+      <definition xml:id="def-ch14-subjective">
+        <statement>
+          <p>
+            On the <term>subjective</term> or <term>Bayesian
+            interpretation</term>, the probability of a claim is the
+            degree of belief that a rational reasoner has in the claim,
+            given their evidence. Probabilities are revised as new
+            evidence comes in.
+          </p>
+        </statement>
+      </definition>
+      <p>
+        The subjective interpretation is the natural home for the
+        single case. <q>What's the probability that this defendant is
+        guilty, given the evidence?</q> is a perfectly reasonable
+        question for a Bayesian. So is <q>how confident should I be in
+        this diagnosis, given what I have seen so far?</q> Bayesians
+        also have a clean story about updating: when new evidence
+        arrives, your probabilities should change in a specific way
+        that we will introduce when we get to Bayes' theorem later in
+        this chapter.
+      </p>
+      <p>
+        Its weakness is that it leans on the word <em>rational</em>.
+        Two careful reasoners can start from different priors and end
+        up with different posterior probabilities even after seeing
+        the same evidence. Bayesians have answers to this — over enough
+        evidence, the priors get washed out, and coherence rules out
+        many obviously crazy assignments — but the residual
+        subjectivity worries some critics.
+      </p>
+    </paragraphs>
+
+    <paragraphs xml:id="paragraphs-why-three">
+      <title>Why three interpretations matters in practice</title>
+      <p>
+        For most of this book, the three interpretations agree on the
+        math. The basic rules we are about to state hold on all three
+        views. They matter because each one pushes you toward
+        different examples and different blind spots, and careful
+        reasoners flex between them depending on the case. When we
+        are doing sampling-based statistics in later chapters, we
+        will lean frequentist. When we are reasoning about diagnosis,
+        courtroom evidence, and other one-off cases, we will lean
+        Bayesian. When we are working with idealized examples — coins,
+        dice, urns — we will lean classical. Matching the tool to the
+        problem is not cheating; it is the point.
+      </p>
+    </paragraphs>
+
+    <paragraphs xml:id="paragraphs-where-headed-14-2">
+      <title>Where we're headed</title>
+      <p>
+        All three interpretations agree on the basic rules of
+        probability. Those rules are the next section. They are short.
+        They are also the source of nearly every probability mistake
+        you will ever see, because applying them well requires reading
+        a situation carefully — which means going slowly even though
+        the formulas look easy.
+      </p>
+    </paragraphs>
+
+    <exploration xml:id="field-14-2-1">
+      <title>Field Exercise: Match the interpretation</title>
+      <statement>
+        <p>
+          For each of the following probability statements, which
+          interpretation (classical, frequentist, or subjective) sits
+          most naturally behind it? Some cases are mixed. Where they
+          are mixed, say so and explain why.
+        </p>
+        <ol>
+          <li><p><q>The probability of drawing the ace of spades from a fair deck is 1/52.</q></p></li>
+          <li><p><q>Based on the past ten years of campus weather data, the probability of snow on Move-In Day is about 0.02.</q></p></li>
+          <li><p><q>Given the evidence so far, I'd say there's about a 70 percent chance the suspect was lying.</q></p></li>
+          <li><p><q>In a long sequence of flips of this slightly bent coin, heads come up about 53 percent of the time.</q></p></li>
+          <li><p><q>I'm 90 percent sure I left my keys in the car.</q></p></li>
+          <li><p><q>The probability that a randomly selected first-year student is enrolled in PHIL 151B this semester is 6 percent.</q></p></li>
+        </ol>
+      </statement>
+    </exploration>
+
+  </section>
+
+  <section xml:id="sec-probability-rules">
+    <title>The Basic Rules</title>
+
+    <introduction>
+      <p>
+        The rules of probability are deceptively few. You can write
+        them down on a notecard. The trick is that almost every
+        probability mistake people make is a careless application of
+        one of these rules, usually because the situation was harder
+        to read than it looked.
+      </p>
+    </introduction>
+
+    <paragraphs xml:id="paragraphs-rule-1-range">
+      <title>Probabilities sit between 0 and 1</title>
+      <p>
+        Every probability is at least 0 and at most 1. There is no
+        such thing as a probability of <m>-0.2</m> or 1.4 or 110
+        percent. (Sportscasters who say <q>he gave 110 percent</q> are
+        not making a probability claim. They are abusing arithmetic on
+        purpose.)
+      </p>
+      <p>
+        A probability of 0 means the event will definitely not happen,
+        given what you know. A probability of 1 means it will
+        definitely happen. Anything in between is a degree of
+        confidence.
+      </p>
+    </paragraphs>
+
+    <paragraphs xml:id="paragraphs-rule-2-total">
+      <title>Something always happens: the total is 1</title>
+      <p>
+        If you list all the possible outcomes of a situation, with no
+        overlaps and nothing left out, their probabilities have to add
+        to exactly 1. Something is going to happen, even if you don't
+        know which.
+      </p>
+      <p>
+        For a fair coin, P(heads) + P(tails) = 0.5 + 0.5 = 1. For a
+        fair six-sided die, the six outcomes each have probability
+        1/6, and 6 × 1/6 = 1. For tomorrow's weather, P(rain) +
+        P(no rain) = 1, because one of those two has to be the case.
+      </p>
+      <p>
+        The point seems obvious until you start using it. We rely on
+        it constantly, especially in its next form.
+      </p>
+    </paragraphs>
+
+    <paragraphs xml:id="paragraphs-complement">
+      <title>The complement rule</title>
+      <p>
+        The probability that an event does <em>not</em> happen is one
+        minus the probability that it does. This is the
+        <term>complement rule</term>. We write the complement of
+        <em>A</em> as <m>{\sim}A</m>, using the same tilde the book
+        uses for negation in sentential logic. This is also the same
+        notion of complement that did the work in obversion and
+        contraposition in Chapters 6 and 7: the complement of a class
+        or event is everything not in it.
+      </p>
+      <definition xml:id="def-ch14-complement-rule">
+        <statement>
+          <p>
+            For any event <em>A</em>:
+            <m>P({\sim}A) = 1 - P(A).</m>
+          </p>
+        </statement>
+      </definition>
+      <p>
+        If the probability of rain tomorrow is 0.7, the probability of
+        no rain is 0.3. If the probability of drawing a heart from a
+        standard deck is 0.25, the probability of drawing something
+        that is not a heart is 0.75.
+      </p>
+      <p>
+        The complement rule is more useful than it looks. Sometimes
+        the probability of an event is much harder to compute than the
+        probability of its complement. <q>At least one</q> problems
+        are the classic case. The probability of rolling at least one
+        6 in four rolls of a fair die is fiddly to compute directly,
+        because <q>at least one 6</q> includes <em>exactly one</em>,
+        <em>exactly two</em>, <em>exactly three</em>, and
+        <em>exactly four</em>. The probability of the complement —
+        <em>no 6 at all</em> — is much easier: it's just the
+        probability that each of the four rolls fails to show a 6,
+        multiplied together. Then we subtract from 1.
+      </p>
+      <p>
+        Whenever a probability problem starts with <q>at least one,</q>
+        check whether the complement is easier.
+      </p>
+    </paragraphs>
+
+    <paragraphs xml:id="paragraphs-addition-rule">
+      <title>Mutually exclusive events: the addition rule</title>
+      <p>
+        Two events are <term>mutually exclusive</term> when they
+        cannot both happen at the same time. A single coin flip cannot
+        land both heads and tails. A single die roll cannot show both
+        2 and 5. A single drawn card cannot be both a heart and a
+        spade.
+      </p>
+      <definition xml:id="def-ch14-mutually-exclusive">
+        <statement>
+          <p>
+            Two events are <term>mutually exclusive</term> when they
+            cannot both occur on the same trial.
+          </p>
+        </statement>
+      </definition>
+      <p>
+        When events are mutually exclusive, the probability that one
+        <em>or</em> the other happens is the sum of their individual
+        probabilities.
+      </p>
+      <definition xml:id="def-ch14-addition-rule-disjoint">
+        <statement>
+          <p>
+            <term>Addition rule (mutually exclusive case).</term>
+            If <em>A</em> and <em>B</em> are mutually exclusive, then
+            <m>P(A \text{ or } B) = P(A) + P(B).</m>
+          </p>
+        </statement>
+      </definition>
+      <example xml:id="ex-ch14-die-or">
+        <title>Rolling a 1 or a 6</title>
+        <statement>
+          <p>
+            On a single roll of a fair six-sided die, the events
+            <q>rolls a 1</q> and <q>rolls a 6</q> are mutually
+            exclusive. So
+            P(rolls a 1 or a 6) = P(rolls a 1) + P(rolls a 6)
+            = 1/6 + 1/6 = 2/6 = 1/3.
+          </p>
+        </statement>
+      </example>
+    </paragraphs>
+
+    <paragraphs xml:id="paragraphs-general-addition-rule">
+      <title>When events overlap: the general addition rule</title>
+      <p>
+        When events overlap, simply adding their probabilities
+        double-counts the overlap. Drawing a heart and drawing a face
+        card overlap in three cards: the jack, queen, and king of
+        hearts. If we add P(heart) and P(face card) without adjustment,
+        we count those three cards twice.
+      </p>
+      <definition xml:id="def-ch14-general-addition-rule">
+        <statement>
+          <p>
+            <term>General addition rule.</term> For any two events
+            <em>A</em> and <em>B</em>,
+            <m>P(A \text{ or } B) = P(A) + P(B) - P(A \text{ and } B).</m>
+          </p>
+        </statement>
+      </definition>
+      <example xml:id="ex-ch14-heart-or-face">
+        <title>A heart or a face card</title>
+        <statement>
+          <p>
+            From a standard 52-card deck:
+            P(heart) = 13/52, P(face card) = 12/52, and
+            P(heart and face card) = 3/52 (the J, Q, K of hearts).
+          </p>
+          <p>
+            By the general addition rule:
+            P(heart or face card) = 13/52 + 12/52 − 3/52 = 22/52, or
+            roughly 0.42.
+          </p>
+        </statement>
+      </example>
+      <p>
+        When events are mutually exclusive, the
+        P(A and B) term in the general rule is 0, and the rule
+        collapses to the simpler version. The two addition rules are
+        one idea written in two useful forms.
+      </p>
+    </paragraphs>
+
+    <paragraphs xml:id="paragraphs-where-headed-14-3">
+      <title>Where we're headed</title>
+      <p>
+        We can now compute the probability of a single event, the
+        probability that an event does <em>not</em> happen, and the
+        probability that one event or another happens. The remaining
+        major case is the probability that two events both happen.
+        That brings us to <term>conditional probability</term>, the
+        single most powerful — and most error-prone — idea in
+        elementary probability.
+      </p>
+    </paragraphs>
+
+  </section>
+
+  <section xml:id="sec-conditional-independence">
+    <title>Conditional Probability and Independence</title>
+
+    <introduction>
+      <p>
+        So far we have treated probabilities as fixed numbers attached
+        to events. In practice, probabilities change as new information
+        comes in. <q>The probability of rain</q> is one number before
+        you check the radar and another after. <q>The probability the
+        suspect is guilty</q> shifts as evidence comes in. The tool
+        that makes those shifts precise is conditional probability.
+      </p>
+    </introduction>
+
+    <paragraphs xml:id="paragraphs-conditional-probability">
+      <title>Probability, given something</title>
+      <p>
+        A <term>conditional probability</term> is the probability of
+        one event given that another event has occurred. We write it
+        with a vertical bar: P(<em>A</em> | <em>B</em>), read
+        <q>the probability of A given B.</q>
+      </p>
+      <definition xml:id="def-ch14-conditional-probability">
+        <statement>
+          <p>
+            The <term>conditional probability</term> of <em>A</em>
+            given <em>B</em>, written
+            P(<em>A</em> | <em>B</em>), is the probability that
+            <em>A</em> occurs assuming that <em>B</em> has occurred.
+            Provided P(<em>B</em>) is greater than 0,
+            <m>P(A \mid B) = \dfrac{P(A \text{ and } B)}{P(B)}.</m>
+          </p>
+        </statement>
+      </definition>
+      <p>
+        The formula has an intuitive picture behind it. Imagine all
+        the ways the situation could turn out, weighted by their
+        probabilities. Conditioning on <em>B</em> means restricting
+        attention to the slice of possibilities in which <em>B</em>
+        happens. Within that slice, what fraction also have <em>A</em>?
+        That fraction is P(<em>A</em> | <em>B</em>).
+      </p>
+      <example xml:id="ex-ch14-die-conditional">
+        <title>A die, conditional on an even roll</title>
+        <statement>
+          <p>
+            Roll a fair six-sided die once. The unconditional
+            probability of rolling a 4 is 1/6. The conditional
+            probability of rolling a 4 given that the roll is even is
+            1/3, because among the three even outcomes (2, 4, 6),
+            exactly one is a 4.
+          </p>
+          <p>
+            Plug into the definition:
+            P(4 and even) = P(4) = 1/6.
+            P(even) = 1/2.
+            P(4 | even) = (1/6) / (1/2) = 1/3.
+            The picture and the formula agree.
+          </p>
+        </statement>
+      </example>
+    </paragraphs>
+
+    <paragraphs xml:id="paragraphs-multiplication-rule">
+      <title>The multiplication rule</title>
+      <p>
+        Rearranging the conditional probability formula gives a
+        formula for the probability of both events happening:
+      </p>
+      <definition xml:id="def-ch14-multiplication-rule">
+        <statement>
+          <p>
+            <term>Multiplication rule.</term> For any two events
+            <em>A</em> and <em>B</em>,
+            <m>P(A \text{ and } B) = P(A \mid B) \cdot P(B) = P(B \mid A) \cdot P(A).</m>
+          </p>
+        </statement>
+      </definition>
+      <p>
+        In English: the probability that two events both happen is the
+        probability of one, times the probability of the other given
+        the first. You can pick whichever order of conditioning is
+        easier to think about. The result is the same.
+      </p>
+      <example xml:id="ex-ch14-two-cards">
+        <title>Drawing two hearts without replacement</title>
+        <statement>
+          <p>
+            Draw two cards from a standard 52-card deck without
+            putting the first back. What is the probability that both
+            are hearts?
+          </p>
+          <p>
+            P(first card is a heart) = 13/52.
+            Given that the first card is a heart, there are 12 hearts
+            left in the remaining 51 cards, so
+            P(second card is a heart | first card is a heart) = 12/51.
+          </p>
+          <p>
+            By the multiplication rule:
+            P(both hearts) = (13/52) × (12/51) = 156/2652
+            approximately 0.059, or about 6 percent.
+          </p>
+        </statement>
+      </example>
+    </paragraphs>
+
+    <paragraphs xml:id="paragraphs-independence">
+      <title>Independence</title>
+      <p>
+        Two events are <term>independent</term> when knowing that one
+        happened does not change the probability of the other.
+      </p>
+      <definition xml:id="def-ch14-independence">
+        <statement>
+          <p>
+            Two events <em>A</em> and <em>B</em> are
+            <term>independent</term> when
+            <m>P(A \mid B) = P(A),</m>
+            or equivalently
+            <m>P(A \text{ and } B) = P(A) \cdot P(B).</m>
+          </p>
+        </statement>
+      </definition>
+      <p>
+        Independent events are the easiest case of the multiplication
+        rule. If two flips of a fair coin are independent, the
+        probability that both come up heads is 0.5 × 0.5 = 0.25. If
+        five rolls of a fair die are independent, the probability of
+        rolling a 6 every time is (1/6)<m>{}^5</m>, about 0.00013.
+      </p>
+      <p>
+        Independence is a strong claim. Real-world events that look
+        independent often share a common cause. Two students in the same
+        dorm catching a cold in the same week may both trace back to the
+        dorm. Two missed questions on the same exam may both trace back
+        to preparation.
+      </p>
+      <p>
+        A clean way to spot a dependence problem: ask whether the
+        probability of one event would change if you learned the other
+        happened. If yes, the events are dependent. If no, they are
+        independent.
+      </p>
+    </paragraphs>
+
+    <paragraphs xml:id="paragraphs-three-classic-mistakes">
+      <title>Three classic mistakes</title>
+      <p>
+        Conditional probability is fertile ground for mistakes. Three
+        come up so often that they have names.
+      </p>
+      <p>
+        The <term>gambler's fallacy</term> treats independent trials
+        as if previous outcomes change the probability of future
+        ones. <q>The roulette wheel has come up red five times in a
+        row, so black is due.</q> The wheel has no memory. If it is
+        fair, each spin is independent, and the probability of red on
+        the next spin remains 18/38. Previous spins provide no evidence
+        about the current spin.
+      </p>
+      <p>
+        The <term>conjunction fallacy</term> treats the probability
+        of two events both happening as if it could be greater than
+        the probability of just one of them. It cannot.
+        <m>P(A \text{ and } B) \leq P(A)</m>, always — adding
+        a second requirement can only narrow the set of
+        possibilities. Yet people routinely rate detailed scenarios
+        as more probable than matching simpler ones, because the
+        details make the scenario feel more plausible. The classic
+        demonstration is Tversky and Kahneman's <q>Linda</q> problem.
+        Subjects read a short description of Linda — a thoughtful,
+        outspoken woman who majored in philosophy in college and was
+        concerned with issues of social justice — and are asked which
+        is more probable: (a) Linda is a bank teller, or (b) Linda is
+        a bank teller and is active in the feminist movement. Most
+        pick (b). But the set of bank-teller feminists is a subset of
+        the set of bank tellers, so (b) cannot be more probable than
+        (a); the conjunction always has probability less than or
+        equal to either conjunct. Plausibility and probability are
+        not the same. (See Tversky and Kahneman, <q>Extensional
+        Versus Intuitive Reasoning: The Conjunction Fallacy in
+        Probability Judgment,</q> <em>Psychological Review</em> 90
+        (1983).)
+      </p>
+      <p>
+        The <term>prosecutor's fallacy</term> confuses
+        P(<em>A</em> | <em>B</em>) with P(<em>B</em> | <em>A</em>).
+        Conditional probabilities are directional, and the two
+        directions can be wildly different numbers. Almost every dog
+        is a mammal: P(mammal | dog) is essentially 1. Most mammals
+        are not dogs: P(dog | mammal) is much smaller. Same two
+        categories, two very different conditional probabilities.
+        Mixing up the direction is what gives the prosecutor's
+        fallacy its name: the move from <q>the probability of this
+        evidence given that the defendant is innocent is small</q>
+        to <q>the probability that the defendant is innocent given
+        this evidence is small.</q> Those are different sentences
+        and different numbers. Confusing them has put innocent
+        people in prison.
+      </p>
+      <p>
+        All three fallacies have the same shape. They mistake the
+        psychological pull of a pattern, a story, or a number for
+        the structural constraints of probability. Probabilities
+        care about counts, not narratives. The next section gives us
+        the tool — Bayes' theorem — that makes the
+        prosecutor's-fallacy mistake easy to diagnose by showing
+        exactly how the two directions of a conditional are related.
+      </p>
+    </paragraphs>
+
+    <paragraphs xml:id="paragraphs-where-headed-14-4">
+      <title>Where we're headed</title>
+      <p>
+        Conditional probability gives us a way to ask: given the
+        evidence, how likely is the claim? That is the question we
+        ask all the time. The next section turns the rules for
+        conditional probability into Bayes' theorem — a formula for
+        moving from a prior probability to a posterior probability
+        when new evidence arrives.
+      </p>
+    </paragraphs>
+
+    <exploration xml:id="field-14-4-1">
+      <title>Field Exercise: Conditional and joint</title>
+      <statement>
+        <p>
+          A campus dining survey of 200 students records two things
+          for each student: whether they ate breakfast that day, and
+          whether they used the on-campus dining hall (as opposed to
+          off-campus food or no breakfast at all).
+        </p>
+        <p>
+          The results:
+        </p>
+        <ul>
+          <li><p>120 students ate breakfast; 80 did not.</p></li>
+          <li><p>Of the 120 who ate breakfast, 90 used the dining hall.</p></li>
+          <li><p>Of the 80 who did not eat breakfast, 20 still used the dining hall for coffee or a snack.</p></li>
+        </ul>
+        <p>
+          For a randomly chosen student in the survey, compute:
+        </p>
+        <ol>
+          <li><p>P(ate breakfast).</p></li>
+          <li><p>P(used the dining hall).</p></li>
+          <li><p>P(used the dining hall and ate breakfast).</p></li>
+          <li><p>P(used the dining hall | ate breakfast).</p></li>
+          <li><p>P(ate breakfast | used the dining hall).</p></li>
+          <li><p>Are the events <q>ate breakfast</q> and <q>used the dining hall</q> independent? Defend your answer using the numbers.</p></li>
+        </ol>
+        <p>
+          Pay attention to the difference between items 4 and 5. Same
+          two events, opposite directions.
+        </p>
+      </statement>
+    </exploration>
+
+  </section>
+
+  <section xml:id="sec-bayes">
+    <title>Bayes' Theorem</title>
+
+    <introduction>
+      <p>
+        Probabilities change when evidence arrives. Conditional
+        probability gave us the language to say so: P(H | E) is the
+        probability of a hypothesis <em>H</em> given some evidence
+        <em>E</em>. What we have not yet done is solve for it. In
+        most real situations, what we know is P(E | H) — how likely
+        the evidence would be if the hypothesis were true — and what
+        we want is P(H | E), how confident the evidence should make
+        us in the hypothesis. <term>Bayes' theorem</term> turns the
+        first into the second.
+      </p>
+    </introduction>
+
+    <paragraphs xml:id="paragraphs-prior-posterior">
+      <title>Prior and posterior</title>
+      <p>
+        Before evidence arrives, you have some probability for a
+        hypothesis. Call that the <term>prior probability</term>.
+        After you update on the evidence, you have a new
+        probability. Call that the <term>posterior probability</term>.
+      </p>
+      <definition xml:id="def-ch14-prior-posterior">
+        <statement>
+          <p>
+            The <term>prior probability</term> of a hypothesis is
+            its probability before a given piece of evidence is
+            taken into account. The <term>posterior probability</term>
+            is its probability after the evidence is taken into
+            account.
+          </p>
+        </statement>
+      </definition>
+      <p>
+        We will work only with cases that have two competing
+        hypotheses: <em>H</em> and its negation
+        <m>{\sim}H</m>. Either the person has the disease or they
+        do not. Either the package was stolen or it was not. Either
+        the suspect was at the scene or they were not. Cases with
+        three or more competing hypotheses use the same idea with
+        more bookkeeping, but the two-hypothesis case is the right
+        place to start, and it is the only case we will ask you to
+        compute in this chapter.
+      </p>
+    </paragraphs>
+
+    <paragraphs xml:id="paragraphs-bayes-formula">
+      <title>The formula</title>
+      <p>
+        Here is Bayes' theorem in the form you will actually use.
+      </p>
+      <definition xml:id="def-ch14-bayes-theorem">
+        <statement>
+          <p>
+            <term>Bayes' theorem (two-hypothesis case).</term> For a
+            hypothesis <em>H</em> and evidence <em>E</em>, the
+            posterior probability of <em>H</em> given <em>E</em> is
+          </p>
+          <p>
+            <m>P(H \mid E) \;=\; \dfrac{P(E \mid H)\,P(H)}{P(E \mid H)\,P(H) \;+\; P(E \mid {\sim}H)\,P({\sim}H)}.</m>
+          </p>
+        </statement>
+      </definition>
+      <p>
+        Four ingredients go in:
+      </p>
+      <ul>
+        <li><p>P(<em>H</em>), the prior probability of the hypothesis;</p></li>
+        <li><p>P(<m>{\sim}H</m>) = 1 − P(<em>H</em>), the prior probability of its negation, by the complement rule;</p></li>
+        <li><p>P(<em>E</em> | <em>H</em>), the probability of the evidence if the hypothesis is true;</p></li>
+        <li><p>P(<em>E</em> | <m>{\sim}H</m>), the probability of the evidence if the hypothesis is false.</p></li>
+      </ul>
+      <p>
+        One thing comes out: P(<em>H</em> | <em>E</em>), the
+        posterior probability — the answer we actually want.
+      </p>
+      <p>
+        Where does the formula come from? Three short steps from
+        rules we have already stated. First, by the definition of
+        conditional probability,
+        P(<em>H</em> | <em>E</em>) = P(<em>H</em> and <em>E</em>) /
+        P(<em>E</em>). Second, by the multiplication rule, the
+        numerator P(<em>H</em> and <em>E</em>) can also be written
+        as P(<em>E</em> | <em>H</em>) · P(<em>H</em>). Third, the
+        denominator P(<em>E</em>) breaks into two mutually exclusive
+        cases — either <em>E</em> happens together with <em>H</em>,
+        or it happens together with <m>{\sim}H</m> — and by the
+        multiplication rule applied to each:
+        P(<em>E</em>) = P(<em>E</em> | <em>H</em>) · P(<em>H</em>) +
+        P(<em>E</em> | <m>{\sim}H</m>) · P(<m>{\sim}H</m>).
+        Substitute, and the formula above is what falls out.
+      </p>
+    </paragraphs>
+
+    <paragraphs xml:id="paragraphs-bayes-medical">
+      <title>A worked example: the medical test</title>
+      <p>
+        Suppose a disease affects 1 person in 1,000. A test for the
+        disease is 99 percent accurate in both directions: 99 percent
+        of people who have the disease test positive, and 99 percent
+        of people who do not have the disease test negative. Your
+        test comes back positive. What is the probability that you
+        actually have the disease?
+      </p>
+      <example xml:id="ex-ch14-bayes-medical">
+        <title>Bayes' theorem applied to the medical test</title>
+        <statement>
+          <p>
+            Let <em>H</em> = <q>has the disease</q> and <em>E</em> =
+            <q>tests positive.</q> The four ingredients:
+          </p>
+          <ul>
+            <li><p>P(<em>H</em>) = 0.001 (the base rate);</p></li>
+            <li><p>P(<m>{\sim}H</m>) = 0.999;</p></li>
+            <li><p>P(<em>E</em> | <em>H</em>) = 0.99 (the true-positive rate);</p></li>
+            <li><p>P(<em>E</em> | <m>{\sim}H</m>) = 0.01 (the false-positive rate).</p></li>
+          </ul>
+          <p>
+            Plug into Bayes' theorem:
+          </p>
+          <p>
+            <m>P(H \mid E) \;=\; \dfrac{(0.99)(0.001)}{(0.99)(0.001) + (0.01)(0.999)} \;=\; \dfrac{0.00099}{0.01098} \;\approx\; 0.090.</m>
+          </p>
+          <p>
+            The answer is about 9 percent, even though the test is often
+            described as <q>99 percent accurate.</q>
+          </p>
+        </statement>
+      </example>
+      <p>
+        There is a slower way to see the same number by counting.
+        Imagine 10,000 randomly chosen people:
+      </p>
+      <ul>
+        <li><p>About 10 have the disease (the base rate is 1 in 1,000). The test correctly flags about all 10. These are the <term>true positives</term>.</p></li>
+        <li><p>The other 9,990 do not have the disease. The test wrongly flags about 100 of them. These are the <term>false positives</term>.</p></li>
+        <li><p>Total positive results: about 110. Of those, only about 10 actually have the disease.</p></li>
+        <li><p>So P(<em>H</em> | <em>E</em>) is approximately 10 / 110, or approximately 0.09.</p></li>
+      </ul>
+      <p>
+        Same answer. The count approach is more intuitive; the
+        formula is more general. They are the same arithmetic in two
+        different outfits, and it is worth doing both at least once
+        so the formula stops feeling magical.
+      </p>
+    </paragraphs>
+
+    <paragraphs xml:id="paragraphs-bayes-priors-matter">
+      <title>The prior makes the answer</title>
+      <p>
+        Re-run the medical-test example with a different prior to
+        see how much the answer depends on the base rate. Hold the
+        test accuracy fixed at P(<em>E</em> | <em>H</em>) = 0.99 and
+        P(<em>E</em> | <m>{\sim}H</m>) = 0.01.
+      </p>
+      <ul>
+        <li><p>If P(<em>H</em>) = 0.001 (rare disease in the general population), the posterior is about 9 percent.</p></li>
+        <li><p>If P(<em>H</em>) = 0.01 (less rare), the posterior is about 50 percent.</p></li>
+        <li><p>If P(<em>H</em>) = 0.10 (the patient is already in a high-risk group), the posterior is about 92 percent.</p></li>
+        <li><p>If P(<em>H</em>) = 0.50 (no reason to think the patient is more or less at risk than chance), the posterior is 99 percent.</p></li>
+      </ul>
+      <p>
+        Same test, same accuracy, wildly different posteriors. The
+        reason is structural: the numerator of Bayes' theorem
+        multiplies the prior P(<em>H</em>) by the likelihood
+        P(<em>E</em> | <em>H</em>). When the prior is tiny, even a
+        strong likelihood cannot lift the posterior very far,
+        because the denominator is dominated by the false-positive
+        term P(<em>E</em> | <m>{\sim}H</m>) · P(<m>{\sim}H</m>).
+        When the prior is moderate, the same likelihood lifts the
+        posterior close to certainty.
+      </p>
+      <p>
+        This is the formal version of <term>base-rate neglect</term>.
+        People who ignore the prior tend to confuse
+        P(<em>E</em> | <em>H</em>) — what they read off the test's
+        accuracy claim — with P(<em>H</em> | <em>E</em>) — the
+        answer they actually want. Bayes' theorem is the bookkeeping
+        that prevents the confusion, and it makes the prosecutor's
+        fallacy from §14.4 easy to diagnose: the two directions are
+        equal only when the priors balance the likelihoods just
+        right, which they almost never do.
+      </p>
+    </paragraphs>
+
+    <paragraphs xml:id="paragraphs-where-headed-14-5">
+      <title>Where we're headed</title>
+      <p>
+        We now have everything we need to talk quantitatively about
+        uncertainty: a working concept of probability, three
+        interpretations behind it, the basic rules, conditional
+        probability, independence, and Bayes' theorem for updating
+        in the two-hypothesis case. The next chapter shifts from
+        individual probabilities to whole collections of data —
+        averages, spreads, and the shapes of distributions — which
+        is the descriptive half of statistical reasoning. The
+        chapter after that puts probability and description back
+        together as statistical <em>inference</em>: using data from
+        a sample to learn about a population we cannot observe
+        directly.
+      </p>
+    </paragraphs>
+
+    <exploration xml:id="field-14-5-1">
+      <title>Field Exercise: Apply Bayes' theorem</title>
+      <statement>
+        <p>
+          A campus security camera flags potential package thefts.
+          From a year of footage, the security office estimates:
+        </p>
+        <ul>
+          <li><p>P(<em>H</em>) = 0.01: of all packages delivered, 1 percent are actually stolen (<em>H</em> = <q>this package was stolen</q>).</p></li>
+          <li><p>P(<em>E</em> | <em>H</em>) = 0.95: when a package is in fact stolen, the camera flags the incident 95 percent of the time (<em>E</em> = <q>the camera flagged this delivery</q>).</p></li>
+          <li><p>P(<em>E</em> | <m>{\sim}H</m>) = 0.04: when a package is not stolen, the camera flags it anyway about 4 percent of the time, because of misreads.</p></li>
+        </ul>
+        <p>
+          Plug into Bayes' theorem and compute
+          P(<em>H</em> | <em>E</em>): given that the camera flagged
+          a delivery, what is the probability that the package was
+          actually stolen? Then, in one sentence, describe what
+          changes if the actual theft rate were instead 10 percent
+          rather than 1 percent.
+        </p>
+      </statement>
+    </exploration>
+
+  </section>
+
+  <conclusion xml:id="conclusion-ch14">
+    <title>Chapter Summary</title>
+
+    <p>
+      This chapter introduced probability as a precise vocabulary for
+      degrees of likelihood and changing confidence. The core ideas,
+      section by section:
+    </p>
+    <p>
+      <alert>From <q>How Likely?</q> to a Number (§14.1).</alert> A
+      probability is a number between 0 and 1 that represents how
+      likely an outcome is, given a situation and what we know about
+      it. Probabilities can be written as decimals, percentages, or
+      odds; they all encode the same underlying number. Long-run
+      frequency is one important way to interpret probability,
+      especially across repeated trials.
+    </p>
+    <p>
+      <alert>Three Ways to Think About Probability (§14.2).</alert>
+      The <em>classical</em> interpretation treats probability as the
+      ratio of favorable outcomes to equally likely outcomes. The
+      <em>frequentist</em> interpretation treats probability as the
+      long-run proportion in a sequence of similar trials. The
+      <em>subjective</em> or <em>Bayesian</em> interpretation treats
+      probability as a rational degree of belief, constrained by
+      coherence and revisable in light of evidence. All three agree
+      on the basic rules; they disagree about what the rules are
+      describing. Careful reasoners flex between interpretations
+      depending on the case.
+    </p>
+    <p>
+      <alert>The Basic Rules (§14.3).</alert> Every probability is
+      between 0 and 1. The probabilities of an exhaustive,
+      non-overlapping set of outcomes add to 1. The complement rule
+      says P(not A) = 1 − P(A). The addition rule for mutually
+      exclusive events says P(A or B) = P(A) + P(B). The general
+      addition rule says P(A or B) = P(A) + P(B) − P(A and B),
+      collapsing to the mutually-exclusive case when the events do
+      not overlap.
+    </p>
+    <p>
+      <alert>Conditional Probability and Independence (§14.4).</alert>
+      The conditional probability P(A | B) is the probability of A
+      given that B has occurred, equal to P(A and B) / P(B). The
+      multiplication rule gives P(A and B) = P(A | B) · P(B). Two
+      events are independent when conditioning on one does not change
+      the probability of the other. Three frequent errors: the
+      gambler's fallacy (treating independent events as
+      dependent), the conjunction fallacy (treating P(A and B) as
+      larger than P(A)), and confusion between P(A | B) and
+      P(B | A), which is the structure of the prosecutor's fallacy.
+    </p>
+    <p>
+      <alert>Bayes' Theorem (§14.5).</alert> A probability before a
+      piece of evidence is the <em>prior</em>; after the evidence,
+      the <em>posterior</em>. In the two-hypothesis case (<em>H</em>
+      and <m>{\sim}H</m>), Bayes' theorem gives the posterior:
+      <m>P(H \mid E) = \dfrac{P(E \mid H)\,P(H)}{P(E \mid H)\,P(H) + P(E \mid {\sim}H)\,P({\sim}H)}.</m>
+      Four ingredients in (P(<em>H</em>), P(<m>{\sim}H</m>),
+      P(<em>E</em> | <em>H</em>), P(<em>E</em> | <m>{\sim}H</m>)),
+      one out (P(<em>H</em> | <em>E</em>)). The medical-test worked
+      example shows why a 99-percent-accurate test for a 1-in-1,000
+      disease yields only about a 9 percent posterior after a positive
+      result: when the base rate is small, false positives dominate
+      true positives. Base-rate neglect is what happens when the prior
+      P(<em>H</em>) drops out of the calculation.
+    </p>
+
+  </conclusion>
+
+  <section xml:id="sec-ch14-key-terms">
+    <title>Key Terms</title>
+
+    <p>Listed alphabetically, with section references.</p>
+
+    <dl>
+      <li xml:id="term-ch14-addition-rule">
+        <title>Addition rule</title>
+        <p>For any two events, P(A or B) = P(A) + P(B) − P(A and B). When A and B are mutually exclusive, the last term is 0 and the rule reduces to P(A or B) = P(A) + P(B). (§14.3)</p>
+      </li>
+      <li xml:id="term-ch14-base-rate">
+        <title>Base rate</title>
+        <p>The unconditional probability of an outcome in the population under consideration. Updating without accounting for the base rate is <em>base-rate neglect</em>. (§14.5)</p>
+      </li>
+      <li xml:id="term-ch14-bayes-theorem">
+        <title>Bayes' theorem</title>
+        <p>In the two-hypothesis case, the posterior probability of <em>H</em> given <em>E</em> is <m>P(H \mid E) = P(E \mid H)\,P(H) / \bigl[P(E \mid H)\,P(H) + P(E \mid {\sim}H)\,P({\sim}H)\bigr].</m> Used to update a prior probability in light of evidence. (§14.5)</p>
+      </li>
+      <li xml:id="term-ch14-bayesian">
+        <title>Bayesian (subjective) interpretation</title>
+        <p>Interpretation of probability as a rational degree of belief, constrained by coherence and revised by new evidence. (§14.2)</p>
+      </li>
+      <li xml:id="term-ch14-classical-interp">
+        <title>Classical interpretation</title>
+        <p>Interpretation of probability as the ratio of outcomes favorable to an event to the total number of equally likely outcomes. (§14.2)</p>
+      </li>
+      <li xml:id="term-ch14-complement-rule">
+        <title>Complement rule</title>
+        <p>P(not A) = 1 − P(A). (§14.3)</p>
+      </li>
+      <li xml:id="term-ch14-conditional-probability">
+        <title>Conditional probability</title>
+        <p>The probability of A given B, written P(A | B), equal to P(A and B) / P(B) when P(B) &gt; 0. (§14.4)</p>
+      </li>
+      <li xml:id="term-ch14-conjunction-fallacy">
+        <title>Conjunction fallacy</title>
+        <p>The mistake of treating P(A and B) as greater than P(A) or P(B), often produced by mistaking plausibility for probability. (§14.4)</p>
+      </li>
+      <li xml:id="term-ch14-event">
+        <title>Event</title>
+        <p>A set of outcomes treated together — the outcomes for which some condition is met. (§14.1)</p>
+      </li>
+      <li xml:id="term-ch14-false-positive">
+        <title>False positive</title>
+        <p>A positive test result for a person or case that does not actually have the condition being tested for. (§14.5)</p>
+      </li>
+      <li xml:id="term-ch14-frequentist-interp">
+        <title>Frequentist interpretation</title>
+        <p>Interpretation of probability as the long-run relative frequency of an event in a sequence of similar trials. (§14.2)</p>
+      </li>
+      <li xml:id="term-ch14-gamblers-fallacy">
+        <title>Gambler's fallacy</title>
+        <p>The mistake of treating independent trials as if previous outcomes change the probability of future outcomes. (§14.4)</p>
+      </li>
+      <li xml:id="term-ch14-independence">
+        <title>Independence</title>
+        <p>Two events are independent when P(A | B) = P(A), equivalently P(A and B) = P(A) · P(B). (§14.4)</p>
+      </li>
+      <li xml:id="term-ch14-multiplication-rule">
+        <title>Multiplication rule</title>
+        <p>P(A and B) = P(A | B) · P(B) = P(B | A) · P(A). For independent events this simplifies to P(A and B) = P(A) · P(B). (§14.4)</p>
+      </li>
+      <li xml:id="term-ch14-mutually-exclusive">
+        <title>Mutually exclusive</title>
+        <p>Two events are mutually exclusive when they cannot both occur on the same trial. (§14.3)</p>
+      </li>
+      <li xml:id="term-ch14-outcome">
+        <title>Outcome</title>
+        <p>A specific possible result of a situation under consideration. (§14.1)</p>
+      </li>
+      <li xml:id="term-ch14-posterior-probability">
+        <title>Posterior probability</title>
+        <p>The probability of a claim after a piece of evidence has been taken into account. (§14.5)</p>
+      </li>
+      <li xml:id="term-ch14-prior-probability">
+        <title>Prior probability</title>
+        <p>The probability of a claim before a piece of evidence is taken into account. (§14.5)</p>
+      </li>
+      <li xml:id="term-ch14-probability">
+        <title>Probability</title>
+        <p>A number between 0 and 1 that represents how likely an outcome is, relative to a situation and to what is known about it. (§14.1)</p>
+      </li>
+      <li xml:id="term-ch14-prosecutors-fallacy">
+        <title>Prosecutor's fallacy</title>
+        <p>Confusing P(evidence | innocence) with P(innocence | evidence) — treating a small probability of the evidence under innocence as if it were a small probability of innocence given the evidence. (§14.4)</p>
+      </li>
+      <li xml:id="term-ch14-true-positive">
+        <title>True positive</title>
+        <p>A positive test result for a person or case that actually has the condition being tested for. Compare with <em>false positive</em>. (§14.5)</p>
+      </li>
+    </dl>
+
+  </section>
+
+  <exercises xml:id="exercises-ch14">
+    <title>End-of-Chapter Exercises</title>
+
+    <exercisegroup xml:id="exgroup-ch14-s01">
+      <title>Exercise Set 1: Basic rules</title>
+      <introduction>
+        <p>
+          For each problem, identify the rule(s) you need and compute
+          the probability. Express answers as fractions or decimals.
+        </p>
+      </introduction>
+      <exercise xml:id="ex-ch14-s01-01">
+        <statement>
+          <p>A fair coin is flipped. What is the probability that it lands tails?</p>
+        </statement>
+      </exercise>
+      <exercise xml:id="ex-ch14-s01-02">
+        <statement>
+          <p>A fair six-sided die is rolled. What is the probability that it does <em>not</em> land on a 5?</p>
+        </statement>
+      </exercise>
+      <exercise xml:id="ex-ch14-s01-03">
+        <statement>
+          <p>One card is drawn from a standard 52-card deck. What is the probability that the card is either a 2 or a 3?</p>
+        </statement>
+      </exercise>
+      <exercise xml:id="ex-ch14-s01-04">
+        <statement>
+          <p>One card is drawn from a standard 52-card deck. What is the probability that the card is a face card or a club?</p>
+        </statement>
+      </exercise>
+      <exercise xml:id="ex-ch14-s01-05">
+        <statement>
+          <p>The probability that a randomly chosen UMW student has declared a major is 0.78. What is the probability that the student has not declared a major?</p>
+        </statement>
+      </exercise>
+      <exercise xml:id="ex-ch14-s01-06">
+        <statement>
+          <p>A spinner has four equally sized colored regions: red, blue, green, and yellow. What is the probability that the spinner lands on red or green?</p>
+        </statement>
+      </exercise>
+    </exercisegroup>
+
+    <exercisegroup xml:id="exgroup-ch14-s02">
+      <title>Exercise Set 2: Conditional probability</title>
+      <introduction>
+        <p>
+          For each problem, compute the requested conditional or joint
+          probability. Show the work, including which rule was used.
+        </p>
+      </introduction>
+      <exercise xml:id="ex-ch14-s02-01">
+        <statement>
+          <p>A fair six-sided die is rolled. Given that the outcome is odd, what is the probability that the outcome is 3?</p>
+        </statement>
+      </exercise>
+      <exercise xml:id="ex-ch14-s02-02">
+        <statement>
+          <p>Two cards are drawn from a standard 52-card deck without replacement. What is the probability that both are aces?</p>
+        </statement>
+      </exercise>
+      <exercise xml:id="ex-ch14-s02-03">
+        <statement>
+          <p>A bag holds 5 red marbles and 7 blue marbles. A marble is drawn at random and not replaced; then a second marble is drawn. What is the probability that the first is red and the second is blue?</p>
+        </statement>
+      </exercise>
+      <exercise xml:id="ex-ch14-s02-04">
+        <statement>
+          <p>A fair coin is flipped three times. What is the probability of getting heads all three times?</p>
+        </statement>
+      </exercise>
+      <exercise xml:id="ex-ch14-s02-05">
+        <statement>
+          <p>A fair coin is flipped three times. What is the probability of getting at least one tail? (Hint: consider the complement.)</p>
+        </statement>
+      </exercise>
+    </exercisegroup>
+
+    <exercisegroup xml:id="exgroup-ch14-s03">
+      <title>Exercise Set 3: Independence</title>
+      <introduction>
+        <p>
+          For each pair of events, decide whether they are plausibly
+          independent. Defend your answer in a sentence.
+        </p>
+      </introduction>
+      <exercise xml:id="ex-ch14-s03-01">
+        <statement>
+          <p>(A) The next flip of a fair coin lands heads. (B) The flip after that lands heads.</p>
+        </statement>
+      </exercise>
+      <exercise xml:id="ex-ch14-s03-02">
+        <statement>
+          <p>(A) A randomly chosen UMW student is a first-year. (B) The same student lives in on-campus housing.</p>
+        </statement>
+      </exercise>
+      <exercise xml:id="ex-ch14-s03-03">
+        <statement>
+          <p>(A) It rains in Fredericksburg tomorrow morning. (B) Class attendance in PHIL 151B is lower than usual tomorrow.</p>
+        </statement>
+      </exercise>
+      <exercise xml:id="ex-ch14-s03-04">
+        <statement>
+          <p>(A) A randomly chosen UMW student is a philosophy major. (B) The same student is enrolled in MATH 110.</p>
+        </statement>
+      </exercise>
+      <exercise xml:id="ex-ch14-s03-05">
+        <statement>
+          <p>(A) The first card drawn from a shuffled deck is a heart. (B) The second card drawn from the same deck, without replacement, is a heart.</p>
+        </statement>
+      </exercise>
+    </exercisegroup>
+
+    <exercisegroup xml:id="exgroup-ch14-s04">
+      <title>Exercise Set 4: Direction of conditioning</title>
+      <introduction>
+        <p>
+          For each pair of probabilities, decide whether they are
+          (almost certainly) close to each other or (likely) very
+          different. Explain.
+        </p>
+      </introduction>
+      <exercise xml:id="ex-ch14-s04-01">
+        <statement>
+          <p>P(left-handed | professional baseball pitcher) and P(professional baseball pitcher | left-handed).</p>
+        </statement>
+      </exercise>
+      <exercise xml:id="ex-ch14-s04-02">
+        <statement>
+          <p>P(wears glasses | UMW student) and P(UMW student | wears glasses).</p>
+        </statement>
+      </exercise>
+      <exercise xml:id="ex-ch14-s04-03">
+        <statement>
+          <p>P(has a fever | has the flu) and P(has the flu | has a fever).</p>
+        </statement>
+      </exercise>
+      <exercise xml:id="ex-ch14-s04-04">
+        <statement>
+          <p>P(lottery ticket wins | the ticket was bought yesterday) and P(the ticket was bought yesterday | lottery ticket wins).</p>
+        </statement>
+      </exercise>
+    </exercisegroup>
+
+    <exercisegroup xml:id="exgroup-ch14-s05">
+      <title>Exercise Set 5: Bayes' theorem and base rates</title>
+      <introduction>
+        <p>
+          For each scenario, identify <em>H</em> and <em>E</em>. Where
+          the four ingredients (P(<em>H</em>), P(<m>{\sim}H</m>),
+          P(<em>E</em> | <em>H</em>), P(<em>E</em> | <m>{\sim}H</m>))
+          are all given, compute P(<em>H</em> | <em>E</em>) using
+          Bayes' theorem; the 10,000-people count method gives the
+          same answer if you prefer to start there. Where the base
+          rate or false-positive rate is missing, say which number
+          you would need and why. In every case use only two
+          hypotheses: <em>H</em> and <m>{\sim}H</m>.
+        </p>
+      </introduction>
+      <exercise xml:id="ex-ch14-s05-01">
+        <statement>
+          <p>
+            A rare medical condition affects 1 in 500 people in a
+            population. A screening test is 98 percent accurate in
+            both directions (98 percent of people with the condition
+            test positive; 98 percent of people without it test
+            negative). Someone in this population tests positive.
+            Roughly what is the probability that they actually have
+            the condition?
+          </p>
+        </statement>
+      </exercise>
+      <exercise xml:id="ex-ch14-s05-02">
+        <statement>
+          <p>
+            A car alarm goes off about once a week in a parking lot
+            with hundreds of cars. The alarm is loud and persuasive.
+            A neighbor says, <q>The alarm sounds, so the car is
+            probably being broken into.</q> Comment on the reasoning.
+          </p>
+        </statement>
+      </exercise>
+      <exercise xml:id="ex-ch14-s05-03">
+        <statement>
+          <p>
+            A study finds that 90 percent of people who fail a course
+            in their first semester have study habits in the bottom
+            quartile. A first-year student has study habits in the
+            bottom quartile. They conclude that they will probably
+            fail at least one course. Comment on the reasoning.
+          </p>
+        </statement>
+      </exercise>
+      <exercise xml:id="ex-ch14-s05-04">
+        <statement>
+          <p>
+            A defendant matches a DNA profile that occurs in 1 in
+            10,000 people. The prosecutor says, <q>The chance that an
+            innocent person would match this profile is 1 in 10,000,
+            so the chance that this defendant is innocent is 1 in
+            10,000.</q> What is wrong with this argument?
+          </p>
+        </statement>
+      </exercise>
+    </exercisegroup>
+
+    <exercisegroup xml:id="exgroup-ch14-writing">
+      <title>Writing Prompt</title>
+      <introduction>
+        <p>
+          This prompt extends Field Exercise 14-5.
+        </p>
+      </introduction>
+      <exercise xml:id="ex-ch14-writing-01">
+        <statement>
+          <p>
+            Find one news story, advertisement, public-health claim,
+            or campus message from the last week that mentions a
+            probability, a percentage, or a comparison of likelihoods.
+            Reconstruct the claim in your own words. Identify the base
+            rate it depends on (or notice if the base rate is missing).
+            Then say whether you think the claim is using probability
+            responsibly. Limit yourself to about 300 words.
+          </p>
+        </statement>
+      </exercise>
+    </exercisegroup>
+
+  </exercises>
+
+</chapter>

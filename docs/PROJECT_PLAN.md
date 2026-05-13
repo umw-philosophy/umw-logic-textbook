@@ -59,7 +59,7 @@ The book is authored in **PreTeXt**, a markup language designed specifically for
 
 Writing in PreTeXt now means Phase 2 is a matter of *adding* features rather than rewriting in a different format. PreTeXt has institutional backing from the American Institute of Mathematics' Open Textbook Initiative.
 
-All chapters are written fresh. Existing texts (Baronett, Hurley, Knachel, Hacking) serve as reference material to ensure logical correctness, but no copyrighted prose, examples, or exercises are reused. The lead author's own teaching materials — Spring 2026 seatwork, study guides, exams, summer notes, and forthcoming written notes — are the primary source material from which prose is drafted.
+All chapters are written in the lead author's voice. Copyrighted texts (Baronett, Hurley, Hacking) serve as reference material to ensure logical correctness, but copyrighted prose, examples, and exercises are not reused. Knachel's *Fundamental Methods of Logic* is available under a Creative Commons license and may be adapted or drawn on more directly when useful, with attribution and with known errors corrected. The lead author's own teaching materials — Spring 2026 seatwork, study guides, exams, summer notes, and forthcoming written notes — remain the primary source material from which prose is drafted.
 
 **Example modularity remains a design goal.** In the current draft, many examples are still authored inline in chapter files. Over time, politically-current examples should move into modular files under `examples/` so that they can be swapped in a single edit each election cycle, without re-authoring chapter prose. Example sets should be versioned (e.g., "Spring 2026 examples," "Spring 2028 examples") so adopters can pin to a stable set.
 
