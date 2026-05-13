@@ -434,8 +434,138 @@
   <section xml:id="sol-ch7-exercise-set-2-venn-diagram-validity">
     <title>Chapter 7, Exercise Set 2: Venn-Diagram Validity</title>
     <p><term>1.</term> <em>Valid.</em> S = Americans; P = right-wing hate mongers; M = socialists. The first premise shades the P-and-M overlap. The second premise places an X in S-and-M. Since the P-and-M overlap is shaded, the X must be in S and M but outside P. That is enough for the O conclusion: some Americans are not right-wing hate mongers.</p>
+    <figure xml:id="fig-sol-ch7-s02-01-premise">
+      <caption>Premise diagram for Exercise Set 2, problem 1: areas 6 and 7 are shaded, and the X is forced into area 5.</caption>
+      <image xml:id="image-sol-ch7-s02-01-premise" width="45%">
+        <description>
+          <p>
+            A three-circle Venn diagram with S at bottom-left, P at
+            bottom-right, and M at top. S represents Americans, P
+            represents right-wing hate mongers, and M represents
+            socialists. Areas 6 and 7, the overlap of P and M, are
+            shaded. An X appears in area 5, the part of S and M
+            outside P. This shows that some S are not P.
+          </p>
+        </description>
+        <latex-image>
+          \begin{tikzpicture}[scale=1.0]
+            \def\Sleft{(-0.7,-0.4) circle (1.3)}
+            \def\Pright{(0.7,-0.4) circle (1.3)}
+            \def\Mtop{(0,0.6) circle (1.3)}
+            \begin{scope}
+              \clip \Pright;
+              \clip \Mtop;
+              \fill[gray!40] (-3,-3) rectangle (3,3);
+            \end{scope}
+            \draw \Sleft;
+            \draw \Pright;
+            \draw \Mtop;
+            \node at (-1.7,-1.4) {$S$};
+            \node at (1.7,-1.4) {$P$};
+            \node at (0,1.9) {$M$};
+            \node at (-1.3,-0.7) {\small 1};
+            \node at (0,-1.0) {\small 2};
+            \node at (1.3,-0.7) {\small 3};
+            \node at (-2.1,-1.7) {\small 4};
+            \node at (-0.85,0.35) {\small 5};
+            \node at (0,0) {\small 6};
+            \node at (0.85,0.35) {\small 7};
+            \node at (0,1.3) {\small 8};
+            \node at (-0.65,0.65) {$\times$};
+          \end{tikzpicture}
+        </latex-image>
+      </image>
+    </figure>
     <p><term>3.</term> <em>Invalid.</em> S = widely read books; P = Kilgore Trout stories; M = works of neglected genius. The particular premise says that some works of neglected genius are not widely read books, which places an X outside S. The conclusion needs an X inside S and outside P. The premise diagram does not supply that.</p>
+    <figure xml:id="fig-sol-ch7-s02-03-premise">
+      <caption>Premise diagram for Exercise Set 2, problem 3: areas 2 and 3 are shaded, and the X is only somewhere in M outside S.</caption>
+      <image xml:id="image-sol-ch7-s02-03-premise" width="45%">
+        <description>
+          <p>
+            A three-circle Venn diagram with S at bottom-left, P at
+            bottom-right, and M at top. S represents widely read
+            books, P represents Kilgore Trout stories, and M
+            represents works of neglected genius. Areas 2 and 3,
+            the part of P outside M, are shaded. An X lies on the
+            boundary between areas 7 and 8, showing that something
+            is in M and outside S, but not showing whether it is in
+            P. There is no X in area 1 or area 5, so the conclusion
+            is not shown.
+          </p>
+        </description>
+        <latex-image>
+          \begin{tikzpicture}[scale=1.0]
+            \def\Sleft{(-0.7,-0.4) circle (1.3)}
+            \def\Pright{(0.7,-0.4) circle (1.3)}
+            \def\Mtop{(0,0.6) circle (1.3)}
+            \begin{scope}
+              \clip \Pright;
+              \fill[gray!40] (-3,-3) rectangle (3,3);
+              \fill[white] \Mtop;
+            \end{scope}
+            \draw \Sleft;
+            \draw \Pright;
+            \draw \Mtop;
+            \node at (-1.7,-1.4) {$S$};
+            \node at (1.7,-1.4) {$P$};
+            \node at (0,1.9) {$M$};
+            \node at (-1.3,-0.7) {\small 1};
+            \node at (0,-1.0) {\small 2};
+            \node at (1.3,-0.7) {\small 3};
+            \node at (-2.1,-1.7) {\small 4};
+            \node at (-0.85,0.35) {\small 5};
+            \node at (0,0) {\small 6};
+            \node at (0.85,0.35) {\small 7};
+            \node at (0,1.3) {\small 8};
+            \node at (0.55,0.9) {$\times$};
+          \end{tikzpicture}
+        </latex-image>
+      </image>
+    </figure>
     <p><term>5.</term> <em>Valid.</em> S = students; P = people who notice hidden assumptions; M = people who read carefully. The particular premise places an X in S-and-M. The universal premise forces the M part outside P to be empty, so the X must also be in P. The conclusion's I claim follows.</p>
+    <figure xml:id="fig-sol-ch7-s02-05-premise">
+      <caption>Premise diagram for Exercise Set 2, problem 5: areas 5 and 8 are shaded, and the X is forced into area 6.</caption>
+      <image xml:id="image-sol-ch7-s02-05-premise" width="45%">
+        <description>
+          <p>
+            A three-circle Venn diagram with S at bottom-left, P at
+            bottom-right, and M at top. S represents students, P
+            represents people who notice hidden assumptions, and M
+            represents people who read carefully. Areas 5 and 8,
+            the part of M outside P, are shaded. An X appears in
+            area 6, the center region inside S, P, and M. This
+            shows that some S are P.
+          </p>
+        </description>
+        <latex-image>
+          \begin{tikzpicture}[scale=1.0]
+            \def\Sleft{(-0.7,-0.4) circle (1.3)}
+            \def\Pright{(0.7,-0.4) circle (1.3)}
+            \def\Mtop{(0,0.6) circle (1.3)}
+            \begin{scope}
+              \clip \Mtop;
+              \fill[gray!40] (-3,-3) rectangle (3,3);
+              \fill[white] \Pright;
+            \end{scope}
+            \draw \Sleft;
+            \draw \Pright;
+            \draw \Mtop;
+            \node at (-1.7,-1.4) {$S$};
+            \node at (1.7,-1.4) {$P$};
+            \node at (0,1.9) {$M$};
+            \node at (-1.3,-0.7) {\small 1};
+            \node at (0,-1.0) {\small 2};
+            \node at (1.3,-0.7) {\small 3};
+            \node at (-2.1,-1.7) {\small 4};
+            \node at (-0.85,0.35) {\small 5};
+            \node at (0,0) {\small 6};
+            \node at (0.85,0.35) {\small 7};
+            \node at (0,1.3) {\small 8};
+            \node at (0.35,0.15) {$\times$};
+          \end{tikzpicture}
+        </latex-image>
+      </image>
+    </figure>
   </section>
 
   <section xml:id="sol-ch7-exercise-set-3-mood-and-figure">
@@ -805,6 +935,83 @@
       <row><cell>2.</cell><cell><m>(P \cdot Q) \supset R</m></cell><cell>1 Exp</cell></row>
     </tabular>
     <p>Exportation handles this in one step. Alternatively, a CP proof works: assume <m>P \cdot Q</m>, simplify to get <m>P</m> and <m>Q</m>, MP twice, and discharge. But Exp is shorter.</p>
+  </section>
+
+  <section xml:id="sol-ch13-exercise-set-1-deductive-or-inductive">
+    <title>Chapter 13, Exercise Set 1: Deductive or Inductive?</title>
+    <p><term>1.</term> <em>Deductive.</em> The argument has the form: all biology majors must complete the requirement; Ana is a biology major; therefore Ana must complete the requirement. If the premises are true, the conclusion follows necessarily.</p>
+    <p><term>3.</term> <em>Deductive.</em> This is modus ponens: if the server is down, the login page will not load; the server is down; therefore the login page will not load. The premises are intended to guarantee the conclusion.</p>
+    <p><term>5.</term> <em>Deductive.</em> The premise says no committee members voted against the proposal. Since Lee is a committee member, Lee is included in that group. The conclusion follows with certainty if the premises are true.</p>
+  </section>
+
+  <section xml:id="sol-ch13-exercise-set-2-strong-or-weak">
+    <title>Chapter 13, Exercise Set 2: Strong or Weak?</title>
+    <p><term>1.</term> <em>Weak.</em> One person's opinion in the dining hall is too small and too informal a sample to support a conclusion about students generally. The main problem is sample size and representativeness.</p>
+    <p><term>3.</term> <em>Moderate, but not strong.</em> Three previous assignments give some evidence of a pattern, but the sample is small and course schedules can change. The evidence supports the conclusion only modestly.</p>
+    <p><term>5.</term> <em>Weak.</em> The first five commenters are a tiny, self-selected sample. Angry readers are more likely to comment, and <q>everyone who read the article</q> is a much broader population than the observed comments.</p>
+  </section>
+
+  <section xml:id="sol-ch13-exercise-set-3-samples-and-generalizations">
+    <title>Chapter 13, Exercise Set 3: Samples and Generalizations</title>
+    <p><term>1.</term> Sample: ten friends in the student's residence hall. Population: UMW students. Possible problem: the sample is small, local, and socially connected to the person asking, so it may not represent commuters, upper-class students, or students with different parking needs.</p>
+    <p><term>3.</term> Sample: five negative comments the host read. Population: the movie's audience, or potential audience, as a whole. Possible problem: comments are self-selected and negative reactions are often overrepresented; five comments are not enough to support a broad claim about audience opinion.</p>
+  </section>
+
+  <section xml:id="sol-ch13-exercise-set-4-causal-reasoning">
+    <title>Chapter 13, Exercise Set 4: Causal Reasoning</title>
+    <p><term>1.</term> One alternative explanation is that more motivated or better-prepared students choose seats near the front. Another is that students who attend consistently also tend to sit near the front. The seating location may be correlated with habits that affect grades rather than causing the grades directly.</p>
+    <p><term>3.</term> Possible alternative explanations include better safety education, fewer cyclists downtown, changes in traffic enforcement, weather patterns, or changes in accident reporting. The timing is suggestive, but the decrease alone does not prove that the bike lanes caused it.</p>
+  </section>
+
+  <section xml:id="sol-ch13-exercise-set-5-analogy-and-explanation">
+    <title>Chapter 13, Exercise Set 5: Analogy and Explanation</title>
+    <p><term>1.</term> <em>Argument by analogy.</em> The current course is being compared with a previous course. The analogy is reasonably relevant because textbook, quiz format, and instructor can all affect study strategy, though it would be stronger if the course level, assignments, and student's schedule were also similar.</p>
+    <p><term>3.</term> <em>Argument by analogy, weak.</em> Color and size are usually not relevant to battery life. The argument would be stronger if the two phones had the same model, battery capacity, age, software, and usage pattern.</p>
+  </section>
+
+  <section xml:id="sol-ch13-writing-prompt">
+    <title>Chapter 13, Writing Prompt</title>
+    <p>No solutions provided. This is an open-ended writing prompt; responses will vary by student.</p>
+  </section>
+
+  <section xml:id="sol-ch14-exercise-set-1-basic-rules">
+    <title>Chapter 14, Exercise Set 1: Basic rules</title>
+    <p><term>1.</term> There are two equally likely outcomes, heads and tails. So P(tails) = <m>1/2</m>, or 0.5.</p>
+    <p><term>3.</term> There are four 2s and four 3s in a standard deck, with no overlap. So P(2 or 3) = <m>8/52 = 2/13</m>.</p>
+    <p><term>5.</term> Use the complement rule. P(not declared) = <m>1 - 0.78 = 0.22</m>.</p>
+  </section>
+
+  <section xml:id="sol-ch14-exercise-set-2-conditional-probability">
+    <title>Chapter 14, Exercise Set 2: Conditional probability</title>
+    <p><term>1.</term> Given that the outcome is odd, the possible outcomes are 1, 3, and 5. One of those three outcomes is 3, so the probability is <m>1/3</m>.</p>
+    <p><term>3.</term> Use the multiplication rule. P(first red and second blue) = <m>(5/12)(7/11) = 35/132</m>, approximately 0.265.</p>
+    <p><term>5.</term> Use the complement. The only way to get no tails is HHH, with probability <m>(1/2)^3 = 1/8</m>. So P(at least one tail) = <m>1 - 1/8 = 7/8</m>.</p>
+  </section>
+
+  <section xml:id="sol-ch14-exercise-set-3-independence">
+    <title>Chapter 14, Exercise Set 3: Independence</title>
+    <p><term>1.</term> <em>Independent.</em> For fair coin flips, the result of one flip does not change the probability of the next flip. P(heads on the second flip | heads on the first flip) is still 0.5.</p>
+    <p><term>3.</term> <em>Not plausibly independent.</em> Rain could affect whether students come to class, arrive late, or stay home. Knowing that it rains may change the probability of lower-than-usual attendance.</p>
+    <p><term>5.</term> <em>Not independent.</em> Because the cards are drawn without replacement, the first card changes the deck. If the first card is a heart, then the probability that the second card is a heart becomes <m>12/51</m>, not <m>13/52</m>.</p>
+  </section>
+
+  <section xml:id="sol-ch14-exercise-set-4-direction-of-conditioning">
+    <title>Chapter 14, Exercise Set 4: Direction of conditioning</title>
+    <p><term>1.</term> These are likely very different. P(left-handed | professional baseball pitcher) may be noticeably higher than the left-handed rate in the general population, but P(professional baseball pitcher | left-handed) is tiny because very few left-handed people are professional pitchers.</p>
+    <p><term>3.</term> These are likely very different. If someone has the flu, a fever is fairly likely. But if someone has a fever, the flu is only one possible explanation among many, so P(has the flu | has a fever) may be much lower.</p>
+  </section>
+
+  <section xml:id="sol-ch14-exercise-set-5-bayes-theorem-and-base-rates">
+    <title>Chapter 14, Exercise Set 5: Bayes' theorem and base rates</title>
+    <p><term>1.</term> Let <em>H</em> = the person has the condition and <em>E</em> = the person tests positive. P(<em>H</em>) = <m>1/500 = 0.002</m>, P(<m>{\sim}H</m>) = 0.998, P(<em>E</em> | <em>H</em>) = 0.98, and P(<em>E</em> | <m>{\sim}H</m>) = 0.02. Bayes' theorem gives:</p>
+    <p><m>P(H \mid E) = \dfrac{0.98 \cdot 0.002}{(0.98 \cdot 0.002) + (0.02 \cdot 0.998)} = \dfrac{0.00196}{0.02192} \approx 0.089.</m></p>
+    <p>So the probability is about 9 percent. The test is good, but the condition is rare enough that false positives still dominate the positive results.</p>
+    <p><term>3.</term> Let <em>H</em> = the student fails at least one course and <em>E</em> = the student has bottom-quartile study habits. The study gives P(<em>E</em> | <em>H</em>) = 0.90, not P(<em>H</em> | <em>E</em>). To know the probability that this student will fail, we would also need the base rate of first-semester course failure and the rate of bottom-quartile study habits among students who do not fail. Without those, the conclusion may be a case of confusing the direction of conditioning.</p>
+  </section>
+
+  <section xml:id="sol-ch14-writing-prompt">
+    <title>Chapter 14, Writing Prompt</title>
+    <p>No solutions provided. This is an open-ended writing prompt; responses will vary by student.</p>
   </section>
 
 </appendix>

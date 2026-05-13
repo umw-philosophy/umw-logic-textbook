@@ -2466,35 +2466,35 @@
       <exercise xml:id="ex-ch1-s08-02">
         <statement>
           <p>
-            If the server is down, then students cannot submit the quiz.
+            Students cannot submit the quiz if the server is down.
           </p>
         </statement>
       </exercise>
       <exercise xml:id="ex-ch1-s08-03">
         <statement>
           <p>
-            If the argument is sound, then it is valid.
+            The argument is sound only if it is valid.
           </p>
         </statement>
       </exercise>
       <exercise xml:id="ex-ch1-s08-04">
         <statement>
           <p>
-            If the archive is closed on weekends, then we cannot inspect the letters on Saturday.
+            We cannot inspect the letters on Saturday if the archive is closed on weekends.
           </p>
         </statement>
       </exercise>
       <exercise xml:id="ex-ch1-s08-05">
         <statement>
           <p>
-            If the grant is approved, then the lab will replace its oldest equipment.
+            The grant is approved only if the lab will replace its oldest equipment.
           </p>
         </statement>
       </exercise>
       <exercise xml:id="ex-ch1-s08-06">
         <statement>
           <p>
-            If the campus expands housing, then more students will be able to live near their classes.
+            More students will be able to live near their classes if the campus expands housing.
           </p>
         </statement>
       </exercise>
@@ -2508,7 +2508,7 @@
       <exercise xml:id="ex-ch1-s08-08">
         <statement>
           <p>
-            If the bill passes, then tuition will not increase next year.
+            The bill passes only if tuition will not increase next year.
           </p>
         </statement>
       </exercise>
@@ -2522,7 +2522,7 @@
       <exercise xml:id="ex-ch1-s08-10">
         <statement>
           <p>
-            If voter turnout increases, then the election results better reflect public opinion.
+            The election results better reflect public opinion if voter turnout increases.
           </p>
         </statement>
       </exercise>
@@ -2536,7 +2536,7 @@
       <exercise xml:id="ex-ch1-s08-12">
         <statement>
           <p>
-            If all the premises of an argument are true and the argument is valid, then the conclusion is true.
+            All the premises of an argument are true and the argument is valid only if the conclusion is true.
           </p>
         </statement>
       </exercise>

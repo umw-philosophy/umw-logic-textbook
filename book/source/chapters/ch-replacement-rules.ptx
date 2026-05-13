@@ -776,18 +776,17 @@
         <alert>Negation in front of parentheses:</alert> Try
         <em>De Morgan's</em>. If you see
         <m>{\text{\textasciitilde}}(\ldots)</m> where the
-        parentheses contain a conjunction or disjunction, DeM is
-        almost certainly your next step. This is the single most
-        common trigger in student proofs.
+        parentheses contain a conjunction or disjunction, DeM is a
+        possible next step.
       </p>
       <p>
-        <alert>Double tilde:</alert> Try <em>Double Negation</em>.
+        <alert>Double tilde:</alert> Consider <em>Double Negation</em>.
         If any part of a line has
         <m>{\text{\textasciitilde}}{\text{\textasciitilde}}</m>
-        sitting in front of it, remove it. DN is almost never a
-        bad move. In the rare case where you need to <em>add</em>
-        a double negation, it is usually because you need to set
-        up Modus Tollens or De Morgan's on a subsequent line.
+        sitting in front of it, consider DN. It is not always the
+        right move, but when it is not, it is usually because you
+        need two tildes to set up Modus Tollens or De Morgan's on a
+        subsequent line.
       </p>
       <p>
         <alert>A conditional where you need a disjunction (or vice
@@ -908,8 +907,7 @@
       </p>
       <p>
         <alert>Forgetting to flip the connective in De
-        Morgan's.</alert> This is the single most common error in
-        the entire course. When the negation passes through the
+        Morgan's.</alert> This is a common error. When the negation passes through the
         parentheses, the dot becomes a wedge and the wedge becomes
         a dot. Every time. No exceptions. If you write a De
         Morgan's step and the connective did not change, erase it

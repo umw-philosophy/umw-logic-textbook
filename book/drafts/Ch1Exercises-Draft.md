@@ -179,17 +179,17 @@ For two of your answers, add one sentence explaining how you recognized the conc
 For each conditional sentence, identify the antecedent and the consequent.
 
 1. If it rains, then the sidewalks will be wet.
-2. If the server is down, then students cannot submit the quiz.
-3. If the argument is sound, then it is valid.
-4. If the archive is closed on weekends, then we cannot inspect the letters on Saturday.
-5. If the grant is approved, then the lab will replace its oldest equipment.
-6. If the campus expands housing, then more students will be able to live near their classes.
+2. Students cannot submit the quiz if the server is down.
+3. The argument is sound only if it is valid.
+4. We cannot inspect the letters on Saturday if the archive is closed on weekends.
+5. The grant is approved only if the lab will replace its oldest equipment.
+6. More students will be able to live near their classes if the campus expands housing.
 7. If the premise is false, then the argument is not sound.
-8. If the bill passes, then tuition will not increase next year.
+8. The bill passes only if tuition will not increase next year.
 9. If the experiment is not replicated, then the results should be treated with caution.
-10. If voter turnout increases, then the election results better reflect public opinion.
+10. The election results better reflect public opinion if voter turnout increases.
 11. If the bridge is closed, then commuters will need an alternate route.
-12. If all the premises of an argument are true and the argument is valid, then the conclusion is true.
+12. All the premises of an argument are true and the argument is valid only if the conclusion is true.
 
 Then write two original conditional sentences of your own and label the antecedent and consequent in each.
 

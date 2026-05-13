@@ -1079,6 +1079,26 @@
             the Conservative bar, strongly suggesting that Conservative
             governments built twice as many homes.
           </p>
+          <figure xml:id="fig-ch15-truncated-axis-housing">
+            <caption>A political housing graphic with a truncated y-axis.</caption>
+            <image xml:id="image-ch15-truncated-axis-housing"
+                   source="ch15-truncated-axis-housing.jpg"
+                   width="70%">
+              <description>
+                <p>
+                  A campaign-style bar graph titled <q>Number of new
+                  homes is LOWER under Labour.</q> The vertical axis
+                  jumps from 0 to 200,000 and then runs from 200,000 to
+                  225,000. The 2023/24 Conservative bar reaches a little
+                  above 220,000, while the 2024/25 Labour bar reaches
+                  about 208,000. Because the visible scale begins near
+                  200,000, the Labour bar appears much shorter than the
+                  Conservative bar even though the numerical difference
+                  is modest relative to the full scale.
+                </p>
+              </description>
+            </image>
+          </figure>
           <p>
             Reading the actual numbers on the axis revealed a gap of
             about 10% — not 100%. The visual impression of a two-to-one
@@ -1121,35 +1141,76 @@
         <statement>
           <p>
             A data visualization shows the price of gasoline in two
-            years: <m>\$2.50</m> in 1980 and <m>\$1.50</m> in 2001.
-            Each year is represented by a picture of a car, scaled to
-            reflect the price. The 1980 car appears more than twice as
-            large as the 2001 car — an impression far beyond what the
-            price ratio warrants.
+            moments: <m>\$3.11</m> on January 20, 2025 and
+            <m>\$4.51</m> on May 13, 2026. Each moment is represented
+            by a picture of a truck, scaled to reflect the price. The
+            later truck appears many times larger than the earlier truck
+            — an impression far beyond what the price ratio warrants.
           </p>
+          <figure xml:id="fig-ch15-gas-price-car-size-distortion">
+            <caption>A gas-price comparison distorted by changing the size of the truck image.</caption>
+            <image xml:id="image-ch15-gas-price-car-size-distortion"
+                   source="ch15-gas-price-car-size-distortion.png"
+                   width="95%">
+              <description>
+                <p>
+                  A whiteboard-style graphic titled <q>Gas Price
+                  Increase Under Trump.</q> On the left, a small red
+                  truck is labeled <q>Date: Jan 20, 2025</q> and
+                  <q>Price: 3.11.</q> On the right, a much larger red
+                  truck is labeled <q>Date: May 13, 2026</q> and
+                  <q>Price: 4.51.</q> A vertical divider separates the
+                  two trucks. The right truck's visual area is far more
+                  than 45 percent larger, so the image exaggerates the
+                  size of the price increase.
+                </p>
+              </description>
+            </image>
+          </figure>
           <p>
-            The actual price ratio is <m>2.50 / 1.50 \approx 1.67</m>:
-            the 1980 price was about 67% higher. Why does a
-            proportionally drawn car look so much larger, and why is
+            The actual price ratio is <m>4.51 / 3.11 \approx 1.45</m>:
+            the later price was about 45% higher. Why does a
+            proportionally drawn truck look so much larger, and why is
             this misleading?
           </p>
         </statement>
         <solution>
           <p>
-            When the 1980 car is drawn 1.67 times <em>taller</em> to
-            represent a price 1.67 times higher, its width scales up
+            When the later truck is drawn 1.45 times <em>taller</em> to
+            represent a price 1.45 times higher, its width scales up
             proportionally too. The visible <em>area</em> of the image
-            is therefore approximately <m>1.67 \times 1.67 \approx 2.8</m>
+            is therefore approximately <m>1.45 \times 1.45 \approx 2.1</m>
             times larger — and the impression of volume or
             three-dimensional size is larger still.
           </p>
           <p>
             A standard bar graph avoids this problem entirely: bars have
             a fixed width, so height alone carries the comparison, and a
-            1.67× price difference produces a 1.67× bar. Pictograms and
+            1.45× price difference produces a 1.45× bar. Pictograms and
             icon-based graphics invite area distortion unless the designer
             takes explicit care to scale by area rather than by height.
           </p>
+          <figure xml:id="fig-ch15-gas-price-bar-comparison">
+            <caption>A clearer comparison keeps the visual scale tied to the vertical price axis.</caption>
+            <image xml:id="image-ch15-gas-price-bar-comparison"
+                   source="ch15-gas-price-bar-comparison.png"
+                   width="95%">
+              <description>
+                <p>
+                  A whiteboard-style graph titled <q>Gas Price Increase
+                  Under Trump.</q> The y-axis runs from 0 dollars to
+                  5 dollars in one-dollar increments. A smaller red
+                  truck sits on a green rectangular bar labeled
+                  <q>Date: Jan 20, 2025</q> and <q>Price: 3.11.</q>
+                  A larger red truck sits on a taller green rectangular
+                  bar labeled <q>Date: May 13, 2026</q> and
+                  <q>Price: 4.51.</q> The comparison still shows an
+                  increase, but the vertical axis makes the magnitude
+                  easier to judge than the truck-size-only graphic.
+                </p>
+              </description>
+            </image>
+          </figure>
         </solution>
       </example>
     </paragraphs>

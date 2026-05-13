@@ -30,6 +30,11 @@
       shift changes the question. We are no longer asking only, <q>do these premises guarantee the conclusion?</q> We are asking, <q>how much
       support do these premises give this conclusion?</q>
     </p>
+    <p>
+      Chapter 3 named the inductive standard alongside the deductive
+      one (see <xref ref="sec-strength-cogency"/>). This chapter, and
+      the rest of Part IV, gives us the tools.
+    </p>
   </introduction>
 
   <section xml:id="sec-induction-guarantee-support">
@@ -145,7 +150,10 @@
       <p>
         Since inductive arguments do not aim at validity, we need a
         different evaluative vocabulary. The central term is
-        <term>strength</term>.
+        <term>strength</term>. Chapter 3 introduced strength and
+        cogency as the inductive parallels to validity and soundness
+        (see <xref ref="sec-strength-cogency"/>). Here we look at them
+        more closely.
       </p>
     </introduction>
 
@@ -168,6 +176,14 @@
         </p>
       </statement>
     </definition>
+
+    <p>
+      As Chapter 3 noted, strength is a matter of degree. Unlike
+      validity, which is all-or-nothing, an inductive argument can be
+      very strong, moderately strong, weak, or somewhere in between.
+      The strong/weak labels mark the ends of a spectrum, not two
+      tidy boxes.
+    </p>
 
     <p>
       Here is a strong inductive argument:
@@ -374,7 +390,11 @@
       <p>
         A <term>hasty generalization</term> occurs when someone draws a
         broad conclusion from too little evidence or from an unrepresentative
-        sample.
+        sample. This is the same pattern Chapter 5 introduced as a
+        fallacy of weak induction (see
+        <xref ref="paragraphs-hasty-generalization"/>); we are now in
+        position to see what an inductive generalization has to do to
+        avoid it.
       </p>
       <p>
         <q>Two people in my discussion section hated the reading, so
@@ -476,6 +496,15 @@
         experiments that reduce these alternatives. That is one reason
         controlled studies matter.
       </p>
+      <p>
+        Chapter 5 introduced this failure mode as the
+        <em>false cause</em> fallacy (see
+        <xref ref="paragraphs-false-cause"/>). The present section
+        names what good causal reasoning has to do to avoid that
+        fallacy: take correlations seriously as evidence, but rule
+        out reverse causation, common cause, and coincidence before
+        concluding that one thing causes another.
+      </p>
     </paragraphs>
 
     <example xml:id="ex-ch13-sleep-grades">
@@ -539,7 +568,10 @@
         The strength of an analogy depends on the relevance of the
         similarities. If the two courses only meet in the same building,
         the analogy is weak. If they share the same instructor, assignments,
-        grading style, and exam format, the analogy is stronger.
+        grading style, and exam format, the analogy is stronger. Chapter 5
+        covered the failure mode under the name <em>weak analogy</em>
+        (see <xref ref="paragraphs-weak-analogy"/>); this section names
+        the legitimate pattern that the fallacy distorts.
       </p>
     </paragraphs>
 
@@ -587,6 +619,13 @@
       saying only that a conclusion is likely, unlikely, strong, weak, or
       plausible, probability lets us ask how likely it is and how new
       evidence should change our confidence.
+    </p>
+    <p>
+      Taken together with the next two chapters, this finishes the
+      inductive story Chapter 5 only sketched negatively — as a catalog
+      of the ways induction can fail. Hasty generalization, false cause,
+      and weak analogy are diagnoses of inductive arguments that don't
+      meet the standards developed here and made formal in Part IV.
     </p>
     <p>
       The next chapter begins that work. We will not treat probability as

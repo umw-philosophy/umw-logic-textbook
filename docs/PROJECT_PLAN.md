@@ -295,11 +295,11 @@ Items planted in earlier chapters that *must* be paid off in later chapters. Add
 
 ## 18. Appendices
 
-Documented appendix content in the back matter. The Aristotelian categorical logic appendix appears first, followed by the argument diagrams appendix, followed by the selected-solutions appendix. This keeps optional conceptual extensions before answer material.
+Documented appendix content in the back matter. Conceptual appendices appear in the order students first encounter the relevant material: argument diagrams, Aristotelian categorical logic, and rules of inference. The selected-solutions appendix appears last so answer material stays separate from optional conceptual extensions.
 
 ### Appendix on Aristotelian Categorical Logic
 
-**Status.** Drafted. The file lives at `book/source/appendix-aristotelian-categorical.ptx` and is included from `main.ptx` before the argument-diagram and selected-solutions appendices. The body of Chapters 6 and 7 uses the modern interpretation of categorical logic; the appendix explains the Aristotelian interpretation for adopters who want to teach it or compare it with the modern approach.
+**Status.** Drafted. The file lives at `book/source/appendix-aristotelian-categorical.ptx` and is included from `main.ptx` after the argument-diagram appendix and before the rules-of-inference and selected-solutions appendices. The body of Chapters 6 and 7 uses the modern interpretation of categorical logic; the appendix explains the Aristotelian interpretation for adopters who want to teach it or compare it with the modern approach.
 
 **Planned appendix contents.**
 
@@ -311,7 +311,7 @@ Documented appendix content in the back matter. The Aristotelian categorical log
 
 ### Appendix on Argument Diagrams
 
-**Status.** Drafted. The file lives at `book/source/appendix-diagramming.ptx` and is included from `main.ptx` before `appendix-solutions.ptx` so the build places it before the selected solutions.
+**Status.** Drafted. The file lives at `book/source/appendix-diagramming.ptx` and is included from `main.ptx` as the first appendix, before the later conceptual appendices and selected solutions.
 
 **Why an appendix and not body content.** Three reasons:
 

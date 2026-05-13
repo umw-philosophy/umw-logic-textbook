@@ -340,7 +340,7 @@ Each decision is dated, numbered, and tagged with the section of `PROJECT_PLAN.m
 
 **Date**: 2026-05-07
 **Plan section**: 18
-**Decision**: The body of Chapters 6 and 7 teaches modern categorical logic only. The Aristotelian interpretation, including existential import, the traditional square of opposition, additional immediate inferences, Aristotelian Venn diagramming, and the traditional mood-and-figure validity table, is presented in a dedicated appendix (`book/source/appendix-aristotelian-categorical.ptx`). The appendix appears in the back matter before the argument-diagram and selected-solutions appendices.
+**Decision**: The body of Chapters 6 and 7 teaches modern categorical logic only. The Aristotelian interpretation, including existential import, the traditional square of opposition, additional immediate inferences, Aristotelian Venn diagramming, and the traditional mood-and-figure validity table, is presented in a dedicated appendix (`book/source/appendix-aristotelian-categorical.ptx`). The appendix appears in the back matter after the argument-diagram appendix and before the rules-of-inference and selected-solutions appendices.
 **Alternatives considered**:
 - Teach modern and Aristotelian results side-by-side in Chapters 6 and 7.
 - Omit Aristotelian logic entirely.
@@ -369,3 +369,16 @@ Each decision is dated, numbered, and tagged with the section of `PROJECT_PLAN.m
 - Adopt Knachel's inductive/probability/statistics chapters wholesale.
 - Adapt selectively with attribution and revision.
 **Rationale**: The original 2017 Knachel text is openly licensed under Creative Commons Attribution 4.0. Selective adaptation is legally and pedagogically appropriate for Part IV, especially where Knachel's organization or examples are useful. Wholesale adoption remains rejected because this book needs a different structure, tone, and treatment of known probability/Bayes errors.
+
+---
+
+## D-032 — Back matter appendices follow chapter encounter order
+
+**Date**: 2026-05-13
+**Plan section**: 18
+**Decision**: Conceptual appendices in the back matter are ordered by the point at which students first encounter the relevant material in the body: Argument Diagrams (Chapter 2), Aristotelian Categorical Logic (Chapters 6-7), Rules of Inference (Chapters 10-12), then Selected Solutions. The selected-solutions appendix remains last.
+**Alternatives considered**:
+- Keep the current reverse-ish order, with the rules appendix first.
+- Put selected solutions first for quick lookup.
+- Alphabetize appendices by title.
+**Rationale**: Chapter-order placement makes the optional conceptual material feel like a guided set of extensions rather than a pile of back-matter references. Keeping selected solutions last preserves the separation between study/reference material and answer material.

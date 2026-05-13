@@ -515,10 +515,10 @@
       <statement>
         <p>
           An inductive argument is <term>strong</term> when, if its
-          premises are all true, its conclusion is much more likely
-          to be true than not. Strength is a matter of degree: an
-          inductive argument can be very strong, moderately strong,
-          weak, or somewhere in between.
+          premises are all true, its conclusion is highly probable.
+          Strength is a matter of degree: an inductive argument can
+          be very strong, moderately strong, weak, or somewhere in
+          between.
         </p>
       </statement>
     </definition>
@@ -542,10 +542,10 @@
         </statement>
       </example>
       <p>
-        If the premises are true, the conclusion is significantly
-        more likely than it would be otherwise. The conclusion is
-        not forced — sample sizes can mislead, populations vary,
-        twelve is small — but the support is real and substantial.
+        If the premises are true, the conclusion is highly probable.
+        The conclusion is not forced — sample sizes can mislead,
+        populations vary, twelve is small — but the support is real
+        and substantial.
       </p>
       <example xml:id="ex-weak-inductive">
         <title>A weak inductive argument</title>
@@ -563,6 +563,15 @@
         much more careful about the difference between weak and
         strong inductive evidence in Part IV, where statistical
         reasoning is the main subject.
+      </p>
+      <p>
+        Inductive support also has a feature that deductive validity
+        lacks: it can be weakened or overturned by new evidence
+        without anyone having reasoned badly. Chapter 13 calls this
+        property <em>defeasibility</em>. A valid deductive argument
+        with true premises stays sound no matter what new information
+        arrives. A strong inductive argument is always provisional in
+        a way deductive arguments are not.
       </p>
     </paragraphs>
 
