@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Build a Canvas Common Cartridge (.imscc) package for Quiz 1: Syllabus and Arguments."""
+"""Build a Canvas Common Cartridge (.imscc) package for Quiz 11: Categorical Syllogisms."""
 
 from __future__ import annotations
 
@@ -12,8 +12,8 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
 CANVAS = ROOT / "canvas"
-BUILD = CANVAS / "build_quiz1_temp"
-IMSCC_TARGET = CANVAS / "quiz1_syllabus.imscc"
+BUILD = CANVAS / "build_quiz11_temp"
+IMSCC_TARGET = CANVAS / "quiz11_syllogisms.imscc"
 
 
 def uid(prefix: str) -> str:
@@ -21,63 +21,77 @@ def uid(prefix: str) -> str:
 
 
 QUIZ = {
-    "slug": "quiz1_syllabus",
-    "title": "Quiz 1: Syllabus and Arguments",
-    "description": "After reading the syllabus and first two reading assignments, answer the following questions about the syllabus and arguments.",
+    "slug": "quiz11_syllogisms",
+    "title": "Quiz 11: Categorical Syllogisms",
+    "description": "Autograded multiple-choice quiz testing the evaluation of categorical syllogisms (Chapter 7). For each syllogism, use a Venn diagram (or mood and figure) to determine its validity under the modern interpretation, and identify the form of its conclusion.",
     "questions": [
-        # Question 1
+        # Question 1 (Valid, Conclusion is E)
         (
-            "How can you get in touch with me (the instructor, Michael Reno)?",
+            "Use a Venn diagram (or mood and figure) to determine the validity of the following standard-form categorical syllogism under the modern interpretation:<br><br>"
+            "<em>Major Premise: No AI safety researchers are accelerationists.<br>"
+            "Minor Premise: All people calling for slower deployment are AI safety researchers.<br>"
+            "Conclusion: No people calling for slower deployment are accelerationists.</em>",
             [
-                "email me at mreno@umw.edu or through the discussion board on canvas.",
-                "Call me at 517-YoL-ogic",
-                "Wait around at my office in person for me to show up.",
-                "Make rude comments on the youTube videos for the course until I respond.",
+                "the argument is valid, and the conclusion is an E statement.",
+                "the argument is invalid, and the conclusion is an E statement.",
+                "the argument is valid, and the conclusion is an A statement.",
+                "the argument is invalid, and the conclusion is an A statement.",
             ],
             0,  # Correct answer index
         ),
-        # Question 2
+        # Question 2 (Valid, Conclusion is A)
         (
-            "In order to succeed, about how much time should you spend each day on the course material?",
+            "Use a Venn diagram (or mood and figure) to determine the validity of the following standard-form categorical syllogism under the modern interpretation:<br><br>"
+            "<em>Major Premise: All laws that degrade human personality are unjust laws.<br>"
+            "Minor Premise: All segregation statutes are laws that degrade human personality.<br>"
+            "Conclusion: All segregation statutes are unjust laws.</em>",
             [
-                "At least 2-3 hours, probably more like 4 hours per day.",
-                "None. This is an easy A.",
-                "1 hour",
-                "12 hours per day.",
+                "the argument is valid, and the conclusion is an A statement.",
+                "the argument is invalid, and the conclusion is an A statement.",
+                "the argument is valid, and the conclusion is an I statement.",
+                "the argument is invalid, and the conclusion is an E statement.",
             ],
             0,
         ),
-        # Question 3
+        # Question 3 (Invalid, Conclusion is A)
         (
-            "When's the first exam and how long do you have to complete it?",
+            "Use a Venn diagram (or mood and figure) to determine the validity of the following standard-form categorical syllogism under the modern interpretation:<br><br>"
+            "<em>Major Premise: No vegetarians are meat eaters.<br>"
+            "Minor Premise: No consistent thinkers are meat eaters.<br>"
+            "Conclusion: All consistent thinkers are vegetarians.</em>",
             [
-                "It's on Friday, May 23rd. The end of the first week of class! You'll have 2 hours to complete it, starting at 9 am.",
-                "There are no exams.",
-                "There's an exam every day, so Monday, May 17th",
-                "June 16th",
+                "the argument is invalid, and the conclusion is an A statement.",
+                "the argument is valid, and the conclusion is an A statement.",
+                "the argument is invalid, and the conclusion is an E statement.",
+                "the argument is valid, and the conclusion is an E statement.",
             ],
             0,
         ),
-        # Question 4
+        # Question 4 (Valid, Conclusion is O)
         (
-            "A statement is a sentence that is true or false.",
+            "Use a Venn diagram (or mood and figure) to determine the validity of the following standard-form categorical syllogism under the modern interpretation:<br><br>"
+            "<em>Major Premise: No right-wing hate mongers are socialists.<br>"
+            "Minor Premise: Some Americans are socialists.<br>"
+            "Conclusion: Some Americans are not right-wing hate mongers.</em>",
             [
-                "True",
-                "False",
+                "the argument is valid, and the conclusion is an O statement.",
+                "the argument is invalid, and the conclusion is an O statement.",
+                "the argument is valid, and the conclusion is an I statement.",
+                "the argument is invalid, and the conclusion is an I statement.",
             ],
             0,
         ),
-        # Question 5
+        # Question 5 (Invalid, Conclusion is I)
         (
-            "In the following passage, which sentence is the final conclusion?<br><br>"
-            "For example, under this Proposal — if a Square customer’s mother gifts her daughter $4,000 in physical cash and the daughter deposits those funds in a bank, the bank would have no obligation to collect information on the customer’s mother. Under the Proposal, if this same transaction were completed in cryptocurrency, the bank would have to reach beyond its customer relationship and intrude upon the mother’s private information in order for the daughter to successfully deposit and freely access her gift.<br><br>"
-            "The incongruity between the treatment of cash and cryptocurrency under FinCEN’s Proposal will inhibit adoption of cryptocurrency and invade the privacy of individuals. Yet the rule fails to explain the difference in risk. As such, this low threshold and its extension of KYC obligations beyond customer relationships is arbitrary and unjustified.",
+            "Use a Venn diagram (or mood and figure) to determine the validity of the following standard-form categorical syllogism under the modern interpretation:<br><br>"
+            "<em>Major Premise: All ozone molecules are good absorbers of UV rays.<br>"
+            "Minor Premise: All ozone molecules are substances destroyed by chlorine.<br>"
+            "Conclusion: Some substances destroyed by chlorine are good absorbers of UV rays.</em>",
             [
-                "As such, this low threshold and its extension of KYC obligations beyond customer relationships is arbitrary and unjustified.",
-                "under this Proposal — if a Square customer’s mother gifts her daughter $4,000 in physical cash and the daughter deposits those funds in a bank, the bank would have no obligation to collect information on the customer’s mother.",
-                "The bank would have to reach beyond its customer relationship and intrude upon the mother’s private information in order for the daughter to successfully deposit and freely access her gift.",
-                "Yet the rule fails to explain the difference in risk.",
-                "The incongruity between the treatment of cash and cryptocurrency under FinCEN’s Proposal will inhibit adoption of cryptocurrency and invade the privacy of individuals.",
+                "the argument is invalid, and the conclusion is an I statement.",
+                "the argument is valid, and the conclusion is an I statement.",
+                "the argument is invalid, and the conclusion is an A statement.",
+                "the argument is valid, and the conclusion is an A statement.",
             ],
             0,
         ),
@@ -96,14 +110,14 @@ def qti_for_quiz(quiz: dict) -> str:
     for q_idx, (prompt, choices, correct) in enumerate(quiz["questions"], start=1):
         choice_xml = []
         for c_idx, choice in enumerate(choices):
-            ident = f"q1_{q_idx}_a{c_idx}"
+            ident = f"q11_{q_idx}_a{c_idx}"
             choice_xml.append(f"""
               <response_label ident="{ident}">
                 <material><mattext texttype="text/html">{html.escape(choice)}</mattext></material>
               </response_label>""")
-        correct_ident = f"q1_{q_idx}_a{correct}"
+        correct_ident = f"q11_{q_idx}_a{correct}"
         items.append(f"""
-      <item ident="q1_{q_idx}" title="Question {q_idx}">
+      <item ident="q11_{q_idx}" title="Question {q_idx}">
         <itemmetadata>
           <qtimetadata>
             <qtimetadatafield><fieldlabel>question_type</fieldlabel><fieldentry>multiple_choice_question</fieldentry></qtimetadatafield>
@@ -172,7 +186,7 @@ def build_manifest(quiz: dict) -> str:
   <organizations>
     <organization identifier="{uid('org')}" structure="rooted-hierarchy">
       <item identifier="{uid('module')}">
-        <title>Imported Quizzes</title>
+        <title>Chapter 7 Quizzes</title>
 {items}
       </item>
     </organization>

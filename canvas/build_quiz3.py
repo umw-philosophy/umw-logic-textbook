@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Build a Canvas Common Cartridge (.imscc) package for Quiz 1: Syllabus and Arguments."""
+"""Build a Canvas Common Cartridge (.imscc) package for Quiz 3: Arguments and Conclusions."""
 
 from __future__ import annotations
 
@@ -12,8 +12,8 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
 CANVAS = ROOT / "canvas"
-BUILD = CANVAS / "build_quiz1_temp"
-IMSCC_TARGET = CANVAS / "quiz1_syllabus.imscc"
+BUILD = CANVAS / "build_quiz3_temp"
+IMSCC_TARGET = CANVAS / "quiz3arguments_conclusions.imscc"
 
 
 def uid(prefix: str) -> str:
@@ -21,63 +21,69 @@ def uid(prefix: str) -> str:
 
 
 QUIZ = {
-    "slug": "quiz1_syllabus",
-    "title": "Quiz 1: Syllabus and Arguments",
-    "description": "After reading the syllabus and first two reading assignments, answer the following questions about the syllabus and arguments.",
+    "slug": "quiz3arguments_conclusions",
+    "title": "Quiz 3: Arguments and Conclusions",
+    "description": "Identify the final conclusion for each of the following argument passages from Chapter 1.",
     "questions": [
-        # Question 1
+        # Question 1 (Exercise 135 / ex-ch1-s12-05)
         (
-            "How can you get in touch with me (the instructor, Michael Reno)?",
+            "Read the following passage and identify the final conclusion of the argument:<br><br>"
+            "<em>\"We should not use attendance software that tracks students' locations. The software collects sensitive data. Sensitive data can be misused or exposed in a breach. Tools that create serious privacy risks should be avoided unless they are necessary. This software is not necessary, since professors can take attendance without location tracking.\"</em>",
             [
-                "email me at mreno@umw.edu or through the discussion board on canvas.",
-                "Call me at 517-YoL-ogic",
-                "Wait around at my office in person for me to show up.",
-                "Make rude comments on the youTube videos for the course until I respond.",
+                "We should not use attendance software that tracks students' locations.",
+                "The software collects sensitive data.",
+                "Sensitive data can be misused or exposed in a breach.",
+                "Tools that create serious privacy risks should be avoided unless they are necessary.",
+                "This software is not necessary, since professors can take attendance without location tracking.",
             ],
             0,  # Correct answer index
         ),
-        # Question 2
+        # Question 2 (Exercise 136 / ex-ch1-s12-06)
         (
-            "In order to succeed, about how much time should you spend each day on the course material?",
+            "Read the following passage and identify the final conclusion of the argument:<br><br>"
+            "<em>\"The city should build a new park near the university. The nearest park is two miles away, and students without cars cannot easily reach it. A nearby park would improve mental health, because access to green space reduces stress. Reduced stress leads to better academic performance.\"</em>",
             [
-                "At least 2-3 hours, probably more like 4 hours per day.",
-                "None. This is an easy A.",
-                "1 hour",
-                "12 hours per day.",
+                "The city should build a new park near the university.",
+                "The nearest park is two miles away, and students without cars cannot easily reach it.",
+                "A nearby park would improve mental health, because access to green space reduces stress.",
+                "Reduced stress leads to better academic performance.",
             ],
             0,
         ),
-        # Question 3
+        # Question 3 (Exercise 137 / ex-ch1-s12-07)
         (
-            "When's the first exam and how long do you have to complete it?",
+            "Read the following passage and identify the final conclusion of the argument:<br><br>"
+            "<em>\"We should require all first-year students to take a critical thinking course. Students arrive with widely varying reasoning skills. A shared course would give everyone a common vocabulary for evaluating arguments. A common vocabulary makes class discussions in other courses more productive. More productive discussions improve learning across the curriculum.\"</em>",
             [
-                "It's on Friday, May 23rd. The end of the first week of class! You'll have 2 hours to complete it, starting at 9 am.",
-                "There are no exams.",
-                "There's an exam every day, so Monday, May 17th",
-                "June 16th",
+                "We should require all first-year students to take a critical thinking course.",
+                "Students arrive with widely varying reasoning skills.",
+                "A shared course would give everyone a common vocabulary for evaluating arguments.",
+                "A common vocabulary makes class discussions in other courses more productive.",
+                "More productive discussions improve learning across the curriculum.",
             ],
             0,
         ),
-        # Question 4
+        # Question 4 (Exercise 138 / ex-ch1-s12-08)
         (
-            "A statement is a sentence that is true or false.",
+            "Read the following passage and identify the final conclusion of the argument:<br><br>"
+            "<em>\"The software should be replaced. It crashes at least once per week during peak hours. Each crash disrupts service for roughly 500 users. Frequent disruptions erode trust in the system. A system that users do not trust will not be used, and a system that is not used wastes the money spent on it.\"</em>",
             [
-                "True",
-                "False",
+                "The software should be replaced.",
+                "It crashes at least once per week during peak hours.",
+                "Each crash disrupts service for roughly 500 users.",
+                "Frequent disruptions erode trust in the system.",
+                "A system that users do not trust will not be used, and a system that is not used wastes the money spent on it.",
             ],
             0,
         ),
-        # Question 5
+        # Question 5 (Exercise 143 / ex-ch1-s13-05)
         (
-            "In the following passage, which sentence is the final conclusion?<br><br>"
-            "For example, under this Proposal — if a Square customer’s mother gifts her daughter $4,000 in physical cash and the daughter deposits those funds in a bank, the bank would have no obligation to collect information on the customer’s mother. Under the Proposal, if this same transaction were completed in cryptocurrency, the bank would have to reach beyond its customer relationship and intrude upon the mother’s private information in order for the daughter to successfully deposit and freely access her gift.<br><br>"
-            "The incongruity between the treatment of cash and cryptocurrency under FinCEN’s Proposal will inhibit adoption of cryptocurrency and invade the privacy of individuals. Yet the rule fails to explain the difference in risk. As such, this low threshold and its extension of KYC obligations beyond customer relationships is arbitrary and unjustified.",
+            "Read the following passage and identify the final conclusion of the argument:<br><br>"
+            "<em>\"If the collaboration policy applies to group chat notes, then students must list those notes in their acknowledgments. The collaboration policy does apply to group chat notes. Therefore, students must list those notes in their acknowledgments.\"</em>",
             [
-                "As such, this low threshold and its extension of KYC obligations beyond customer relationships is arbitrary and unjustified.",
-                "under this Proposal — if a Square customer’s mother gifts her daughter $4,000 in physical cash and the daughter deposits those funds in a bank, the bank would have no obligation to collect information on the customer’s mother.",
-                "The bank would have to reach beyond its customer relationship and intrude upon the mother’s private information in order for the daughter to successfully deposit and freely access her gift.",
-                "Yet the rule fails to explain the difference in risk.",
-                "The incongruity between the treatment of cash and cryptocurrency under FinCEN’s Proposal will inhibit adoption of cryptocurrency and invade the privacy of individuals.",
+                "students must list those notes in their acknowledgments.",
+                "If the collaboration policy applies to group chat notes, then students must list those notes in their acknowledgments.",
+                "The collaboration policy does apply to group chat notes.",
             ],
             0,
         ),
@@ -96,14 +102,14 @@ def qti_for_quiz(quiz: dict) -> str:
     for q_idx, (prompt, choices, correct) in enumerate(quiz["questions"], start=1):
         choice_xml = []
         for c_idx, choice in enumerate(choices):
-            ident = f"q1_{q_idx}_a{c_idx}"
+            ident = f"q3_{q_idx}_a{c_idx}"
             choice_xml.append(f"""
               <response_label ident="{ident}">
                 <material><mattext texttype="text/html">{html.escape(choice)}</mattext></material>
               </response_label>""")
-        correct_ident = f"q1_{q_idx}_a{correct}"
+        correct_ident = f"q3_{q_idx}_a{correct}"
         items.append(f"""
-      <item ident="q1_{q_idx}" title="Question {q_idx}">
+      <item ident="q3_{q_idx}" title="Question {q_idx}">
         <itemmetadata>
           <qtimetadata>
             <qtimetadatafield><fieldlabel>question_type</fieldlabel><fieldentry>multiple_choice_question</fieldentry></qtimetadatafield>
@@ -172,7 +178,7 @@ def build_manifest(quiz: dict) -> str:
   <organizations>
     <organization identifier="{uid('org')}" structure="rooted-hierarchy">
       <item identifier="{uid('module')}">
-        <title>Imported Quizzes</title>
+        <title>Chapter 1 Quizzes</title>
 {items}
       </item>
     </organization>

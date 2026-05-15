@@ -143,7 +143,7 @@
       <p>
         That table is not a shortcut for the definition. It is the
         definition. In this system, the conditional just is the
-        function displayed by that table.
+        function as displayed by that table.
       </p>
     </paragraphs>
 
@@ -346,7 +346,7 @@
       </p>
       <p>
       4 of the operators understood as truth functions make perfect sense to most people. One, however, trips people up: the horsehoe, which symbolizes the conditional. 
-       In the first row the conditional table, both elements, the antecedent and the consquence are both true. And, the horseshoe outputs true. That is, when both the antecendent and the consequent are true. The whole conditional is true. That makes sense to most people. Similarly with row 2. 
+       In the first row of the conditional table, both elements, the antecedent and the consquent are true. And, the horseshoe outputs true. That is, when both the antecendent and the consequent are true, the whole conditional is true. That makes sense to most people. Similarly with row 2. 
         In the second row of the conditional table, <m>P</m> is T
         and <m>Q</m> is F. The output for <m>P \supset Q</m> is F.
         That row says: a conditional is false when its antecedent
@@ -371,18 +371,18 @@
         Suppose I make you this promise:
       </p>
       <p>
-        <q>If you mow my lawn today, then I will pay you $20.</q>
+        <q>If you mow my lawn today, then I will pay you $30.</q>
       </p>
       <p>
         Let <m>P</m> = You mow my lawn today. Let <m>Q</m> = I pay
-        you $20. The promise is <m>P \supset Q</m>. To figure out
+        you $30. The promise is <m>P \supset Q</m>. To figure out
         the truth value of that conditional, we just have to ask one
         question: <alert>under what circumstances did I break my
         promise?</alert>
       </p>
       <p>
         <alert>Row 1: the True/True case.</alert>
-        You mow the lawn (<m>P</m> is true). I pay you $20
+        You mow the lawn (<m>P</m> is true). I pay you $30
         (<m>Q</m> is true). Did I break my promise? No. I kept my
         word. The conditional is <alert>true</alert>.
       </p>
@@ -396,9 +396,9 @@
       </p>
       <p>
         <alert>Row 3: the False/True case.</alert>
-        You do not mow the lawn (<m>P</m> is false). I give you $20
+        You do not mow the lawn (<m>P</m> is false). I give you $30
         anyway (<m>Q</m> is true). Did I break my promise? No. Maybe
-        I gave you $20 because it's your birthday, or maybe I just
+        I gave you $30 because it's your birthday, or maybe I just
         felt generous. My promise was <q>if you mow, I pay.</q> I
         never said <q>I will <em>only</em> pay you if you mow.</q>
         Since I did not violate the terms of my promise, the
@@ -407,7 +407,7 @@
       <p>
         <alert>Row 4: the False/False case.</alert>
         You do not mow the lawn (<m>P</m> is false). I do not pay
-        you $20 (<m>Q</m> is false). Did I break my promise? No.
+        you $30 (<m>Q</m> is false). Did I break my promise? No.
         You didn't do the work, so I didn't hand over the cash. The
         terms of the promise are perfectly intact. The conditional is
         <alert>true</alert>.

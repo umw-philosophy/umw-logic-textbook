@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Build a Canvas Common Cartridge (.imscc) package for Quiz 1: Syllabus and Arguments."""
+"""Build a Canvas Common Cartridge (.imscc) package for Quiz 6: Informal Fallacies A."""
 
 from __future__ import annotations
 
@@ -12,8 +12,8 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
 CANVAS = ROOT / "canvas"
-BUILD = CANVAS / "build_quiz1_temp"
-IMSCC_TARGET = CANVAS / "quiz1_syllabus.imscc"
+BUILD = CANVAS / "build_quiz6_temp"
+IMSCC_TARGET = CANVAS / "quiz6_fallacies_a.imscc"
 
 
 def uid(prefix: str) -> str:
@@ -21,63 +21,67 @@ def uid(prefix: str) -> str:
 
 
 QUIZ = {
-    "slug": "quiz1_syllabus",
-    "title": "Quiz 1: Syllabus and Arguments",
-    "description": "After reading the syllabus and first two reading assignments, answer the following questions about the syllabus and arguments.",
+    "slug": "quiz6_fallacies_a",
+    "title": "Quiz 6: Informal Fallacies A",
+    "description": "Autograded multiple-choice quiz covering Chapter 5 informal fallacies, featuring application questions across the three categories: relevance, weak inductive support, and presumption.",
     "questions": [
-        # Question 1
+        # Question 1 (Relevance: Ad hominem)
         (
-            "How can you get in touch with me (the instructor, Michael Reno)?",
+            "Identify the informal fallacy committed in the following passage:<br><br>"
+            "<em>\"You can't take Senator Carter's argument about climate policy seriously. She drives a gas-powered SUV.\"</em>",
             [
-                "email me at mreno@umw.edu or through the discussion board on canvas.",
-                "Call me at 517-YoL-ogic",
-                "Wait around at my office in person for me to show up.",
-                "Make rude comments on the youTube videos for the course until I respond.",
+                "Ad hominem (circumstantial / tu quoque)",
+                "Hasty generalization",
+                "False dichotomy",
+                "Suppressed evidence",
             ],
             0,  # Correct answer index
         ),
-        # Question 2
+        # Question 2 (Relevance: Straw person)
         (
-            "In order to succeed, about how much time should you spend each day on the course material?",
+            "Identify the informal fallacy committed in the following passage:<br><br>"
+            "<em>\"The opposition wants stronger background checks for firearm purchases. They want to disarm law-abiding Americans. We should reject their proposal.\"</em>",
             [
-                "At least 2-3 hours, probably more like 4 hours per day.",
-                "None. This is an easy A.",
-                "1 hour",
-                "12 hours per day.",
+                "Straw person",
+                "Appeal to popularity",
+                "Begging the question",
+                "Weak analogy",
             ],
             0,
         ),
-        # Question 3
+        # Question 3 (Weak Induction: False cause)
         (
-            "When's the first exam and how long do you have to complete it?",
+            "Identify the informal fallacy committed in the following passage:<br><br>"
+            "<em>\"Inflation rose for three months after the new tariffs went into effect. The tariffs are causing the inflation.\"</em>",
             [
-                "It's on Friday, May 23rd. The end of the first week of class! You'll have 2 hours to complete it, starting at 9 am.",
-                "There are no exams.",
-                "There's an exam every day, so Monday, May 17th",
-                "June 16th",
+                "False cause (post hoc ergo propter hoc)",
+                "Equivocation",
+                "Rigid application of a generalization",
+                "Complex question",
             ],
             0,
         ),
-        # Question 4
+        # Question 4 (Presumption: False dichotomy)
         (
-            "A statement is a sentence that is true or false.",
+            "Identify the informal fallacy committed in the following passage:<br><br>"
+            "<em>\"Either we secure our borders or we accept lawlessness. We must secure our borders.\"</em>",
             [
-                "True",
-                "False",
+                "False dichotomy",
+                "Red herring",
+                "Appeal to illegitimate authority",
+                "Slippery slope",
             ],
             0,
         ),
-        # Question 5
+        # Question 5 (Presumption: Begging the question)
         (
-            "In the following passage, which sentence is the final conclusion?<br><br>"
-            "For example, under this Proposal — if a Square customer’s mother gifts her daughter $4,000 in physical cash and the daughter deposits those funds in a bank, the bank would have no obligation to collect information on the customer’s mother. Under the Proposal, if this same transaction were completed in cryptocurrency, the bank would have to reach beyond its customer relationship and intrude upon the mother’s private information in order for the daughter to successfully deposit and freely access her gift.<br><br>"
-            "The incongruity between the treatment of cash and cryptocurrency under FinCEN’s Proposal will inhibit adoption of cryptocurrency and invade the privacy of individuals. Yet the rule fails to explain the difference in risk. As such, this low threshold and its extension of KYC obligations beyond customer relationships is arbitrary and unjustified.",
+            "Identify the informal fallacy committed in the following passage:<br><br>"
+            "<em>\"The party of working people supports working people. So working people should support the party.\"</em>",
             [
-                "As such, this low threshold and its extension of KYC obligations beyond customer relationships is arbitrary and unjustified.",
-                "under this Proposal — if a Square customer’s mother gifts her daughter $4,000 in physical cash and the daughter deposits those funds in a bank, the bank would have no obligation to collect information on the customer’s mother.",
-                "The bank would have to reach beyond its customer relationship and intrude upon the mother’s private information in order for the daughter to successfully deposit and freely access her gift.",
-                "Yet the rule fails to explain the difference in risk.",
-                "The incongruity between the treatment of cash and cryptocurrency under FinCEN’s Proposal will inhibit adoption of cryptocurrency and invade the privacy of individuals.",
+                "Begging the question (circular reasoning)",
+                "Weak analogy",
+                "Hasty generalization",
+                "Appeal to emotion",
             ],
             0,
         ),
@@ -96,14 +100,14 @@ def qti_for_quiz(quiz: dict) -> str:
     for q_idx, (prompt, choices, correct) in enumerate(quiz["questions"], start=1):
         choice_xml = []
         for c_idx, choice in enumerate(choices):
-            ident = f"q1_{q_idx}_a{c_idx}"
+            ident = f"q6_{q_idx}_a{c_idx}"
             choice_xml.append(f"""
               <response_label ident="{ident}">
                 <material><mattext texttype="text/html">{html.escape(choice)}</mattext></material>
               </response_label>""")
-        correct_ident = f"q1_{q_idx}_a{correct}"
+        correct_ident = f"q6_{q_idx}_a{correct}"
         items.append(f"""
-      <item ident="q1_{q_idx}" title="Question {q_idx}">
+      <item ident="q6_{q_idx}" title="Question {q_idx}">
         <itemmetadata>
           <qtimetadata>
             <qtimetadatafield><fieldlabel>question_type</fieldlabel><fieldentry>multiple_choice_question</fieldentry></qtimetadatafield>
@@ -172,7 +176,7 @@ def build_manifest(quiz: dict) -> str:
   <organizations>
     <organization identifier="{uid('org')}" structure="rooted-hierarchy">
       <item identifier="{uid('module')}">
-        <title>Imported Quizzes</title>
+        <title>Chapter 5 Quizzes</title>
 {items}
       </item>
     </organization>

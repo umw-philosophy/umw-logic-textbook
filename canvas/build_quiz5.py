@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Build a Canvas Common Cartridge (.imscc) package for Quiz 1: Syllabus and Arguments."""
+"""Build a Canvas Common Cartridge (.imscc) package for Quiz 5: The Six Forms (labeled quiz5_forms.imscc)."""
 
 from __future__ import annotations
 
@@ -12,8 +12,8 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
 CANVAS = ROOT / "canvas"
-BUILD = CANVAS / "build_quiz1_temp"
-IMSCC_TARGET = CANVAS / "quiz1_syllabus.imscc"
+BUILD = CANVAS / "build_quiz5_temp"
+IMSCC_TARGET = CANVAS / "quiz5_forms.imscc"
 
 
 def uid(prefix: str) -> str:
@@ -21,63 +21,68 @@ def uid(prefix: str) -> str:
 
 
 QUIZ = {
-    "slug": "quiz1_syllabus",
-    "title": "Quiz 1: Syllabus and Arguments",
-    "description": "After reading the syllabus and first two reading assignments, answer the following questions about the syllabus and arguments.",
+    "slug": "quiz5_forms",
+    "title": "Quiz 5: The Six Forms",
+    "due": "2026-05-19T23:59:00Z",
+    "description": "Autograded quiz covering the six conditional and disjunctive argument forms from Chapter 3 (Modus Ponens, Modus Tollens, Disjunctive Syllogism, Hypothetical Syllogism, Affirming the Consequent, and Denying the Antecedent). Due May 19th.",
     "questions": [
         # Question 1
         (
-            "How can you get in touch with me (the instructor, Michael Reno)?",
+            "Identify the argument form in the following passage:<br><br>"
+            "<em>\"If the bridge is open, the commute takes thirty minutes. The bridge is open. So the commute takes thirty minutes.\"</em>",
             [
-                "email me at mreno@umw.edu or through the discussion board on canvas.",
-                "Call me at 517-YoL-ogic",
-                "Wait around at my office in person for me to show up.",
-                "Make rude comments on the youTube videos for the course until I respond.",
+                "Modus ponens (Valid)",
+                "Modus tollens (Valid)",
+                "Affirming the consequent (Invalid)",
+                "Denying the antecedent (Invalid)",
             ],
             0,  # Correct answer index
         ),
         # Question 2
         (
-            "In order to succeed, about how much time should you spend each day on the course material?",
+            "Identify the argument form in the following passage:<br><br>"
+            "<em>\"If a proposal clears the committee, the chair announces it. The chair did not announce it. So the proposal did not clear the committee.\"</em>",
             [
-                "At least 2-3 hours, probably more like 4 hours per day.",
-                "None. This is an easy A.",
-                "1 hour",
-                "12 hours per day.",
+                "Modus tollens (Valid)",
+                "Denying the antecedent (Invalid)",
+                "Modus ponens (Valid)",
+                "Disjunctive syllogism (Valid)",
             ],
             0,
         ),
         # Question 3
         (
-            "When's the first exam and how long do you have to complete it?",
+            "Identify the argument form in the following passage:<br><br>"
+            "<em>\"If a student attends every class, they will pass the course. This student did not attend every class. So this student will not pass the course.\"</em>",
             [
-                "It's on Friday, May 23rd. The end of the first week of class! You'll have 2 hours to complete it, starting at 9 am.",
-                "There are no exams.",
-                "There's an exam every day, so Monday, May 17th",
-                "June 16th",
+                "Denying the antecedent (Invalid)",
+                "Modus tollens (Valid)",
+                "Affirming the consequent (Invalid)",
+                "Hypothetical syllogism (Valid)",
             ],
             0,
         ),
         # Question 4
         (
-            "A statement is a sentence that is true or false.",
+            "Identify the argument form in the following passage:<br><br>"
+            "<em>\"If a country has a stable currency, foreign investment increases. Foreign investment in this country has increased. So this country has a stable currency.\"</em>",
             [
-                "True",
-                "False",
+                "Affirming the consequent (Invalid)",
+                "Modus ponens (Valid)",
+                "Disjunctive syllogism (Valid)",
+                "Denying the antecedent (Invalid)",
             ],
             0,
         ),
         # Question 5
         (
-            "In the following passage, which sentence is the final conclusion?<br><br>"
-            "For example, under this Proposal — if a Square customer’s mother gifts her daughter $4,000 in physical cash and the daughter deposits those funds in a bank, the bank would have no obligation to collect information on the customer’s mother. Under the Proposal, if this same transaction were completed in cryptocurrency, the bank would have to reach beyond its customer relationship and intrude upon the mother’s private information in order for the daughter to successfully deposit and freely access her gift.<br><br>"
-            "The incongruity between the treatment of cash and cryptocurrency under FinCEN’s Proposal will inhibit adoption of cryptocurrency and invade the privacy of individuals. Yet the rule fails to explain the difference in risk. As such, this low threshold and its extension of KYC obligations beyond customer relationships is arbitrary and unjustified.",
+            "Identify the argument form in the following passage:<br><br>"
+            "<em>\"Either the data center applies for a new permit or construction stops. The data center did not apply for a new permit. So construction stops.\"</em>",
             [
-                "As such, this low threshold and its extension of KYC obligations beyond customer relationships is arbitrary and unjustified.",
-                "under this Proposal — if a Square customer’s mother gifts her daughter $4,000 in physical cash and the daughter deposits those funds in a bank, the bank would have no obligation to collect information on the customer’s mother.",
-                "The bank would have to reach beyond its customer relationship and intrude upon the mother’s private information in order for the daughter to successfully deposit and freely access her gift.",
-                "Yet the rule fails to explain the difference in risk.",
-                "The incongruity between the treatment of cash and cryptocurrency under FinCEN’s Proposal will inhibit adoption of cryptocurrency and invade the privacy of individuals.",
+                "Disjunctive syllogism (Valid)",
+                "Hypothetical syllogism (Valid)",
+                "Modus tollens (Valid)",
+                "Affirming the consequent (Invalid)",
             ],
             0,
         ),
@@ -96,14 +101,14 @@ def qti_for_quiz(quiz: dict) -> str:
     for q_idx, (prompt, choices, correct) in enumerate(quiz["questions"], start=1):
         choice_xml = []
         for c_idx, choice in enumerate(choices):
-            ident = f"q1_{q_idx}_a{c_idx}"
+            ident = f"q5_{q_idx}_a{c_idx}"
             choice_xml.append(f"""
               <response_label ident="{ident}">
                 <material><mattext texttype="text/html">{html.escape(choice)}</mattext></material>
               </response_label>""")
-        correct_ident = f"q1_{q_idx}_a{correct}"
+        correct_ident = f"q5_{q_idx}_a{correct}"
         items.append(f"""
-      <item ident="q1_{q_idx}" title="Question {q_idx}">
+      <item ident="q5_{q_idx}" title="Question {q_idx}">
         <itemmetadata>
           <qtimetadata>
             <qtimetadatafield><fieldlabel>question_type</fieldlabel><fieldentry>multiple_choice_question</fieldentry></qtimetadatafield>
@@ -147,6 +152,7 @@ def meta_for_quiz(quiz: dict) -> str:
   <description>&lt;p&gt;{html.escape(quiz['description'])}&lt;/p&gt;</description>
   <quiz_type>assignment</quiz_type>
   <points_possible>{points}</points_possible>
+  <due_at>{quiz['due']}</due_at>
   <published>true</published>
 </quiz>
 """
@@ -172,7 +178,7 @@ def build_manifest(quiz: dict) -> str:
   <organizations>
     <organization identifier="{uid('org')}" structure="rooted-hierarchy">
       <item identifier="{uid('module')}">
-        <title>Imported Quizzes</title>
+        <title>Chapter 3 Quizzes</title>
 {items}
       </item>
     </organization>

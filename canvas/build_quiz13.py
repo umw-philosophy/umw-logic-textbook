@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Build a Canvas Common Cartridge (.imscc) package for Quiz 1: Syllabus and Arguments."""
+"""Build a Canvas Common Cartridge (.imscc) package for Quiz 13: Necessary and Sufficient Conditions."""
 
 from __future__ import annotations
 
@@ -12,8 +12,8 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
 CANVAS = ROOT / "canvas"
-BUILD = CANVAS / "build_quiz1_temp"
-IMSCC_TARGET = CANVAS / "quiz1_syllabus.imscc"
+BUILD = CANVAS / "build_quiz13_temp"
+IMSCC_TARGET = CANVAS / "quiz13_necessary_sufficient.imscc"
 
 
 def uid(prefix: str) -> str:
@@ -21,63 +21,79 @@ def uid(prefix: str) -> str:
 
 
 QUIZ = {
-    "slug": "quiz1_syllabus",
-    "title": "Quiz 1: Syllabus and Arguments",
-    "description": "After reading the syllabus and first two reading assignments, answer the following questions about the syllabus and arguments.",
+    "slug": "quiz13_necessary_sufficient",
+    "title": "Quiz 13: Necessary and Sufficient Conditions",
+    "description": "Autograded multiple-choice quiz testing the identification of necessary and sufficient conditions in sentential logic translations (Chapter 8). For each ordinary English statement, identify exactly what is being asserted as necessary and what is being asserted as sufficient.",
     "questions": [
-        # Question 1
+        # Question 1 (17)
         (
-            "How can you get in touch with me (the instructor, Michael Reno)?",
+            "Read the following statement, then identify what is being asserted as necessary and what is being asserted as sufficient:<br><br>"
+            "<em>\"If the alarm sounds, the building will be evacuated.\"</em>",
             [
-                "email me at mreno@umw.edu or through the discussion board on canvas.",
-                "Call me at 517-YoL-ogic",
-                "Wait around at my office in person for me to show up.",
-                "Make rude comments on the youTube videos for the course until I respond.",
+                "The alarm sounding is sufficient for evacuating the building, and evacuating the building is necessary for the alarm sounding.",
+                "The alarm sounding is necessary for evacuating the building, and evacuating the building is sufficient for the alarm sounding.",
+                "The alarm sounding is both necessary and sufficient for evacuating the building.",
+                "Evacuating the building is sufficient for the alarm sounding, but the alarm sounding is not necessary for evacuating the building.",
             ],
             0,  # Correct answer index
         ),
-        # Question 2
+        # Question 2 (18)
         (
-            "In order to succeed, about how much time should you spend each day on the course material?",
+            "Read the following statement, then identify what is being asserted as necessary and what is being asserted as sufficient:<br><br>"
+            "<em>\"The building will be evacuated if the alarm sounds.\"</em>",
             [
-                "At least 2-3 hours, probably more like 4 hours per day.",
-                "None. This is an easy A.",
-                "1 hour",
-                "12 hours per day.",
+                "The alarm sounding is sufficient for evacuating the building, and evacuating the building is necessary for the alarm sounding.",
+                "The alarm sounding is necessary for evacuating the building, and evacuating the building is sufficient for the alarm sounding.",
+                "The alarm sounding is both necessary and sufficient for evacuating the building.",
+                "Neither event is asserted as necessary or sufficient for the other.",
             ],
             0,
         ),
-        # Question 3
+        # Question 3 (19)
         (
-            "When's the first exam and how long do you have to complete it?",
+            "Read the following statement, then identify what is being asserted as necessary and what is being asserted as sufficient:<br><br>"
+            "<em>\"The building will be evacuated only if the alarm sounds.\"</em>",
             [
-                "It's on Friday, May 23rd. The end of the first week of class! You'll have 2 hours to complete it, starting at 9 am.",
-                "There are no exams.",
-                "There's an exam every day, so Monday, May 17th",
-                "June 16th",
+                "The alarm sounding is necessary for evacuating the building, and evacuating the building is sufficient for the alarm sounding.",
+                "The alarm sounding is sufficient for evacuating the building, and evacuating the building is necessary for the alarm sounding.",
+                "The alarm sounding is both necessary and sufficient for evacuating the building.",
+                "Evacuating the building is necessary for the alarm sounding, but the alarm sounding is not sufficient for evacuating the building.",
             ],
             0,
         ),
-        # Question 4
+        # Question 4 (20)
         (
-            "A statement is a sentence that is true or false.",
+            "Read the following statement, then identify what is being asserted as necessary and what is being asserted as sufficient:<br><br>"
+            "<em>\"The building will be evacuated if and only if the alarm sounds.\"</em>",
             [
-                "True",
-                "False",
+                "The alarm sounding is both necessary and sufficient for evacuating the building.",
+                "The alarm sounding is sufficient for evacuating the building, but not necessary.",
+                "The alarm sounding is necessary for evacuating the building, but not sufficient.",
+                "The alarm sounding is neither necessary nor sufficient for evacuating the building.",
             ],
             0,
         ),
-        # Question 5
+        # Question 5 (21)
         (
-            "In the following passage, which sentence is the final conclusion?<br><br>"
-            "For example, under this Proposal — if a Square customer’s mother gifts her daughter $4,000 in physical cash and the daughter deposits those funds in a bank, the bank would have no obligation to collect information on the customer’s mother. Under the Proposal, if this same transaction were completed in cryptocurrency, the bank would have to reach beyond its customer relationship and intrude upon the mother’s private information in order for the daughter to successfully deposit and freely access her gift.<br><br>"
-            "The incongruity between the treatment of cash and cryptocurrency under FinCEN’s Proposal will inhibit adoption of cryptocurrency and invade the privacy of individuals. Yet the rule fails to explain the difference in risk. As such, this low threshold and its extension of KYC obligations beyond customer relationships is arbitrary and unjustified.",
+            "Read the following statement, then identify what is being asserted as necessary and what is being asserted as sufficient (recall that 'unless' translates as 'if not'):<br><br>"
+            "<em>\"I will accept the results of the election unless I lose.\"</em>",
             [
-                "As such, this low threshold and its extension of KYC obligations beyond customer relationships is arbitrary and unjustified.",
-                "under this Proposal — if a Square customer’s mother gifts her daughter $4,000 in physical cash and the daughter deposits those funds in a bank, the bank would have no obligation to collect information on the customer’s mother.",
-                "The bank would have to reach beyond its customer relationship and intrude upon the mother’s private information in order for the daughter to successfully deposit and freely access her gift.",
-                "Yet the rule fails to explain the difference in risk.",
-                "The incongruity between the treatment of cash and cryptocurrency under FinCEN’s Proposal will inhibit adoption of cryptocurrency and invade the privacy of individuals.",
+                "Not losing is sufficient for accepting the results, and accepting the results is necessary for not losing.",
+                "Losing is sufficient for accepting the results, and accepting the results is necessary for losing.",
+                "Losing is necessary for accepting the results, and accepting the results is sufficient for losing.",
+                "Not losing is necessary for accepting the results, and accepting the results is sufficient for not losing.",
+            ],
+            0,
+        ),
+        # Question 6 (22)
+        (
+            "Read the following statement, then identify what is being asserted as necessary and what is being asserted as sufficient:<br><br>"
+            "<em>\"The grant will be renewed only if the report is submitted on time.\"</em>",
+            [
+                "Submitting the report on time is necessary for renewing the grant, and renewing the grant is sufficient for the report being submitted on time.",
+                "Submitting the report on time is sufficient for renewing the grant, and renewing the grant is necessary for the report being submitted on time.",
+                "Submitting the report on time is both necessary and sufficient for renewing the grant.",
+                "Submitting the report on time is neither necessary nor sufficient for renewing the grant.",
             ],
             0,
         ),
@@ -96,14 +112,14 @@ def qti_for_quiz(quiz: dict) -> str:
     for q_idx, (prompt, choices, correct) in enumerate(quiz["questions"], start=1):
         choice_xml = []
         for c_idx, choice in enumerate(choices):
-            ident = f"q1_{q_idx}_a{c_idx}"
+            ident = f"q13_{q_idx}_a{c_idx}"
             choice_xml.append(f"""
               <response_label ident="{ident}">
                 <material><mattext texttype="text/html">{html.escape(choice)}</mattext></material>
               </response_label>""")
-        correct_ident = f"q1_{q_idx}_a{correct}"
+        correct_ident = f"q13_{q_idx}_a{correct}"
         items.append(f"""
-      <item ident="q1_{q_idx}" title="Question {q_idx}">
+      <item ident="q13_{q_idx}" title="Question {q_idx}">
         <itemmetadata>
           <qtimetadata>
             <qtimetadatafield><fieldlabel>question_type</fieldlabel><fieldentry>multiple_choice_question</fieldentry></qtimetadatafield>
@@ -172,7 +188,7 @@ def build_manifest(quiz: dict) -> str:
   <organizations>
     <organization identifier="{uid('org')}" structure="rooted-hierarchy">
       <item identifier="{uid('module')}">
-        <title>Imported Quizzes</title>
+        <title>Chapter 8 Translations</title>
 {items}
       </item>
     </organization>

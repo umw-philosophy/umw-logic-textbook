@@ -55,7 +55,7 @@ QUIZ = {
             "Read the following passage and decide whether it is an argument, an explanation, or a simple statement:<br><br>"
             "<em>\"The campus shuttle is running twenty minutes late today because a water main broke on College Avenue and blocked both lanes of traffic.\"</em>",
             [
-                "An explanation (the speaker is showing <em>why</em> the shuttle is late, not trying to prove <em>that</em> it is late)",
+                "An explanation (the speaker is showing why the shuttle is late, not trying to prove that it is late)",
                 "An argument (the speaker is offering premises to convince you that water mains break frequently)",
                 "A performative utterance that makes the shuttle arrive late",
                 "A simple statement without any supporting reasons or causal claims",
@@ -104,7 +104,7 @@ def qti_for_quiz(quiz: dict) -> str:
             ident = f"q2_{q_idx}_a{c_idx}"
             choice_xml.append(f"""
               <response_label ident="{ident}">
-                <material><mattext texttype="text/plain">{html.escape(choice)}</mattext></material>
+                <material><mattext texttype="text/html">{html.escape(choice)}</mattext></material>
               </response_label>""")
         correct_ident = f"q2_{q_idx}_a{correct}"
         items.append(f"""

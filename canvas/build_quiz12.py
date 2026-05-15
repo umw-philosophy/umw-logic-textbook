@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Build a Canvas Common Cartridge (.imscc) package for Quiz 1: Syllabus and Arguments."""
+"""Build a Canvas Common Cartridge (.imscc) package for Quiz 12: Categorical Translation Review."""
 
 from __future__ import annotations
 
@@ -12,8 +12,8 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
 CANVAS = ROOT / "canvas"
-BUILD = CANVAS / "build_quiz1_temp"
-IMSCC_TARGET = CANVAS / "quiz1_syllabus.imscc"
+BUILD = CANVAS / "build_quiz12_temp"
+IMSCC_TARGET = CANVAS / "quiz12_translation_review.imscc"
 
 
 def uid(prefix: str) -> str:
@@ -21,63 +21,79 @@ def uid(prefix: str) -> str:
 
 
 QUIZ = {
-    "slug": "quiz1_syllabus",
-    "title": "Quiz 1: Syllabus and Arguments",
-    "description": "After reading the syllabus and first two reading assignments, answer the following questions about the syllabus and arguments.",
+    "slug": "quiz12_translation_review",
+    "title": "Quiz 12: Categorical Translation Review",
+    "description": "Autograded multiple-choice quiz reviewing the translation of ordinary English sentences into standard-form categorical propositions (A, E, I, and O). Pay close attention to signal words, bare plurals, and order-reversing terms like 'only' and 'none but'.",
     "questions": [
-        # Question 1
+        # Question 1 (Bare plural generic -> Universal affirmative A)
         (
-            "How can you get in touch with me (the instructor, Michael Reno)?",
+            "Select the correct standard-form translation of the following sentence:<br><br>"
+            "<em>\"Whales are mammals.\"</em>",
             [
-                "email me at mreno@umw.edu or through the discussion board on canvas.",
-                "Call me at 517-YoL-ogic",
-                "Wait around at my office in person for me to show up.",
-                "Make rude comments on the youTube videos for the course until I respond.",
+                "All whales are mammals.",
+                "Some whales are mammals.",
+                "All mammals are whales.",
+                "No whales are mammals.",
             ],
             0,  # Correct answer index
         ),
-        # Question 2
+        # Question 2 ("There are" -> Particular affirmative I)
         (
-            "In order to succeed, about how much time should you spend each day on the course material?",
+            "Select the correct standard-form translation of the following sentence:<br><br>"
+            "<em>\"There are dishonest used car salespeople.\"</em>",
             [
-                "At least 2-3 hours, probably more like 4 hours per day.",
-                "None. This is an easy A.",
-                "1 hour",
-                "12 hours per day.",
+                "Some used car salespeople are dishonest people.",
+                "All used car salespeople are dishonest people.",
+                "Some used car salespeople are not dishonest people.",
+                "No used car salespeople are dishonest people.",
             ],
             0,
         ),
-        # Question 3
+        # Question 3 ("Nobody" -> Universal negative E)
         (
-            "When's the first exam and how long do you have to complete it?",
+            "Select the correct standard-form translation of the following sentence:<br><br>"
+            "<em>\"Nobody who cheats deserves to win.\"</em>",
             [
-                "It's on Friday, May 23rd. The end of the first week of class! You'll have 2 hours to complete it, starting at 9 am.",
-                "There are no exams.",
-                "There's an exam every day, so Monday, May 17th",
-                "June 16th",
+                "No people who cheat are people who deserve to win.",
+                "All people who cheat are people who deserve to win.",
+                "Some people who cheat are not people who deserve to win.",
+                "All people who deserve to win are people who cheat.",
             ],
             0,
         ),
-        # Question 4
+        # Question 4 ("Only" -> Universal affirmative A with reversed terms)
         (
-            "A statement is a sentence that is true or false.",
+            "Select the correct standard-form translation of the following sentence:<br><br>"
+            "<em>\"Only citizens are eligible voters.\"</em>",
             [
-                "True",
-                "False",
+                "All eligible voters are citizens.",
+                "All citizens are eligible voters.",
+                "Some citizens are eligible voters.",
+                "No eligible voters are citizens.",
             ],
             0,
         ),
-        # Question 5
+        # Question 5 ("Not every" -> Particular negative O)
         (
-            "In the following passage, which sentence is the final conclusion?<br><br>"
-            "For example, under this Proposal — if a Square customer’s mother gifts her daughter $4,000 in physical cash and the daughter deposits those funds in a bank, the bank would have no obligation to collect information on the customer’s mother. Under the Proposal, if this same transaction were completed in cryptocurrency, the bank would have to reach beyond its customer relationship and intrude upon the mother’s private information in order for the daughter to successfully deposit and freely access her gift.<br><br>"
-            "The incongruity between the treatment of cash and cryptocurrency under FinCEN’s Proposal will inhibit adoption of cryptocurrency and invade the privacy of individuals. Yet the rule fails to explain the difference in risk. As such, this low threshold and its extension of KYC obligations beyond customer relationships is arbitrary and unjustified.",
+            "Select the correct standard-form translation of the following sentence:<br><br>"
+            "<em>\"Not every student who studies hard gets an A.\"</em>",
             [
-                "As such, this low threshold and its extension of KYC obligations beyond customer relationships is arbitrary and unjustified.",
-                "under this Proposal — if a Square customer’s mother gifts her daughter $4,000 in physical cash and the daughter deposits those funds in a bank, the bank would have no obligation to collect information on the customer’s mother.",
-                "The bank would have to reach beyond its customer relationship and intrude upon the mother’s private information in order for the daughter to successfully deposit and freely access her gift.",
-                "Yet the rule fails to explain the difference in risk.",
-                "The incongruity between the treatment of cash and cryptocurrency under FinCEN’s Proposal will inhibit adoption of cryptocurrency and invade the privacy of individuals.",
+                "Some students who study hard are not students who get an A.",
+                "No students who study hard are students who get an A.",
+                "Some students who get an A are not students who study hard.",
+                "All students who study hard are students who get an A.",
+            ],
+            0,
+        ),
+        # Question 6 ("None but" -> Universal affirmative A with reversed terms)
+        (
+            "Select the correct standard-form translation of the following sentence:<br><br>"
+            "<em>\"None but the guilty have reason to fear justice.\"</em>",
+            [
+                "All people who have reason to fear justice are guilty people.",
+                "All guilty people are people who have reason to fear justice.",
+                "No guilty people are people who have reason to fear justice.",
+                "Some guilty people are people who have reason to fear justice.",
             ],
             0,
         ),
@@ -96,14 +112,14 @@ def qti_for_quiz(quiz: dict) -> str:
     for q_idx, (prompt, choices, correct) in enumerate(quiz["questions"], start=1):
         choice_xml = []
         for c_idx, choice in enumerate(choices):
-            ident = f"q1_{q_idx}_a{c_idx}"
+            ident = f"q12_{q_idx}_a{c_idx}"
             choice_xml.append(f"""
               <response_label ident="{ident}">
                 <material><mattext texttype="text/html">{html.escape(choice)}</mattext></material>
               </response_label>""")
-        correct_ident = f"q1_{q_idx}_a{correct}"
+        correct_ident = f"q12_{q_idx}_a{correct}"
         items.append(f"""
-      <item ident="q1_{q_idx}" title="Question {q_idx}">
+      <item ident="q12_{q_idx}" title="Question {q_idx}">
         <itemmetadata>
           <qtimetadata>
             <qtimetadatafield><fieldlabel>question_type</fieldlabel><fieldentry>multiple_choice_question</fieldentry></qtimetadatafield>
@@ -172,7 +188,7 @@ def build_manifest(quiz: dict) -> str:
   <organizations>
     <organization identifier="{uid('org')}" structure="rooted-hierarchy">
       <item identifier="{uid('module')}">
-        <title>Imported Quizzes</title>
+        <title>Categorical Translation Review</title>
 {items}
       </item>
     </organization>

@@ -419,19 +419,35 @@
     <paragraphs xml:id="paragraphs-unless">
       <title>Unless</title>
       <p>
-        <q>Unless</q> usually means <q>if not.</q> The sentence
-        <q>The hearing will proceed unless the judge grants a
-        delay</q> can be read:
+        The easiest way to translate <q>unless</q> is to put a wedge
+        exactly where the word <q>unless</q> appears. <q><m>P</m> unless
+        <m>Q</m></q> becomes <m>P \lor Q</m>.
       </p>
       <p>
-        If the judge does not grant a delay, then the hearing will
-        proceed.
+        Take the sentence <q>The hearing will proceed unless the judge
+        grants a delay.</q> Let <m>H</m> = the hearing will proceed, and
+        let <m>D</m> = the judge grants a delay. Replacing <q>unless</q>
+        with a wedge gives:
+      </p>
+      <p><m>H \lor D</m></p>
+      <p>
+        This works because <q>unless</q> tells you that at least one of
+        the two things holds: either the hearing proceeds, or the judge
+        grants a delay. That is exactly what an inclusive disjunction
+        says. Whenever you see <q>unless,</q> you can drop a wedge in its
+        place and move on — it is fast and reliable.
       </p>
       <p>
-        Let <m>D</m> = the judge grants a delay. Let <m>H</m> = the
-        hearing will proceed. The symbolization is:
+        You will also see <q>unless</q> explained as <q>if not.</q> On
+        that reading, the same sentence becomes <q>if the judge does not
+        grant a delay, then the hearing will proceed,</q> symbolized
+        <m>{\text{\textasciitilde}}D \supset H</m>. That translation is
+        correct too. Later, once we have the truth table method, and even later when we have the replacement rules, we will
+        be able to show that <m>{\text{\textasciitilde}}D \supset H</m>
+        and <m>H \lor D</m> are logically equivalent — that is what the
+        rule of material implication tells us. Until then, the wedge is
+        all you need.
       </p>
-      <p><m>{\text{\textasciitilde}}D \supset H</m></p>
       <p>
         In many contexts, <q><m>P</m> unless <m>Q</m></q> also suggests that if <m>Q</m>
         happens, <m>P</m> will not happen. That stronger reading is often
@@ -616,8 +632,10 @@
     </p>
     <p>
       <alert>Conditionals in English (§8.4).</alert> <q>If,</q>
-      <q>only if,</q> <q>if and only if,</q> <q>unless,</q> and
-      <q>neither/nor</q> require special care in translation.
+      <q>only if,</q> <q>if and only if,</q> and <q>neither/nor</q>
+      require special care in translation. <q>Unless</q> is the easy
+      one: put a wedge where <q>unless</q> appears, so <q><m>P</m>
+      unless <m>Q</m></q> becomes <m>P \lor Q</m>.
     </p>
     <p>
       <alert>Symbolizing Arguments (§8.5).</alert> Arguments should
@@ -761,7 +779,7 @@
       <exercise xml:id="ex-ch8-s04-02"><statement><p>The building will be evacuated if the alarm sounds.</p></statement></exercise>
       <exercise xml:id="ex-ch8-s04-03"><statement><p>The building will be evacuated only if the alarm sounds.</p></statement></exercise>
       <exercise xml:id="ex-ch8-s04-04"><statement><p>The building will be evacuated if and only if the alarm sounds.</p></statement></exercise>
-      <exercise xml:id="ex-ch8-s04-05"><statement><p>The hearing will proceed unless the judge grants a delay.</p></statement></exercise>
+      <exercise xml:id="ex-ch8-s04-05"><statement><p>I will accept the results of the election unless I lose.</p></statement></exercise>
       <exercise xml:id="ex-ch8-s04-06"><statement><p>The grant will be renewed only if the report is submitted on time.</p></statement></exercise>
     </exercisegroup>
 

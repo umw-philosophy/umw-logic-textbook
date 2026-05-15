@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Build a Canvas Common Cartridge (.imscc) package for Quiz 1: Syllabus and Arguments."""
+"""Build a Canvas Common Cartridge (.imscc) package for Quiz 7: Informal Fallacies B."""
 
 from __future__ import annotations
 
@@ -12,8 +12,8 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
 CANVAS = ROOT / "canvas"
-BUILD = CANVAS / "build_quiz1_temp"
-IMSCC_TARGET = CANVAS / "quiz1_syllabus.imscc"
+BUILD = CANVAS / "build_quiz7_temp"
+IMSCC_TARGET = CANVAS / "quiz7_fallacies_b.imscc"
 
 
 def uid(prefix: str) -> str:
@@ -21,63 +21,68 @@ def uid(prefix: str) -> str:
 
 
 QUIZ = {
-    "slug": "quiz1_syllabus",
-    "title": "Quiz 1: Syllabus and Arguments",
-    "description": "After reading the syllabus and first two reading assignments, answer the following questions about the syllabus and arguments.",
+    "slug": "quiz7_fallacies_b",
+    "title": "Quiz 7: Informal Fallacies B",
+    "description": "Autograded multiple-choice quiz providing a second set of application questions covering Chapter 5 informal fallacies across relevance, weak inductive support, and presumption.",
     "questions": [
-        # Question 1
+        # Question 1 (Relevance: Red herring)
         (
-            "How can you get in touch with me (the instructor, Michael Reno)?",
+            "Identify the informal fallacy committed by the Senator's response in the following exchange:<br><br>"
+            "<em>Reporter: \"Senator, your office's records show you accepted a donation that may have violated state ethics rules.\"<br>"
+            "Senator: \"Look, the real story here is the way the previous administration left this state in a fiscal crisis.\"</em>",
             [
-                "email me at mreno@umw.edu or through the discussion board on canvas.",
-                "Call me at 517-YoL-ogic",
-                "Wait around at my office in person for me to show up.",
-                "Make rude comments on the youTube videos for the course until I respond.",
+                "Red herring",
+                "Straw person",
+                "Appeal to popularity",
+                "Rigid application of a generalization",
             ],
             0,  # Correct answer index
         ),
-        # Question 2
+        # Question 2 (Relevance: Equivocation)
         (
-            "In order to succeed, about how much time should you spend each day on the course material?",
+            "Identify the informal fallacy committed in the following passage:<br><br>"
+            "<em>\"Free speech is a constitutional right. Banning a speaker from a private platform is an attack on free speech. So banning a speaker from a private platform is unconstitutional.\"</em>",
             [
-                "At least 2-3 hours, probably more like 4 hours per day.",
-                "None. This is an easy A.",
-                "1 hour",
-                "12 hours per day.",
+                "Equivocation",
+                "Appeal to emotion",
+                "Complex question",
+                "Weak analogy",
             ],
             0,
         ),
-        # Question 3
+        # Question 3 (Weak Induction: Hasty generalization)
         (
-            "When's the first exam and how long do you have to complete it?",
+            "Identify the informal fallacy committed in the following passage:<br><br>"
+            "<em>\"I know two people who got laid off from data center construction projects last month. Clearly the data center industry is collapsing.\"</em>",
             [
-                "It's on Friday, May 23rd. The end of the first week of class! You'll have 2 hours to complete it, starting at 9 am.",
-                "There are no exams.",
-                "There's an exam every day, so Monday, May 17th",
-                "June 16th",
+                "Hasty generalization",
+                "False dichotomy",
+                "Ad hominem",
+                "Suppressed evidence",
             ],
             0,
         ),
-        # Question 4
+        # Question 4 (Weak Induction: Slippery slope)
         (
-            "A statement is a sentence that is true or false.",
+            "Identify the informal fallacy committed in the following passage:<br><br>"
+            "<em>\"If we allow background checks for firearm sales, the next step will be a registry, then licensing requirements, then confiscation. We have to oppose any background check legislation.\"</em>",
             [
-                "True",
-                "False",
+                "Slippery slope",
+                "Red herring",
+                "Appeal to illegitimate authority",
+                "Begging the question",
             ],
             0,
         ),
-        # Question 5
+        # Question 5 (Presumption: Complex question)
         (
-            "In the following passage, which sentence is the final conclusion?<br><br>"
-            "For example, under this Proposal — if a Square customer’s mother gifts her daughter $4,000 in physical cash and the daughter deposits those funds in a bank, the bank would have no obligation to collect information on the customer’s mother. Under the Proposal, if this same transaction were completed in cryptocurrency, the bank would have to reach beyond its customer relationship and intrude upon the mother’s private information in order for the daughter to successfully deposit and freely access her gift.<br><br>"
-            "The incongruity between the treatment of cash and cryptocurrency under FinCEN’s Proposal will inhibit adoption of cryptocurrency and invade the privacy of individuals. Yet the rule fails to explain the difference in risk. As such, this low threshold and its extension of KYC obligations beyond customer relationships is arbitrary and unjustified.",
+            "Identify the informal fallacy embedded in the following question:<br><br>"
+            "<em>\"Why does the governor continue to ignore the state's struggling rural counties?\"</em>",
             [
-                "As such, this low threshold and its extension of KYC obligations beyond customer relationships is arbitrary and unjustified.",
-                "under this Proposal — if a Square customer’s mother gifts her daughter $4,000 in physical cash and the daughter deposits those funds in a bank, the bank would have no obligation to collect information on the customer’s mother.",
-                "The bank would have to reach beyond its customer relationship and intrude upon the mother’s private information in order for the daughter to successfully deposit and freely access her gift.",
-                "Yet the rule fails to explain the difference in risk.",
-                "The incongruity between the treatment of cash and cryptocurrency under FinCEN’s Proposal will inhibit adoption of cryptocurrency and invade the privacy of individuals.",
+                "Complex question (loaded question)",
+                "False cause",
+                "Straw person",
+                "Rigid application of a generalization",
             ],
             0,
         ),
@@ -96,14 +101,14 @@ def qti_for_quiz(quiz: dict) -> str:
     for q_idx, (prompt, choices, correct) in enumerate(quiz["questions"], start=1):
         choice_xml = []
         for c_idx, choice in enumerate(choices):
-            ident = f"q1_{q_idx}_a{c_idx}"
+            ident = f"q7_{q_idx}_a{c_idx}"
             choice_xml.append(f"""
               <response_label ident="{ident}">
                 <material><mattext texttype="text/html">{html.escape(choice)}</mattext></material>
               </response_label>""")
-        correct_ident = f"q1_{q_idx}_a{correct}"
+        correct_ident = f"q7_{q_idx}_a{correct}"
         items.append(f"""
-      <item ident="q1_{q_idx}" title="Question {q_idx}">
+      <item ident="q7_{q_idx}" title="Question {q_idx}">
         <itemmetadata>
           <qtimetadata>
             <qtimetadatafield><fieldlabel>question_type</fieldlabel><fieldentry>multiple_choice_question</fieldentry></qtimetadatafield>
@@ -172,7 +177,7 @@ def build_manifest(quiz: dict) -> str:
   <organizations>
     <organization identifier="{uid('org')}" structure="rooted-hierarchy">
       <item identifier="{uid('module')}">
-        <title>Imported Quizzes</title>
+        <title>Chapter 5 Quizzes</title>
 {items}
       </item>
     </organization>

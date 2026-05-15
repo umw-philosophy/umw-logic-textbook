@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Build a Canvas Common Cartridge (.imscc) package for Quiz 1: Syllabus and Arguments."""
+"""Build a Canvas Common Cartridge (.imscc) package for Quiz 4: Argument Reconstruction."""
 
 from __future__ import annotations
 
@@ -12,8 +12,8 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
 CANVAS = ROOT / "canvas"
-BUILD = CANVAS / "build_quiz1_temp"
-IMSCC_TARGET = CANVAS / "quiz1_syllabus.imscc"
+BUILD = CANVAS / "build_quiz4_temp"
+IMSCC_TARGET = CANVAS / "quiz4_recon.imscc"
 
 
 def uid(prefix: str) -> str:
@@ -21,63 +21,75 @@ def uid(prefix: str) -> str:
 
 
 QUIZ = {
-    "slug": "quiz1_syllabus",
-    "title": "Quiz 1: Syllabus and Arguments",
-    "description": "After reading the syllabus and first two reading assignments, answer the following questions about the syllabus and arguments.",
+    "slug": "quiz4_recon",
+    "title": "Quiz 4: Argument Reconstruction",
+    "due": "2026-05-19T23:59:00Z",
+    "description": "Autograded quiz covering Chapter 2 concepts of argument reconstruction, including independent vs. dependent premises, sub-conclusions, final conclusions, and implicit premises. Due May 19th.",
     "questions": [
         # Question 1
         (
-            "How can you get in touch with me (the instructor, Michael Reno)?",
+            "Consider the following argument reconstruction:<br><br>"
+            "P1: The early bus is usually less crowded.<br>"
+            "P2: The early bus gets to campus before the coffee line gets ridiculous.<br>"
+            "C: You should take the early bus.<br><br>"
+            "According to Chapter 2, what is the support relationship between P1 and P2?",
             [
-                "email me at mreno@umw.edu or through the discussion board on canvas.",
-                "Call me at 517-YoL-ogic",
-                "Wait around at my office in person for me to show up.",
-                "Make rude comments on the youTube videos for the course until I respond.",
+                "They provide independent support because each premise gives its own separate reason to accept the conclusion without needing to be combined with the other.",
+                "They provide dependent support because neither premise makes sense grammatically on its own.",
+                "P1 is a sub-conclusion supported by P2.",
+                "P2 is an implicit premise that must be supplied by the reader.",
             ],
             0,  # Correct answer index
         ),
         # Question 2
         (
-            "In order to succeed, about how much time should you spend each day on the course material?",
+            "Consider the following argument reconstruction:<br><br>"
+            "P1: If the only available exam time conflicts with a required lab, the department should offer a make-up exam.<br>"
+            "P2: The only available exam time conflicts with a required lab.<br>"
+            "C: The department should offer a make-up exam.<br><br>"
+            "How do P1 and P2 support the conclusion?",
             [
-                "At least 2-3 hours, probably more like 4 hours per day.",
-                "None. This is an easy A.",
-                "1 hour",
-                "12 hours per day.",
+                "They provide dependent support because neither premise alone gives the complete reason for the conclusion; the policy principle and the factual condition must work together.",
+                "They provide independent support because each statement is a complete, truth-apt sentence on its own.",
+                "P1 supports P2 independently, while P2 supports C dependently.",
+                "They do not support the conclusion because the argument commits the fallacy of affirming the consequent.",
             ],
             0,
         ),
         # Question 3
         (
-            "When's the first exam and how long do you have to complete it?",
+            "Read the following layered argument passage:<br><br>"
+            "<em>\"The discount brings in students who would otherwise skip the museum, and those students often return later with family members. That means the student discount builds future audiences. Programs that build future audiences are worth preserving, so the museum has a good reason to continue the discount.\"</em><br><br>"
+            "Which statement functions as a <strong>sub-conclusion</strong> (an intermediate conclusion) in this argument?",
             [
-                "It's on Friday, May 23rd. The end of the first week of class! You'll have 2 hours to complete it, starting at 9 am.",
-                "There are no exams.",
-                "There's an exam every day, so Monday, May 17th",
-                "June 16th",
+                "The student discount builds future audiences.",
+                "The museum has a good reason to continue the discount.",
+                "The discount brings in students who would otherwise skip the museum.",
+                "Programs that build future audiences are worth preserving.",
             ],
             0,
         ),
         # Question 4
         (
-            "A statement is a sentence that is true or false.",
+            "In the museum discount argument from the previous question, which statement represents the <strong>final conclusion</strong>?",
             [
-                "True",
-                "False",
+                "The museum has a good reason to continue the discount.",
+                "The student discount builds future audiences.",
+                "The discount brings in students who would otherwise skip the museum.",
+                "Those students often return later with family members.",
             ],
             0,
         ),
         # Question 5
         (
-            "In the following passage, which sentence is the final conclusion?<br><br>"
-            "For example, under this Proposal — if a Square customer’s mother gifts her daughter $4,000 in physical cash and the daughter deposits those funds in a bank, the bank would have no obligation to collect information on the customer’s mother. Under the Proposal, if this same transaction were completed in cryptocurrency, the bank would have to reach beyond its customer relationship and intrude upon the mother’s private information in order for the daughter to successfully deposit and freely access her gift.<br><br>"
-            "The incongruity between the treatment of cash and cryptocurrency under FinCEN’s Proposal will inhibit adoption of cryptocurrency and invade the privacy of individuals. Yet the rule fails to explain the difference in risk. As such, this low threshold and its extension of KYC obligations beyond customer relationships is arbitrary and unjustified.",
+            "Consider this short passage:<br><br>"
+            "<em>\"The emergency grant program gives students short-term financial help. Therefore, the program protects student retention.\"</em><br><br>"
+            "To reconstruct this argument fairly using the principle of charity, which of the following is the most appropriate <strong>implicit premise</strong> to add?",
             [
-                "As such, this low threshold and its extension of KYC obligations beyond customer relationships is arbitrary and unjustified.",
-                "under this Proposal — if a Square customer’s mother gifts her daughter $4,000 in physical cash and the daughter deposits those funds in a bank, the bank would have no obligation to collect information on the customer’s mother.",
-                "The bank would have to reach beyond its customer relationship and intrude upon the mother’s private information in order for the daughter to successfully deposit and freely access her gift.",
-                "Yet the rule fails to explain the difference in risk.",
-                "The incongruity between the treatment of cash and cryptocurrency under FinCEN’s Proposal will inhibit adoption of cryptocurrency and invade the privacy of individuals.",
+                "Short-term financial help helps keep students enrolled and protects retention.",
+                "Every student at the university receives an emergency grant at some point.",
+                "Emergency grants are funded entirely by private alumni donations.",
+                "Students should never drop out of college under any circumstances.",
             ],
             0,
         ),
@@ -96,14 +108,14 @@ def qti_for_quiz(quiz: dict) -> str:
     for q_idx, (prompt, choices, correct) in enumerate(quiz["questions"], start=1):
         choice_xml = []
         for c_idx, choice in enumerate(choices):
-            ident = f"q1_{q_idx}_a{c_idx}"
+            ident = f"q4_{q_idx}_a{c_idx}"
             choice_xml.append(f"""
               <response_label ident="{ident}">
                 <material><mattext texttype="text/html">{html.escape(choice)}</mattext></material>
               </response_label>""")
-        correct_ident = f"q1_{q_idx}_a{correct}"
+        correct_ident = f"q4_{q_idx}_a{correct}"
         items.append(f"""
-      <item ident="q1_{q_idx}" title="Question {q_idx}">
+      <item ident="q4_{q_idx}" title="Question {q_idx}">
         <itemmetadata>
           <qtimetadata>
             <qtimetadatafield><fieldlabel>question_type</fieldlabel><fieldentry>multiple_choice_question</fieldentry></qtimetadatafield>
@@ -147,6 +159,7 @@ def meta_for_quiz(quiz: dict) -> str:
   <description>&lt;p&gt;{html.escape(quiz['description'])}&lt;/p&gt;</description>
   <quiz_type>assignment</quiz_type>
   <points_possible>{points}</points_possible>
+  <due_at>{quiz['due']}</due_at>
   <published>true</published>
 </quiz>
 """
@@ -172,7 +185,7 @@ def build_manifest(quiz: dict) -> str:
   <organizations>
     <organization identifier="{uid('org')}" structure="rooted-hierarchy">
       <item identifier="{uid('module')}">
-        <title>Imported Quizzes</title>
+        <title>Chapter 2 Quizzes</title>
 {items}
       </item>
     </organization>

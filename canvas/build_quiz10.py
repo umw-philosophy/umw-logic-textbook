@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Build a Canvas Common Cartridge (.imscc) package for Quiz 1: Syllabus and Arguments."""
+"""Build a Canvas Common Cartridge (.imscc) package for Quiz 10: Immediate Inferences."""
 
 from __future__ import annotations
 
@@ -12,8 +12,8 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
 CANVAS = ROOT / "canvas"
-BUILD = CANVAS / "build_quiz1_temp"
-IMSCC_TARGET = CANVAS / "quiz1_syllabus.imscc"
+BUILD = CANVAS / "build_quiz10_temp"
+IMSCC_TARGET = CANVAS / "quiz10_immediate_inference.imscc"
 
 
 def uid(prefix: str) -> str:
@@ -21,63 +21,91 @@ def uid(prefix: str) -> str:
 
 
 QUIZ = {
-    "slug": "quiz1_syllabus",
-    "title": "Quiz 1: Syllabus and Arguments",
-    "description": "After reading the syllabus and first two reading assignments, answer the following questions about the syllabus and arguments.",
+    "slug": "quiz10_immediate_inference",
+    "title": "Quiz 10: Immediate Inferences",
+    "description": "Autograded multiple-choice quiz testing immediate inferences in categorical logic (Chapter 6). For each pair of statements, identify the operation performed and whether it is valid on the modern interpretation.",
     "questions": [
-        # Question 1
+        # Question 1 (User's example: I to O -> no named immediate inference, invalid)
         (
-            "How can you get in touch with me (the instructor, Michael Reno)?",
+            "Read the following premise and conclusion, then select the immediate inference operation that transforms the premise into the conclusion AND determine whether the inference is valid on the modern interpretation:<br><br>"
+            "<em>Premise: Some garbage trucks are noisy vehicles.<br>"
+            "Conclusion: Some garbage trucks are not noisy vehicles.</em>",
             [
-                "email me at mreno@umw.edu or through the discussion board on canvas.",
-                "Call me at 517-YoL-ogic",
-                "Wait around at my office in person for me to show up.",
-                "Make rude comments on the youTube videos for the course until I respond.",
+                "no named immediate inference, invalid",
+                "obversion, valid",
+                "denial of the contradictory, valid",
+                "contraposition, invalid",
+                "conversion, invalid",
             ],
             0,  # Correct answer index
         ),
-        # Question 2
+        # Question 2 (Conversion of E -> conversion, valid)
         (
-            "In order to succeed, about how much time should you spend each day on the course material?",
+            "Read the following premise and conclusion, then select the immediate inference operation that transforms the premise into the conclusion AND determine whether the inference is valid on the modern interpretation:<br><br>"
+            "<em>Premise: No school board members are ridiculous clowns.<br>"
+            "Conclusion: No ridiculous clowns are school board members.</em>",
             [
-                "At least 2-3 hours, probably more like 4 hours per day.",
-                "None. This is an easy A.",
-                "1 hour",
-                "12 hours per day.",
+                "conversion, valid",
+                "conversion, invalid",
+                "contraposition, invalid",
+                "obversion, valid",
+                "denial of the contradictory, valid",
             ],
             0,
         ),
-        # Question 3
+        # Question 3 (Obversion of A -> obversion, valid)
         (
-            "When's the first exam and how long do you have to complete it?",
+            "Read the following premise and conclusion, then select the immediate inference operation that transforms the premise into the conclusion AND determine whether the inference is valid on the modern interpretation:<br><br>"
+            "<em>Premise: All crayons are non-toxic things.<br>"
+            "Conclusion: No crayons are toxic things.</em>",
             [
-                "It's on Friday, May 23rd. The end of the first week of class! You'll have 2 hours to complete it, starting at 9 am.",
-                "There are no exams.",
-                "There's an exam every day, so Monday, May 17th",
-                "June 16th",
+                "obversion, valid",
+                "contraposition, valid",
+                "conversion, invalid",
+                "denial of the contradictory, valid",
+                "no named immediate inference, invalid",
             ],
             0,
         ),
-        # Question 4
+        # Question 4 (Contraposition of O -> contraposition, valid)
         (
-            "A statement is a sentence that is true or false.",
+            "Read the following premise and conclusion, then select the immediate inference operation that transforms the premise into the conclusion AND determine whether the inference is valid on the modern interpretation:<br><br>"
+            "<em>Premise: Some students are not seniors.<br>"
+            "Conclusion: Some non-seniors are not non-students.</em>",
             [
-                "True",
-                "False",
+                "contraposition, valid",
+                "contraposition, invalid",
+                "obversion, valid",
+                "conversion, valid",
+                "no named immediate inference, invalid",
             ],
             0,
         ),
-        # Question 5
+        # Question 5 (Denial of the contradictory -> denial of the contradictory, valid)
         (
-            "In the following passage, which sentence is the final conclusion?<br><br>"
-            "For example, under this Proposal — if a Square customer’s mother gifts her daughter $4,000 in physical cash and the daughter deposits those funds in a bank, the bank would have no obligation to collect information on the customer’s mother. Under the Proposal, if this same transaction were completed in cryptocurrency, the bank would have to reach beyond its customer relationship and intrude upon the mother’s private information in order for the daughter to successfully deposit and freely access her gift.<br><br>"
-            "The incongruity between the treatment of cash and cryptocurrency under FinCEN’s Proposal will inhibit adoption of cryptocurrency and invade the privacy of individuals. Yet the rule fails to explain the difference in risk. As such, this low threshold and its extension of KYC obligations beyond customer relationships is arbitrary and unjustified.",
+            "Read the following premise and conclusion, then select the immediate inference operation that transforms the premise into the conclusion AND determine whether the inference is valid on the modern interpretation:<br><br>"
+            "<em>Premise: It is false that all dumpster fires are bad things.<br>"
+            "Conclusion: Some dumpster fires are not bad things.</em>",
             [
-                "As such, this low threshold and its extension of KYC obligations beyond customer relationships is arbitrary and unjustified.",
-                "under this Proposal — if a Square customer’s mother gifts her daughter $4,000 in physical cash and the daughter deposits those funds in a bank, the bank would have no obligation to collect information on the customer’s mother.",
-                "The bank would have to reach beyond its customer relationship and intrude upon the mother’s private information in order for the daughter to successfully deposit and freely access her gift.",
-                "Yet the rule fails to explain the difference in risk.",
-                "The incongruity between the treatment of cash and cryptocurrency under FinCEN’s Proposal will inhibit adoption of cryptocurrency and invade the privacy of individuals.",
+                "denial of the contradictory, valid",
+                "obversion, valid",
+                "conversion, invalid",
+                "contraposition, invalid",
+                "no named immediate inference, invalid",
+            ],
+            0,
+        ),
+        # Question 6 (Contraposition of E -> contraposition, invalid)
+        (
+            "Read the following premise and conclusion, then select the immediate inference operation that transforms the premise into the conclusion AND determine whether the inference is valid on the modern interpretation:<br><br>"
+            "<em>Premise: No school board members are ridiculous clowns.<br>"
+            "Conclusion: No non-ridiculous-clowns are non-school-board-members.</em>",
+            [
+                "contraposition, invalid",
+                "contraposition, valid",
+                "obversion, valid",
+                "conversion, valid",
+                "denial of the contradictory, valid",
             ],
             0,
         ),
@@ -96,14 +124,14 @@ def qti_for_quiz(quiz: dict) -> str:
     for q_idx, (prompt, choices, correct) in enumerate(quiz["questions"], start=1):
         choice_xml = []
         for c_idx, choice in enumerate(choices):
-            ident = f"q1_{q_idx}_a{c_idx}"
+            ident = f"q10_{q_idx}_a{c_idx}"
             choice_xml.append(f"""
               <response_label ident="{ident}">
                 <material><mattext texttype="text/html">{html.escape(choice)}</mattext></material>
               </response_label>""")
-        correct_ident = f"q1_{q_idx}_a{correct}"
+        correct_ident = f"q10_{q_idx}_a{correct}"
         items.append(f"""
-      <item ident="q1_{q_idx}" title="Question {q_idx}">
+      <item ident="q10_{q_idx}" title="Question {q_idx}">
         <itemmetadata>
           <qtimetadata>
             <qtimetadatafield><fieldlabel>question_type</fieldlabel><fieldentry>multiple_choice_question</fieldentry></qtimetadatafield>
@@ -172,7 +200,7 @@ def build_manifest(quiz: dict) -> str:
   <organizations>
     <organization identifier="{uid('org')}" structure="rooted-hierarchy">
       <item identifier="{uid('module')}">
-        <title>Imported Quizzes</title>
+        <title>Chapter 6 Quizzes</title>
 {items}
       </item>
     </organization>
