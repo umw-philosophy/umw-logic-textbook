@@ -1218,9 +1218,8 @@
       const [a, b] = cited;
       if (conc.type !== 'conj') return _fail(`Conj requires a conjunction (P · Q) as conclusion, but ${_q(conc)} is not.`);
       if (astEquals(conc.left, a) && astEquals(conc.right, b)) return _ok();
-      if (astEquals(conc.left, b) && astEquals(conc.right, a))
-        return _fail(`Conj: Conclusion has conjuncts in reverse order. Conj produces (first·second). Swap the cited lines or rewrite as ${_q({ type: 'conj', left: a, right: b })}.`);
-      return _fail(`Conj: Cited ${_q(a)} and ${_q(b)}, so conclusion must be ${_q({ type: 'conj', left: a, right: b })}, not ${_q(conc)}.`);
+      if (astEquals(conc.left, b) && astEquals(conc.right, a)) return _ok();
+      return _fail(`Conj: Cited ${_q(a)} and ${_q(b)}, so conclusion must combine those formulas, as either ${_q({ type: 'conj', left: a, right: b })} or ${_q({ type: 'conj', left: b, right: a })}, not ${_q(conc)}.`);
     }
 
     function checkAdd(cited, conc) {
