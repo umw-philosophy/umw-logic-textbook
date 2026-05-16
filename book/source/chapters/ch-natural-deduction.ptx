@@ -462,6 +462,59 @@
       the disjunction of the consequents, <m>S \lor I</m>.
     </p>
 
+    <example xml:id="ex-nd-hs-chain">
+      <title>A chain of Hypothetical Syllogisms</title>
+      <statement>
+        <table xml:id="table-ex-nd-hs-chain">
+          <title>Deriving <m>P \supset S</m></title>
+          <tabular halign="left" margins="0% 45%">
+            <row><cell>1.</cell><cell><m>P \supset Q</m></cell><cell></cell></row>
+            <row><cell>2.</cell><cell><m>Q \supset R</m></cell><cell></cell></row>
+            <row><cell>3.</cell><cell><m>R \supset S</m></cell><cell>/ <m>P \supset S</m></cell></row>
+            <row><cell>4.</cell><cell><m>P \supset R</m></cell><cell>1,2 HS</cell></row>
+            <row><cell>5.</cell><cell><m>P \supset S</m></cell><cell>4,3 HS</cell></row>
+          </tabular>
+        </table>
+      </statement>
+    </example>
+    <p>
+      Hypothetical Syllogism chains conditionals end-to-end. Line 1 takes
+      us from <m>P</m> to <m>Q</m>; line 2 takes us from <m>Q</m> to
+      <m>R</m>. Putting those together (line 4) gives the direct route
+      from <m>P</m> to <m>R</m>. A second HS with line 3 extends the
+      chain to <m>S</m>. With three premises that form a chain, two HS
+      moves are enough. The same pattern scales: <m>n</m> chained
+      conditionals collapse to a single one in <m>n-1</m> steps.
+    </p>
+
+    <example xml:id="ex-nd-double-mt">
+      <title>Negating two antecedents at once</title>
+      <statement>
+        <table xml:id="table-ex-nd-double-mt">
+          <title>Deriving <m>{\text{\textasciitilde}}P \cdot {\text{\textasciitilde}}R</m></title>
+          <tabular halign="left" margins="0% 45%">
+            <row><cell>1.</cell><cell><m>P \supset Q</m></cell><cell></cell></row>
+            <row><cell>2.</cell><cell><m>R \supset S</m></cell><cell></cell></row>
+            <row><cell>3.</cell><cell><m>{\text{\textasciitilde}}Q \cdot {\text{\textasciitilde}}S</m></cell><cell>/ <m>{\text{\textasciitilde}}P \cdot {\text{\textasciitilde}}R</m></cell></row>
+            <row><cell>4.</cell><cell><m>{\text{\textasciitilde}}Q</m></cell><cell>3 Simp</cell></row>
+            <row><cell>5.</cell><cell><m>{\text{\textasciitilde}}S</m></cell><cell>3 Simp</cell></row>
+            <row><cell>6.</cell><cell><m>{\text{\textasciitilde}}P</m></cell><cell>1,4 MT</cell></row>
+            <row><cell>7.</cell><cell><m>{\text{\textasciitilde}}R</m></cell><cell>2,5 MT</cell></row>
+            <row><cell>8.</cell><cell><m>{\text{\textasciitilde}}P \cdot {\text{\textasciitilde}}R</m></cell><cell>6,7 Conj</cell></row>
+          </tabular>
+        </table>
+      </statement>
+    </example>
+    <p>
+      The target is a conjunction of two negations, so the strategy is
+      to derive each negation separately and then join them with
+      Conjunction. Simplification (lines 4 and 5) splits the conjoined
+      premise into its two pieces. Each piece is the negated consequent
+      of a different conditional, so Modus Tollens fires twice — once on
+      lines 1 and 4, and once on lines 2 and 5 — giving the two
+      negations we need. Conjunction assembles them on line 8.
+    </p>
+
   </section>
 
   <section xml:id="sec-basic-proof-strategy">
@@ -789,6 +842,50 @@
           <tabular halign="left" margins="0% 45%">
             <row><cell>1.</cell><cell><m>(P \lor R) \supset S</m></cell><cell></cell></row>
             <row><cell>2.</cell><cell><m>P \cdot Q</m></cell><cell>/ <m>P \cdot S</m></cell></row>
+          </tabular>
+        </statement>
+      </exercise>
+      <exercise xml:id="ex-ch10-s03-06">
+        <statement>
+          <tabular halign="left" margins="0% 45%">
+            <row><cell>1.</cell><cell><m>{\text{\textasciitilde}}P</m></cell><cell></cell></row>
+            <row><cell>2.</cell><cell><m>P \lor Q</m></cell><cell>/ <m>Q</m></cell></row>
+          </tabular>
+        </statement>
+      </exercise>
+      <exercise xml:id="ex-ch10-s03-07">
+        <statement>
+          <tabular halign="left" margins="0% 45%">
+            <row><cell>1.</cell><cell><m>P \supset Q</m></cell><cell></cell></row>
+            <row><cell>2.</cell><cell><m>Q \supset R</m></cell><cell></cell></row>
+            <row><cell>3.</cell><cell><m>P</m></cell><cell>/ <m>R</m></cell></row>
+          </tabular>
+        </statement>
+      </exercise>
+      <exercise xml:id="ex-ch10-s03-08">
+        <statement>
+          <tabular halign="left" margins="0% 45%">
+            <row><cell>1.</cell><cell><m>(P \cdot Q) \supset R</m></cell><cell></cell></row>
+            <row><cell>2.</cell><cell><m>P</m></cell><cell></cell></row>
+            <row><cell>3.</cell><cell><m>Q</m></cell><cell>/ <m>R</m></cell></row>
+          </tabular>
+        </statement>
+      </exercise>
+      <exercise xml:id="ex-ch10-s03-09">
+        <statement>
+          <tabular halign="left" margins="0% 45%">
+            <row><cell>1.</cell><cell><m>P \supset Q</m></cell><cell></cell></row>
+            <row><cell>2.</cell><cell><m>P \supset R</m></cell><cell></cell></row>
+            <row><cell>3.</cell><cell><m>P</m></cell><cell>/ <m>Q \cdot R</m></cell></row>
+          </tabular>
+        </statement>
+      </exercise>
+      <exercise xml:id="ex-ch10-s03-10">
+        <statement>
+          <tabular halign="left" margins="0% 45%">
+            <row><cell>1.</cell><cell><m>(P \lor Q) \supset R</m></cell><cell></cell></row>
+            <row><cell>2.</cell><cell><m>(R \lor S) \supset T</m></cell><cell></cell></row>
+            <row><cell>3.</cell><cell><m>P \cdot U</m></cell><cell>/ <m>T</m></cell></row>
           </tabular>
         </statement>
       </exercise>

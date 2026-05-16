@@ -734,6 +734,70 @@
       </p>
     </paragraphs>
 
+    <paragraphs xml:id="paragraphs-worked-proof-6">
+      <title>Proof 6: Material Equivalence to extract a conditional</title>
+      <example xml:id="ex-replacement-proof-6">
+        <title>Using Equiv to feed a Hypothetical Syllogism</title>
+        <statement>
+          <table xml:id="table-ex-replacement-proof-6">
+            <title>Deriving <m>Q \supset R</m></title>
+            <tabular halign="left" margins="0% 45%">
+              <row><cell>1.</cell><cell><m>P \equiv Q</m></cell><cell></cell></row>
+              <row><cell>2.</cell><cell><m>P \supset R</m></cell><cell>/ <m>Q \supset R</m></cell></row>
+              <row><cell>3.</cell><cell><m>(P \supset Q) \cdot (Q \supset P)</m></cell><cell>1 Equiv</cell></row>
+              <row><cell>4.</cell><cell><m>Q \supset P</m></cell><cell>3 Simp</cell></row>
+              <row><cell>5.</cell><cell><m>Q \supset R</m></cell><cell>4,2 HS</cell></row>
+            </tabular>
+          </table>
+        </statement>
+      </example>
+      <p>
+        Line 1 is a biconditional. None of the implication rules act on
+        a biconditional directly. Material Equivalence rewrites it as a
+        conjunction of two conditionals (line 3), and once it is a
+        conjunction Simplification can extract the conditional we
+        actually need. The one we want is <m>Q \supset P</m>, because
+        chaining it with line 2 by Hypothetical Syllogism produces the
+        target <m>Q \supset R</m>. The other half of the biconditional,
+        <m>P \supset Q</m>, is true but unused — picking the right
+        conditional to extract is the key strategic move.
+      </p>
+    </paragraphs>
+
+    <paragraphs xml:id="paragraphs-worked-proof-7">
+      <title>Proof 7: Distribution, Constructive Dilemma, and Tautology</title>
+      <example xml:id="ex-replacement-proof-7">
+        <title>A proof that genuinely needs Distribution</title>
+        <statement>
+          <table xml:id="table-ex-replacement-proof-7">
+            <title>Deriving <m>S</m></title>
+            <tabular halign="left" margins="0% 45%">
+              <row><cell>1.</cell><cell><m>P \cdot (Q \lor R)</m></cell><cell></cell></row>
+              <row><cell>2.</cell><cell><m>(P \cdot Q) \supset S</m></cell><cell></cell></row>
+              <row><cell>3.</cell><cell><m>(P \cdot R) \supset S</m></cell><cell>/ <m>S</m></cell></row>
+              <row><cell>4.</cell><cell><m>(P \cdot Q) \lor (P \cdot R)</m></cell><cell>1 Dist</cell></row>
+              <row><cell>5.</cell><cell><m>S \lor S</m></cell><cell>2,3,4 CD</cell></row>
+              <row><cell>6.</cell><cell><m>S</m></cell><cell>5 Taut</cell></row>
+            </tabular>
+          </table>
+        </statement>
+      </example>
+      <p>
+        Compare this proof with Proof 5, where Distribution turned out
+        to be unnecessary. Here Distribution is essential. Line 1 packages
+        <m>P</m> with an internal disjunction, but lines 2 and 3 need
+        the conjunctions <m>P \cdot Q</m> and <m>P \cdot R</m> as
+        antecedents. Distribution rewrites line 1 in exactly that form
+        (line 4), and Constructive Dilemma fires immediately — the two
+        conditionals on lines 2 and 3 together with the disjunction on
+        line 4 yield the disjunction of the consequents on line 5.
+        Because both consequents are the same proposition, Tautology
+        collapses <m>S \lor S</m> to <m>S</m>. Tautology is the rule
+        that handles disjunctions and conjunctions of a sentence with
+        itself: it lets the proof shed the redundant copy.
+      </p>
+    </paragraphs>
+
     <exploration xml:id="field-11-3-1">
       <title>Field Exercise: Compare two proof paths</title>
       <statement>
@@ -1244,6 +1308,49 @@
             <row><cell>1.</cell><cell><m>(P \cdot Q) \supset R</m></cell><cell></cell></row>
             <row><cell>2.</cell><cell><m>P</m></cell><cell></cell></row>
             <row><cell>3.</cell><cell><m>{\text{\textasciitilde}}R</m></cell><cell>/ <m>{\text{\textasciitilde}}Q</m></cell></row>
+          </tabular>
+        </statement>
+      </exercise>
+      <exercise xml:id="ex-ch11-s03-09">
+        <statement>
+          <tabular halign="left" margins="0% 45%">
+            <row><cell>1.</cell><cell><m>{\text{\textasciitilde}}{\text{\textasciitilde}}P</m></cell><cell></cell></row>
+            <row><cell>2.</cell><cell><m>P \supset Q</m></cell><cell>/ <m>Q</m></cell></row>
+          </tabular>
+        </statement>
+      </exercise>
+      <exercise xml:id="ex-ch11-s03-10">
+        <statement>
+          <tabular halign="left" margins="0% 45%">
+            <row><cell>1.</cell><cell><m>P \supset Q</m></cell><cell></cell></row>
+            <row><cell>2.</cell><cell><m>Q \supset R</m></cell><cell>/ <m>{\text{\textasciitilde}}R \supset {\text{\textasciitilde}}P</m></cell></row>
+          </tabular>
+        </statement>
+      </exercise>
+      <exercise xml:id="ex-ch11-s03-11">
+        <statement>
+          <tabular halign="left" margins="0% 45%">
+            <row><cell>1.</cell><cell><m>{\text{\textasciitilde}}(P \cdot Q)</m></cell><cell></cell></row>
+            <row><cell>2.</cell><cell><m>P</m></cell><cell>/ <m>{\text{\textasciitilde}}Q</m></cell></row>
+          </tabular>
+        </statement>
+      </exercise>
+      <exercise xml:id="ex-ch11-s03-12">
+        <statement>
+          <tabular halign="left" margins="0% 45%">
+            <row><cell>1.</cell><cell><m>(P \cdot Q) \supset R</m></cell><cell></cell></row>
+            <row><cell>2.</cell><cell><m>P \cdot {\text{\textasciitilde}}R</m></cell><cell>/ <m>{\text{\textasciitilde}}Q</m></cell></row>
+          </tabular>
+        </statement>
+      </exercise>
+      <exercise xml:id="ex-ch11-s03-13">
+        <statement>
+          <tabular halign="left" margins="0% 45%">
+            <row><cell>1.</cell><cell><m>(P \cdot Q) \supset R</m></cell><cell></cell></row>
+            <row><cell>2.</cell><cell><m>R \supset S</m></cell><cell></cell></row>
+            <row><cell>3.</cell><cell><m>{\text{\textasciitilde}}S \lor T</m></cell><cell></cell></row>
+            <row><cell>4.</cell><cell><m>{\text{\textasciitilde}}T</m></cell><cell></cell></row>
+            <row><cell>5.</cell><cell><m>P</m></cell><cell>/ <m>{\text{\textasciitilde}}Q</m></cell></row>
           </tabular>
         </statement>
       </exercise>

@@ -766,6 +766,25 @@
       <row><cell>6.</cell><cell><m>P \cdot S</m></cell><cell>3,5 Conj</cell></row>
     </tabular>
     <p>The target is a conjunction, so we need both <m>P</m> and <m>S</m>. Line 2 gives <m>P</m> by Simplification. From <m>P</m>, Addition gives <m>P \lor R</m>, which is the antecedent needed for line 1. Modus Ponens then gives <m>S</m>. Finally, Conjunction joins the available <m>P</m> and <m>S</m> into the target <m>P \cdot S</m>.</p>
+    <p><term>7.</term> A complete proof is:</p>
+    <tabular halign="left" margins="0% 45%">
+      <row><cell>1.</cell><cell><m>P \supset Q</m></cell><cell></cell></row>
+      <row><cell>2.</cell><cell><m>Q \supset R</m></cell><cell></cell></row>
+      <row><cell>3.</cell><cell><m>P</m></cell><cell>/ <m>R</m></cell></row>
+      <row><cell>4.</cell><cell><m>Q</m></cell><cell>1,3 MP</cell></row>
+      <row><cell>5.</cell><cell><m>R</m></cell><cell>2,4 MP</cell></row>
+    </tabular>
+    <p>Modus Ponens fires twice. Line 3 supplies the antecedent of line 1, giving <m>Q</m>. <m>Q</m> is in turn the antecedent of line 2, so a second MP gives <m>R</m>. Hypothetical Syllogism on lines 1 and 2 followed by one MP would also work, in three lines rather than two.</p>
+    <p><term>9.</term> A complete proof is:</p>
+    <tabular halign="left" margins="0% 45%">
+      <row><cell>1.</cell><cell><m>P \supset Q</m></cell><cell></cell></row>
+      <row><cell>2.</cell><cell><m>P \supset R</m></cell><cell></cell></row>
+      <row><cell>3.</cell><cell><m>P</m></cell><cell>/ <m>Q \cdot R</m></cell></row>
+      <row><cell>4.</cell><cell><m>Q</m></cell><cell>1,3 MP</cell></row>
+      <row><cell>5.</cell><cell><m>R</m></cell><cell>2,3 MP</cell></row>
+      <row><cell>6.</cell><cell><m>Q \cdot R</m></cell><cell>4,5 Conj</cell></row>
+    </tabular>
+    <p>The target is a conjunction, so we need <m>Q</m> and <m>R</m> on separate lines and then Conjunction. Line 3 is the antecedent of both line 1 and line 2, so MP fires twice — once to get <m>Q</m> and once to get <m>R</m>. Conjunction on lines 4 and 5 finishes the proof.</p>
   </section>
 
   <section xml:id="sol-ch10-exercise-set-4-explain-the-strategy">
@@ -825,6 +844,38 @@
       <row><cell>5.</cell><cell><m>{\text{\textasciitilde}}R</m></cell><cell>2,4 MT</cell></row>
     </tabular>
     <p>DeM breaks line 1 open. Simplification gives <m>{\text{\textasciitilde}}P</m>. Since <m>{\text{\textasciitilde}}P</m> is the negation of the consequent of line 2, Modus Tollens gives <m>{\text{\textasciitilde}}R</m>.</p>
+    <p><term>9.</term> A complete proof is:</p>
+    <tabular halign="left" margins="0% 45%">
+      <row><cell>1.</cell><cell><m>{\text{\textasciitilde}}{\text{\textasciitilde}}P</m></cell><cell></cell></row>
+      <row><cell>2.</cell><cell><m>P \supset Q</m></cell><cell>/ <m>Q</m></cell></row>
+      <row><cell>3.</cell><cell><m>P</m></cell><cell>1 DN</cell></row>
+      <row><cell>4.</cell><cell><m>Q</m></cell><cell>2,3 MP</cell></row>
+    </tabular>
+    <p>Double Negation strips the two tildes from line 1, leaving the antecedent of line 2 available. Modus Ponens then finishes.</p>
+    <p><term>11.</term> A complete proof is:</p>
+    <tabular halign="left" margins="0% 45%">
+      <row><cell>1.</cell><cell><m>{\text{\textasciitilde}}(P \cdot Q)</m></cell><cell></cell></row>
+      <row><cell>2.</cell><cell><m>P</m></cell><cell>/ <m>{\text{\textasciitilde}}Q</m></cell></row>
+      <row><cell>3.</cell><cell><m>{\text{\textasciitilde}}P \lor {\text{\textasciitilde}}Q</m></cell><cell>1 DeM</cell></row>
+      <row><cell>4.</cell><cell><m>{\text{\textasciitilde}}{\text{\textasciitilde}}P</m></cell><cell>2 DN</cell></row>
+      <row><cell>5.</cell><cell><m>{\text{\textasciitilde}}Q</m></cell><cell>3,4 DS</cell></row>
+    </tabular>
+    <p>De Morgan's converts the negated conjunction on line 1 into a disjunction of negations. Line 2 says <m>P</m>; Double Negation turns it into <m>{\text{\textasciitilde}}{\text{\textasciitilde}}P</m>, which is the negation of the first disjunct on line 3. Disjunctive Syllogism then gives the second disjunct, <m>{\text{\textasciitilde}}Q</m>.</p>
+    <p><term>13.</term> A complete proof is:</p>
+    <tabular halign="left" margins="0% 45%">
+      <row><cell>1.</cell><cell><m>(P \cdot Q) \supset R</m></cell><cell></cell></row>
+      <row><cell>2.</cell><cell><m>R \supset S</m></cell><cell></cell></row>
+      <row><cell>3.</cell><cell><m>{\text{\textasciitilde}}S \lor T</m></cell><cell></cell></row>
+      <row><cell>4.</cell><cell><m>{\text{\textasciitilde}}T</m></cell><cell></cell></row>
+      <row><cell>5.</cell><cell><m>P</m></cell><cell>/ <m>{\text{\textasciitilde}}Q</m></cell></row>
+      <row><cell>6.</cell><cell><m>{\text{\textasciitilde}}S</m></cell><cell>3,4 DS</cell></row>
+      <row><cell>7.</cell><cell><m>{\text{\textasciitilde}}R</m></cell><cell>2,6 MT</cell></row>
+      <row><cell>8.</cell><cell><m>{\text{\textasciitilde}}(P \cdot Q)</m></cell><cell>1,7 MT</cell></row>
+      <row><cell>9.</cell><cell><m>{\text{\textasciitilde}}P \lor {\text{\textasciitilde}}Q</m></cell><cell>8 DeM</cell></row>
+      <row><cell>10.</cell><cell><m>{\text{\textasciitilde}}{\text{\textasciitilde}}P</m></cell><cell>5 DN</cell></row>
+      <row><cell>11.</cell><cell><m>{\text{\textasciitilde}}Q</m></cell><cell>9,10 DS</cell></row>
+    </tabular>
+    <p>The trick is to chase the negations back through the conditional chain. Lines 3 and 4 give <m>{\text{\textasciitilde}}S</m> by Disjunctive Syllogism. <m>{\text{\textasciitilde}}S</m> with line 2 gives <m>{\text{\textasciitilde}}R</m> by Modus Tollens, and <m>{\text{\textasciitilde}}R</m> with line 1 gives <m>{\text{\textasciitilde}}(P \cdot Q)</m> by a second MT. De Morgan's converts that negated conjunction into a disjunction of negations. Line 5 plus Double Negation supplies <m>{\text{\textasciitilde}}{\text{\textasciitilde}}P</m>, which knocks out the first disjunct of line 9, leaving <m>{\text{\textasciitilde}}Q</m> by Disjunctive Syllogism.</p>
   </section>
 
   <section xml:id="sol-ch11-exercise-set-4-explain-the-strategy">
@@ -1011,6 +1062,52 @@
 
   <section xml:id="sol-ch14-writing-prompt">
     <title>Chapter 14, Writing Prompt</title>
+    <p>No solutions provided. This is an open-ended writing prompt; responses will vary by student.</p>
+  </section>
+
+  <section xml:id="sol-ch15-exercise-set-1-measuring-the-middle">
+    <title>Chapter 15, Exercise Set 1: Measuring the Middle</title>
+    <p><term>1.</term> The ten scores sum to 808, so the mean is <m>808/10 = 80.8</m>. With ten values, the median is the average of the fifth and sixth, <m>(80+83)/2 = 81.5</m>. The mode is 83, which appears three times. To argue the class performed well, cite the mode (83) or the median (81.5), both in the low B range. To argue that many students struggled, cite the mean (80.8), which is pulled below the median by the lower scores, or note that four of the ten students scored below 80 and the range stretches from 62 to 100.</p>
+    <p><term>3.</term> The mode is most useful because a shoe store stocks discrete sizes, not averages. The mean and median both work out to 7.75, which is not even a size on the rack; neither tells the buyer which size to order most of. The mode is 8, which appears three times — the size the store sells most often.</p>
+    <p><term>5.</term> The distribution is skewed right: most students study between 2 and 15 hours, but one student reports 40 hours, which is far above the rest. With a skewed distribution and an outlier, the median is most appropriate because it is not pulled by the extreme value. With twelve values, the median is the average of the sixth and seventh, <m>(8+8)/2 = 8</m> hours.</p>
+  </section>
+
+  <section xml:id="sol-ch15-exercise-set-2-standard-deviation">
+    <title>Chapter 15, Exercise Set 2: Standard Deviation</title>
+    <p><term>1.</term> Step 1, mean: <m>(70+75+80+85+90)/5 = 80</m>. Step 2, deviations from the mean: <m>-10, -5, 0, 5, 10</m>. Step 3, squared deviations: <m>100, 25, 0, 25, 100</m>. Step 4, sum of squared deviations: <m>250</m>. Step 5, sample variance: <m>250/(5-1) = 62.5</m>. Step 6, sample standard deviation: <m>\sqrt{62.5} \approx 7.91</m>.</p>
+    <p><term>3.</term> Section A's scores cluster tightly around 78: most students scored within a few points of the class average, and very few scored far above or below. Section B's scores are widely scattered around the same average: substantial numbers of students scored well above 78 and well below it. The two sections look alike on the mean alone, but the spread tells very different stories about how the class as a whole performed.</p>
+    <p><term>5.</term> The value 75 is <m>(75-50)/10 = 2.5</m> standard deviations above the mean. By the empirical rule, about 95% of normally distributed values fall within 2 standard deviations of the mean and about 99.7% fall within 3, so a value at 2.5 standard deviations lies in roughly the top 2.5% of the distribution. It is unusual — only a small fraction of the data is expected to be this high — but it is not extraordinary.</p>
+  </section>
+
+  <section xml:id="sol-ch15-exercise-set-3-the-normal-distribution">
+    <title>Chapter 15, Exercise Set 3: The Normal Distribution</title>
+    <p><term>1.</term> The range 159 to 171 cm is <m>165 \pm 6</m>, which is 1 standard deviation on either side of the mean. By the empirical rule, approximately 68% of women fall in this range. The range 153 to 177 cm is <m>165 \pm 12</m>, which is 2 standard deviations on either side, so approximately 95% of women fall in this range.</p>
+    <p><term>3.</term> A diameter of 210 cm is <m>150 + 2(30)</m>, exactly 2 standard deviations above the mean. By the empirical rule, about 95% of trees fall within 2 standard deviations of the mean, so about 5% fall outside that range — and, by symmetry, about 2.5% fall above 2 standard deviations above the mean. Out of 500 trees, that is approximately <m>500 \times 0.025 \approx 12</m> or 13 trees with a diameter greater than 210 cm.</p>
+    <p><term>5.</term> A year with 55 inches of rainfall is <m>(55-40)/5 = 3</m> standard deviations above the mean. By the empirical rule, about 99.7% of values fall within 3 standard deviations of the mean, so only about 0.3% fall outside — and about 0.15% lie above 3 standard deviations above the mean. A year that wet should occur in only about 1 or 2 years in 1,000. The description <q>extraordinary</q> is warranted.</p>
+  </section>
+
+  <section xml:id="sol-ch15-exercise-set-4-confidence-intervals-and-margin-of-error">
+    <title>Chapter 15, Exercise Set 4: Confidence Intervals and Margin of Error</title>
+    <p><term>1.</term> A sample of 1,000 gives a margin of error of about plus or minus 3.1% at the 95% confidence level. The confidence interval for true support is therefore 58%, plus or minus 3.1%, which runs from 54.9% to 61.1%. The lower bound is still above 50%, so the data does support — at the 95% confidence level — the claim that a majority favors the measure.</p>
+    <p><term>3.</term> A sample of 500 gives a margin of error of about plus or minus 4.4%. The confidence interval for 61% support runs from 56.6% to 65.4%. A majority is clearly supported: the entire interval lies above 50%. But <q>overwhelmingly</q> overstates the result. Even at the upper end of the interval, support is about 65%, which is a clear majority but not a near-unanimous one. A more accurate headline would say something like <q>A majority of students support longer library hours.</q></p>
+    <p><term>5.</term> Statement (b) is the correct interpretation of a 95% confidence interval. The 95% describes the long-run reliability of the procedure: if we repeatedly drew samples of the same size and computed an interval from each, approximately 95% of those intervals would contain the true population value. Statement (a) is the common but mistaken reading. The true proportion is a fixed (unknown) number; either it is in this particular interval or it is not. Probability language describes the method across many hypothetical repetitions, not the status of any one interval.</p>
+  </section>
+
+  <section xml:id="sol-ch15-exercise-set-5-diagnostic-thresholds">
+    <title>Chapter 15, Exercise Set 5: Diagnostic Thresholds</title>
+    <p><term>1.</term> (a) The false-negative rate is <m>1 - 0.95 = 0.05</m>, or 5%: among people who actually have the condition, the test misses 5%. (b) The false-positive rate is <m>1 - 0.90 = 0.10</m>, or 10%: among people who do not have the condition, the test flags 10%. (c) If missing a true case is catastrophic, prioritize sensitivity. High sensitivity minimizes false negatives, even at the cost of more false positives (lower specificity). The reasoning matches the chapter's threshold tradeoff: when the cost of a missed case is high, lower the threshold and accept more false alarms.</p>
+    <p><term>3.</term> Three out of four flagged papers are legitimate, so the false-positive count is <m>0.75 \times 8\% = 6\%</m> of all papers submitted. (The remaining 2% of submissions are true positives.) That means roughly 6 in every 100 students are wrongly flagged, and three quarters of all flagged papers are false alarms. Whether the tradeoff is acceptable depends on what happens after a flag: if every flagged paper triggers a careful human review before any consequences, the high false-positive rate may be tolerable; if a flag itself counts as an accusation, the cost to wrongly flagged students is serious and the threshold is probably too loose.</p>
+  </section>
+
+  <section xml:id="sol-ch15-exercise-set-6-lying-with-statistics">
+    <title>Chapter 15, Exercise Set 6: Lying with Statistics</title>
+    <p><term>1.</term> The actual difference in sales is <m>\$1{,}040{,}000 - \$1{,}010{,}000 = \$30{,}000</m>, or about <m>30{,}000/1{,}010{,}000 \approx 3\%</m>. With a y-axis that begins at zero, the two bars would be almost the same height, with Product A's bar only barely taller than Product B's. The truncated axis — starting at <m>\$980{,}000</m> rather than zero — exaggerates a roughly 3% gap into a visual ratio of about two to one.</p>
+    <p><term>3.</term> (a) The absolute risk reduction is <m>3\% - 2\% = 1</m> percentage point per year. (b) <q>33% relative risk reduction</q> means the treatment cuts the existing heart-attack rate by a third: <m>1\%</m> is one third of the baseline <m>3\%</m>. (c) The absolute risk reduction is more informative for a patient. It says that, on average, the drug prevents about 1 heart attack per 100 patients per year — a concrete number against which to weigh side effects, cost, and inconvenience. The 33% figure is technically accurate but visually inflates a small absolute effect into a dramatic-sounding one.</p>
+    <p><term>5.</term> Organization A reports a <em>relative</em> risk reduction: the supplement users' rate (3%) is 40% lower than the non-users' rate (5%), since <m>(5-3)/5 = 0.40</m>. Organization B reports an <em>absolute</em> risk reduction: the rate falls by 2 percentage points, from 5% to 3%. For a general audience, B is more informative, because it conveys what changes in the world (2 fewer people per 100 develop the condition) rather than a proportional change relative to a baseline most readers will not have in mind. The framings can lead to different decisions: <q>40% less likely</q> sounds dramatic and may push readers toward the supplement, while <q>down 2 percentage points</q> reveals the same effect as modest in absolute terms.</p>
+  </section>
+
+  <section xml:id="sol-ch15-writing-prompt">
+    <title>Chapter 15, Writing Prompt</title>
     <p>No solutions provided. This is an open-ended writing prompt; responses will vary by student.</p>
   </section>
 

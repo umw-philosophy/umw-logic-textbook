@@ -1875,6 +1875,54 @@
             difference in sales? What would the graph look like if the
             y-axis began at zero?
           </p>
+          <figure xml:id="fig-ch15-s06-01-truncated-bars">
+            <caption>The sales bar graph as presented, with a truncated y-axis.</caption>
+            <image xml:id="image-ch15-s06-01-truncated-bars" width="70%">
+              <shortdescription>A two-bar sales chart in which a truncated y-axis makes Product A's bar appear about twice the height of Product B's, even though the actual sales differ by only about three percent.</shortdescription>
+              <description>
+                <p>
+                  A bar graph titled <q>Monthly Sales.</q> The y-axis is
+                  labeled in dollars and is truncated: the visible scale
+                  begins near <m>\$980{,}000</m> rather than at zero, with
+                  a small zigzag at the base of the axis indicating the
+                  break. Tick labels read <m>\$980{,}000</m>,
+                  <m>\$1{,}010{,}000</m>, <m>\$1{,}040{,}000</m>, and
+                  <m>\$1{,}050{,}000</m>. Two gray bars stand on the
+                  baseline. The Product A bar reaches the
+                  <m>\$1{,}040{,}000</m> line; the Product B bar reaches
+                  only the <m>\$1{,}010{,}000</m> line, about half as
+                  tall as Product A within the visible scale. The actual
+                  difference between the two sales figures is
+                  approximately three percent of the total, but the
+                  visual ratio of the two bars is closer to two to one.
+                </p>
+              </description>
+              <latex-image>
+                \begin{tikzpicture}[scale=0.85]
+                  % y-axis and x-axis
+                  \draw[thick] (0,0) -- (0,7.5);
+                  \draw[thick] (0,0) -- (8,0);
+                  % truncation zigzag near the origin
+                  \draw[thick] (-0.15,0.35) -- (0.15,0.55) -- (-0.15,0.75) -- (0.15,0.95);
+                  % y-axis tick marks and dollar labels
+                  \draw (-0.1,1)   -- (0.1,1);   \node[left, font=\footnotesize] at (-0.15,1)   {\$980{,}000};
+                  \draw (-0.1,4)   -- (0.1,4);   \node[left, font=\footnotesize] at (-0.15,4)   {\$1{,}010{,}000};
+                  \draw (-0.1,7)   -- (0.1,7);   \node[left, font=\footnotesize] at (-0.15,7)   {\$1{,}040{,}000};
+                  \draw (-0.1,7.5) -- (0.1,7.5); \node[left, font=\footnotesize] at (-0.15,7.5) {\$1{,}050{,}000};
+                  % Product A bar: 6 units tall on the visible scale (= \$1{,}040{,}000)
+                  \fill[gray!55] (1.6,1) rectangle (3.2,7);
+                  \draw          (1.6,1) rectangle (3.2,7);
+                  \node[below, font=\small] at (2.4,0) {Product A};
+                  % Product B bar: 3 units tall (= \$1{,}010{,}000)
+                  \fill[gray!55] (5.2,1) rectangle (6.8,4);
+                  \draw          (5.2,1) rectangle (6.8,4);
+                  \node[below, font=\small] at (6.0,0) {Product B};
+                  % chart title
+                  \node[above, font=\small\bfseries] at (4,8) {Monthly Sales};
+                \end{tikzpicture}
+              </latex-image>
+            </image>
+          </figure>
         </statement>
       </exercise>
       <exercise xml:id="ex-ch15-s06-02">
@@ -1887,6 +1935,59 @@
             debt levels. Describe two ways this visualization
             misrepresents the data.
           </p>
+          <figure xml:id="fig-ch15-s06-02-coin-infographic">
+            <caption>The national-debt infographic, with the most recent three coins scaled up in both diameter and height.</caption>
+            <image xml:id="image-ch15-s06-02-coin-infographic" width="80%">
+              <shortdescription>An infographic of coin icons across seven years, in which the three most recent coins are dramatically larger in diameter and taller than earlier coins so that the area of the recent icons overstates the underlying change.</shortdescription>
+              <description>
+                <p>
+                  A horizontal row of seven coin icons labeled with years
+                  from 2018 through 2024. Each coin is drawn as a circle
+                  with a dollar sign on its face. The first four coins,
+                  for 2018 through 2021, are small and approximately the
+                  same size as one another. The coin for 2022 is visibly
+                  larger; the coin for 2023 is larger still; and the coin
+                  for 2024 is the largest of all, several times the area
+                  of the early coins. The three most recent coins are
+                  also drawn at a higher vertical position than the early
+                  coins, giving the impression that the value they
+                  represent has grown both wider and taller. Because the
+                  eye registers area rather than diameter, the visual
+                  area of the largest coin overstates the proportional
+                  change in the underlying numbers.
+                </p>
+              </description>
+              <latex-image>
+                \begin{tikzpicture}[scale=0.95]
+                  % chart title
+                  \node[font=\small\bfseries] at (4.8,3.6) {National Debt by Year};
+                  % earlier years: similar small coins, sitting at y = 1
+                  \draw[fill=yellow!55, thick] (0.0,1) circle (0.30);
+                  \node[font=\footnotesize] at (0.0,1) {\$};
+                  \node[below, font=\footnotesize] at (0.0,0.55) {2018};
+                  \draw[fill=yellow!55, thick] (1.1,1) circle (0.32);
+                  \node[font=\footnotesize] at (1.1,1) {\$};
+                  \node[below, font=\footnotesize] at (1.1,0.55) {2019};
+                  \draw[fill=yellow!55, thick] (2.2,1) circle (0.34);
+                  \node[font=\footnotesize] at (2.2,1) {\$};
+                  \node[below, font=\footnotesize] at (2.2,0.55) {2020};
+                  \draw[fill=yellow!55, thick] (3.4,1) circle (0.36);
+                  \node[font=\footnotesize] at (3.4,1) {\$};
+                  \node[below, font=\footnotesize] at (3.4,0.55) {2021};
+                  % recent three years: progressively bigger AND lifted up
+                  \draw[fill=yellow!65, thick] (4.8,1.3) circle (0.55);
+                  \node[font=\small] at (4.8,1.3) {\$};
+                  \node[below, font=\footnotesize] at (4.8,0.55) {2022};
+                  \draw[fill=yellow!75, thick] (6.5,1.6) circle (0.85);
+                  \node[font=\normalsize] at (6.5,1.6) {\$};
+                  \node[below, font=\footnotesize] at (6.5,0.55) {2023};
+                  \draw[fill=yellow!85, thick] (8.6,2.0) circle (1.20);
+                  \node[font=\large] at (8.6,2.0) {\$};
+                  \node[below, font=\footnotesize] at (8.6,0.55) {2024};
+                \end{tikzpicture}
+              </latex-image>
+            </image>
+          </figure>
         </statement>
       </exercise>
       <exercise xml:id="ex-ch15-s06-03">
@@ -1913,6 +2014,54 @@
             still higher than those of 2005 to 2010. What type of distortion
             is this, and what principle does it violate?
           </p>
+          <figure xml:id="fig-ch15-s06-04-crime-cherry-picked">
+            <caption>The crime-rate graph as the city presents it, beginning in 2015.</caption>
+            <image xml:id="image-ch15-s06-04-crime-cherry-picked" width="75%">
+              <shortdescription>A line chart of crime rates from 2015 through 2024 showing a clear downward trend; the chart begins in 2015, a local peak, rather than at a longer baseline that would include the lower rates of 2005 through 2010.</shortdescription>
+              <description>
+                <p>
+                  A line chart titled <q>Crime Rate, 2015 to 2024.</q>
+                  The horizontal axis is labeled with years from 2015 on
+                  the left to 2024 on the right; the vertical axis is
+                  labeled <q>incidents per 1,000 residents.</q> A blue
+                  line connects ten data points, one per year. The
+                  leftmost point, 2015, sits near the top of the visible
+                  scale and is the highest of the ten values. Each
+                  subsequent year is lower than or close to the
+                  preceding one, with mild fluctuations along the way,
+                  and the rightmost point, 2024, sits near the bottom of
+                  the visible scale. The visual impression is of a
+                  sustained downward trend across the decade. The chart
+                  does not show years before 2015, so a viewer cannot
+                  see that 2015 was itself an unusually high year and
+                  that earlier years had lower rates than 2024.
+                </p>
+              </description>
+              <latex-image>
+                \begin{tikzpicture}[scale=0.75]
+                  % axes
+                  \draw[thick,->] (0,0) -- (11,0) node[below right, font=\footnotesize] {Year};
+                  \draw[thick,->] (0,0) -- (0,6.5) node[above, font=\footnotesize, align=center] {incidents\\per 1{,}000};
+                  % x-axis tick labels (years 2015 through 2024)
+                  \foreach \x/\year in {1/2015, 2/2016, 3/2017, 4/2018, 5/2019, 6/2020, 7/2021, 8/2022, 9/2023, 10/2024} {
+                    \draw (\x,0.1) -- (\x,-0.1);
+                    \node[below, font=\tiny] at (\x,-0.05) {\year};
+                  }
+                  % chart title
+                  \node[font=\small\bfseries] at (5.5,7) {Crime Rate, 2015 to 2024};
+                  % downward-trend data line with mild fluctuation
+                  \draw[thick, blue!70!black]
+                    (1,5.6) -- (2,5.0) -- (3,4.6) -- (4,4.8) --
+                    (5,4.0) -- (6,3.6) -- (7,3.3) -- (8,2.9) --
+                    (9,2.6) -- (10,2.4);
+                  % data points
+                  \foreach \x/\y in {1/5.6, 2/5.0, 3/4.6, 4/4.8, 5/4.0, 6/3.6, 7/3.3, 8/2.9, 9/2.6, 10/2.4} {
+                    \fill[blue!70!black] (\x,\y) circle (2pt);
+                  }
+                \end{tikzpicture}
+              </latex-image>
+            </image>
+          </figure>
         </statement>
       </exercise>
       <exercise xml:id="ex-ch15-s06-05">
