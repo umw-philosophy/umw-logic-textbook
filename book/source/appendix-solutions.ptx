@@ -723,14 +723,21 @@
 
   <section xml:id="sol-ch10-exercise-set-2-supply-the-missing-line">
     <title>Chapter 10, Exercise Set 2: Supply the Missing Line</title>
-    <p><term>1.</term> The missing line is:</p>
+    <p><term>6.</term> The missing line is:</p>
     <tabular halign="left" margins="0% 45%">
       <row><cell>1.</cell><cell><m>P \supset Q</m></cell><cell></cell></row>
       <row><cell>2.</cell><cell><m>P</m></cell><cell>/ <m>Q</m></cell></row>
       <row><cell>3.</cell><cell><m>Q</m></cell><cell>1,2 MP</cell></row>
     </tabular>
     <p>Line 1 is a conditional, and line 2 gives its antecedent. By Modus Ponens, the consequent <m>Q</m> follows on line 3.</p>
-    <p><term>3.</term> The missing line is:</p>
+    <p><term>7.</term> The missing line is:</p>
+    <tabular halign="left" margins="0% 45%">
+      <row><cell>1.</cell><cell><m>P \lor Q</m></cell><cell></cell></row>
+      <row><cell>2.</cell><cell><m>{\text{\textasciitilde}}P</m></cell><cell>/ <m>Q</m></cell></row>
+      <row><cell>3.</cell><cell><m>Q</m></cell><cell>1,2 DS</cell></row>
+    </tabular>
+    <p>Line 1 is a disjunction and line 2 is the negation of its first disjunct. Disjunctive Syllogism gives the other disjunct, <m>Q</m>, on line 3.</p>
+    <p><term>8.</term> The missing line is:</p>
     <tabular halign="left" margins="0% 45%">
       <row><cell>1.</cell><cell><m>P \cdot Q</m></cell><cell>/ <m>P \lor R</m></cell></row>
       <row><cell>2.</cell><cell><m>P</m></cell><cell>1 Simp</cell></row>
@@ -741,14 +748,14 @@
 
   <section xml:id="sol-ch10-exercise-set-3-short-proofs">
     <title>Chapter 10, Exercise Set 3: Short Proofs</title>
-    <p><term>1.</term> A complete proof is:</p>
+    <p><term>9.</term> A complete proof is:</p>
     <tabular halign="left" margins="0% 45%">
       <row><cell>1.</cell><cell><m>P \supset Q</m></cell><cell></cell></row>
       <row><cell>2.</cell><cell><m>Q \supset R</m></cell><cell>/ <m>P \supset R</m></cell></row>
       <row><cell>3.</cell><cell><m>P \supset R</m></cell><cell>1,2 HS</cell></row>
     </tabular>
     <p>The two premises form a conditional chain. Line 1 says that <m>P</m> leads to <m>Q</m>, and line 2 says that <m>Q</m> leads to <m>R</m>. Hypothetical Syllogism licenses the direct route from <m>P</m> to <m>R</m>.</p>
-    <p><term>3.</term> A complete proof is:</p>
+    <p><term>11.</term> A complete proof is:</p>
     <tabular halign="left" margins="0% 45%">
       <row><cell>1.</cell><cell><m>P \lor Q</m></cell><cell></cell></row>
       <row><cell>2.</cell><cell><m>{\text{\textasciitilde}}Q</m></cell><cell>/ <m>P \lor R</m></cell></row>
@@ -756,7 +763,7 @@
       <row><cell>4.</cell><cell><m>P \lor R</m></cell><cell>3 Add</cell></row>
     </tabular>
     <p>Line 1 says that either <m>P</m> or <m>Q</m> is true. Line 2 rules out <m>Q</m>, so Disjunctive Syllogism gives <m>P</m> on line 3. Once <m>P</m> is available, Addition gives the target disjunction <m>P \lor R</m>.</p>
-    <p><term>5.</term> A complete proof is:</p>
+    <p><term>13.</term> A complete proof is:</p>
     <tabular halign="left" margins="0% 45%">
       <row><cell>1.</cell><cell><m>(P \lor R) \supset S</m></cell><cell></cell></row>
       <row><cell>2.</cell><cell><m>P \cdot Q</m></cell><cell>/ <m>P \cdot S</m></cell></row>
@@ -766,7 +773,7 @@
       <row><cell>6.</cell><cell><m>P \cdot S</m></cell><cell>3,5 Conj</cell></row>
     </tabular>
     <p>The target is a conjunction, so we need both <m>P</m> and <m>S</m>. Line 2 gives <m>P</m> by Simplification. From <m>P</m>, Addition gives <m>P \lor R</m>, which is the antecedent needed for line 1. Modus Ponens then gives <m>S</m>. Finally, Conjunction joins the available <m>P</m> and <m>S</m> into the target <m>P \cdot S</m>.</p>
-    <p><term>7.</term> A complete proof is:</p>
+    <p><term>15.</term> A complete proof is:</p>
     <tabular halign="left" margins="0% 45%">
       <row><cell>1.</cell><cell><m>P \supset Q</m></cell><cell></cell></row>
       <row><cell>2.</cell><cell><m>Q \supset R</m></cell><cell></cell></row>
@@ -775,7 +782,7 @@
       <row><cell>5.</cell><cell><m>R</m></cell><cell>2,4 MP</cell></row>
     </tabular>
     <p>Modus Ponens fires twice. Line 3 supplies the antecedent of line 1, giving <m>Q</m>. <m>Q</m> is in turn the antecedent of line 2, so a second MP gives <m>R</m>. Hypothetical Syllogism on lines 1 and 2 followed by one MP would also work, in three lines rather than two.</p>
-    <p><term>9.</term> A complete proof is:</p>
+    <p><term>17.</term> A complete proof is:</p>
     <tabular halign="left" margins="0% 45%">
       <row><cell>1.</cell><cell><m>P \supset Q</m></cell><cell></cell></row>
       <row><cell>2.</cell><cell><m>P \supset R</m></cell><cell></cell></row>
@@ -789,8 +796,8 @@
 
   <section xml:id="sol-ch10-exercise-set-4-explain-the-strategy">
     <title>Chapter 10, Exercise Set 4: Explain the Strategy</title>
-    <p><term>1.</term> Since the target is <m>P \cdot Q</m>, I would try to use Conjunction as the final rule. Conjunction requires both conjuncts separately, so the proof strategy is to derive or locate <m>P</m> on one line and <m>Q</m> on another line, then cite those two lines with Conj to get <m>P \cdot Q</m>.</p>
-    <p><term>3.</term> Since the target is <m>Q \lor S</m> and <m>Q</m> is already available, I would use Addition. Addition allows us to infer a disjunction from either one of its disjuncts, so from <m>Q</m> alone we may infer <m>Q \lor S</m>. We do not need to prove <m>S</m> separately.</p>
+    <p><term>19.</term> Since the target is <m>P \cdot Q</m>, I would try to use Conjunction as the final rule. Conjunction requires both conjuncts separately, so the proof strategy is to derive or locate <m>P</m> on one line and <m>Q</m> on another line, then cite those two lines with Conj to get <m>P \cdot Q</m>.</p>
+    <p><term>21.</term> Since the target is <m>Q \lor S</m> and <m>Q</m> is already available, I would use Addition. Addition allows us to infer a disjunction from either one of its disjuncts, so from <m>Q</m> alone we may infer <m>Q \lor S</m>. We do not need to prove <m>S</m> separately.</p>
   </section>
 
   <section xml:id="sol-ch11-exercise-set-1-identifying-replacement-rules">
@@ -803,22 +810,22 @@
 
   <section xml:id="sol-ch11-exercise-set-2-apply-the-rule">
     <title>Chapter 11, Exercise Set 2: Apply the Rule</title>
-    <p><term>1.</term> DeM applied to <m>{\text{\textasciitilde}}(R \lor S)</m> gives <m>{\text{\textasciitilde}}R \cdot {\text{\textasciitilde}}S</m>. The negation distributes and the disjunction becomes a conjunction.</p>
-    <p><term>3.</term> Trans applied to <m>P \supset {\text{\textasciitilde}}Q</m> gives <m>{\text{\textasciitilde}}{\text{\textasciitilde}}Q \supset {\text{\textasciitilde}}P</m>, which simplifies by DN to <m>Q \supset {\text{\textasciitilde}}P</m>. (Either form is acceptable; the Trans step itself produces the double-negated version.)</p>
-    <p><term>5.</term> Dist applied to <m>P \cdot (Q \lor R)</m> gives <m>(P \cdot Q) \lor (P \cdot R)</m>. The conjunction distributes across the disjunction.</p>
-    <p><term>7.</term> Exp applied to <m>(P \cdot Q) \supset R</m> gives <m>P \supset (Q \supset R)</m>. The conjoined antecedent is separated into two nested conditionals.</p>
+    <p><term>9.</term> DeM applied to <m>{\text{\textasciitilde}}(R \lor S)</m> gives <m>{\text{\textasciitilde}}R \cdot {\text{\textasciitilde}}S</m>. The negation distributes and the disjunction becomes a conjunction.</p>
+    <p><term>11.</term> Trans applied to <m>P \supset {\text{\textasciitilde}}Q</m> gives <m>{\text{\textasciitilde}}{\text{\textasciitilde}}Q \supset {\text{\textasciitilde}}P</m>, which simplifies by DN to <m>Q \supset {\text{\textasciitilde}}P</m>. (Either form is acceptable; the Trans step itself produces the double-negated version.)</p>
+    <p><term>13.</term> Dist applied to <m>P \cdot (Q \lor R)</m> gives <m>(P \cdot Q) \lor (P \cdot R)</m>. The conjunction distributes across the disjunction.</p>
+    <p><term>15.</term> Exp applied to <m>(P \cdot Q) \supset R</m> gives <m>P \supset (Q \supset R)</m>. The conjoined antecedent is separated into two nested conditionals.</p>
   </section>
 
   <section xml:id="sol-ch11-exercise-set-3-proofs-using-replacement-rules">
     <title>Chapter 11, Exercise Set 3: Proofs Using Replacement Rules</title>
-    <p><term>1.</term> A complete proof is:</p>
+    <p><term>17.</term> A complete proof is:</p>
     <tabular halign="left" margins="0% 45%">
       <row><cell>1.</cell><cell><m>{\text{\textasciitilde}}(P \lor Q)</m></cell><cell>/ <m>{\text{\textasciitilde}}P</m></cell></row>
       <row><cell>2.</cell><cell><m>{\text{\textasciitilde}}P \cdot {\text{\textasciitilde}}Q</m></cell><cell>1 DeM</cell></row>
       <row><cell>3.</cell><cell><m>{\text{\textasciitilde}}P</m></cell><cell>2 Simp</cell></row>
     </tabular>
     <p>De Morgan's breaks the negated disjunction into a conjunction of negations. Simplification extracts the first conjunct.</p>
-    <p><term>3.</term> A complete proof is:</p>
+    <p><term>19.</term> A complete proof is:</p>
     <tabular halign="left" margins="0% 45%">
       <row><cell>1.</cell><cell><m>P \supset (Q \supset R)</m></cell><cell></cell></row>
       <row><cell>2.</cell><cell><m>P \cdot Q</m></cell><cell>/ <m>R</m></cell></row>
@@ -826,7 +833,7 @@
       <row><cell>4.</cell><cell><m>R</m></cell><cell>2,3 MP</cell></row>
     </tabular>
     <p>Exportation rewrites the nested conditional so that the conjunction <m>P \cdot Q</m> is the antecedent. MP with line 2 finishes the proof.</p>
-    <p><term>5.</term> A complete proof is:</p>
+    <p><term>21.</term> A complete proof is:</p>
     <tabular halign="left" margins="0% 45%">
       <row><cell>1.</cell><cell><m>P \equiv Q</m></cell><cell></cell></row>
       <row><cell>2.</cell><cell><m>P</m></cell><cell>/ <m>Q</m></cell></row>
@@ -835,7 +842,7 @@
       <row><cell>5.</cell><cell><m>Q</m></cell><cell>2,4 MP</cell></row>
     </tabular>
     <p>Material Equivalence unpacks the biconditional into two conditionals. Simplification extracts the one we need, and MP finishes.</p>
-    <p><term>7.</term> A complete proof is:</p>
+    <p><term>23.</term> A complete proof is:</p>
     <tabular halign="left" margins="0% 45%">
       <row><cell>1.</cell><cell><m>{\text{\textasciitilde}}(P \lor Q)</m></cell><cell></cell></row>
       <row><cell>2.</cell><cell><m>R \supset P</m></cell><cell>/ <m>{\text{\textasciitilde}}R</m></cell></row>
@@ -844,7 +851,7 @@
       <row><cell>5.</cell><cell><m>{\text{\textasciitilde}}R</m></cell><cell>2,4 MT</cell></row>
     </tabular>
     <p>DeM breaks line 1 open. Simplification gives <m>{\text{\textasciitilde}}P</m>. Since <m>{\text{\textasciitilde}}P</m> is the negation of the consequent of line 2, Modus Tollens gives <m>{\text{\textasciitilde}}R</m>.</p>
-    <p><term>9.</term> A complete proof is:</p>
+    <p><term>25.</term> A complete proof is:</p>
     <tabular halign="left" margins="0% 45%">
       <row><cell>1.</cell><cell><m>{\text{\textasciitilde}}{\text{\textasciitilde}}P</m></cell><cell></cell></row>
       <row><cell>2.</cell><cell><m>P \supset Q</m></cell><cell>/ <m>Q</m></cell></row>
@@ -852,7 +859,7 @@
       <row><cell>4.</cell><cell><m>Q</m></cell><cell>2,3 MP</cell></row>
     </tabular>
     <p>Double Negation strips the two tildes from line 1, leaving the antecedent of line 2 available. Modus Ponens then finishes.</p>
-    <p><term>11.</term> A complete proof is:</p>
+    <p><term>27.</term> A complete proof is:</p>
     <tabular halign="left" margins="0% 45%">
       <row><cell>1.</cell><cell><m>{\text{\textasciitilde}}(P \cdot Q)</m></cell><cell></cell></row>
       <row><cell>2.</cell><cell><m>P</m></cell><cell>/ <m>{\text{\textasciitilde}}Q</m></cell></row>
@@ -861,7 +868,7 @@
       <row><cell>5.</cell><cell><m>{\text{\textasciitilde}}Q</m></cell><cell>3,4 DS</cell></row>
     </tabular>
     <p>De Morgan's converts the negated conjunction on line 1 into a disjunction of negations. Line 2 says <m>P</m>; Double Negation turns it into <m>{\text{\textasciitilde}}{\text{\textasciitilde}}P</m>, which is the negation of the first disjunct on line 3. Disjunctive Syllogism then gives the second disjunct, <m>{\text{\textasciitilde}}Q</m>.</p>
-    <p><term>13.</term> A complete proof is:</p>
+    <p><term>29.</term> A complete proof is:</p>
     <tabular halign="left" margins="0% 45%">
       <row><cell>1.</cell><cell><m>(P \cdot Q) \supset R</m></cell><cell></cell></row>
       <row><cell>2.</cell><cell><m>R \supset S</m></cell><cell></cell></row>
@@ -880,9 +887,8 @@
 
   <section xml:id="sol-ch11-exercise-set-4-explain-the-strategy">
     <title>Chapter 11, Exercise Set 4: Explain the Strategy</title>
-    <p><term>1.</term> I would use De Morgan's Theorems. <m>{\text{\textasciitilde}}(P \cdot Q)</m> is a negated conjunction, and De Morgan's rewrites it as <m>{\text{\textasciitilde}}P \lor {\text{\textasciitilde}}Q</m> in one step. The trigger pattern is a tilde in front of parentheses containing a conjunction.</p>
-    <p><term>3.</term> I would use Transposition. Trans rewrites <m>P \supset Q</m> as <m>{\text{\textasciitilde}}Q \supset {\text{\textasciitilde}}P</m>, which is exactly the contrapositive needed for the HS chain. The trigger is needing a conditional with swapped and negated terms.</p>
-    <p><term>5.</term> I would use Exportation. Exp rewrites <m>P \supset (Q \supset R)</m> as <m>(P \cdot Q) \supset R</m>. Since <m>P \cdot Q</m> is already available, MP can then fire directly to give <m>R</m>.</p>
+    <p><term>31.</term> I would use Material Implication. Impl rewrites <m>P \supset Q</m> as the equivalent disjunction <m>{\text{\textasciitilde}}P \lor Q</m>. The implication rules can do little with a target disjunction while the relevant premise is still in conditional form; rewriting it opens up paths through Addition, Disjunctive Syllogism, or a direct match to the target.</p>
+    <p><term>33.</term> I would use Material Equivalence. Equiv rewrites the biconditional <m>P \equiv Q</m> as the conjunction <m>(P \supset Q) \cdot (Q \supset P)</m>, after which Simplification extracts the conditional we need, <m>P \supset Q</m>, in one further step. Two replacement-rule moves and the conditional is in hand.</p>
   </section>
 
   <section xml:id="sol-ch12-exercise-set-1-identify-the-strategy">
@@ -997,27 +1003,27 @@
 
   <section xml:id="sol-ch13-exercise-set-2-strong-or-weak">
     <title>Chapter 13, Exercise Set 2: Strong or Weak?</title>
-    <p><term>1.</term> <em>Weak.</em> One person's opinion in the dining hall is too small and too informal a sample to support a conclusion about students generally. The main problem is sample size and representativeness.</p>
-    <p><term>3.</term> <em>Moderate, but not strong.</em> Three previous assignments give some evidence of a pattern, but the sample is small and course schedules can change. The evidence supports the conclusion only modestly.</p>
-    <p><term>5.</term> <em>Weak.</em> The first five commenters are a tiny, self-selected sample. Angry readers are more likely to comment, and <q>everyone who read the article</q> is a much broader population than the observed comments.</p>
+    <p><term>7.</term> <em>Weak.</em> One person's opinion in the dining hall is too small and too informal a sample to support a conclusion about students generally. The main problem is sample size and representativeness.</p>
+    <p><term>9.</term> <em>Moderate, but not strong.</em> Three previous assignments give some evidence of a pattern, but the sample is small and course schedules can change. The evidence supports the conclusion only modestly.</p>
+    <p><term>11.</term> <em>Weak.</em> The first five commenters are a tiny, self-selected sample. Angry readers are more likely to comment, and <q>everyone who read the article</q> is a much broader population than the observed comments.</p>
   </section>
 
   <section xml:id="sol-ch13-exercise-set-3-samples-and-generalizations">
     <title>Chapter 13, Exercise Set 3: Samples and Generalizations</title>
-    <p><term>1.</term> Sample: ten friends in the student's residence hall. Population: UMW students. Possible problem: the sample is small, local, and socially connected to the person asking, so it may not represent commuters, upper-class students, or students with different parking needs.</p>
-    <p><term>3.</term> Sample: five negative comments the host read. Population: the movie's audience, or potential audience, as a whole. Possible problem: comments are self-selected and negative reactions are often overrepresented; five comments are not enough to support a broad claim about audience opinion.</p>
+    <p><term>13.</term> Sample: the 1,200 students who chose to respond to the survey. Population: all UMW students. Possible problem: response bias. Although the email went to every student, only those who chose to reply are represented, and students who use the tutoring center may be more motivated to respond to a survey about tutoring than students who do not. A large self-selected sample is still a biased sample, so the conclusion that tutoring-center use is common may overstate what is true of the full student body.</p>
+    <p><term>15.</term> Sample: only the students who attended the optional review. Population: the whole class. Possible problem: selection bias of the most obvious kind. Students who attended an optional review are precisely those who expected or hoped it would be useful; students who skipped the review are not represented at all. The survey therefore cannot tell the professor whether the review would have been helpful for the rest of the class, so generalizing from the attendees to <q>almost everyone in the class</q> overreaches.</p>
   </section>
 
   <section xml:id="sol-ch13-exercise-set-4-causal-reasoning">
     <title>Chapter 13, Exercise Set 4: Causal Reasoning</title>
-    <p><term>1.</term> One alternative explanation is that more motivated or better-prepared students choose seats near the front. Another is that students who attend consistently also tend to sit near the front. The seating location may be correlated with habits that affect grades rather than causing the grades directly.</p>
-    <p><term>3.</term> Possible alternative explanations include better safety education, fewer cyclists downtown, changes in traffic enforcement, weather patterns, or changes in accident reporting. The timing is suggestive, but the decrease alone does not prove that the bike lanes caused it.</p>
+    <p><term>17.</term> Several alternative explanations are available. People who already have financial discipline may be more likely to download a budgeting app in the first place — the same disposition produces both the app use and the saving, so the app is correlated with savings without being the cause. People with higher disposable income may also be more likely to track their money, again giving a correlation without the causal direction the conclusion assumes. To support a causal claim, the argument needs more than a correlation: ideally a randomized comparison between people assigned to use the app and people who are not.</p>
+    <p><term>19.</term> Reverse causation is the most natural alternative: people with naturally higher energy levels tend to wake up alert, feel hungry in the morning, and eat breakfast, so energy may be causing the breakfast habit rather than the other way around. A common cause is also plausible — people with stable sleep schedules, lower stress, and good general health tend both to eat breakfast and to feel energetic, and the underlying lifestyle is doing the causal work. The correlation in the study is real but does not by itself isolate cause from confounders.</p>
   </section>
 
   <section xml:id="sol-ch13-exercise-set-5-analogy-and-explanation">
     <title>Chapter 13, Exercise Set 5: Analogy and Explanation</title>
-    <p><term>1.</term> <em>Argument by analogy.</em> The current course is being compared with a previous course. The analogy is reasonably relevant because textbook, quiz format, and instructor can all affect study strategy, though it would be stronger if the course level, assignments, and student's schedule were also similar.</p>
-    <p><term>3.</term> <em>Argument by analogy, weak.</em> Color and size are usually not relevant to battery life. The argument would be stronger if the two phones had the same model, battery capacity, age, software, and usage pattern.</p>
+    <p><term>21.</term> <em>Inference to the best explanation.</em> Three observations — wet sidewalk, students with umbrellas, audible thunder — are all explained simultaneously and naturally by the hypothesis that it is raining. Alternative hypotheses can be constructed (a passing street-cleaning truck for the wet sidewalk, a recording for the thunder), but each one accounts for only one of the observations and leaves the others unexplained. The rain hypothesis explains all three at once, which is what makes it the best explanation rather than just one possible explanation.</p>
+    <p><term>23.</term> <em>Inference to the best explanation.</em> Three independent indicators — locked door, lights off, no response to repeated knocking — converge on the explanation that the professor is not in the office. Alternatives exist (the professor might be inside with the lights off, deliberately ignoring the door), but each alternative leaves at least one indicator awkward to explain. The absence hypothesis explains the whole pattern at once. The conclusion appropriately hedges with <q>probably</q>, since inference to the best explanation yields probable conclusions, not certain ones.</p>
   </section>
 
   <section xml:id="sol-ch13-writing-prompt">
@@ -1034,30 +1040,29 @@
 
   <section xml:id="sol-ch14-exercise-set-2-conditional-probability">
     <title>Chapter 14, Exercise Set 2: Conditional probability</title>
-    <p><term>1.</term> Given that the outcome is odd, the possible outcomes are 1, 3, and 5. One of those three outcomes is 3, so the probability is <m>1/3</m>.</p>
-    <p><term>3.</term> Use the multiplication rule. P(first red and second blue) = <m>(5/12)(7/11) = 35/132</m>, approximately 0.265.</p>
-    <p><term>5.</term> Use the complement. The only way to get no tails is HHH, with probability <m>(1/2)^3 = 1/8</m>. So P(at least one tail) = <m>1 - 1/8 = 7/8</m>.</p>
+    <p><term>7.</term> Given that the outcome is odd, the possible outcomes are 1, 3, and 5. One of those three outcomes is 3, so the probability is <m>1/3</m>.</p>
+    <p><term>9.</term> Use the multiplication rule. P(first red and second blue) = <m>(5/12)(7/11) = 35/132</m>, approximately 0.265.</p>
+    <p><term>11.</term> Use the complement. The only way to get no tails is HHH, with probability <m>(1/2)^3 = 1/8</m>. So P(at least one tail) = <m>1 - 1/8 = 7/8</m>.</p>
   </section>
 
   <section xml:id="sol-ch14-exercise-set-3-independence">
     <title>Chapter 14, Exercise Set 3: Independence</title>
-    <p><term>1.</term> <em>Independent.</em> For fair coin flips, the result of one flip does not change the probability of the next flip. P(heads on the second flip | heads on the first flip) is still 0.5.</p>
-    <p><term>3.</term> <em>Not plausibly independent.</em> Rain could affect whether students come to class, arrive late, or stay home. Knowing that it rains may change the probability of lower-than-usual attendance.</p>
-    <p><term>5.</term> <em>Not independent.</em> Because the cards are drawn without replacement, the first card changes the deck. If the first card is a heart, then the probability that the second card is a heart becomes <m>12/51</m>, not <m>13/52</m>.</p>
+    <p><term>13.</term> <em>Not plausibly independent.</em> First-year students live on campus at much higher rates than upper-class students do — at many universities, including residential schools where first-year housing is required or strongly defaulted, the rate is close to one. Knowing that a randomly chosen student is a first-year raises the probability that they live in on-campus housing, so P(B | A) is not equal to P(B).</p>
+    <p><term>15.</term> <em>Likely not independent, though the direction is less obvious.</em> Whether philosophy majors take MATH 110 at the general rate depends on what MATH 110 is. If it is a quantitative-reasoning general-education course, philosophy majors may take it at roughly the population rate. If it is a course favored by certain other majors (a methods course for psychology majors, say), philosophy majors may be enrolled at a noticeably different rate. Either way, the major and the course choice plausibly carry some information about each other, so the safe assumption is dependence rather than independence — but the direction depends on facts about the curriculum.</p>
   </section>
 
   <section xml:id="sol-ch14-exercise-set-4-direction-of-conditioning">
     <title>Chapter 14, Exercise Set 4: Direction of conditioning</title>
-    <p><term>1.</term> These are likely very different. P(left-handed | professional baseball pitcher) may be noticeably higher than the left-handed rate in the general population, but P(professional baseball pitcher | left-handed) is tiny because very few left-handed people are professional pitchers.</p>
-    <p><term>3.</term> These are likely very different. If someone has the flu, a fever is fairly likely. But if someone has a fever, the flu is only one possible explanation among many, so P(has the flu | has a fever) may be much lower.</p>
+    <p><term>17.</term> These are likely very different. P(left-handed | professional baseball pitcher) may be noticeably higher than the left-handed rate in the general population, but P(professional baseball pitcher | left-handed) is tiny because very few left-handed people are professional pitchers.</p>
+    <p><term>19.</term> These are likely very different. If someone has the flu, a fever is fairly likely. But if someone has a fever, the flu is only one possible explanation among many, so P(has the flu | has a fever) may be much lower.</p>
   </section>
 
   <section xml:id="sol-ch14-exercise-set-5-bayes-theorem-and-base-rates">
     <title>Chapter 14, Exercise Set 5: Bayes' theorem and base rates</title>
-    <p><term>1.</term> Let <em>H</em> = the person has the condition and <em>E</em> = the person tests positive. P(<em>H</em>) = <m>1/500 = 0.002</m>, P(<m>{\sim}H</m>) = 0.998, P(<em>E</em> | <em>H</em>) = 0.98, and P(<em>E</em> | <m>{\sim}H</m>) = 0.02. Bayes' theorem gives:</p>
+    <p><term>21.</term> Let <em>H</em> = the person has the condition and <em>E</em> = the person tests positive. P(<em>H</em>) = <m>1/500 = 0.002</m>, P(<m>{\sim}H</m>) = 0.998, P(<em>E</em> | <em>H</em>) = 0.98, and P(<em>E</em> | <m>{\sim}H</m>) = 0.02. Bayes' theorem gives:</p>
     <p><m>P(H \mid E) = \dfrac{0.98 \cdot 0.002}{(0.98 \cdot 0.002) + (0.02 \cdot 0.998)} = \dfrac{0.00196}{0.02192} \approx 0.089.</m></p>
     <p>So the probability is about 9 percent. The test is good, but the condition is rare enough that false positives still dominate the positive results.</p>
-    <p><term>3.</term> Let <em>H</em> = the student fails at least one course and <em>E</em> = the student has bottom-quartile study habits. The study gives P(<em>E</em> | <em>H</em>) = 0.90, not P(<em>H</em> | <em>E</em>). To know the probability that this student will fail, we would also need the base rate of first-semester course failure and the rate of bottom-quartile study habits among students who do not fail. Without those, the conclusion may be a case of confusing the direction of conditioning.</p>
+    <p><term>23.</term> Let <em>H</em> = the student fails at least one course and <em>E</em> = the student has bottom-quartile study habits. The study gives P(<em>E</em> | <em>H</em>) = 0.90, not P(<em>H</em> | <em>E</em>). To know the probability that this student will fail, we would also need the base rate of first-semester course failure and the rate of bottom-quartile study habits among students who do not fail. Without those, the conclusion may be a case of confusing the direction of conditioning.</p>
   </section>
 
   <section xml:id="sol-ch14-writing-prompt">
@@ -1074,36 +1079,34 @@
 
   <section xml:id="sol-ch15-exercise-set-2-standard-deviation">
     <title>Chapter 15, Exercise Set 2: Standard Deviation</title>
-    <p><term>1.</term> Step 1, mean: <m>(70+75+80+85+90)/5 = 80</m>. Step 2, deviations from the mean: <m>-10, -5, 0, 5, 10</m>. Step 3, squared deviations: <m>100, 25, 0, 25, 100</m>. Step 4, sum of squared deviations: <m>250</m>. Step 5, sample variance: <m>250/(5-1) = 62.5</m>. Step 6, sample standard deviation: <m>\sqrt{62.5} \approx 7.91</m>.</p>
-    <p><term>3.</term> Section A's scores cluster tightly around 78: most students scored within a few points of the class average, and very few scored far above or below. Section B's scores are widely scattered around the same average: substantial numbers of students scored well above 78 and well below it. The two sections look alike on the mean alone, but the spread tells very different stories about how the class as a whole performed.</p>
-    <p><term>5.</term> The value 75 is <m>(75-50)/10 = 2.5</m> standard deviations above the mean. By the empirical rule, about 95% of normally distributed values fall within 2 standard deviations of the mean and about 99.7% fall within 3, so a value at 2.5 standard deviations lies in roughly the top 2.5% of the distribution. It is unusual — only a small fraction of the data is expected to be this high — but it is not extraordinary.</p>
+    <p><term>7.</term> Step 1, mean: <m>(70+75+80+85+90)/5 = 80</m>. Step 2, deviations from the mean: <m>-10, -5, 0, 5, 10</m>. Step 3, squared deviations: <m>100, 25, 0, 25, 100</m>. Step 4, sum of squared deviations: <m>250</m>. Step 5, sample variance: <m>250/(5-1) = 62.5</m>. Step 6, sample standard deviation: <m>\sqrt{62.5} \approx 7.91</m>.</p>
+    <p><term>9.</term> Section A's scores cluster tightly around 78: most students scored within a few points of the class average, and very few scored far above or below. Section B's scores are widely scattered around the same average: substantial numbers of students scored well above 78 and well below it. The two sections look alike on the mean alone, but the spread tells very different stories about how the class as a whole performed.</p>
+    <p><term>11.</term> The value 75 is <m>(75-50)/10 = 2.5</m> standard deviations above the mean. By the empirical rule, about 95% of normally distributed values fall within 2 standard deviations of the mean and about 99.7% fall within 3, so a value at 2.5 standard deviations lies in roughly the top 2.5% of the distribution. It is unusual — only a small fraction of the data is expected to be this high — but it is not extraordinary.</p>
   </section>
 
   <section xml:id="sol-ch15-exercise-set-3-the-normal-distribution">
     <title>Chapter 15, Exercise Set 3: The Normal Distribution</title>
-    <p><term>1.</term> The range 159 to 171 cm is <m>165 \pm 6</m>, which is 1 standard deviation on either side of the mean. By the empirical rule, approximately 68% of women fall in this range. The range 153 to 177 cm is <m>165 \pm 12</m>, which is 2 standard deviations on either side, so approximately 95% of women fall in this range.</p>
-    <p><term>3.</term> A diameter of 210 cm is <m>150 + 2(30)</m>, exactly 2 standard deviations above the mean. By the empirical rule, about 95% of trees fall within 2 standard deviations of the mean, so about 5% fall outside that range — and, by symmetry, about 2.5% fall above 2 standard deviations above the mean. Out of 500 trees, that is approximately <m>500 \times 0.025 \approx 12</m> or 13 trees with a diameter greater than 210 cm.</p>
-    <p><term>5.</term> A year with 55 inches of rainfall is <m>(55-40)/5 = 3</m> standard deviations above the mean. By the empirical rule, about 99.7% of values fall within 3 standard deviations of the mean, so only about 0.3% fall outside — and about 0.15% lie above 3 standard deviations above the mean. A year that wet should occur in only about 1 or 2 years in 1,000. The description <q>extraordinary</q> is warranted.</p>
+    <p><term>13.</term> A lifetime of 1,100 hours is <m>(1100-1000)/50 = 2</m> standard deviations above the mean. By the empirical rule, about 95% of bulbs fall within 2 standard deviations of the mean, so about 5% fall outside that range — and, by symmetry, about 2.5% lie above 2 standard deviations above the mean. Out of 10,000 bulbs, that is approximately <m>10{,}000 \times 0.025 = 250</m> bulbs expected to last more than 1,100 hours.</p>
+    <p><term>15.</term> (a) The top 16% boundary is 1 standard deviation above the mean. About 68% of scores fall within <m>\pm 1</m> SD, leaving 32% in the two tails and 16% in the upper tail alone. So the boundary is <m>500 + 100 = 600</m>. (b) The bottom 2.5% boundary is 2 standard deviations below the mean. About 95% fall within <m>\pm 2</m> SD, leaving 5% in the two tails and 2.5% in the lower tail. So the boundary is <m>500 - 2(100) = 300</m>. (c) The middle 99.7% lies within <m>\pm 3</m> SD of the mean, which is between <m>500 - 3(100) = 200</m> and <m>500 + 3(100) = 800</m>.</p>
   </section>
 
   <section xml:id="sol-ch15-exercise-set-4-confidence-intervals-and-margin-of-error">
     <title>Chapter 15, Exercise Set 4: Confidence Intervals and Margin of Error</title>
-    <p><term>1.</term> A sample of 1,000 gives a margin of error of about plus or minus 3.1% at the 95% confidence level. The confidence interval for true support is therefore 58%, plus or minus 3.1%, which runs from 54.9% to 61.1%. The lower bound is still above 50%, so the data does support — at the 95% confidence level — the claim that a majority favors the measure.</p>
-    <p><term>3.</term> A sample of 500 gives a margin of error of about plus or minus 4.4%. The confidence interval for 61% support runs from 56.6% to 65.4%. A majority is clearly supported: the entire interval lies above 50%. But <q>overwhelmingly</q> overstates the result. Even at the upper end of the interval, support is about 65%, which is a clear majority but not a near-unanimous one. A more accurate headline would say something like <q>A majority of students support longer library hours.</q></p>
-    <p><term>5.</term> Statement (b) is the correct interpretation of a 95% confidence interval. The 95% describes the long-run reliability of the procedure: if we repeatedly drew samples of the same size and computed an interval from each, approximately 95% of those intervals would contain the true population value. Statement (a) is the common but mistaken reading. The true proportion is a fixed (unknown) number; either it is in this particular interval or it is not. Probability language describes the method across many hypothetical repetitions, not the status of any one interval.</p>
+    <p><term>17.</term> A sample of 1,000 gives a margin of error of about plus or minus 3.1% at the 95% confidence level. The confidence interval for true support is therefore 58%, plus or minus 3.1%, which runs from 54.9% to 61.1%. The lower bound is still above 50%, so the data does support — at the 95% confidence level — the claim that a majority favors the measure.</p>
+    <p><term>19.</term> A sample of 500 gives a margin of error of about plus or minus 4.4%. The confidence interval for 61% support runs from 56.6% to 65.4%. A majority is clearly supported: the entire interval lies above 50%. But <q>overwhelmingly</q> overstates the result. Even at the upper end of the interval, support is about 65%, which is a clear majority but not a near-unanimous one. A more accurate headline would say something like <q>A majority of students support longer library hours.</q></p>
+    <p><term>21.</term> Statement (b) is the correct interpretation of a 95% confidence interval. The 95% describes the long-run reliability of the procedure: if we repeatedly drew samples of the same size and computed an interval from each, approximately 95% of those intervals would contain the true population value. Statement (a) is the common but mistaken reading. The true proportion is a fixed (unknown) number; either it is in this particular interval or it is not. Probability language describes the method across many hypothetical repetitions, not the status of any one interval.</p>
   </section>
 
   <section xml:id="sol-ch15-exercise-set-5-diagnostic-thresholds">
     <title>Chapter 15, Exercise Set 5: Diagnostic Thresholds</title>
-    <p><term>1.</term> (a) The false-negative rate is <m>1 - 0.95 = 0.05</m>, or 5%: among people who actually have the condition, the test misses 5%. (b) The false-positive rate is <m>1 - 0.90 = 0.10</m>, or 10%: among people who do not have the condition, the test flags 10%. (c) If missing a true case is catastrophic, prioritize sensitivity. High sensitivity minimizes false negatives, even at the cost of more false positives (lower specificity). The reasoning matches the chapter's threshold tradeoff: when the cost of a missed case is high, lower the threshold and accept more false alarms.</p>
-    <p><term>3.</term> Three out of four flagged papers are legitimate, so the false-positive count is <m>0.75 \times 8\% = 6\%</m> of all papers submitted. (The remaining 2% of submissions are true positives.) That means roughly 6 in every 100 students are wrongly flagged, and three quarters of all flagged papers are false alarms. Whether the tradeoff is acceptable depends on what happens after a flag: if every flagged paper triggers a careful human review before any consequences, the high false-positive rate may be tolerable; if a flag itself counts as an accusation, the cost to wrongly flagged students is serious and the threshold is probably too loose.</p>
+    <p><term>23.</term> (a) The 2-SD range covers approximately 95% of the healthy population, so about 5% of healthy people fall outside it and are currently flagged as abnormal. (b) New cutoffs at 1.5 SD: <m>160 - 1.5(50) = 85</m> mg/dL on the low end and <m>160 + 1.5(50) = 235</m> mg/dL on the high end, so the new acceptable range is 85 to 235 mg/dL. (c) Tightening the threshold (making the <q>normal</q> band narrower) flags more people overall. That catches a larger share of people who actually have abnormal cholesterol, so <em>sensitivity</em> increases. But it also flags more people who are in fact healthy, so <em>specificity</em> decreases. This is the threshold tradeoff in action: moving the boundary one way improves sensitivity at the cost of specificity, and vice versa.</p>
+    <p><term>25.</term> Sensitivity alone is not enough to evaluate a test; the colleague is reporting half the picture. A false-positive rate of 15% means that out of every 100 legitimate emails, about 15 are wrongly sent to the spam folder. If even one of those is a job offer, a class announcement, or a doctor's reply, the cost of a single false positive can outweigh the cost of letting many spam messages through. To evaluate the threshold properly you would need at least three things: the <em>base rate</em> of spam in the inbox (how the 99% and 15% combine depends heavily on this — Ch. 14's lesson about base rates applies here), the <em>cost</em> of each kind of error in this setting (missing real mail vs. letting spam through), and information about how the threshold can be moved — is there a setting that lowers the false-positive rate substantially without much loss of sensitivity? Without those, <q>99% sensitivity</q> is a marketing number, not an evaluation.</p>
   </section>
 
   <section xml:id="sol-ch15-exercise-set-6-lying-with-statistics">
     <title>Chapter 15, Exercise Set 6: Lying with Statistics</title>
-    <p><term>1.</term> The actual difference in sales is <m>\$1{,}040{,}000 - \$1{,}010{,}000 = \$30{,}000</m>, or about <m>30{,}000/1{,}010{,}000 \approx 3\%</m>. With a y-axis that begins at zero, the two bars would be almost the same height, with Product A's bar only barely taller than Product B's. The truncated axis — starting at <m>\$980{,}000</m> rather than zero — exaggerates a roughly 3% gap into a visual ratio of about two to one.</p>
-    <p><term>3.</term> (a) The absolute risk reduction is <m>3\% - 2\% = 1</m> percentage point per year. (b) <q>33% relative risk reduction</q> means the treatment cuts the existing heart-attack rate by a third: <m>1\%</m> is one third of the baseline <m>3\%</m>. (c) The absolute risk reduction is more informative for a patient. It says that, on average, the drug prevents about 1 heart attack per 100 patients per year — a concrete number against which to weigh side effects, cost, and inconvenience. The 33% figure is technically accurate but visually inflates a small absolute effect into a dramatic-sounding one.</p>
-    <p><term>5.</term> Organization A reports a <em>relative</em> risk reduction: the supplement users' rate (3%) is 40% lower than the non-users' rate (5%), since <m>(5-3)/5 = 0.40</m>. Organization B reports an <em>absolute</em> risk reduction: the rate falls by 2 percentage points, from 5% to 3%. For a general audience, B is more informative, because it conveys what changes in the world (2 fewer people per 100 develop the condition) rather than a proportional change relative to a baseline most readers will not have in mind. The framings can lead to different decisions: <q>40% less likely</q> sounds dramatic and may push readers toward the supplement, while <q>down 2 percentage points</q> reveals the same effect as modest in absolute terms.</p>
+    <p><term>27.</term> Two distortions are at work. <em>First, area distortion.</em> The coins are circles, so when the diameter is increased by a factor of <m>k</m>, the visible area grows by <m>k^2</m>. A coin drawn three times wider than the early coins has roughly nine times the visible area, even if the underlying debt is only three times as large. The eye registers area, so the recent coins look far more dramatic than the numbers warrant. <em>Second, double-encoding.</em> The recent coins are not just larger in diameter — they are also drawn taller (higher up on the page). The same data value is being communicated through two visual channels at once, which multiplies the impression rather than representing it once. An honest visualization picks one consistent channel (height of a bar, length of a line) and lets the same scale apply to every data point.</p>
+    <p><term>29.</term> The distortion is a cherry-picked baseline — choosing the starting year of the time series to flatter a preferred conclusion. The city begins the graph in 2015, which happens to be a local peak, so any subsequent decline looks like a sustained downward trend. Extending the graph back to 2005 would show that current rates are still higher than they were before 2015, which changes the story considerably. The principle violated is that the time window in a chart should be chosen for substantive reasons related to the question — the era of a particular policy, the full available history, a natural unit of comparison — not because that window makes the answer come out the way the presenter wants. An honest graph either shows the longest available context or transparently defends its choice of window so the reader can decide whether it is reasonable.</p>
   </section>
 
   <section xml:id="sol-ch15-writing-prompt">

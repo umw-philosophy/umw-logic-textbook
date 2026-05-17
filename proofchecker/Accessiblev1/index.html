@@ -790,7 +790,7 @@
         <!-- Operator toolbar for setup screen -->
         <div class="sym-bar sym-bar-setup" role="toolbar" aria-label="Formula symbols">
           <button class="sym-btn" type="button" onclick="ins('~')" title="Negation (~)" aria-label="Insert negation">~</button>
-          <button class="sym-btn" type="button" onclick="ins('·')" title="Conjunction (·) — also type &amp;" aria-label="Insert conjunction">·</button>
+          <button class="sym-btn" type="button" onclick="ins('·')" title="Conjunction (·) — also type &amp; or *" aria-label="Insert conjunction">·</button>
           <button class="sym-btn" type="button" onclick="ins('∨')" title="Disjunction (∨) — also type v" aria-label="Insert disjunction">∨</button>
           <button class="sym-btn" type="button" onclick="ins('⊃')" title="Conditional (⊃) — also type ->" aria-label="Insert conditional">⊃</button>
           <button class="sym-btn" type="button" onclick="ins('≡')"
@@ -812,9 +812,9 @@
 
         <div class="setup-hint" id="setup-hint">
           <strong>Tip:</strong> Click an operator button above, or type shortcuts:
-          <kbd>-&gt;</kbd> for ⊃ &nbsp; <kbd>&amp;</kbd> for · &nbsp; <kbd>v</kbd> for ∨ &nbsp; <kbd>&lt;-&gt;</kbd> for
+          <kbd>-&gt;</kbd> for ⊃ &nbsp; <kbd>&amp;</kbd> or <kbd>*</kbd> for · &nbsp; <kbd>v</kbd> for ∨ &nbsp; <kbd>&lt;-&gt;</kbd> for
           ≡.
-          Atomic sentences must be <strong>capital letters</strong> (A–Z).
+          Lowercase atomic letters are automatically capitalized.
           Parentheses are required around each embedded connective: write <kbd>A ⊃ (B · C)</kbd>, not <kbd>A ⊃ B ·
             C</kbd>.
         </div>
@@ -854,7 +854,7 @@
         <!-- Symbol toolbar -->
         <div class="sym-bar" role="toolbar" aria-label="Formula symbols">
           <button class="sym-btn" type="button" onclick="ins('~')" title="Negation (~)" aria-label="Insert negation">~</button>
-          <button class="sym-btn" type="button" onclick="ins('·')" title="Conjunction (·)  — also type &amp;" aria-label="Insert conjunction">·</button>
+          <button class="sym-btn" type="button" onclick="ins('·')" title="Conjunction (·)  — also type &amp; or *" aria-label="Insert conjunction">·</button>
           <button class="sym-btn" type="button" onclick="ins('∨')" title="Disjunction (∨)  — also type v" aria-label="Insert disjunction">∨</button>
           <button class="sym-btn" type="button" onclick="ins('⊃')" title="Conditional (⊃) — also type ->" aria-label="Insert conditional">⊃</button>
           <button class="sym-btn" type="button" onclick="ins('≡')"
@@ -865,7 +865,7 @@
         </div>
 
         <div class="kbd-hint" id="entry-hint">
-          Keyboard shortcuts: <kbd>-></kbd> → ⊃ &nbsp; <kbd>&amp;</kbd> → · &nbsp;
+          Keyboard shortcuts: <kbd>-></kbd> → ⊃ &nbsp; <kbd>&amp;</kbd>/<kbd>*</kbd> → · &nbsp;
           <kbd>v</kbd> → ∨ &nbsp; <kbd>&lt;-></kbd> → ≡ &nbsp; <kbd>[ ]</kbd> → ( )
         </div>
 
@@ -955,7 +955,8 @@
         .replace(/<->/g, '≡').replace(/<=>/g, '≡')
         .replace(/->/g, '⊃').replace(/=>/g, '⊃')
         .replace(/v/g, '∨')
-        .replace(/&/g, '·').replace(/\*/g, '·').replace(/\^/g, '·');
+        .replace(/&/g, '·').replace(/\*/g, '·').replace(/\^/g, '·')
+        .replace(/[a-uw-z]/g, ch => ch.toUpperCase());
     }
 
     function _tokenize(input) {
@@ -1705,10 +1706,12 @@
       v = v.replace(/<->/g, '≡');
       v = v.replace(/->/g, '⊃');
       v = v.replace(/&/g, '·');
+      v = v.replace(/\*/g, '·');
       v = v.replace(/\[/g, '(');
       v = v.replace(/\]/g, ')');
       v = v.replace(/¬/g, '~');
       v = v.replace(/v/g, '∨');
+      v = v.replace(/[a-uw-z]/g, ch => ch.toUpperCase());
       if (v !== orig) {
         const cursor = Math.max(0, start - (orig.length - v.length));
         el.value = v;
