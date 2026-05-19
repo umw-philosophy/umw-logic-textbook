@@ -1191,16 +1191,24 @@
       <alert>Bayes' Theorem (§14.5).</alert> A probability before a
       piece of evidence is the <em>prior</em>; after the evidence,
       the <em>posterior</em>. In the two-hypothesis case (<em>H</em>
-      and <m>{\sim}H</m>), Bayes' theorem gives the posterior:
+      and <m>{\sim}H</m>), Bayes' theorem computes the posterior from
+      the prior and the likelihood of the evidence under each
+      hypothesis:
       <m>P(H \mid E) = \dfrac{P(E \mid H)\,P(H)}{P(E \mid H)\,P(H) + P(E \mid {\sim}H)\,P({\sim}H)}.</m>
-      Four ingredients in (P(<em>H</em>), P(<m>{\sim}H</m>),
-      P(<em>E</em> | <em>H</em>), P(<em>E</em> | <m>{\sim}H</m>)),
-      one out (P(<em>H</em> | <em>E</em>)). The medical-test worked
-      example shows why a 99-percent-accurate test for a 1-in-1,000
-      disease yields only about a 9 percent posterior after a positive
-      result: when the base rate is small, false positives dominate
-      true positives. Base-rate neglect is what happens when the prior
-      P(<em>H</em>) drops out of the calculation.
+      The formula takes four numbers in — the prior P(<em>H</em>),
+      its complement P(<m>{\sim}H</m>), and the two likelihoods
+      P(<em>E</em> | <em>H</em>) and P(<em>E</em> | <m>{\sim}H</m>) —
+      and returns one number out, the posterior P(<em>H</em> | <em>E</em>).
+      The medical-test worked example shows the moral. A test that is
+      99% accurate, applied to a disease with a base rate of 1 in
+      1,000, raises the probability of the disease to only about 9%
+      after a positive result. With a small prior, the false positives
+      pulled from the many healthy people outnumber the true positives
+      pulled from the few sick ones — even when the test is highly
+      accurate, most of its positives are wrong. <em>Base-rate
+      neglect</em> is the corresponding reasoning error: reading the
+      test's accuracy off as if it were the answer, and leaving the
+      prior P(<em>H</em>) out of the calculation entirely.
     </p>
 
   </conclusion>

@@ -819,9 +819,10 @@
 
     function getAvailableSupportItems(targetId) {
       const items = getStandardItems();
-      const targetIndex = items.findIndex((item) => item.id === targetId);
-      if (targetIndex < 0) return [];
-      return items.slice(0, targetIndex).filter((item) => item.type === 'premise' || item.type === 'sub');
+      // Any premise or sub-conclusion (other than the target itself) is eligible.
+      // Order in the standard form no longer restricts which claims may be cited as support,
+      // so a conclusion appearing earlier in the passage can still cite later premises.
+      return items.filter((item) => item.id !== targetId && (item.type === 'premise' || item.type === 'sub'));
     }
 
     function uniqueIds(ids) {
@@ -921,9 +922,12 @@
               ${tagButtons}
             </div>
             <div class="card-tools">
+              <button class="btn btn-small btn-secondary" type="button" data-action="move-up" data-id="${unit.id}" ${index === 0 ? 'disabled' : ''} aria-label="Move statement ${index + 1} up">▲ Move Up</button>
+              <button class="btn btn-small btn-secondary" type="button" data-action="move-down" data-id="${unit.id}" ${index === units.length - 1 ? 'disabled' : ''} aria-label="Move statement ${index + 1} down">▼ Move Down</button>
               <button class="btn btn-small btn-secondary" type="button" data-action="split" data-id="${unit.id}">Split at Cursor</button>
               <button class="btn btn-small btn-secondary" type="button" data-action="merge-prev" data-id="${unit.id}" ${index === 0 ? 'disabled' : ''}>Merge with Previous</button>
               <button class="btn btn-small btn-secondary" type="button" data-action="merge-next" data-id="${unit.id}" ${index === units.length - 1 ? 'disabled' : ''}>Merge with Next</button>
+              ${(unit.tag === TAGS.SUB || unit.tag === TAGS.MAIN) ? `<button class="btn btn-small btn-secondary" type="button" data-action="edit-support" data-id="${unit.id}">Edit Support Note</button>` : ''}
               <button class="btn btn-small btn-danger" type="button" data-action="delete" data-id="${unit.id}">Delete</button>
             </div>
           </article>
@@ -1054,17 +1058,16 @@
       });
 
       items.filter((item) => item.type === 'sub').forEach((item) => {
-        const usedDownstream = Object.entries(supportNotes).some(([targetId, note]) => {
+        const usedAsSupport = Object.entries(supportNotes).some(([targetId, note]) => {
+          if (targetId === item.id) return false;
           const target = items.find((candidate) => candidate.id === targetId);
-          const sourceIndex = items.findIndex((candidate) => candidate.id === item.id);
-          const targetIndex = items.findIndex((candidate) => candidate.id === targetId);
-          return target && targetIndex > sourceIndex && getAllSupportIds(note).includes(item.id);
+          return target && getAllSupportIds(note).includes(item.id);
         });
-        if (!usedDownstream) {
+        if (!usedAsSupport) {
           findings.push({
             kind: 'warn',
-            title: `${item.label} is not used downstream`,
-            message: 'A sub-conclusion should usually function as support for a later conclusion. If it does not, it may be a premise, an omitted statement, or the main conclusion.'
+            title: `${item.label} is not cited as support`,
+            message: 'A sub-conclusion should usually function as support for another conclusion. If it does not, it may be a premise, an omitted statement, or the main conclusion.'
           });
         }
       });
@@ -1313,6 +1316,20 @@
       announce('Statements merged.');
     }
 
+    function moveUnit(id, direction) {
+      const index = unitIndex(id);
+      if (index < 0) return;
+      const targetIndex = direction === 'up' ? index - 1 : index + 1;
+      if (targetIndex < 0 || targetIndex >= units.length) return;
+      const [moved] = units.splice(index, 1);
+      units.splice(targetIndex, 0, moved);
+      moved.updatedAt = Date.now();
+      telemetry.revisionActions++;
+      render();
+      setTimeout(() => $(`text-${moved.id}`)?.focus(), 0);
+      announce(`Statement moved ${direction === 'up' ? 'up' : 'down'}.`);
+    }
+
     function deleteUnit(id) {
       const index = unitIndex(id);
       if (index < 0) return;
@@ -1556,6 +1573,9 @@
       if (action === 'split') splitUnit(id);
       if (action === 'merge-prev') mergeUnit(id, 'prev');
       if (action === 'merge-next') mergeUnit(id, 'next');
+      if (action === 'move-up') moveUnit(id, 'up');
+      if (action === 'move-down') moveUnit(id, 'down');
+      if (action === 'edit-support') openSupportModal(id);
       if (action === 'delete') deleteUnit(id);
     });
 
