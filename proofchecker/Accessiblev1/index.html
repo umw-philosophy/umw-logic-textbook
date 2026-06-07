@@ -1234,27 +1234,22 @@
     }
 
     function checkCD(cited, conc) {
-      const e = _reqLines(cited, 2, 'CD'); if (e) return e;
-      const [a, b] = cited;
-      for (const [cc, disj] of [[a, b], [b, a]]) {
-        if (cc.type !== 'conj' || cc.left.type !== 'cond' || cc.right.type !== 'cond') continue;
-        if (disj.type !== 'disj') continue;
-        const pIQ = cc.left, rIS = cc.right;
-        const P = pIQ.left, Q = pIQ.right, R = rIS.left, S = rIS.right;
+      const e = _reqLines(cited, 3, 'CD'); if (e) return e;
+      const conds = cited.filter(f => f.type === 'cond');
+      const disjs = cited.filter(f => f.type === 'disj');
+      if (conds.length < 2 || disjs.length < 1)
+        return _fail(`CD requires three cited lines: two conditionals (P ⊃ Q) and (R ⊃ S), plus a disjunction (P ∨ R).`);
+      const disj = disjs[0];
+      for (const [c1, c2] of [[conds[0], conds[1]], [conds[1], conds[0]]]) {
+        const P = c1.left, Q = c1.right, R = c2.left, S = c2.right;
         if (astEquals(disj.left, P) && astEquals(disj.right, R)) {
           const exp = { type: 'disj', left: Q, right: S };
           if (astEquals(conc, exp)) return _ok();
           return _fail(`CD: Pattern matches — conclusion must be ${_q(exp)}, not ${_q(conc)}.`);
         }
-        if (astEquals(disj.left, R) && astEquals(disj.right, P))
-          return _fail(`CD: Disjunction ${_q(disj)} has disjuncts in reverse order from the conditionals.`);
       }
-      const ccs = cited.filter(f => f.type === 'conj' && f.left.type === 'cond' && f.right.type === 'cond');
-      if (!ccs.length) return _fail(`CD requires one cited line to be a conjunction of two conditionals: ((P ⊃ Q) · (R ⊃ S)).`);
-      const cc = ccs[0], other = cited.find(f => f !== cc);
-      if (other.type !== 'disj') return _fail(`CD: ${_q(cc)} is the conjunction of conditionals. The other line must be a disjunction (P ∨ R), but ${_q(other)} is not.`);
-      const P = cc.left.left, R = cc.right.left;
-      return _fail(`CD: Need disjunction ${_q({ type: 'disj', left: P, right: R })}, but cited ${_q(other)}.`);
+      const P = conds[0].left, R = conds[1].left;
+      return _fail(`CD: The disjunction must combine the antecedents of the two conditionals, e.g. ${_q({ type: 'disj', left: P, right: R })} or ${_q({ type: 'disj', left: R, right: P })}, but cited ${_q(disj)}.`);
     }
 
     const IMPL_CHECKERS = { MP: checkMP, MT: checkMT, HS: checkHS, DS: checkDS, Simp: checkSimp, Conj: checkConj, Add: checkAdd, CD: checkCD };
@@ -1947,7 +1942,7 @@
 
     const _CITE_HINTS = {
       MP: '2 lines', MT: '2 lines', HS: '2 lines', DS: '2 lines',
-      CD: '2 lines', Simp: '1 line', Conj: '2 lines', Add: '1 line',
+      CD: '3 lines', Simp: '1 line', Conj: '2 lines', Add: '1 line',
       DM: '1 line', Com: '1 line', Assoc: '1 line', Dist: '1 line',
       DN: '1 line', Trans: '1 line', Impl: '1 line', Equiv: '1 line', Exp: '1 line', Taut: '1 line',
     };
