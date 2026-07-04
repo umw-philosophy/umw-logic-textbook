@@ -382,3 +382,25 @@ Each decision is dated, numbered, and tagged with the section of `PROJECT_PLAN.m
 - Put selected solutions first for quick lookup.
 - Alphabetize appendices by title.
 **Rationale**: Chapter-order placement makes the optional conceptual material feel like a guided set of extensions rather than a pile of back-matter references. Keeping selected solutions last preserves the separation between study/reference material and answer material.
+
+---
+
+## D-033 — Full draft completed and piloted Summer 2026; timeline pulled forward
+
+**Date**: 2026-07-03
+**Plan section**: 3, 10, 11, 14
+**Decision**: The full book draft is complete: all 15 chapters of Parts I–IV plus the four appendices (Argument Diagrams, Aristotelian Categorical Logic, Rules of Inference, Selected Solutions) are drafted and registered in `main.ptx`. The optional Part V quantifiers chapter is stubbed in `main.ptx` but commented out, per the original scope decision. The book was piloted in the lead author's Summer 2026 course — a full year ahead of the Summer 2027 pre-pilot in the original timeline. Section 11 of the project plan is revised accordingly: Jul–Nov 2026 shifts from drafting to pilot-feedback revision, accessibility remediation, and the grant application.
+**Alternatives considered**:
+- Keep the original timeline and treat the Summer 2026 run as informal classroom use rather than a pilot.
+- Hold revisions until after the grant decision.
+**Rationale**: Completing Parts III–IV early (following the momentum noted in D-030) made the summer course a natural pilot opportunity. Recording it as a pilot matters for the VIVA application: the grant requires a classroom pilot in a credit-bearing Virginia course, and the application can now cite a completed draft *and* a completed pilot rather than promised ones. The Fall 2027 official pilot (lead author + co-author sections) remains in the plan to satisfy the grant's in-window pilot requirement and to validate post-revision chapters.
+
+---
+
+## D-034 — Truth table checker built ahead of schedule
+
+**Date**: 2026-07-03
+**Plan section**: 6, 11
+**Decision**: The truth table checker is built and lives in the monorepo at `truthtablechecker/` (`index.html`, `truth-table-core.js`, `logic-tests.js`), completed well ahead of the Jan–May 2027 build window. It follows the Section 6 specification (check-only, three modes, Copi notation, 4-variable/16-row cap). Like the proof checker, it must pass the accessibility audit/remediation gate before the Fall 2026 PDF prints its URL.
+**Alternatives considered**: Defer the build to the planned Jan–May 2027 window.
+**Rationale**: Building the checker alongside the truth-tables and natural-deduction chapters kept the tool and the book's notation, keyboard shortcuts, and pedagogy aligned while both were fresh. The remaining Jan–May 2027 window is freed up for Canvas modules, item banks, and tool polish.

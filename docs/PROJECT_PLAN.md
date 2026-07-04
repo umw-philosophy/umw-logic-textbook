@@ -1,6 +1,9 @@
 # UMW Logic Textbook — Project Plan
 
-**Living document.** Last updated: May 10, 2026.
+**Living document.** Last updated: July 3, 2026.
+
+> **Status as of July 3, 2026:** The full book is drafted — all 15 chapters of Parts I–IV plus the four appendices are registered in `main.ptx` (the optional Part V quantifiers chapter is stubbed but commented out). The book was piloted in the lead author's Summer 2026 course, a year ahead of the original Summer 2027 pre-pilot. The truth table checker is built (`truthtablechecker/`). See D-033 and D-034 in `DECISIONS.md`; Section 11 reflects the revised timeline.
+
 This is the synthesized plan from the alignment interview held on April 26, 2026 between Dr. Michael Reno (PI) and Claude (Anthropic). It is editable as we discover issues during the Chapter 1 vertical slice and beyond. New decisions get logged in `DECISIONS.md`; this document is updated to reflect the current state of the plan.
 
 ---
@@ -76,7 +79,7 @@ The natural deduction proof checker already exists at `https://ivymoss.github.io
 
 ### Truth Table Checker
 
-To be built fresh. Specification:
+**Built and in the monorepo at `truthtablechecker/`** (completed ahead of the Jan–May 2027 window; see D-034). It still requires the same accessibility audit/remediation pass as the proof checker before the Fall 2026 PDF prints its URL. Original specification:
 
 - **Check-only.** Students input cell values; the tool grades them. The tool does not generate completed tables.
 - **Three modes**: single-statement classification (tautology / self-contradiction / contingent), pair classification (logically equivalent / contradictory / consistent-but-not-equivalent / inconsistent-but-not-contradictory), and argument validity (any number of premises, validity tested by checking for rows where all premises are true and the conclusion is false).
@@ -195,13 +198,13 @@ The project proceeds whether or not the grant is awarded. The grant compensates 
 
 | Date | Milestone |
 | --- | --- |
-| **Apr–Aug 2026** | Chapter 1 vertical slice (Completed May 2026). Steady-state chapter drafting (Parts I–III). Chapters 1–11 drafted as of May 10, 2026 — ahead of roadmap. Recruit librarian. Begin grant application drafting. |
-| **Sep–Nov 2026** | Complete Part III (CP/IP chapter). Draft Part IV. Submit grant application (~Nov 5). |
+| **Apr–Jun 2026** | ✅ Chapter 1 vertical slice (completed May 2026). ✅ Full draft completed: all 15 chapters of Parts I–IV plus four appendices registered in `main.ptx` by early June 2026 — over a year ahead of roadmap (D-033). ✅ Truth table checker built (D-034). |
+| **Summer 2026** | ✅ First classroom pilot in the lead author's Summer 2026 course — pulled forward from the Summer 2027 pre-pilot (D-033). |
+| **Jul–Nov 2026** | Revise from Summer 2026 pilot feedback. Recruit librarian; confirm co-author; confirm license with VIVA. Proof checker and truth table checker accessibility remediation (before the PDF prints their URLs). Submit grant application (~Nov 5). |
 | **Dec 2026** | Grant notification. PDF v1 of textbook complete (independent of grant). |
-| **Jan–May 2027** | Truth table checker built. Proof checker accessibility remediation. Canvas modules built alongside. |
+| **Jan–May 2027** | Canvas modules and item banks completed for remaining chapters. Tool polish. |
 | **Mar 2027** | Initial grant payment (if awarded). |
-| **Summer 2027** | Pre-pilot in lead author's summer section of PHIL 151B. |
-| **Fall 2027** | Official pilot: PHIL 151B at UMW (lead author's section + co-author's section). |
+| **Fall 2027** | Official pilot: PHIL 151B at UMW (lead author's section + co-author's section), satisfying the grant's pilot requirement — with the Summer 2026 pilot already banked as evidence. |
 | **Fall 2027 onward** | Iteration based on pilot feedback. Optional additional adoptions. |
 | **~Mar 2029** | Grant project completion. Final report submitted. |
 
@@ -260,7 +263,7 @@ Decisions made during the alignment interview about how we will plan for failure
 | Stale political examples | All three mitigations: automated CI build pipeline (edit one example file → rebuild), versioned example sets (so adopters can pin), and a community-contributed example library that grows over time. |
 | AI evolves past Copi notation as a deterrent | Accepted. The in-person exam is the real deterrent. Assignments should integrate "explain your proof" / "justify this step in your own words" question types that current AI is bad at. |
 | Long-term maintenance after the lead author retires | Accepted. The book may freeze as a stable artifact rather than perpetual project. |
-| Bad pilot feedback in Fall 2027 | Pre-pilot in Summer 2027 section gives an iteration cycle before the official pilot. |
+| Bad pilot feedback in Fall 2027 | The Summer 2026 pilot (completed) already provides an iteration cycle before the official pilot; revisions land Jul–Nov 2026. |
 | PreTeXt toolchain rot | Pin a known-good PreTeXt version in the repo. Include a Dockerfile so anyone can rebuild in the same environment indefinitely. |
 | Mid-semester proof checker outage | Multi-domain hosting (e.g., GitHub Pages + Netlify mirror) plus a downloadable zip backup that students can run locally. |
 
