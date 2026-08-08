@@ -10,7 +10,7 @@ This is the synthesized plan from the alignment interview held on April 26, 2026
 
 ## 1. Project Identity
 
-We are building an open educational resource that replaces commercial intro-logic textbooks (Baronett, Hurley) at the University of Mary Washington and offers an adoptable resource for other Virginia institutions and beyond. The project comprises three deliverables:
+We are building an open educational resource that replaces the intro-logic textbooks in the tradition of Copi currently adopted at the University of Mary Washington and offers an adoptable resource for other Virginia institutions and beyond. The project comprises three deliverables:
 
 1. **A free, openly-licensed textbook** authored in PreTeXt and published as accessible PDF (Phase 1) and accessible interactive HTML (Phase 2).
 2. **A suite of web-based companion tools** — including the natural deduction proof checker, a truth-table checker, a Venn diagram checker, and an argument reconstruction editor.
@@ -22,7 +22,7 @@ The anchoring course is **PHIL 151B Introductory Logic** at UMW. The book is a *
 
 The book is pitched at undergraduate intro level: clear and precise, but not deep. It serves students for whom this is the only logic course they will ever take, and adopters teaching general-education logic that satisfies a quantitative-reasoning requirement.
 
-The pedagogical philosophy treats **formal logic as the rigorous spine of argumentative thinking**. Informal logic, categorical logic with Venn diagrams, sentential logic with natural deduction, and statistical reasoning each get a unit, in that order. Hacking's *An Introduction to Probability and Inductive Logic* is a north star for ambition and rigor in the statistics unit, but the book remains intro-pitched throughout.
+The pedagogical philosophy treats **formal logic as the rigorous spine of argumentative thinking**. Informal logic, categorical logic with Venn diagrams, sentential logic with natural deduction, and statistical reasoning each get a unit, in that order. Philosophically serious introductions to probability and inductive logic are the north star for ambition and rigor in the statistics unit, but the book remains intro-pitched throughout.
 
 The cheating-and-AI stance is "I'm not a cop." The real assessment gate is the in-person paper exam, not technical lockdown. Quizzes and assignments are designed to make the path of least resistance the path of actual learning, not the path of outsourcing to a chatbot. AI use is allowed where assignments specify, must be cited, and is honor-code-governed.
 
@@ -33,14 +33,14 @@ The book is divided into four parts that align with the four exam blocks of the 
 - **Part I — Arguments and Reasoning** (informal logic): what arguments are, deductive vs. inductive, validity and soundness, language and meaning, informal fallacies. *Chapter 4 (Language and Meaning) is treated as an optional/non-load-bearing chapter:* other chapters do not reference it, and any concept introduced there that is needed elsewhere (e.g., equivocation in the fallacies chapter) is re-introduced locally rather than imported by cross-reference. This lets adopters skip Ch. 4 without breaking the rest of the book.
 - **Part II — Categorical Logic** (Venn-first): categorical statements, the square of opposition, Venn diagrams for statements, categorical syllogisms via Venn diagrams, translating English into categorical form. Mood and Figure are de-emphasized; the Venn diagram method is treated as the primary tool for assessing validity. Only modern categorical logic is taught in the body of the text. Existential commitment is discussed. But, the Aristotelian categorical logic is placed in an appendix. 
 - **Part III — Sentential Logic**: symbolizing sentences using Copi notation (⊃, ·, ∨, ≡, ~), truth tables, natural deduction with the 8 implication rules and the 10 replacement rules, and conditional and indirect proof. CP and IP are taught but assessments are designed to be solvable using only the 18 rules.
-- **Part IV — Inductive and Statistical Reasoning**: inductive reasoning, probability basics, descriptive statistics, statistical inference, and a closing chapter that draws on Hacking-flavored material to give students a richer appreciation of statistical reasoning than typical intro texts offer.
+- **Part IV — Inductive and Statistical Reasoning**: inductive reasoning, probability basics, descriptive statistics, statistical inference, and a closing chapter that draws on philosophy-of-probability material to give students a richer appreciation of statistical reasoning than typical intro texts offer.
 - **Part V — Predicate Logic** (optional adopter chapters): symbolization with quantifiers, the four standard quantifier rules, and (optionally) identity. PHIL 151B does not (currently) cover this material; adopters who want it can include it.
 
 A target of approximately 17–18 chapters total. The exact chapter list will firm up after the Chapter 1 vertical slice.
 
 ## 4. Notation and Proof System
 
-The book uses **Copi notation** throughout: `⊃` for the conditional, `·` for conjunction, `∨` for disjunction, `≡` for the biconditional, and the plain ASCII tilde `~` (Unicode U+007E) for negation. This choice is both pedagogical (consistent with the Copi/Hurley/Baronett tradition the lead author has taught from for years) and a soft deterrent against students copy-pasting from external sources that use the modern `→`, `∧`, `∨`, `¬`, `↔` notation. The deterrent's effectiveness will decay as AI tools improve at Copi notation; the in-person exam remains the real assessment.
+The book uses **Copi notation** throughout: `⊃` for the conditional, `·` for conjunction, `∨` for disjunction, `≡` for the biconditional, and the plain ASCII tilde `~` (Unicode U+007E) for negation. This choice is both pedagogical (consistent with the Copi tradition the lead author has taught from for years) and a soft deterrent against students copy-pasting from external sources that use the modern `→`, `∧`, `∨`, `¬`, `↔` notation. The deterrent's effectiveness will decay as AI tools improve at Copi notation; the in-person exam remains the real assessment.
 
 For negation, the source files, generated text, and student-facing tools should use `~` (Unicode U+007E), not the Unicode tilde operator `∼` (U+223C) or the negation sign `¬`. The plain tilde is easier for students to type, aligns with checker keyboard shortcuts, and avoids introducing multiple visually similar negation symbols for screen-reader users.
 
@@ -62,7 +62,7 @@ The book is authored in **PreTeXt**, a markup language designed specifically for
 
 Writing in PreTeXt now means Phase 2 is a matter of *adding* features rather than rewriting in a different format. PreTeXt has institutional backing from the American Institute of Mathematics' Open Textbook Initiative.
 
-All chapters are written in the lead author's voice. Copyrighted texts (Baronett, Hurley, Hacking) serve as reference material to ensure logical correctness, but copyrighted prose, examples, and exercises are not reused. Knachel's *Fundamental Methods of Logic* is available under a Creative Commons license and may be adapted or drawn on more directly when useful, with attribution and with known errors corrected. The lead author's own teaching materials — Spring 2026 seatwork, study guides, exams, summer notes, and forthcoming written notes — remain the primary source material from which prose is drafted.
+All chapters are written in the lead author's voice. Copyrighted texts, including books in the tradition of Copi, serve as reference material to ensure logical correctness, but copyrighted prose, examples, and exercises are not reused. Knachel's *Fundamental Methods of Logic* is available under a Creative Commons license and may be adapted or drawn on more directly when useful, with attribution and with known errors corrected. The lead author's own teaching materials — Spring 2026 seatwork, study guides, exams, summer notes, and forthcoming written notes — remain the primary source material from which prose is drafted.
 
 **Example modularity remains a design goal.** In the current draft, many examples are still authored inline in chapter files. Over time, politically-current examples should move into modular files under `examples/` so that they can be swapped in a single edit each election cycle, without re-authoring chapter prose. Example sets should be versioned (e.g., "Spring 2026 examples," "Spring 2028 examples") so adopters can pin to a stable set.
 

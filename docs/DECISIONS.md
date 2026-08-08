@@ -6,13 +6,13 @@ Each decision is dated, numbered, and tagged with the section of `PROJECT_PLAN.m
 
 ---
 
-## D-001 — Build a new OER textbook rather than continuing with Baronett or adopting Knachel wholesale
+## D-001 — Build a new OER textbook rather than continuing with the currently adopted textbook or adopting Knachel wholesale
 
 **Date**: 2026-04-26
 **Plan section**: 1, 2
-**Decision**: Build a new openly-licensed textbook, not adopt an existing OER (Knachel) wholesale and not continue with Baronett.
+**Decision**: Build a new openly-licensed textbook, not adopt an existing OER (Knachel) wholesale and not continue with the currently adopted textbook.
 **Alternatives considered**:
-- (a) Continue using Baronett's *Logic*, 5th ed. — rejected: commercial pricing, repeated edition churn with little change, paywalled tools.
+- (a) Continue with the currently adopted textbook — rejected: commercial pricing, repeated edition churn with little change, paywalled tools.
 - (b) Adopt Knachel's *Fundamental Methods of Logic* wholesale — rejected: contains errors (notably in the probability section the lead author already uses), and structural choices that diverge from how the lead author teaches.
 - (c) Adapt Knachel under his CC license, fixing errors and reorganizing — rejected in favor of writing fresh.
 - (d) Write a new book — **chosen**.
@@ -40,7 +40,7 @@ Each decision is dated, numbered, and tagged with the section of `PROJECT_PLAN.m
 **Alternatives considered**:
 - Modern notation (`→`, `∧`, `∨`, `¬`, `↔`).
 - Both, with reader/student choice.
-**Rationale**: Pedagogical preference (consistent with the Copi/Hurley/Baronett tradition the lead author teaches in), the co-author's compatible Hurley background, and a deliberate (if decaying) friction against students copy-pasting from external sources that use modern notation. Accepted that the deterrent will weaken as AI tools improve at Copi notation; the in-person exam remains the real assessment.
+**Rationale**: Pedagogical preference (consistent with the Copi tradition the lead author teaches in), the co-author's compatible background in the same tradition, and a deliberate (if decaying) friction against students copy-pasting from external sources that use modern notation. Accepted that the deterrent will weaken as AI tools improve at Copi notation; the in-person exam remains the real assessment.
 
 ---
 
@@ -126,7 +126,7 @@ Each decision is dated, numbered, and tagged with the section of `PROJECT_PLAN.m
 
 **Date**: 2026-04-26
 **Plan section**: 5, 12
-**Decision**: All chapters are written fresh. No copyrighted content (Baronett, Hurley, Hacking) is reused. Knachel is reference, not source. The lead author's seatwork, study guides, exams, summer notes, and forthcoming written notes are the primary source from which prose is drafted.
+**Decision**: All chapters are written fresh. No copyrighted content from books in the tradition of Copi is reused. Knachel is reference, not source. The lead author's seatwork, study guides, exams, summer notes, and forthcoming written notes are the primary source from which prose is drafted.
 **Alternatives considered**: Adapt Knachel under his CC license for some sections.
 **Rationale**: A wholly original book has a clean licensing story (no inherited license obligations beyond our own choice), unambiguous voice, and lets the book serve as both a textbook and an artifact of the lead author's pedagogical voice. The lead author's existing teaching materials provide enough scaffolding to make "write fresh" achievable on the timeline.
 
@@ -363,7 +363,7 @@ Each decision is dated, numbered, and tagged with the section of `PROJECT_PLAN.m
 
 **Date**: 2026-05-11
 **Plan section**: 5, 12
-**Decision**: Knachel's *Fundamental Methods of Logic* may be drawn on or adapted more directly than copyrighted commercial sources, provided the book gives clear attribution, preserves the lead author's voice and organization, and corrects known errors before use. This refines D-011, which treated Knachel as reference-only.
+**Decision**: Knachel's *Fundamental Methods of Logic* may be drawn on or adapted more directly than other copyrighted sources, provided the book gives clear attribution, preserves the lead author's voice and organization, and corrects known errors before use. This refines D-011, which treated Knachel as reference-only.
 **Alternatives considered**:
 - Treat Knachel as reference only, despite its Creative Commons license.
 - Adopt Knachel's inductive/probability/statistics chapters wholesale.

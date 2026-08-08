@@ -1,6 +1,6 @@
 # UMW Logic Textbook (working title)
 
-An open educational resource for introductory logic, replacing commercial textbooks at the University of Mary Washington and offering an adoptable resource for other Virginia institutions and beyond.
+An open educational resource for introductory logic, replacing textbooks in the tradition of Copi at the University of Mary Washington and offering an adoptable resource for other Virginia institutions and beyond.
 
 ## What's in this monorepo
 
