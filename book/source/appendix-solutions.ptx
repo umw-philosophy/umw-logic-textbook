@@ -348,6 +348,7 @@
     <p><term>1.</term> <em>Hasty generalization.</em> Two layoffs are too small a sample to support a sweeping claim that the entire data center industry is collapsing.</p>
     <p><term>3.</term> <em>Slippery slope.</em> The argument moves from background checks to registry, licensing, and confiscation without showing that each step is likely or that the first step would make the later steps unavoidable.</p>
     <p><term>5.</term> <em>Rigid application of a generalization.</em> Even if most members of Congress usually follow constituent preferences, that generalization does not justify dismissing a specific contrary vote without looking at the evidence. The argument treats a broad pattern as if it settles every individual case.</p>
+    <p><term>7.</term> <em>Appeal to ignorance.</em> The absence of a demonstration that the ordinance lowered property values is a fact about what has been studied, not a fact about property values. It would become evidence only if someone had looked in a way that would have detected the effect had it been there.</p>
   </section>
 
   <section xml:id="sol-ch5-exercise-set-3-fallacies-of-presumption">
@@ -367,12 +368,14 @@
     <title>Chapter 5, Exercise Set 5: Legitimate or Fallacious?</title>
     <p><term>1.</term> <em>Legitimate appeal to authority.</em> The CDC is an appropriate expert source on vaccination rates and herd immunity. If the report is accurately represented, the conclusion about likely outbreaks is a reasonable expert-based inference, not a fallacious appeal to authority.</p>
     <p><term>3.</term> <em>Legitimate cousin of ad hominem.</em> The point is not merely that Senator Lewis has a bad relative. The family financial connection is relevant to whether she had a conflict of interest and should have recused herself.</p>
+    <p><term>5.</term> <em>Legitimate cousin of appeal to ignorance.</em> This is an argument from absence, but a good one. A two-year trial with 14,000 patients is large enough that an elevated cardiac risk would very likely have shown up if it were there, so not finding one is real evidence. Compare exercise 6, which has the same surface form and none of the searching.</p>
   </section>
 
   <section xml:id="sol-ch5-exercise-set-6-construct-your-own">
     <title>Chapter 5, Exercise Set 6: Construct Your Own</title>
     <p><term>1.</term> Model answer for <em>straw person</em>: <q>My opponent wants to review police funding priorities, which means she wants to abolish public safety. We should reject her proposal.</q> Diagnosis: the argument replaces a more modest proposal with an exaggerated version that is easier to attack.</p>
     <p><term>3.</term> Model answer for <em>slippery slope</em>: <q>If the city allows one supervised homeless shelter downtown, businesses will leave, tourism will collapse, and the whole downtown will fail. So we must reject the shelter.</q> Diagnosis: the argument predicts a chain of increasingly severe consequences without showing that the chain is likely.</p>
+    <p><term>5.</term> Model answer for <em>appeal to ignorance</em>: <q>No one has produced a study showing that the new bus route failed to reduce downtown congestion. So it worked.</q> Diagnosis: the argument reasons from the absence of a study to a positive conclusion, when the absence may only reflect that nobody has measured. Legitimate version: <q>The city counted vehicle traffic at six downtown intersections before and after the route opened, and found no reduction. The route does not appear to have reduced congestion.</q> What had to be added: an actual search, conducted where the effect would have been visible if it existed.</p>
   </section>
 
   <section xml:id="sol-ch6-exercise-set-1-identifying-the-form">

@@ -4,8 +4,11 @@
   First full draft.
 
   Scope:
-  - 15 informal fallacies in three groupings: relevance, weak inductive
-    support, presumption.
+  - 17 informal fallacies in three groupings: relevance (7), weak inductive
+    support (6), presumption (4). The count has moved twice: equivocation
+    was pulled in from the ambiguity slot (see below), and appeal to
+    ignorance was added to the weak-induction group. Keep this number in
+    sync with the intro (§5.1) and the recap in §5.5.
   - Each fallacy: name, schematic pattern, real-world political example,
     why it fails, legitimate cousins where applicable.
   - Ch. 4 (Language and Meaning) is non-load-bearing per PROJECT_PLAN.md
@@ -49,7 +52,7 @@
       in how a premise is being deployed rather than in a misapplied
       rule. Some fallacies make an argument invalid; others make it
       weak; others smuggle in a premise that the argument hasn't
-      earned. We will sort the sixteen fallacies in this chapter
+      earned. We will sort the seventeen fallacies in this chapter
       into three groups that map onto those three modes of failure.
     </p>
     <p>
@@ -831,6 +834,138 @@
         analogies are not like this.
       </p>
     </paragraphs>
+
+    <paragraphs xml:id="paragraphs-appeal-to-ignorance">
+      <title>Appeal to ignorance</title>
+      <example xml:id="ex-appeal-to-ignorance-pattern">
+        <title>Appeal to ignorance (weak induction)</title>
+        <statement>
+          <p><alert>Pattern.</alert> Nothing has been proved about P. Therefore P is true. (Or, running the other direction: nothing has been proved about P, therefore P is false.)</p>
+        </statement>
+      </example>
+      <p>
+        An <term>appeal to ignorance</term> — the Latin name,
+        <em>argumentum ad ignorantiam</em>, is still in common use —
+        treats the absence of evidence for a claim as evidence about
+        whether the claim is true. The other fallacies in this
+        section offer some evidence and ask it to carry too much
+        weight. This one offers no evidence at all and asks the
+        emptiness itself to do the work.
+      </p>
+      <p>
+        The clearest tell is that the move runs in both directions
+        at once. If <q>no one has proved that P is false</q>
+        establishes P, then <q>no one has proved that P is true</q>
+        establishes not-P with exactly the same force. Any pattern
+        of reasoning that delivers a claim and its denial from the
+        same starting point is not delivering anything. What the
+        premise actually reports is a fact about the current state
+        of inquiry — what has been looked into, and how well — not
+        a fact about the world.
+      </p>
+      <!--
+        VERIFY: McCarthy's phrasing on Case 40 is quoted in slightly
+        varying forms across sources. Confirm exact wording against the
+        Tydings Committee record before publication.
+        Source candidates: U.S. Senate, Committee on Foreign Relations,
+        State Department Employee Loyalty Investigation, 81st Cong.,
+        2d sess. (1950); Copi and Cohen, Introduction to Logic, which
+        uses this case as its standard illustration.
+      -->
+      <p>
+        The historical example that made this fallacy famous comes
+        from Senator Joseph McCarthy. Pressed during the 1950 loyalty
+        investigations for evidence against a particular State
+        Department employee, McCarthy's answer was, in substance,
+        that he did not have much information on the case except
+        that there was nothing in the file to disprove the person's
+        Communist connections.<fn>
+          On the 1950 hearings and McCarthy's use of loyalty files,
+          see the Senate Historical Office's account of the Tydings
+          Committee investigation
+          (https://www.senate.gov/about/powers-procedures/investigations/mccarthy-hearings.htm).
+        </fn> An empty file is not incriminating. It is empty.
+      </p>
+      <p>
+        The move is alive and bipartisan. Arguments that the 2020
+        election was stolen have often taken the form <q>the audits
+        have not ruled out large-scale fraud, so we cannot say the
+        election was clean</q> — a demand that inquiry prove a
+        negative, followed by treating the failure to prove it as
+        support for the positive claim. Arguments about chemical
+        safety run the same pattern in both directions on a single
+        issue: industry groups argue that no study has demonstrated
+        harm from a compound and conclude it is safe, while critics
+        argue that no study has demonstrated its safety and conclude
+        it is dangerous. Both sides are reasoning from the same
+        gap in the literature to opposite conclusions. At most one
+        of them can be right, and the shared premise gives us no way
+        to tell which.
+      </p>
+      <p>
+        This fallacy is where the idea of a <term>burden of
+        proof</term> earns its keep. In any argumentative exchange,
+        someone has the job of making the case, and the other party
+        is entitled to withhold assent until it is made. An appeal
+        to ignorance is usually an attempt to hand that job to the
+        other side — <q>you haven't disproved it</q> — when it was
+        never theirs to begin with. The law formalizes this. A
+        criminal verdict of <em>not guilty</em> means the
+        prosecution failed to carry its burden; it does not mean the
+        defendant has been shown innocent. Those are different
+        findings, and the presumption of innocence is a rule about
+        how we should act when we do not know, not an inference
+        about what happened.
+      </p>
+      <p>
+        <alert>Legitimate cousin.</alert> Sometimes not finding
+        something is excellent evidence that it is not there — but
+        only when you looked, and only when you would have found it
+        had it been there. If you go through your refrigerator and
+        do not find milk, you have real evidence that there is no
+        milk in it, because a carton of milk is not the kind of
+        thing that hides from a careful look. A large, well-designed
+        drug trial that turns up no serious side effects is genuine
+        evidence of safety for the same reason; three patients
+        reporting no side effects is not.
+      </p>
+      <p>
+        The strongest arguments of this kind often rest on a search
+        nobody ever organized. Consider the claim that dogs do not
+        speak English. No one has ever run a study on this. There is
+        no literature, no funded research program, no controlled
+        trial — which is exactly the situation that the arguments
+        earlier in this section were exploiting. And yet the absence
+        of evidence here is overwhelming. Human beings have lived
+        alongside dogs for thousands of years, in hundreds of
+        millions of households, under conditions of constant, close,
+        highly motivated attention. If any dog had ever delivered a
+        sentence in English, someone would have noticed, and we
+        would all have heard about it. The search was never
+        designed, but it was enormous, and it was conducted exactly
+        where the evidence would have turned up. So the conclusion
+        is not merely reasonable; it is about as well-supported as
+        an empirical claim gets.
+      </p>
+      <p>
+        Set that against the empty loyalty file, or against
+        <q>no study has shown this compound is harmful.</q> Those
+        arguments have the same surface form — no evidence,
+        therefore a conclusion — and almost none of the substance,
+        because in those cases either nobody looked, or the looking
+        that was done could not have detected the thing being
+        denied. The form is identical. What differs is the size and
+        the aim of the search sitting behind the silence.
+      </p>
+      <p>
+        So the diagnostic question is never <q>is the arguer
+        reasoning from an absence?</q> — it is <q>how hard, and
+        how many, and in the right place?</q> Part IV gives us the
+        machinery for asking that question precisely, under the
+        heading of how much a study is actually capable of
+        detecting.
+      </p>
+    </paragraphs>
   </section>
 
   <section xml:id="sec-fallacies-of-presumption">
@@ -1080,7 +1215,7 @@
 
     <introduction>
       <p>
-        We have surveyed sixteen patterns of bad reasoning, sorted
+        We have surveyed seventeen patterns of bad reasoning, sorted
         by how they fail. Three points are worth making before we
         move on.
       </p>
@@ -1179,7 +1314,11 @@
       fallacies offer premises that bear on the conclusion but do not
       support it strongly enough. The group includes hasty
       generalization, rigid application of a generalization, false
-      cause, slippery slope, and weak analogy.
+      cause, slippery slope, weak analogy, and appeal to ignorance —
+      the last being the limiting case, where the argument reasons
+      from the absence of evidence rather than from weak evidence,
+      and where the question of who carries the burden of proof
+      becomes explicit.
     </p>
 
     <p>
@@ -1216,6 +1355,10 @@
         <title>Appeal to emotion</title>
         <p>A fallacy that substitutes emotional pressure for relevant support. (§5.2)</p>
       </li>
+      <li xml:id="term-ch5-appeal-to-ignorance">
+        <title>Appeal to ignorance</title>
+        <p>A fallacy that treats the absence of evidence for a claim as evidence that the claim is true, or the absence of evidence against it as evidence that it is false. (§5.3)</p>
+      </li>
       <li xml:id="term-ch5-appeal-to-popularity">
         <title>Appeal to popularity</title>
         <p>A fallacy that treats a claim as true or reasonable merely because many people believe or favor it. (§5.2)</p>
@@ -1223,6 +1366,10 @@
       <li xml:id="term-ch5-begging-the-question">
         <title>Begging the question</title>
         <p>A fallacy in which the argument assumes what it is supposed to prove. (§5.4)</p>
+      </li>
+      <li xml:id="term-ch5-burden-of-proof">
+        <title>Burden of proof</title>
+        <p>The obligation to make the case for a claim. The party who carries it must supply support; the other party may withhold assent until that support is given. (§5.3)</p>
       </li>
       <li xml:id="term-ch5-complex-question">
         <title>Complex question</title>
@@ -1353,6 +1500,16 @@
           <p>Most members of Congress vote in line with what their constituents say they want. So when critics point to a specific vote that ran against constituent polling, they must be cherry-picking outliers that don't really matter.</p>
         </statement>
       </exercise>
+      <exercise xml:id="ex-ch5-s02-06">
+        <statement>
+          <p>Not one of the committee's investigators has produced a document showing that the department knew about the safety problem before the recall. Until someone does, we should conclude the department did not know.</p>
+        </statement>
+      </exercise>
+      <exercise xml:id="ex-ch5-s02-07">
+        <statement>
+          <p>Nobody has ever demonstrated that the new zoning ordinance lowered property values in the district. That tells you it didn't.</p>
+        </statement>
+      </exercise>
     </exercisegroup>
 
     <exercisegroup xml:id="exgroup-ch5-s03">
@@ -1452,6 +1609,16 @@
           <p>If we pass this surveillance authorization, the same infrastructure will exist for any future administration to use. We should be cautious about expanding it.</p>
         </statement>
       </exercise>
+      <exercise xml:id="ex-ch5-s05-05">
+        <statement>
+          <p>The Phase III trial enrolled 14,000 patients and monitored them for two years. No elevated rate of cardiac events appeared in the treatment group. The drug does not appear to raise cardiac risk at this dose.</p>
+        </statement>
+      </exercise>
+      <exercise xml:id="ex-ch5-s05-06">
+        <statement>
+          <p>No one on the county board has been able to point to a single study showing that the proposed data center will not strain the local water supply. Clearly it will.</p>
+        </statement>
+      </exercise>
     </exercisegroup>
 
     <exercisegroup xml:id="exgroup-ch5-s06">
@@ -1482,6 +1649,11 @@
       <exercise xml:id="ex-ch5-s06-04">
         <statement>
           <p>Equivocation.</p>
+        </statement>
+      </exercise>
+      <exercise xml:id="ex-ch5-s06-05">
+        <statement>
+          <p>Appeal to ignorance. (Then write a second version of your example that turns it into the legitimate cousin, and say what you had to add.)</p>
         </statement>
       </exercise>
     </exercisegroup>
