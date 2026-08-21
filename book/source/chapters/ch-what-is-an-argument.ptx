@@ -557,8 +557,8 @@
       </p>
       <p>
         <alert>Why this matters for what comes later.</alert>
-        This isn't a philosophical sidebar. It's load-bearing structure
-        for everything in the rest of the book. Truth tables work
+        This isn't a philosophical sidebar. It's the foundation for
+        everything in the rest of the book. Truth tables work
         because every row has a definite truth value, regardless of
         what we happen to know about that row. Validity is a
         relationship between truth values. The reasoning we're going

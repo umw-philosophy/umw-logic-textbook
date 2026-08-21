@@ -11,8 +11,8 @@
     sync with the intro (§5.1) and the recap in §5.5.
   - Each fallacy: name, schematic pattern, real-world political example,
     why it fails, legitimate cousins where applicable.
-  - Ch. 4 (Language and Meaning) is non-load-bearing per PROJECT_PLAN.md
-    §3, so equivocation is re-introduced here from scratch as a fallacy
+  - Nothing else in the book depends on Ch. 4 (Language and Meaning) per
+    PROJECT_PLAN.md §3, so equivocation is re-introduced here from scratch as a fallacy
     of relevance (rather than the traditional ambiguity slot — equivocation
     makes premises non-relevant to the conclusion they appear to support).
 
@@ -960,10 +960,15 @@
       <p>
         So the diagnostic question is never <q>is the arguer
         reasoning from an absence?</q> — it is <q>how hard, and
-        how many, and in the right place?</q> Part IV gives us the
-        machinery for asking that question precisely, under the
-        heading of how much a study is actually capable of
-        detecting.
+        how many, and in the right place?</q> Part IV makes that
+        question precise. When we take up diagnostic testing in
+        <xref ref="sec-ch15-sensitivity-specificity"/>, the
+        <em>sensitivity</em> of a test is exactly this: how reliably
+        it turns up the thing it is looking for when the thing is
+        really there. A negative result from a highly sensitive test
+        is strong evidence of absence. A negative result from an
+        insensitive one is barely evidence at all — which is the
+        appeal to ignorance, restated in numbers.
       </p>
     </paragraphs>
   </section>
