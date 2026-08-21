@@ -18,7 +18,7 @@ This book is about how to look closely.
 
 Take all the things people do with language — every overheard sentence, every text, every email — and you can sort them, loosely, into a handful of types. The list isn't exact; many sentences do more than one thing at once, and philosophers of language have argued for a long time about exactly how the categories work. But for our purposes, a working list looks something like this.
 
-**Stating.** "It's raining." "The library closes at nine." "Data centers consume a lot of power." Statements assert that something is the case. They are true or false, even if no one knows which. 
+**Stating.** "It's raining." "Fredericksburg sits on the Rappahannock River." "Data centers consume a lot of power." Statements assert that something is the case. They are true or false, even if no one knows which. 
 
 **Asking.** "What time is it?" "Did you eat already?" Questions request information. They aren't true or false themselves, even though their answers might be.
 

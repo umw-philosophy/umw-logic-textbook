@@ -28,7 +28,7 @@ Only sentences in the *stating* category produce assertions. The other categorie
 
 A few examples of statements:
 
-- The library closes at nine.
+- Fredericksburg sits on the Rappahannock River.
 - Snow is white.
 - Carthage was destroyed in 146 BCE.
 - Two plus two equals four.
@@ -48,11 +48,11 @@ None of these are statements, because none of them say that something is the cas
 
 ### What about the harder cases?
 
-So far, so good. The examples above were chosen to be easy: nobody is going to fight you about whether the library closes at nine. But you may have already started to notice that real life isn't always like that. Sentences like *"there is intelligent life somewhere else in the universe,"* *"slavery is wrong,"* *"there were exactly 27,891 people living in Fredericksburg in 1856,"* and *"the one-millionth digit of π is 7"* all *seem* to be saying that something is the case. By the definition above, they should all be statements. But they don't feel like the library example. Some of them are deeply contested. Others involve facts nobody alive knows or can easily find out.
+So far, so good. The examples above were chosen to be easy: nobody is going to fight you about which river Fredericksburg sits on. But you may have already started to notice that real life isn't always like that. Sentences like *"there is intelligent life somewhere else in the universe,"* *"slavery is wrong,"* *"there were exactly 27,891 people living in Fredericksburg in 1856,"* and *"the one-millionth digit of π is 7"* all *seem* to be saying that something is the case. By the definition above, they should all be statements. But they don't feel like the Rappahannock example. Some of them are deeply contested. Others involve facts nobody alive knows or can easily find out.
 
 Are they still statements?
 
-The short answer is yes. The longer answer requires getting clear on what is actually being asked. To handle the harder cases — the contested ones, the ones we can't easily, if at all, verify — we need to separate three things that often get smushed together: what is the case, what we *know* about what is the case, and what we *agree about* about what is the case. Once those three are pulled apart, the harder cases are no harder to classify than the library example.
+The short answer is yes. The longer answer requires getting clear on what is actually being asked. To handle the harder cases — the contested ones, the ones we can't easily, if at all, verify — we need to separate three things that often get smushed together: what is the case, what we *know* about what is the case, and what we *agree about* about what is the case. Once those three are pulled apart, the harder cases are no harder to classify than the Rappahannock example.
 
 ### Truth, knowledge, and consensus are different things
 
@@ -114,8 +114,8 @@ Statements are the building blocks. The next section is about how those blocks f
 >
 > Use the definition from this section. Do not use the fact-vs-opinion taxonomy. Some of these sentences will tempt you to mis-sort them as "just opinions" or "not really statements." Resist that temptation. Trust the definition.
 >
-> 1. The library closes at nine.
-> 2. What time does the library close?
+> 1. Fredericksburg sits on the Rappahannock River.
+> 2. What time does the sun set tonight?
 > 3. Slavery is wrong.
 > 4. Pass the salt.
 > 5. There were exactly 27,891 people living in Fredericksburg in 1856.

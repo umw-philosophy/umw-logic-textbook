@@ -26,11 +26,11 @@ Every argument has two kinds of statement in it. There is the statement being ar
 
 A small example.
 
-> P1: The library closes at nine.
+> P1: It gets dark after the sun sets.
 >
-> P2: It is now ten past nine.
+> P2: The sun set an hour ago.
 >
-> ∴ C: The library is closed.
+> ∴ C: It is dark.
 
 The symbol ∴ is read *therefore*. We won't use it constantly in prose, but you'll see it whenever an argument is laid out cleanly, and it's the symbol the proof checker we'll use later uses to mark the conclusion line.
 
@@ -40,7 +40,7 @@ Two things to notice. First, an argument can have one premise or many. Most have
 
 When we say premises *support* a conclusion, we are saying two things at once, and it pays to keep them straight.
 
-The first is about the **intent** of the arguer. When somebody offers an argument, they are saying: *here are reasons; you should believe the conclusion because of them*. The premise/conclusion structure is built out of intent. If I say *"It is ten past nine, so the library is closed,"* I am claiming that the first sentence is reason to believe the second. Whether anyone *should* be persuaded is a different question.
+The first is about the **intent** of the arguer. When somebody offers an argument, they are saying: *here are reasons; you should believe the conclusion because of them*. The premise/conclusion structure is built out of intent. If I say *"the sun set an hour ago, so it's dark out,"* I am claiming that the first sentence is reason to believe the second. Whether anyone *should* be persuaded is a different question.
 
 The second is about whether the support actually **succeeds**. The premises might genuinely give you reason to believe the conclusion (a good argument), or they might not (a bad argument). An argument can have its premises and its conclusion in their proper places, follow the rules of grammar, sound entirely persuasive — and still be a bad argument because the premises don't actually support the conclusion. A bad argument is still an argument. It's an argument whose support fails.
 
@@ -71,7 +71,7 @@ In real texts, premises and conclusions are frequently flagged by short signal w
 
 A short example with both kinds of indicator:
 
-> *Since* the library closes at nine, *and since* it is now ten past nine, the library is closed.
+> *Since* it gets dark after the sun sets, *and since* the sun set an hour ago, it is dark.
 
 Two premise indicators (both *since*) flag the two premises. The unmarked sentence at the end is the conclusion.
 
