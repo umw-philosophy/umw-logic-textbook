@@ -793,7 +793,7 @@
           <button class="sym-btn" type="button" onclick="ins('~')" title="Negation (~)" aria-label="Insert negation">~</button>
           <button class="sym-btn" type="button" onclick="ins('·')" title="Conjunction (·) — also type &amp; or *" aria-label="Insert conjunction">·</button>
           <button class="sym-btn" type="button" onclick="ins('∨')" title="Disjunction (∨) — also type v" aria-label="Insert disjunction">∨</button>
-          <button class="sym-btn" type="button" onclick="ins('⊃')" title="Conditional (⊃) — also type ->" aria-label="Insert conditional">⊃</button>
+          <button class="sym-btn" type="button" onclick="ins('⊃')" title="Conditional (⊃) — also type > or ->" aria-label="Insert conditional">⊃</button>
           <button class="sym-btn" type="button" onclick="ins('≡')"
             title="Biconditional (≡) — also type &lt;->" aria-label="Insert biconditional">≡</button>
           <div class="sym-divider"></div>
@@ -813,7 +813,7 @@
 
         <div class="setup-hint" id="setup-hint">
           <strong>Tip:</strong> Click an operator button above, or type shortcuts:
-          <kbd>-&gt;</kbd> for ⊃ &nbsp; <kbd>&amp;</kbd> or <kbd>*</kbd> for · &nbsp; <kbd>v</kbd> for ∨ &nbsp; <kbd>&lt;-&gt;</kbd> for
+          <kbd>&gt;</kbd> or <kbd>-&gt;</kbd> for ⊃ &nbsp; <kbd>&amp;</kbd> or <kbd>*</kbd> for · &nbsp; <kbd>v</kbd> for ∨ &nbsp; <kbd>&lt;-&gt;</kbd> for
           ≡.
           Lowercase atomic letters are automatically capitalized.
           Parentheses are required around each embedded connective: write <kbd>A ⊃ (B · C)</kbd>, not <kbd>A ⊃ B ·
@@ -857,7 +857,7 @@
           <button class="sym-btn" type="button" onclick="ins('~')" title="Negation (~)" aria-label="Insert negation">~</button>
           <button class="sym-btn" type="button" onclick="ins('·')" title="Conjunction (·)  — also type &amp; or *" aria-label="Insert conjunction">·</button>
           <button class="sym-btn" type="button" onclick="ins('∨')" title="Disjunction (∨)  — also type v" aria-label="Insert disjunction">∨</button>
-          <button class="sym-btn" type="button" onclick="ins('⊃')" title="Conditional (⊃) — also type ->" aria-label="Insert conditional">⊃</button>
+          <button class="sym-btn" type="button" onclick="ins('⊃')" title="Conditional (⊃) — also type > or ->" aria-label="Insert conditional">⊃</button>
           <button class="sym-btn" type="button" onclick="ins('≡')"
             title="Biconditional (≡) — also type &lt;->" aria-label="Insert biconditional">≡</button>
           <div class="sym-divider"></div>
@@ -866,7 +866,7 @@
         </div>
 
         <div class="kbd-hint" id="entry-hint">
-          Keyboard shortcuts: <kbd>-></kbd> → ⊃ &nbsp; <kbd>&amp;</kbd>/<kbd>*</kbd> → · &nbsp;
+          Keyboard shortcuts: <kbd>&gt;</kbd> or <kbd>-></kbd> → ⊃ &nbsp; <kbd>&amp;</kbd>/<kbd>*</kbd> → · &nbsp;
           <kbd>v</kbd> → ∨ &nbsp; <kbd>&lt;-></kbd> → ≡ &nbsp; <kbd>[ ]</kbd> → ( )
         </div>
 
@@ -955,6 +955,7 @@
         .replace(/¬/g, '~')
         .replace(/<->/g, '≡').replace(/<=>/g, '≡')
         .replace(/->/g, '⊃').replace(/=>/g, '⊃')
+        .replace(/>/g, '⊃')
         .replace(/v/g, '∨')
         .replace(/&/g, '·').replace(/\*/g, '·').replace(/\^/g, '·')
         .replace(/[a-uw-z]/g, ch => ch.toUpperCase());
@@ -1700,7 +1701,10 @@
       const orig = el.value, start = el.selectionStart;
       let v = orig;
       v = v.replace(/<->/g, '≡');
+      v = v.replace(/<=>/g, '≡');
       v = v.replace(/->/g, '⊃');
+      v = v.replace(/=>/g, '⊃');
+      v = v.replace(/>/g, '⊃');
       v = v.replace(/&/g, '·');
       v = v.replace(/\*/g, '·');
       v = v.replace(/\[/g, '(');
@@ -1816,6 +1820,39 @@
 
     // ── Proof rendering ────────────────────────────────────────────────────
 
+    // ── Completion jingle ────────────────────────────────────────────────
+    // A short rising arpeggio (C–E–G–C), synthesized with the Web Audio API,
+    // so there is no audio file to host. About one second long; it plays only
+    // when a proof goes from incomplete to complete, which always follows a
+    // click or Enter, so browsers allow the sound.
+    let _wasComplete = false;
+    let _audioCtx = null;
+
+    function _playJingle() {
+      try {
+        const AC = window.AudioContext || window.webkitAudioContext;
+        if (!AC) return;
+        if (!_audioCtx) _audioCtx = new AC();
+        if (_audioCtx.state === 'suspended') _audioCtx.resume();
+        const t0 = _audioCtx.currentTime + 0.05;
+        const notes = [523.25, 659.25, 783.99, 1046.5]; // C5 E5 G5 C6
+        notes.forEach((freq, i) => {
+          const start = t0 + i * 0.11;
+          const len = i === notes.length - 1 ? 0.6 : 0.18;
+          const osc = _audioCtx.createOscillator();
+          const gain = _audioCtx.createGain();
+          osc.type = 'triangle';
+          osc.frequency.setValueAtTime(freq, start);
+          gain.gain.setValueAtTime(0.0001, start);
+          gain.gain.exponentialRampToValueAtTime(0.18, start + 0.02);
+          gain.gain.exponentialRampToValueAtTime(0.0001, start + len);
+          osc.connect(gain).connect(_audioCtx.destination);
+          osc.start(start);
+          osc.stop(start + len + 0.05);
+        });
+      } catch (e) { /* sound is optional; never block the checker */ }
+    }
+
     function renderProof() {
       if (!proof) return;
       const lines = proof.getLines();
@@ -1829,7 +1866,10 @@
       container.innerHTML = '';
       for (const line of lines) container.appendChild(_buildLine(line, blockTypes));
 
-      document.getElementById('complete-banner').classList.toggle('show', proof.isComplete());
+      const nowComplete = proof.isComplete();
+      document.getElementById('complete-banner').classList.toggle('show', nowComplete);
+      if (nowComplete && !_wasComplete) _playJingle();
+      _wasComplete = nowComplete;
       _updateScopeIndicator(lines);
       _updateButtons(proof.isComplete());
       const scroll = document.getElementById('proof-scroll');
@@ -1987,7 +2027,7 @@
       if (!formula) { _showEntryError('Enter the line that closes the subproof.', document.getElementById('formula-input')); return; }
       const result = proof.closeSubproof(formula, cited);
       if (!result.valid) _showEntryError(result.message);
-      else { _clearEntry(); _announce('Subproof closed at line ' + result.line.lineNum + '.'); }
+      else { _clearEntry(); _announce('Subproof closed at line ' + result.line.lineNum + '.' + (proof.isComplete() ? ' Proof complete.' : '')); }
       renderProof();
     }
 
