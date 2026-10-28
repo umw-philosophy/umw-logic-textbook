@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Transplant alt text from orphan /Figure StructElems onto the StructElems
+r"""Transplant alt text from orphan /Figure StructElems onto the StructElems
 that actually wrap the image content.
 
 The bug

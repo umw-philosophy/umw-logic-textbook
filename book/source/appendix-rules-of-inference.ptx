@@ -90,9 +90,9 @@
       <stack>
         <p><alert>4. Disjunctive Syllogism (DS)</alert></p>
         <tabular halign="center">
-          <row><cell><m>\mathcal{A} \lor \mathcal{B}</m></cell></row>
-          <row><cell bottom="medium"><m>{\text{\textasciitilde}}\mathcal{A}</m></cell></row>
-          <row><cell><m>\mathcal{B}</m></cell></row>
+          <row><cell><m>\mathcal{A} \lor \mathcal{B}</m></cell><cell>&#xA0;&#xA0;&#xA0;&#xA0;</cell><cell><m>\mathcal{A} \lor \mathcal{B}</m></cell></row>
+          <row><cell bottom="medium"><m>{\text{\textasciitilde}}\mathcal{A}</m></cell><cell>&#xA0;&#xA0;&#xA0;&#xA0;</cell><cell bottom="medium"><m>{\text{\textasciitilde}}\mathcal{B}</m></cell></row>
+          <row><cell><m>\mathcal{B}</m></cell><cell>&#xA0;&#xA0;&#xA0;&#xA0;</cell><cell><m>\mathcal{A}</m></cell></row>
         </tabular>
       </stack>
     </sidebyside>
@@ -101,8 +101,8 @@
       <stack>
         <p><alert>5. Simplification (Simp)</alert></p>
         <tabular halign="center">
-          <row><cell bottom="medium"><m>\mathcal{A} \cdot \mathcal{B}</m></cell></row>
-          <row><cell><m>\mathcal{A}</m></cell></row>
+          <row><cell bottom="medium"><m>\mathcal{A} \cdot \mathcal{B}</m></cell><cell>&#xA0;&#xA0;&#xA0;&#xA0;</cell><cell bottom="medium"><m>\mathcal{A} \cdot \mathcal{B}</m></cell></row>
+          <row><cell><m>\mathcal{A}</m></cell><cell>&#xA0;&#xA0;&#xA0;&#xA0;</cell><cell><m>\mathcal{B}</m></cell></row>
         </tabular>
       </stack>
       <stack>

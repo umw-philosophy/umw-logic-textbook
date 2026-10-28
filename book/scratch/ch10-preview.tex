@@ -1,0 +1,1569 @@
+%********************************************%
+%*       Generated from PreTeXt source      *%
+%*       on 2026-10-28T12:37:52Z       *%
+%*   A recent stable commit (2022-07-01):   *%
+%* 6c761d3dba23af92cba35001c852aac04ae99a5f *%
+%*                                          *%
+%*         https://pretextbook.org          *%
+%*                                          *%
+%********************************************%
+\documentclass[oneside,10pt,]{book}
+%% Custom Preamble Entries, early (use latex.preamble.early)
+%% Default LaTeX packages
+%%   1.  always employed (or nearly so) for some purpose, or
+%%   2.  a stylewriter may assume their presence
+\usepackage{geometry}
+%% Some aspects of the preamble are conditional,
+%% the LaTeX engine is one such determinant
+\usepackage{ifthen}
+%% etoolbox has a variety of modern conveniences
+\usepackage{etoolbox}
+\usepackage{ifxetex,ifluatex}
+%% Raster graphics inclusion
+\usepackage{graphicx}
+%% Color support, xcolor package
+%% Always loaded, for: add/delete text, author tools
+%% Here, since tcolorbox loads tikz, and tikz loads xcolor
+\PassOptionsToPackage{dvipsnames,svgnames,table}{xcolor}
+\usepackage{xcolor}
+%% begin: defined colors, via xcolor package, for styling
+%% end: defined colors, via xcolor package, for styling
+%% Colored boxes, and much more, though mostly styling
+%% skins library provides "enhanced" skin, employing tikzpicture
+%% boxes may be configured as "breakable" or "unbreakable"
+%% "raster" controls grids of boxes, aka side-by-side
+\usepackage{tcolorbox}
+\tcbuselibrary{skins}
+\tcbuselibrary{breakable}
+\tcbuselibrary{raster}
+%% We load some "stock" tcolorbox styles that we use a lot
+%% Placement here is provisional, there will be some color work also
+%% First, black on white, no border, transparent, but no assumption about titles
+\tcbset{ bwminimalstyle/.style={size=minimal, boxrule=-0.3pt, frame empty,
+colback=white, colbacktitle=white, coltitle=black, opacityfill=0.0} }
+%% Second, bold title, run-in to text/paragraph/heading
+%% Space afterwards will be controlled by environment,
+%% independent of constructions of the tcb title
+%% Places \blocktitlefont onto many block titles
+\tcbset{ runintitlestyle/.style={fonttitle=\blocktitlefont\upshape\bfseries, attach title to upper} }
+%% Spacing prior to each exercise, anywhere
+\tcbset{ exercisespacingstyle/.style={before skip={1.5ex plus 0.5ex}} }
+%% Spacing prior to each block
+\tcbset{ blockspacingstyle/.style={before skip={2.0ex plus 0.5ex}} }
+%% xparse allows the construction of more robust commands,
+%% this is a necessity for isolating styling and behavior
+%% The tcolorbox library of the same name loads the base library
+\tcbuselibrary{xparse}
+%% The tcolorbox library loads TikZ, its calc package is generally useful,
+%% and is necessary for some smaller documents that use partial tcolor boxes
+%% See:  https://github.com/PreTeXtBook/pretext/issues/1624
+\usetikzlibrary{calc}
+%% We use some more exotic tcolorbox keys to restore indentation to parboxes
+\tcbuselibrary{hooks}
+%% Save default paragraph indentation and parskip for use later, when adjusting parboxes
+\newlength{\normalparindent}
+\newlength{\normalparskip}
+\AtBeginDocument{\setlength{\normalparindent}{\parindent}}
+\AtBeginDocument{\setlength{\normalparskip}{\parskip}}
+\newcommand{\setparstyle}{\setlength{\parindent}{\normalparindent}\setlength{\parskip}{\normalparskip}}%% Hyperref should be here, but likes to be loaded late
+%%
+%% Inline math delimiters, \(, \), need to be robust
+%% 2016-01-31:  latexrelease.sty  supersedes  fixltx2e.sty
+%% If  latexrelease.sty  exists, bugfix is in kernel
+%% If not, bugfix is in  fixltx2e.sty
+%% See:  https://tug.org/TUGboat/tb36-3/tb114ltnews22.pdf
+%% and read "Fewer fragile commands" in distribution's  latexchanges.pdf
+\IfFileExists{latexrelease.sty}{}{\usepackage{fixltx2e}}
+%% shorter subnumbers in some side-by-side require manipulations
+\usepackage{xstring}
+%% Footnote counters and part/chapter counters are manipulated
+%% April 2018:  chngcntr  commands now integrated into the kernel,
+%% but circa 2018/2019 the package would still try to redefine them,
+%% so we need to do the work of loading conditionally for old kernels.
+%% From version 1.1a,  chngcntr  should detect defintions made by LaTeX kernel.
+\ifdefined\counterwithin
+\else
+    \usepackage{chngcntr}
+\fi
+%% Text height identically 9 inches, text width varies on point size
+%% See Bringhurst 2.1.1 on measure for recommendations
+%% 75 characters per line (count spaces, punctuation) is target
+%% which is the upper limit of Bringhurst's recommendations
+\geometry{letterpaper,total={340pt,9.0in}}
+%% Custom Page Layout Adjustments (use publisher page-geometry entry)
+%% This LaTeX file may be compiled with pdflatex, xelatex, or lualatex executables
+%% LuaTeX is not explicitly supported, but we do accept additions from knowledgeable users
+%% The conditional below provides  pdflatex  specific configuration last
+%% begin: engine-specific capabilities
+\ifthenelse{\boolean{xetex} \or \boolean{luatex}}{%
+%% begin: xelatex and lualatex-specific default configuration
+\ifxetex\usepackage{xltxtra}\fi
+%% realscripts is the only part of xltxtra relevant to lualatex 
+\ifluatex\usepackage{realscripts}\fi
+%% end:   xelatex and lualatex-specific default configuration
+}{
+%% begin: pdflatex-specific default configuration
+%% We assume a PreTeXt XML source file may have Unicode characters
+%% and so we ask LaTeX to parse a UTF-8 encoded file
+%% This may work well for accented characters in Western language,
+%% but not with Greek, Asian languages, etc.
+%% When this is not good enough, switch to the  xelatex  engine
+%% where Unicode is better supported (encouraged, even)
+\usepackage[utf8]{inputenc}
+%% end: pdflatex-specific default configuration
+}
+%% end:   engine-specific capabilities
+%%
+%% Fonts.  Conditional on LaTex engine employed.
+%% Default Text Font: The Latin Modern fonts are
+%% "enhanced versions of the [original TeX] Computer Modern fonts."
+%% We use them as the default text font for PreTeXt output.
+%% Automatic Font Control
+%% Portions of a document, are, or may, be affected by defined commands
+%% These are perhaps more flexible when using  xelatex  rather than  pdflatex
+%% The following definitions are meant to be re-defined in a style, using \renewcommand
+%% They are scoped when employed (in a TeX group), and so should not be defined with an argument
+\newcommand{\divisionfont}{\relax}
+\newcommand{\blocktitlefont}{\relax}
+\newcommand{\contentsfont}{\relax}
+\newcommand{\pagefont}{\relax}
+\newcommand{\tabularfont}{\relax}
+\newcommand{\xreffont}{\relax}
+\newcommand{\titlepagefont}{\relax}
+%%
+\ifthenelse{\boolean{xetex} \or \boolean{luatex}}{%
+%% begin: font setup and configuration for use with xelatex
+%% Generally, xelatex is necessary for non-Western fonts
+%% fontspec package provides extensive control of system fonts,
+%% meaning *.otf (OpenType), and apparently *.ttf (TrueType)
+%% that live *outside* your TeX/MF tree, and are controlled by your *system*
+%% (it is possible that a TeX distribution will place fonts in a system location)
+%%
+%% The fontspec package is the best vehicle for using different fonts in  xelatex
+%% So we load it always, no matter what a publisher or style might want
+%%
+\usepackage{fontspec}
+%%
+%% begin: xelatex main font ("font-xelatex-main" template)
+%% Latin Modern Roman is the default font for xelatex and so is loaded with a TU encoding
+%% *in the format* so we can't touch it, only perhaps adjust it later
+%% in one of two ways (then known by NFSS names such as "lmr")
+%% (1) via NFSS with font family names such as "lmr" and "lmss"
+%% (2) via fontspec with commands like \setmainfont{Latin Modern Roman}
+%% The latter requires the font to be known at the system-level by its font name,
+%% but will give access to OTF font features through optional arguments
+%% https://tex.stackexchange.com/questions/470008/
+%% where-and-how-does-fontspec-sty-specify-the-default-font-latin-modern-roman
+%% http://tex.stackexchange.com/questions/115321
+%% /how-to-optimize-latin-modern-font-with-xelatex
+%%
+%% end:   xelatex main font ("font-xelatex-main" template)
+%% begin: xelatex mono font ("font-xelatex-mono" template)
+%% (conditional on non-trivial uses being present in source)
+%% end:   xelatex mono font ("font-xelatex-mono" template)
+%% begin: xelatex font adjustments ("font-xelatex-style" template)
+%% end:   xelatex font adjustments ("font-xelatex-style" template)
+%%
+%% Extensive support for other languages
+\usepackage{polyglossia}
+%% Set main/default language based on pretext/@xml:lang value
+%% document language code is "en-US", US English
+%% usmax variant has extra hypenation
+\setmainlanguage[variant=usmax]{english}
+%% Enable secondary languages based on discovery of @xml:lang values
+%% Enable fonts/scripts based on discovery of @xml:lang values
+%% Western languages should be ably covered by Latin Modern Roman
+%% end:   font setup and configuration for use with xelatex
+}{%
+%% begin: font setup and configuration for use with pdflatex
+%% begin: pdflatex main font ("font-pdflatex-main" template)
+\usepackage{lmodern}
+\usepackage[T1]{fontenc}
+%% end:   pdflatex main font ("font-pdflatex-main" template)
+%% begin: pdflatex mono font ("font-pdflatex-mono" template)
+%% (conditional on non-trivial uses being present in source)
+%% end:   pdflatex mono font ("font-pdflatex-mono" template)
+%% begin: pdflatex font adjustments ("font-pdflatex-style" template)
+%% end:   pdflatex font adjustments ("font-pdflatex-style" template)
+%% end:   font setup and configuration for use with pdflatex
+}
+%% Micromanage spacing, etc.  The named "microtype-options"
+%% template may be employed to fine-tune package behavior
+\usepackage{microtype}
+%% Symbols, align environment, commutative diagrams, bracket-matrix
+\usepackage{amsmath}
+\usepackage{amscd}
+\usepackage{amssymb}
+%% allow page breaks within display mathematics anywhere
+%% level 4 is maximally permissive
+%% this is exactly the opposite of AMSmath package philosophy
+%% there are per-display, and per-equation options to control this
+%% split, aligned, gathered, and alignedat are not affected
+\allowdisplaybreaks[4]
+%% allow more columns to a matrix
+%% can make this even bigger by overriding with  latex.preamble.late  processing option
+\setcounter{MaxMatrixCols}{30}
+%%
+%%
+%% Division Titles, and Page Headers/Footers
+%% titlesec package, loading "titleps" package cooperatively
+%% See code comments about the necessity and purpose of "explicit" option.
+%% The "newparttoc" option causes a consistent entry for parts in the ToC 
+%% file, but it is only effective if there is a \titleformat for \part.
+%% "pagestyles" loads the  titleps  package cooperatively.
+\usepackage[explicit, newparttoc, pagestyles]{titlesec}
+%% The companion titletoc package for the ToC.
+\usepackage{titletoc}
+%% Fixes a bug with transition from chapters to appendices in a "book"
+%% See generating XSL code for more details about necessity
+\newtitlemark{\chaptertitlename}
+%% begin: customizations of page styles via the modal "titleps-style" template
+%% Designed to use commands from the LaTeX "titleps" package
+%% Plain pages should have the same font for page numbers
+\renewpagestyle{plain}{%
+\setfoot{}{\pagefont\thepage}{}%
+}%
+%% Single pages as in default LaTeX
+\renewpagestyle{headings}{%
+\sethead{\pagefont\slshape\MakeUppercase{\ifthechapter{\chaptertitlename\space\thechapter.\space}{}\chaptertitle}}{}{\pagefont\thepage}%
+}%
+\pagestyle{headings}
+%% end: customizations of page styles via the modal "titleps-style" template
+%%
+%% Create globally-available macros to be provided for style writers
+%% These are redefined for each occurence of each division
+\newcommand{\divisionnameptx}{\relax}%
+\newcommand{\titleptx}{\relax}%
+\newcommand{\subtitleptx}{\relax}%
+\newcommand{\shortitleptx}{\relax}%
+\newcommand{\authorsptx}{\relax}%
+\newcommand{\epigraphptx}{\relax}%
+%% Create environments for possible occurences of each division
+%% Environment for a PTX "preface" at the level of a LaTeX "chapter"
+\NewDocumentEnvironment{preface}{mmmmmmm}
+{%
+\renewcommand{\divisionnameptx}{#1}%
+\renewcommand{\titleptx}{#2}%
+\renewcommand{\subtitleptx}{#3}%
+\renewcommand{\shortitleptx}{#4}%
+\renewcommand{\authorsptx}{#5}%
+\renewcommand{\epigraphptx}{#6}%
+\chapter*{#2}%
+\addcontentsline{toc}{chapter}{#4}
+\label{#7}%
+}{}%
+%% Environment for a PTX "part" at the level of a LaTeX "part"
+\NewDocumentEnvironment{partptx}{mmmmmmm}
+{%
+\renewcommand{\divisionnameptx}{#1}%
+\renewcommand{\titleptx}{#2}%
+\renewcommand{\subtitleptx}{#3}%
+\renewcommand{\shortitleptx}{#4}%
+\renewcommand{\authorsptx}{#5}%
+\renewcommand{\epigraphptx}{#6}%
+\part[{#4}]{#2}%
+\label{#7}%
+}{}%
+%% Environment for a PTX "chapter" at the level of a LaTeX "chapter"
+\NewDocumentEnvironment{chapterptx}{mmmmmmm}
+{%
+\renewcommand{\divisionnameptx}{#1}%
+\renewcommand{\titleptx}{#2}%
+\renewcommand{\subtitleptx}{#3}%
+\renewcommand{\shortitleptx}{#4}%
+\renewcommand{\authorsptx}{#5}%
+\renewcommand{\epigraphptx}{#6}%
+\chapter[{#4}]{#2}%
+\label{#7}%
+}{}%
+%% Environment for a PTX "section" at the level of a LaTeX "section"
+\NewDocumentEnvironment{sectionptx}{mmmmmmm}
+{%
+\renewcommand{\divisionnameptx}{#1}%
+\renewcommand{\titleptx}{#2}%
+\renewcommand{\subtitleptx}{#3}%
+\renewcommand{\shortitleptx}{#4}%
+\renewcommand{\authorsptx}{#5}%
+\renewcommand{\epigraphptx}{#6}%
+\section[{#4}]{#2}%
+\label{#7}%
+}{}%
+%% Environment for a PTX "exercises" at the level of a LaTeX "section"
+\NewDocumentEnvironment{exercises-section}{mmmmmmm}
+{%
+\renewcommand{\divisionnameptx}{#1}%
+\renewcommand{\titleptx}{#2}%
+\renewcommand{\subtitleptx}{#3}%
+\renewcommand{\shortitleptx}{#4}%
+\renewcommand{\authorsptx}{#5}%
+\renewcommand{\epigraphptx}{#6}%
+\section[{#4}]{#2}%
+\label{#7}%
+}{}%
+%% Environment for a PTX "exercises" at the level of a LaTeX "section"
+\NewDocumentEnvironment{exercises-section-numberless}{mmmmmmm}
+{%
+\renewcommand{\divisionnameptx}{#1}%
+\renewcommand{\titleptx}{#2}%
+\renewcommand{\subtitleptx}{#3}%
+\renewcommand{\shortitleptx}{#4}%
+\renewcommand{\authorsptx}{#5}%
+\renewcommand{\epigraphptx}{#6}%
+\section*{#2}%
+\addcontentsline{toc}{section}{#4}
+\label{#7}%
+}{}%
+%% Environment for a PTX "appendix" at the level of a LaTeX "chapter"
+\NewDocumentEnvironment{appendixptx}{mmmmmmm}
+{%
+\renewcommand{\divisionnameptx}{#1}%
+\renewcommand{\titleptx}{#2}%
+\renewcommand{\subtitleptx}{#3}%
+\renewcommand{\shortitleptx}{#4}%
+\renewcommand{\authorsptx}{#5}%
+\renewcommand{\epigraphptx}{#6}%
+\chapter[{#4}]{#2}%
+\label{#7}%
+}{}%
+%%
+%% Styles for six traditional LaTeX divisions
+\titleformat{\part}[display]
+{\divisionfont\Huge\bfseries\centering}{\divisionnameptx\space\thepart}{30pt}{\Huge#1}
+[{\Large\centering\authorsptx}]
+\titleformat{\chapter}[display]
+{\divisionfont\huge\bfseries}{\divisionnameptx\space\thechapter}{20pt}{\Huge#1}
+[{\Large\authorsptx}]
+\titleformat{name=\chapter,numberless}[display]
+{\divisionfont\huge\bfseries}{}{0pt}{#1}
+[{\Large\authorsptx}]
+\titlespacing*{\chapter}{0pt}{50pt}{40pt}
+\titleformat{\section}[hang]
+{\divisionfont\Large\bfseries}{\thesection}{1ex}{#1}
+[{\large\authorsptx}]
+\titleformat{name=\section,numberless}[block]
+{\divisionfont\Large\bfseries}{}{0pt}{#1}
+[{\large\authorsptx}]
+\titlespacing*{\section}{0pt}{3.5ex plus 1ex minus .2ex}{2.3ex plus .2ex}
+\titleformat{\subsection}[hang]
+{\divisionfont\large\bfseries}{\thesubsection}{1ex}{#1}
+[{\normalsize\authorsptx}]
+\titleformat{name=\subsection,numberless}[block]
+{\divisionfont\large\bfseries}{}{0pt}{#1}
+[{\normalsize\authorsptx}]
+\titlespacing*{\subsection}{0pt}{3.25ex plus 1ex minus .2ex}{1.5ex plus .2ex}
+\titleformat{\subsubsection}[hang]
+{\divisionfont\normalsize\bfseries}{\thesubsubsection}{1em}{#1}
+[{\small\authorsptx}]
+\titleformat{name=\subsubsection,numberless}[block]
+{\divisionfont\normalsize\bfseries}{}{0pt}{#1}
+[{\normalsize\authorsptx}]
+\titlespacing*{\subsubsection}{0pt}{3.25ex plus 1ex minus .2ex}{1.5ex plus .2ex}
+\titleformat{\paragraph}[hang]
+{\divisionfont\normalsize\bfseries}{\theparagraph}{1em}{#1}
+[{\small\authorsptx}]
+\titleformat{name=\paragraph,numberless}[block]
+{\divisionfont\normalsize\bfseries}{}{0pt}{#1}
+[{\normalsize\authorsptx}]
+\titlespacing*{\paragraph}{0pt}{3.25ex plus 1ex minus .2ex}{1.5em}
+%%
+%% Styles for five traditional LaTeX divisions
+\titlecontents{part}%
+[0pt]{\contentsmargin{0em}\addvspace{1pc}\contentsfont\bfseries}%
+{\Large\thecontentslabel\enspace}{\Large}%
+{}%
+[\addvspace{.5pc}]%
+\titlecontents{chapter}%
+[0pt]{\contentsmargin{0em}\addvspace{1pc}\contentsfont\bfseries}%
+{\large\thecontentslabel\enspace}{\large}%
+{\hfill\bfseries\thecontentspage}%
+[\addvspace{.5pc}]%
+\dottedcontents{section}[3.8em]{\contentsfont}{2.3em}{1pc}%
+\dottedcontents{subsection}[6.1em]{\contentsfont}{3.2em}{1pc}%
+\dottedcontents{subsubsection}[9.3em]{\contentsfont}{4.3em}{1pc}%
+%%
+%% Begin: Semantic Macros
+%% To preserve meaning in a LaTeX file
+%%
+%% \mono macro for content of "c", "cd", "tag", etc elements
+%% Also used automatically in other constructions
+%% Simply an alias for \texttt
+%% Always defined, even if there is no need, or if a specific tt font is not loaded
+\newcommand{\mono}[1]{\texttt{#1}}
+%%
+%% Following semantic macros are only defined here if their
+%% use is required only in this specific document
+%%
+%% Used for warnings, typically bold and italic
+\newcommand{\alert}[1]{\textbf{\textit{#1}}}
+%% Used for inline definitions of terms
+\newcommand{\terminology}[1]{\textbf{#1}}
+%% End: Semantic Macros
+%% Divisional exercises (and worksheet) as LaTeX environments
+%% Third argument is option for extra workspace in worksheets
+%% Hanging indent occupies a 5ex width slot prior to left margin
+%% Experimentally this seems just barely sufficient for a bold "888."
+%% Division exercises, in exercise group, no columns
+\tcbset{ divisionexerciseegstyle/.style={bwminimalstyle, runintitlestyle, exercisespacingstyle, left=5ex, left skip=\egindent, breakable, before upper app={\setparstyle} } }
+\newtcolorbox{divisionexerciseeg}[4]{divisionexerciseegstyle, before title={\hspace*{-5ex}\makebox[5ex][l]{#1.}}, title={\notblank{#2}{#2}{}}, after title={\notblank{#2}{\space}{}}, phantom={\hypertarget{#4}{}}, after={\notblank{#3}{\newline\rule{\workspacestrutwidth}{#3}\newline\vfill}{\par}}}
+%% For improved tables
+\usepackage{array}
+%% Some extra height on each row is desirable, especially with horizontal rules
+%% Increment determined experimentally
+\setlength{\extrarowheight}{0.2ex}
+%% Define variable thickness horizontal rules, full and partial
+%% Thicknesses are 0.03, 0.05, 0.08 in the  booktabs  package
+\newcommand{\hrulethin}  {\noalign{\hrule height 0.04em}}
+\newcommand{\hrulemedium}{\noalign{\hrule height 0.07em}}
+\newcommand{\hrulethick} {\noalign{\hrule height 0.11em}}
+%% We preserve a copy of the \setlength package before other
+%% packages (extpfeil) get a chance to load packages that redefine it
+\let\oldsetlength\setlength
+\newlength{\Oldarrayrulewidth}
+\newcommand{\crulethin}[1]%
+{\noalign{\global\oldsetlength{\Oldarrayrulewidth}{\arrayrulewidth}}%
+\noalign{\global\oldsetlength{\arrayrulewidth}{0.04em}}\cline{#1}%
+\noalign{\global\oldsetlength{\arrayrulewidth}{\Oldarrayrulewidth}}}%
+\newcommand{\crulemedium}[1]%
+{\noalign{\global\oldsetlength{\Oldarrayrulewidth}{\arrayrulewidth}}%
+\noalign{\global\oldsetlength{\arrayrulewidth}{0.07em}}\cline{#1}%
+\noalign{\global\oldsetlength{\arrayrulewidth}{\Oldarrayrulewidth}}}
+\newcommand{\crulethick}[1]%
+{\noalign{\global\oldsetlength{\Oldarrayrulewidth}{\arrayrulewidth}}%
+\noalign{\global\oldsetlength{\arrayrulewidth}{0.11em}}\cline{#1}%
+\noalign{\global\oldsetlength{\arrayrulewidth}{\Oldarrayrulewidth}}}
+%% Single letter column specifiers defined via array package
+\newcolumntype{A}{!{\vrule width 0.04em}}
+\newcolumntype{B}{!{\vrule width 0.07em}}
+\newcolumntype{C}{!{\vrule width 0.11em}}
+%% tcolorbox to place tabular outside of a sidebyside
+\tcbset{ tabularboxstyle/.style={bwminimalstyle,} }
+\newtcolorbox{tabularbox}[3]{tabularboxstyle, left skip=#1\linewidth, width=#2\linewidth,}
+%% Footnote Numbering
+%% Specified by numbering.footnotes.level
+%% Undo counter reset by chapter for a book
+\counterwithout{footnote}{chapter}
+\counterwithin*{footnote}{chapter}
+%% Description lists as tcolorbox sidebyside
+%% "dli" short for "description list item"
+\newlength{\dlititlewidth}
+\newlength{\dlimaxnarrowtitle}\setlength{\dlimaxnarrowtitle}{11ex}
+\newlength{\dlimaxmediumtitle}\setlength{\dlimaxmediumtitle}{18ex}
+\tcbset{ dlistyle/.style={sidebyside, sidebyside align=top seam, lower separated=false, bwminimalstyle, bottomtitle=0.75ex, after skip=1.5ex, boxsep=0pt, left=0pt, right=0pt, top=0pt, bottom=0pt, before lower app={\setparstyle\noindent}} }
+\tcbset{ dlinarrowstyle/.style={dlistyle, lefthand width=\dlimaxnarrowtitle, sidebyside gap=1ex, halign=flush left, righttitle=10ex} }
+\tcbset{ dlimediumstyle/.style={dlistyle, lefthand width=\dlimaxmediumtitle, sidebyside gap=4ex, halign=flush right} }
+\NewDocumentEnvironment{descriptionlist}{}{\par\vspace*{1.5ex}}{\par\vspace*{1.5ex}}%
+%% begin enviroment has an if/then to open the tcolorbox
+\NewDocumentEnvironment{dlinarrow}{mm}{%
+\settowidth{\dlititlewidth}{{\textbf{#1}}}%
+\ifthenelse{\dlititlewidth > \dlimaxnarrowtitle}%
+{\begin{tcolorbox}[title={\textbf{#1}}, phantom={\hypertarget{#2}{}}, dlinarrowstyle]\tcblower}%
+{\begin{tcolorbox}[dlinarrowstyle, phantom={\hypertarget{#2}{}}]\textbf{#1}\tcblower}%
+}%
+{\end{tcolorbox}}%
+%% medium option is simpler
+\NewDocumentEnvironment{dlimedium}{mm}%
+{\begin{tcolorbox}[dlimediumstyle, phantom={\hypertarget{#2}{}}]\textbf{#1}\tcblower}%
+{\end{tcolorbox}}%
+%% Indented groups of "exercise" within an "exercises" division
+%% Lengths control the indentation (always) and gaps (multi-column)
+\newlength{\egindent}\setlength{\egindent}{0.05\linewidth}
+\newlength{\exggap}\setlength{\exggap}{0.05\linewidth}
+%% Thin "xparse" environments will represent the entire exercise
+%% group, in the case when it does not hold multiple columns.
+\NewDocumentEnvironment{exercisegroup}{}
+{}{}
+%% hyperref driver does not need to be specified, it will be detected
+%% Footnote marks in tcolorbox have broken linking under
+%% hyperref, so it is necessary to turn off all linking
+%% It *must* be given as a package option, not with \hypersetup
+\usepackage[hyperfootnotes=false]{hyperref}
+%% configure hyperref's  \href{}{}  and  \nolinkurl  to match listings' inline verbatim
+\renewcommand\UrlFont{\small\ttfamily}
+%% Hyperlinking active in electronic PDFs, all links without surrounding boxes and blue
+\hypersetup{colorlinks=true,linkcolor=blue,citecolor=blue,filecolor=blue,urlcolor=blue}
+%% Less-clever names for hyperlinks are more reliable, *especially* for structural parts
+%% See comments in the code to learn more about the importance of this setting
+\hypersetup{hypertexnames=false}
+%%The  hypertexnames  setting then confuses the hyperlinking from the index
+%%This patch resolves the incorrect links, see code for StackExchange post.
+\makeatletter
+\patchcmd\Hy@EveryPageBoxHook{\Hy@EveryPageAnchor}{\Hy@hypertexnamestrue\Hy@EveryPageAnchor}{}{\fail}
+\makeatother
+\hypersetup{pdftitle={Logic}}
+%% If you manually remove hyperref, leave in this next command
+%% This will allow LaTeX compilation, employing this no-op command
+\providecommand\phantomsection{}
+%% Division Numbering: Chapters, Sections, Subsections, etc
+%% Division numbers may be turned off at some level ("depth")
+%% A section *always* has depth 1, contrary to us counting from the document root
+%% The latex default is 3.  If a larger number is present here, then
+%% removing this command may make some cross-references ambiguous
+%% The precursor variable $numbering-maxlevel is checked for consistency in the common XSL file
+\setcounter{secnumdepth}{3}
+%%
+%%
+%% A faux tcolorbox whose only purpose is to provide common numbering
+%% facilities for most blocks (possibly not projects, 2D displays)
+%% Controlled by  numbering.theorems.level  processing parameter
+\newtcolorbox[auto counter, number within=section]{block}{}
+%%
+%% This document is set to number PROJECT-LIKE on a separate numbering scheme
+%% So, a faux tcolorbox whose only purpose is to provide this numbering
+%% Controlled by  numbering.projects.level  processing parameter
+\newtcolorbox[auto counter, number within=chapter]{project-distinct}{}
+%% A faux tcolorbox whose only purpose is to provide common numbering
+%% facilities for 2D displays which are subnumbered as part of a "sidebyside"
+\makeatletter
+\newtcolorbox[auto counter, number within=tcb@cnt@block, number freestyle={\noexpand\thetcb@cnt@block(\noexpand\alph{\tcbcounter})}]{subdisplay}{}
+\makeatother
+%%
+%% tcolorbox, with styles, for DEFINITION-LIKE
+%%
+%% definition: fairly simple numbered block/structure
+\tcbset{ definitionstyle/.style={bwminimalstyle, runintitlestyle, blockspacingstyle, after title={\space}, after upper={\space\space\hspace*{\stretch{1}}\(\lozenge\)}, before upper app={\setparstyle}, } }
+\newtcolorbox[use counter from=block]{definition}[3]{title={{#1~\thetcbcounter\notblank{#2}{\space\space#2}{}}}, phantomlabel={#3}, breakable, after={\par}, definitionstyle, }
+%%
+%% tcolorbox, with styles, for EXAMPLE-LIKE
+%%
+%% example: fairly simple numbered block/structure
+\tcbset{ examplestyle/.style={bwminimalstyle, runintitlestyle, blockspacingstyle, after title={\space}, after upper={\space\space\hspace*{\stretch{1}}\(\square\)}, before upper app={\setparstyle}, } }
+\newtcolorbox[use counter from=block]{example}[3]{title={{#1~\thetcbcounter\notblank{#2}{\space\space#2}{}}}, phantomlabel={#3}, breakable, after={\par}, examplestyle, }
+%%
+%% tcolorbox, with styles, for PROJECT-LIKE
+%%
+%% exploration: fairly simple numbered block/structure
+\tcbset{ explorationstyle/.style={bwminimalstyle, runintitlestyle, blockspacingstyle, after title={\space}, before upper app={\setparstyle}, } }
+\newtcolorbox[use counter from=project-distinct]{exploration}[3]{title={{#1~\thetcbcounter\notblank{#2}{\space\space#2}{}}}, phantomlabel={#3}, breakable, after={\par}, explorationstyle, }
+%%
+%% tcolorbox, with styles, for FIGURE-LIKE
+%%
+%% tableptx: 2-D display structure
+\tcbset{ tableptxstyle/.style={bwminimalstyle, middle=1ex, blockspacingstyle, coltitle=black, bottomtitle=2ex, titlerule=-0.3pt, fonttitle=\blocktitlefont, breakable} }
+\newtcolorbox[use counter from=block]{tableptx}[4]{title={{\textbf{#1~\thetcbcounter}\space#2}}, phantomlabel={#3}, unbreakable, tableptxstyle, }
+%%
+%% xparse environments for introductions and conclusions of divisions
+%%
+%% introduction: in a structured division
+\NewDocumentEnvironment{introduction}{m}
+{\notblank{#1}{\noindent\textbf{#1}\space}{}}{\par\medskip}
+%% conclusion: in a structured division
+\NewDocumentEnvironment{conclusion}{m}
+{\par\medskip\noindent\notblank{#1}{\textbf{#1}\space}{}}{}
+%%
+%% tcolorbox, with styles, for miscellaneous environments
+%%
+%% paragraphs: the terminal, pseudo-division
+%% We use the lowest LaTeX traditional division
+\titleformat{\subparagraph}[runin]{\normalfont\normalsize\bfseries}{\thesubparagraph}{1em}{#1}
+\titlespacing*{\subparagraph}{0pt}{3.25ex plus 1ex minus .2ex}{1em}
+\NewDocumentEnvironment{paragraphs}{mm}
+{\subparagraph*{#1}\hypertarget{#2}{}}{}
+%% back colophon, at the very end, typically on its own page
+\tcbset{ backcolophonstyle/.style={bwminimalstyle, blockspacingstyle, before skip=5ex, left skip=0.15\textwidth, right skip=0.15\textwidth, fonttitle=\blocktitlefont\large\bfseries, center title, halign=center, bottomtitle=2ex} }
+\newtcolorbox{backcolophon}[2]{title={#1}, phantom={\hypertarget{#2}{}}, breakable, backcolophonstyle, before upper app={\setparstyle}}
+%% Graphics Preamble Entries
+\usepackage{graphicx}
+\usepackage{tikz}
+%% If tikz has been loaded, replace ampersand with \amp macro
+%% tcolorbox styles for sidebyside layout
+\tcbset{ sbsstyle/.style={raster before skip=2.0ex, raster equal height=rows, raster force size=false, raster after skip=0.7\baselineskip} }
+\tcbset{ sbspanelstyle/.style={bwminimalstyle, fonttitle=\blocktitlefont, before upper app={\setparstyle}} }
+%% Enviroments for side-by-side and components
+%% Necessary to use \NewTColorBox for boxes of the panels
+%% "newfloat" environment to squash page-breaks within a single sidebyside
+%% "xparse" environment for entire sidebyside
+\NewDocumentEnvironment{sidebyside}{mmmm}
+  {\begin{tcbraster}
+    [sbsstyle,raster columns=#1,
+    raster left skip=#2\linewidth,raster right skip=#3\linewidth,raster column skip=#4\linewidth]}
+  {\end{tcbraster}}
+%% "tcolorbox" environment for a panel of sidebyside
+\NewTColorBox{sbspanel}{mO{top}}{sbspanelstyle,width=#1\linewidth,valign=#2}
+%% Custom Preamble Entries, late (use latex.preamble.late)
+
+\renewcommand{\terminology}[1]{#1}
+\tcbset{definitionstyle/.style={bwminimalstyle, blockspacingstyle, fonttitle=\blocktitlefont\bfseries, bottomtitle=0.8ex, before upper app={\setparstyle}}}
+\tcbset{examplestyle/.style={bwminimalstyle, blockspacingstyle, fonttitle=\blocktitlefont\bfseries, bottomtitle=0.8ex, before upper app={\setparstyle}}}
+  
+%% extpfeil package for certain extensible arrows,
+%% as also provided by MathJax extension of the same name
+%% NB: this package loads mtools, which loads calc, which redefines
+%%     \setlength, so it can be removed if it seems to be in the 
+%%     way and your math does not use:
+%%     
+%%     \xtwoheadrightarrow, \xtwoheadleftarrow, \xmapsto, \xlongequal, \xtofrom
+%%     
+%%     we have had to be extra careful with variable thickness
+%%     lines in tables, and so also load this package late
+\usepackage{extpfeil}
+%% Begin: Author-provided TeX/LaTeX packages
+%% (From  docinfo/math-package  elements)
+\usepackage{amsmath}
+%% End: Author-provided TeX/LaTeX packages
+%% Begin: Author-provided macros
+%% (From  docinfo/macros  element)
+%% Plus three from PTX for XML characters
+\newcommand{\true}{\mathsf{T}}
+\newcommand{\false}{\mathsf{F}}
+\newcommand{\lt}{<}
+\newcommand{\gt}{>}
+\newcommand{\amp}{&}
+%% End: Author-provided macros
+\begin{document}
+%% bottom alignment is explicit, since it normally depends on oneside, twoside
+\raggedbottom
+\frontmatter
+%% begin: half-title
+\thispagestyle{empty}
+{\titlepagefont\centering
+\vspace*{0.28\textheight}
+{\Huge Logic}\\[2\baselineskip]
+{\LARGE An Introduction}\\
+}
+\clearpage
+%% end:   half-title
+%% begin: title page
+%% Inspired by Peter Wilson's "titleDB" in "titlepages" CTAN package
+\thispagestyle{empty}
+{\titlepagefont\centering
+\vspace*{0.14\textheight}
+%% Target for xref to top-level element is ToC
+\addtocontents{toc}{\protect\hypertarget{book-umw-logic}{}}
+{\Huge Logic}\\[\baselineskip]
+{\LARGE An Introduction}\\[3\baselineskip]
+{\Large Michael Reno}\\[0.5\baselineskip]
+{\Large University of Mary Washington}\\[3\baselineskip]
+{\Large October 28, 2026}\\}
+\clearpage
+%% end:   title page
+%% begin: copyright-page
+\thispagestyle{empty}
+\hypertarget{front-colophon}{}\vspace*{\stretch{2}}
+\noindent\textcopyright{}2026\textendash{}2027\quad{}Michael Reno and contributors\\[0.5\baselineskip]
+This work is licensed under a \href{https://creativecommons.org/licenses/by-sa/4.0/}{Creative Commons Attribution-ShareAlike 4.0 International License}\footnote{\nolinkurl{creativecommons.org/licenses/by-sa/4.0}\label{frontmatter-1-3-3-2}}.\par\medskip
+\vspace*{\stretch{1}}
+\null\clearpage
+%% end:   copyright-page
+%
+%
+\typeout{************************************************}
+\typeout{Preface  Preface}
+\typeout{************************************************}
+%
+\begin{preface}{Preface}{Preface}{}{Preface}{}{}{preface}
+This book is about how to tell a good argument from a bad one.%
+\par
+That sounds smaller than it is. Most of the disagreements that matter in a life — about politics, science, relationships, money, how to spend a weekend — turn out, when you look closely, to be disagreements about reasons. Someone offers a claim and a reason to believe it; you accept the package, or you push back. Doing that well is a skill, and like any skill it can be practiced, improved, and, on a bad day, lost track of. Logic is the practice.%
+\par
+The book has four parts. Part I looks at arguments in the wild: how to recognize them, how to lay out their parts, how to spot the most common ways they go off the rails. Part II takes up \emph{categorical} arguments — claims about whole categories of things, the territory of ``all,'' ``some,'' and ``no'' — and develops a visual method for testing them. Part III moves to \emph{sentential} logic, where we trade English sentences for symbols and learn a small set of rules that, used carefully, can carry you across surprisingly long chains of reasoning. Part IV turns to \emph{inductive} reasoning: arguments whose premises don't guarantee their conclusions but make them more or less likely. This is the kind of reasoning that runs most of science, most of medicine, and most of what you do when you make up your mind about anything based on evidence.%
+\par
+A few practical notes.%
+\par
+The exercises give you practice; you need to practice. Logic is one of those subjects where the lecture can make perfect sense in the room and then evaporate by Thursday morning if you haven't actually used it on a few problems. The end-of-section exercises are short and meant to be done as you read. The end-of-chapter exercises are longer. The occasional \emph{Field Exercises} ask you to leave the book and go listen, watch, or read for arguments in the world; please try them. Logic learned only on the page tends to stay on the page.%
+\par
+Where the book uses external tools — an argument reconstruction editor, a natural deduction proof checker, a truth table checker, a Venn diagram checker — they live online and are linked from Canvas. They are meant to give you fast, patient feedback while you practice. They will not do your homework, but they will tell you when something is off.%
+\par
+A note on what this book is: a working draft. You are among the first students to use it, and parts will be rough at the edges. If you spot a typo, a confusing passage, or an exercise that doesn't quite work, tell me. You are doing future students a favor, and you'll get genuine thanks.%
+\par
+Logic is a quiet subject. It doesn't shout, and it rarely settles a fight on its own. But it gives you a way to slow down a hot argument, see what is actually being claimed, and decide what to do about it. That is a useful thing to be able to do. I hope you find this book a decent companion while you learn it.%
+\par
+— M.R.\\
+ University of Mary Washington\\
+ Summer 2026%
+\end{preface}
+%% begin: table of contents
+%% Adjust Table of Contents
+\setcounter{tocdepth}{0}
+\renewcommand*\contentsname{Contents}
+\tableofcontents
+%% end:   table of contents
+\mainmatter
+%
+%
+\typeout{************************************************}
+\typeout{Part I Arguments and Reasoning}
+\typeout{************************************************}
+%
+\begin{partptx}{Part}{Arguments and Reasoning}{}{Arguments and Reasoning}{}{}{part-arguments}
+\renewcommand*{\partname}{Part}
+\end{partptx}
+%
+%
+\typeout{************************************************}
+\typeout{Part II Categorical Logic}
+\typeout{************************************************}
+%
+\begin{partptx}{Part}{Categorical Logic}{}{Categorical Logic}{}{}{part-categorical}
+\renewcommand*{\partname}{Part}
+\end{partptx}
+%
+%
+\typeout{************************************************}
+\typeout{Part III Sentential Logic}
+\typeout{************************************************}
+%
+\begin{partptx}{Part}{Sentential Logic}{}{Sentential Logic}{}{}{part-sentential}
+\renewcommand*{\partname}{Part}
+%
+%
+\typeout{************************************************}
+\typeout{Chapter 1 Natural Deduction}
+\typeout{************************************************}
+%
+\begin{chapterptx}{Chapter}{Natural Deduction}{}{Natural Deduction}{}{}{ch-natural-deduction}
+\renewcommand*{\chaptername}{Chapter}
+\begin{introduction}{}%
+Truth tables gave us a mechanical test for validity. They tell us whether a symbolic argument has a counterexample row. Natural deduction asks a different question: can we get from the premises to the conclusion one small, justified step at a time?%
+\par
+The style for this course is intentionally compact. A proof is a numbered list of lines. Premises go first. The target conclusion appears after a slash. Every line after the premises must cite earlier line numbers and a rule abbreviation. A finished proof ends when the target conclusion appears as a justified line.%
+\end{introduction}%
+%
+%
+\typeout{************************************************}
+\typeout{Section 1.1 What Natural Deduction Does}
+\typeout{************************************************}
+%
+\begin{sectionptx}{Section}{What Natural Deduction Does}{}{What Natural Deduction Does}{}{}{sec-what-natural-deduction-does}
+\begin{introduction}{}%
+A truth table checks validity all at once. A natural deduction proof shows validity step by step.%
+\end{introduction}%
+\begin{definition}{Definition}{}{def-natural-deduction-proof}%
+A \terminology{natural deduction proof} is a sequence of statements in which each non-premise line is licensed by a rule of inference applied to earlier lines.%
+\end{definition}
+\begin{paragraphs}{Proof is not the same as discovery.}{paragraphs-nd-proof-not-discovery}%
+When you work a proof, you may try lines that go nowhere. That is normal. A submitted proof does not have to look like the shortest possible path to the conclusion. But every line in it must be legitimate: each non-premise line must be genuinely justified by the rules from earlier lines.%
+\par
+The rules are strict. You cannot write a line just because it feels obvious. You have to be able to point to earlier lines and say which rule permits the new line.%
+\end{paragraphs}%
+\begin{paragraphs}{Why proofs after truth tables?}{paragraphs-nd-compared-with-truth-tables}%
+Truth tables are complete for sentential logic, but they get large quickly. An argument with five different sentence letters requires thirty-two rows. An argument with six requires sixty-four. Natural deduction can often show the same validity much more directly.%
+\par
+Proofs also make the structure of an argument visible. A truth table tells you that an argument is valid. A proof shows how the conclusion is forced by the premises.%
+\end{paragraphs}%
+\end{sectionptx}
+%
+%
+\typeout{************************************************}
+\typeout{Section 1.2 The Anatomy of a Proof}
+\typeout{************************************************}
+%
+\begin{sectionptx}{Section}{The Anatomy of a Proof}{}{The Anatomy of a Proof}{}{}{sec-anatomy-of-a-proof}
+\begin{introduction}{}%
+Every proof in this chapter has three parts: line numbers, formulas, and justifications.%
+\end{introduction}%
+\begin{paragraphs}{The basic layout.}{paragraphs-proof-layout}%
+Here is the format we'll use in the course:%
+\begin{tableptx}{Table}{\textbf{A Basic Natural Deduction Layout}}{table-nd-basic-layout}{}%
+\tagpdfsetup{table/tagging=div}
+\begin{tabularbox}{0}{0.55}{0.45}%
+\resizebox{\ifdim\width > \linewidth\linewidth\else\width\fi}{!}{%
+{\tabularfont%
+\begin{tabular}{lll}
+1.&\(P \supset Q\)&\tabularnewline[0pt]
+2.&\(P\)&\slash{} \(Q\)\tabularnewline[0pt]
+3.&\(Q\)&1,2 MP
+\end{tabular}
+}%
+}%
+\end{tabularbox}%
+\tagpdfsetup{table/tagging=true}
+\end{tableptx}%
+Lines 1 and 2 are premises. The slash on line 2 marks the target: prove \(Q\). Line 3 is the conclusion, and the justification tells us why it is allowed: lines 1 and 2 by Modus Ponens.%
+\end{paragraphs}%
+\begin{paragraphs}{Why abstract away?}{paragraphs-why-abstract-rules}%
+That first proof is a particular application of Modus Ponens. But the rule is not really about the specific letters \(P\) and \(Q\). It is about a pattern: if we have a conditional, and we also have that conditional's antecedent, then we may infer its consequent.%
+\par
+To state that pattern clearly, we need to talk about formulas without naming one particular formula every time. The symbols \(P\), \(Q\), \(R\), \(\supset\), \(\cdot\), \(\lor\), \(\equiv\), and \({\text{\textasciitilde}}\) belong to the symbolic language we are studying. Call that the \terminology{object language}.%
+\par
+To talk about formulas of that language in a more general way, we will use a small \terminology{metalanguage}. The letters \(\mathcal{A}\), \(\mathcal{B}\), \(\mathcal{C}\), and \(\mathcal{D}\) are not sentence letters. They are \terminology{metavariables}: placeholders for any well-formed formula.%
+\par
+So \(\mathcal{A}\) might stand for \(P\). It might also stand for \({\text{\textasciitilde}}(P \cdot Q)\), or \((R \lor S) \supset T\), or any other well-formed formula. This lets us state a rule once and then recognize many different applications of it.%
+\end{paragraphs}%
+\begin{paragraphs}{Justifications.}{paragraphs-nd-justifications}%
+A justification has two pieces. First, cite the line or lines you used. Second, name the rule. For example, ``1,2 MP'' means that line 3 follows from lines 1 and 2 by Modus Ponens.%
+\par
+A one-line rule cites one earlier line. A two-line rule cites two earlier lines. A three-line rule cites three earlier lines. The order of the citations should make the rule easy to check, but the deeper habit is this: every derived line must be traceable to something already written.%
+\end{paragraphs}%
+\begin{paragraphs}{The slash is the target.}{paragraphs-nd-target-line}%
+The formula after the slash is not another premise. It is what you are trying to prove.  The conclusion is written on the same line as the final premise:%
+\begin{tableptx}{Table}{\textbf{Premises and Target}}{table-nd-target-line}{}%
+\tagpdfsetup{table/tagging=div}
+\begin{tabularbox}{0}{0.55}{0.45}%
+\resizebox{\ifdim\width > \linewidth\linewidth\else\width\fi}{!}{%
+{\tabularfont%
+\begin{tabular}{lll}
+1.&\(P \supset {\text{\textasciitilde}}S\)&\tabularnewline[0pt]
+2.&\(S\)&\slash{} \({\text{\textasciitilde}}P\)
+\end{tabular}
+}%
+}%
+\end{tabularbox}%
+\tagpdfsetup{table/tagging=true}
+\end{tableptx}%
+This says: given \(P \supset {\text{\textasciitilde}}S\) and \(S\), prove \({\text{\textasciitilde}}P\). The proof is not complete until \({\text{\textasciitilde}}P\) appears on a numbered line with a correct justification.%
+\end{paragraphs}%
+\end{sectionptx}
+%
+%
+\typeout{************************************************}
+\typeout{Section 1.3 The Eight Implication Rules}
+\typeout{************************************************}
+%
+\begin{sectionptx}{Section}{The Eight Implication Rules}{}{The Eight Implication Rules}{}{}{sec-eight-implication-rules}
+\begin{introduction}{}%
+The first group of natural deduction rules is called the implication rules. The name is historical. Not all of them use the horseshoe. What they have in common is that they permit direct moves from earlier lines to a new line.%
+\par
+The rules below are written as schemas. The metavariables \(\mathcal{A}\), \(\mathcal{B}\), \(\mathcal{C}\), and \(\mathcal{D}\) may be replaced by any well-formed formulas, as long as the same metavariable is replaced by the same formula throughout that instance of the rule.%
+\end{introduction}%
+\begin{paragraphs}{Modus Ponens and Modus Tollens.}{paragraphs-nd-mp-mt}%
+\terminology{Modus Ponens} (MP) says that if you have a conditional and you have its antecedent, you may infer its consequent.%
+\begin{tableptx}{Table}{\textbf{Modus Ponens Schema}}{table-rule-mp}{}%
+\tagpdfsetup{table/tagging=div}
+\begin{tabularbox}{0}{0.3}{0.7}%
+\resizebox{\ifdim\width > \linewidth\linewidth\else\width\fi}{!}{%
+{\tabularfont%
+\begin{tabular}{c}
+\(\mathcal{A} \supset \mathcal{B}\)\tabularnewline[0pt]
+\(\mathcal{A}\)\tabularnewline\hrulemedium
+\(\mathcal{B}\)
+\end{tabular}
+}%
+}%
+\end{tabularbox}%
+\tagpdfsetup{table/tagging=true}
+\end{tableptx}%
+The proof above with \(P \supset Q\), \(P\), and \(Q\) is one \terminology{substitution instance} of this schema: replace \(\mathcal{A}\) with \(P\) and \(\mathcal{B}\) with \(Q\). But the antecedent and consequent do not have to be single sentence letters.%
+\begin{tableptx}{Table}{\textbf{A Compound Instance of Modus Ponens}}{table-mp-compound-instance}{}%
+\tagpdfsetup{table/tagging=div}
+\begin{tabularbox}{0}{0.55}{0.45}%
+\resizebox{\ifdim\width > \linewidth\linewidth\else\width\fi}{!}{%
+{\tabularfont%
+\begin{tabular}{lll}
+1.&\({\text{\textasciitilde}}(P \cdot Q)\)&\tabularnewline[0pt]
+2.&\({\text{\textasciitilde}}(P \cdot Q) \supset R\)&\slash{} \(R\)\tabularnewline[0pt]
+3.&\(R\)&2,1 MP
+\end{tabular}
+}%
+}%
+\end{tabularbox}%
+\tagpdfsetup{table/tagging=true}
+\end{tableptx}%
+In this instance, \(\mathcal{A}\) is \({\text{\textasciitilde}}(P \cdot Q)\), and \(\mathcal{B}\) is \(R\). The order of the cited lines does not change the logical point. What matters is that one line has the form \(\mathcal{A} \supset \mathcal{B}\) and the other line is that same \(\mathcal{A}\). Then MP permits \(\mathcal{B}\).%
+\par
+\terminology{Modus Tollens} (MT) says that if you have a conditional and you have the negation of its consequent, you may infer the negation of its antecedent.%
+\begin{tableptx}{Table}{\textbf{Modus Tollens Schema}}{table-rule-mt}{}%
+\tagpdfsetup{table/tagging=div}
+\begin{tabularbox}{0}{0.3}{0.7}%
+\resizebox{\ifdim\width > \linewidth\linewidth\else\width\fi}{!}{%
+{\tabularfont%
+\begin{tabular}{c}
+\(\mathcal{A} \supset \mathcal{B}\)\tabularnewline[0pt]
+\({\text{\textasciitilde}}\mathcal{B}\)\tabularnewline\hrulemedium
+\({\text{\textasciitilde}}\mathcal{A}\)
+\end{tabular}
+}%
+}%
+\end{tabularbox}%
+\tagpdfsetup{table/tagging=true}
+\end{tableptx}%
+Do not confuse MT with the invalid move of affirming the consequent. From \(P \supset Q\) and \(Q\), you cannot infer \(P\).%
+\end{paragraphs}%
+\begin{paragraphs}{Hypothetical Syllogism and Disjunctive Syllogism.}{paragraphs-nd-hs-ds}%
+\terminology{Hypothetical Syllogism} (HS) chains conditionals. If one conditional takes you from \(P\) to \(Q\), and another takes you from \(Q\) to \(R\), you may infer the direct conditional from \(P\) to \(R\).%
+\begin{tableptx}{Table}{\textbf{Hypothetical Syllogism Schema}}{table-rule-hs}{}%
+\tagpdfsetup{table/tagging=div}
+\begin{tabularbox}{0}{0.3}{0.7}%
+\resizebox{\ifdim\width > \linewidth\linewidth\else\width\fi}{!}{%
+{\tabularfont%
+\begin{tabular}{c}
+\(\mathcal{A} \supset \mathcal{B}\)\tabularnewline[0pt]
+\(\mathcal{B} \supset \mathcal{C}\)\tabularnewline\hrulemedium
+\(\mathcal{A} \supset \mathcal{C}\)
+\end{tabular}
+}%
+}%
+\end{tabularbox}%
+\tagpdfsetup{table/tagging=true}
+\end{tableptx}%
+\terminology{Disjunctive Syllogism} (DS) uses a disjunction and the denial of one disjunct to infer the other.%
+\begin{tableptx}{Table}{\textbf{Disjunctive Syllogism Schemas}}{table-rule-ds}{}%
+\tagpdfsetup{table/tagging=div}
+\begin{tabularbox}{0}{0.3}{0.7}%
+\resizebox{\ifdim\width > \linewidth\linewidth\else\width\fi}{!}{%
+{\tabularfont%
+\begin{tabular}{c}
+\(\mathcal{A} \lor \mathcal{B}\)\tabularnewline[0pt]
+\({\text{\textasciitilde}}\mathcal{A}\)\tabularnewline\hrulemedium
+\(\mathcal{B}\)\tabularnewline[0pt]
+ \tabularnewline[0pt]
+\(\mathcal{A} \lor \mathcal{B}\)\tabularnewline[0pt]
+\({\text{\textasciitilde}}\mathcal{B}\)\tabularnewline\hrulemedium
+\(\mathcal{A}\)
+\end{tabular}
+}%
+}%
+\end{tabularbox}%
+\tagpdfsetup{table/tagging=true}
+\end{tableptx}%
+DS works on either side. From \(P \lor Q\) and \({\text{\textasciitilde}}Q\), you may infer \(P\).%
+\end{paragraphs}%
+\begin{paragraphs}{Simplification, Conjunction, and Addition.}{paragraphs-nd-simp-conj-add}%
+\terminology{Simplification} (Simp) lets you take either part of a conjunction.%
+\begin{tableptx}{Table}{\textbf{Simplification Schemas}}{table-rule-simp}{}%
+\tagpdfsetup{table/tagging=div}
+\begin{tabularbox}{0}{0.3}{0.7}%
+\resizebox{\ifdim\width > \linewidth\linewidth\else\width\fi}{!}{%
+{\tabularfont%
+\begin{tabular}{c}
+\(\mathcal{A} \cdot \mathcal{B}\)\tabularnewline\hrulemedium
+\(\mathcal{A}\)\tabularnewline[0pt]
+ \tabularnewline[0pt]
+\(\mathcal{A} \cdot \mathcal{B}\)\tabularnewline\hrulemedium
+\(\mathcal{B}\)
+\end{tabular}
+}%
+}%
+\end{tabularbox}%
+\tagpdfsetup{table/tagging=true}
+\end{tableptx}%
+\terminology{Conjunction} (Conj) lets you join two available lines with a dot.%
+\begin{tableptx}{Table}{\textbf{Conjunction Schema}}{table-rule-conj}{}%
+\tagpdfsetup{table/tagging=div}
+\begin{tabularbox}{0}{0.3}{0.7}%
+\resizebox{\ifdim\width > \linewidth\linewidth\else\width\fi}{!}{%
+{\tabularfont%
+\begin{tabular}{c}
+\(\mathcal{A}\)\tabularnewline[0pt]
+\(\mathcal{B}\)\tabularnewline\hrulemedium
+\(\mathcal{A} \cdot \mathcal{B}\)
+\end{tabular}
+}%
+}%
+\end{tabularbox}%
+\tagpdfsetup{table/tagging=true}
+\end{tableptx}%
+\terminology{Addition} (Add) lets you introduce a disjunction from a line you already have. This rule feels strange at first, but it is truth-preserving: if \(P\) is true, then \(P \lor Q\) is true no matter what \(Q\) is.%
+\begin{tableptx}{Table}{\textbf{Addition Schema}}{table-rule-add}{}%
+\tagpdfsetup{table/tagging=div}
+\begin{tabularbox}{0}{0.3}{0.7}%
+\resizebox{\ifdim\width > \linewidth\linewidth\else\width\fi}{!}{%
+{\tabularfont%
+\begin{tabular}{c}
+\(\mathcal{A}\)\tabularnewline\hrulemedium
+\(\mathcal{A} \lor \mathcal{B}\)
+\end{tabular}
+}%
+}%
+\end{tabularbox}%
+\tagpdfsetup{table/tagging=true}
+\end{tableptx}%
+\end{paragraphs}%
+\begin{paragraphs}{Constructive Dilemma.}{paragraphs-nd-cd}%
+\terminology{Constructive Dilemma} (CD) is the longest of the eight implication rules. It uses two conditionals and a disjunction of their antecedents to infer a disjunction of their consequents.%
+\begin{tableptx}{Table}{\textbf{Constructive Dilemma Schema}}{table-rule-cd}{}%
+\tagpdfsetup{table/tagging=div}
+\begin{tabularbox}{0}{0.3}{0.7}%
+\resizebox{\ifdim\width > \linewidth\linewidth\else\width\fi}{!}{%
+{\tabularfont%
+\begin{tabular}{c}
+\(\mathcal{A} \supset \mathcal{B}\)\tabularnewline[0pt]
+\(\mathcal{C} \supset \mathcal{D}\)\tabularnewline[0pt]
+\(\mathcal{A} \lor \mathcal{C}\)\tabularnewline\hrulemedium
+\(\mathcal{B} \lor \mathcal{D}\)
+\end{tabular}
+}%
+}%
+\end{tabularbox}%
+\tagpdfsetup{table/tagging=true}
+\end{tableptx}%
+CD is useful when an argument says, in effect, either the first route is open or the second route is open; if the first route is open, one result follows; if the second route is open, another result follows; so one of those results follows.%
+\end{paragraphs}%
+\begin{paragraphs}{Quick reference.}{paragraphs-nd-appendix-reference}%
+All eight implication rules — together with the ten replacement rules from the next chapter — are collected in \hyperref[appendix-rules-of-inference]{Appendix~{\xreffont\ref{appendix-rules-of-inference}}} for quick reference. You may want to bookmark that appendix as you work through the exercises.%
+\end{paragraphs}%
+\end{sectionptx}
+%
+%
+\typeout{************************************************}
+\typeout{Section 1.4 First Worked Proofs}
+\typeout{************************************************}
+%
+\begin{sectionptx}{Section}{First Worked Proofs}{}{First Worked Proofs}{}{}{sec-first-worked-proofs}
+\begin{introduction}{}%
+The easiest way to learn proofs is to watch the rules in action and then try them yourself.%
+\par
+The first example briefly uses Double Negation (DN), a replacement rule covered systematically in the next chapter. It is included here because this is a common move in the course's worked proofs.%
+\end{introduction}%
+\begin{example}{Example}{A short Modus Tollens proof.}{ex-nd-mt-with-double-negation}%
+\begin{tableptx}{Table}{\textbf{Deriving \({\text{\textasciitilde}}P\)}}{table-ex-nd-mt-with-double-negation}{}%
+\tagpdfsetup{table/tagging=div}
+\begin{tabularbox}{0}{0.55}{0.45}%
+\resizebox{\ifdim\width > \linewidth\linewidth\else\width\fi}{!}{%
+{\tabularfont%
+\begin{tabular}{lll}
+1.&\(P \supset {\text{\textasciitilde}}S\)&\tabularnewline[0pt]
+2.&\(S\)&\slash{} \({\text{\textasciitilde}}P\)\tabularnewline[0pt]
+3.&\({\text{\textasciitilde}}{\text{\textasciitilde}}S\)&2 DN\tabularnewline[0pt]
+4.&\({\text{\textasciitilde}}P\)&1,3 MT
+\end{tabular}
+}%
+}%
+\end{tabularbox}%
+\tagpdfsetup{table/tagging=true}
+\end{tableptx}%
+\end{example}
+Line 1 says that \(P\) would give us \({\text{\textasciitilde}}S\). Line 2 gives us \(S\). To use MT, we need the negation of the consequent of line 1, which is \({\text{\textasciitilde}}{\text{\textasciitilde}}S\). Line 3 gets that by Double Negation. Then MT gives the target \({\text{\textasciitilde}}P\).%
+\begin{example}{Example}{Building a conjunction.}{ex-nd-simp-mp-conj}%
+\begin{tableptx}{Table}{\textbf{Deriving \(P \cdot S\)}}{table-ex-nd-simp-mp-conj}{}%
+\tagpdfsetup{table/tagging=div}
+\begin{tabularbox}{0}{0.55}{0.45}%
+\resizebox{\ifdim\width > \linewidth\linewidth\else\width\fi}{!}{%
+{\tabularfont%
+\begin{tabular}{lll}
+1.&\((P \lor R) \supset S\)&\tabularnewline[0pt]
+2.&\(P \cdot Q\)&\slash{} \(P \cdot S\)\tabularnewline[0pt]
+3.&\(P\)&2 Simp\tabularnewline[0pt]
+4.&\(P \lor R\)&3 Add\tabularnewline[0pt]
+5.&\(S\)&1,4 MP\tabularnewline[0pt]
+6.&\(P \cdot S\)&3,5 Conj
+\end{tabular}
+}%
+}%
+\end{tabularbox}%
+\tagpdfsetup{table/tagging=true}
+\end{tableptx}%
+\end{example}
+This proof works backward from the target. To prove \(P \cdot S\), we need \(P\) and \(S\). Line 2 gives \(P\) by Simplification. To get \(S\), line 1 needs \(P \lor R\). Since we already have \(P\), Addition gives \(P \lor R\), and then MP gives \(S\).%
+\begin{example}{Example}{A constructive dilemma.}{ex-nd-constructive-dilemma}%
+\begin{tableptx}{Table}{\textbf{Deriving \(S \lor I\)}}{table-ex-nd-constructive-dilemma}{}%
+\tagpdfsetup{table/tagging=div}
+\begin{tabularbox}{0}{0.55}{0.45}%
+\resizebox{\ifdim\width > \linewidth\linewidth\else\width\fi}{!}{%
+{\tabularfont%
+\begin{tabular}{lll}
+1.&\(F \supset S\)&\tabularnewline[0pt]
+2.&\({\text{\textasciitilde}}F \supset I\)&\tabularnewline[0pt]
+3.&\(F \lor {\text{\textasciitilde}}F\)&\slash{} \(S \lor I\)\tabularnewline[0pt]
+4.&\(S \lor I\)&1,2,3 CD
+\end{tabular}
+}%
+}%
+\end{tabularbox}%
+\tagpdfsetup{table/tagging=true}
+\end{tableptx}%
+\end{example}
+Constructive Dilemma is a three-line rule. Line 3 gives the disjunction of the antecedents from lines 1 and 2. So CD allows the disjunction of the consequents, \(S \lor I\).%
+\begin{example}{Example}{A chain of Hypothetical Syllogisms.}{ex-nd-hs-chain}%
+\begin{tableptx}{Table}{\textbf{Deriving \(P \supset S\)}}{table-ex-nd-hs-chain}{}%
+\tagpdfsetup{table/tagging=div}
+\begin{tabularbox}{0}{0.55}{0.45}%
+\resizebox{\ifdim\width > \linewidth\linewidth\else\width\fi}{!}{%
+{\tabularfont%
+\begin{tabular}{lll}
+1.&\(P \supset Q\)&\tabularnewline[0pt]
+2.&\(Q \supset R\)&\tabularnewline[0pt]
+3.&\(R \supset S\)&\slash{} \(P \supset S\)\tabularnewline[0pt]
+4.&\(P \supset R\)&1,2 HS\tabularnewline[0pt]
+5.&\(P \supset S\)&4,3 HS
+\end{tabular}
+}%
+}%
+\end{tabularbox}%
+\tagpdfsetup{table/tagging=true}
+\end{tableptx}%
+\end{example}
+Hypothetical Syllogism chains conditionals end-to-end. Line 1 takes us from \(P\) to \(Q\); line 2 takes us from \(Q\) to \(R\). Putting those together (line 4) gives the direct route from \(P\) to \(R\). A second HS with line 3 extends the chain to \(S\). With three premises that form a chain, two HS moves are enough. The same pattern scales: \(n\) chained conditionals collapse to a single one in \(n-1\) steps.%
+\begin{example}{Example}{Negating two antecedents at once.}{ex-nd-double-mt}%
+\begin{tableptx}{Table}{\textbf{Deriving \({\text{\textasciitilde}}P \cdot {\text{\textasciitilde}}R\)}}{table-ex-nd-double-mt}{}%
+\tagpdfsetup{table/tagging=div}
+\begin{tabularbox}{0}{0.55}{0.45}%
+\resizebox{\ifdim\width > \linewidth\linewidth\else\width\fi}{!}{%
+{\tabularfont%
+\begin{tabular}{lll}
+1.&\(P \supset Q\)&\tabularnewline[0pt]
+2.&\(R \supset S\)&\tabularnewline[0pt]
+3.&\({\text{\textasciitilde}}Q \cdot {\text{\textasciitilde}}S\)&\slash{} \({\text{\textasciitilde}}P \cdot {\text{\textasciitilde}}R\)\tabularnewline[0pt]
+4.&\({\text{\textasciitilde}}Q\)&3 Simp\tabularnewline[0pt]
+5.&\({\text{\textasciitilde}}S\)&3 Simp\tabularnewline[0pt]
+6.&\({\text{\textasciitilde}}P\)&1,4 MT\tabularnewline[0pt]
+7.&\({\text{\textasciitilde}}R\)&2,5 MT\tabularnewline[0pt]
+8.&\({\text{\textasciitilde}}P \cdot {\text{\textasciitilde}}R\)&6,7 Conj
+\end{tabular}
+}%
+}%
+\end{tabularbox}%
+\tagpdfsetup{table/tagging=true}
+\end{tableptx}%
+\end{example}
+The target is a conjunction of two negations, so the strategy is to derive each negation separately and then join them with Conjunction. Simplification (lines 4 and 5) splits the conjoined premise into its two pieces. Each piece is the negated consequent of a different conditional, so Modus Tollens fires twice — once on lines 1 and 4, and once on lines 2 and 5 — giving the two negations we need. Conjunction assembles them on line 8.%
+\end{sectionptx}
+%
+%
+\typeout{************************************************}
+\typeout{Section 1.5 Basic Proof Strategy}
+\typeout{************************************************}
+%
+\begin{sectionptx}{Section}{Basic Proof Strategy}{}{Basic Proof Strategy}{}{}{sec-basic-proof-strategy}
+\begin{introduction}{}%
+There is no single recipe for every proof, but there are good habits.%
+\end{introduction}%
+\begin{paragraphs}{Look at the target first.}{paragraphs-nd-work-backward}%
+If the target is a conjunction, expect to prove each side and then use Conj. If the target is a disjunction, see whether you can get one side and use Add, or whether DS or CD will give you the whole disjunction. If the target is a negation, look for MT or DS.%
+\par
+In other words, try to match the target to the output line of a rule schema. If the target has the form \(\mathcal{A} \cdot \mathcal{B}\), Conj is a natural candidate. If the target has the form \({\text{\textasciitilde}}\mathcal{A}\), MT may be relevant. The schemas turn strategy into pattern matching.%
+\end{paragraphs}%
+\begin{paragraphs}{Mine the premises.}{paragraphs-nd-mine-premises}%
+Conjunctions are often useful because Simp lets you extract their parts. Conditionals are useful when you can find their antecedents. Disjunctions are useful when one disjunct has been ruled out.%
+\end{paragraphs}%
+\begin{paragraphs}{Do not change old lines.}{paragraphs-nd-do-not-overwrite-lines}%
+A proof does not transform a line by erasing it. If you use a rule, write the result on a new line. The old line stays where it is. This is why line numbers matter: they let another reader see the exact path from premises to conclusion.%
+\end{paragraphs}%
+\begin{paragraphs}{When you are stuck.}{paragraphs-nd-when-stuck}%
+Ask three questions. First, what shape is the conclusion? Second, which rule could produce a line of that shape? Third, what earlier lines would that rule need? This turns proof search from a guessing game into a small planning problem.%
+\end{paragraphs}%
+\begin{exploration}{Exploration}{Field Exercise: Narrate a proof.}{field-10-5-1}%
+Choose one of the harder proofs from this chapter's exercises — one that took you more than one attempt. After you have a finished proof, write a short narrative of your process. What did you try first? Where did you get stuck? What move got you unstuck? The goal is not to explain the proof to someone else but to observe your own reasoning while it is still fresh.%
+\end{exploration}%
+\end{sectionptx}
+%
+%
+\typeout{************************************************}
+\typeout{Section 1.6 Where We're Headed}
+\typeout{************************************************}
+%
+\begin{sectionptx}{Section}{Where We're Headed}{}{Where We're Headed}{}{}{sec-natural-deduction-where-headed}
+This chapter introduced the basic proof format and the eight implication rules. Those rules are enough for many short proofs, especially when the conclusion follows directly from conditionals, conjunctions, and disjunctions already present in the premises.%
+\par
+The next natural deduction chapter adds the replacement rules. Replacement rules let us rewrite a statement into an equivalent form. They are especially important for De Morgan transformations, double negation, material implication, and material equivalence.%
+\end{sectionptx}
+\begin{conclusion}{Chapter Summary.}%
+This chapter introduced natural deduction as a method for proving sentential arguments valid.%
+\par
+\alert{What Natural Deduction Does (§10.1).} Natural deduction shows that a conclusion follows by deriving it from the premises one rule-governed step at a time.%
+\par
+\alert{The Anatomy of a Proof (§10.2).} A proof has numbered lines, formulas, and justifications. In this course's compact format, the target conclusion appears after a slash in the premise block. After the first concrete proof, we introduce metavariables so that rules can be stated as general schemas rather than as single examples.%
+\par
+\alert{The Eight Implication Rules (§10.3).} MP, MT, HS, DS, Simp, Conj, Add, and CD are direct inference rules. Each is stated as a schema that can have many substitution instances.%
+\par
+\alert{First Worked Proofs (§10.4).} Short proofs often combine several rules: simplify conjunctions, use addition to make useful disjunctions, apply MP or MT to conditionals, and use Conj to assemble a conjunctive target.%
+\par
+\alert{Basic Proof Strategy (§10.5).} Work backward from the target, match formulas to rule schemas, mine the premises for usable parts, and write every result on a new numbered line.%
+\end{conclusion}%
+%
+%
+\typeout{************************************************}
+\typeout{Section 1.7 Key Terms}
+\typeout{************************************************}
+%
+\begin{sectionptx}{Section}{Key Terms}{}{Key Terms}{}{}{sec-ch10-key-terms}
+Listed alphabetically, with section references.%
+%
+\begin{descriptionlist}
+\begin{dlimedium}{Addition}{term-ch10-addition}%
+An implication rule that permits inferring \(P \lor Q\) from \(P\). (§10.3)%
+\end{dlimedium}%
+\begin{dlimedium}{Conjunction}{term-ch10-conjunction}%
+An implication rule that permits joining two available lines as a conjunction. (§10.3)%
+\end{dlimedium}%
+\begin{dlimedium}{Constructive Dilemma}{term-ch10-constructive-dilemma}%
+An implication rule that uses two conditionals and a disjunction of their antecedents to infer a disjunction of their consequents. (§10.3)%
+\end{dlimedium}%
+\begin{dlimedium}{Disjunctive Syllogism}{term-ch10-disjunctive-syllogism}%
+An implication rule that permits inferring one disjunct from a disjunction and the negation of the other disjunct. (§10.3)%
+\end{dlimedium}%
+\begin{dlimedium}{Hypothetical Syllogism}{term-ch10-hypothetical-syllogism}%
+An implication rule that chains two conditionals into a new conditional. (§10.3)%
+\end{dlimedium}%
+\begin{dlimedium}{Instantiation}{term-ch10-instantiation}%
+Another name for a substitution instance: a particular use of a general rule schema. (§10.3)%
+\end{dlimedium}%
+\begin{dlimedium}{Justification}{term-ch10-justification}%
+The citation on a proof line that names the earlier line or lines used and the rule applied. (§10.2)%
+\end{dlimedium}%
+\begin{dlimedium}{Metalanguage}{term-ch10-metalanguage}%
+A language used to talk about another language. In this chapter, metavariables such as \(\mathcal{A}\) and \(\mathcal{B}\) let us talk generally about formulas of sentential logic. (§10.2)%
+\end{dlimedium}%
+\begin{dlimedium}{Metavariable}{term-ch10-metavariable}%
+A placeholder in the metalanguage that can stand for any well-formed formula of the object language. (§10.2)%
+\end{dlimedium}%
+\begin{dlimedium}{Modus Ponens}{term-ch10-modus-ponens}%
+An implication rule that permits inferring the consequent of a conditional when the antecedent is given. (§10.3)%
+\end{dlimedium}%
+\begin{dlimedium}{Modus Tollens}{term-ch10-modus-tollens}%
+An implication rule that permits inferring the negation of a conditional's antecedent when the negation of its consequent is given. (§10.3)%
+\end{dlimedium}%
+\begin{dlimedium}{Natural deduction proof}{term-ch10-natural-deduction-proof}%
+A numbered derivation in which each non-premise line follows from earlier lines by a stated rule. (§10.1)%
+\end{dlimedium}%
+\begin{dlimedium}{Object language}{term-ch10-object-language}%
+The symbolic language being studied, including sentence letters and connectives such as \(\supset\), \(\cdot\), \(\lor\), \(\equiv\), and \({\text{\textasciitilde}}\). (§10.2)%
+\end{dlimedium}%
+\begin{dlimedium}{Rule schema}{term-ch10-rule-schema}%
+A general statement of a rule using metavariables rather than one particular formula or proof. (§10.3)%
+\end{dlimedium}%
+\begin{dlimedium}{Simplification}{term-ch10-simplification}%
+An implication rule that permits inferring either conjunct from a conjunction. (§10.3)%
+\end{dlimedium}%
+\begin{dlimedium}{Substitution instance}{term-ch10-substitution-instance}%
+A particular application of a rule schema, produced by replacing each metavariable with a specific well-formed formula. (§10.3)%
+\end{dlimedium}%
+\end{descriptionlist}
+\end{sectionptx}
+%
+%
+\typeout{************************************************}
+\typeout{Exercises 1.8 End-of-Chapter Exercises}
+\typeout{************************************************}
+%
+\begin{exercises-section}{Exercises}{End-of-Chapter Exercises}{}{End-of-Chapter Exercises}{}{}{exercises-ch10}
+\par\medskip\noindent%
+\textbf{Exercise Set 1: Identifying Rules.}\space\space\hypertarget{exgroup-ch10-s01}{}%
+For each line, identify the rule that would justify the inference.%
+\begin{exercisegroup}
+\begin{divisionexerciseeg}{1}{}{}{ex-ch10-s01-01}%
+From \(P \supset Q\) and \(P\), infer \(Q\).%
+\end{divisionexerciseeg}%
+\begin{divisionexerciseeg}{2}{}{}{ex-ch10-s01-02}%
+From \(P \supset Q\) and \({\text{\textasciitilde}}Q\), infer \({\text{\textasciitilde}}P\).%
+\end{divisionexerciseeg}%
+\begin{divisionexerciseeg}{3}{}{}{ex-ch10-s01-03}%
+From \(P \cdot Q\), infer \(Q\).%
+\end{divisionexerciseeg}%
+\begin{divisionexerciseeg}{4}{}{}{ex-ch10-s01-04}%
+From \(P\), infer \(P \lor R\).%
+\end{divisionexerciseeg}%
+\begin{divisionexerciseeg}{5}{}{}{ex-ch10-s01-05}%
+From \(P \supset Q\) and \(Q \supset R\), infer \(P \supset R\).%
+\end{divisionexerciseeg}%
+\end{exercisegroup}
+\par\medskip\noindent
+\par\medskip\noindent%
+\textbf{Exercise Set 2: Supply the Missing Line.}\space\space\hypertarget{exgroup-ch10-s02}{}%
+Complete each proof by adding the missing line and justification.%
+\begin{exercisegroup}
+\begin{divisionexerciseeg}{6}{}{}{ex-ch10-s02-01}%
+\tagpdfsetup{table/tagging=div}
+\begin{tabularbox}{0}{0.55}{0.45}%
+\resizebox{\ifdim\width > \linewidth\linewidth\else\width\fi}{!}{%
+{\tabularfont%
+\begin{tabular}{lll}
+1.&\(P \supset Q\)&\tabularnewline[0pt]
+2.&\(P\)&\slash{} \(Q\)\tabularnewline[0pt]
+3.&&
+\end{tabular}
+}%
+}%
+\end{tabularbox}%
+\tagpdfsetup{table/tagging=true}
+\end{divisionexerciseeg}%
+\begin{divisionexerciseeg}{7}{}{}{ex-ch10-s02-02}%
+\tagpdfsetup{table/tagging=div}
+\begin{tabularbox}{0}{0.55}{0.45}%
+\resizebox{\ifdim\width > \linewidth\linewidth\else\width\fi}{!}{%
+{\tabularfont%
+\begin{tabular}{lll}
+1.&\(P \lor Q\)&\tabularnewline[0pt]
+2.&\({\text{\textasciitilde}}P\)&\slash{} \(Q\)\tabularnewline[0pt]
+3.&&
+\end{tabular}
+}%
+}%
+\end{tabularbox}%
+\tagpdfsetup{table/tagging=true}
+\end{divisionexerciseeg}%
+\begin{divisionexerciseeg}{8}{}{}{ex-ch10-s02-03}%
+\tagpdfsetup{table/tagging=div}
+\begin{tabularbox}{0}{0.55}{0.45}%
+\resizebox{\ifdim\width > \linewidth\linewidth\else\width\fi}{!}{%
+{\tabularfont%
+\begin{tabular}{lll}
+1.&\(P \cdot Q\)&\slash{} \(P \lor R\)\tabularnewline[0pt]
+2.&\(P\)&1 Simp\tabularnewline[0pt]
+3.&&
+\end{tabular}
+}%
+}%
+\end{tabularbox}%
+\tagpdfsetup{table/tagging=true}
+\end{divisionexerciseeg}%
+\end{exercisegroup}
+\par\medskip\noindent
+\par\medskip\noindent%
+\textbf{Exercise Set 3: Short Proofs.}\space\space\hypertarget{exgroup-ch10-s03}{}%
+Prove each argument valid using the implication rules.%
+\begin{exercisegroup}
+\begin{divisionexerciseeg}{9}{}{}{ex-ch10-s03-01}%
+\tagpdfsetup{table/tagging=div}
+\begin{tabularbox}{0}{0.55}{0.45}%
+\resizebox{\ifdim\width > \linewidth\linewidth\else\width\fi}{!}{%
+{\tabularfont%
+\begin{tabular}{lll}
+1.&\(P \supset Q\)&\tabularnewline[0pt]
+2.&\(Q \supset R\)&\slash{} \(P \supset R\)
+\end{tabular}
+}%
+}%
+\end{tabularbox}%
+\tagpdfsetup{table/tagging=true}
+\end{divisionexerciseeg}%
+\begin{divisionexerciseeg}{10}{}{}{ex-ch10-s03-02}%
+\tagpdfsetup{table/tagging=div}
+\begin{tabularbox}{0}{0.55}{0.45}%
+\resizebox{\ifdim\width > \linewidth\linewidth\else\width\fi}{!}{%
+{\tabularfont%
+\begin{tabular}{lll}
+1.&\(P \cdot Q\)&\slash{} \(Q \lor S\)
+\end{tabular}
+}%
+}%
+\end{tabularbox}%
+\tagpdfsetup{table/tagging=true}
+\end{divisionexerciseeg}%
+\begin{divisionexerciseeg}{11}{}{}{ex-ch10-s03-03}%
+\tagpdfsetup{table/tagging=div}
+\begin{tabularbox}{0}{0.55}{0.45}%
+\resizebox{\ifdim\width > \linewidth\linewidth\else\width\fi}{!}{%
+{\tabularfont%
+\begin{tabular}{lll}
+1.&\(P \lor Q\)&\tabularnewline[0pt]
+2.&\({\text{\textasciitilde}}Q\)&\slash{} \(P \lor R\)
+\end{tabular}
+}%
+}%
+\end{tabularbox}%
+\tagpdfsetup{table/tagging=true}
+\end{divisionexerciseeg}%
+\begin{divisionexerciseeg}{12}{}{}{ex-ch10-s03-04}%
+\tagpdfsetup{table/tagging=div}
+\begin{tabularbox}{0}{0.55}{0.45}%
+\resizebox{\ifdim\width > \linewidth\linewidth\else\width\fi}{!}{%
+{\tabularfont%
+\begin{tabular}{lll}
+1.&\(P \supset Q\)&\tabularnewline[0pt]
+2.&\(R \supset S\)&\tabularnewline[0pt]
+3.&\(P \lor R\)&\slash{} \(Q \lor S\)
+\end{tabular}
+}%
+}%
+\end{tabularbox}%
+\tagpdfsetup{table/tagging=true}
+\end{divisionexerciseeg}%
+\begin{divisionexerciseeg}{13}{}{}{ex-ch10-s03-05}%
+\tagpdfsetup{table/tagging=div}
+\begin{tabularbox}{0}{0.55}{0.45}%
+\resizebox{\ifdim\width > \linewidth\linewidth\else\width\fi}{!}{%
+{\tabularfont%
+\begin{tabular}{lll}
+1.&\((P \lor R) \supset S\)&\tabularnewline[0pt]
+2.&\(P \cdot Q\)&\slash{} \(P \cdot S\)
+\end{tabular}
+}%
+}%
+\end{tabularbox}%
+\tagpdfsetup{table/tagging=true}
+\end{divisionexerciseeg}%
+\begin{divisionexerciseeg}{14}{}{}{ex-ch10-s03-06}%
+\tagpdfsetup{table/tagging=div}
+\begin{tabularbox}{0}{0.55}{0.45}%
+\resizebox{\ifdim\width > \linewidth\linewidth\else\width\fi}{!}{%
+{\tabularfont%
+\begin{tabular}{lll}
+1.&\({\text{\textasciitilde}}P\)&\tabularnewline[0pt]
+2.&\(P \lor Q\)&\slash{} \(Q\)
+\end{tabular}
+}%
+}%
+\end{tabularbox}%
+\tagpdfsetup{table/tagging=true}
+\end{divisionexerciseeg}%
+\begin{divisionexerciseeg}{15}{}{}{ex-ch10-s03-07}%
+\tagpdfsetup{table/tagging=div}
+\begin{tabularbox}{0}{0.55}{0.45}%
+\resizebox{\ifdim\width > \linewidth\linewidth\else\width\fi}{!}{%
+{\tabularfont%
+\begin{tabular}{lll}
+1.&\(P \supset Q\)&\tabularnewline[0pt]
+2.&\(Q \supset R\)&\tabularnewline[0pt]
+3.&\(P\)&\slash{} \(R\)
+\end{tabular}
+}%
+}%
+\end{tabularbox}%
+\tagpdfsetup{table/tagging=true}
+\end{divisionexerciseeg}%
+\begin{divisionexerciseeg}{16}{}{}{ex-ch10-s03-08}%
+\tagpdfsetup{table/tagging=div}
+\begin{tabularbox}{0}{0.55}{0.45}%
+\resizebox{\ifdim\width > \linewidth\linewidth\else\width\fi}{!}{%
+{\tabularfont%
+\begin{tabular}{lll}
+1.&\((P \cdot Q) \supset R\)&\tabularnewline[0pt]
+2.&\(P\)&\tabularnewline[0pt]
+3.&\(Q\)&\slash{} \(R\)
+\end{tabular}
+}%
+}%
+\end{tabularbox}%
+\tagpdfsetup{table/tagging=true}
+\end{divisionexerciseeg}%
+\begin{divisionexerciseeg}{17}{}{}{ex-ch10-s03-09}%
+\tagpdfsetup{table/tagging=div}
+\begin{tabularbox}{0}{0.55}{0.45}%
+\resizebox{\ifdim\width > \linewidth\linewidth\else\width\fi}{!}{%
+{\tabularfont%
+\begin{tabular}{lll}
+1.&\(P \supset Q\)&\tabularnewline[0pt]
+2.&\(P \supset R\)&\tabularnewline[0pt]
+3.&\(P\)&\slash{} \(Q \cdot R\)
+\end{tabular}
+}%
+}%
+\end{tabularbox}%
+\tagpdfsetup{table/tagging=true}
+\end{divisionexerciseeg}%
+\begin{divisionexerciseeg}{18}{}{}{ex-ch10-s03-10}%
+\tagpdfsetup{table/tagging=div}
+\begin{tabularbox}{0}{0.55}{0.45}%
+\resizebox{\ifdim\width > \linewidth\linewidth\else\width\fi}{!}{%
+{\tabularfont%
+\begin{tabular}{lll}
+1.&\((P \lor Q) \supset R\)&\tabularnewline[0pt]
+2.&\((R \lor S) \supset T\)&\tabularnewline[0pt]
+3.&\(P \cdot U\)&\slash{} \(T\)
+\end{tabular}
+}%
+}%
+\end{tabularbox}%
+\tagpdfsetup{table/tagging=true}
+\end{divisionexerciseeg}%
+\end{exercisegroup}
+\par\medskip\noindent
+\par\medskip\noindent%
+\textbf{Exercise Set 4: Explain the Strategy.}\space\space\hypertarget{exgroup-ch10-s04}{}%
+For each proof goal, write one or two sentences explaining which rule you would try first and why.%
+\begin{exercisegroup}
+\begin{divisionexerciseeg}{19}{}{}{ex-ch10-s04-01}%
+The target is \(P \cdot Q\).%
+\end{divisionexerciseeg}%
+\begin{divisionexerciseeg}{20}{}{}{ex-ch10-s04-02}%
+The target is \({\text{\textasciitilde}}P\), and one premise is \(P \supset Q\).%
+\end{divisionexerciseeg}%
+\begin{divisionexerciseeg}{21}{}{}{ex-ch10-s04-03}%
+The target is \(Q \lor S\), and you already have \(Q\).%
+\end{divisionexerciseeg}%
+\end{exercisegroup}
+\par\medskip\noindent
+\par\medskip\noindent%
+\textbf{Writing Prompt.}\space\space\hypertarget{exgroup-ch10-writing}{}%
+This prompt connects to Field Exercise 10-1.%
+\begin{exercisegroup}
+\begin{divisionexerciseeg}{22}{}{}{ex-ch10-writing-01}%
+Return to your narrative from Field Exercise 10-1. What kind of mistake or dead end did you encounter? Was it a pattern-matching failure (not recognizing which rule applied), a strategic failure (working forward when you should have worked backward), or something else entirely? What does this tell you about how you reason when the steps are not obvious?%
+\end{divisionexerciseeg}%
+\end{exercisegroup}
+\par\medskip\noindent
+\end{exercises-section}
+\end{chapterptx}
+\end{partptx}
+%
+%
+\typeout{************************************************}
+\typeout{Part IV Inductive and Statistical Reasoning}
+\typeout{************************************************}
+%
+\begin{partptx}{Part}{Inductive and Statistical Reasoning}{}{Inductive and Statistical Reasoning}{}{}{part-statistical}
+\renewcommand*{\partname}{Part}
+Parts I through III focused mostly on deductive reasoning: arguments where the premises are supposed to guarantee the conclusion. That work matters. It gives us the cleanest examples of logical structure, and it teaches habits of precision that carry over into everything else.%
+ \par
+But most of the reasoning we actually live with is not like that. A physician reads symptoms and test results. A voter looks at a record and tries to predict what a candidate will do. A scientist studies a sample and draws a conclusion about a population. A student checks the weather, looks at the sky, and decides whether to carry an umbrella. In each case, the evidence matters, but it does not make the conclusion certain.%
+ \par
+Part IV is about that kind of reasoning. We will study induction, probability, descriptive statistics, and statistical inference. The goal is not to turn logic into arithmetic. The goal is to understand how evidence can make a conclusion more or less reasonable when certainty is not available.%
+ \par
+This unit draws in part on Matthew Knachel's \href{https://wisconsin.pressbooks.pub/logicfundamentals/}{\emph{Fundamental Methods of Logic}}\footnote{\nolinkurl{wisconsin.pressbooks.pub/logicfundamentals/}\label{part-statistical-intro-4-2}}, an open textbook licensed under a Creative Commons Attribution 4.0 International License. The material here is adapted, reorganized, and revised for this course.%
+\end{partptx}
+%
+\appendix%
+%
+\part*{Appendices}%
+%
+%
+\typeout{************************************************}
+\typeout{Appendix A The Eighteen Rules of Inference}
+\typeout{************************************************}
+%
+\begin{appendixptx}{Appendix}{The Eighteen Rules of Inference}{}{The Eighteen Rules of Inference}{}{}{appendix-rules-of-inference}
+\renewcommand*{\appendixname}{Appendix}
+%
+%
+\typeout{************************************************}
+\typeout{Section A.1 How to Use This Appendix}
+\typeout{************************************************}
+%
+\begin{sectionptx}{Section}{How to Use This Appendix}{}{How to Use This Appendix}{}{}{sec-appendix-rules-explanation}
+Chapters 10 and 11 introduce eighteen rules for constructing natural deduction proofs in sentential logic. This appendix collects them for quick reference. The next section presents all eighteen schemas on a single page — tear it out or bookmark it for use during exercises and exams.%
+\begin{paragraphs}{Implication rules vs. replacement rules.}{paragraphs-appendix-implication-v-replacement}%
+The eight \emph{implication rules} (rules 1–8) are one-directional. Each takes one or more whole lines as input and produces a new line as output. You may apply them only to entire lines, not to subformulas within a line.%
+\par
+The ten \emph{replacement rules} (rules 9–18) are bidirectional equivalences. The expression on either side of the double colon (\(::\)) may replace the other. Unlike implication rules, replacement rules may be applied to any subformula within a line — you do not need to match the entire line.%
+\end{paragraphs}%
+\begin{paragraphs}{Conventions.}{paragraphs-appendix-conventions}%
+Script letters (\(\mathcal{A}\), \(\mathcal{B}\), \(\mathcal{C}\), \(\mathcal{D}\)) stand for any well-formed formula — a single sentence letter, a negation, a compound expression in parentheses, or any other WFF. The horizontal line in an implication rule separates the input(s) above from the output below. The tilde (\({\text{\textasciitilde}}\)) is negation. One application of one rule per line.%
+\end{paragraphs}%
+\end{sectionptx}
+\clearpage
+\newgeometry{margin=0.5in}
+\thispagestyle{empty}
+\phantomsection
+\addcontentsline{toc}{section}{Reference Sheet: All Eighteen Rules}
+\begingroup
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{0pt}
+\renewcommand{\arraystretch}{0.9}
+\newcommand{\sheetneg}{\text{\textasciitilde}}
+\newcommand{\impblock}[2]{\begin{minipage}[t]{0.43\linewidth}\centering{\normalsize\bfseries #1}\par\vspace{0.2ex}{\normalsize #2\par}\end{minipage}}
+\newcommand{\replblock}[2]{\begin{minipage}[t]{0.48\linewidth}\centering{\normalsize\bfseries #1}\par\vspace{0.2ex}{\normalsize #2\par}\end{minipage}}
+\begin{center}
+{\Large\bfseries The Eighteen Rules of Inference}
+\end{center}
+\vspace{0.12in}
+\begin{center}{\large\bfseries Implication Rules}\end{center}
+\vspace{0.08in}
+\noindent\impblock{MP (Modus Ponens)}{\(\begin{array}{@{}c@{}}\mathcal{A}\supset\mathcal{B}\\ \mathcal{A}\\ \hline \mathcal{B}\end{array}\)}\hfill\impblock{MT (Modus Tollens)}{\(\begin{array}{@{}c@{}}\mathcal{A}\supset\mathcal{B}\\ \sheetneg\mathcal{B}\\ \hline \sheetneg\mathcal{A}\end{array}\)}\par
+\vspace{0.24in}
+\noindent\impblock{HS (Hypothetical Syllogism)}{\(\begin{array}{@{}c@{}}\mathcal{A}\supset\mathcal{B}\\ \mathcal{B}\supset\mathcal{C}\\ \hline \mathcal{A}\supset\mathcal{C}\end{array}\)}\hfill\impblock{DS (Disjunctive Syllogism)}{\(\begin{array}{@{}c@{}}\mathcal{A}\lor\mathcal{B}\\ \sheetneg\mathcal{A}\\ \hline \mathcal{B}\end{array}\qquad\begin{array}{@{}c@{}}\mathcal{A}\lor\mathcal{B}\\ \sheetneg\mathcal{B}\\ \hline \mathcal{A}\end{array}\)}\par
+\vspace{0.24in}
+\noindent\impblock{Conj (Conjunction)}{\(\begin{array}{@{}c@{}}\mathcal{A}\\ \mathcal{B}\\ \hline \mathcal{A}\cdot\mathcal{B}\end{array}\)}\hfill\impblock{Simp (Simplification)}{\(\begin{array}{@{}c@{}}\mathcal{A}\cdot\mathcal{B}\\ \hline \mathcal{A}\end{array}\qquad\begin{array}{@{}c@{}}\mathcal{A}\cdot\mathcal{B}\\ \hline \mathcal{B}\end{array}\)}\par
+\vspace{0.24in}
+\noindent\impblock{Add (Addition)}{\(\begin{array}{@{}c@{}}\mathcal{A}\\ \hline \mathcal{A}\lor\mathcal{B}\end{array}\)}\hfill\impblock{CD (Constructive Dilemma)}{\(\begin{array}{@{}c@{}}\mathcal{A}\supset\mathcal{B}\\ \mathcal{C}\supset\mathcal{D}\\ \mathcal{A}\lor\mathcal{C}\\ \hline \mathcal{B}\lor\mathcal{D}\end{array}\)}\par
+\vspace{0.30in}
+\begin{center}{\large\bfseries Replacement Rules}\end{center}
+\vspace{0.08in}
+\noindent\hspace*{0.02\linewidth}\begin{minipage}{0.96\linewidth}
+\noindent\replblock{DeM (De Morgan's)}{\(\begin{array}{@{}l@{}}\sheetneg(\mathcal{A}\cdot\mathcal{B})\mathrel{::}\sheetneg\mathcal{A}\lor\sheetneg\mathcal{B}\\ \sheetneg(\mathcal{A}\lor\mathcal{B})\mathrel{::}\sheetneg\mathcal{A}\cdot\sheetneg\mathcal{B}\end{array}\)}\hfill\replblock{DN (Double Negation)}{\(\mathcal{A}\mathrel{::}\sheetneg\sheetneg\mathcal{A}\)}\par
+\vspace{0.26in}
+\noindent\replblock{Com (Commutation)}{\(\begin{array}{@{}l@{}}\mathcal{A}\cdot\mathcal{B}\mathrel{::}\mathcal{B}\cdot\mathcal{A}\\ \mathcal{A}\lor\mathcal{B}\mathrel{::}\mathcal{B}\lor\mathcal{A}\end{array}\)}\hfill\replblock{Assoc (Association)}{\(\begin{array}{@{}l@{}}\mathcal{A}\cdot(\mathcal{B}\cdot\mathcal{C})\mathrel{::}(\mathcal{A}\cdot\mathcal{B})\cdot\mathcal{C}\\ \mathcal{A}\lor(\mathcal{B}\lor\mathcal{C})\mathrel{::}(\mathcal{A}\lor\mathcal{B})\lor\mathcal{C}\end{array}\)}\par
+\vspace{0.26in}
+\noindent\replblock{Dist (Distribution)}{\(\begin{array}{@{}l@{}}\mathcal{A}\cdot(\mathcal{B}\lor\mathcal{C})\mathrel{::}(\mathcal{A}\cdot\mathcal{B})\lor(\mathcal{A}\cdot\mathcal{C})\\ \mathcal{A}\lor(\mathcal{B}\cdot\mathcal{C})\mathrel{::}(\mathcal{A}\lor\mathcal{B})\cdot(\mathcal{A}\lor\mathcal{C})\end{array}\)}\hfill\replblock{Impl (Material Implication)}{\(\mathcal{A}\supset\mathcal{B}\mathrel{::}\sheetneg\mathcal{A}\lor\mathcal{B}\)}\par
+\vspace{0.26in}
+\noindent\replblock{Trans (Transposition)}{\(\mathcal{A}\supset\mathcal{B}\mathrel{::}\sheetneg\mathcal{B}\supset\sheetneg\mathcal{A}\)}\hfill\replblock{Exp (Exportation)}{\((\mathcal{A}\cdot\mathcal{B})\supset\mathcal{C}\mathrel{::}\mathcal{A}\supset(\mathcal{B}\supset\mathcal{C})\)}\par
+\vspace{0.26in}
+\noindent\replblock{Equiv (Material Equivalence)}{\(\begin{array}{@{}l@{}}\mathcal{A}\equiv\mathcal{B}\mathrel{::}(\mathcal{A}\supset\mathcal{B})\cdot(\mathcal{B}\supset\mathcal{A})\\ \mathcal{A}\equiv\mathcal{B}\mathrel{::}(\mathcal{A}\cdot\mathcal{B})\lor(\sheetneg\mathcal{A}\cdot\sheetneg\mathcal{B})\end{array}\)}\hfill\replblock{Taut (Tautology)}{\(\begin{array}{@{}l@{}}\mathcal{A}\mathrel{::}\mathcal{A}\cdot\mathcal{A}\\ \mathcal{A}\mathrel{::}\mathcal{A}\lor\mathcal{A}\end{array}\)}\par
+\end{minipage}
+\endgroup
+\restoregeometry
+\clearpage
+\end{appendixptx}
+%
+\backmatter%
+%
+\clearpage\phantomsection%
+\addcontentsline{toc}{part}{Back Matter}%
+\clearpage
+\pagestyle{empty}
+\vspace*{\stretch{1}}
+\begin{backcolophon}{Colophon}{back-colophon}%
+This book was authored in \href{https://pretextbook.org}{PreTeXt}\footnotemark{}. The source is openly available at the project repository.%
+\end{backcolophon}%
+\footnotetext[1]{\nolinkurl{pretextbook.org}\label{back-colophon-1-2}}%
+\vspace*{\stretch{2}}
+\end{document}

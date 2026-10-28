@@ -176,9 +176,9 @@
 \vspace{0.08in}
 \noindent\impblock{MP (Modus Ponens)}{\(\begin{array}{@{}c@{}}\mathcal{A}\supset\mathcal{B}\\ \mathcal{A}\\ \hline \mathcal{B}\end{array}\)}\hfill\impblock{MT (Modus Tollens)}{\(\begin{array}{@{}c@{}}\mathcal{A}\supset\mathcal{B}\\ \sheetneg\mathcal{B}\\ \hline \sheetneg\mathcal{A}\end{array}\)}\par
 \vspace{0.24in}
-\noindent\impblock{HS (Hypothetical Syllogism)}{\(\begin{array}{@{}c@{}}\mathcal{A}\supset\mathcal{B}\\ \mathcal{B}\supset\mathcal{C}\\ \hline \mathcal{A}\supset\mathcal{C}\end{array}\)}\hfill\impblock{DS (Disjunctive Syllogism)}{\(\begin{array}{@{}c@{}}\mathcal{A}\lor\mathcal{B}\\ \sheetneg\mathcal{A}\\ \hline \mathcal{B}\end{array}\)}\par
+\noindent\impblock{HS (Hypothetical Syllogism)}{\(\begin{array}{@{}c@{}}\mathcal{A}\supset\mathcal{B}\\ \mathcal{B}\supset\mathcal{C}\\ \hline \mathcal{A}\supset\mathcal{C}\end{array}\)}\hfill\impblock{DS (Disjunctive Syllogism)}{\(\begin{array}{@{}c@{}}\mathcal{A}\lor\mathcal{B}\\ \sheetneg\mathcal{A}\\ \hline \mathcal{B}\end{array}\qquad\begin{array}{@{}c@{}}\mathcal{A}\lor\mathcal{B}\\ \sheetneg\mathcal{B}\\ \hline \mathcal{A}\end{array}\)}\par
 \vspace{0.24in}
-\noindent\impblock{Conj (Conjunction)}{\(\begin{array}{@{}c@{}}\mathcal{A}\\ \mathcal{B}\\ \hline \mathcal{A}\cdot\mathcal{B}\end{array}\)}\hfill\impblock{Simp (Simplification)}{\(\begin{array}{@{}c@{}}\mathcal{A}\cdot\mathcal{B}\\ \hline \mathcal{A}\end{array}\)}\par
+\noindent\impblock{Conj (Conjunction)}{\(\begin{array}{@{}c@{}}\mathcal{A}\\ \mathcal{B}\\ \hline \mathcal{A}\cdot\mathcal{B}\end{array}\)}\hfill\impblock{Simp (Simplification)}{\(\begin{array}{@{}c@{}}\mathcal{A}\cdot\mathcal{B}\\ \hline \mathcal{A}\end{array}\qquad\begin{array}{@{}c@{}}\mathcal{A}\cdot\mathcal{B}\\ \hline \mathcal{B}\end{array}\)}\par
 \vspace{0.24in}
 \noindent\impblock{Add (Addition)}{\(\begin{array}{@{}c@{}}\mathcal{A}\\ \hline \mathcal{A}\lor\mathcal{B}\end{array}\)}\hfill\impblock{CD (Constructive Dilemma)}{\(\begin{array}{@{}c@{}}\mathcal{A}\supset\mathcal{B}\\ \mathcal{C}\supset\mathcal{D}\\ \mathcal{A}\lor\mathcal{C}\\ \hline \mathcal{B}\lor\mathcal{D}\end{array}\)}\par
 \vspace{0.30in}

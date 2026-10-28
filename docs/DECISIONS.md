@@ -421,3 +421,13 @@ Each decision is dated, numbered, and tagged with the section of `PROJECT_PLAN.m
 The section is built around the fact that the fallacious and legitimate versions are *structurally identical* — "no evidence of X, therefore not X" covers both an empty loyalty file and a 14,000-patient trial. No form-matching distinguishes them; only the question "was anyone looking, how hard, and in the right place?" does. Per the lead author, the legitimate cousin is anchored on a large *undesigned* search (no dog has ever spoken English, despite millions of household-years of close attention), which is stronger pedagogically than the designed-study case because it shows that the search need not be commissioned to count — only extensive and correctly aimed. This makes Chapter 5 the one place in Part I where the taxonomy visibly cannot do the work by itself, which is the intended lesson rather than a defect.
 
 The remaining standard omissions stay out for now: composition, division, and amphiboly would require reopening the traditional ambiguity category, which this book does not have — equivocation sits under relevance because nothing else in the book depends on Ch. 4, per §3 of the plan, a choice recorded only in a source comment at the head of `ch-informal-fallacies.ptx` and never given a decision entry of its own; the vernacular fallacies (middle ground, genetic, no true Scotsman) are candidates for a short "other names you'll encounter" table rather than full sections.
+
+---
+
+## D-036 — Canonical local checkout and agent workspace
+
+**Date**: 2026-10-28
+**Plan section**: 8
+**Decision**: The canonical local project folder is `/Users/michaelreno/Projects/umw-logic-textbook`, with remote `git@github.com:umw-philosophy/umw-logic-textbook.git`. The Codex project's primary folder and the agent harness working directory should point to this checkout. Project work, Git commands, and builds run here.
+**Alternatives considered**: Use `/Users/michaelreno/Downloads/Documents/Logic Project` or a semester teaching folder as the textbook project root.
+**Rationale**: Michael Reno explicitly confirmed this checkout as canonical. It contains the textbook source, all four companion tools, Canvas materials, and project documentation. Its local Git reflog records commit `69a4b1c` pushed on October 22, 2026. The Downloads folder and semester folders contain separate course materials or generated outputs and do not define the textbook development root. The August course-folder merge report does not establish the textbook checkout's location.

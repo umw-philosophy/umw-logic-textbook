@@ -289,11 +289,15 @@
         the denial of one disjunct to infer the other.
       </p>
       <table xml:id="table-rule-ds">
-        <title>Disjunctive Syllogism Schema</title>
+        <title>Disjunctive Syllogism Schemas</title>
         <tabular halign="center" margins="0% 70%">
           <row><cell><m>\mathcal{A} \lor \mathcal{B}</m></cell></row>
           <row><cell bottom="medium"><m>{\text{\textasciitilde}}\mathcal{A}</m></cell></row>
           <row><cell><m>\mathcal{B}</m></cell></row>
+          <row><cell>&#xA0;</cell></row>
+          <row><cell><m>\mathcal{A} \lor \mathcal{B}</m></cell></row>
+          <row><cell bottom="medium"><m>{\text{\textasciitilde}}\mathcal{B}</m></cell></row>
+          <row><cell><m>\mathcal{A}</m></cell></row>
         </tabular>
       </table>
       <p>
@@ -309,10 +313,13 @@
         a conjunction.
       </p>
       <table xml:id="table-rule-simp">
-        <title>Simplification Schema</title>
+        <title>Simplification Schemas</title>
         <tabular halign="center" margins="0% 70%">
           <row><cell bottom="medium"><m>\mathcal{A} \cdot \mathcal{B}</m></cell></row>
           <row><cell><m>\mathcal{A}</m></cell></row>
+          <row><cell>&#xA0;</cell></row>
+          <row><cell bottom="medium"><m>\mathcal{A} \cdot \mathcal{B}</m></cell></row>
+          <row><cell><m>\mathcal{B}</m></cell></row>
         </tabular>
       </table>
       <p>

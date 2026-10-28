@@ -1,6 +1,6 @@
 # UMW Logic Textbook — Project Plan
 
-**Living document.** Last updated: July 3, 2026.
+**Living document.** Last updated: October 28, 2026.
 
 > **Status as of July 3, 2026:** The full book is drafted — all 15 chapters of Parts I–IV plus the four appendices are registered in `main.ptx` (the optional Part V quantifiers chapter is stubbed but commented out). The book was piloted in the lead author's Summer 2026 course, a year ahead of the original Summer 2027 pre-pilot. The truth table checker is built (`truthtablechecker/`). See D-033 and D-034 in `DECISIONS.md`; Section 11 reflects the revised timeline.
 
@@ -155,7 +155,9 @@ Action taken: the custom LaTeX stylesheet now enables LaTeX's tagged-PDF machine
 
 ## 8. Repository, Versioning, and License
 
-**Single monorepo** at GitHub: `umw-logic-textbook` (final org/name TBD). Public from day 1, with the understanding that drafts and in-progress work are visible.
+**Single monorepo** at GitHub: `umw-philosophy/umw-logic-textbook`. Public from day 1, with the understanding that drafts and in-progress work are visible.
+
+**Canonical local checkout**: `/Users/michaelreno/Projects/umw-logic-textbook`. This is the primary folder for the Codex project and the working directory for the agent harness, Git operations, and builds (D-036). The remote is `git@github.com:umw-philosophy/umw-logic-textbook.git`. The Downloads `Logic Project` folder holds legacy course materials and generated outputs; semester teaching folders hold separate course resources. Neither replaces the textbook checkout.
 
 **Commit access during development**: maintainers only (Reno, the named co-author, the librarian once on board, and a CS programmer when added). Issues and discussions are open. Pull requests from external contributors are not accepted until v1.0 ships, after which the contributor model opens up.
 

@@ -2,6 +2,18 @@
 
 An open educational resource for introductory logic, replacing textbooks in the tradition of Copi at the University of Mary Washington and offering an adoptable resource for other Virginia institutions and beyond.
 
+## Canonical local checkout
+
+The canonical local project folder is `/Users/michaelreno/Projects/umw-logic-textbook`.
+Its Git remote is `git@github.com:umw-philosophy/umw-logic-textbook.git`.
+Run project work, Git commands, and builds from this checkout. Configure the
+Codex project's primary folder and the agent harness working directory to use
+this path; see `AGENTS.md` for agent instructions.
+
+`/Users/michaelreno/Downloads/Documents/Logic Project` contains legacy course
+materials and generated outputs. It is not the textbook development checkout.
+Semester teaching folders are separate course resources.
+
 ## Live tools
 
 All four tools run in the browser, with no login or install, and are published on GitHub Pages:
