@@ -614,81 +614,175 @@
 
       // ── Basic: MP, MT, HS, DS only ──────────────────────────────────────
       first4: [
-        // diff 1 — one principal rule
+        // diff 1 — one principal rule (atomic and compound operands)
         { v: 'pq', p: ['p ⊃ q', 'p'], c: 'q', diff: 1 },  // MP
         { v: 'pq', p: ['p ⊃ q', '~q'], c: '~p', diff: 1 },  // MT
         { v: 'pq', p: ['p ∨ q', '~p'], c: 'q', diff: 1 },  // DS
         { v: 'pq', p: ['p ∨ q', '~q'], c: 'p', diff: 1 },  // DS
         { v: 'pqr', p: ['p ⊃ q', 'q ⊃ r'], c: 'p ⊃ r', diff: 1 },  // HS
+        { v: 'pqr', p: ['(p ∨ q) ⊃ r', 'p ∨ q'], c: 'r', diff: 1 },  // MP with disjunctive antecedent
+        { v: 'pqr', p: ['p ⊃ (q ∨ r)', '~(q ∨ r)'], c: '~p', diff: 1 },  // MT with compound consequent
+        { v: 'pqr', p: ['(p ⊃ q) ∨ r', '~(p ⊃ q)'], c: 'r', diff: 1 },  // DS eliminating conditional disjunct
+        { v: 'pqr', p: ['~p ∨ (q ⊃ r)', '~~p'], c: 'q ⊃ r', diff: 1 },  // DS yielding conditional
+        { v: 'pqrs', p: ['p ⊃ (q ∨ r)', '(q ∨ r) ⊃ s'], c: 'p ⊃ s', diff: 1 },  // HS bridged by disjunction
 
-        // diff 2 — two steps
+        // diff 2 — two steps (varied rule pairs)
         { v: 'pqr', p: ['p ⊃ q', 'q ⊃ r', 'p'], c: 'r', diff: 2 },  // HS + MP
         { v: 'pqr', p: ['p ⊃ q', 'q ⊃ r', '~r'], c: '~p', diff: 2 },  // HS + MT
         { v: 'pqr', p: ['p ∨ q', '~p', 'q ⊃ r'], c: 'r', diff: 2 },  // DS + MP
         { v: 'pqr', p: ['p ∨ q', '~q', 'p ⊃ r'], c: 'r', diff: 2 },  // DS + MP
-        { v: 'pqr', p: ['p ⊃ q', '~q', '~p ⊃ r'], c: 'r', diff: 2 },  // MT + MP (was diff 3)
+        { v: 'pqr', p: ['p ⊃ q', '~q', '~p ⊃ r'], c: 'r', diff: 2 },  // MT + MP
+        { v: 'pqr', p: ['p ⊃ (q ∨ r)', 'p', '~q'], c: 'r', diff: 2 },  // MP + DS
+        { v: 'pqr', p: ['p ⊃ (q ⊃ r)', 'p', '~r'], c: '~q', diff: 2 },  // MP + MT
+        { v: 'pqr', p: ['p ⊃ q', '~q', 'p ∨ r'], c: 'r', diff: 2 },  // MT + DS
+        { v: 'pqr', p: ['p ∨ ~q', '~p', 'r ⊃ q'], c: '~r', diff: 2 },  // DS + MT
+        { v: 'pqrs', p: ['(p ⊃ q) ∨ r', '~r', 'q ⊃ s'], c: 'p ⊃ s', diff: 2 },  // DS + HS
+        { v: 'pqrs', p: ['p ⊃ (q ⊃ r)', 'p', 'r ⊃ s'], c: 'q ⊃ s', diff: 2 },  // MP + HS
 
-        // diff 3 — three or more steps
+        // diff 3 — three steps (multi-rule interactions and two-branch structures)
         { v: 'pqrs', p: ['p ⊃ q', 'q ⊃ r', 'r ⊃ s'], c: 'p ⊃ s', diff: 3 },  // HS × 2
         { v: 'pqrs', p: ['p ⊃ q', 'q ⊃ r', 'r ⊃ s', 'p'], c: 's', diff: 3 },  // HS × 2 + MP
+        { v: 'pqrs', p: ['p ⊃ q', '~q', 'p ∨ r', 'r ⊃ s'], c: 's', diff: 3 },  // MT + DS + MP
+        { v: 'pqrs', p: ['p ∨ q', '~p', 'q ⊃ ~r', 's ⊃ r'], c: '~s', diff: 3 },  // DS + MP + MT
+        { v: 'pqrs', p: ['p ⊃ (q ⊃ r)', 'p', '~r', 'q ∨ s'], c: 's', diff: 3 },  // MP + MT + DS
+        { v: 'pqrs', p: ['(p ⊃ q) ∨ r', '~r', '~q', 'p ∨ s'], c: 's', diff: 3 },  // DS + MT + DS
+        { v: 'pqrst', p: ['p ⊃ (q ⊃ r)', '(r ⊃ s) ∨ t', 'p', '~t'], c: 'q ⊃ s', diff: 3 },  // MP + DS + HS (two branches)
+        { v: 'pqrs', p: ['p ⊃ q', 'q ⊃ r', '(p ⊃ r) ⊃ ~s', 'p ∨ s'], c: 'p', diff: 3 },  // HS + MP + DS (meta-conditional)
+
+        // diff 4 — four or more steps (convergent branches, cascaded rules, distractors)
+        { v: 'pqrst', p: ['p ⊃ (q ⊃ r)', 'p', 's ∨ ~r', '~s', 'q ∨ t'], c: 't', diff: 4 },  // MP + DS + MT + DS
+        { v: 'pqrs', p: ['(p ⊃ q) ∨ r', '(q ⊃ s) ∨ r', '~r', '~s'], c: '~p', diff: 4 },  // DS × 2 + HS + MT
+        { v: 'pqrs', p: ['p ⊃ (q ⊃ r)', 'p ∨ s', '~s', 'p ⊃ ~r'], c: '~q', diff: 4 },  // DS + MP × 2 + MT
+        { v: 'pqrst', p: ['p ∨ q', '~p', 'q ⊃ (r ∨ s)', 'q ⊃ t', 't ⊃ ~r', 'r ⊃ t'], c: 's', diff: 4 },  // DS + MP + HS + MP + DS (with distractor)
+        { v: 'pqrst', p: ['(p ⊃ q) ⊃ r', 'r ⊃ ~s', 'p ⊃ t', 't ⊃ q', 's ∨ q'], c: 'q', diff: 4 },  // HS + MP + MP + DS
       ],
 
       // ── Implication: all 8 implication rules ────────────────────────────
       all8: [
-        // diff 1
+        // diff 1 — one to two steps featuring Simp, Conj, Add, CD
         { v: 'pqrs', p: ['p ⊃ q', 'r ⊃ s', 'p ∨ r'], c: 'q ∨ s', diff: 1 },  // CD
         { v: 'pqr', p: ['p · q', 'p ⊃ r'], c: 'r', diff: 1 },  // Simp + MP
         { v: 'pqr', p: ['p · q', 'q ⊃ r'], c: 'r', diff: 1 },  // Simp + MP
+        { v: 'pqr', p: ['p · q'], c: 'p ∨ r', diff: 1 },  // Simp + Add
+        { v: 'pqr', p: ['p · ~q', 'r ⊃ q'], c: '~r', diff: 1 },  // Simp + MT
+        { v: 'pqr', p: ['~p · q', 'p ∨ r'], c: 'r', diff: 1 },  // Simp + DS
+        { v: 'pqr', p: ['p · q', 'r'], c: 'p · r', diff: 1 },  // Simp + Conj
+        { v: 'pq', p: ['p', 'q'], c: 'p · q', diff: 1 },  // Conj
 
-        // diff 2
+        // diff 2 — two to three steps
         { v: 'pqr', p: ['p', 'q', '(p · q) ⊃ r'], c: 'r', diff: 2 },  // Conj + MP
         { v: 'pqr', p: ['p', '(p ∨ q) ⊃ r'], c: 'r', diff: 2 },  // Add + MP
         { v: 'pqrs', p: ['p · q', 'p ⊃ r', 'r ⊃ s'], c: 's', diff: 2 },  // Simp + HS + MP
+        { v: 'pqrs', p: ['p ⊃ q', '~q', '(~p ∨ r) ⊃ s'], c: 's', diff: 2 },  // MT + Add + MP
+        { v: 'pqrs', p: ['(p ⊃ q) · (r ⊃ s)', 'p ∨ r'], c: 'q ∨ s', diff: 2 },  // Simp × 2 + CD
+        { v: 'pqrs', p: ['p ⊃ q', 'r ⊃ s', 'p'], c: 'q ∨ s', diff: 2 },  // MP + Add (or Add + CD)
+        { v: 'pqrs', p: ['p ⊃ (q · r)', 'q ⊃ s', 'p'], c: 's', diff: 2 },  // MP + Simp + MP
+        { v: 'pqr', p: ['(p ⊃ q) · (q ⊃ r)'], c: 'p ⊃ r', diff: 2 },  // Simp × 2 + HS
+        { v: 'pqrs', p: ['p ⊃ q', 'r ⊃ s', 'p ∨ r', '~q'], c: 's', diff: 2 },  // CD + DS
+        { v: 'pqrst', p: ['p ⊃ q', 'q ⊃ r', 's ⊃ t', 'p ∨ s'], c: 'r ∨ t', diff: 2 },  // HS + CD
+        { v: 'pqrst', p: ['p ⊃ (q ∨ r)', 'q ⊃ s', 'r ⊃ t', 'p'], c: 's ∨ t', diff: 2 },  // MP + CD
 
-        // diff 3
+        // diff 3 — three to four steps
         { v: 'pqr', p: ['p ⊃ q', 'p ⊃ r', 'p'], c: 'q · r', diff: 3 },  // MP × 2 + Conj
         { v: 'pqrs', p: ['p · q', 'p ⊃ r', 'q ⊃ s'], c: 'r · s', diff: 3 },  // Simp × 2 + MP × 2 + Conj
+        { v: 'pqrs', p: ['p ⊃ q', 'r ∨ s', '~q', '~r'], c: '~p · s', diff: 3 },  // MT + DS + Conj
+        { v: 'pqrs', p: ['p ⊃ q', '~q', '(~p · r) ⊃ s', 'r'], c: 's', diff: 3 },  // MT + Conj + MP
+        { v: 'pqrst', p: ['p · q', '(p ∨ r) ⊃ s', 's ⊃ t'], c: 't', diff: 3 },  // Simp + Add + MP + MP
+        { v: 'pqr', p: ['(p ∨ q) · ~p', 'q ⊃ r'], c: 'r', diff: 3 },  // Simp × 2 + DS + MP
 
-        // diff 4
+        // diff 4 — four or more steps
         { v: 'pqrs', p: ['p ⊃ q', 'r ⊃ s', 'p ∨ r', 'q ⊃ r'], c: 'q ∨ s', diff: 4 },  // red-herring problem
+        { v: 'pqrst', p: ['(p ⊃ q) · (r ⊃ s)', 'p ∨ r', '~q', 's ⊃ t'], c: 't', diff: 4 },  // Simp × 2 + CD + DS + MP
+        { v: 'pqrst', p: ['p · q', 'p ⊃ (r ∨ s)', '~r', '(q · s) ⊃ t'], c: 't', diff: 4 },  // Simp × 2 + MP + DS + Conj + MP
+        { v: 'pqrstu', p: ['(p ∨ q) ⊃ (r · s)', 'p', 'r ⊃ t', 's ⊃ u'], c: 't · u', diff: 4 },  // Add + MP + Simp × 2 + MP × 2 + Conj
+        { v: 'pqrstu', p: ['p ⊃ (q · r)', 'p ∨ s', '~s', '(r ∨ t) ⊃ u'], c: 'u', diff: 4 },  // DS + MP + Simp + Add + MP
       ],
 
       // ── Full: all 18 rules ───────────────────────────────────────────────
       all18: [
-        // diff 1
+        // diff 1 — one to two steps featuring replacement rules
         { v: 'pq', p: ['~~p', 'p ⊃ q'], c: 'q', diff: 1 },  // DN + MP
         { v: 'pq', p: ['~p ∨ q', 'p'], c: 'q', diff: 1 },  // Impl + MP
         { v: 'pq', p: ['~q ⊃ ~p', 'p'], c: 'q', diff: 1 },  // Trans + MP
+        { v: 'pq', p: ['~(p ∨ q)'], c: '~p', diff: 1 },  // DM + Simp
+        { v: 'pqr', p: ['(p · q) ⊃ r', 'q · p'], c: 'r', diff: 1 },  // Com + MP
+        { v: 'pqr', p: ['p ∨ (q · r)'], c: 'p ∨ q', diff: 1 },  // Dist + Simp
+        { v: 'pqr', p: ['p · (q · r)'], c: 'p · q', diff: 1 },  // Assoc + Simp
+        { v: 'pqr', p: ['(p · q) ∨ (p · r)'], c: 'p', diff: 1 },  // Dist (factor) + Simp
 
-        // diff 2
-        { v: 'pqr', p: ['~(p · q)', 'p'], c: '~q', diff: 2 },  // DM + Impl + MP
+        // diff 2 — two to three steps
+        { v: 'pq', p: ['~(p · q)', 'p'], c: '~q', diff: 2 },  // DM + Impl + MP (or DM + DN + DS)
         { v: 'pqr', p: ['~(p ∨ q)', 'r ⊃ p'], c: '~r', diff: 2 },  // DM + Simp + MT
         { v: 'pqr', p: ['p ⊃ (q ⊃ r)', 'p · q'], c: 'r', diff: 2 },  // Exp + MP
         { v: 'pq', p: ['p', 'p ⊃ (q ∨ q)'], c: 'q', diff: 2 },  // MP + Taut
         { v: 'pqr', p: ['p ∨ (q ∨ r)', '~p', '~q'], c: 'r', diff: 2 },  // DS × 2
-        { v: 'pqr', p: ['~(p ∨ q)', 'p ∨ r'], c: 'r', diff: 2 },  // DM + Simp + MP × 2
-        { v: 'pq', p: ['p ≡ q', 'p'], c: 'q', diff: 2 },  // Equiv + Simp + MP (was diff 1)
+        { v: 'pqr', p: ['~(p ∨ q)', 'p ∨ r'], c: 'r', diff: 2 },  // DM + Simp + DS
+        { v: 'pq', p: ['p ≡ q', 'p'], c: 'q', diff: 2 },  // Equiv + Simp + MP
+        { v: 'pqr', p: ['(p · q) ⊃ r', 'p', '~r'], c: '~q', diff: 2 },  // Exp + MP + MT
+        { v: 'pqr', p: ['(p ∨ q) ∨ r', '~(q ∨ r)'], c: 'p', diff: 2 },  // Assoc + DS
+        { v: 'pqr', p: ['~p · ~q', 'r ⊃ (p ∨ q)'], c: '~r', diff: 2 },  // DM (factor) + MT
+        { v: 'pqrs', p: ['(p · q) ∨ (p · r)', '(q ∨ r) ⊃ s'], c: 's', diff: 2 },  // Dist (factor) + Simp + MP
+        { v: 'pqr', p: ['p', '(q ∨ p) ⊃ r'], c: 'r', diff: 2 },  // Add + Com + MP
+        { v: 'pqr', p: ['p ∨ q', 'p ⊃ r', 'q ⊃ r'], c: 'r', diff: 2 },  // CD + Taut
 
-        // diff 3
-        { v: 'pq', p: ['p ≡ q', '~p'], c: '~q', diff: 3 },  // Equiv + Simp + Trans + MP
-        { v: 'pqrs', p: ['(p · (q ∨ r))', '(p · q) ⊃ s', '(p · r) ⊃ s'], c: 's', diff: 3 },  // Dist + CD
+        // diff 3 — three to four steps
+        { v: 'pq', p: ['p ≡ q', '~p'], c: '~q', diff: 3 },  // Equiv + Simp + MT
+        { v: 'pqrs', p: ['(p · (q ∨ r))', '(p · q) ⊃ s', '(p · r) ⊃ s'], c: 's', diff: 3 },  // Dist + CD + Taut
+        { v: 'pq', p: ['~(p ⊃ q)'], c: '~q', diff: 3 },  // Impl + DM + Simp
+        { v: 'pq', p: ['p ≡ q', '~(p · q)'], c: '~p', diff: 3 },  // Equiv (disj) + DS + Simp
+        { v: 'pqr', p: ['p ⊃ q', 'q ⊃ r', 'r ⊃ p'], c: 'p ≡ r', diff: 3 },  // HS + Conj + Equiv
+        { v: 'pqrs', p: ['p ∨ (q · r)', '~p', 'q ⊃ s'], c: 's', diff: 3 },  // Dist + Simp + DS + MP
+        { v: 'pqr', p: ['p ∨ q', 'p ⊃ r'], c: '~q ⊃ r', diff: 3 },  // Com + DN + Impl + HS
+        { v: 'pqrs', p: ['p ⊃ q', 'r ⊃ q', '(p ∨ r) · s'], c: 'q', diff: 3 },  // Simp + CD + Taut
+
+        // diff 4 — four or more steps
+        { v: 'pqrs', p: ['~(p ∨ q)', '(~p ⊃ r) · (~q ⊃ s)'], c: 'r · s', diff: 4 },  // DM + Simp × 4 + MP × 2 + Conj
+        { v: 'pqrs', p: ['~(p ⊃ q)', 'p ⊃ r', '~q ⊃ s'], c: 'r · s', diff: 4 },  // Impl + DM + Simp × 2 + DN + MP × 2 + Conj
+        { v: 'pqrst', p: ['(p ∨ q) ⊃ (r · s)', '~r', 'p ∨ t'], c: 't', diff: 4 },  // Add(~r∨~s) + DM + MT + DM + Simp + DS
+        { v: 'pqrs', p: ['p ≡ q', 'q ⊃ r', '~r', 'p ∨ s'], c: 's', diff: 4 },  // Equiv + Simp + HS + MT + DS
+        { v: 'pqrs', p: ['(p · q) ∨ (p · r)', 'q ⊃ s', 'r ⊃ s'], c: 'p · s', diff: 4 },  // Dist + Simp × 2 + CD + Taut + Conj
       ],
 
       // ── Extended: all 18 rules + CP and IP ──────────────────────────────
       extended: [
-        // diff 3 — simpler subproofs
+        // diff 1 — introductory 1–2 line subproofs
+        { v: 'pqr', p: ['(p ∨ q) ⊃ r'], c: 'p ⊃ r', diff: 1, technique: 'CP' },
+        { v: 'pqr', p: ['p ⊃ r'], c: '(p · q) ⊃ r', diff: 1, technique: 'CP' },
+        { v: 'pqr', p: ['p ⊃ (q · r)'], c: 'p ⊃ q', diff: 1, technique: 'CP' },
+        { v: 'pq', p: ['~p ⊃ q', '~q'], c: 'p', diff: 1, technique: 'IP' },
+        { v: 'pqr', p: ['p ⊃ q', 'r · ~q'], c: '~p', diff: 1, technique: 'IP' },
+
+        // diff 2 — moderate 2–3 line subproofs
+        { v: 'pqr', p: ['p ⊃ (q ∨ r)', '~q'], c: 'p ⊃ r', diff: 2, technique: 'CP' },
+        { v: 'pqrs', p: ['p ⊃ q', '(q ∨ r) ⊃ s'], c: 'p ⊃ s', diff: 2, technique: 'CP' },
+        { v: 'pqr', p: ['p ⊃ (q ⊃ r)', 'q'], c: 'p ⊃ r', diff: 2, technique: 'CP' },
+        { v: 'pqr', p: ['p ⊃ q', 'r ⊃ ~q', 'r'], c: '~p', diff: 2, technique: 'IP' },
+        { v: 'pqr', p: ['(p ∨ q) ⊃ r', '~r'], c: '~p', diff: 2, technique: 'IP' },
+        { v: 'pqr', p: ['~p ⊃ (q · r)', '~q'], c: 'p', diff: 2, technique: 'IP' },
+
+        // diff 3 — multi-step subproofs
         { v: 'pqr', p: ['p ⊃ (q ∨ r)', 'p ⊃ ~r'], c: 'p ⊃ q', diff: 3, technique: 'CP' },
         { v: 'pqr', p: ['p ⊃ q', 'p ⊃ r'], c: 'p ⊃ (q · r)', diff: 3, technique: 'CP' },
         { v: 'pqr', p: ['p ⊃ (q ∨ r)', 'p ⊃ ~q'], c: 'p ⊃ r', diff: 3, technique: 'CP' },
         { v: 'pq', p: ['p ⊃ q', 'p ⊃ ~q'], c: '~p', diff: 3, technique: 'IP' },
         { v: 'pq', p: ['~p ⊃ q', '~p ⊃ ~q'], c: 'p', diff: 3, technique: 'IP' },
+        { v: 'pqr', p: ['p ⊃ (q ⊃ r)', 'p ⊃ q'], c: 'p ⊃ r', diff: 3, technique: 'CP' },
+        { v: 'pqr', p: ['p ⊃ q', 'r ⊃ ~q'], c: 'p ⊃ ~r', diff: 3, technique: 'CP' },
+        { v: 'pqrs', p: ['p ⊃ r', 'q ⊃ s'], c: '(p · q) ⊃ (r · s)', diff: 3, technique: 'CP' },
+        { v: 'pqr', p: ['(p ⊃ q) ⊃ r', '~r'], c: 'p', diff: 3, technique: 'IP' },
+        { v: 'pqr', p: ['~p ⊃ (q ∨ r)', '~q', '~r'], c: 'p', diff: 3, technique: 'IP' },
 
-        // diff 4 — more complex subproofs
+        // diff 4 — complex subproofs, nested CP, CP as lemma, multi-branch IP
         { v: 'pqrs', p: ['p ⊃ q', 'r ⊃ s'], c: '(p ∨ r) ⊃ (q ∨ s)', diff: 4, technique: 'CP' },
         { v: 'pqrs', p: ['p ⊃ (q · r)', 'p ⊃ (r ⊃ s)'], c: 'p ⊃ (q · s)', diff: 4, technique: 'CP' },
         { v: 'pqr', p: ['p ⊃ (q · r)', 'p ⊃ ~r'], c: '~p', diff: 4, technique: 'IP' },
         { v: 'pqr', p: ['p ⊃ q', 'p ⊃ r', 'q ⊃ ~r'], c: '~p', diff: 4, technique: 'IP' },
-        { v: 'pqrs', p: ['p ⊃ (q · r)', 'p ⊃ ~q'], c: '~p', diff: 4, technique: 'IP' },
+        { v: 'pqr', p: ['p ⊃ (q · r)', 'p ⊃ ~q'], c: '~p', diff: 4, technique: 'IP' },
+        { v: 'pqrs', p: ['p ⊃ (q ∨ r)', '~r', '(p ⊃ q) ⊃ s'], c: 's', diff: 4, technique: 'CP' },
+        { v: 'pqrs', p: ['(p · q) ⊃ r', '(q ⊃ r) ⊃ s', 'p'], c: 's', diff: 4, technique: 'CP' },
+        { v: 'pqrs', p: ['p ⊃ (q ⊃ r)', 'r ⊃ s'], c: 'q ⊃ (p ⊃ s)', diff: 4, technique: 'CP' },
+        { v: 'pqrs', p: ['p ⊃ (q ∨ r)', 'q ⊃ s', 'r ⊃ s', 'p ⊃ ~s'], c: '~p', diff: 4, technique: 'IP' },
+        { v: 'pqrs', p: ['~p ⊃ (q ∨ r)', 'q ⊃ s', 'r ⊃ s', '~s'], c: 'p', diff: 4, technique: 'IP' },
       ],
     };
 
@@ -742,7 +836,7 @@
       vars.forEach((v, i) => { map[v] = atoms[i]; });
 
       function sub(f) {
-        return f.replace(/[pqrs]/g, c => (map[c] !== undefined ? map[c] : c));
+        return f.replace(/[pqrstu]/g, c => (map[c] !== undefined ? map[c] : c));
       }
 
       return {
