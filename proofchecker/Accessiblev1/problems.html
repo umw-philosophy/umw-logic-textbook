@@ -626,10 +626,10 @@
         { v: 'pqr', p: ['p ⊃ q', 'q ⊃ r', '~r'], c: '~p', diff: 2 },  // HS + MT
         { v: 'pqr', p: ['p ∨ q', '~p', 'q ⊃ r'], c: 'r', diff: 2 },  // DS + MP
         { v: 'pqr', p: ['p ∨ q', '~q', 'p ⊃ r'], c: 'r', diff: 2 },  // DS + MP
+        { v: 'pqr', p: ['p ⊃ q', '~q', '~p ⊃ r'], c: 'r', diff: 2 },  // MT + MP (was diff 3)
 
         // diff 3 — three or more steps
         { v: 'pqrs', p: ['p ⊃ q', 'q ⊃ r', 'r ⊃ s'], c: 'p ⊃ s', diff: 3 },  // HS × 2
-        { v: 'pqr', p: ['p ⊃ q', '~q', '~p ⊃ r'], c: 'r', diff: 3 },  // MT + MP
         { v: 'pqrs', p: ['p ⊃ q', 'q ⊃ r', 'r ⊃ s', 'p'], c: 's', diff: 3 },  // HS × 2 + MP
       ],
 
@@ -659,7 +659,6 @@
         { v: 'pq', p: ['~~p', 'p ⊃ q'], c: 'q', diff: 1 },  // DN + MP
         { v: 'pq', p: ['~p ∨ q', 'p'], c: 'q', diff: 1 },  // Impl + MP
         { v: 'pq', p: ['~q ⊃ ~p', 'p'], c: 'q', diff: 1 },  // Trans + MP
-        { v: 'pq', p: ['p ≡ q', 'p'], c: 'q', diff: 1 },  // Equiv + Simp + MP
 
         // diff 2
         { v: 'pqr', p: ['~(p · q)', 'p'], c: '~q', diff: 2 },  // DM + Impl + MP
@@ -668,6 +667,7 @@
         { v: 'pq', p: ['p', 'p ⊃ (q ∨ q)'], c: 'q', diff: 2 },  // MP + Taut
         { v: 'pqr', p: ['p ∨ (q ∨ r)', '~p', '~q'], c: 'r', diff: 2 },  // DS × 2
         { v: 'pqr', p: ['~(p ∨ q)', 'p ∨ r'], c: 'r', diff: 2 },  // DM + Simp + MP × 2
+        { v: 'pq', p: ['p ≡ q', 'p'], c: 'q', diff: 2 },  // Equiv + Simp + MP (was diff 1)
 
         // diff 3
         { v: 'pq', p: ['p ≡ q', '~p'], c: '~q', diff: 3 },  // Equiv + Simp + Trans + MP

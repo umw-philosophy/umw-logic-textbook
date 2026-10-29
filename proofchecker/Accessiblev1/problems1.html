@@ -421,13 +421,11 @@
         ],
         hard: [
           { p: ["A · B", "A ⊃ (C ∨ D)", "C ⊃ E", "D ⊃ F"], c: "E ∨ F" },
-          { p: ["(A · B) ⊃ C", "A", "B"], c: "C ∨ D" },
-          { p: ["A ⊃ B", "C ⊃ D", "~(B ∨ D)"], c: "~(A ∨ C)" } // Uses CD implicitly backward via MT logic if creative, or standard derivation
+          { p: ["(A · B) ⊃ C", "A", "B"], c: "C ∨ D" }
         ],
         extreme: [
           { p: ["(A ∨ B) ⊃ (C · D)", "A", "C ⊃ E", "D ⊃ F"], c: "E · F" },
-          { p: ["A ⊃ (B ⊃ C)", "A · B", "C ⊃ (D · E)"], c: "D ∨ F" },
-          { p: ["A ∨ B", "A ⊃ C", "B ⊃ D", "C ⊃ E", "D ⊃ E"], c: "E ∨ F" }
+          { p: ["A ⊃ (B ⊃ C)", "A · B", "C ⊃ (D · E)"], c: "D ∨ F" }
         ]
       },
       all18: {
@@ -449,7 +447,9 @@
         extreme: [
           { p: ["~(A · B)", "A ≡ C", "C"], c: "~B ∨ D" },
           { p: ["A ⊃ (B ⊃ C)", "~(A ⊃ C)"], c: "~B" },
-          { p: ["(A ∨ B) ⊃ (C · D)", "~C"], c: "~A · ~B" }
+          { p: ["(A ∨ B) ⊃ (C · D)", "~C"], c: "~A · ~B" },
+          { p: ["A ⊃ B", "C ⊃ D", "~(B ∨ D)"], c: "~(A ∨ C)" },  // needs DM (moved from impl8/hard)
+          { p: ["A ∨ B", "A ⊃ C", "B ⊃ D", "C ⊃ E", "D ⊃ E"], c: "E ∨ F" }  // needs Taut (moved from impl8/extreme)
         ]
       },
       cpip: {
