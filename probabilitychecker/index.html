@@ -1,0 +1,1163 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Probability Practice</title>
+  <link rel="icon" type="image/png" href="../favicon.png">
+  <style>
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+    }
+
+    :root {
+      --blue: #1e3a5f;
+      --blue-mid: #2d5a8e;
+      --blue-light: #e8eef8;
+      --green: #17633a;
+      --green-bg: #effaf3;
+      --red: #b91c1c;
+      --red-bg: #fff5f5;
+      --amber: #8a5a00;
+      --amber-bg: #fff8e5;
+      --gray-100: #f7f8fa;
+      --gray-200: #edf0f4;
+      --gray-300: #d1d9e0;
+      --gray-500: #5b6b80;
+      --gray-700: #354256;
+      --text: #172033;
+      --shadow: 0 2px 10px rgba(0, 0, 0, .10);
+      --radius: 8px;
+    }
+
+    html,
+    body {
+      margin: 0;
+      min-height: 100%;
+      font-family: system-ui, -apple-system, "Segoe UI", Helvetica, Arial, sans-serif;
+      background: var(--gray-100);
+      color: var(--text);
+      font-size: 15px;
+      line-height: 1.5;
+    }
+
+    header {
+      background: var(--blue);
+      color: white;
+      padding: 14px 22px;
+      display: flex;
+      gap: 12px;
+      align-items: baseline;
+      flex-wrap: wrap;
+    }
+
+    header h1 {
+      margin: 0;
+      font-size: 1.15rem;
+    }
+
+    header p {
+      margin: 0;
+      opacity: .85;
+      font-size: .86rem;
+    }
+
+    main {
+      width: min(1180px, calc(100% - 28px));
+      margin: 22px auto 36px;
+      display: grid;
+      gap: 16px;
+    }
+
+    .panel {
+      background: white;
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      padding: 18px;
+      min-width: 0;
+    }
+
+    .workspace {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) 330px;
+      gap: 16px;
+      align-items: start;
+    }
+
+    h2,
+    h3 {
+      margin: 0 0 12px;
+      color: var(--blue);
+    }
+
+    h2 {
+      font-size: 1rem;
+    }
+
+    h3 {
+      font-size: .88rem;
+      text-transform: uppercase;
+      letter-spacing: .05em;
+    }
+
+    p {
+      margin: 0 0 12px;
+    }
+
+    button,
+    input,
+    select {
+      font: inherit;
+    }
+
+    label,
+    .group-label,
+    legend {
+      display: block;
+      color: var(--gray-500);
+      font-size: .78rem;
+      font-weight: 700;
+      letter-spacing: .04em;
+      text-transform: uppercase;
+      margin-bottom: 5px;
+      padding: 0;
+    }
+
+    input[type="text"],
+    select {
+      width: 100%;
+      border: 1px solid var(--gray-300);
+      border-radius: 6px;
+      padding: 9px 10px;
+      background: white;
+      color: var(--text);
+    }
+
+    input:focus-visible,
+    select:focus-visible,
+    button:focus-visible,
+    summary:focus-visible {
+      outline: 3px solid #f5b301;
+      outline-offset: 2px;
+    }
+
+    .mode-tabs {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+      margin-bottom: 14px;
+    }
+
+    .tab-btn {
+      border: 1px solid var(--gray-300);
+      background: white;
+      color: var(--gray-700);
+      border-radius: 6px;
+      padding: 8px 14px;
+      font-weight: 600;
+      cursor: pointer;
+    }
+
+    .tab-btn[aria-pressed="true"] {
+      background: var(--blue);
+      border-color: var(--blue);
+      color: white;
+    }
+
+    .form-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 2fr) minmax(0, 1fr) auto auto;
+      gap: 12px;
+      align-items: end;
+    }
+
+    .btn {
+      border: 1px solid transparent;
+      border-radius: 6px;
+      padding: 9px 16px;
+      font-weight: 600;
+      cursor: pointer;
+      white-space: nowrap;
+    }
+
+    .btn-primary {
+      background: var(--blue-mid);
+      color: white;
+    }
+
+    .btn-primary:hover {
+      background: var(--blue);
+    }
+
+    .btn-secondary {
+      background: white;
+      border-color: var(--gray-300);
+      color: var(--gray-700);
+    }
+
+    .btn-secondary:hover {
+      background: var(--gray-200);
+    }
+
+    .btn:disabled {
+      opacity: .55;
+      cursor: not-allowed;
+    }
+
+    .actions {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      margin: 14px 0 12px;
+    }
+
+    .problem-text {
+      font-size: 1.06rem;
+      line-height: 1.6;
+      margin-bottom: 8px;
+    }
+
+    .problem-question {
+      font-size: 1.06rem;
+      font-weight: 600;
+      margin-bottom: 16px;
+    }
+
+    .problem-meta {
+      color: var(--gray-500);
+      font-size: .82rem;
+      margin-bottom: 10px;
+    }
+
+    fieldset {
+      border: 1px solid var(--gray-300);
+      border-radius: var(--radius);
+      padding: 14px;
+      margin: 0 0 14px;
+      min-width: 0;
+    }
+
+    fieldset legend {
+      padding: 0 6px;
+      color: var(--blue);
+    }
+
+    .field {
+      margin-bottom: 12px;
+    }
+
+    .field:last-child {
+      margin-bottom: 0;
+    }
+
+    .field-row {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 12px;
+    }
+
+    .answer-input {
+      max-width: 260px;
+    }
+
+    .hint-text {
+      color: var(--gray-500);
+      font-size: .84rem;
+      margin: 4px 0 0;
+    }
+
+    .mark {
+      display: block;
+      min-height: 1.3em;
+      font-size: .84rem;
+      font-weight: 600;
+      margin-top: 4px;
+    }
+
+    .mark.ok {
+      color: var(--green);
+    }
+
+    .mark.bad {
+      color: var(--red);
+    }
+
+    .mark.warn {
+      color: var(--amber);
+    }
+
+    input.is-ok,
+    select.is-ok {
+      border-color: var(--green);
+      background: var(--green-bg);
+    }
+
+    input.is-bad,
+    select.is-bad {
+      border-color: var(--red);
+      background: var(--red-bg);
+    }
+
+    .status {
+      border-radius: 6px;
+      padding: 10px 12px;
+      border-left: 4px solid var(--gray-300);
+      background: var(--gray-100);
+    }
+
+    .status.ok {
+      border-color: var(--green);
+      background: var(--green-bg);
+      color: var(--green);
+    }
+
+    .status.bad {
+      border-color: var(--red);
+      background: var(--red-bg);
+      color: var(--red);
+    }
+
+    .status.warn {
+      border-color: var(--amber);
+      background: var(--amber-bg);
+      color: var(--amber);
+    }
+
+    .status p:last-child,
+    .status ul:last-child {
+      margin-bottom: 0;
+    }
+
+    .status ul {
+      margin: 6px 0 0;
+      padding-left: 20px;
+    }
+
+    .solution {
+      margin-top: 14px;
+      border-top: 1px solid var(--gray-300);
+      padding-top: 14px;
+    }
+
+    .solution ol {
+      margin: 0;
+      padding-left: 22px;
+    }
+
+    .solution li {
+      margin-bottom: 6px;
+    }
+
+    /* Bayes' theorem as a fill-in fraction */
+    .formula {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      flex-wrap: wrap;
+      font-size: 1.05rem;
+    }
+
+    .formula .lhs {
+      font-weight: 600;
+      white-space: nowrap;
+    }
+
+    .fraction {
+      display: inline-flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .fraction .bar {
+      align-self: stretch;
+      border-top: 2px solid var(--text);
+    }
+
+    .fraction .line {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+
+    .term {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      white-space: nowrap;
+    }
+
+    .slot {
+      width: 86px !important;
+      text-align: center;
+      padding: 7px 6px !important;
+    }
+
+    .op {
+      font-weight: 700;
+    }
+
+    .line-mark {
+      font-size: .84rem;
+      font-weight: 600;
+      min-width: 1.2em;
+    }
+
+    .line-mark.ok {
+      color: var(--green);
+    }
+
+    .line-mark.bad {
+      color: var(--red);
+    }
+
+    details {
+      border-top: 1px solid var(--gray-200);
+      padding: 10px 0;
+    }
+
+    details:first-of-type {
+      border-top: 0;
+      padding-top: 0;
+    }
+
+    summary {
+      cursor: pointer;
+      font-weight: 600;
+      color: var(--blue);
+    }
+
+    details ul {
+      margin: 8px 0 0;
+      padding-left: 20px;
+    }
+
+    details li {
+      margin-bottom: 5px;
+    }
+
+    .tally {
+      font-size: .92rem;
+    }
+
+    .sr-only {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      padding: 0;
+      margin: -1px;
+      overflow: hidden;
+      clip: rect(0, 0, 0, 0);
+      white-space: nowrap;
+      border: 0;
+    }
+
+    [hidden] {
+      display: none !important;
+    }
+
+    @media (max-width: 860px) {
+
+      .workspace,
+      .form-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .field-row {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      main {
+        width: min(100% - 18px, 1180px);
+      }
+
+      .slot {
+        width: 72px !important;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <header>
+    <h1>Probability Practice</h1>
+    <p>Chapter 14: Probability</p>
+  </header>
+
+  <main>
+    <section class="panel" aria-labelledby="setup-title">
+      <h2 id="setup-title">Choose a Problem</h2>
+
+      <div class="mode-tabs" role="group" aria-label="Problem set">
+        <button class="tab-btn" type="button" data-mode="basic" aria-pressed="true">Basic Rules</button>
+        <button class="tab-btn" type="button" data-mode="conditional" aria-pressed="false">Conditional Probability</button>
+        <button class="tab-btn" type="button" data-mode="bayes" aria-pressed="false">Bayes' Theorem</button>
+      </div>
+
+      <div class="form-grid">
+        <div>
+          <label for="kind-select">Problem type</label>
+          <select id="kind-select"></select>
+        </div>
+        <div>
+          <label for="seed-input">Problem number</label>
+          <input type="text" id="seed-input" inputmode="numeric" autocomplete="off" aria-describedby="seed-help">
+        </div>
+        <button class="btn btn-secondary" type="button" id="load-problem">Load Number</button>
+        <button class="btn btn-primary" type="button" id="new-problem">New Problem</button>
+      </div>
+      <p class="hint-text" id="seed-help">Each problem has a number. Anyone who loads the same set, type, and number gets the same problem.</p>
+    </section>
+
+    <div class="workspace">
+      <section class="panel" aria-labelledby="problem-title">
+        <h2 id="problem-title" tabindex="-1">Problem</h2>
+        <p class="problem-meta" id="problem-meta"></p>
+        <p class="problem-text" id="problem-text"></p>
+        <p class="problem-question" id="problem-question"></p>
+
+        <!-- Basic rules and conditional probability -->
+        <form id="simple-form" novalidate>
+          <div class="field">
+            <label for="rule-select">Which rule does the work?</label>
+            <select id="rule-select" aria-describedby="rule-mark"></select>
+            <span class="mark" id="rule-mark"></span>
+          </div>
+          <div class="field">
+            <label for="answer-input">Your answer</label>
+            <input type="text" id="answer-input" class="answer-input" autocomplete="off" spellcheck="false"
+              aria-describedby="answer-help answer-mark">
+            <p class="hint-text" id="answer-help">A fraction (3/13), a decimal with at least two places (0.23), or a percent (23%).</p>
+            <span class="mark" id="answer-mark"></span>
+          </div>
+          <div class="actions">
+            <button class="btn btn-primary" type="submit">Check Answer</button>
+            <button class="btn btn-secondary" type="button" data-show-solution disabled>Show Solution</button>
+          </div>
+        </form>
+
+        <!-- Bayes' theorem -->
+        <form id="bayes-form" novalidate hidden>
+          <fieldset>
+            <legend>Step 1: Name the hypothesis and the evidence</legend>
+            <div class="field">
+              <label for="h-select">H, the hypothesis whose probability the question asks for</label>
+              <select id="h-select" aria-describedby="h-mark"></select>
+              <span class="mark" id="h-mark"></span>
+            </div>
+            <div class="field">
+              <label for="e-select">E, the evidence that was observed</label>
+              <select id="e-select" aria-describedby="e-mark"></select>
+              <span class="mark" id="e-mark"></span>
+            </div>
+          </fieldset>
+
+          <fieldset>
+            <legend>Step 2: Find the four ingredients</legend>
+            <p class="hint-text" style="margin:0 0 10px">Enter each as a decimal, fraction, or percent. Not every one is stated outright in the problem.</p>
+            <div class="field-row">
+              <div class="field">
+                <label for="in-pH">P(H)</label>
+                <input type="text" id="in-pH" autocomplete="off" spellcheck="false" aria-describedby="mark-pH">
+                <span class="mark" id="mark-pH"></span>
+              </div>
+              <div class="field">
+                <label for="in-pNotH">P(~H)</label>
+                <input type="text" id="in-pNotH" autocomplete="off" spellcheck="false" aria-describedby="mark-pNotH">
+                <span class="mark" id="mark-pNotH"></span>
+              </div>
+              <div class="field">
+                <label for="in-pEH">P(E | H)</label>
+                <input type="text" id="in-pEH" autocomplete="off" spellcheck="false" aria-describedby="mark-pEH">
+                <span class="mark" id="mark-pEH"></span>
+              </div>
+              <div class="field">
+                <label for="in-pENotH">P(E | ~H)</label>
+                <input type="text" id="in-pENotH" autocomplete="off" spellcheck="false" aria-describedby="mark-pENotH">
+                <span class="mark" id="mark-pENotH"></span>
+              </div>
+            </div>
+          </fieldset>
+
+          <fieldset>
+            <legend>Step 3: Put the numbers into Bayes' theorem</legend>
+            <p class="hint-text" style="margin:0 0 12px">Type a number into each of the six blanks. The top is one product. The bottom is two products added together.</p>
+            <div class="formula">
+              <span class="lhs">P(H | E) =</span>
+              <span class="fraction" role="group" aria-label="Bayes' theorem as a fraction">
+                <span class="line">
+                  <input type="text" class="slot" id="slot-n1" autocomplete="off" aria-label="Top of the fraction, first number">
+                  <span class="op" aria-hidden="true">×</span>
+                  <input type="text" class="slot" id="slot-n2" autocomplete="off" aria-label="Top of the fraction, second number">
+                  <span class="line-mark" id="mark-top"></span>
+                </span>
+                <span class="bar" aria-hidden="true"></span>
+                <span class="line">
+                  <span class="term">
+                  <span aria-hidden="true">(</span>
+                  <input type="text" class="slot" id="slot-d1" autocomplete="off" aria-label="Bottom of the fraction, first product, first number">
+                  <span class="op" aria-hidden="true">×</span>
+                  <input type="text" class="slot" id="slot-d2" autocomplete="off" aria-label="Bottom of the fraction, first product, second number">
+                  <span aria-hidden="true">)</span>
+                  <span class="line-mark" id="mark-d-a"></span>
+                  </span>
+                  <span class="op" aria-hidden="true">+</span>
+                  <span class="term">
+                  <span aria-hidden="true">(</span>
+                  <input type="text" class="slot" id="slot-d3" autocomplete="off" aria-label="Bottom of the fraction, second product, first number">
+                  <span class="op" aria-hidden="true">×</span>
+                  <input type="text" class="slot" id="slot-d4" autocomplete="off" aria-label="Bottom of the fraction, second product, second number">
+                  <span aria-hidden="true">)</span>
+                  <span class="line-mark" id="mark-d-b"></span>
+                  </span>
+                </span>
+              </span>
+            </div>
+            <span class="mark" id="formula-mark"></span>
+          </fieldset>
+
+          <fieldset>
+            <legend>Step 4: Compute</legend>
+            <div class="field">
+              <label for="in-post">P(H | E)</label>
+              <input type="text" id="in-post" class="answer-input" autocomplete="off" spellcheck="false"
+                aria-describedby="post-help mark-post">
+              <p class="hint-text" id="post-help">Round to three decimal places (0.090), or give a percent (9.0%).</p>
+              <span class="mark" id="mark-post"></span>
+            </div>
+          </fieldset>
+
+          <div class="actions">
+            <button class="btn btn-primary" type="submit">Check My Work</button>
+            <button class="btn btn-secondary" type="button" data-show-solution disabled>Show Solution</button>
+          </div>
+        </form>
+
+        <div id="feedback" class="status" role="status" aria-live="polite">Work the problem, then check it.</div>
+
+        <div class="solution" id="solution" hidden>
+          <h3 id="solution-title" tabindex="-1">Worked solution</h3>
+          <ol id="solution-steps"></ol>
+        </div>
+      </section>
+
+      <aside class="panel" aria-labelledby="ref-title">
+        <h2 id="ref-title">Reference</h2>
+        <details>
+          <summary>The basic rules</summary>
+          <ul>
+            <li>Equally likely outcomes: P(A) = favorable outcomes ÷ total outcomes.</li>
+            <li>Complement rule: P(not A) = 1 − P(A).</li>
+            <li>Addition rule (mutually exclusive): P(A or B) = P(A) + P(B).</li>
+            <li>General addition rule: P(A or B) = P(A) + P(B) − P(A and B).</li>
+          </ul>
+        </details>
+        <details>
+          <summary>Conditional probability</summary>
+          <ul>
+            <li>P(A | B) = P(A and B) ÷ P(B).</li>
+            <li>Multiplication rule: P(A and B) = P(A) · P(B | A).</li>
+            <li>Independent events: P(A and B) = P(A) · P(B).</li>
+            <li>“At least one” is the complement of “none.”</li>
+          </ul>
+        </details>
+        <details>
+          <summary>Bayes' theorem</summary>
+          <ul>
+            <li>P(H | E) = P(E | H) · P(H) ÷ [ P(E | H) · P(H) + P(E | ~H) · P(~H) ].</li>
+            <li>P(H) is the prior, or base rate. P(~H) = 1 − P(H).</li>
+            <li>P(E | H) is how often the evidence appears when H is true.</li>
+            <li>P(E | ~H) is how often the evidence appears when H is false.</li>
+          </ul>
+        </details>
+        <details>
+          <summary>A standard deck of cards</summary>
+          <ul>
+            <li>52 cards in four suits of 13: hearts and diamonds (red), clubs and spades (black).</li>
+            <li>Each suit has an ace, the numbers 2 through 10, and three face cards: jack, queen, king.</li>
+            <li>So there are 12 face cards and 4 cards of each rank.</li>
+          </ul>
+        </details>
+        <details open>
+          <summary>This session</summary>
+          <p class="tally" id="tally" style="margin-top:8px">No problems checked yet.</p>
+        </details>
+      </aside>
+    </div>
+
+    <div id="live-region" class="sr-only" role="status" aria-live="polite" aria-atomic="true"></div>
+  </main>
+
+  <script src="probability-bank.js"></script>
+  <script src="probability-core.js"></script>
+  <script>
+    (function () {
+      'use strict';
+      const core = window.ProbCore;
+      const $ = (id) => document.getElementById(id);
+
+      const MODE_NAMES = { basic: 'Basic Rules', conditional: 'Conditional Probability', bayes: "Bayes' Theorem" };
+      const app = {
+        mode: 'basic',
+        kind: 'any',
+        problem: null,
+        attempts: 0,
+        solved: false,
+        revealed: false,
+        tally: { solved: 0, firstTry: 0, revealed: 0 },
+      };
+
+      const BAYES_FIELDS = [
+        { key: 'pH', label: 'P(H)' },
+        { key: 'pNotH', label: 'P(~H)' },
+        { key: 'pEH', label: 'P(E | H)' },
+        { key: 'pENotH', label: 'P(E | ~H)' },
+      ];
+      const SLOTS = ['n1', 'n2', 'd1', 'd2', 'd3', 'd4'];
+
+      // ---------- setup controls ----------
+      function fillKinds() {
+        const sel = $('kind-select');
+        sel.innerHTML = '';
+        const any = document.createElement('option');
+        any.value = 'any';
+        any.textContent = app.mode === 'bayes' ? 'Either level' : 'Any type (mixed)';
+        sel.appendChild(any);
+        core.KINDS[app.mode].forEach(function (k) {
+          const o = document.createElement('option');
+          o.value = k.id; o.textContent = k.label;
+          sel.appendChild(o);
+        });
+        sel.value = core.KINDS[app.mode].some((k) => k.id === app.kind) ? app.kind : 'any';
+        app.kind = sel.value;
+      }
+
+      function setMode(mode) {
+        app.mode = mode;
+        document.querySelectorAll('.tab-btn').forEach(function (b) {
+          b.setAttribute('aria-pressed', String(b.dataset.mode === mode));
+        });
+        fillKinds();
+      }
+
+      function randomSeed() { return 1000 + Math.floor(Math.random() * 99000); }
+
+      function loadProblem(seed, moveFocus) {
+        app.problem = core.makeProblem(app.mode, app.kind, seed);
+        app.attempts = 0; app.solved = false; app.revealed = false;
+        $('seed-input').value = String(seed);
+        try { history.replaceState(null, '', '#' + app.mode + '-' + app.kind + '-' + seed); } catch (e) { /* file:// */ }
+        render();
+        if (moveFocus) $('problem-title').focus();
+        announce('New problem loaded. ' + MODE_NAMES[app.mode] + ', problem ' + seed + '.');
+      }
+
+      // ---------- rendering ----------
+      function render() {
+        const p = app.problem;
+        const isBayes = p.mode === 'bayes';
+        $('problem-title').textContent = MODE_NAMES[p.mode] + ': Problem ' + p.seed;
+        const kindLabel = core.KINDS[p.mode].find((k) => k.id === p.kind).label;
+        $('problem-meta').textContent = app.kind === 'any' ? 'Mixed practice' : kindLabel;
+        $('problem-text').textContent = p.text;
+        $('problem-question').textContent = isBayes ? p.question : '';
+        $('problem-question').hidden = !isBayes;
+        $('simple-form').hidden = isBayes;
+        $('bayes-form').hidden = !isBayes;
+        $('solution').hidden = true;
+        $('solution-steps').innerHTML = '';
+        document.querySelectorAll('[data-show-solution]').forEach((b) => { b.disabled = true; });
+        setFeedback('', isBayes
+          ? 'Fill in every step, then check your work. You can check as often as you like.'
+          : 'Choose the rule, enter your answer, then check it.');
+
+        if (isBayes) {
+          ['h-select', 'e-select'].forEach(function (id) {
+            const sel = $(id);
+            sel.innerHTML = '<option value="">Choose a statement</option>';
+            p.statements.forEach(function (s) {
+              const o = document.createElement('option');
+              o.value = s.key; o.textContent = s.text.charAt(0).toUpperCase() + s.text.slice(1);
+              sel.appendChild(o);
+            });
+            clearMark(sel, id === 'h-select' ? 'h-mark' : 'e-mark');
+          });
+          BAYES_FIELDS.forEach(function (f) { $('in-' + f.key).value = ''; clearMark($('in-' + f.key), 'mark-' + f.key); });
+          SLOTS.forEach(function (s) { const el = $('slot-' + s); el.value = ''; el.classList.remove('is-ok', 'is-bad'); });
+          ['mark-top', 'mark-d-a', 'mark-d-b'].forEach((id) => { $(id).textContent = ''; $(id).className = 'line-mark'; });
+          $('formula-mark').textContent = ''; $('formula-mark').className = 'mark';
+          $('in-post').value = ''; clearMark($('in-post'), 'mark-post');
+        } else {
+          const sel = $('rule-select');
+          sel.innerHTML = '<option value="">Choose a rule</option>';
+          core.RULES[p.mode].forEach(function (r) {
+            const o = document.createElement('option');
+            o.value = r.id; o.textContent = r.label;
+            sel.appendChild(o);
+          });
+          clearMark(sel, 'rule-mark');
+          $('answer-input').value = '';
+          clearMark($('answer-input'), 'answer-mark');
+        }
+      }
+
+      function clearMark(input, markId) {
+        input.classList.remove('is-ok', 'is-bad');
+        input.removeAttribute('aria-invalid');
+        const m = $(markId);
+        m.textContent = ''; m.className = 'mark';
+      }
+
+      /** state: 'ok' | 'bad' | 'warn' */
+      function setMark(input, markId, state, text) {
+        input.classList.toggle('is-ok', state === 'ok');
+        input.classList.toggle('is-bad', state === 'bad');
+        if (state === 'bad') input.setAttribute('aria-invalid', 'true'); else input.removeAttribute('aria-invalid');
+        const m = $(markId);
+        m.className = 'mark ' + state;
+        m.textContent = (state === 'ok' ? '✓ ' : state === 'bad' ? '✗ ' : '! ') + text;
+      }
+
+      function setFeedback(state, text, items) {
+        const box = $('feedback');
+        box.className = 'status' + (state ? ' ' + state : '');
+        box.innerHTML = '';
+        const p = document.createElement('p');
+        p.textContent = text;
+        box.appendChild(p);
+        if (items && items.length) {
+          const ul = document.createElement('ul');
+          items.forEach(function (t) { const li = document.createElement('li'); li.textContent = t; ul.appendChild(li); });
+          box.appendChild(ul);
+        }
+      }
+
+      function announce(text) {
+        const live = $('live-region');
+        live.textContent = '';
+        window.setTimeout(function () { live.textContent = text; }, 60);
+      }
+
+      // Completion jingle: the same rising arpeggio (C-E-G-C) the proof checker
+      // plays, synthesized with the Web Audio API so there is no audio file to
+      // host. It plays once per problem, when the whole problem is first
+      // correct. That always follows a click or Enter, so browsers allow it.
+      let audioCtx = null;
+      function playJingle() {
+        try {
+          const AC = window.AudioContext || window.webkitAudioContext;
+          if (!AC) return;
+          if (!audioCtx) audioCtx = new AC();
+          if (audioCtx.state === 'suspended') audioCtx.resume();
+          const t0 = audioCtx.currentTime + 0.05;
+          const notes = [523.25, 659.25, 783.99, 1046.5]; // C5 E5 G5 C6
+          notes.forEach(function (freq, i) {
+            const start = t0 + i * 0.11;
+            const len = i === notes.length - 1 ? 0.6 : 0.18;
+            const osc = audioCtx.createOscillator();
+            const gain = audioCtx.createGain();
+            osc.type = 'triangle';
+            osc.frequency.setValueAtTime(freq, start);
+            gain.gain.setValueAtTime(0.0001, start);
+            gain.gain.exponentialRampToValueAtTime(0.18, start + 0.02);
+            gain.gain.exponentialRampToValueAtTime(0.0001, start + len);
+            osc.connect(gain).connect(audioCtx.destination);
+            osc.start(start);
+            osc.stop(start + len + 0.05);
+          });
+        } catch (e) { /* sound is optional; never block the checker */ }
+      }
+
+      function afterCheck(allCorrect) {
+        app.attempts += 1;
+        document.querySelectorAll('[data-show-solution]').forEach((b) => { b.disabled = false; });
+        if (allCorrect && !app.solved) {
+          app.solved = true;
+          playJingle();
+          if (!app.revealed) {
+            app.tally.solved += 1;
+            if (app.attempts === 1) app.tally.firstTry += 1;
+          }
+          showSolution(false);
+        }
+        renderTally();
+      }
+
+      function renderTally() {
+        const t = app.tally;
+        if (!t.solved && !t.revealed) { $('tally').textContent = 'No problems checked yet.'; return; }
+        $('tally').textContent = 'Solved: ' + t.solved + ' (' + t.firstTry + ' on the first check). ' +
+          'Solutions viewed before solving: ' + t.revealed + '.';
+      }
+
+      function showSolution(moveFocus) {
+        const p = app.problem;
+        const ol = $('solution-steps');
+        ol.innerHTML = '';
+        p.solution.forEach(function (line) {
+          const li = document.createElement('li'); li.textContent = line; ol.appendChild(li);
+        });
+        if (p.mode !== 'bayes') {
+          const rule = core.RULES[p.mode].find((r) => r.id === p.rule);
+          const li = document.createElement('li');
+          li.textContent = 'Rule used: ' + rule.label + '.';
+          ol.insertBefore(li, ol.firstChild);
+        }
+        $('solution').hidden = false;
+        if (moveFocus) $('solution-title').focus();
+      }
+
+      // ---------- checking: basic and conditional ----------
+      function checkSimple() {
+        const p = app.problem;
+        const ruleSel = $('rule-select');
+        const input = $('answer-input');
+        const notes = [];
+        let ruleOk = false;
+        let ansOk = false;
+
+        if (!ruleSel.value) {
+          setMark(ruleSel, 'rule-mark', 'bad', 'Choose a rule.');
+        } else if (ruleSel.value === p.rule) {
+          ruleOk = true;
+          setMark(ruleSel, 'rule-mark', 'ok', 'Right rule.');
+        } else if (p.altRules.indexOf(ruleSel.value) >= 0) {
+          ruleOk = true;
+          const intended = core.RULES[p.mode].find((r) => r.id === p.rule).label;
+          setMark(ruleSel, 'rule-mark', 'ok', 'That works too. The quicker route here is: ' + intended + '.');
+        } else {
+          setMark(ruleSel, 'rule-mark', 'bad', 'A different rule fits this problem. Look at how the events are related.');
+        }
+
+        const parsed = core.parseAnswer(input.value);
+        if (!parsed.ok) {
+          setMark(input, 'answer-mark', 'bad', parsed.error === 'empty' ? 'Enter an answer.' : parsed.error);
+        } else {
+          const result = core.compare(parsed, p.value);
+          if (result === 'correct') {
+            ansOk = true;
+            setMark(input, 'answer-mark', 'ok', 'Correct. The exact answer is ' + p.answerText + '.');
+          } else if (result === 'imprecise') {
+            setMark(input, 'answer-mark', 'warn', 'You are in the right place, but that is rounded too far. Give a fraction or more decimal places.');
+          } else {
+            setMark(input, 'answer-mark', 'bad', 'Not yet.' + simpleHint(p, parsed.value));
+          }
+        }
+
+        if (ruleOk && ansOk) {
+          setFeedback('ok', 'Correct. The worked solution is below.');
+          announce('Correct.');
+        } else {
+          if (!ruleOk) notes.push('Check the rule.');
+          if (!ansOk) notes.push('Check the answer.');
+          setFeedback('bad', 'Not quite. ' + notes.join(' ') + ' You can try again or show the solution.');
+          announce('Not quite. ' + notes.join(' '));
+        }
+        afterCheck(ruleOk && ansOk);
+      }
+
+      function simpleHint(p, v) {
+        const near = (a, b) => Math.abs(a - b) < 0.0006;
+        if (near(v, 1 - p.value)) return ' That is the probability of the complement.';
+        if (p.rule === 'genadd' && v > p.value) return ' Check whether you counted the overlap twice.';
+        if (p.rule === 'atleast') return ' Find the probability of “none” first, then subtract from 1.';
+        if (p.rule === 'mult') return ' Does the first event change the probability of the second?';
+        return '';
+      }
+
+      // ---------- checking: Bayes ----------
+      function checkBayes() {
+        const p = app.problem;
+        const v = p.values;
+        const notes = [];
+        let ok = true;
+
+        // Step 1
+        const hSel = $('h-select'); const eSel = $('e-select');
+        if (hSel.value === 'H') setMark(hSel, 'h-mark', 'ok', 'Right.');
+        else {
+          ok = false;
+          setMark(hSel, 'h-mark', 'bad', !hSel.value ? 'Choose a statement.'
+            : hSel.value === 'E' || hSel.value === 'notE' ? 'That is about the evidence. H is what the question asks the probability of.'
+              : 'The question asks whether this is true, not whether it is false.');
+        }
+        if (eSel.value === 'E') setMark(eSel, 'e-mark', 'ok', 'Right.');
+        else {
+          ok = false;
+          setMark(eSel, 'e-mark', 'bad', !eSel.value ? 'Choose a statement.'
+            : eSel.value === 'H' || eSel.value === 'notH' ? 'That is the hypothesis in question. E is what was actually observed.'
+              : 'Look at what the question says was observed.');
+        }
+        if (hSel.value !== 'H' || eSel.value !== 'E') notes.push('Step 1: check H and E.');
+
+        // Step 2
+        let step2 = true;
+        BAYES_FIELDS.forEach(function (f) {
+          const input = $('in-' + f.key);
+          const parsed = core.parseAnswer(input.value);
+          if (!parsed.ok) {
+            step2 = false;
+            setMark(input, 'mark-' + f.key, 'bad', parsed.error === 'empty' ? 'Missing.' : parsed.error);
+          } else if (core.sameValue(parsed, v[f.key])) {
+            setMark(input, 'mark-' + f.key, 'ok', 'Right.');
+          } else {
+            step2 = false;
+            setMark(input, 'mark-' + f.key, 'bad', ingredientHint(p, f.key, parsed.value));
+          }
+        });
+        if (!step2) { ok = false; notes.push('Step 2: check the ingredients marked ✗.'); }
+
+        // Step 3
+        const slots = {};
+        let blanks = 0;
+        SLOTS.forEach(function (s) {
+          const parsed = core.parseAnswer($('slot-' + s).value);
+          slots[s] = parsed.ok ? parsed.value : null;
+          if (!parsed.ok) blanks += 1;
+        });
+        const fr = core.checkBayesFormula(v, slots);
+        markLine('mark-top', ['n1', 'n2'], fr.numerator);
+        markLine('mark-d-a', ['d1', 'd2'], fr.termA);
+        markLine('mark-d-b', ['d3', 'd4'], fr.termB);
+        const fm = $('formula-mark');
+        if (fr.all) {
+          fm.className = 'mark ok'; fm.textContent = '✓ The formula is set up correctly.';
+        } else {
+          ok = false;
+          fm.className = 'mark bad';
+          fm.textContent = '✗ ' + (blanks ? 'Fill in all six blanks with numbers. ' : '') +
+            (fr.hint || 'Each product pairs a “given” probability with the prior it is given on.');
+          notes.push('Step 3: check the products marked ✗.');
+        }
+
+        // Step 4
+        const postInput = $('in-post');
+        const parsedPost = core.parseAnswer(postInput.value);
+        if (!parsedPost.ok) {
+          ok = false;
+          setMark(postInput, 'mark-post', 'bad', parsedPost.error === 'empty' ? 'Missing.' : parsedPost.error);
+          notes.push('Step 4: enter P(H | E).');
+        } else {
+          const result = core.compare(parsedPost, v.posterior);
+          if (result === 'correct') {
+            setMark(postInput, 'mark-post', 'ok', 'Correct: P(H | E) ≈ ' + v.posterior.toFixed(3) + '.');
+          } else if (result === 'imprecise') {
+            ok = false;
+            setMark(postInput, 'mark-post', 'warn', 'Close, but rounded too far. Give three decimal places.');
+            notes.push('Step 4: give more decimal places.');
+          } else {
+            ok = false;
+            setMark(postInput, 'mark-post', 'bad', core.diagnoseBayes(v, parsedPost.value) ||
+              (fr.all ? 'The setup is right, so recheck the arithmetic.' : 'Not yet.'));
+            notes.push('Step 4: check the final answer.');
+          }
+        }
+
+        if (ok) {
+          setFeedback('ok', 'All four steps are correct. The worked solution is below.');
+          announce('All four steps are correct.');
+        } else {
+          setFeedback('bad', 'Not finished yet.', notes);
+          announce('Not finished yet. ' + notes.join(' '));
+        }
+        afterCheck(ok);
+      }
+
+      function markLine(markId, slotIds, good) {
+        const m = $(markId);
+        m.className = 'line-mark ' + (good ? 'ok' : 'bad');
+        m.textContent = good ? '✓' : '✗';
+        const where = markId === 'mark-top' ? 'Top product' : markId === 'mark-d-a' ? 'First bottom product' : 'Second bottom product';
+        m.setAttribute('aria-label', where + (good ? ' correct' : ' not correct'));
+        m.setAttribute('role', 'img');
+        slotIds.forEach(function (s) {
+          const el = $('slot-' + s);
+          el.classList.toggle('is-ok', good);
+          el.classList.toggle('is-bad', !good);
+        });
+      }
+
+      function ingredientHint(p, key, value) {
+        const v = p.values;
+        const eq = (a, b) => Math.abs(a - b) < 1e-9;
+        if (key === 'pH') {
+          if (eq(value, v.pNotH)) return 'That is P(~H).';
+          if (eq(value, v.pEH) || eq(value, v.pENotH)) return 'That is a rate for the evidence. P(H) is the base rate of the hypothesis.';
+          if (eq(value, v.pH * 100) || eq(value * 100, v.pH)) return 'Check the decimal point.';
+          return 'Look for how common H is before any evidence comes in.';
+        }
+        if (key === 'pNotH') {
+          if (eq(value, v.pH)) return 'That is P(H). Use the complement rule.';
+          return 'P(~H) = 1 − P(H).';
+        }
+        if (key === 'pEH') {
+          if (eq(value, v.pENotH)) return 'That is P(E | ~H). The two “given” rates are switched.';
+          if (eq(value, p.given.complementTp)) return 'That is how often the evidence fails to appear when H is true. P(E | H) is its complement.';
+          if (eq(value, p.given.complementFp)) return 'That rate is about cases where H is false.';
+          if (eq(value, v.pH)) return 'That is the prior, P(H).';
+          return 'Look for how often the evidence appears when H is true.';
+        }
+        if (eq(value, v.pEH)) return 'That is P(E | H). The two “given” rates are switched.';
+        if (eq(value, p.given.complementFp)) return 'That is how often the evidence does not appear when H is false. P(E | ~H) is its complement.';
+        if (eq(value, p.given.complementTp)) return 'That rate is about cases where H is true.';
+        if (eq(value, v.pNotH)) return 'That is P(~H).';
+        return 'Look for how often the evidence appears when H is false.';
+      }
+
+      // ---------- events ----------
+      document.querySelectorAll('.tab-btn').forEach(function (b) {
+        b.addEventListener('click', function () {
+          if (b.dataset.mode === app.mode) return;
+          setMode(b.dataset.mode);
+          loadProblem(randomSeed(), false);
+        });
+      });
+      $('kind-select').addEventListener('change', function () {
+        app.kind = $('kind-select').value;
+        loadProblem(randomSeed(), false);
+      });
+      $('new-problem').addEventListener('click', function () { loadProblem(randomSeed(), true); });
+      function loadTyped() {
+        const n = parseInt($('seed-input').value.replace(/\D/g, ''), 10);
+        if (!n || n < 1 || n > 99999999) {
+          setFeedback('warn', 'Enter a whole number from 1 to 99999999 as the problem number.');
+          announce('Enter a whole number as the problem number.');
+          return;
+        }
+        loadProblem(n, true);
+      }
+      $('load-problem').addEventListener('click', loadTyped);
+      $('seed-input').addEventListener('keydown', function (e) { if (e.key === 'Enter') { e.preventDefault(); loadTyped(); } });
+      $('simple-form').addEventListener('submit', function (e) { e.preventDefault(); checkSimple(); });
+      $('bayes-form').addEventListener('submit', function (e) { e.preventDefault(); checkBayes(); });
+      document.querySelectorAll('[data-show-solution]').forEach(function (b) {
+        b.addEventListener('click', function () {
+          if (!app.solved && !app.revealed) { app.revealed = true; app.tally.revealed += 1; renderTally(); }
+          showSolution(true);
+        });
+      });
+
+      // ---------- start ----------
+      (function start() {
+        const m = (location.hash || '').match(/^#(basic|conditional|bayes)-([a-z0-9]+)-(\d{1,8})$/);
+        if (m) {
+          setMode(m[1]);
+          if (m[2] === 'any' || core.KINDS[m[1]].some((k) => k.id === m[2])) {
+            app.kind = m[2]; $('kind-select').value = m[2];
+          }
+          loadProblem(parseInt(m[3], 10), false);
+        } else {
+          setMode('basic');
+          loadProblem(randomSeed(), false);
+        }
+      })();
+    })();
+  </script>
+</body>
+
+</html>
