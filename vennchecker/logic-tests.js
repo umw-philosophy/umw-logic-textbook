@@ -124,14 +124,46 @@ assert.equal(
   false
 );
 
-const barbara = solveDiagram(THREE_REGIONS, [
+const universalPremises = solveDiagram(THREE_REGIONS, [
   { form: 'all', subject: 'M', predicate: 'P' },
   { form: 'all', subject: 'S', predicate: 'M' },
 ]);
-assert.deepEqual(ids(projectToConclusion(barbara).shaded), ['S']);
+assert.deepEqual(ids(projectToConclusion(universalPremises).shaded), ['S']);
 assert.equal(
-  conclusionWarranted(projectToConclusion(barbara), solveDiagram(TWO_REGIONS, [{ form: 'all', subject: 'S', predicate: 'P' }])),
+  conclusionWarranted(projectToConclusion(universalPremises), solveDiagram(TWO_REGIONS, [{ form: 'all', subject: 'S', predicate: 'P' }])),
   true
 );
+
+// Cross-check the diagram method against brute force for all 256 forms (modern interpretation):
+// a form is valid when no assignment of empty/occupied to the seven bounded regions makes
+// both premises true and the conclusion false.
+function holds(prop, occupied) {
+  const translated = regionsForProposition(THREE_REGIONS, prop);
+  if (translated.x.length) return translated.x[0].some(id => occupied.has(id));
+  return translated.shade.every(id => !occupied.has(id));
+}
+
+const FORMS = ['all', 'no', 'some', 'some-not'];
+const BOUNDED = THREE_REGIONS.filter(r => r.id !== 'O').map(r => r.id);
+let validCount = 0;
+for (const majorForm of FORMS) for (const minorForm of FORMS) for (const conclusionForm of FORMS) {
+  for (const [majorS, majorP] of [['M', 'P'], ['P', 'M']]) for (const [minorS, minorP] of [['S', 'M'], ['M', 'S']]) {
+    const major = { form: majorForm, subject: majorS, predicate: majorP };
+    const minor = { form: minorForm, subject: minorS, predicate: minorP };
+    const conclusion = { form: conclusionForm, subject: 'S', predicate: 'P' };
+    let bruteValid = true;
+    for (let bitsMask = 0; bitsMask < 128 && bruteValid; bitsMask++) {
+      const occupied = new Set(BOUNDED.filter((id, i) => (bitsMask >> i) & 1));
+      if (holds(major, occupied) && holds(minor, occupied) && !holds(conclusion, occupied)) bruteValid = false;
+    }
+    const diagramValid = conclusionWarranted(
+      projectToConclusion(solveDiagram(THREE_REGIONS, [major, minor])),
+      solveDiagram(TWO_REGIONS, [conclusion])
+    );
+    assert.equal(diagramValid, bruteValid, `${majorForm} ${majorS}-${majorP}; ${minorForm} ${minorS}-${minorP}; ${conclusionForm} S-P`);
+    if (bruteValid) validCount++;
+  }
+}
+assert.equal(validCount, 15);
 
 console.log('Venn checker logic tests passed.');

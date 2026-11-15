@@ -1,0 +1,812 @@
+[
+  {
+    "id": "ear-infection-tympanometer",
+    "topic": "medical",
+    "setup": "A pediatrician places a small probe against a child's ear canal during a clinic visit. The device measures eardrum movement and flags fluid behind the eardrum.",
+    "H": "the child has fluid in the middle ear",
+    "notH": "the child does not have fluid in the middle ear",
+    "E": "the device flags fluid behind the eardrum",
+    "notE": "the device does not flag fluid behind the eardrum",
+    "prior": "Of all children checked at the clinic for ear pain, {p} have fluid in the middle ear.",
+    "tp": "When a child has fluid in the middle ear, the device flags fluid {tp} of the time.",
+    "fn": "When a child has fluid in the middle ear, the device fails to flag fluid {fn} of the time.",
+    "fp": "When a child has no fluid in the middle ear, the device flags fluid anyway {fp} of the time.",
+    "tn": "When a child has no fluid in the middle ear, the device correctly flags no fluid {tn} of the time.",
+    "question": "The device flags fluid behind a child's eardrum. What is the probability that the child actually has fluid in the middle ear?",
+    "priorRange": [
+      0.1,
+      0.3
+    ],
+    "tpRange": [
+      0.8,
+      0.95
+    ],
+    "fpRange": [
+      0.05,
+      0.15
+    ]
+  },
+  {
+    "id": "sleep-apnea-finger-monitor",
+    "topic": "medical",
+    "setup": "A patient wears a clip-on finger sensor overnight at home to screen for breathing pauses during sleep. The monitor flags the night as abnormal when blood oxygen drops repeatedly.",
+    "H": "the patient has obstructive sleep apnea",
+    "notH": "the patient does not have obstructive sleep apnea",
+    "E": "the overnight monitor flags the night as abnormal",
+    "notE": "the overnight monitor does not flag the night as abnormal",
+    "prior": "Of all patients sent home with this overnight monitor, {p} have obstructive sleep apnea.",
+    "tp": "When a patient has obstructive sleep apnea, the monitor flags the night as abnormal {tp} of the time.",
+    "fn": "When a patient has obstructive sleep apnea, the monitor fails to flag the night as abnormal {fn} of the time.",
+    "fp": "When a patient does not have obstructive sleep apnea, the monitor flags the night as abnormal anyway {fp} of the time.",
+    "tn": "When a patient does not have obstructive sleep apnea, the monitor correctly leaves the night unflagged {tn} of the time.",
+    "question": "The overnight monitor flags a patient's night as abnormal. What is the probability that the patient actually has obstructive sleep apnea?",
+    "priorRange": [
+      0.1,
+      0.3
+    ],
+    "tpRange": [
+      0.8,
+      0.94
+    ],
+    "fpRange": [
+      0.05,
+      0.18
+    ]
+  },
+  {
+    "id": "glaucoma-eye-puff-test",
+    "topic": "medical",
+    "setup": "An optometrist blows a gentle puff of air at a patient's eye to measure pressure inside the eyeball. The machine prints a warning when the pressure reading is high.",
+    "H": "the patient has elevated eye pressure",
+    "notH": "the patient has normal eye pressure",
+    "E": "the machine prints a high-pressure warning",
+    "notE": "the machine does not print a high-pressure warning",
+    "prior": "Of all adults screened during routine eye exams, {p} have elevated eye pressure.",
+    "tp": "When a patient has elevated eye pressure, the machine prints a warning {tp} of the time.",
+    "fn": "When a patient has elevated eye pressure, the machine fails to print a warning {fn} of the time.",
+    "fp": "When a patient has normal eye pressure, the machine prints a warning anyway {fp} of the time.",
+    "tn": "When a patient has normal eye pressure, the machine correctly prints no warning {tn} of the time.",
+    "question": "The machine prints a high-pressure warning for a patient. What is the probability that the patient actually has elevated eye pressure?",
+    "priorRange": [
+      0.02,
+      0.08
+    ],
+    "tpRange": [
+      0.8,
+      0.92
+    ],
+    "fpRange": [
+      0.04,
+      0.12
+    ]
+  },
+  {
+    "id": "celiac-antibody-screen",
+    "topic": "medical",
+    "setup": "A clinic runs a blood screen on patients who report frequent stomach cramps after eating wheat. The lab marks the test positive when antibody levels exceed a threshold.",
+    "H": "the patient has celiac disease",
+    "notH": "the patient does not have celiac disease",
+    "E": "the lab marks the antibody test positive",
+    "notE": "the lab marks the antibody test negative",
+    "prior": "Of all patients tested for frequent stomach cramps after eating wheat, {p} have celiac disease.",
+    "tp": "When a patient has celiac disease, the lab marks the test positive {tp} of the time.",
+    "fn": "When a patient has celiac disease, the lab marks the test negative {fn} of the time.",
+    "fp": "When a patient does not have celiac disease, the lab marks the test positive anyway {fp} of the time.",
+    "tn": "When a patient does not have celiac disease, the lab correctly marks the test negative {tn} of the time.",
+    "question": "The lab marks a patient's antibody test positive. What is the probability that the patient actually has celiac disease?",
+    "priorRange": [
+      0.02,
+      0.1
+    ],
+    "tpRange": [
+      0.85,
+      0.96
+    ],
+    "fpRange": [
+      0.02,
+      0.08
+    ]
+  },
+  {
+    "id": "dining-hall-tray-sensor",
+    "topic": "campus",
+    "setup": "A conveyor belt in the campus dining hall carries dirty trays into the dish room. An overhead sensor sounds a chime when it detects a metal fork or spoon still sitting on a tray.",
+    "H": "a piece of silverware is still on the tray",
+    "notH": "no silverware is on the tray",
+    "E": "the overhead sensor sounds a chime",
+    "notE": "the overhead sensor stays quiet",
+    "prior": "Of all trays placed on the dish return belt, {p} still have a piece of silverware on them.",
+    "tp": "When a tray still has silverware on it, the sensor sounds a chime {tp} of the time.",
+    "fn": "When a tray still has silverware on it, the sensor fails to sound a chime {fn} of the time.",
+    "fp": "When a tray has no silverware on it, the sensor sounds a chime anyway {fp} of the time.",
+    "tn": "When a tray has no silverware on it, the sensor correctly stays quiet {tn} of the time.",
+    "question": "The overhead sensor sounds a chime as a tray passes. What is the probability that a piece of silverware is actually still on the tray?",
+    "priorRange": [
+      0.02,
+      0.1
+    ],
+    "tpRange": [
+      0.85,
+      0.96
+    ],
+    "fpRange": [
+      0.02,
+      0.08
+    ]
+  },
+  {
+    "id": "dorm-laundry-washer-app",
+    "topic": "campus",
+    "setup": "A residence hall laundry room connects each washing machine to a campus phone app. The app marks a machine as finished when vibration drops below a threshold.",
+    "H": "the wash cycle has finished",
+    "notH": "the wash cycle is still running",
+    "E": "the app marks the washing machine as finished",
+    "notE": "the app shows the washing machine as still running",
+    "prior": "When a student checks the app during laundry hours, the chance that the wash cycle has finished is {p}.",
+    "tp": "When the wash cycle has finished, the app marks the machine as finished {tp} of the time.",
+    "fn": "When the wash cycle has finished, the app fails to mark the machine as finished {fn} of the time.",
+    "fp": "When the wash cycle is still running, the app marks the machine as finished anyway {fp} of the time.",
+    "tn": "When the wash cycle is still running, the app correctly shows the machine as running {tn} of the time.",
+    "question": "The app marks a student's washing machine as finished. What is the probability that the wash cycle has actually finished?",
+    "priorRange": [
+      0.15,
+      0.4
+    ],
+    "tpRange": [
+      0.85,
+      0.96
+    ],
+    "fpRange": [
+      0.03,
+      0.12
+    ]
+  },
+  {
+    "id": "chemistry-fume-hood-alarm",
+    "topic": "campus",
+    "setup": "A teaching laboratory has airflow sensors inside its glass fume hoods. A red light flashes on the hood frame when exhaust airflow drops too low to clear chemical vapors safely.",
+    "H": "the fume hood has low exhaust airflow",
+    "notH": "the fume hood has normal exhaust airflow",
+    "E": "the red light flashes on the hood frame",
+    "notE": "the red light stays off on the hood frame",
+    "prior": "Of all lab sessions held in the building, {p} involve a fume hood with low exhaust airflow.",
+    "tp": "When a fume hood has low exhaust airflow, the red light flashes {tp} of the time.",
+    "fn": "When a fume hood has low exhaust airflow, the red light fails to flash {fn} of the time.",
+    "fp": "When a fume hood has normal exhaust airflow, the red light flashes anyway {fp} of the time.",
+    "tn": "When a fume hood has normal exhaust airflow, the red light correctly stays off {tn} of the time.",
+    "question": "The red light flashes on a fume hood during lab. What is the probability that the fume hood actually has low exhaust airflow?",
+    "priorRange": [
+      0.005,
+      0.03
+    ],
+    "tpRange": [
+      0.88,
+      0.98
+    ],
+    "fpRange": [
+      0.02,
+      0.08
+    ]
+  },
+  {
+    "id": "lecture-hall-microphone-light",
+    "topic": "campus",
+    "setup": "A campus media desk monitors wireless lapel microphones in large lecture halls. An indicator on the control panel turns amber when a microphone battery is running low.",
+    "H": "the microphone battery is nearly dead",
+    "notH": "the microphone battery has plenty of charge",
+    "E": "the panel indicator turns amber",
+    "notE": "the panel indicator stays green",
+    "prior": "At the start of a morning class, the chance that a lapel microphone battery is nearly dead is {p}.",
+    "tp": "When a microphone battery is nearly dead, the panel indicator turns amber {tp} of the time.",
+    "fn": "When a microphone battery is nearly dead, the panel indicator stays green {fn} of the time.",
+    "fp": "When a microphone battery has plenty of charge, the panel indicator turns amber anyway {fp} of the time.",
+    "tn": "When a microphone battery has plenty of charge, the panel indicator stays green {tn} of the time.",
+    "question": "The panel indicator turns amber before a lecture. What is the probability that the microphone battery is actually nearly dead?",
+    "priorRange": [
+      0.02,
+      0.1
+    ],
+    "tpRange": [
+      0.8,
+      0.95
+    ],
+    "fpRange": [
+      0.02,
+      0.09
+    ]
+  },
+  {
+    "id": "laptop-overheat-sensor",
+    "topic": "technology",
+    "setup": "A laptop motherboard uses a thermal sensor near the processor to protect the chip from heat damage. The system pops up a cooling warning when it reads an unsafe temperature.",
+    "H": "the processor is overheating",
+    "notH": "the processor is within its safe temperature range",
+    "E": "the system pops up a cooling warning",
+    "notE": "the system does not pop up a cooling warning",
+    "prior": "During a heavy workload, the chance that a laptop processor is overheating is {p}.",
+    "tp": "When the processor is overheating, the system pops up a cooling warning {tp} of the time.",
+    "fn": "When the processor is overheating, the system fails to pop up a cooling warning {fn} of the time.",
+    "fp": "When the processor is within its safe temperature range, the system pops up a cooling warning anyway {fp} of the time.",
+    "tn": "When the processor is within its safe temperature range, the system correctly shows no warning {tn} of the time.",
+    "question": "The system pops up a cooling warning on a laptop. What is the probability that the processor is actually overheating?",
+    "priorRange": [
+      0.01,
+      0.08
+    ],
+    "tpRange": [
+      0.85,
+      0.97
+    ],
+    "fpRange": [
+      0.02,
+      0.08
+    ]
+  },
+  {
+    "id": "server-disk-failure-monitor",
+    "topic": "technology",
+    "setup": "A data center runs diagnostic software on its storage drives every night. The software flags a drive when it detects unusual read delays.",
+    "H": "the storage drive is beginning to fail",
+    "notH": "the storage drive is healthy",
+    "E": "the software flags the storage drive",
+    "notE": "the software does not flag the storage drive",
+    "prior": "Of all storage drives checked during the nightly scan, {p} are beginning to fail.",
+    "tp": "When a storage drive is beginning to fail, the software flags it {tp} of the time.",
+    "fn": "When a storage drive is beginning to fail, the software fails to flag it {fn} of the time.",
+    "fp": "When a storage drive is healthy, the software flags it anyway {fp} of the time.",
+    "tn": "When a storage drive is healthy, the software correctly leaves it unflagged {tn} of the time.",
+    "question": "The diagnostic software flags a storage drive during the nightly scan. What is the probability that the drive is actually beginning to fail?",
+    "priorRange": [
+      0.002,
+      0.02
+    ],
+    "tpRange": [
+      0.8,
+      0.94
+    ],
+    "fpRange": [
+      0.01,
+      0.06
+    ]
+  },
+  {
+    "id": "code-plagiarism-scanner",
+    "topic": "technology",
+    "setup": "A computer science course runs student programming assignments through a similarity checker. The checker highlights a submission when its structure closely matches another file in the archive.",
+    "H": "the program was copied from another student",
+    "notH": "the program was written independently",
+    "E": "the checker highlights the submission",
+    "notE": "the checker does not highlight the submission",
+    "prior": "Of all programs submitted for this assignment, {p} were copied from another student.",
+    "tp": "When a program was copied from another student, the checker highlights it {tp} of the time.",
+    "fn": "When a program was copied from another student, the checker fails to highlight it {fn} of the time.",
+    "fp": "When a program was written independently, the checker highlights it anyway {fp} of the time.",
+    "tn": "When a program was written independently, the checker correctly leaves it unhighlighted {tn} of the time.",
+    "question": "The similarity checker highlights a student's submission. What is the probability that the program was actually copied from another student?",
+    "priorRange": [
+      0.02,
+      0.12
+    ],
+    "tpRange": [
+      0.8,
+      0.95
+    ],
+    "fpRange": [
+      0.03,
+      0.12
+    ]
+  },
+  {
+    "id": "email-attachment-virus-scan",
+    "topic": "technology",
+    "setup": "A company mail server scans every incoming spreadsheet attachment before delivering it. The scanner quarantines an attachment when it finds code that resembles a malicious macro.",
+    "H": "the attachment contains a malicious macro",
+    "notH": "the attachment is harmless",
+    "E": "the scanner quarantines the attachment",
+    "notE": "the scanner delivers the attachment normally",
+    "prior": "Of all spreadsheet attachments sent to the company, {p} contain a malicious macro.",
+    "tp": "When an attachment contains a malicious macro, the scanner quarantines it {tp} of the time.",
+    "fn": "When an attachment contains a malicious macro, the scanner delivers it normally {fn} of the time.",
+    "fp": "When an attachment is harmless, the scanner quarantines it anyway {fp} of the time.",
+    "tn": "When an attachment is harmless, the scanner correctly delivers it normally {tn} of the time.",
+    "question": "The scanner quarantines an incoming spreadsheet attachment. What is the probability that the attachment actually contains a malicious macro?",
+    "priorRange": [
+      0.002,
+      0.02
+    ],
+    "tpRange": [
+      0.88,
+      0.98
+    ],
+    "fpRange": [
+      0.01,
+      0.05
+    ]
+  },
+  {
+    "id": "weigh-station-axle-sensor",
+    "topic": "legal",
+    "setup": "A highway weigh station has plates in the pavement that measure truck weight as trucks roll through at low speed. A signal light directs the driver to pull over when the reading exceeds the legal limit.",
+    "H": "the truck is over the legal weight limit",
+    "notH": "the truck is within the legal weight limit",
+    "E": "the signal light directs the truck to pull over",
+    "notE": "the signal light waves the truck through",
+    "prior": "Of all freight trucks that roll across the pavement plates, {p} are over the legal weight limit.",
+    "tp": "When a truck is over the legal weight limit, the signal light directs it to pull over {tp} of the time.",
+    "fn": "When a truck is over the legal weight limit, the signal light waves it through {fn} of the time.",
+    "fp": "When a truck is within the legal weight limit, the signal light directs it to pull over anyway {fp} of the time.",
+    "tn": "When a truck is within the legal weight limit, the signal light waves it through {tn} of the time.",
+    "question": "The signal light directs a freight truck to pull over. What is the probability that the truck is actually over the legal weight limit?",
+    "priorRange": [
+      0.02,
+      0.1
+    ],
+    "tpRange": [
+      0.85,
+      0.96
+    ],
+    "fpRange": [
+      0.02,
+      0.08
+    ]
+  },
+  {
+    "id": "courthouse-bag-xray",
+    "topic": "legal",
+    "setup": "Visitors entering a county courthouse place their bags on an X-ray belt. The screening machine outlines dark metal shapes that resemble a pocketknife.",
+    "H": "the bag contains a pocketknife",
+    "notH": "the bag does not contain a pocketknife",
+    "E": "the machine outlines a knife shape in the bag",
+    "notE": "the machine does not outline a knife shape in the bag",
+    "prior": "Of all visitor bags screened at the courthouse door, {p} contain a pocketknife.",
+    "tp": "When a bag contains a pocketknife, the machine outlines a knife shape {tp} of the time.",
+    "fn": "When a bag contains a pocketknife, the machine fails to outline a knife shape {fn} of the time.",
+    "fp": "When a bag does not contain a pocketknife, the machine outlines a knife shape anyway {fp} of the time.",
+    "tn": "When a bag does not contain a pocketknife, the machine correctly outlines no knife shape {tn} of the time.",
+    "question": "The machine outlines a knife shape in a visitor's bag. What is the probability that the bag actually contains a pocketknife?",
+    "priorRange": [
+      0.005,
+      0.03
+    ],
+    "tpRange": [
+      0.85,
+      0.97
+    ],
+    "fpRange": [
+      0.02,
+      0.09
+    ]
+  },
+  {
+    "id": "arson-accelerant-sniffer",
+    "topic": "legal",
+    "setup": "A fire investigator waves an electronic vapor detector over charred floorboards after a warehouse fire. The detector beeps when it senses hydrocarbon fumes from a liquid accelerant.",
+    "H": "liquid accelerant is present in the floorboards",
+    "notH": "no liquid accelerant is present in the floorboards",
+    "E": "the vapor detector beeps over the floorboards",
+    "notE": "the vapor detector stays silent over the floorboards",
+    "prior": "Of all warehouse floor samples tested after fires in the district, {p} contain liquid accelerant.",
+    "tp": "When liquid accelerant is present, the vapor detector beeps {tp} of the time.",
+    "fn": "When liquid accelerant is present, the vapor detector fails to beep {fn} of the time.",
+    "fp": "When no liquid accelerant is present, the vapor detector beeps anyway {fp} of the time.",
+    "tn": "When no liquid accelerant is present, the vapor detector correctly stays silent {tn} of the time.",
+    "question": "The vapor detector beeps over a sample of charred floorboards. What is the probability that liquid accelerant is actually present?",
+    "priorRange": [
+      0.05,
+      0.2
+    ],
+    "tpRange": [
+      0.8,
+      0.94
+    ],
+    "fpRange": [
+      0.04,
+      0.15
+    ]
+  },
+  {
+    "id": "harbor-bilge-oil-sensor",
+    "topic": "legal",
+    "setup": "A harbor patrol boat dips an optical probe into water pumped from the bilge of commercial vessels. The probe flashes a warning when it detects petroleum sheen above the legal limit.",
+    "H": "the vessel is discharging oily bilge water",
+    "notH": "the vessel is discharging clean bilge water",
+    "E": "the optical probe flashes a warning",
+    "notE": "the optical probe does not flash a warning",
+    "prior": "Of all commercial vessels inspected in the harbor, {p} are discharging oily bilge water.",
+    "tp": "When a vessel is discharging oily bilge water, the probe flashes a warning {tp} of the time.",
+    "fn": "When a vessel is discharging oily bilge water, the probe fails to flash a warning {fn} of the time.",
+    "fp": "When a vessel is discharging clean bilge water, the probe flashes a warning anyway {fp} of the time.",
+    "tn": "When a vessel is discharging clean bilge water, the probe correctly flashes no warning {tn} of the time.",
+    "question": "The optical probe flashes a warning during a vessel inspection. What is the probability that the vessel is actually discharging oily bilge water?",
+    "priorRange": [
+      0.01,
+      0.05
+    ],
+    "tpRange": [
+      0.85,
+      0.96
+    ],
+    "fpRange": [
+      0.02,
+      0.08
+    ]
+  },
+  {
+    "id": "basement-water-leak-puck",
+    "topic": "everyday",
+    "setup": "A homeowner places a small battery-powered moisture puck on the floor beside the water heater. The puck sounds a buzzer when water bridges its metal contacts, though heavy dampness can also trigger it.",
+    "H": "the water heater is leaking onto the floor",
+    "notH": "the water heater is not leaking onto the floor",
+    "E": "the moisture puck sounds its buzzer",
+    "notE": "the moisture puck stays silent",
+    "prior": "In any given week, the chance that the water heater leaks onto the floor is {p}.",
+    "tp": "When the water heater is leaking, the moisture puck sounds its buzzer {tp} of the time.",
+    "fn": "When the water heater is leaking, the moisture puck fails to sound its buzzer {fn} of the time.",
+    "fp": "When the water heater is not leaking, the moisture puck sounds its buzzer anyway {fp} of the time.",
+    "tn": "When the water heater is not leaking, the moisture puck correctly stays silent {tn} of the time.",
+    "question": "The moisture puck sounds its buzzer in the basement. What is the probability that the water heater is actually leaking?",
+    "priorRange": [
+      0.002,
+      0.02
+    ],
+    "tpRange": [
+      0.9,
+      0.98
+    ],
+    "fpRange": [
+      0.01,
+      0.06
+    ]
+  },
+  {
+    "id": "tire-pressure-dash-icon",
+    "topic": "everyday",
+    "setup": "A passenger car uses wheel sensors to monitor air pressure in its tires. An amber icon lights up on the dashboard when a tire drops below the recommended pressure, or sometimes when cold air causes a brief dip.",
+    "H": "a tire has a slow puncture",
+    "notH": "none of the tires has a slow puncture",
+    "E": "the tire-pressure icon lights up on the dashboard",
+    "notE": "the tire-pressure icon stays off on the dashboard",
+    "prior": "At the start of a morning commute, the chance that a tire on the car has a slow puncture is {p}.",
+    "tp": "When a tire has a slow puncture, the dashboard icon lights up {tp} of the time.",
+    "fn": "When a tire has a slow puncture, the dashboard icon fails to light up {fn} of the time.",
+    "fp": "When no tire has a slow puncture, the dashboard icon lights up anyway {fp} of the time.",
+    "tn": "When no tire has a slow puncture, the dashboard icon correctly stays off {tn} of the time.",
+    "question": "The tire-pressure icon lights up on the dashboard. What is the probability that a tire actually has a slow puncture?",
+    "priorRange": [
+      0.01,
+      0.05
+    ],
+    "tpRange": [
+      0.85,
+      0.96
+    ],
+    "fpRange": [
+      0.03,
+      0.12
+    ]
+  },
+  {
+    "id": "stud-finder-wall-beep",
+    "topic": "everyday",
+    "setup": "A resident slides an electronic stud finder across a living room wall before hanging a heavy mirror. The tool lights up when it senses dense material behind the drywall.",
+    "H": "there is a wooden stud behind that spot on the wall",
+    "notH": "there is hollow space behind that spot on the wall",
+    "E": "the stud finder lights up",
+    "notE": "the stud finder stays dark",
+    "prior": "Of all spots tested along a wall, {p} have a wooden stud behind them.",
+    "tp": "When a wooden stud is behind the spot, the stud finder lights up {tp} of the time.",
+    "fn": "When a wooden stud is behind the spot, the stud finder stays dark {fn} of the time.",
+    "fp": "When hollow space is behind the spot, the stud finder lights up anyway {fp} of the time.",
+    "tn": "When hollow space is behind the spot, the stud finder stays dark {tn} of the time.",
+    "question": "The stud finder lights up at a spot on the wall. What is the probability that there is actually a wooden stud behind that spot?",
+    "priorRange": [
+      0.08,
+      0.2
+    ],
+    "tpRange": [
+      0.8,
+      0.95
+    ],
+    "fpRange": [
+      0.04,
+      0.15
+    ]
+  },
+  {
+    "id": "meat-thermometer-chime",
+    "topic": "everyday",
+    "setup": "A home cook inserts a digital probe thermometer into a roast in the oven. The thermometer unit on the counter chimes when the probe tip reaches the target temperature.",
+    "H": "the center of the roast is fully cooked",
+    "notH": "the center of the roast is still undercooked",
+    "E": "the thermometer unit chimes",
+    "notE": "the thermometer unit does not chime",
+    "prior": "At the time the cook checks the oven, the chance that the center of the roast is fully cooked is {p}.",
+    "tp": "When the center of the roast is fully cooked, the thermometer chimes {tp} of the time.",
+    "fn": "When the center of the roast is fully cooked, the thermometer fails to chime {fn} of the time.",
+    "fp": "When the center of the roast is still undercooked, the thermometer chimes anyway {fp} of the time.",
+    "tn": "When the center of the roast is still undercooked, the thermometer correctly stays silent {tn} of the time.",
+    "question": "The thermometer unit chimes on the counter. What is the probability that the center of the roast is actually fully cooked?",
+    "priorRange": [
+      0.2,
+      0.5
+    ],
+    "tpRange": [
+      0.85,
+      0.96
+    ],
+    "fpRange": [
+      0.05,
+      0.15
+    ]
+  },
+  {
+    "id": "tennis-line-camera",
+    "topic": "sports",
+    "setup": "A tennis court uses high-speed cameras to track where each serve lands near the service line. An automated speaker calls the ball out when the system calculates that the ball landed beyond the line.",
+    "H": "the serve landed outside the service box",
+    "notH": "the serve touched the line or landed inside the service box",
+    "E": "the automated speaker calls the ball out",
+    "notE": "the automated speaker stays silent",
+    "prior": "Of all fast serves aimed near the back of the service box, {p} land outside the box.",
+    "tp": "When a serve lands outside the box, the speaker calls it out {tp} of the time.",
+    "fn": "When a serve lands outside the box, the speaker stays silent {fn} of the time.",
+    "fp": "When a serve touches the line or lands inside, the speaker calls it out anyway {fp} of the time.",
+    "tn": "When a serve touches the line or lands inside, the speaker stays silent {tn} of the time.",
+    "question": "The automated speaker calls a serve out. What is the probability that the serve actually landed outside the service box?",
+    "priorRange": [
+      0.15,
+      0.4
+    ],
+    "tpRange": [
+      0.9,
+      0.98
+    ],
+    "fpRange": [
+      0.01,
+      0.05
+    ]
+  },
+  {
+    "id": "fencing-vest-touch-light",
+    "topic": "sports",
+    "setup": "In foil fencing, each competitor wears a metallic vest wired to a scoring box. A colored lamp on the box lights up when the tip of an opponent's blade presses against the vest.",
+    "H": "the blade tip landed squarely on the target vest",
+    "notH": "the blade tip missed the target vest",
+    "E": "the scoring lamp lights up",
+    "notE": "the scoring lamp stays dark",
+    "prior": "Of all lunges made during a bout, {p} land squarely on the opponent's target vest.",
+    "tp": "When a lunge lands squarely on the target vest, the scoring lamp lights up {tp} of the time.",
+    "fn": "When a lunge lands squarely on the target vest, the scoring lamp fails to light up {fn} of the time.",
+    "fp": "When a lunge misses the target vest, the scoring lamp lights up anyway {fp} of the time.",
+    "tn": "When a lunge misses the target vest, the scoring lamp correctly stays dark {tn} of the time.",
+    "question": "The scoring lamp lights up after a lunge. What is the probability that the blade tip actually landed squarely on the target vest?",
+    "priorRange": [
+      0.15,
+      0.4
+    ],
+    "tpRange": [
+      0.88,
+      0.97
+    ],
+    "fpRange": [
+      0.02,
+      0.08
+    ]
+  },
+  {
+    "id": "swimming-relay-touchpad",
+    "topic": "sports",
+    "setup": "A competitive swimming pool has electronic touchpads on the wall and sensors on the starting blocks. The timing console flags a relay exchange when a swimmer leaves the block before the incoming teammate touches the wall.",
+    "H": "the outgoing swimmer left the block too early",
+    "notH": "the outgoing swimmer waited for the wall touch",
+    "E": "the timing console flags the relay exchange",
+    "notE": "the timing console clears the relay exchange",
+    "prior": "Of all relay exchanges in a college swim meet, {p} have an outgoing swimmer who leaves the block too early.",
+    "tp": "When an outgoing swimmer leaves too early, the console flags the exchange {tp} of the time.",
+    "fn": "When an outgoing swimmer leaves too early, the console clears the exchange {fn} of the time.",
+    "fp": "When an outgoing swimmer waits for the wall touch, the console flags the exchange anyway {fp} of the time.",
+    "tn": "When an outgoing swimmer waits for the wall touch, the console clears the exchange {tn} of the time.",
+    "question": "The timing console flags a relay exchange. What is the probability that the outgoing swimmer actually left the block too early?",
+    "priorRange": [
+      0.01,
+      0.05
+    ],
+    "tpRange": [
+      0.85,
+      0.96
+    ],
+    "fpRange": [
+      0.01,
+      0.05
+    ]
+  },
+  {
+    "id": "beehive-mite-acoustic-sensor",
+    "topic": "nature",
+    "setup": "A beekeeper places a small microphone inside a hive to listen for changes in the colony's hum. The device sends an alert when the sound pattern matches a hive infested with parasitic mites.",
+    "H": "the hive has a mite infestation",
+    "notH": "the hive is free of mites",
+    "E": "the acoustic device sends an infestation alert",
+    "notE": "the acoustic device sends no alert",
+    "prior": "Of all hives inspected in the county each summer, {p} have a mite infestation.",
+    "tp": "When a hive has a mite infestation, the device sends an alert {tp} of the time.",
+    "fn": "When a hive has a mite infestation, the device fails to send an alert {fn} of the time.",
+    "fp": "When a hive is free of mites, the device sends an alert anyway {fp} of the time.",
+    "tn": "When a hive is free of mites, the device correctly sends no alert {tn} of the time.",
+    "question": "The acoustic device sends an infestation alert for a hive. What is the probability that the hive actually has a mite infestation?",
+    "priorRange": [
+      0.08,
+      0.25
+    ],
+    "tpRange": [
+      0.75,
+      0.9
+    ],
+    "fpRange": [
+      0.05,
+      0.18
+    ]
+  },
+  {
+    "id": "grain-silo-moisture-probe",
+    "topic": "nature",
+    "setup": "A farm cooperative stores harvested wheat in tall metal silos equipped with humidity probes. A control panel warns the operator when a pocket of damp grain starts to heat up and mold.",
+    "H": "mold is growing in the stored grain",
+    "notH": "the stored grain is dry and sound",
+    "E": "the control panel shows a mold warning",
+    "notE": "the control panel shows no warning",
+    "prior": "Of all grain silos checked during late summer, {p} have mold growing in the stored grain.",
+    "tp": "When mold is growing in the grain, the control panel shows a warning {tp} of the time.",
+    "fn": "When mold is growing in the grain, the control panel fails to show a warning {fn} of the time.",
+    "fp": "When the grain is dry and sound, the control panel shows a warning anyway {fp} of the time.",
+    "tn": "When the grain is dry and sound, the control panel correctly shows no warning {tn} of the time.",
+    "question": "The control panel shows a mold warning for a silo. What is the probability that mold is actually growing in the stored grain?",
+    "priorRange": [
+      0.02,
+      0.1
+    ],
+    "tpRange": [
+      0.8,
+      0.94
+    ],
+    "fpRange": [
+      0.03,
+      0.12
+    ]
+  },
+  {
+    "id": "river-buoy-algae-sensor",
+    "topic": "nature",
+    "setup": "An environmental agency anchors a floating sensor buoy in a reservoir during warm weather. The buoy transmits an alert when water fluorescence points to a harmful algae bloom.",
+    "H": "a harmful algae bloom is forming in the reservoir",
+    "notH": "no harmful algae bloom is forming in the reservoir",
+    "E": "the buoy transmits an algae alert",
+    "notE": "the buoy does not transmit an algae alert",
+    "prior": "In a given summer week, the chance that a harmful algae bloom is forming in the reservoir is {p}.",
+    "tp": "When a harmful algae bloom is forming, the buoy transmits an alert {tp} of the time.",
+    "fn": "When a harmful algae bloom is forming, the buoy fails to transmit an alert {fn} of the time.",
+    "fp": "When no harmful algae bloom is forming, the buoy transmits an alert anyway {fp} of the time.",
+    "tn": "When no harmful algae bloom is forming, the buoy correctly transmits no alert {tn} of the time.",
+    "question": "The buoy transmits an algae alert from the reservoir. What is the probability that a harmful algae bloom is actually forming?",
+    "priorRange": [
+      0.03,
+      0.15
+    ],
+    "tpRange": [
+      0.8,
+      0.95
+    ],
+    "fpRange": [
+      0.04,
+      0.14
+    ]
+  },
+  {
+    "id": "ash-tree-borer-trap",
+    "topic": "nature",
+    "setup": "A forester hangs purple prism traps in ash trees along the edge of a park to watch for wood-boring beetles. A trap is marked positive when an inspector finds suspect beetles stuck to the glue surface.",
+    "H": "the ash grove is infested with wood-boring beetles",
+    "notH": "the ash grove is free of wood-boring beetles",
+    "E": "the trap is marked positive by the inspector",
+    "notE": "the trap is marked negative by the inspector",
+    "prior": "Of all ash groves monitored across the region, {p} are infested with wood-boring beetles.",
+    "tp": "When a grove is infested with wood-boring beetles, the trap is marked positive {tp} of the time.",
+    "fn": "When a grove is infested with wood-boring beetles, the trap is marked negative {fn} of the time.",
+    "fp": "When a grove is free of wood-boring beetles, look-alike insects cause the trap to be marked positive anyway {fp} of the time.",
+    "tn": "When a grove is free of wood-boring beetles, the trap is correctly marked negative {tn} of the time.",
+    "question": "A trap in an ash grove is marked positive by the inspector. What is the probability that the grove is actually infested with wood-boring beetles?",
+    "priorRange": [
+      0.02,
+      0.12
+    ],
+    "tpRange": [
+      0.75,
+      0.9
+    ],
+    "fpRange": [
+      0.03,
+      0.1
+    ]
+  },
+  {
+    "id": "glass-jar-vacuum-tapper",
+    "topic": "manufacturing",
+    "setup": "A cannery passes sealed jam jars under an acoustic tapper that strikes each metal lid with a small pulse. The machine diverts any jar whose lid rings at the wrong pitch because the vacuum seal failed.",
+    "H": "the jam jar has a loose lid",
+    "notH": "the jam jar has a tight vacuum seal",
+    "E": "the tapper diverts the jar",
+    "notE": "the tapper lets the jar pass",
+    "prior": "Of all jam jars coming out of the cooling tunnel, {p} have a loose lid.",
+    "tp": "When a jar has a loose lid, the tapper diverts it {tp} of the time.",
+    "fn": "When a jar has a loose lid, the tapper lets it pass {fn} of the time.",
+    "fp": "When a jar has a tight vacuum seal, the tapper diverts it anyway {fp} of the time.",
+    "tn": "When a jar has a tight vacuum seal, the tapper lets it pass {tn} of the time.",
+    "question": "The acoustic tapper diverts a jam jar from the line. What is the probability that the jar actually has a loose lid?",
+    "priorRange": [
+      0.004,
+      0.03
+    ],
+    "tpRange": [
+      0.88,
+      0.98
+    ],
+    "fpRange": [
+      0.01,
+      0.05
+    ]
+  },
+  {
+    "id": "ceramic-tile-ultrasound",
+    "topic": "manufacturing",
+    "setup": "A kiln plant passes finished floor tiles beneath an ultrasonic scanner. The scanner marks a tile as a reject when sound waves bounce off an internal air pocket.",
+    "H": "the ceramic tile has an internal air pocket",
+    "notH": "the ceramic tile is solid throughout",
+    "E": "the scanner marks the tile as a reject",
+    "notE": "the scanner passes the tile",
+    "prior": "Of all floor tiles coming out of the kiln, {p} have an internal air pocket.",
+    "tp": "When a tile has an internal air pocket, the scanner marks it as a reject {tp} of the time.",
+    "fn": "When a tile has an internal air pocket, the scanner passes it {fn} of the time.",
+    "fp": "When a tile is solid throughout, the scanner marks it as a reject anyway {fp} of the time.",
+    "tn": "When a tile is solid throughout, the scanner passes it {tn} of the time.",
+    "question": "The ultrasonic scanner marks a floor tile as a reject. What is the probability that the tile actually has an internal air pocket?",
+    "priorRange": [
+      0.01,
+      0.06
+    ],
+    "tpRange": [
+      0.85,
+      0.96
+    ],
+    "fpRange": [
+      0.02,
+      0.08
+    ]
+  },
+  {
+    "id": "fabric-loom-optical-camera",
+    "topic": "manufacturing",
+    "setup": "A textile mill runs woven cotton cloth under a line-scan camera before rolling it onto bolts. The camera stops the roller when it spots a snagged thread in the weave.",
+    "H": "the cloth section has a snagged thread",
+    "notH": "the cloth section has an even weave",
+    "E": "the camera stops the roller",
+    "notE": "the camera lets the roller keep running",
+    "prior": "Of all cloth sections inspected on the loom, {p} have a snagged thread.",
+    "tp": "When a cloth section has a snagged thread, the camera stops the roller {tp} of the time.",
+    "fn": "When a cloth section has a snagged thread, the camera lets the roller keep running {fn} of the time.",
+    "fp": "When a cloth section has an even weave, the camera stops the roller anyway {fp} of the time.",
+    "tn": "When a cloth section has an even weave, the camera lets the roller keep running {tn} of the time.",
+    "question": "The line-scan camera stops the roller on a section of cloth. What is the probability that the cloth section actually has a snagged thread?",
+    "priorRange": [
+      0.02,
+      0.1
+    ],
+    "tpRange": [
+      0.8,
+      0.94
+    ],
+    "fpRange": [
+      0.02,
+      0.08
+    ]
+  }
+]

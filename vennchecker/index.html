@@ -29,6 +29,7 @@
       --gray-500: #65758a;
       --gray-700: #354256;
       --text: #172033;
+      --mark: #b0245e;
       --shadow: 0 2px 10px rgba(0, 0, 0, .10);
       --radius: 8px;
     }
@@ -284,30 +285,42 @@
 
     svg {
       width: 100%;
+      max-width: 480px;
       height: auto;
       display: block;
-      background: #fbfcfe;
+      margin: 0 auto;
+      background: white;
       border: 1px solid var(--gray-200);
       border-radius: 7px;
     }
 
     .universe {
-      fill: white;
+      fill: none;
       stroke: var(--gray-300);
       stroke-width: 1.5;
     }
 
-    .circle {
-      fill: rgba(232, 238, 248, .35);
-      stroke: var(--blue);
-      stroke-width: 2.2;
+    .ring {
+      fill: none;
+      stroke: var(--text);
+      stroke-width: 1.8;
+      pointer-events: none;
     }
 
-    .circle-outline {
-      fill: none;
-      stroke: var(--blue);
-      stroke-width: 2.2;
+    .shade-tint {
+      fill: var(--text);
+      fill-opacity: .07;
       pointer-events: none;
+    }
+
+    .shade-hatch {
+      pointer-events: none;
+    }
+
+    .hatch-line {
+      stroke: var(--text);
+      stroke-width: 1.2;
+      stroke-opacity: .8;
     }
 
     .region-hit {
@@ -367,39 +380,36 @@
       stroke-dasharray: 4 3;
     }
 
-    .floating-target-label {
-      display: none;
-    }
-
-    .shade-mark {
-      fill: #cbd5e1;
-      fill-opacity: .82;
-      stroke: #334155;
-      stroke-width: 1.4;
-      opacity: 1;
-      pointer-events: none;
-    }
-
     .x-mark {
       fill: none;
-      stroke: #111827;
+      stroke: var(--mark);
       stroke-width: 3.4;
       stroke-linecap: round;
       pointer-events: none;
     }
 
-    .region-label {
-      fill: var(--gray-500);
-      font-size: 13px;
-      font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+    .x-halo {
+      fill: none;
+      stroke: white;
+      stroke-width: 7;
+      stroke-linecap: round;
+      pointer-events: none;
+    }
+
+    .area-number {
+      fill: var(--text);
+      fill-opacity: .28;
+      font-size: 15px;
+      font-weight: 650;
       text-anchor: middle;
+      dominant-baseline: central;
       pointer-events: none;
     }
 
     .term-label {
-      fill: var(--blue);
-      font-weight: 800;
-      font-size: 16px;
+      fill: var(--text);
+      font-weight: 700;
+      font-size: 15px;
       text-anchor: middle;
       pointer-events: none;
     }
@@ -454,6 +464,121 @@
       border-radius: 4px;
     }
 
+    .seg-field {
+      border: 0;
+      padding: 0;
+      margin: 0;
+      min-width: 0;
+    }
+
+    .pick-row {
+      display: grid;
+      grid-template-columns: minmax(0, 2fr) minmax(0, 1fr);
+      gap: 12px;
+      align-items: end;
+    }
+
+    .two-form {
+      margin-bottom: 12px;
+      max-width: 560px;
+    }
+
+    .seg {
+      display: grid;
+      grid-auto-flow: column;
+      grid-auto-columns: 1fr;
+      border: 1px solid var(--gray-300);
+      border-radius: 6px;
+      overflow: hidden;
+      background: white;
+    }
+
+    .seg label {
+      position: relative;
+      display: block;
+      margin: 0;
+      color: var(--gray-700);
+      font-size: .9rem;
+      font-weight: 650;
+      letter-spacing: 0;
+      text-transform: none;
+      cursor: pointer;
+    }
+
+    .seg label + label {
+      border-left: 1px solid var(--gray-300);
+    }
+
+    .seg input {
+      position: absolute;
+      opacity: 0;
+      width: 1px;
+      height: 1px;
+      padding: 0;
+    }
+
+    .seg span {
+      display: block;
+      padding: 7px 4px;
+      text-align: center;
+      line-height: 1.25;
+    }
+
+    .seg b {
+      display: block;
+      font-size: .95rem;
+    }
+
+    .seg input:checked + span {
+      background: var(--blue);
+      color: white;
+    }
+
+    .seg input:focus-visible + span {
+      box-shadow: inset 0 0 0 3px rgba(125, 170, 225, .9);
+    }
+
+    .seg-static {
+      border: 1px solid var(--gray-200);
+      border-radius: 6px;
+      padding: 7px 4px;
+      text-align: center;
+      color: var(--gray-500);
+      font-weight: 650;
+      font-size: .9rem;
+      background: var(--gray-100);
+    }
+
+    .arg {
+      display: grid;
+      gap: 6px;
+      font-size: 1.08rem;
+      max-width: 60ch;
+    }
+
+    .arg-line {
+      display: grid;
+      grid-template-columns: 28px minmax(0, 1fr);
+      gap: 10px;
+      align-items: baseline;
+    }
+
+    .arg-type {
+      border: 1px solid var(--gray-300);
+      border-radius: 4px;
+      text-align: center;
+      color: var(--gray-500);
+      font-weight: 700;
+      font-size: .8rem;
+      padding: 1px 0;
+    }
+
+    .arg-conclusion {
+      border-top: 1.5px solid var(--text);
+      padding-top: 8px;
+      margin-top: 2px;
+    }
+
     .sr-only {
       position: absolute;
       width: 1px;
@@ -477,7 +602,8 @@
       }
 
       .form-grid,
-      .term-grid {
+      .term-grid,
+      .pick-row {
         grid-template-columns: 1fr;
       }
     }
@@ -499,16 +625,16 @@
       </div>
 
       <div id="two-setup">
-        <div class="form-grid">
-          <div>
-            <label for="two-quantity">Quantity</label>
-            <select id="two-quantity">
-              <option value="all">All</option>
-              <option value="no">No</option>
-              <option value="some">Some</option>
-              <option value="some-not">Some ... are not</option>
-            </select>
+        <fieldset class="seg-field two-form">
+          <legend class="group-label">Proposition form</legend>
+          <div class="seg">
+            <label><input type="radio" name="two-quantity" value="all" checked><span><b>A</b>All</span></label>
+            <label><input type="radio" name="two-quantity" value="no"><span><b>E</b>No</span></label>
+            <label><input type="radio" name="two-quantity" value="some"><span><b>I</b>Some</span></label>
+            <label><input type="radio" name="two-quantity" value="some-not"><span><b>O</b>Some&nbsp;&hellip;&nbsp;not</span></label>
           </div>
+        </fieldset>
+        <div class="term-grid">
           <div>
             <label for="two-subject">Subject term</label>
             <input id="two-subject" value="S" autocomplete="off">
@@ -516,16 +642,6 @@
           <div>
             <label for="two-predicate">Predicate term</label>
             <input id="two-predicate" value="P" autocomplete="off">
-          </div>
-          <div>
-            <label for="two-example">Examples</label>
-            <select id="two-example">
-              <option value="">Choose an example</option>
-              <option value="all">All S are P</option>
-              <option value="no">No S are P</option>
-              <option value="some">Some S are P</option>
-              <option value="some-not">Some S are not P</option>
-            </select>
           </div>
         </div>
       </div>
@@ -551,90 +667,72 @@
           <select id="syllogism-example">
             <option value="">Choose a built-in example</option>
             <option value="valid">Valid: All M are P; Some S are M; therefore Some S are P</option>
-            <option value="invalid">Invalid: Some P are M; Some M are S; therefore Some S are P</option>
-            <option value="barbara">Barbara: All M are P; All S are M; therefore All S are P</option>
-            <option value="floating">Floating X: No P are M; Some S are M; therefore Some S are not P</option>
+            <option value="universal">Valid: All M are P; All S are M; therefore All S are P</option>
+            <option value="forced">Valid: No P are M; Some S are M; therefore Some S are not P</option>
+            <option value="invalid">Invalid, X on a boundary: Some P are M; Some M are S; therefore Some S are P</option>
           </select>
           <button class="btn btn-secondary" id="load-syllogism" type="button">Load Example</button>
         </div>
 
         <div class="sentence-row">
           <h3>Major Premise</h3>
-          <div class="form-grid">
-            <div>
-              <label for="major-form">Quality/quantity</label>
-              <select id="major-form">
-                <option value="all">All</option>
-                <option value="no">No</option>
-                <option value="some">Some</option>
-                <option value="some-not">Some ... are not</option>
-              </select>
-            </div>
-            <div>
-              <label for="major-subject">Subject</label>
-              <select id="major-subject">
-                <option value="M">M / middle</option>
-                <option value="P">P / major</option>
-              </select>
-            </div>
-            <div>
-              <label for="major-predicate">Predicate</label>
-              <select id="major-predicate">
-                <option value="P">P / major</option>
-                <option value="M">M / middle</option>
-              </select>
-            </div>
+          <div class="pick-row">
+            <fieldset class="seg-field">
+              <legend class="group-label">Form</legend>
+              <div class="seg">
+                <label><input type="radio" name="major-form" value="all" checked><span><b>A</b>All</span></label>
+                <label><input type="radio" name="major-form" value="no"><span><b>E</b>No</span></label>
+                <label><input type="radio" name="major-form" value="some"><span><b>I</b>Some</span></label>
+                <label><input type="radio" name="major-form" value="some-not"><span><b>O</b>Some&nbsp;&hellip;&nbsp;not</span></label>
+              </div>
+            </fieldset>
+            <fieldset class="seg-field">
+              <legend class="group-label">Subject &ndash; predicate</legend>
+              <div class="seg">
+                <label><input type="radio" name="major-order" value="MP" checked><span>M &ndash; P</span></label>
+                <label><input type="radio" name="major-order" value="PM"><span>P &ndash; M</span></label>
+              </div>
+            </fieldset>
           </div>
         </div>
 
         <div class="sentence-row">
           <h3>Minor Premise</h3>
-          <div class="form-grid">
-            <div>
-              <label for="minor-form">Quality/quantity</label>
-              <select id="minor-form">
-                <option value="all">All</option>
-                <option value="no">No</option>
-                <option value="some">Some</option>
-                <option value="some-not">Some ... are not</option>
-              </select>
-            </div>
-            <div>
-              <label for="minor-subject">Subject</label>
-              <select id="minor-subject">
-                <option value="S">S / minor</option>
-                <option value="M">M / middle</option>
-              </select>
-            </div>
-            <div>
-              <label for="minor-predicate">Predicate</label>
-              <select id="minor-predicate">
-                <option value="M">M / middle</option>
-                <option value="S">S / minor</option>
-              </select>
-            </div>
+          <div class="pick-row">
+            <fieldset class="seg-field">
+              <legend class="group-label">Form</legend>
+              <div class="seg">
+                <label><input type="radio" name="minor-form" value="all" checked><span><b>A</b>All</span></label>
+                <label><input type="radio" name="minor-form" value="no"><span><b>E</b>No</span></label>
+                <label><input type="radio" name="minor-form" value="some"><span><b>I</b>Some</span></label>
+                <label><input type="radio" name="minor-form" value="some-not"><span><b>O</b>Some&nbsp;&hellip;&nbsp;not</span></label>
+              </div>
+            </fieldset>
+            <fieldset class="seg-field">
+              <legend class="group-label">Subject &ndash; predicate</legend>
+              <div class="seg">
+                <label><input type="radio" name="minor-order" value="SM" checked><span>S &ndash; M</span></label>
+                <label><input type="radio" name="minor-order" value="MS"><span>M &ndash; S</span></label>
+              </div>
+            </fieldset>
           </div>
         </div>
 
         <div class="sentence-row">
           <h3>Conclusion</h3>
-          <div class="form-grid">
+          <div class="pick-row">
+            <fieldset class="seg-field">
+              <legend class="group-label">Form</legend>
+              <div class="seg">
+                <label><input type="radio" name="conclusion-form" value="all" checked><span><b>A</b>All</span></label>
+                <label><input type="radio" name="conclusion-form" value="no"><span><b>E</b>No</span></label>
+                <label><input type="radio" name="conclusion-form" value="some"><span><b>I</b>Some</span></label>
+                <label><input type="radio" name="conclusion-form" value="some-not"><span><b>O</b>Some&nbsp;&hellip;&nbsp;not</span></label>
+              </div>
+            </fieldset>
             <div>
-              <label for="conclusion-form">Quality/quantity</label>
-              <select id="conclusion-form">
-                <option value="all">All</option>
-                <option value="no">No</option>
-                <option value="some">Some</option>
-                <option value="some-not">Some ... are not</option>
-              </select>
-            </div>
-            <div>
-              <label>Subject</label>
-              <input value="S / minor" disabled>
-            </div>
-            <div>
-              <label>Predicate</label>
-              <input value="P / major" disabled>
+              <span class="group-label">Subject &ndash; predicate</span>
+              <div class="seg-static">S &ndash; P</div>
             </div>
           </div>
         </div>
@@ -662,6 +760,12 @@
         </div>
 
         <div class="syllogism-layout" id="three-workspace" hidden>
+          <article class="diagram-card">
+            <div class="diagram-title">
+              <h3>Argument</h3>
+            </div>
+            <div class="arg" id="argument"></div>
+          </article>
           <article class="diagram-card">
             <div class="diagram-title">
               <h3>Premise Diagram</h3>
@@ -712,44 +816,76 @@
     const MARK = { BLANK: 'blank', SHADE: 'shade', X: 'x', ERASE: 'erase' };
     const DIAGRAM = { TWO: 'two', THREE: 'three', CONCLUSION: 'conclusion' };
 
+    // Circle geometry. The three circles sit on an equilateral triangle so all seven regions are roomy.
+    const GEO = {
+      two: { w: 400, h: 300, r: 72, roles: ['S', 'P'], c: { S: [160, 150], P: [240, 150] } },
+      three: { w: 400, h: 360, r: 95, roles: ['S', 'P', 'M'], c: { S: [148, 222], P: [252, 222], M: [200, 132] } },
+    };
+    const FRAME = 12;
+
+    // Area numbers match the textbook: Chapter 6 for two circles, Chapter 7 for three.
     const TWO_REGIONS = [
-      { id: 'S', bits: { S: true, P: false }, label: 'S and not P', cx: 126, cy: 150 },
-      { id: 'SP', bits: { S: true, P: true }, label: 'S and P', cx: 200, cy: 150 },
-      { id: 'P', bits: { S: false, P: true }, label: 'P and not S', cx: 274, cy: 150 },
-      { id: 'O', bits: { S: false, P: false }, label: 'Outside S and P', cx: 200, cy: 42 },
+      { id: 'S', area: 1, nx: 126, ny: 132, bits: { S: true, P: false }, label: 'S and not P', cx: 126, cy: 150 },
+      { id: 'SP', area: 2, nx: 200, ny: 132, bits: { S: true, P: true }, label: 'S and P', cx: 200, cy: 150 },
+      { id: 'P', area: 3, nx: 274, ny: 132, bits: { S: false, P: true }, label: 'P and not S', cx: 274, cy: 150 },
+      { id: 'O', area: 4, nx: 200, ny: 24, bits: { S: false, P: false }, label: 'Outside S and P', cx: 200, cy: 42 },
     ];
 
     const THREE_REGIONS = [
-      { id: 'S', bits: { S: true, P: false, M: false }, label: 'S only', cx: 112, cy: 246 },
-      { id: 'SP', bits: { S: true, P: true, M: false }, label: 'S and P, not M', cx: 200, cy: 248 },
-      { id: 'P', bits: { S: false, P: true, M: false }, label: 'P only', cx: 288, cy: 246 },
-      { id: 'SM', bits: { S: true, P: false, M: true }, label: 'S and M, not P', cx: 150, cy: 157 },
-      { id: 'SPM', bits: { S: true, P: true, M: true }, label: 'S and P and M', cx: 200, cy: 178 },
-      { id: 'PM', bits: { S: false, P: true, M: true }, label: 'P and M, not S', cx: 250, cy: 157 },
-      { id: 'M', bits: { S: false, P: false, M: true }, label: 'M only', cx: 200, cy: 88 },
-      { id: 'O', bits: { S: false, P: false, M: false }, label: 'Outside S, P, and M', cx: 200, cy: 30 },
+      { id: 'S', area: 1, nx: 92, ny: 264, bits: { S: true, P: false, M: false }, label: 'S only', cx: 110, cy: 248, hit: 34 },
+      { id: 'SP', area: 2, nx: 200, ny: 284, bits: { S: true, P: true, M: false }, label: 'S and P, not M', cx: 200, cy: 258, hit: 22 },
+      { id: 'P', area: 3, nx: 308, ny: 264, bits: { S: false, P: true, M: false }, label: 'P only', cx: 290, cy: 248, hit: 34 },
+      { id: 'SM', area: 5, nx: 127, ny: 147, bits: { S: true, P: false, M: true }, label: 'S and M, not P', cx: 142, cy: 159, hit: 22 },
+      { id: 'SPM', area: 6, nx: 200, ny: 170, bits: { S: true, P: true, M: true }, label: 'S and P and M', cx: 200, cy: 192, hit: 26 },
+      { id: 'PM', area: 7, nx: 273, ny: 147, bits: { S: false, P: true, M: true }, label: 'P and M, not S', cx: 258, cy: 159, hit: 22 },
+      { id: 'M', area: 8, nx: 200, ny: 62, bits: { S: false, P: false, M: true }, label: 'M only', cx: 200, cy: 84, hit: 34 },
+      { id: 'O', area: 4, nx: 30, ny: 38, bits: { S: false, P: false, M: false }, label: 'Outside S, P, and M', cx: 200, cy: 24, hit: 0 },
     ];
 
-    const FLOATING_TARGETS = [
-      { id: 'S|SM', cx: 139, cy: 185, angle: -44, kind: 'line' },
-      { id: 'S|SP', cx: 178, cy: 270, angle: 38, kind: 'line' },
-      { id: 'SP|SPM', cx: 200, cy: 212, angle: 0, kind: 'line' },
-      { id: 'P|SP', cx: 222, cy: 270, angle: -38, kind: 'line' },
-      { id: 'SM|SPM', cx: 175, cy: 196, angle: -66, kind: 'line' },
-      { id: 'PM|SPM', cx: 225, cy: 196, angle: 66, kind: 'line' },
-      { id: 'P|PM', cx: 261, cy: 185, angle: 44, kind: 'line' },
-      { id: 'M|SM', cx: 136, cy: 149, angle: 78, kind: 'line' },
-      { id: 'M|PM', cx: 264, cy: 149, angle: -78, kind: 'line' },
-    ];
+    function inCircle(geo, role, x, y) {
+      const [cx, cy] = geo.c[role];
+      return Math.hypot(x - cx, y - cy) <= geo.r;
+    }
+
+    // An X that is not fixed to one region sits on the arc separating the two regions.
+    // Each target is the midpoint of that arc, found by walking the dividing circle.
+    function buildBoundaryTargets(geo, regions) {
+      const targets = [];
+      const steps = 1440;
+      for (const divider of geo.roles) {
+        const others = geo.roles.filter(role => role !== divider);
+        const [cx, cy] = geo.c[divider];
+        for (const inner of regions.filter(r => r.bits[divider])) {
+          const outer = regions.find(r => !r.bits[divider] && others.every(role => r.bits[role] === inner.bits[role]));
+          if (outer.id === 'O') continue;
+          const on = [];
+          for (let i = 0; i < steps; i++) {
+            const theta = 2 * Math.PI * i / steps;
+            const x = cx + geo.r * Math.cos(theta);
+            const y = cy + geo.r * Math.sin(theta);
+            on.push(others.every(role => inCircle(geo, role, x, y) === inner.bits[role]));
+          }
+          const start = on.findIndex((value, i) => value && !on[(i + steps - 1) % steps]);
+          if (start < 0) continue;
+          let length = 0;
+          while (length < steps && on[(start + length) % steps]) length++;
+          const theta = 2 * Math.PI * (start + (length - 1) / 2) / steps;
+          targets.push({
+            id: canonicalSet([inner.id, outer.id]),
+            cx: Math.round((cx + geo.r * Math.cos(theta)) * 10) / 10,
+            cy: Math.round((cy + geo.r * Math.sin(theta)) * 10) / 10,
+            angle: Math.round(theta * 180 / Math.PI + 90),
+            kind: 'line',
+          });
+        }
+      }
+      return targets;
+    }
+
+    const FLOATING_TARGETS = buildBoundaryTargets(GEO.three, THREE_REGIONS);
 
     const THREE_X_TARGETS = [
-      { id: 'M', cx: 200, cy: 94, kind: 'area' },
-      { id: 'SM', cx: 154, cy: 165, kind: 'area' },
-      { id: 'PM', cx: 246, cy: 165, kind: 'area' },
-      { id: 'SPM', cx: 200, cy: 184, kind: 'area' },
-      { id: 'S', cx: 112, cy: 246, kind: 'area' },
-      { id: 'SP', cx: 200, cy: 248, kind: 'area' },
-      { id: 'P', cx: 288, cy: 246, kind: 'area' },
+      ...THREE_REGIONS.filter(r => r.id !== 'O').map(r => ({ id: r.id, cx: r.cx, cy: r.cy, kind: 'area' })),
       ...FLOATING_TARGETS,
     ];
 
@@ -765,6 +901,17 @@
     };
 
     const $ = (id) => document.getElementById(id);
+
+    function radioValue(name) {
+      const checked = document.querySelector(`input[name="${name}"]:checked`);
+      return checked ? checked.value : '';
+    }
+
+    function setRadio(name, value) {
+      document.querySelectorAll(`input[name="${name}"]`).forEach(input => {
+        input.checked = input.value === value;
+      });
+    }
 
     function esc(str) {
       return String(str)
@@ -802,6 +949,10 @@
       return `Some ${subject} are not ${predicate}`;
     }
 
+    function formLetter(form) {
+      return { all: 'A', no: 'E', some: 'I', 'some-not': 'O' }[form];
+    }
+
     function roleName(role) {
       if (app.mode === MODE.TWO) {
         if (role === 'S') return $('two-subject').value.trim() || 'S';
@@ -816,17 +967,19 @@
 
     function twoProposition() {
       return {
-        form: $('two-quantity').value,
+        form: radioValue('two-quantity'),
         subject: 'S',
         predicate: 'P',
       };
     }
 
     function syllogismPropositions() {
+      const majorOrder = radioValue('major-order');
+      const minorOrder = radioValue('minor-order');
       return {
-        major: { form: $('major-form').value, subject: $('major-subject').value, predicate: $('major-predicate').value },
-        minor: { form: $('minor-form').value, subject: $('minor-subject').value, predicate: $('minor-predicate').value },
-        conclusion: { form: $('conclusion-form').value, subject: 'S', predicate: 'P' },
+        major: { form: radioValue('major-form'), subject: majorOrder[0], predicate: majorOrder[1] },
+        minor: { form: radioValue('minor-form'), subject: minorOrder[0], predicate: minorOrder[1] },
+        conclusion: { form: radioValue('conclusion-form'), subject: 'S', predicate: 'P' },
       };
     }
 
@@ -904,7 +1057,7 @@
         if (studentXKeys.includes(key)) return;
         const ids = splitMarkId(key);
         if (ids.length === 1) problems.push(`${labelForRegion(regions, key)} should contain an X.`);
-        else problems.push(`An X should float across ${ids.map(id => labelForRegion(regions, id)).join(' or ')}.`);
+        else problems.push(`An X should sit on the boundary between ${ids.map(id => labelForRegion(regions, id)).join(' and ')}.`);
       });
 
       Object.entries(marks).forEach(([id, mark]) => {
@@ -933,9 +1086,18 @@
 
     function labelForRegion(regions, id) {
       if (id.includes('|')) {
-        return `floating X across ${splitMarkId(id).map(part => labelForRegion(regions, part)).join(' or ')}`;
+        return `X on the boundary between ${splitMarkId(id).map(part => labelForRegion(regions, part)).join(' and ')}`;
       }
-      return regions.find(r => r.id === id)?.label || id;
+      const region = regions.find(r => r.id === id);
+      return region ? `Area ${region.area} (${region.label})` : id;
+    }
+
+    function areaCode(regions, id) {
+      return splitMarkId(id).map(part => regions.find(r => r.id === part)?.area ?? part).sort().join('/');
+    }
+
+    function areaNumbers(regions) {
+      return regions.map(r => `<text class="area-number" x="${r.nx}" y="${r.ny}">${r.area}</text>`).join('');
     }
 
     function markRegion(diagram, regionId) {
@@ -959,7 +1121,7 @@
           });
         }
       }
-      setFeedback(`Marked ${labelForRegion(diagram === DIAGRAM.TWO || diagram === DIAGRAM.CONCLUSION ? TWO_REGIONS : THREE_REGIONS, regionId)}.`, 'note');
+      setFeedback(`Marked: ${labelForRegion(diagram === DIAGRAM.TWO || diagram === DIAGRAM.CONCLUSION ? TWO_REGIONS : THREE_REGIONS, regionId)}.`, 'note');
       renderAll();
     }
 
@@ -1039,22 +1201,9 @@
       return Math.hypot(x1 - x2, y1 - y2);
     }
 
-    function insideCircle(x, y, cx, cy, r) {
-      return distance(x, y, cx, cy) <= r;
-    }
-
     function threeRegionAt(x, y) {
-      const inS = insideCircle(x, y, 150, 230, 82);
-      const inP = insideCircle(x, y, 250, 230, 82);
-      const inM = insideCircle(x, y, 200, 130, 82);
-      if (!inS && !inP && !inM) return 'O';
-      if (inS && inP && inM) return 'SPM';
-      if (inS && inP) return 'SP';
-      if (inS && inM) return 'SM';
-      if (inP && inM) return 'PM';
-      if (inS) return 'S';
-      if (inP) return 'P';
-      return 'M';
+      const id = GEO.three.roles.filter(role => inCircle(GEO.three, role, x, y)).join('');
+      return id || 'O';
     }
 
     function nearestThreeXTarget(x, y) {
@@ -1130,120 +1279,84 @@
       el.textContent = message;
     }
 
-    function makePattern() {
+    // Each diagram gets its own ids (prefix) because all three SVGs live in the page at once.
+    function diagramDefs(geo, prefix) {
+      const circles = geo.roles.map(role => {
+        const [cx, cy] = geo.c[role];
+        const circle = `<circle cx="${cx}" cy="${cy}" r="${geo.r}"`;
+        return `<clipPath id="${prefix}-in-${role}">${circle}></circle></clipPath>
+        <mask id="${prefix}-out-${role}" x="0" y="0" width="${geo.w}" height="${geo.h}" maskUnits="userSpaceOnUse">
+          <rect x="0" y="0" width="${geo.w}" height="${geo.h}" fill="white"></rect>
+          ${circle} fill="black"></circle>
+        </mask>`;
+      }).join('');
       return `<defs>
-        <pattern id="shadePattern" width="8" height="8" patternUnits="userSpaceOnUse" patternTransform="rotate(45)">
-        <rect width="8" height="8" fill="#cbd5e1"></rect>
-        <line x1="0" y1="0" x2="0" y2="8" stroke="#475569" stroke-width="4"></line>
+        <pattern id="${prefix}-hatch" width="7" height="7" patternUnits="userSpaceOnUse" patternTransform="rotate(45)">
+          <line class="hatch-line" x1="3.5" y1="0" x2="3.5" y2="7"></line>
         </pattern>
+        ${circles}
       </defs>`;
     }
 
-    function makeThreeDefs() {
-      return `<defs>
-        <pattern id="shadePattern" width="8" height="8" patternUnits="userSpaceOnUse" patternTransform="rotate(45)">
-          <rect width="8" height="8" fill="#cbd5e1"></rect>
-          <line x1="0" y1="0" x2="0" y2="8" stroke="#475569" stroke-width="4"></line>
-        </pattern>
-        <clipPath id="clip-three-s"><circle cx="150" cy="230" r="82"></circle></clipPath>
-        <clipPath id="clip-three-p"><circle cx="250" cy="230" r="82"></circle></clipPath>
-        <clipPath id="clip-three-m"><circle cx="200" cy="130" r="82"></circle></clipPath>
-        <mask id="mask-three-not-s" x="0" y="0" width="400" height="350" maskUnits="userSpaceOnUse">
-          <rect x="0" y="0" width="400" height="350" fill="white"></rect>
-          <circle cx="150" cy="230" r="82" fill="black"></circle>
-        </mask>
-        <mask id="mask-three-not-p" x="0" y="0" width="400" height="350" maskUnits="userSpaceOnUse">
-          <rect x="0" y="0" width="400" height="350" fill="white"></rect>
-          <circle cx="250" cy="230" r="82" fill="black"></circle>
-        </mask>
-        <mask id="mask-three-not-m" x="0" y="0" width="400" height="350" maskUnits="userSpaceOnUse">
-          <rect x="0" y="0" width="400" height="350" fill="white"></rect>
-          <circle cx="200" cy="130" r="82" fill="black"></circle>
-        </mask>
-        <mask id="mask-three-not-s-not-p" x="0" y="0" width="400" height="350" maskUnits="userSpaceOnUse">
-          <rect x="0" y="0" width="400" height="350" fill="white"></rect>
-          <circle cx="150" cy="230" r="82" fill="black"></circle>
-          <circle cx="250" cy="230" r="82" fill="black"></circle>
-        </mask>
-        <mask id="mask-three-not-s-not-m" x="0" y="0" width="400" height="350" maskUnits="userSpaceOnUse">
-          <rect x="0" y="0" width="400" height="350" fill="white"></rect>
-          <circle cx="150" cy="230" r="82" fill="black"></circle>
-          <circle cx="200" cy="130" r="82" fill="black"></circle>
-        </mask>
-        <mask id="mask-three-not-p-not-m" x="0" y="0" width="400" height="350" maskUnits="userSpaceOnUse">
-          <rect x="0" y="0" width="400" height="350" fill="white"></rect>
-          <circle cx="250" cy="230" r="82" fill="black"></circle>
-          <circle cx="200" cy="130" r="82" fill="black"></circle>
-        </mask>
-      </defs>`;
+    // A region is the frame rectangle clipped to the circles it is inside and masked by the circles it is outside,
+    // so shading always follows the true arcs.
+    function regionMarkup(geo, prefix, region, attrs) {
+      let markup = `<rect x="${FRAME}" y="${FRAME}" width="${geo.w - 2 * FRAME}" height="${geo.h - 2 * FRAME}" ${attrs}></rect>`;
+      for (const role of geo.roles) {
+        markup = region.bits[role]
+          ? `<g clip-path="url(#${prefix}-in-${role})">${markup}</g>`
+          : `<g mask="url(#${prefix}-out-${role})">${markup}</g>`;
+      }
+      return markup;
+    }
+
+    function shadeMarkup(geo, prefix, region) {
+      return regionMarkup(geo, prefix, region, 'class="shade-tint"')
+        + regionMarkup(geo, prefix, region, `class="shade-hatch" fill="url(#${prefix}-hatch)"`);
+    }
+
+    function ringMarkup(geo) {
+      return geo.roles.map(role => `<circle class="ring" cx="${geo.c[role][0]}" cy="${geo.c[role][1]}" r="${geo.r}"></circle>`).join('');
     }
 
     function renderTwoSvg(container, marks, terms, interactive, diagramId) {
+      const geo = GEO.two;
       const regions = TWO_REGIONS;
       const hit = {
         S: '<ellipse cx="126" cy="150" rx="38" ry="54"></ellipse>',
-        SP: '<ellipse cx="200" cy="150" rx="39" ry="65"></ellipse>',
+        SP: '<ellipse cx="200" cy="150" rx="31" ry="58"></ellipse>',
         P: '<ellipse cx="274" cy="150" rx="38" ry="54"></ellipse>',
         O: '<rect x="12" y="12" width="376" height="60"></rect><rect x="12" y="228" width="376" height="60"></rect><rect x="12" y="72" width="60" height="156"></rect><rect x="328" y="72" width="60" height="156"></rect>',
       };
-      const shade = {
-        S: '<path class="shade-mark" d="M 200 90.13 A 72 72 0 1 0 200 209.87 A 72 72 0 0 1 200 90.13 Z"></path>',
-        SP: '<ellipse class="shade-mark" cx="200" cy="150" rx="39" ry="65"></ellipse>',
-        P: '<path class="shade-mark" d="M 200 90.13 A 72 72 0 1 1 200 209.87 A 72 72 0 0 0 200 90.13 Z"></path>',
-        O: '<path class="shade-mark" d="M 12 12 H388 V72 H12 Z M12 228 H388 V288 H12 Z M12 72 H72 V228 H12 Z M328 72 H388 V228 H328 Z"></path>',
-      };
-      container.innerHTML = `<svg viewBox="0 0 400 300" role="img" aria-label="${interactive ? 'Interactive' : 'Correct'} two-circle Venn diagram">
-        ${makePattern()}
-        <rect class="universe" x="12" y="12" width="376" height="276"></rect>
-        <circle class="circle" cx="160" cy="150" r="72"></circle>
-        <circle class="circle" cx="240" cy="150" r="72"></circle>
-        ${regions.map(r => marks[r.id] === MARK.SHADE ? shade[r.id] : '').join('')}
-        <text class="term-label" x="116" y="256">${esc(terms.S)} (S)</text>
-        <text class="term-label" x="284" y="256">${esc(terms.P)} (P)</text>
-        ${regions.map(r => `<text class="region-label" x="${r.cx}" y="${r.cy - 18}">${r.id}</text>`).join('')}
+      container.innerHTML = `<svg viewBox="0 0 ${geo.w} ${geo.h}" role="img" aria-label="${interactive ? 'Interactive' : 'Correct'} two-circle Venn diagram">
+        ${diagramDefs(geo, diagramId)}
+        <rect class="universe" x="${FRAME}" y="${FRAME}" width="${geo.w - 2 * FRAME}" height="${geo.h - 2 * FRAME}"></rect>
+        ${regions.map(r => marks[r.id] === MARK.SHADE ? shadeMarkup(geo, diagramId, r) : '').join('')}
+        ${ringMarkup(geo)}
+        <text class="term-label" x="116" y="256">${termLabel(terms.S, 'S')}</text>
+        <text class="term-label" x="284" y="256">${termLabel(terms.P, 'P')}</text>
+        ${areaNumbers(regions)}
         ${regions.map(r => marks[r.id] === MARK.X ? xMark(r.cx, r.cy) : '').join('')}
         ${interactive ? regions.map(r => regionControl(hit[r.id], diagramId, r)).join('') : ''}
       </svg>`;
     }
 
     function renderThreeSvg(container, marks, terms) {
+      const geo = GEO.three;
       const regions = THREE_REGIONS;
       const boundedRegions = regions.filter(r => r.id !== 'O');
-      const hit = {
-        S: '<circle cx="112" cy="246" r="34">',
-        SP: '<circle cx="200" cy="248" r="32">',
-        P: '<circle cx="288" cy="246" r="34">',
-        SM: '<circle cx="154" cy="165" r="32">',
-        SPM: '<circle cx="200" cy="184" r="30">',
-        PM: '<circle cx="246" cy="165" r="32">',
-        M: '<circle cx="200" cy="94" r="36">',
-      };
-      const shade = {
-        S: '<path class="shade-mark" d="M 72 230 C 72 188 94 164 122 153 C 127 185 145 210 171 207 C 160 232 161 268 200 295 C 160 311 116 302 91 275 C 79 262 72 247 72 230 Z"></path>',
-        SP: '<path class="shade-mark" d="M 171 207 C 188 213 212 213 229 207 C 248 244 238 278 200 295 C 162 278 152 244 171 207 Z"></path>',
-        P: '<path class="shade-mark" d="M 328 230 C 328 188 306 164 278 153 C 273 185 255 210 229 207 C 240 232 239 268 200 295 C 240 311 284 302 309 275 C 321 262 328 247 328 230 Z"></path>',
-        SM: '<path class="shade-mark" d="M 122 153 C 146 141 176 145 200 165 C 190 177 181 192 171 207 C 149 196 133 178 122 153 Z"></path>',
-        SPM: '<path class="shade-mark" d="M 200 165 C 216 177 225 192 229 207 C 211 214 189 214 171 207 C 175 192 184 177 200 165 Z"></path>',
-        PM: '<path class="shade-mark" d="M 278 153 C 254 141 224 145 200 165 C 210 177 219 192 229 207 C 251 196 267 178 278 153 Z"></path>',
-        M: '<path class="shade-mark" d="M 122 153 C 132 92 162 48 200 48 C 238 48 268 92 278 153 C 254 141 225 145 200 165 C 175 145 146 141 122 153 Z"></path>',
-        O: '<path class="shade-mark" d="M 12 12 H388 V58 H12 Z M12 292 H388 V338 H12 Z M12 58 H52 V292 H12 Z M348 58 H388 V292 H348 Z"></path>',
-      };
-      container.innerHTML = `<svg viewBox="0 0 400 350" role="img" aria-label="Interactive three-circle Venn diagram">
-        ${makeThreeDefs()}
-        <rect class="universe" x="12" y="12" width="376" height="326"></rect>
-        <circle class="circle" cx="200" cy="130" r="82"></circle>
-        <circle class="circle" cx="150" cy="230" r="82"></circle>
-        <circle class="circle" cx="250" cy="230" r="82"></circle>
-        ${regions.map(r => marks[r.id] === MARK.SHADE ? shade[r.id] : '').join('')}
-        <circle class="circle-outline" cx="200" cy="130" r="82"></circle>
-        <circle class="circle-outline" cx="150" cy="230" r="82"></circle>
-        <circle class="circle-outline" cx="250" cy="230" r="82"></circle>
-        <text class="term-label" x="200" y="40">${esc(terms.M)} (M)</text>
-        <text class="term-label" x="98" y="326">${esc(terms.S)} (S/minor)</text>
-        <text class="term-label" x="302" y="326">${esc(terms.P)} (P/major)</text>
+      container.innerHTML = `<svg viewBox="0 0 ${geo.w} ${geo.h}" role="img" aria-label="Interactive three-circle Venn diagram">
+        ${diagramDefs(geo, DIAGRAM.THREE)}
+        <rect class="universe" x="${FRAME}" y="${FRAME}" width="${geo.w - 2 * FRAME}" height="${geo.h - 2 * FRAME}"></rect>
+        ${regions.map(r => marks[r.id] === MARK.SHADE ? shadeMarkup(geo, DIAGRAM.THREE, r) : '').join('')}
+        ${ringMarkup(geo)}
+        ${areaNumbers(regions)}
+        <text class="term-label" x="200" y="29">${termLabel(terms.M, 'M')}</text>
+        <text class="term-label" x="98" y="338">${termLabel(terms.S, 'S', 'minor')}</text>
+        <text class="term-label" x="302" y="338">${termLabel(terms.P, 'P', 'major')}</text>
         ${showThreeXSlots() ? THREE_X_TARGETS.map(target => floatingTargetControl(target)).join('') : ''}
         ${THREE_X_TARGETS.map(target => marks[target.id] === MARK.X ? xMark(target.cx, target.cy) : '').join('')}
-        ${showThreeRegionControls() ? boundedRegions.map(r => regionControl(hit[r.id], DIAGRAM.THREE, r)).join('') : ''}
+        ${showThreeRegionControls() ? boundedRegions.map(r => regionControl(`<circle cx="${r.cx}" cy="${r.cy}" r="${r.hit}"></circle>`, DIAGRAM.THREE, r)).join('') : ''}
       </svg>`;
     }
 
@@ -1265,13 +1378,26 @@
 
     function regionControl(shape, diagram, region) {
       const state = app.marks[diagram][region.id] || MARK.BLANK;
-      const label = `${region.label}, currently ${state}. Use selected tool: ${app.tool}.`;
+      const label = `Area ${region.area}, ${region.label}, currently ${state}. Use selected tool: ${app.tool}.`;
       const extraClass = diagram === DIAGRAM.THREE ? ' three-key-target' : '';
       return `<g class="region-hit${extraClass}" role="button" tabindex="0" data-diagram="${diagram}" data-region="${region.id}" aria-label="${esc(label)}">${shape}</g>`;
     }
 
+    // "S" alone when the term is still the placeholder letter; "dogs (S)" once a real term is typed.
+    function termLabel(term, letter, role) {
+      const tag = role ? `${letter}/${role}` : letter;
+      return term === letter ? (role ? `${letter} (${role})` : letter) : `${esc(term)} (${tag})`;
+    }
+
     function xMark(cx, cy) {
-      return `<g class="x-mark"><line x1="${cx - 6}" y1="${cy - 6}" x2="${cx + 6}" y2="${cy + 6}"></line><line x1="${cx + 6}" y1="${cy - 6}" x2="${cx - 6}" y2="${cy + 6}"></line></g>`;
+      const strokes = `<line x1="${cx - 6}" y1="${cy - 6}" x2="${cx + 6}" y2="${cy + 6}"></line><line x1="${cx + 6}" y1="${cy - 6}" x2="${cx - 6}" y2="${cy + 6}"></line>`;
+      return `<g class="x-halo">${strokes}</g><g class="x-mark">${strokes}</g>`;
+    }
+
+    function argumentLine(prop, isConclusion) {
+      const sentence = sentenceText(prop.form, roleName(prop.subject), roleName(prop.predicate));
+      const text = isConclusion ? `Therefore, ${sentence.charAt(0).toLowerCase()}${sentence.slice(1)}.` : `${sentence}.`;
+      return `<div class="arg-line${isConclusion ? ' arg-conclusion' : ''}"><span class="arg-type" title="${formLetter(prop.form)} proposition">${formLetter(prop.form)}</span><span>${esc(text)}</span></div>`;
     }
 
     function renderAll() {
@@ -1283,6 +1409,7 @@
       renderTwoSvg($('two-diagram'), app.marks.two, twoTerms, true, DIAGRAM.TWO);
 
       const props = syllogismPropositions();
+      $('argument').innerHTML = argumentLine(props.major, false) + argumentLine(props.minor, false) + argumentLine(props.conclusion, true);
       $('premise-preview').textContent = `${sentenceText(props.major.form, roleName(props.major.subject), roleName(props.major.predicate))}; ${sentenceText(props.minor.form, roleName(props.minor.subject), roleName(props.minor.predicate))}`;
       $('conclusion-preview').textContent = sentenceText(props.conclusion.form, threeTerms.S, threeTerms.P);
       renderThreeSvg($('three-diagram'), app.marks.three, threeTerms);
@@ -1298,10 +1425,10 @@
       const activeMarks = app.mode === MODE.TWO ? app.marks.two : app.marks.three;
       const regions = app.mode === MODE.TWO ? TWO_REGIONS : THREE_REGIONS;
       const rows = Object.entries(activeMarks)
-        .map(([id, mark]) => `<div><code>${esc(id)}</code> ${esc(labelForRegion(regions, id))}: ${mark}</div>`);
+        .map(([id, mark]) => `<div><code>${esc(areaCode(regions, id))}</code> ${esc(labelForRegion(regions, id))}: ${mark}</div>`);
       if (app.mode === MODE.THREE && Object.keys(app.marks.conclusion).length) {
         rows.push(...Object.entries(app.marks.conclusion)
-          .map(([id, mark]) => `<div><code>Conclusion ${esc(id)}</code> ${esc(labelForRegion(TWO_REGIONS, id))}: ${mark}</div>`));
+          .map(([id, mark]) => `<div><code>Conclusion ${esc(areaCode(TWO_REGIONS, id))}</code> ${esc(labelForRegion(TWO_REGIONS, id))}: ${mark}</div>`));
       }
       if (app.mode === MODE.THREE && app.validityAnswer) {
         rows.push(`<div><code>Validity</code> ${esc(app.validityAnswer)}</div>`);
@@ -1331,34 +1458,32 @@
       if (!value) return;
       const examples = {
         valid: {
-          major: ['all', 'M', 'P'],
-          minor: ['some', 'S', 'M'],
+          major: ['all', 'MP'],
+          minor: ['some', 'SM'],
           conclusion: 'some',
         },
-        invalid: {
-          major: ['some', 'P', 'M'],
-          minor: ['some', 'M', 'S'],
-          conclusion: 'some',
-        },
-        barbara: {
-          major: ['all', 'M', 'P'],
-          minor: ['all', 'S', 'M'],
+        universal: {
+          major: ['all', 'MP'],
+          minor: ['all', 'SM'],
           conclusion: 'all',
         },
-        floating: {
-          major: ['no', 'P', 'M'],
-          minor: ['some', 'S', 'M'],
+        forced: {
+          major: ['no', 'PM'],
+          minor: ['some', 'SM'],
           conclusion: 'some-not',
+        },
+        invalid: {
+          major: ['some', 'PM'],
+          minor: ['some', 'MS'],
+          conclusion: 'some',
         },
       };
       const ex = examples[value];
-      $('major-form').value = ex.major[0];
-      $('major-subject').value = ex.major[1];
-      $('major-predicate').value = ex.major[2];
-      $('minor-form').value = ex.minor[0];
-      $('minor-subject').value = ex.minor[1];
-      $('minor-predicate').value = ex.minor[2];
-      $('conclusion-form').value = ex.conclusion;
+      setRadio('major-form', ex.major[0]);
+      setRadio('major-order', ex.major[1]);
+      setRadio('minor-form', ex.minor[0]);
+      setRadio('minor-order', ex.minor[1]);
+      setRadio('conclusion-form', ex.conclusion);
       app.marks.three = {};
       app.marks.conclusion = {};
       app.validityAnswer = '';
@@ -1381,11 +1506,6 @@
           app.validityAnswer = input.value;
           renderAll();
         });
-      });
-      $('two-example').addEventListener('change', () => {
-        if ($('two-example').value) $('two-quantity').value = $('two-example').value;
-        app.marks.two = {};
-        renderAll();
       });
       document.querySelectorAll('#two-setup input, #two-setup select').forEach(el => {
         el.addEventListener('input', renderAll);
