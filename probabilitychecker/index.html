@@ -627,7 +627,7 @@
               <label for="in-post">P(H | E)</label>
               <input type="text" id="in-post" class="answer-input" autocomplete="off" spellcheck="false"
                 aria-describedby="post-help mark-post">
-              <p class="hint-text" id="post-help">Round to three decimal places (0.090), or give a percent (9.0%).</p>
+              <p class="hint-text" id="post-help">Round to three decimal places (0.090), or give a percent (9.0%) or a fraction (99/1098).</p>
               <span class="mark" id="mark-post"></span>
             </div>
           </fieldset>
@@ -1037,7 +1037,7 @@
 
         // Step 4
         const postInput = $('in-post');
-        const parsedPost = core.parseAnswer(postInput.value);
+        const parsedPost = parsePosterior(postInput.value);
         if (!parsedPost.ok) {
           ok = false;
           setMark(postInput, 'mark-post', 'bad', parsedPost.error === 'empty' ? 'Missing.' : parsedPost.error);
@@ -1066,6 +1066,23 @@
           announce('Not finished yet. ' + notes.join(' '));
         }
         afterCheck(ok);
+      }
+
+      /**
+       * The final Bayes answer may also be a fraction, including one with
+       * decimals on top and bottom (0.00099/0.01098) or one built from counts
+       * (99/1098). A fraction is held to the same three-decimal standard as a
+       * decimal answer. Anything else goes through the ordinary parser.
+       */
+      function parsePosterior(raw) {
+        const s = String(raw == null ? '' : raw).replace(/[\s,]/g, '');
+        const m = s.match(/^(\d*\.?\d+|\d+\.)\/(\d*\.?\d+|\d+\.)$/);
+        if (!m) return core.parseAnswer(raw);
+        const top = Number(m[1]); const bottom = Number(m[2]);
+        if (!isFinite(top) || !isFinite(bottom)) return core.parseAnswer(raw);
+        if (bottom === 0) return { ok: false, error: 'A fraction cannot have 0 on the bottom.' };
+        if (top > bottom) return { ok: false, error: 'A probability cannot be greater than 1.' };
+        return { ok: true, value: top / bottom, decimals: 3, exactForm: false };
       }
 
       function markLine(markId, slotIds, good) {
