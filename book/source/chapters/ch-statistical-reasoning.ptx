@@ -547,6 +547,37 @@
         perfectly normal — but they are close enough to be genuinely
         useful across a wide range of practical calculations.
       </p>
+      <p>
+        The rule also tells us how much of a distribution lies beyond a
+        given point on one side. Because the normal distribution is
+        symmetric, whatever falls outside a band is split evenly between
+        the two tails. About 95% of values fall within 2 standard
+        deviations of the mean, so about 5% fall outside that band: half
+        of it, about 2.5%, more than 2 standard deviations above the mean,
+        and the other half, about 2.5%, more than 2 standard deviations
+        below it. Halving the other two bands the same way gives the
+        complete set:
+      </p>
+      <ul>
+        <li>
+          <p>about 16% of values lie more than 1 standard deviation above
+          the mean, and about 16% lie more than 1 below it (half of the
+          32% outside the 68% band);</p>
+        </li>
+        <li>
+          <p>about 2.5% lie more than 2 standard deviations above the mean,
+          and about 2.5% lie more than 2 below it (half of 5%);</p>
+        </li>
+        <li>
+          <p>about 0.15% lie more than 3 standard deviations above the mean,
+          and about 0.15% lie more than 3 below it (half of 0.3%).</p>
+        </li>
+      </ul>
+      <p>
+        These one-sided figures answer questions about a single tail:
+        how many values fall above some cutoff, or what score puts
+        someone in the top 16%.
+      </p>
       <example xml:id="ex-ch15-tree-diameters">
         <title>Pine tree trunk diameters</title>
         <statement>

@@ -1,0 +1,1120 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Statistics Practice</title>
+  <link rel="icon" type="image/png" href="../favicon.png">
+  <style>
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+    }
+
+    :root {
+      --blue: #1e3a5f;
+      --blue-mid: #2d5a8e;
+      --blue-light: #e8eef8;
+      --green: #17633a;
+      --green-bg: #effaf3;
+      --red: #b91c1c;
+      --red-bg: #fff5f5;
+      --amber: #8a5a00;
+      --amber-bg: #fff8e5;
+      --gray-100: #f7f8fa;
+      --gray-200: #edf0f4;
+      --gray-300: #d1d9e0;
+      --gray-500: #5b6b80;
+      --gray-700: #354256;
+      --text: #172033;
+      --shadow: 0 2px 10px rgba(0, 0, 0, .10);
+      --radius: 8px;
+    }
+
+    html,
+    body {
+      margin: 0;
+      min-height: 100%;
+      font-family: system-ui, -apple-system, "Segoe UI", Helvetica, Arial, sans-serif;
+      background: var(--gray-100);
+      color: var(--text);
+      font-size: 15px;
+      line-height: 1.5;
+    }
+
+    header {
+      background: var(--blue);
+      color: white;
+      padding: 14px 22px;
+      display: flex;
+      gap: 12px;
+      align-items: baseline;
+      flex-wrap: wrap;
+    }
+
+    header h1 {
+      margin: 0;
+      font-size: 1.15rem;
+    }
+
+    header p {
+      margin: 0;
+      opacity: .85;
+      font-size: .86rem;
+    }
+
+    main {
+      width: min(1180px, calc(100% - 28px));
+      margin: 22px auto 36px;
+      display: grid;
+      gap: 16px;
+    }
+
+    .panel {
+      background: white;
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      padding: 18px;
+      min-width: 0;
+    }
+
+    .workspace {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) 330px;
+      gap: 16px;
+      align-items: start;
+    }
+
+    h2,
+    h3 {
+      margin: 0 0 12px;
+      color: var(--blue);
+    }
+
+    h2 {
+      font-size: 1rem;
+    }
+
+    h3 {
+      font-size: .88rem;
+      text-transform: uppercase;
+      letter-spacing: .05em;
+    }
+
+    p {
+      margin: 0 0 12px;
+    }
+
+    button,
+    input,
+    select {
+      font: inherit;
+    }
+
+    label,
+    .group-label,
+    legend {
+      display: block;
+      color: var(--gray-500);
+      font-size: .78rem;
+      font-weight: 700;
+      letter-spacing: .04em;
+      text-transform: uppercase;
+      margin-bottom: 5px;
+      padding: 0;
+    }
+
+    input[type="text"],
+    select {
+      width: 100%;
+      border: 1px solid var(--gray-300);
+      border-radius: 6px;
+      padding: 9px 10px;
+      background: white;
+      color: var(--text);
+    }
+
+    input:focus-visible,
+    select:focus-visible,
+    button:focus-visible,
+    summary:focus-visible {
+      outline: 3px solid #f5b301;
+      outline-offset: 2px;
+    }
+
+    .mode-tabs {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+      margin-bottom: 14px;
+    }
+
+    .tab-btn {
+      border: 1px solid var(--gray-300);
+      background: white;
+      color: var(--gray-700);
+      border-radius: 6px;
+      padding: 8px 14px;
+      font-weight: 600;
+      cursor: pointer;
+    }
+
+    .tab-btn[aria-pressed="true"] {
+      background: var(--blue);
+      border-color: var(--blue);
+      color: white;
+    }
+
+    .form-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 2fr) minmax(0, 1fr) auto auto;
+      gap: 12px;
+      align-items: end;
+    }
+
+    .btn {
+      border: 1px solid transparent;
+      border-radius: 6px;
+      padding: 9px 16px;
+      font-weight: 600;
+      cursor: pointer;
+      white-space: nowrap;
+    }
+
+    .btn-primary {
+      background: var(--blue-mid);
+      color: white;
+    }
+
+    .btn-primary:hover {
+      background: var(--blue);
+    }
+
+    .btn-secondary {
+      background: white;
+      border-color: var(--gray-300);
+      color: var(--gray-700);
+    }
+
+    .btn-secondary:hover {
+      background: var(--gray-200);
+    }
+
+    .btn:disabled {
+      opacity: .55;
+      cursor: not-allowed;
+    }
+
+    .actions {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      margin: 14px 0 12px;
+    }
+
+    .problem-text {
+      font-size: 1.06rem;
+      line-height: 1.6;
+      margin-bottom: 8px;
+    }
+
+    .problem-question {
+      font-size: 1.06rem;
+      font-weight: 600;
+      margin-bottom: 16px;
+    }
+
+    .problem-meta {
+      color: var(--gray-500);
+      font-size: .82rem;
+      margin-bottom: 10px;
+    }
+
+    fieldset {
+      border: 1px solid var(--gray-300);
+      border-radius: var(--radius);
+      padding: 14px;
+      margin: 0 0 14px;
+      min-width: 0;
+    }
+
+    fieldset legend {
+      padding: 0 6px;
+      color: var(--blue);
+    }
+
+    .field {
+      margin-bottom: 12px;
+    }
+
+    .field:last-child {
+      margin-bottom: 0;
+    }
+
+    .field-row {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 12px;
+    }
+
+    .answer-input {
+      max-width: 260px;
+    }
+
+    .hint-text {
+      color: var(--gray-500);
+      font-size: .84rem;
+      margin: 4px 0 0;
+    }
+
+    .mark {
+      display: block;
+      min-height: 1.3em;
+      font-size: .84rem;
+      font-weight: 600;
+      margin-top: 4px;
+    }
+
+    .mark.ok {
+      color: var(--green);
+    }
+
+    .mark.bad {
+      color: var(--red);
+    }
+
+    .mark.warn {
+      color: var(--amber);
+    }
+
+    input.is-ok,
+    select.is-ok {
+      border-color: var(--green);
+      background: var(--green-bg);
+    }
+
+    input.is-bad,
+    select.is-bad {
+      border-color: var(--red);
+      background: var(--red-bg);
+    }
+
+    .status {
+      border-radius: 6px;
+      padding: 10px 12px;
+      border-left: 4px solid var(--gray-300);
+      background: var(--gray-100);
+    }
+
+    .status.ok {
+      border-color: var(--green);
+      background: var(--green-bg);
+      color: var(--green);
+    }
+
+    .status.bad {
+      border-color: var(--red);
+      background: var(--red-bg);
+      color: var(--red);
+    }
+
+    .status.warn {
+      border-color: var(--amber);
+      background: var(--amber-bg);
+      color: var(--amber);
+    }
+
+    .status p:last-child,
+    .status ul:last-child {
+      margin-bottom: 0;
+    }
+
+    .status ul {
+      margin: 6px 0 0;
+      padding-left: 20px;
+    }
+
+    .solution {
+      margin-top: 14px;
+      border-top: 1px solid var(--gray-300);
+      padding-top: 14px;
+    }
+
+    .solution ol {
+      margin: 0;
+      padding-left: 22px;
+    }
+
+    .solution li {
+      margin-bottom: 6px;
+    }
+
+    details {
+      border-top: 1px solid var(--gray-200);
+      padding: 10px 0;
+    }
+
+    details:first-of-type {
+      border-top: 0;
+      padding-top: 0;
+    }
+
+    summary {
+      cursor: pointer;
+      font-weight: 600;
+      color: var(--blue);
+    }
+
+    details ul {
+      margin: 8px 0 0;
+      padding-left: 20px;
+    }
+
+    details li {
+      margin-bottom: 5px;
+    }
+
+    .tally {
+      font-size: .92rem;
+    }
+
+    .sr-only {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      padding: 0;
+      margin: -1px;
+      overflow: hidden;
+      clip: rect(0, 0, 0, 0);
+      white-space: nowrap;
+      border: 0;
+    }
+
+    [hidden] {
+      display: none !important;
+    }
+
+    @media (max-width: 860px) {
+
+      .workspace,
+      .form-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .field-row {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      main {
+        width: min(100% - 18px, 1180px);
+      }
+    }
+  
+    /* ---- Statistics Practice additions ---- */
+    .form-grid {
+      grid-template-columns: minmax(0, 2fr) minmax(0, 1fr) minmax(0, 1fr) auto auto;
+    }
+
+    .data-box {
+      background: var(--blue-light);
+      border-radius: 6px;
+      padding: 10px 12px;
+      margin: 0 0 12px;
+    }
+
+    .data-box .data-label {
+      font-weight: 700;
+      color: var(--blue);
+    }
+
+    .data-values {
+      font-size: 1.06rem;
+      line-height: 1.7;
+      word-spacing: .08em;
+    }
+
+    .copy-row {
+      display: flex;
+      gap: 10px;
+      align-items: flex-start;
+      flex-wrap: wrap;
+      margin-top: 8px;
+    }
+
+    .copy-row textarea {
+      flex: 1 1 320px;
+      min-height: 3.2em;
+      font: inherit;
+      font-size: .9rem;
+      border: 1px solid var(--gray-300);
+      border-radius: 6px;
+      padding: 6px 8px;
+      resize: vertical;
+    }
+
+    .num-input {
+      max-width: 220px;
+    }
+
+    .list-input {
+      max-width: 560px;
+    }
+
+    .select-input {
+      max-width: 620px;
+    }
+
+    .step-help {
+      color: var(--gray-500);
+      font-size: .84rem;
+      margin: -2px 0 10px;
+    }
+
+    .table-wrap {
+      overflow-x: auto;
+    }
+
+    table.dev-table {
+      border-collapse: collapse;
+      width: 100%;
+      max-width: 720px;
+    }
+
+    .dev-table caption {
+      text-align: left;
+      color: var(--gray-500);
+      font-size: .84rem;
+      margin-bottom: 6px;
+    }
+
+    .dev-table th,
+    .dev-table td {
+      border-bottom: 1px solid var(--gray-200);
+      padding: 6px 8px;
+      vertical-align: top;
+      text-align: left;
+    }
+
+    .dev-table thead th {
+      color: var(--gray-500);
+      font-size: .78rem;
+      letter-spacing: .04em;
+      text-transform: uppercase;
+    }
+
+    .dev-table tbody th {
+      font-size: 1.02rem;
+      font-weight: 600;
+      white-space: nowrap;
+      padding-top: 13px;
+    }
+
+    .dev-table input {
+      max-width: 150px;
+    }
+
+    .dev-table .mark {
+      font-size: .78rem;
+      min-height: 0;
+    }
+
+    .solution li {
+      line-height: 1.55;
+    }
+
+    @media (max-width: 860px) {
+      .form-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .form-grid > div:first-child {
+        grid-column: 1 / -1;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <header>
+    <h1>Statistics Practice</h1>
+    <p>Chapter 15: Statistical Reasoning</p>
+  </header>
+
+  <main>
+    <section class="panel" aria-labelledby="setup-title">
+      <h2 id="setup-title">Choose a Problem</h2>
+
+      <div class="mode-tabs" role="group" aria-label="Problem set" id="mode-tabs"></div>
+
+      <div class="form-grid">
+        <div>
+          <label for="kind-select" id="kind-label">Problem type</label>
+          <select id="kind-select"></select>
+        </div>
+        <div>
+          <label for="level-select">Level</label>
+          <select id="level-select" aria-describedby="level-help">
+            <option value="0">Either level</option>
+            <option value="1">Level 1</option>
+            <option value="2">Level 2</option>
+          </select>
+        </div>
+        <div>
+          <label for="seed-input">Problem number</label>
+          <input type="text" id="seed-input" inputmode="numeric" autocomplete="off" aria-describedby="seed-help">
+        </div>
+        <button class="btn btn-secondary" type="button" id="load-problem">Load Number</button>
+        <button class="btn btn-primary" type="button" id="new-problem">New Problem</button>
+      </div>
+      <p class="hint-text" id="level-help">Level 1 uses small whole numbers. Level 2 uses larger datasets, halves, and money.</p>
+      <p class="hint-text" id="seed-help">Each problem has a number. Anyone who loads the same set, type, level, and number gets the same problem.</p>
+    </section>
+
+    <div class="workspace">
+      <section class="panel" aria-labelledby="problem-title">
+        <h2 id="problem-title" tabindex="-1">Problem</h2>
+        <p class="problem-meta" id="problem-meta"></p>
+        <p class="problem-text" id="problem-text"></p>
+        <div class="data-box" id="data-box" hidden>
+          <p class="data-values" id="data-values" style="margin:0"></p>
+          <div class="copy-row" id="copy-row" hidden>
+            <label class="sr-only" for="copy-text">The data, ready to copy</label>
+            <textarea id="copy-text" readonly></textarea>
+            <button class="btn btn-secondary" type="button" id="copy-btn">Copy Data</button>
+          </div>
+        </div>
+        <p class="problem-question" id="problem-question"></p>
+
+        <form id="work-form" novalidate>
+          <div id="steps"></div>
+          <div class="actions">
+            <button class="btn btn-primary" type="submit">Check My Work</button>
+            <button class="btn btn-secondary" type="button" id="show-solution" disabled>Show Solution</button>
+          </div>
+        </form>
+
+        <div id="feedback" class="status" role="status" aria-live="polite">Work the problem, then check it.</div>
+
+        <div class="solution" id="solution" hidden>
+          <h3 id="solution-title" tabindex="-1">Worked solution</h3>
+          <ol id="solution-steps"></ol>
+        </div>
+      </section>
+
+      <aside class="panel" aria-labelledby="ref-title">
+        <h2 id="ref-title">Reference</h2>
+        <details>
+          <summary>Mean, median, and mode</summary>
+          <ul>
+            <li>Mean: add the values and divide by how many there are.</li>
+            <li>Median: put the values in order and take the middle one. With an even number of values, average the two middle values.</li>
+            <li>Mode: the value that appears most often. One mode is unimodal; two is bimodal. If every value appears once, there is no mode.</li>
+          </ul>
+        </details>
+        <details>
+          <summary>Choosing a measure</summary>
+          <ul>
+            <li>Mean: the data is fairly symmetric with no extreme outliers.</li>
+            <li>Median: the data is skewed, or a few extreme values pull the mean away from where most of the data sits.</li>
+            <li>Mode: the question is about which value comes up most often.</li>
+            <li>A mean well above the median suggests a long tail of high values (skewed right). A mean below the median suggests a tail of low values (skewed left).</li>
+          </ul>
+        </details>
+        <details>
+          <summary>Range and standard deviation</summary>
+          <ul>
+            <li>Range = largest value − smallest value.</li>
+            <li>Sample standard deviation, in six steps:
+              <ol>
+                <li>Calculate the mean.</li>
+                <li>For each value, find value − mean.</li>
+                <li>Square each of those differences.</li>
+                <li>Add up the squared differences.</li>
+                <li>Divide by one less than the number of values. This is the variance.</li>
+                <li>Take the square root. This is the standard deviation.</li>
+              </ol>
+            </li>
+          </ul>
+        </details>
+        <details>
+          <summary>Standard deviations from the mean</summary>
+          <ul>
+            <li>Subtract the mean from the value, then divide by the standard deviation.</li>
+            <li>A value 2 standard deviations above the mean is high; 2 below is low; within 1 is in the middle of the pack.</li>
+          </ul>
+        </details>
+        <details>
+          <summary>The empirical rule (68-95-99.7)</summary>
+          <ul>
+            <li>About 68% of values fall within 1 standard deviation of the mean, 95% within 2, and 99.7% within 3.</li>
+            <li>One tail is half of what lies outside a band: about 16% beyond 1 standard deviation on one side, 2.5% beyond 2, and 0.15% beyond 3.</li>
+            <li>A value more than 2 standard deviations from the mean is unusual; more than 3 is extremely unusual.</li>
+          </ul>
+        </details>
+        <details>
+          <summary>Margin of error (rule of thumb)</summary>
+          <p style="margin:8px 0 6px">At the 95% confidence level:</p>
+          <table class="dev-table" style="max-width:260px">
+            <caption class="sr-only">Sample size and margin of error</caption>
+            <thead><tr><th scope="col">Sample size</th><th scope="col">Margin of error</th></tr></thead>
+            <tbody>
+              <tr><td>400</td><td>&plusmn; 4.9%</td></tr>
+              <tr><td>500</td><td>&plusmn; 4.4%</td></tr>
+              <tr><td>600</td><td>&plusmn; 4.1%</td></tr>
+              <tr><td>1,000</td><td>&plusmn; 3.1%</td></tr>
+              <tr><td>1,500</td><td>&plusmn; 2.5%</td></tr>
+              <tr><td>2,000</td><td>&plusmn; 2.2%</td></tr>
+            </tbody>
+          </table>
+          <p style="margin:8px 0 0">The interval runs from the estimate minus the margin to the estimate plus the margin.</p>
+        </details>
+        <details>
+          <summary>Sensitivity and specificity</summary>
+          <ul>
+            <li>Sensitivity: how often the test is positive when the condition is present. False-negative rate = 1 &minus; sensitivity.</li>
+            <li>Specificity: how often the test is negative when the condition is absent. False-positive rate = 1 &minus; specificity.</li>
+            <li>Flagging more people raises sensitivity and lowers specificity; flagging fewer does the reverse.</li>
+          </ul>
+        </details>
+        <details>
+          <summary>Spreadsheet functions</summary>
+          <ul>
+            <li>=AVERAGE() gives the mean; =MEDIAN() the median.</li>
+            <li>=STDEV.S() gives the sample standard deviation (divides by n − 1).</li>
+            <li>=STDEV.P() gives the population standard deviation (divides by n).</li>
+          </ul>
+        </details>
+        <details open>
+          <summary>This session</summary>
+          <p class="tally" id="tally" style="margin-top:8px">No problems checked yet.</p>
+        </details>
+      </aside>
+    </div>
+
+    <div id="live-region" class="sr-only" role="status" aria-live="polite" aria-atomic="true"></div>
+  </main>
+
+  <script src="stats-bank.js"></script>
+  <script src="stats-core.js"></script>
+  <script>
+    (function () {
+      'use strict';
+      const core = window.StatsCore;
+      const $ = (id) => document.getElementById(id);
+
+      const MODE_NAMES = {};
+      core.MODES.forEach((m) => { MODE_NAMES[m.id] = m.label; });
+      const app = {
+        mode: core.MODES[0].id,
+        kind: 'any',
+        level: 0,
+        problem: null,
+        attempts: 0,
+        solved: false,
+        revealed: false,
+        tally: { solved: 0, firstTry: 0, revealed: 0 },
+      };
+
+      // ---------- setup controls ----------
+      (function buildTabs() {
+        const box = $('mode-tabs');
+        core.MODES.forEach(function (m) {
+          const b = document.createElement('button');
+          b.className = 'tab-btn'; b.type = 'button';
+          b.dataset.mode = m.id;
+          b.textContent = m.section ? m.label + ' (§' + m.section + ')' : m.label;
+          b.setAttribute('aria-pressed', 'false');
+          b.addEventListener('click', function () {
+            if (m.id === app.mode) return;
+            setMode(m.id);
+            loadProblem(isFixed() ? 1 : randomSeed(), false);
+          });
+          box.appendChild(b);
+        });
+      })();
+
+      function kindInfo(id) { return core.KINDS[app.mode].find((k) => k.id === id); }
+
+      const isFixed = () => !!core.MODES.find((m) => m.id === app.mode).fixed;
+
+      function fillKinds() {
+        const sel = $('kind-select');
+        sel.innerHTML = '';
+        if (!isFixed()) {
+          const any = document.createElement('option');
+          any.value = 'any'; any.textContent = 'Any type (mixed)';
+          sel.appendChild(any);
+        }
+        core.KINDS[app.mode].forEach(function (k) {
+          const o = document.createElement('option');
+          o.value = k.id; o.textContent = k.label;
+          sel.appendChild(o);
+        });
+        sel.value = kindInfo(app.kind) ? app.kind : (isFixed() ? core.KINDS[app.mode][0].id : 'any');
+        app.kind = sel.value;
+        $('kind-label').textContent = isFixed() ? 'Exercise' : 'Problem type';
+        $('seed-input').disabled = isFixed();
+        $('load-problem').disabled = isFixed();
+        $('new-problem').textContent = isFixed() ? 'Next Exercise' : 'New Problem';
+        syncLevel();
+      }
+
+      /** A type with only one level disables the level choice. */
+      function syncLevel() {
+        const k = kindInfo(app.kind);
+        const single = k && k.levels && k.levels.length === 1;
+        $('level-select').disabled = !!single;
+        if (single) $('level-select').value = String(k.levels[0]);
+        else $('level-select').value = String(app.level);
+      }
+
+      function setMode(mode) {
+        app.mode = mode;
+        document.querySelectorAll('.tab-btn').forEach(function (b) {
+          b.setAttribute('aria-pressed', String(b.dataset.mode === mode));
+        });
+        fillKinds();
+      }
+
+      function randomSeed() { return 1000 + Math.floor(Math.random() * 99000); }
+
+      function loadProblem(seed, moveFocus) {
+        app.problem = core.makeProblem(app.mode, app.kind, app.level, seed);
+        app.attempts = 0; app.solved = false; app.revealed = false;
+        $('seed-input').value = String(seed);
+        try { history.replaceState(null, '', '#' + app.mode + '-' + app.kind + '-' + app.level + '-' + seed); } catch (e) { /* file:// */ }
+        render();
+        if (moveFocus) $('problem-title').focus();
+        announce(isFixed() ? $('problem-title').textContent + ' loaded.' : 'New problem loaded. ' + MODE_NAMES[app.mode] + ', problem ' + seed + '.');
+      }
+
+      // ---------- rendering ----------
+      function render() {
+        const p = app.problem;
+        const kindLabel = core.KINDS[p.mode].find((k) => k.id === p.kind).label;
+        if (isFixed()) {
+          const m = kindLabel.match(/^(.*?) \((.*)\)$/);
+          $('problem-title').textContent = MODE_NAMES[p.mode] + ': ' + (m ? m[1] : kindLabel);
+          $('problem-meta').textContent = (m ? m[2] + '. ' : '') + 'Only the numeric parts are checked here.' + (p.note ? ' ' + p.note : '');
+        } else {
+          $('problem-title').textContent = MODE_NAMES[p.mode] + ': Problem ' + p.seed;
+          $('problem-meta').textContent = (app.kind === 'any' ? 'Mixed practice: ' + kindLabel : kindLabel) + ' · Level ' + p.level + (p.note ? '. ' + p.note : '');
+        }
+        $('problem-text').textContent = p.setup;
+
+        const hasData = p.data && p.data.length;
+        $('data-box').hidden = !hasData;
+        if (hasData) {
+          const dv = $('data-values');
+          dv.innerHTML = '';
+          const lab = document.createElement('span');
+          lab.className = 'data-label';
+          lab.textContent = p.dataLabel + ': ';
+          dv.appendChild(lab);
+          dv.appendChild(document.createTextNode(p.data.join(', ')));
+          $('copy-row').hidden = !p.copy;
+          $('copy-text').value = p.copy || '';
+        }
+        $('problem-question').textContent = p.question;
+
+        const box = $('steps');
+        box.innerHTML = '';
+        p.steps.forEach(function (step, si) {
+          const fs = document.createElement('fieldset');
+          const lg = document.createElement('legend');
+          lg.textContent = step.legend;
+          fs.appendChild(lg);
+          if (step.help) {
+            const h = document.createElement('p');
+            h.className = 'step-help'; h.id = 'step-help-' + si;
+            h.textContent = step.help;
+            fs.appendChild(h);
+          }
+          if (step.table) fs.appendChild(renderTable(step.table));
+          else step.fields.forEach(function (f) { fs.appendChild(renderField(f)); });
+          box.appendChild(fs);
+        });
+
+        $('solution').hidden = true;
+        $('solution-steps').innerHTML = '';
+        $('show-solution').disabled = true;
+        setFeedback('', 'Fill in every step, then check your work. You can check as often as you like.');
+      }
+
+      function renderField(f) {
+        const wrap = document.createElement('div');
+        wrap.className = 'field';
+        const label = document.createElement('label');
+        label.htmlFor = 'in-' + f.id;
+        label.textContent = f.label;
+        wrap.appendChild(label);
+        let input;
+        const describedBy = [];
+        if (f.type === 'select') {
+          input = document.createElement('select');
+          input.className = 'select-input';
+          const o0 = document.createElement('option');
+          o0.value = ''; o0.textContent = 'Choose an answer';
+          input.appendChild(o0);
+          f.options.forEach(function (opt) {
+            const o = document.createElement('option');
+            o.value = opt.value; o.textContent = opt.label;
+            input.appendChild(o);
+          });
+        } else {
+          input = document.createElement('input');
+          input.type = 'text';
+          input.autocomplete = 'off';
+          input.spellcheck = false;
+          input.className = f.type === 'number' ? 'num-input' : 'list-input';
+        }
+        input.id = 'in-' + f.id;
+        wrap.appendChild(input);
+        if (f.help) {
+          const h = document.createElement('p');
+          h.className = 'hint-text'; h.id = 'help-' + f.id;
+          h.textContent = f.help;
+          wrap.appendChild(h);
+          describedBy.push(h.id);
+        }
+        const mark = document.createElement('span');
+        mark.className = 'mark'; mark.id = 'mark-' + f.id;
+        wrap.appendChild(mark);
+        describedBy.push(mark.id);
+        input.setAttribute('aria-describedby', describedBy.join(' '));
+        return wrap;
+      }
+
+      function renderTable(t) {
+        const wrap = document.createElement('div');
+        wrap.className = 'table-wrap';
+        const table = document.createElement('table');
+        table.className = 'dev-table';
+        const cap = document.createElement('caption');
+        cap.textContent = t.caption;
+        table.appendChild(cap);
+        const thead = document.createElement('thead');
+        thead.innerHTML = '<tr><th scope="col">Value</th><th scope="col">Deviation (value − mean)</th><th scope="col">Squared deviation</th></tr>';
+        table.appendChild(thead);
+        const tb = document.createElement('tbody');
+        t.rows.forEach(function (r) {
+          const tr = document.createElement('tr');
+          const th = document.createElement('th');
+          th.scope = 'row'; th.textContent = r.value;
+          tr.appendChild(th);
+          [r.dev, r.sq].forEach(function (f) {
+            const td = document.createElement('td');
+            const input = document.createElement('input');
+            input.type = 'text'; input.autocomplete = 'off'; input.spellcheck = false;
+            input.id = 'in-' + f.id;
+            input.setAttribute('aria-label', f.label);
+            const mark = document.createElement('span');
+            mark.className = 'mark'; mark.id = 'mark-' + f.id;
+            input.setAttribute('aria-describedby', mark.id);
+            td.appendChild(input); td.appendChild(mark);
+            tr.appendChild(td);
+          });
+          tb.appendChild(tr);
+        });
+        table.appendChild(tb);
+        wrap.appendChild(table);
+        return wrap;
+      }
+
+      function clearMark(input, mark) {
+        input.classList.remove('is-ok', 'is-bad');
+        input.removeAttribute('aria-invalid');
+        mark.textContent = ''; mark.className = 'mark';
+      }
+
+      /** state: 'ok' | 'bad' | 'warn' */
+      function setMark(input, mark, state, text) {
+        input.classList.toggle('is-ok', state === 'ok');
+        input.classList.toggle('is-bad', state === 'bad');
+        if (state === 'bad') input.setAttribute('aria-invalid', 'true'); else input.removeAttribute('aria-invalid');
+        mark.className = 'mark ' + state;
+        mark.textContent = (state === 'ok' ? '✓ ' : state === 'bad' ? '✗ ' : '! ') + text;
+      }
+
+      function setFeedback(state, text, items) {
+        const box = $('feedback');
+        box.className = 'status' + (state ? ' ' + state : '');
+        box.innerHTML = '';
+        const p = document.createElement('p');
+        p.textContent = text;
+        box.appendChild(p);
+        if (items && items.length) {
+          const ul = document.createElement('ul');
+          items.forEach(function (t) { const li = document.createElement('li'); li.textContent = t; ul.appendChild(li); });
+          box.appendChild(ul);
+        }
+      }
+
+      function announce(text) {
+        const live = $('live-region');
+        live.textContent = '';
+        window.setTimeout(function () { live.textContent = text; }, 60);
+      }
+
+      // Completion jingle: the same rising arpeggio (C-E-G-C) the proof checker
+      // and probability tool play, synthesized with the Web Audio API so there
+      // is no audio file to host. It plays once per problem, when the whole
+      // problem is first correct. That always follows a click or Enter, so
+      // browsers allow it.
+      let audioCtx = null;
+      function playJingle() {
+        try {
+          const AC = window.AudioContext || window.webkitAudioContext;
+          if (!AC) return;
+          if (!audioCtx) audioCtx = new AC();
+          if (audioCtx.state === 'suspended') audioCtx.resume();
+          const t0 = audioCtx.currentTime + 0.05;
+          const notes = [523.25, 659.25, 783.99, 1046.5]; // C5 E5 G5 C6
+          notes.forEach(function (freq, i) {
+            const start = t0 + i * 0.11;
+            const len = i === notes.length - 1 ? 0.6 : 0.18;
+            const osc = audioCtx.createOscillator();
+            const gain = audioCtx.createGain();
+            osc.type = 'triangle';
+            osc.frequency.setValueAtTime(freq, start);
+            gain.gain.setValueAtTime(0.0001, start);
+            gain.gain.exponentialRampToValueAtTime(0.18, start + 0.02);
+            gain.gain.exponentialRampToValueAtTime(0.0001, start + len);
+            osc.connect(gain).connect(audioCtx.destination);
+            osc.start(start);
+            osc.stop(start + len + 0.05);
+          });
+        } catch (e) { /* sound is optional; never block the checker */ }
+      }
+
+      // ---------- checking ----------
+      function checkWork() {
+        const p = app.problem;
+        const notes = [];
+        let allOk = true;
+        p.steps.forEach(function (step) {
+          let wrong = 0; let total = 0;
+          step.fields.forEach(function (f) {
+            const input = $('in-' + f.id); const mark = $('mark-' + f.id);
+            const r = core.checkField(f, input.value);
+            total += 1;
+            if (r.correct) setMark(input, mark, 'ok', r.msg);
+            else { wrong += 1; setMark(input, mark, r.state, r.msg); }
+          });
+          if (wrong) {
+            allOk = false;
+            const name = step.legend.split(':')[0];
+            notes.push(name + ': ' + (total === 1 ? 'check this box.' : wrong + ' of ' + total + ' boxes need another look.'));
+          }
+        });
+        if (allOk) {
+          setFeedback('ok', 'Correct. Every step checks out. The worked solution is below.');
+          announce('Correct. Every step checks out.');
+        } else {
+          setFeedback('bad', 'Not quite. You can fix the marked boxes and check again, or show the solution.', notes);
+          announce('Not quite. ' + notes.join(' '));
+        }
+        afterCheck(allOk);
+      }
+
+      function afterCheck(allCorrect) {
+        app.attempts += 1;
+        $('show-solution').disabled = false;
+        if (allCorrect && !app.solved) {
+          app.solved = true;
+          playJingle();
+          if (!app.revealed) {
+            app.tally.solved += 1;
+            if (app.attempts === 1) app.tally.firstTry += 1;
+          }
+          showSolution(false);
+        }
+        renderTally();
+      }
+
+      function renderTally() {
+        const t = app.tally;
+        if (!t.solved && !t.revealed) { $('tally').textContent = 'No problems checked yet.'; return; }
+        $('tally').textContent = 'Solved: ' + t.solved + ' (' + t.firstTry + ' on the first check). ' +
+          'Solutions viewed before solving: ' + t.revealed + '.';
+      }
+
+      function showSolution(moveFocus) {
+        const ol = $('solution-steps');
+        ol.innerHTML = '';
+        app.problem.solution.forEach(function (line) {
+          const li = document.createElement('li'); li.textContent = line; ol.appendChild(li);
+        });
+        $('solution').hidden = false;
+        if (moveFocus) $('solution-title').focus();
+      }
+
+      // ---------- events ----------
+      $('kind-select').addEventListener('change', function () {
+        app.kind = $('kind-select').value;
+        syncLevel();
+        loadProblem(isFixed() ? 1 : randomSeed(), false);
+      });
+      $('level-select').addEventListener('change', function () {
+        app.level = parseInt($('level-select').value, 10) || 0;
+        loadProblem(randomSeed(), false);
+      });
+      $('new-problem').addEventListener('click', function () {
+        if (isFixed()) {
+          const list = core.KINDS[app.mode];
+          const i = list.findIndex((k) => k.id === app.kind);
+          app.kind = list[(i + 1) % list.length].id;
+          $('kind-select').value = app.kind;
+          loadProblem(1, true);
+          return;
+        }
+        loadProblem(randomSeed(), true);
+      });
+      function loadTyped() {
+        const n = parseInt($('seed-input').value.replace(/\D/g, ''), 10);
+        if (!n || n < 1 || n > 99999999) {
+          setFeedback('warn', 'Enter a whole number from 1 to 99999999 as the problem number.');
+          announce('Enter a whole number as the problem number.');
+          return;
+        }
+        loadProblem(n, true);
+      }
+      $('load-problem').addEventListener('click', loadTyped);
+      $('seed-input').addEventListener('keydown', function (e) { if (e.key === 'Enter') { e.preventDefault(); loadTyped(); } });
+      $('work-form').addEventListener('submit', function (e) { e.preventDefault(); checkWork(); });
+      $('steps').addEventListener('input', function (e) {
+        const id = e.target.id && e.target.id.replace(/^in-/, '');
+        if (id && $('mark-' + id)) clearMark(e.target, $('mark-' + id));
+      });
+      $('show-solution').addEventListener('click', function () {
+        if (!app.solved && !app.revealed) { app.revealed = true; app.tally.revealed += 1; renderTally(); }
+        showSolution(true);
+      });
+      $('copy-btn').addEventListener('click', function () {
+        const text = $('copy-text').value;
+        const done = function () { announce('Data copied.'); $('copy-btn').textContent = 'Copied'; setTimeout(function () { $('copy-btn').textContent = 'Copy Data'; }, 1500); };
+        if (navigator.clipboard && navigator.clipboard.writeText) {
+          navigator.clipboard.writeText(text).then(done, function () { $('copy-text').select(); });
+        } else { $('copy-text').select(); }
+      });
+
+      // ---------- start ----------
+      (function start() {
+        const m = (location.hash || '').match(/^#([a-z]+)-([a-z0-9]+)-([012])-(\d{1,8})$/);
+        if (m && core.KINDS[m[1]]) {
+          app.level = parseInt(m[3], 10);
+          app.kind = m[2];
+          setMode(m[1]);
+          loadProblem(parseInt(m[4], 10), false);
+        } else {
+          setMode(app.mode);
+          loadProblem(randomSeed(), false);
+        }
+      })();
+    })();
+  </script>
+</body>
+
+</html>
