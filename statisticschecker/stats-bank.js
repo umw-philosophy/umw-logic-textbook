@@ -252,6 +252,8 @@
     //   title, measure, labels [larger, smaller], money, unit, scale
     //   (values are whole multiples of scale), size [low, high] in scale units.
     // icon: a price (or other amount) drawn as a picture scaled by height.
+    //   title heads the drawn infographic; shape is one of the silhouettes
+    //   index.html can draw: truck, house, cap, carton, cup.
     // risk: a treatment and an outcome; rate is per year unless period says otherwise.
     // trend: a yearly series whose starting year can be chosen to flatter.
     // ---------------------------------------------------------------
@@ -263,11 +265,11 @@
       { id: 'donations', title: 'Annual Donations', measure: 'annual donations', labels: ['Westside Food Bank', 'Eastside Food Bank'], money: true, unit: '', scale: 1000, size: [150, 900] },
     ],
     icon: [
-      { id: 'gas', what: 'The average price of a gallon of gasoline', icon: 'a truck', money: true, cents: true, range: [2.5, 4.5] },
-      { id: 'rent', what: 'The median monthly rent in a city', icon: 'a house', money: true, cents: false, range: [900, 2400] },
-      { id: 'tuition', what: 'Annual tuition at a state university', icon: 'a graduation cap', money: true, cents: false, range: [6000, 14000] },
-      { id: 'eggs', what: 'The average price of a dozen eggs', icon: 'an egg carton', money: true, cents: true, range: [1.8, 4.5] },
-      { id: 'coffee', what: 'The price of a medium coffee at a campus café', icon: 'a coffee cup', money: true, cents: true, range: [1.8, 4.2] },
+      { id: 'gas', title: 'Gas Prices', shape: 'truck', what: 'The average price of a gallon of gasoline', icon: 'a truck', money: true, cents: true, range: [2.5, 4.5] },
+      { id: 'rent', title: 'Median Rent', shape: 'house', what: 'The median monthly rent in a city', icon: 'a house', money: true, cents: false, range: [900, 2400] },
+      { id: 'tuition', title: 'Tuition', shape: 'cap', what: 'Annual tuition at a state university', icon: 'a graduation cap', money: true, cents: false, range: [6000, 14000] },
+      { id: 'eggs', title: 'Egg Prices', shape: 'carton', what: 'The average price of a dozen eggs', icon: 'an egg carton', money: true, cents: true, range: [1.8, 4.5] },
+      { id: 'coffee', title: 'Coffee Prices', shape: 'cup', what: 'The price of a medium coffee at a campus café', icon: 'a coffee cup', money: true, cents: true, range: [1.8, 4.2] },
     ],
     risk: [
       { id: 'statin', treatment: 'a new cholesterol drug', outcome: 'a heart attack', group: 'patients', period: 'each year' },

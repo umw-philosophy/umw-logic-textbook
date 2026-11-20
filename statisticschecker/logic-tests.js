@@ -242,7 +242,17 @@ for (let seed = 1; seed <= 600; seed++) {
     assert.ok(close(val(t, 'diff'), A - B), w('truncated'));
     assert.ok(close(val(t, 'pct'), (A - B) / B * 100, 1e-6), w('truncated') + ': percent');
     t.chart.ticks.forEach((tk) => assert.ok(t.chart.desc.includes(tk.label), w('truncated') + ': text equivalent lacks ' + tk.label));
+    // Text equivalents say what a sighted reader sees, never an answer.
+    assert.ok(!/times as tall|times the area/.test(t.chart.desc), w('truncated') + ': description gives away an answer');
     const ar = core.makeProblem('distort', 'area', level, seed);
+    assert.equal(ar.chart.kind, 'pictures', w('area'));
+    assert.ok(['truck', 'house', 'cap', 'carton', 'cup'].includes(ar.chart.shape), w('area') + ': unknown shape');
+    assert.ok(close(ar.chart.items[1].value / ar.chart.items[0].value, val(ar, 'ratio'), 0.005), w('area') + ': pictures do not match the ratio');
+    ar.chart.items.forEach((it) => {
+      assert.ok(ar.chart.desc.includes(it.label), w('area') + ': description lacks ' + it.label);
+      assert.ok(ar.setup.includes(it.label.split(': ')[1]), w('area') + ': ' + it.label + ' not in the problem text');
+    });
+    assert.ok(!/\d+(\.\d+)? times|times as|area ratio/.test(ar.chart.desc), w('area') + ': description gives away an answer');
     assert.ok(close(val(ar, 'area'), val(ar, 'ratio') * val(ar, 'ratio'), 1e-6), w('area'));
     assert.ok(val(ar, 'ratio') > 1.1, w('area') + ': ratio');
     const rk = core.makeProblem('distort', 'risk', level, seed);

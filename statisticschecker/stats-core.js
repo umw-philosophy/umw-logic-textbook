@@ -1723,7 +1723,7 @@
     const v = (x) => fmt(cfmt, x); const vu = (x) => withUnit(cfmt, x);
     const bars = bigFirst ? [{ label: big, value: A }, { label: small, value: B }] : [{ label: small, value: B }, { label: big, value: A }];
     const desc = 'Bar chart titled “' + ctx.title + '.” The vertical axis starts at ' + v(base) + ', not at zero, and runs to ' + v(top) + ', with a break mark at the bottom. ' +
-      bars.map((b) => b.label + '’s bar reaches ' + v(b.value) + '.').join(' ') + ' On the chart, ' + big + '’s bar looks ' + numStr(r) + ' times as tall as ' + small + '’s.';
+      bars.map((b) => b.label + '’s bar reaches ' + v(b.value) + '.').join(' ');
     const honest = A / B;
     return {
       setup: 'A bar chart compares ' + ctx.measure + ' for ' + bars[0].label + ' and ' + bars[1].label + '. Its vertical axis starts at ' + v(base) + ', not at zero. ' + big + ': ' + vu(A) + '. ' + small + ': ' + vu(B) + '.',
@@ -1792,9 +1792,17 @@
     const picT = level === 1 ? exactT(roundTo((k * k - 1) * 100, 2)) : roundT((k * k - 1) * 100, 0);
     const altArea = level === 2 ? [{ target: roundT(kR * kR, 2), msg: 'Correct, working from the rounded ratio.' }] : [];
     const altPic = level === 2 ? [{ target: roundT((kR * kR - 1) * 100, 0), msg: 'Correct, working from the rounded ratio.' }] : [];
+    // The description says only what a sighted reader can see; like them, a
+    // screen-reader user works out the ratios from the two prices.
+    const desc = 'Infographic titled “' + ctx.title + '.” Two pictures of ' + ctx.icon + ' stand side by side on a common baseline. ' +
+      'The left one is labeled “Earlier: ' + money(v1) + '.” The right one, labeled “Later: ' + money(v2) + ',” is drawn taller in proportion to the price, and its width is scaled up by the same factor, so it is larger in both directions.';
     return {
       setup: ctx.what + ' rose from ' + money(v1) + ' to ' + money(v2) + '. An infographic shows each value as a picture of ' + ctx.icon + ', with the later picture drawn taller in proportion to the value and its width scaled up to match.',
       dataLabel: '', data: [],
+      chart: {
+        kind: 'pictures', title: ctx.title, shape: ctx.shape, desc,
+        items: [{ label: 'Earlier: ' + money(v1), value: v1 }, { label: 'Later: ' + money(v2), value: v2 }],
+      },
       question: 'How much did the value actually rise, and how much bigger does the later picture look?',
       steps: [
         { legend: 'Step 1: The ratio in the data', fields: [

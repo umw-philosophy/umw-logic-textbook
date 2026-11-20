@@ -891,38 +891,88 @@
         setFeedback('', 'Fill in every step, then check your work. You can check as often as you like.');
       }
 
-      // A bar chart drawn from the problem's own numbers. Every number on it is
-      // also in the problem text, and the SVG carries a full text equivalent.
+      // Charts and infographics drawn from the problem's own numbers. The core
+      // (stats-core.js) describes the chart; this draws it as SVG. Every number
+      // on it is also in the problem text, and the SVG carries a full text
+      // equivalent (role="img" with the core's description as its label).
+      const SVGNS = 'http://www.w3.org/2000/svg';
+      function svgEl(name, attrs, text) {
+        const e = document.createElementNS(SVGNS, name);
+        Object.keys(attrs).forEach(function (k) { e.setAttribute(k, attrs[k]); });
+        if (text !== undefined) e.textContent = text;
+        return e;
+      }
       function renderChart(box, c) {
-        const NS = 'http://www.w3.org/2000/svg';
-        const el = function (name, attrs, text) {
-          const e = document.createElementNS(NS, name);
-          Object.keys(attrs).forEach(function (k) { e.setAttribute(k, attrs[k]); });
-          if (text !== undefined) e.textContent = text;
-          return e;
-        };
-        const W = 440, H = 300, x0 = 112, x1 = 420, yTop = 46, yBase = 250;
+        const svg = svgEl('svg', { viewBox: '0 0 440 300', role: 'img', 'aria-label': c.desc, focusable: 'false' });
+        let caption;
+        if (c.kind === 'pictures') {
+          drawPictures(svg, c);
+          caption = 'The infographic as published. Each picture is drawn taller in proportion to the price, and wider by the same factor.';
+        } else {
+          drawBars(svg, c);
+          caption = 'The chart as published. The red zigzag marks where the axis skips from zero to ' + c.ticks[0].label + '.';
+        }
+        box.appendChild(svg);
+        const cap = document.createElement('figcaption');
+        cap.textContent = caption;
+        box.appendChild(cap);
+      }
+
+      function drawBars(svg, c) {
+        const x0 = 112, x1 = 420, yTop = 46, yBase = 250;
         const y = function (v) { return yBase - (v - c.base) / (c.top - c.base) * (yBase - yTop); };
-        const svg = el('svg', { viewBox: '0 0 ' + W + ' ' + H, role: 'img', 'aria-label': c.desc, focusable: 'false' });
-        svg.appendChild(el('text', { x: (x0 + x1) / 2, y: 24, 'text-anchor': 'middle', 'font-size': 15, 'font-weight': 700, fill: '#1e3a5f' }, c.title));
+        svg.appendChild(svgEl('text', { x: (x0 + x1) / 2, y: 24, 'text-anchor': 'middle', 'font-size': 15, 'font-weight': 700, fill: '#1e3a5f' }, c.title));
         c.ticks.forEach(function (t) {
-          svg.appendChild(el('line', { x1: x0 - 5, x2: x1, y1: y(t.value), y2: y(t.value), stroke: '#edf0f4' }));
-          svg.appendChild(el('text', { x: x0 - 9, y: y(t.value) + 4, 'text-anchor': 'end', 'font-size': 12, fill: '#354256' }, t.label));
+          svg.appendChild(svgEl('line', { x1: x0 - 5, x2: x1, y1: y(t.value), y2: y(t.value), stroke: '#edf0f4' }));
+          svg.appendChild(svgEl('text', { x: x0 - 9, y: y(t.value) + 4, 'text-anchor': 'end', 'font-size': 12, fill: '#354256' }, t.label));
         });
         const slot = (x1 - x0) / c.bars.length; const bw = Math.min(90, slot * 0.5);
         c.bars.forEach(function (b, i) {
           const cx = x0 + slot * (i + 0.5);
-          svg.appendChild(el('rect', { x: cx - bw / 2, y: y(b.value), width: bw, height: yBase - y(b.value), fill: i === 0 ? '#2d5a8e' : '#8aa6c8' }));
-          svg.appendChild(el('text', { x: cx, y: yBase + 20, 'text-anchor': 'middle', 'font-size': 13, fill: '#172033' }, b.label));
+          svg.appendChild(svgEl('rect', { x: cx - bw / 2, y: y(b.value), width: bw, height: yBase - y(b.value), fill: i === 0 ? '#2d5a8e' : '#8aa6c8' }));
+          svg.appendChild(svgEl('text', { x: cx, y: yBase + 20, 'text-anchor': 'middle', 'font-size': 13, fill: '#172033' }, b.label));
         });
-        svg.appendChild(el('line', { x1: x0, x2: x0, y1: yTop - 8, y2: yBase, stroke: '#172033', 'stroke-width': 1.5 }));
-        svg.appendChild(el('line', { x1: x0, x2: x1, y1: yBase, y2: yBase, stroke: '#172033', 'stroke-width': 1.5 }));
+        svg.appendChild(svgEl('line', { x1: x0, x2: x0, y1: yTop - 8, y2: yBase, stroke: '#172033', 'stroke-width': 1.5 }));
+        svg.appendChild(svgEl('line', { x1: x0, x2: x1, y1: yBase, y2: yBase, stroke: '#172033', 'stroke-width': 1.5 }));
         // Break mark: the axis does not start at zero.
-        svg.appendChild(el('polyline', { points: [x0 - 7, yBase - 4, x0 + 7, yBase - 10, x0 - 7, yBase - 16, x0 + 7, yBase - 22].join(' '), fill: 'none', stroke: '#b91c1c', 'stroke-width': 2 }));
-        box.appendChild(svg);
-        const cap = document.createElement('figcaption');
-        cap.textContent = 'The chart as published. The red zigzag marks where the axis skips from zero to ' + c.ticks[0].label + '.';
-        box.appendChild(cap);
+        svg.appendChild(svgEl('polyline', { points: [x0 - 7, yBase - 4, x0 + 7, yBase - 10, x0 - 7, yBase - 16, x0 + 7, yBase - 22].join(' '), fill: 'none', stroke: '#b91c1c', 'stroke-width': 2 }));
+      }
+
+      // Silhouettes drawn in a 100 x 100 box (bottom edge at y = 100), then
+      // stretched to the picture's width and height. aspect = width / height.
+      const SHAPES = {
+        truck: { aspect: 1.7, parts: [
+          ['path', { d: 'M0 18 H62 V86 H0 Z' }], ['path', { d: 'M62 42 H84 L100 60 V86 H62 Z' }],
+          ['ellipse', { cx: 20, cy: 89, rx: 10, ry: 11, fill: '#172033' }], ['ellipse', { cx: 80, cy: 89, rx: 10, ry: 11, fill: '#172033' }]] },
+        house: { aspect: 1, parts: [['path', { d: 'M10 100 V46 L50 8 L90 46 V100 Z' }], ['path', { d: 'M42 100 V72 H58 V100 Z', fill: 'white' }]] },
+        cap: { aspect: 1.3, parts: [['path', { d: 'M22 42 V78 Q50 94 78 78 V42 Z' }], ['path', { d: 'M0 34 L50 12 L100 34 L50 56 Z' }],
+          ['path', { d: 'M50 34 L88 46 V74', fill: 'none', stroke: '#b98a00', 'stroke-width': 3 }]] },
+        carton: { aspect: 1.6, parts: [['path', { d: 'M0 100 V46 Q8.3 24 16.7 46 Q25 24 33.3 46 Q41.7 24 50 46 Q58.3 24 66.7 46 Q75 24 83.3 46 Q91.7 24 100 46 V100 Z' }]] },
+        cup: { aspect: 0.95, parts: [['path', { d: 'M72 38 Q100 42 70 74', fill: 'none', 'stroke-width': 8 }], ['path', { d: 'M8 20 H80 L71 100 H17 Z' }], ['path', { d: 'M4 12 H84 V22 H4 Z' }]] },
+      };
+
+      function drawPictures(svg, c) {
+        const shape = SHAPES[c.shape] || SHAPES.house;
+        const yBase = 238, maxH = 180, maxW = 200;
+        const big = Math.max(c.items[0].value, c.items[1].value);
+        // The larger picture fills the space it has; each picture's height and
+        // width are in proportion to its value, as in the published graphic.
+        const unit = Math.min(maxH / big, maxW / (big * shape.aspect));
+        svg.appendChild(svgEl('text', { x: 220, y: 26, 'text-anchor': 'middle', 'font-size': 15, 'font-weight': 700, fill: '#1e3a5f' }, c.title));
+        const centers = [110, 310];
+        c.items.forEach(function (it, i) {
+          const h = it.value * unit; const w = h * shape.aspect;
+          const g = svgEl('g', { transform: 'translate(' + (centers[i] - w / 2) + ' ' + (yBase - h) + ') scale(' + (w / 100) + ' ' + (h / 100) + ')',
+            fill: i === 0 ? '#8aa6c8' : '#2d5a8e', stroke: '#1e3a5f' });
+          shape.parts.forEach(function (part) {
+            const a = Object.assign({ 'vector-effect': 'non-scaling-stroke', 'stroke-width': 1.5 }, part[1]);
+            if (part[1]['stroke-width']) a['vector-effect'] = 'none';
+            g.appendChild(svgEl(part[0], a));
+          });
+          svg.appendChild(g);
+          svg.appendChild(svgEl('text', { x: centers[i], y: yBase + 24, 'text-anchor': 'middle', 'font-size': 14, fill: '#172033' }, it.label));
+        });
+        svg.appendChild(svgEl('line', { x1: 20, x2: 420, y1: yBase, y2: yBase, stroke: '#d1d9e0', 'stroke-width': 1.5 }));
       }
 
       function renderField(f) {
