@@ -1,0 +1,563 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Argument Feedback</title>
+  <link rel="icon" type="image/png" href="../favicon.png">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; }
+    :root {
+      --blue: #1e3a5f; --blue-mid: #2d5a8e; --blue-light: #e8eef8;
+      --green: #17633a; --green-bg: #effaf3; --red: #b91c1c; --red-bg: #fff5f5;
+      --amber: #8a5a00; --amber-bg: #fff8e5;
+      --gray-100: #f7f8fa; --gray-200: #edf0f4; --gray-300: #d1d9e0; --gray-500: #5b6b80; --gray-700: #354256;
+      --text: #172033; --shadow: 0 2px 10px rgba(0, 0, 0, .10); --radius: 8px;
+    }
+    html, body { margin: 0; font-family: system-ui, -apple-system, "Segoe UI", Helvetica, Arial, sans-serif; background: var(--gray-100); color: var(--text); font-size: 15px; line-height: 1.5; }
+    header { background: var(--blue); color: white; padding: 14px 22px; display: flex; gap: 12px; align-items: baseline; flex-wrap: wrap; }
+    header h1 { margin: 0; font-size: 1.15rem; }
+    header .sub { opacity: .85; font-size: .9rem; }
+    main { max-width: 900px; margin: 0 auto; padding: 18px; display: grid; gap: 16px; }
+    section { background: white; border-radius: var(--radius); box-shadow: var(--shadow); padding: 16px 18px; }
+    section[aria-disabled="true"] { opacity: .55; }
+    h2 { margin: 0 0 8px; font-size: 1.05rem; color: var(--blue); }
+    h3 { margin: 14px 0 6px; font-size: 1rem; }
+    label { font-weight: 600; display: block; margin: 10px 0 4px; }
+    label.inline { display: inline-flex; gap: 6px; align-items: center; font-weight: 400; margin: 6px 16px 0 0; }
+    input[type=text], input[type=url], input[type=password], select, textarea { font: inherit; width: 100%; padding: 7px 9px; border: 1px solid var(--gray-300); border-radius: 6px; background: white; color: var(--text); }
+    textarea { resize: vertical; }
+    textarea[readonly], input[readonly] { background: var(--gray-200); }
+    button, .filebutton { font: inherit; padding: 7px 14px; border-radius: 6px; border: 1px solid var(--blue-mid); background: var(--blue-mid); color: white; cursor: pointer; margin: 10px 8px 0 0; display: inline-block; }
+    button.secondary, .filebutton { background: white; color: var(--blue-mid); }
+    button:disabled { opacity: .5; cursor: default; }
+    button:focus-visible, input:focus-visible, select:focus-visible, textarea:focus-visible, summary:focus-visible, .filebutton:focus-within, h2:focus-visible { outline: 3px solid #f2b705; outline-offset: 2px; }
+    .filebutton { position: relative; }
+    .filebutton input { position: absolute; opacity: 0; width: 1px; height: 1px; }
+    .help { color: var(--gray-500); font-size: .9rem; margin: 4px 0; }
+    .row { display: flex; gap: 16px; flex-wrap: wrap; }
+    .row > div { flex: 1 1 260px; }
+    ol.sentences { padding-left: 0; list-style: none; margin: 10px 0; }
+    ol.sentences li { padding: 3px 6px; border-radius: 4px; }
+    ol.sentences li:focus { outline: 3px solid #f2b705; background: var(--amber-bg); }
+    .sid { display: inline-block; min-width: 2.6em; font-weight: 700; color: var(--blue-mid); }
+    .para-break { border-top: 1px dashed var(--gray-300); margin-top: 6px; padding-top: 6px; }
+    ul.checks li { margin: 3px 0; }
+    .msg { padding: 8px 12px; border-radius: 6px; margin: 8px 0; }
+    .msg.error { background: var(--red-bg); color: var(--red); border-left: 4px solid var(--red); }
+    .msg.ok { background: var(--green-bg); color: var(--green); border-left: 4px solid var(--green); }
+    .msg.warn { background: var(--amber-bg); color: var(--amber); border-left: 4px solid var(--amber); }
+    .msg ul { margin: 4px 0 0; padding-left: 20px; }
+    .compare { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin: 8px 0 4px; }
+    .compare > div { border: 1px solid var(--gray-300); border-radius: 6px; padding: 10px 12px; }
+    .compare .label { font-size: .85rem; font-weight: 700; color: var(--gray-700); text-transform: uppercase; letter-spacing: .03em; }
+    @media (max-width: 600px) { .compare { grid-template-columns: 1fr; } main { padding: 10px; } section { padding: 12px; } }
+    article.line, article.item { border: 1px solid var(--gray-300); border-radius: 6px; padding: 10px 14px; margin: 10px 0; }
+    article.line { border-left: 4px solid var(--gray-500); }
+    article.line.conclusion { border-left-color: var(--blue); }
+    article.item { border-left: 4px solid var(--blue-mid); }
+    article p { margin: 5px 0; }
+    .meta { color: var(--gray-700); font-size: .9rem; }
+    .linkish { background: none; border: none; color: var(--blue-mid); text-decoration: underline; padding: 0 2px; margin: 0; cursor: pointer; }
+    fieldset { border: 1px solid var(--gray-300); border-radius: 6px; margin: 8px 0 0; padding: 6px 10px 10px; }
+    legend { font-weight: 600; padding: 0 4px; }
+    .exchange { margin: 6px 0; padding: 6px 10px; background: var(--gray-100); border-radius: 6px; }
+    .strength { background: var(--green-bg); border-left: 4px solid var(--green); padding: 8px 12px; border-radius: 6px; }
+    .diffline { margin: 2px 0; }
+    .diffline .tag { display: inline-block; min-width: 5.5em; font-weight: 700; }
+  </style>
+</head>
+
+<body>
+  <header>
+    <h1>Argument Feedback</h1>
+    <span class="sub">Writing Arguments · proof of concept</span>
+  </header>
+
+  <main>
+    <section aria-labelledby="s1-h">
+      <h2 id="s1-h">1. Assignment</h2>
+      <label for="prompt-select">Writing prompt</label>
+      <select id="prompt-select"></select>
+      <label for="prompt-text">Prompt text</label>
+      <textarea id="prompt-text" rows="3"></textarea>
+      <label for="focus">Feedback focus</label>
+      <select id="focus" aria-describedby="focus-help"></select>
+      <p class="help" id="focus-help">The helper’s questions use the concepts of this chapter, the essay-structure concepts, and the Chapter 1–2 basics. A book prompt sets this for you.</p>
+      <details>
+        <summary>Connection</summary>
+        <label for="relay-url">Relay address</label>
+        <input type="url" id="relay-url">
+        <label for="class-code">Class code</label>
+        <input type="password" id="class-code" autocomplete="off">
+        <label class="inline"><input type="checkbox" id="sample-mode"> Use sample replies (no connection; for trying the page)</label>
+        <p class="help">Your essay goes to the relay, then to UMW’s nebulaONE gateway, which sends it to the model. Nothing is stored on the relay. Your work is saved only in this browser.</p>
+      </details>
+    </section>
+
+    <section aria-labelledby="s2-h">
+      <h2 id="s2-h">2. Draft <span id="draft-n">1</span></h2>
+      <label for="essay">Your essay</label>
+      <textarea id="essay" rows="14" aria-describedby="essay-help"></textarea>
+      <p class="help" id="essay-help">Separate paragraphs with a blank line.</p>
+      <p id="essay-locked" class="msg warn" hidden>The reader has read this draft, so its text is fixed. To revise, start a new draft in step 6.</p>
+      <details id="checks-box">
+        <summary>Numbered sentences and what the program noticed</summary>
+        <div id="draft-out"></div>
+      </details>
+    </section>
+
+    <section aria-labelledby="s3-h">
+      <h2 id="s3-h">3. Your conclusion</h2>
+      <p class="help">Say what your essay argues before anyone reads it. The reader will not see this; you will compare it with what the reader finds.</p>
+      <label for="stated-conclusion">In one sentence, what does your essay argue?</label>
+      <input type="text" id="stated-conclusion">
+      <label for="stated-reasons">Your main reasons, one per line (optional)</label>
+      <textarea id="stated-reasons" rows="3"></textarea>
+      <div id="stated-out" aria-live="polite"></div>
+      <button id="get-reading">Get the reader’s reading</button>
+      <p id="reading-status" role="status" aria-live="polite"></p>
+    </section>
+
+    <section aria-labelledby="s4-h" id="s4">
+      <h2 id="s4-h" tabindex="-1">4. The reader’s reading</h2>
+      <p class="help">A careful reader laid out the argument your essay makes, without seeing what you wrote in step 3. Check each line: is this what you meant?</p>
+      <div id="reading-out"></div>
+    </section>
+
+    <section aria-labelledby="s5-h" id="s5">
+      <h2 id="s5-h" tabindex="-1">5. Questions</h2>
+      <p class="help">The helper asks about at most three problems. Respond to each before you revise.</p>
+      <p id="fb-status" role="status" aria-live="polite"></p>
+      <div id="fb-out"></div>
+    </section>
+
+    <section aria-labelledby="s6-h">
+      <h2 id="s6-h">6. Revise and record</h2>
+      <button id="new-draft">Start a new draft from this one</button>
+      <button id="copy-record" class="secondary">Copy the record</button>
+      <button id="download-record" class="secondary">Download the record</button>
+      <button id="save-session" class="secondary">Save session file</button>
+      <span class="filebutton">Load session file<input type="file" id="load-session" accept=".json,application/json" aria-label="Load session file"></span>
+      <button id="clear-all" class="secondary">Clear everything on this device</button>
+      <p id="rev-status" role="status" aria-live="polite"></p>
+      <div id="diff-out"></div>
+    </section>
+  </main>
+
+  <script src="concepts.js"></script>
+  <script src="writing-prompts.js"></script>
+  <script src="feedback-core.js"></script>
+  <script src="feedback-prompts.js"></script>
+  <script>
+    'use strict';
+    const core = window.FeedbackCore, FP = window.FeedbackPrompts;
+    const DATA = window.FeedbackConcepts, CONCEPTS = DATA.concepts, PROMPTS = window.WritingPrompts.prompts;
+    const byId = new Map(CONCEPTS.map((c) => [c.id, c]));
+    const $ = (id) => document.getElementById(id);
+    const STORE = 'argument-feedback-session-v2', CODE_STORE = 'argument-feedback-class-code';
+    const DEFAULT_RELAY = 'https://umw-argument-feedback.umw-logic.workers.dev';
+
+    // ------------------------------------------------------------ state, saved in this browser only
+    function localNow() { const t = new Date(); const p = (x) => String(x).padStart(2, '0'); return t.getFullYear() + '-' + p(t.getMonth() + 1) + '-' + p(t.getDate()) + 'T' + p(t.getHours()) + ':' + p(t.getMinutes()); }
+    const newDraft = (n, text, form) => ({ n, text: text || '', savedAt: null, form: form || { conclusion: '', reasons: '' }, stated: null,
+      readerRec: null, audit: { marks: {}, missing: '' }, diagnosis: null, dropped: [], responses: [], followups: [], readingAt: null, feedbackAt: null });
+    function freshState() {
+      return { prompt: { id: '', text: '' }, focus: 'writing', focusLabel: focusLabel('writing'), relayUrl: DEFAULT_RELAY, sampleMode: false, model: null, modelLabel: null, via: null, drafts: [newDraft(1)] };
+    }
+    function load() {
+      try { const s = JSON.parse(localStorage.getItem(STORE)); if (s && Array.isArray(s.drafts) && s.drafts.length) return s; } catch (e) { /* storage unavailable or empty */ }
+      return freshState();
+    }
+    function focusLabel(f) {
+      if (f === 'writing') return 'Essay structure (writing chapter)';
+      const ch = DATA.chapters.find((c) => c.n === f);
+      return 'Chapter ' + f + ': ' + (ch ? ch.title : '') + ', with essay structure';
+    }
+    let state = load();
+    function save() { try { localStorage.setItem(STORE, JSON.stringify(state)); } catch (e) { /* storage unavailable */ } }
+    function classCode() { try { return localStorage.getItem(CODE_STORE) || ''; } catch (e) { return ''; } }
+    const cur = () => state.drafts[state.drafts.length - 1];
+    const prev = () => state.drafts[state.drafts.length - 2];
+
+    // ------------------------------------------------------------ small helpers
+    function el(tag, attrs, ...kids) {
+      const e = document.createElement(tag);
+      for (const [k, v] of Object.entries(attrs || {})) {
+        if (k === 'class') e.className = v;
+        else if (k === 'text') e.textContent = v;
+        else if (k.startsWith('on')) e.addEventListener(k.slice(2), v);
+        else if (v === true) e.setAttribute(k, '');
+        else if (v !== false && v != null) e.setAttribute(k, v);
+      }
+      for (const kid of kids.flat()) if (kid != null && kid !== false) e.append(kid.nodeType ? kid : document.createTextNode(String(kid)));
+      return e;
+    }
+    const msg = (kind, title, list) => el('div', { class: 'msg ' + kind }, el('div', { text: title }), list && list.length ? el('ul', {}, list.map((t) => el('li', { text: t }))) : null);
+    function sentenceButtons(ns) {
+      return (ns || []).map((n, i) => [i ? ', ' : '', el('button', { class: 'linkish', type: 'button', 'aria-label': 'Show sentence ' + n, onclick: () => focusSentence(n), text: 'S' + n })]).flat();
+    }
+    function focusSentence(n) {
+      $('checks-box').open = true;
+      renderDraftOut();
+      const li = $('s-' + n);
+      if (li) { li.scrollIntoView({ block: 'center' }); li.focus(); }
+    }
+    const conceptTitle = (id) => { const c = byId.get(id); return c ? c.title : id; };
+
+    // ------------------------------------------------------------ step 1: assignment
+    function fillSetup() {
+      const ps = $('prompt-select');
+      ps.replaceChildren(el('option', { value: '', text: 'My own prompt (type or paste it below)' }));
+      const groups = new Map();
+      for (const p of PROMPTS) {
+        const key = String(p.chapter);
+        if (!groups.has(key)) groups.set(key, el('optgroup', { label: p.chapter === 'writing' ? p.chapterTitle : 'Chapter ' + p.chapter + ': ' + p.chapterTitle }));
+        groups.get(key).append(el('option', { value: p.id, text: p.text.slice(0, 90) + (p.text.length > 90 ? '…' : '') }));
+      }
+      if (groups.has('writing')) ps.append(groups.get('writing'));
+      for (const [k, g] of groups) if (k !== 'writing') ps.append(g);
+      ps.value = state.prompt.id || '';
+      $('prompt-text').value = state.prompt.text || '';
+      $('focus').replaceChildren(el('option', { value: 'writing', text: focusLabel('writing') }), ...DATA.chapters.map((c) => el('option', { value: String(c.n), text: focusLabel(c.n) })));
+      $('focus').value = String(state.focus);
+      $('relay-url').value = state.relayUrl || DEFAULT_RELAY;
+      $('class-code').value = classCode();
+      $('sample-mode').checked = !!state.sampleMode;
+    }
+    function setFocus(f) { state.focus = f; state.focusLabel = focusLabel(f); $('focus').value = String(f); }
+    $('prompt-select').addEventListener('change', (e) => {
+      const p = PROMPTS.find((x) => x.id === e.target.value);
+      state.prompt = { id: e.target.value, text: p ? p.text : '' };
+      $('prompt-text').value = state.prompt.text;
+      if (p) setFocus(p.chapter);
+      save();
+    });
+    $('prompt-text').addEventListener('input', (e) => { state.prompt.text = e.target.value; save(); });
+    $('focus').addEventListener('change', (e) => { setFocus(e.target.value === 'writing' ? 'writing' : Number(e.target.value)); save(); });
+    $('relay-url').addEventListener('change', (e) => { state.relayUrl = e.target.value.trim(); save(); });
+    $('class-code').addEventListener('change', (e) => { try { localStorage.setItem(CODE_STORE, e.target.value.trim()); } catch (err) { /* storage unavailable */ } });
+    $('sample-mode').addEventListener('change', (e) => { state.sampleMode = e.target.checked; save(); });
+
+    // ------------------------------------------------------------ step 2: draft
+    $('essay').addEventListener('input', (e) => { const d = cur(); d.text = e.target.value; d.savedAt = localNow(); save(); if ($('checks-box').open) renderDraftOut(); updateButtons(); });
+    $('checks-box').addEventListener('toggle', () => { if ($('checks-box').open) renderDraftOut(); });
+
+    function renderDraftOut() {
+      const d = cur(), out = $('draft-out');
+      if (!d.text.trim()) { out.replaceChildren(el('p', { class: 'help', text: 'Write or paste your essay first.' })); return; }
+      const c = core.draftChecks(d.text), v = c.variety;
+      const list = el('ol', { class: 'sentences', 'aria-label': 'Your essay, numbered by sentence' });
+      let para = 1;
+      for (const s of c.sentences) { list.append(el('li', { id: 's-' + s.n, tabindex: '-1', class: s.para !== para ? 'para-break' : null }, el('span', { class: 'sid', text: s.id }), ' ' + s.text)); para = s.para; }
+      const checks = el('ul', { class: 'checks' },
+        el('li', { text: c.words + ' words, ' + c.sentences.length + ' sentences, ' + c.paragraphs + ' paragraph' + (c.paragraphs === 1 ? '' : 's') + '.' }),
+        el('li', {}, 'Indicator words: ', c.indicators.length ? c.indicators.map((h, i) => [i ? '; ' : '', el('em', { text: h.phrase }), ' (' + h.role + ', ', ...sentenceButtons([h.sentence]), ')']).flat() : 'none found.'),
+        c.paragraphs > 1 && c.paragraphsWithoutIndicators.length ? el('li', { text: 'Paragraphs with no indicator word: ' + c.paragraphsWithoutIndicators.join(', ') + '.' }) : null,
+        c.longSentences.length ? el('li', {}, 'Sentences over ' + core.LIMITS.longSentenceWords + ' words: ', ...sentenceButtons(c.longSentences.map((x) => x.sentence)), '.') : null,
+        el('li', { text: 'Sentence lengths: ' + v.lengths.join(', ') + ' words (average ' + v.mean + ').' }),
+        v.sameLengthRuns.length ? el('li', {}, 'Runs of similar-length sentences: ', v.sameLengthRuns.map((r, i) => [i ? '; ' : '', ...sentenceButtons(r)]).flat(), '.') : null,
+        v.repeatedOpenings.length ? el('li', { text: 'Words that open three or more sentences: ' + v.repeatedOpenings.map((r) => '“' + r.word + '” (' + core.sentenceRef(r.sentences) + ')').join('; ') + '.' }) : null,
+        c.overLimit ? el('li', { class: 'msg error', text: 'This is over ' + core.LIMITS.maxEssayWords + ' words. Ask for feedback on one section at a time.' }) : null);
+      out.replaceChildren(list, checks);
+    }
+
+    // ------------------------------------------------------------ step 3: your conclusion
+    $('stated-conclusion').addEventListener('input', (e) => { cur().form.conclusion = e.target.value; save(); updateButtons(); });
+    $('stated-reasons').addEventListener('input', (e) => { cur().form.reasons = e.target.value; save(); });
+    $('get-reading').addEventListener('click', getReading);
+
+    // ------------------------------------------------------------ talking to the model (through the relay)
+    async function transport(task, payload) {
+      if (state.sampleMode) return { ok: true, message: sampleReply(task, payload) };
+      const url = (state.relayUrl || DEFAULT_RELAY).replace(/\/+$/, '') + '/v1/feedback';
+      let r, j = {};
+      try { r = await fetch(url, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ classCode: classCode(), task, payload }) }); }
+      catch (e) { return { ok: false, error: 'Could not reach the relay. Check the address under Connection and your internet connection.' }; }
+      try { j = await r.json(); } catch (e) { /* not JSON */ }
+      if (r.ok) return { ok: true, message: j };
+      const why = r.status === 403 ? (j.error === 'bad_class_code' ? 'The class code was not accepted. Check it under Connection.' : 'This page is not allowed to use the relay.')
+        : r.status === 429 ? 'Too many requests. Wait a minute and try again.'
+        : r.status === 400 ? 'The relay could not use the request: ' + ((j.errors || []).join(' ') || j.error || 'unknown problem')
+        : r.status === 502 ? 'The model service did not answer. Try again in a moment.'
+        : 'The relay answered with an error (' + r.status + ').';
+      return { ok: false, error: why };
+    }
+    // One retry if a reply breaks a rule.
+    async function callChecked(task, payload, check) {
+      let last = { ok: false, errors: ['No reply.'] };
+      for (let attempt = 0; attempt < 2; attempt++) {
+        const res = await transport(task, payload);
+        if (!res.ok) return { ok: false, errors: [res.error], fatal: true };
+        const ex = core.extractReply(res.message);
+        if (!ex.ok) { last = { ok: false, errors: [ex.error] }; continue; }
+        const v = check(ex.value);
+        if (v.ok) return { ok: true, value: ex.value, model: res.message.model, check: v };
+        last = { ok: false, errors: v.errors, value: ex.value, model: res.message.model, check: v };
+      }
+      return last;
+    }
+    function noteModel(model) {
+      if (state.sampleMode) { state.model = null; state.modelLabel = 'sample replies (no model)'; state.via = null; return; }
+      state.model = model || state.model;
+      const m = /claude-haiku-(\d+)-(\d+)/.exec(model || '');
+      state.modelLabel = m ? 'Claude Haiku ' + m[1] + '.' + m[2] : (model || 'a language model');
+      state.via = 'UMW nebulaONE';
+    }
+
+    async function getReading() {
+      const d = cur();
+      const st = core.validateStated({ conclusion: d.form.conclusion, reasons: d.form.reasons });
+      if (!d.text.trim()) { $('stated-out').replaceChildren(msg('warn', 'Write your essay in step 2 first.')); return; }
+      if (!st.ok) { $('stated-out').replaceChildren(msg('error', 'Before the reader reads your essay:', st.errors)); return; }
+      $('stated-out').replaceChildren();
+      const n = core.splitSentences(d.text).length;
+      $('get-reading').disabled = true;
+      $('reading-status').textContent = 'The reader is laying out your argument…';
+      const res = await callChecked('reconstruct', { essay: d.text, prompt: state.prompt.text }, (v) => core.validateReconstruction(v, n));
+      $('reading-status').textContent = '';
+      if (!res.ok) { $('stated-out').replaceChildren(msg('error', res.fatal ? res.errors[0] : 'The reader’s reply could not be used. Try again.', res.fatal ? null : res.errors)); updateButtons(); return; }
+      d.stated = st.value;
+      d.readerRec = res.value;
+      d.audit = { marks: {}, missing: '' };
+      d.readingAt = localNow();
+      noteModel(res.model);
+      save();
+      renderAll();
+      $('reading-status').textContent = 'The reader’s reading is ready in step 4.';
+      $('s4-h').focus();
+    }
+
+    // ------------------------------------------------------------ step 4: the reader's reading
+    const LINE_NAME = { conclusion: 'Conclusion', subconclusion: 'Sub-conclusion', premise: 'Premise' };
+    const MARK_TEXT = { meant: 'That’s what I meant', 'not-meant': 'Not what I meant', unsure: 'Not sure' };
+
+    function renderReading() {
+      const d = cur(), out = $('reading-out');
+      $('s4').setAttribute('aria-disabled', d.readerRec ? 'false' : 'true');
+      if (!d.readerRec) { out.replaceChildren(el('p', { class: 'help', text: 'This step opens after step 3.' })); return; }
+      const lines = core.readingLines(d.readerRec);
+      const C = lines[0];
+      const locked = !!d.diagnosis;
+      const parts = [el('div', { class: 'compare' },
+        el('div', {}, el('div', { class: 'label', text: 'You said your essay argues' }), el('p', { text: d.stated.conclusion })),
+        el('div', {}, el('div', { class: 'label', text: 'The reader found' }), el('p', {}, C.text, ' ', C.sentences.length ? ['(', ...sentenceButtons(C.sentences), ')'] : '(not stated in any one sentence)')))];
+      for (const ln of lines) parts.push(renderLine(d, ln, locked));
+      const missId = 'missing-' + d.n;
+      parts.push(el('label', { for: missId, text: 'Did the reader miss a reason you meant to give? (optional)' }),
+        el('textarea', { id: missId, rows: '2', readonly: locked, oninput: (e) => { d.audit.missing = e.target.value; save(); } }, d.audit.missing || ''));
+      const r = core.normalizeReconstruction(d.readerRec);
+      if (r.background.length) parts.push(el('p', { class: 'meta' }, 'The reader read these as background, not part of the argument: ', ...sentenceButtons(r.background), '.'));
+      if (!locked) parts.push(el('div', { id: 'audit-out', 'aria-live': 'polite' }), el('button', { id: 'get-questions', type: 'button', onclick: getQuestions }, 'Get questions'));
+      out.replaceChildren(...parts);
+    }
+
+    function renderLine(d, ln, locked) {
+      const m = d.audit.marks[ln.label] || (d.audit.marks[ln.label] = { mark: null, note: '' });
+      const name = 'mark-' + d.n + '-' + ln.label, noteId = 'note-' + d.n + '-' + ln.label;
+      const radios = core.AUDIT_MARKS.map((mark) => el('label', { class: 'inline' },
+        el('input', { type: 'radio', name, value: mark, checked: m.mark === mark, disabled: locked, onchange: () => { m.mark = mark; save(); renderReading(); } }), MARK_TEXT[mark]));
+      const note = m.mark ? [el('label', { for: noteId, text: m.mark === 'not-meant' ? 'What did you mean? (required)' : 'Note (optional)' }),
+        el('textarea', { id: noteId, rows: '2', readonly: locked, oninput: (e) => { m.note = e.target.value; save(); } }, m.note || '')] : [];
+      return el('article', { class: 'line ' + ln.role, 'aria-labelledby': 'line-h-' + ln.label },
+        el('h3', { id: 'line-h-' + ln.label, text: LINE_NAME[ln.role] + (ln.role === 'conclusion' ? '' : ' ' + ln.label) }),
+        el('p', { text: ln.text }),
+        el('p', { class: 'meta' }, ln.sentences.length ? ['From ', ...sentenceButtons(ln.sentences)] : 'Implicit: the reader supplied it; no sentence states it.',
+          ln.supportedBy.length ? '. Supported by ' + ln.supportedBy.join('; ') + '.' : ''),
+        el('fieldset', {}, el('legend', { text: 'Is this what you meant?' }), radios, note));
+    }
+
+    async function getQuestions() {
+      const d = cur();
+      const av = core.validateAudit(d.audit, d.readerRec);
+      if (!av.ok) { $('audit-out').replaceChildren(msg('error', 'Check every line first:', av.errors)); return; }
+      const n = core.splitSentences(d.text).length;
+      $('get-questions').disabled = true;
+      $('fb-status').textContent = 'The helper is reading your marks and writing questions…';
+      const ctx = { nSentences: n, concepts: FP.scopeOf({ focus: state.focus }), essay: d.text };
+      const res = await callChecked('diagnose', { essay: d.text, prompt: state.prompt.text, focus: state.focus, stated: d.stated, readerRec: d.readerRec, audit: d.audit }, (v) => core.validateDiagnosis(v, ctx));
+      if (!res.ok && (res.fatal || !res.value || !Array.isArray(res.value.items))) {
+        $('fb-status').textContent = '';
+        $('audit-out').replaceChildren(msg('error', res.fatal ? res.errors[0] : 'The helper’s reply could not be used. Try again.', res.fatal ? null : res.errors));
+        $('get-questions').disabled = false; return;
+      }
+      // Keep only the items that follow the rules; say what was left out.
+      const value = res.value, chk = res.check;
+      const keep = value.items.slice(0, core.LIMITS.items).map((it, i) => ({ it, errs: chk.itemErrors[i] || [] }));
+      d.diagnosis = { items: keep.filter((k) => !k.errs.length).map((k) => k.it), strength: chk.strengthErrors.length ? null : value.strength };
+      d.dropped = keep.filter((k) => k.errs.length).map((k) => k.errs.join(' ')).concat(chk.strengthErrors.length && value.strength ? ['The noted strength: ' + chk.strengthErrors.join(' ')] : []);
+      if (value.items.length > core.LIMITS.items) d.dropped.push('The helper gave more than ' + core.LIMITS.items + ' items; only the first ' + core.LIMITS.items + ' were considered.');
+      d.responses = d.diagnosis.items.map(() => ({ choice: null, reason: '' }));
+      d.followups = d.diagnosis.items.map(() => []);
+      d.feedbackAt = localNow();
+      noteModel(res.model);
+      save();
+      renderAll();
+      $('fb-status').textContent = 'Questions are ready: ' + d.diagnosis.items.length + ' item' + (d.diagnosis.items.length === 1 ? '' : 's') + '.';
+      $('s5-h').focus();
+    }
+
+    // ------------------------------------------------------------ step 5: questions
+    function renderFeedback() {
+      const d = cur(), out = $('fb-out');
+      $('s5').setAttribute('aria-disabled', d.diagnosis ? 'false' : 'true');
+      if (!d.diagnosis) { out.replaceChildren(el('p', { class: 'help', text: 'This step opens after you check the reader’s reading.' })); return; }
+      const parts = [];
+      if (!d.diagnosis.items.length) parts.push(el('p', { text: 'The helper raised no problems this round.' }));
+      d.diagnosis.items.forEach((it, i) => parts.push(renderItem(d, it, i)));
+      const st = d.diagnosis.strength;
+      if (st) parts.push(el('p', { class: 'strength' }, el('strong', { text: 'What works: ' }), conceptTitle(st.concept) + ' (', ...sentenceButtons(st.sentences), '). ' + st.observation));
+      if (d.dropped && d.dropped.length) parts.push(msg('warn', 'Part of the helper’s reply broke the tool’s rules and was left out:', d.dropped));
+      out.replaceChildren(...parts);
+    }
+
+    function renderItem(d, it, i) {
+      const c = byId.get(it.concept) || { title: it.concept, definition: '' };
+      const r = d.responses[i] || (d.responses[i] = { choice: null, reason: '' });
+      const fu = d.followups[i] || (d.followups[i] = []);
+      const name = 'resp-' + d.n + '-' + i, reasonId = 'reason-' + d.n + '-' + i;
+      const radios = core.RESPONSE_CHOICES.map((choice) => el('label', { class: 'inline' },
+        el('input', { type: 'radio', name, value: choice, checked: r.choice === choice, onchange: () => { r.choice = choice; save(); renderFeedback(); } }),
+        { revise: 'Will revise', disagree: 'Disagree', unsure: 'Not sure' }[choice]));
+      const reason = r.choice === 'disagree' ? [el('label', { for: reasonId, text: 'Why do you disagree? (required)' }), el('textarea', { id: reasonId, rows: '2', oninput: (e) => { r.reason = e.target.value; save(); } }, r.reason || '')] : [];
+      const last = fu[fu.length - 1];
+      const addressed = last && last.reply && last.reply.status === 'addressed';
+      const ansId = 'answer-' + d.n + '-' + i, statusId = 'fu-status-' + d.n + '-' + i;
+      const followupBox = addressed ? el('p', { class: 'help', text: 'This exchange is finished.' })
+        : fu.length >= core.LIMITS.followupExchanges ? el('p', { class: 'help', text: 'You have used the ' + core.LIMITS.followupExchanges + ' exchanges for this item. The book section on ' + c.title + (c.section ? ' (§' + c.section + ')' : '') + ' is the next place to look.' })
+        : [el('label', { for: ansId, text: 'Answer the question (optional)' }), el('textarea', { id: ansId, rows: '2' }),
+          el('button', { type: 'button', class: 'secondary', onclick: () => sendFollowup(d, it, i, $(ansId).value, statusId) }, 'Send my answer'),
+          el('span', { id: statusId, role: 'status', 'aria-live': 'polite', class: 'help' })];
+      return el('article', { class: 'item', 'aria-labelledby': 'item-h-' + i },
+        el('h3', { id: 'item-h-' + i, text: (i + 1) + '. ' + c.title }),
+        el('p', { class: 'meta' }, 'Sentences: ', ...sentenceButtons(it.sentences)),
+        el('details', {}, el('summary', { text: c.provisional ? 'What this means (placeholder until the writing chapter exists)' : 'What the book says' }), el('p', { text: c.definition + (c.section ? ' (§' + c.section + ')' : '') })),
+        el('p', {}, el('strong', { text: 'What the helper noticed: ' }), it.observation),
+        el('p', {}, el('strong', { text: 'Question: ' }), it.question),
+        it.example ? el('p', {}, el('strong', { text: 'An example on another topic: ' }), it.example) : null,
+        el('fieldset', {}, el('legend', { text: 'Your response' }), radios, reason),
+        fu.map((x) => el('div', { class: 'exchange' }, el('div', {}, el('strong', { text: 'You: ' }), x.answer), x.reply ? el('div', {}, el('strong', { text: 'Helper: ' }), x.reply.text) : null)),
+        followupBox);
+    }
+
+    async function sendFollowup(d, it, i, answer, statusId) {
+      answer = String(answer || '').trim();
+      const status = $(statusId);
+      if (!answer) { status.textContent = 'Write an answer first.'; return; }
+      status.textContent = 'Sending…';
+      const fu = d.followups[i];
+      const res = await callChecked('followup', { essay: d.text, focus: state.focus, item: it, exchanges: fu, answer }, (v) => core.validateFollowup(v, fu.length));
+      if (!res.ok) { status.textContent = res.fatal ? res.errors[0] : 'The helper’s reply could not be used. Try again.'; return; }
+      fu.push({ answer, reply: { status: res.value.status, text: res.value.text } });
+      save();
+      renderFeedback();
+    }
+
+    // ------------------------------------------------------------ step 6: revise and record
+    $('new-draft').addEventListener('click', () => {
+      const d = cur();
+      if (!d.text.trim()) { $('rev-status').textContent = 'Write a draft first.'; return; }
+      if (d.diagnosis) {
+        const v = core.validateResponses(d.diagnosis, d.responses);
+        if (!v.ok) { $('rev-status').textContent = 'Respond to each question first. ' + v.errors.join(' '); return; }
+      }
+      state.drafts.push(newDraft(d.n + 1, d.text, { conclusion: d.form.conclusion, reasons: d.form.reasons }));
+      save();
+      renderAll();
+      $('rev-status').textContent = 'Draft ' + cur().n + ' started. Revise it in step 2.';
+      $('essay').focus();
+    });
+    const recordText = () => core.buildRecord(state, CONCEPTS);
+    $('copy-record').addEventListener('click', async () => {
+      try { await navigator.clipboard.writeText(recordText()); $('rev-status').textContent = 'The record is copied.'; }
+      catch (e) { $('rev-status').textContent = 'Copying failed; use Download the record instead.'; }
+    });
+    function download(name, text, type) { const a = el('a', { href: URL.createObjectURL(new Blob([text], { type })), download: name }); document.body.append(a); a.click(); a.remove(); }
+    $('download-record').addEventListener('click', () => { download('argument-feedback-record.txt', recordText(), 'text/plain'); $('rev-status').textContent = 'The record is downloading.'; });
+    $('save-session').addEventListener('click', () => { download('argument-feedback-session.json', core.exportSession(state), 'application/json'); $('rev-status').textContent = 'The session file is downloading.'; });
+    $('load-session').addEventListener('change', async (e) => {
+      const f = e.target.files && e.target.files[0];
+      if (!f) return;
+      const r = core.importSession(await f.text());
+      e.target.value = '';
+      if (!r.ok) { $('rev-status').textContent = r.error; return; }
+      state = Object.assign(freshState(), r.session);
+      save(); fillSetup(); renderAll();
+      $('rev-status').textContent = 'Session loaded: ' + state.drafts.length + ' draft' + (state.drafts.length === 1 ? '' : 's') + '.';
+    });
+    let clearArmed = null;
+    $('clear-all').addEventListener('click', () => {
+      if (!clearArmed) {
+        $('clear-all').textContent = 'Click again to clear everything';
+        $('rev-status').textContent = 'This deletes your drafts and feedback from this browser. Click again within five seconds to confirm.';
+        clearArmed = setTimeout(() => { clearArmed = null; $('clear-all').textContent = 'Clear everything on this device'; }, 5000);
+        return;
+      }
+      clearTimeout(clearArmed); clearArmed = null;
+      try { localStorage.removeItem(STORE); localStorage.removeItem(CODE_STORE); } catch (e) { /* storage unavailable */ }
+      state = freshState(); fillSetup(); renderAll();
+      $('clear-all').textContent = 'Clear everything on this device';
+      $('rev-status').textContent = 'Everything was cleared from this browser.';
+    });
+    function renderDiff() {
+      const out = $('diff-out'), p = prev();
+      if (!p) { out.replaceChildren(); return; }
+      const diff = core.diffDrafts(p.text, cur().text);
+      if (!diff.added && !diff.removed) { out.replaceChildren(el('p', { class: 'help', text: 'Draft ' + cur().n + ' has no changes from draft ' + p.n + ' yet.' })); return; }
+      out.replaceChildren(el('h3', { text: 'Changes from draft ' + p.n + ' (' + diff.added + ' added, ' + diff.removed + ' removed)' }),
+        ...diff.ops.filter((o) => o.op !== 'same').map((o) => el('p', { class: 'diffline' }, el('span', { class: 'tag', text: o.op === 'added' ? 'Added:' : 'Removed:' }), o.text)));
+    }
+
+    // ------------------------------------------------------------ sample replies (no connection)
+    function sampleReply(task, payload) {
+      const ss = core.splitSentences(payload.essay), n = ss.length;
+      const wrap = (obj) => ({ model: 'sample', stop_reason: 'end_turn', content: [{ type: 'text', text: JSON.stringify(obj) }] });
+      if (task === 'reconstruct') {
+        // Reads the last sentence as the conclusion, so the comparison with a thesis in S1 has something to show.
+        const body = ss.slice(0, Math.max(0, n - 1));
+        const prem = body.slice(0, 3).map((s, i) => ({ id: 'P' + (i + 1), text: s.text, sentences: [s.n], implicit: false }));
+        if (!prem.length) prem.push({ id: 'P1', text: 'A reason the essay leaves unstated.', sentences: [], implicit: true });
+        return wrap({ conclusion: { text: n ? ss[n - 1].text : 'Unstated.', sentences: n ? [n] : [] }, premises: prem, subconclusions: [],
+          support: [{ target: 'C', from: prem.map((p) => p.id), type: 'independent' }], kind: 'inductive', background: body.slice(3).map((s) => s.n), unclear: [] });
+      }
+      if (task === 'diagnose') {
+        return wrap({ items: [
+          { concept: 'prov-writing-thesis', sentences: [1], observation: 'You say the essay argues one thing, and the reader found its conclusion in a different sentence.', question: 'Where in the essay would a reader first learn what you are arguing?', example: '' },
+          { concept: 'prov-writing-topic-sentence', sentences: [Math.min(2, n)], observation: 'The reader had to infer what S' + Math.min(2, n) + ' contributes.', question: 'What job does this paragraph do in your argument, and which sentence says so?',
+            example: 'Sample on another topic: “Public libraries also save families money.” A paragraph that opens this way tells the reader what the details that follow are for.' },
+        ], strength: { concept: 'prov-writing-evidence', sentences: [Math.min(2, n)], observation: 'S' + Math.min(2, n) + ' gives a specific fact rather than a general claim.' } });
+      }
+      const enough = core._internals.wordCount(payload.answer) >= 8;
+      return wrap(enough ? { status: 'addressed', text: 'Your answer names where the thesis needs to appear.' } : { status: 'further-question', text: 'Which sentence would you point to if someone asked what your essay is about?' });
+    }
+
+    // ------------------------------------------------------------ drawing the page
+    function updateButtons() {
+      const d = cur();
+      $('get-reading').disabled = !!d.readerRec || !d.text.trim() || !String(d.form.conclusion || '').trim();
+    }
+    function renderAll() {
+      const d = cur(), read = !!d.readerRec;
+      $('draft-n').textContent = d.n;
+      $('essay').value = d.text;
+      $('essay').readOnly = read;
+      $('essay-locked').hidden = !read;
+      $('stated-conclusion').value = d.form.conclusion || '';
+      $('stated-reasons').value = d.form.reasons || '';
+      $('stated-conclusion').readOnly = read;
+      $('stated-reasons').readOnly = read;
+      $('stated-out').replaceChildren();
+      if ($('checks-box').open) renderDraftOut();
+      updateButtons();
+      renderReading();
+      renderFeedback();
+      renderDiff();
+    }
+
+    fillSetup();
+    renderAll();
+  </script>
+</body>
+
+</html>

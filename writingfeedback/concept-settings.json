@@ -1,0 +1,114 @@
+{
+  "_about": "Settings the extractor (book/scripts/build-writing-data.js) applies on top of the book's Key Terms. Edit here, then run: node book/scripts/build-writing-data.js",
+  "familyByChapter": {
+    "1": "structure",
+    "2": "structure",
+    "3": "evaluation",
+    "4": "language",
+    "5": "fallacies",
+    "6": "formal",
+    "7": "formal",
+    "8": "formal",
+    "9": "formal",
+    "10": "formal",
+    "11": "formal",
+    "12": "formal",
+    "13": "induction",
+    "14": "statistics",
+    "15": "statistics"
+  },
+  "familyOverrides": {
+    "term-deductive-argument": "evaluation",
+    "term-inductive-argument": "evaluation",
+    "term-valid-argument": "evaluation",
+    "term-sound-argument": "evaluation",
+    "term-strong-inductive-argument": "evaluation",
+    "term-modus-ponens": "evaluation",
+    "term-modus-tollens": "evaluation"
+  },
+  "_mode": "'ask' (default): the helper only asks questions about this concept. 'may-demonstrate': the helper may show a short example on another topic, then ask the student to make the same move.",
+  "mayDemonstrate": [
+    "term-ch4-stipulative-definition",
+    "term-ch4-definition-by-genus-difference",
+    "prov-writing-topic-sentence",
+    "prov-writing-signposting",
+    "prov-writing-clear-example",
+    "prov-writing-sentence-variety"
+  ],
+  "_alwaysInFocus": "Concepts in every focus, whatever chapter the prompt comes from: the Chapter 1-2 core every argumentative essay needs. The structure terms (family 'writing') are always in focus too.",
+  "alwaysInFocus": [
+    "term-conclusion",
+    "term-premise",
+    "term-ch2-sub-conclusion",
+    "term-ch2-implicit-premise",
+    "term-ch2-dependent-support",
+    "term-ch2-independent-support",
+    "term-ch2-background-information"
+  ],
+  "_provisional": "Stand-ins for the writing chapter's structure terms, so the app can be built and tested before that chapter exists. Wording is a placeholder, not the book's. Replace each with the chapter's own Key Terms when it is drafted.",
+  "provisional": [
+    {
+      "id": "prov-writing-thesis",
+      "title": "Thesis",
+      "definition": "The main conclusion an essay argues for, stated early and plainly enough that a reader can find it.",
+      "family": "writing"
+    },
+    {
+      "id": "prov-writing-topic-sentence",
+      "title": "Topic sentence",
+      "definition": "A sentence, usually at the start of a paragraph, that says what the paragraph contributes to the argument.",
+      "family": "writing"
+    },
+    {
+      "id": "prov-writing-paragraph-unity",
+      "title": "Paragraph unity",
+      "definition": "Each paragraph does one job in the argument, such as giving one reason, supporting it, or answering one objection.",
+      "family": "writing"
+    },
+    {
+      "id": "prov-writing-evidence",
+      "title": "Evidence",
+      "definition": "Facts, examples, data, or testimony offered to show that a reason is true.",
+      "family": "writing"
+    },
+    {
+      "id": "prov-writing-objection-reply",
+      "title": "Objection and reply",
+      "definition": "Stating the strongest reason against your conclusion and answering it.",
+      "family": "writing"
+    },
+    {
+      "id": "prov-writing-signposting",
+      "title": "Signposting",
+      "definition": "Words that tell the reader how a sentence or paragraph relates to the argument, such as indicator words and transitions.",
+      "family": "writing"
+    },
+    {
+      "id": "prov-writing-clear-example",
+      "title": "Clear example",
+      "definition": "A specific case that shows what a general claim means or why it is true.",
+      "family": "writing"
+    },
+    {
+      "id": "prov-writing-sentence-variety",
+      "title": "Sentence variety",
+      "definition": "Varying the length and structure of sentences so that the emphasis falls where the argument needs it.",
+      "family": "writing"
+    }
+  ],
+  "_provisionalPrompts": "Stand-in prompts for the writing chapter. Replace with the chapter's own Writing Prompts when it is drafted.",
+  "provisionalPrompts": [
+    {
+      "id": "prov-writing-prompt-1",
+      "text": "Write a short argumentative essay (400–700 words) on a question you care about. State your thesis in the first paragraph, give each main reason its own paragraph with a topic sentence and evidence, and answer the strongest objection."
+    },
+    {
+      "id": "prov-writing-prompt-2",
+      "text": "Choose a claim from a recent campus email, opinion piece, or policy, and write a short essay arguing for or against it. Give a clear thesis, two or three reasons, and a paragraph that states and answers an objection."
+    },
+    {
+      "id": "prov-writing-prompt-3",
+      "text": "Revise one of your earlier writing assignments for this course into an argumentative essay with a thesis, topic sentences, and an objection and reply."
+    }
+  ]
+}

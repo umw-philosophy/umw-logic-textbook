@@ -1,0 +1,19 @@
+{
+  "name": "umw-argument-feedback",
+  "main": "worker.js",
+  "compatibility_date": "2026-11-01",
+  "workers_dev": true,
+  // localhost:8000 is for testing the page on your own computer; remove it for the pilot.
+  "vars": {
+    // nebulaONE names Haiku 5.5 "claude-haiku-5-5-2" (Anthropic's own ID is claude-haiku-5-5).
+    "MODEL": "claude-haiku-5-5-2",
+    "ALLOWED_ORIGINS": "https://umw-philosophy.github.io,http://localhost:8000"
+  },
+  // Per-IP limit. Cloudflare allows only 10- or 60-second windows here;
+  // a per-day cap on feedback rounds will need storage and comes later.
+  "ratelimits": [
+    { "name": "RATE_LIMITER", "namespace_id": "1001", "simple": { "limit": 10, "period": 60 } }
+  ],
+  // No request logging.
+  "observability": { "enabled": false }
+}

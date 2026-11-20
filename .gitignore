@@ -34,3 +34,6 @@ Thumbs.db
 .env
 .env.local
 *.local
+
+# nebulaONE probes (name the gateway host)
+writingfeedback/dev/
