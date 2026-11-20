@@ -184,5 +184,105 @@
         item: 'One baby weighed {x} grams at birth.',
       },
     ],
+
+    // ---------------------------------------------------------------
+    // Margin of error (section 15.4)
+    // poll: one yes-or-no question.
+    //   pop     who was sampled (plural); phrase: what the yes group says,
+    //           written to follow "54% ..." or "540 ...".
+    // race: two named options and who was asked.
+    // ---------------------------------------------------------------
+    poll: [
+      { id: 'ballot', pop: 'likely voters', phrase: 'support a proposed ballot measure' },
+      { id: 'rail', pop: 'adults in the region', phrase: 'say they would use a new commuter rail line' },
+      { id: 'leafblower', pop: 'city residents', phrase: 'favor a ban on gas-powered leaf blowers' },
+      { id: 'start-time', pop: 'students', phrase: 'support starting the first class period an hour later' },
+      { id: 'governor', pop: 'registered voters', phrase: 'approve of the governor’s job performance' },
+      { id: 'school-start', pop: 'parents in the district', phrase: 'support a later start time for high schools' },
+      { id: 'local-news', pop: 'adults', phrase: 'say they trust their local news' },
+      { id: 'four-day', pop: 'employees at a large company', phrase: 'prefer a four-day work week' },
+      { id: 'stadium', pop: 'county voters', phrase: 'support a tax increase to build a new stadium' },
+      { id: 'phones', pop: 'parents', phrase: 'support banning phones during the school day' },
+    ],
+    race: [
+      { id: 'mayor', office: 'the mayor’s race', a: 'Alvarez', b: 'Brooks', pop: 'likely voters' },
+      { id: 'senate', office: 'a state senate race', a: 'Okafor', b: 'Lindqvist', pop: 'likely voters' },
+      { id: 'council', office: 'a city council race', a: 'Nguyen', b: 'Harper', pop: 'registered voters' },
+      { id: 'governor-race', office: 'the governor’s race', a: 'Castillo', b: 'Whitfield', pop: 'likely voters' },
+      { id: 'sga', office: 'the student government election', a: 'Patel', b: 'Moreau', pop: 'students' },
+      { id: 'board', office: 'a school board race', a: 'Reyes', b: 'Dunbar', pop: 'registered voters' },
+    ],
+
+    // ---------------------------------------------------------------
+    // Diagnostic thresholds (section 15.5)
+    // test: a yes-or-no screening test.
+    //   name      the test, with its article ("A rapid strep test").
+    //   items     what is screened (plural); cond: "have strep"; neg: "do not have strep".
+    //   pos       what a positive result is called ("tests positive").
+    // screen: a continuous measurement with a healthy reference population,
+    //   flagged as abnormal outside a band around the mean.
+    // flags: a tool whose flags are reviewed by a person.
+    // ---------------------------------------------------------------
+    test: [
+      { id: 'strep', neg: 'do not have strep throat', name: 'A rapid strep test', items: 'patients', item: 'patient', cond: 'have strep throat', pos: 'tests positive' },
+      { id: 'mammogram', neg: 'do not have breast cancer', name: 'A screening mammogram', items: 'women screened', item: 'woman', cond: 'have breast cancer', pos: 'is called back' },
+      { id: 'bags', neg: 'contain no prohibited item', name: 'An airport bag scanner', items: 'bags', item: 'bag', cond: 'contain a prohibited item', pos: 'is flagged for a hand search' },
+      { id: 'spam', neg: 'are legitimate', name: 'A spam filter', items: 'emails', item: 'email', cond: 'are spam', pos: 'is sent to the spam folder' },
+      { id: 'fraud', neg: 'are legitimate', name: 'A bank’s fraud detector', items: 'card transactions', item: 'transaction', cond: 'are fraudulent', pos: 'is blocked for review' },
+      { id: 'drug', neg: 'have not used the drug', name: 'A workplace drug test', items: 'employees tested', item: 'employee', cond: 'have used the drug', pos: 'tests positive' },
+      { id: 'covid', neg: 'are not infected', name: 'A rapid antigen test', items: 'people tested', item: 'person', cond: 'are infected', pos: 'tests positive' },
+    ],
+    screen: [
+      { id: 'cholesterol', what: 'Serum cholesterol', who: 'a healthy reference population', unit: 'mg/dL', mean: [160], sd: [50], things: 'healthy people', test: 'A clinical test' },
+      { id: 'bp', what: 'Systolic blood pressure', who: 'healthy adults', unit: 'mmHg', mean: [118, 120], sd: [10, 12], things: 'healthy adults', test: 'A screening program' },
+      { id: 'glucose', what: 'Fasting blood glucose', who: 'healthy adults', unit: 'mg/dL', mean: [88, 90], sd: [8, 10], things: 'healthy adults', test: 'A clinic' },
+      { id: 'bolts', what: 'The length of a bolt from a properly working machine', who: '', unit: 'mm', mean: [50], sd: [0.2, 0.4], things: 'good bolts', test: 'A quality inspector' },
+      { id: 'vibration', what: 'The vibration level of a healthy wind turbine', who: '', unit: 'mm/s', mean: [40, 60], sd: [4, 6], things: 'readings from healthy turbines', test: 'A monitoring system' },
+    ],
+    flags: [
+      { id: 'plagiarism', tool: 'A university plagiarism-detection tool', items: 'submitted papers', flagged: 'flagged papers', good: 'legitimate work', bad: 'genuine cases of plagiarism' },
+      { id: 'fraud-alerts', tool: 'A credit card company’s fraud alert system', items: 'transactions', flagged: 'flagged transactions', good: 'purchases the customer really made', bad: 'actual fraud' },
+      { id: 'proctor', tool: 'An online exam proctoring program', items: 'exam sessions', flagged: 'flagged sessions', good: 'honest work', bad: 'actual cheating' },
+      { id: 'content', tool: 'A social media site’s automated content filter', items: 'posts', flagged: 'flagged posts', good: 'within the rules', bad: 'real rule violations' },
+    ],
+
+    // ---------------------------------------------------------------
+    // Lying with statistics (section 15.6)
+    // bars: two-bar comparisons for the truncated-axis problem.
+    //   title, measure, labels [larger, smaller], money, unit, scale
+    //   (values are whole multiples of scale), size [low, high] in scale units.
+    // icon: a price (or other amount) drawn as a picture scaled by height.
+    // risk: a treatment and an outcome; rate is per year unless period says otherwise.
+    // trend: a yearly series whose starting year can be chosen to flatter.
+    // ---------------------------------------------------------------
+    bars: [
+      { id: 'sales', title: 'Monthly Sales', measure: 'monthly sales', labels: ['Product A', 'Product B'], money: true, unit: '', scale: 1000, size: [400, 1500] },
+      { id: 'homes', title: 'New Homes Built', measure: 'new homes built', labels: ['Oak County', 'Pine County'], money: false, unit: 'homes', scale: 100, size: [1500, 2600] },
+      { id: 'scores', title: 'Average Reading Score', measure: 'average reading scores', labels: ['Lincoln Elementary', 'Jefferson Elementary'], money: false, unit: 'points', scale: 1, size: [200, 320] },
+      { id: 'riders', title: 'Weekday Transit Riders', measure: 'weekday riders', labels: ['Route 7', 'Route 12'], money: false, unit: 'riders', scale: 100, size: [80, 300] },
+      { id: 'donations', title: 'Annual Donations', measure: 'annual donations', labels: ['Westside Food Bank', 'Eastside Food Bank'], money: true, unit: '', scale: 1000, size: [150, 900] },
+    ],
+    icon: [
+      { id: 'gas', what: 'The average price of a gallon of gasoline', icon: 'a truck', money: true, cents: true, range: [2.5, 4.5] },
+      { id: 'rent', what: 'The median monthly rent in a city', icon: 'a house', money: true, cents: false, range: [900, 2400] },
+      { id: 'tuition', what: 'Annual tuition at a state university', icon: 'a graduation cap', money: true, cents: false, range: [6000, 14000] },
+      { id: 'eggs', what: 'The average price of a dozen eggs', icon: 'an egg carton', money: true, cents: true, range: [1.8, 4.5] },
+      { id: 'coffee', what: 'The price of a medium coffee at a campus café', icon: 'a coffee cup', money: true, cents: true, range: [1.8, 4.2] },
+    ],
+    risk: [
+      { id: 'statin', treatment: 'a new cholesterol drug', outcome: 'a heart attack', group: 'patients', period: 'each year' },
+      { id: 'supplement', treatment: 'a nutritional supplement', outcome: 'the condition', group: 'adults', period: 'over five years' },
+      { id: 'vaccine', treatment: 'a new vaccine', outcome: 'the illness', group: 'people', period: 'over one flu season' },
+      { id: 'helmet', treatment: 'a redesigned football helmet', outcome: 'a concussion', group: 'players', period: 'per season' },
+      { id: 'aspirin', treatment: 'daily low-dose aspirin', outcome: 'a stroke', group: 'adults over 60', period: 'over ten years' },
+      { id: 'app', treatment: 'a fall-prevention exercise program', outcome: 'a fall that needs medical care', group: 'older adults', period: 'each year' },
+    ],
+    trend: [
+      { id: 'revenue', what: 'Annual revenue for a regional retailer', unit: 'million dollars', money: true, presenter: 'The company’s annual report', scale: 1 },
+      { id: 'crime', what: 'The burglary rate in a city', unit: 'burglaries per 10,000 residents', money: false, presenter: 'The mayor’s office', scale: 1 },
+      { id: 'enroll', what: 'Fall enrollment at a community college', unit: 'students', money: false, presenter: 'The college’s press office', scale: 10 },
+      { id: 'ridership', what: 'Average daily bus ridership in a city', unit: 'riders', money: false, presenter: 'The transit authority', scale: 100 },
+      { id: 'visitors', what: 'Annual attendance at a state park', unit: 'thousand visitors', money: false, presenter: 'The park service', scale: 1 },
+    ],
   };
 });

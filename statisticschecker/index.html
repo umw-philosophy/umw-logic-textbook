@@ -524,6 +524,26 @@
       line-height: 1.55;
     }
 
+    .chart-box {
+      margin: 0 0 14px;
+      max-width: 460px;
+    }
+
+    .chart-box svg {
+      width: 100%;
+      height: auto;
+      display: block;
+      background: white;
+      border: 1px solid var(--gray-200);
+      border-radius: 6px;
+    }
+
+    .chart-box figcaption {
+      color: var(--gray-500);
+      font-size: .84rem;
+      margin-top: 4px;
+    }
+
     @media (max-width: 860px) {
       .form-grid {
         grid-template-columns: 1fr 1fr;
@@ -568,7 +588,7 @@
         <button class="btn btn-secondary" type="button" id="load-problem">Load Number</button>
         <button class="btn btn-primary" type="button" id="new-problem">New Problem</button>
       </div>
-      <p class="hint-text" id="level-help">Level 1 uses small whole numbers. Level 2 uses larger datasets, halves, and money.</p>
+      <p class="hint-text" id="level-help">Level 1 uses small whole numbers. Level 2 adds a step or uses less tidy numbers: larger datasets, halves, money, or counts of people instead of percentages.</p>
       <p class="hint-text" id="seed-help">Each problem has a number. Anyone who loads the same set, type, level, and number gets the same problem.</p>
     </section>
 
@@ -585,6 +605,7 @@
             <button class="btn btn-secondary" type="button" id="copy-btn">Copy Data</button>
           </div>
         </div>
+        <figure class="chart-box" id="chart-box" hidden></figure>
         <p class="problem-question" id="problem-question"></p>
 
         <form id="work-form" novalidate>
@@ -662,13 +683,18 @@
             <tbody>
               <tr><td>400</td><td>&plusmn; 4.9%</td></tr>
               <tr><td>500</td><td>&plusmn; 4.4%</td></tr>
-              <tr><td>600</td><td>&plusmn; 4.1%</td></tr>
+              <tr><td>600</td><td>&plusmn; 4.0%</td></tr>
               <tr><td>1,000</td><td>&plusmn; 3.1%</td></tr>
               <tr><td>1,500</td><td>&plusmn; 2.5%</td></tr>
               <tr><td>2,000</td><td>&plusmn; 2.2%</td></tr>
             </tbody>
           </table>
-          <p style="margin:8px 0 0">The interval runs from the estimate minus the margin to the estimate plus the margin.</p>
+          <ul>
+            <li>The interval runs from the estimate minus the margin to the estimate plus the margin.</li>
+            <li>A majority is shown only if the whole interval lies above 50%.</li>
+            <li>Two results (two candidates, or two polls) differ by more than chance only if their intervals do not overlap.</li>
+            <li>The margin of error is half the interval's width.</li>
+          </ul>
         </details>
         <details>
           <summary>Sensitivity and specificity</summary>
@@ -676,6 +702,24 @@
             <li>Sensitivity: how often the test is positive when the condition is present. False-negative rate = 1 &minus; sensitivity.</li>
             <li>Specificity: how often the test is negative when the condition is absent. False-positive rate = 1 &minus; specificity.</li>
             <li>Flagging more people raises sensitivity and lowers specificity; flagging fewer does the reverse.</li>
+          </ul>
+        </details>
+        <details>
+          <summary>Thresholds and cutoffs</summary>
+          <ul>
+            <li>A threshold of k standard deviations flags readings below mean &minus; k &times; SD or above mean + k &times; SD.</li>
+            <li>Healthy readings flagged (false positives): about 32% at 1 SD, 5% at 2 SD, 0.3% at 3 SD. Those are both tails together.</li>
+            <li>A wider normal range flags fewer readings: fewer false positives, more false negatives. A narrower range does the reverse.</li>
+          </ul>
+        </details>
+        <details>
+          <summary>Distortions</summary>
+          <ul>
+            <li>Percent difference: (larger &minus; smaller) &divide; the value you compare against &times; 100.</li>
+            <li>Truncated axis: each bar's visible height is its value minus where the axis starts.</li>
+            <li>A picture scaled k times taller (and wider) covers k &times; k times the area.</li>
+            <li>Absolute risk reduction: control rate &minus; treatment rate, in percentage points. Relative risk reduction: that difference &divide; the control rate &times; 100.</li>
+            <li>Percent change from a starting year: (end &minus; start) &divide; start &times; 100.</li>
           </ul>
         </details>
         <details>
@@ -817,6 +861,10 @@
           $('copy-row').hidden = !p.copy;
           $('copy-text').value = p.copy || '';
         }
+        const chartBox = $('chart-box');
+        chartBox.innerHTML = '';
+        chartBox.hidden = !p.chart;
+        if (p.chart) renderChart(chartBox, p.chart);
         $('problem-question').textContent = p.question;
 
         const box = $('steps');
@@ -841,6 +889,40 @@
         $('solution-steps').innerHTML = '';
         $('show-solution').disabled = true;
         setFeedback('', 'Fill in every step, then check your work. You can check as often as you like.');
+      }
+
+      // A bar chart drawn from the problem's own numbers. Every number on it is
+      // also in the problem text, and the SVG carries a full text equivalent.
+      function renderChart(box, c) {
+        const NS = 'http://www.w3.org/2000/svg';
+        const el = function (name, attrs, text) {
+          const e = document.createElementNS(NS, name);
+          Object.keys(attrs).forEach(function (k) { e.setAttribute(k, attrs[k]); });
+          if (text !== undefined) e.textContent = text;
+          return e;
+        };
+        const W = 440, H = 300, x0 = 112, x1 = 420, yTop = 46, yBase = 250;
+        const y = function (v) { return yBase - (v - c.base) / (c.top - c.base) * (yBase - yTop); };
+        const svg = el('svg', { viewBox: '0 0 ' + W + ' ' + H, role: 'img', 'aria-label': c.desc, focusable: 'false' });
+        svg.appendChild(el('text', { x: (x0 + x1) / 2, y: 24, 'text-anchor': 'middle', 'font-size': 15, 'font-weight': 700, fill: '#1e3a5f' }, c.title));
+        c.ticks.forEach(function (t) {
+          svg.appendChild(el('line', { x1: x0 - 5, x2: x1, y1: y(t.value), y2: y(t.value), stroke: '#edf0f4' }));
+          svg.appendChild(el('text', { x: x0 - 9, y: y(t.value) + 4, 'text-anchor': 'end', 'font-size': 12, fill: '#354256' }, t.label));
+        });
+        const slot = (x1 - x0) / c.bars.length; const bw = Math.min(90, slot * 0.5);
+        c.bars.forEach(function (b, i) {
+          const cx = x0 + slot * (i + 0.5);
+          svg.appendChild(el('rect', { x: cx - bw / 2, y: y(b.value), width: bw, height: yBase - y(b.value), fill: i === 0 ? '#2d5a8e' : '#8aa6c8' }));
+          svg.appendChild(el('text', { x: cx, y: yBase + 20, 'text-anchor': 'middle', 'font-size': 13, fill: '#172033' }, b.label));
+        });
+        svg.appendChild(el('line', { x1: x0, x2: x0, y1: yTop - 8, y2: yBase, stroke: '#172033', 'stroke-width': 1.5 }));
+        svg.appendChild(el('line', { x1: x0, x2: x1, y1: yBase, y2: yBase, stroke: '#172033', 'stroke-width': 1.5 }));
+        // Break mark: the axis does not start at zero.
+        svg.appendChild(el('polyline', { points: [x0 - 7, yBase - 4, x0 + 7, yBase - 10, x0 - 7, yBase - 16, x0 + 7, yBase - 22].join(' '), fill: 'none', stroke: '#b91c1c', 'stroke-width': 2 }));
+        box.appendChild(svg);
+        const cap = document.createElement('figcaption');
+        cap.textContent = 'The chart as published. The red zigzag marks where the axis skips from zero to ' + c.ticks[0].label + '.';
+        box.appendChild(cap);
       }
 
       function renderField(f) {

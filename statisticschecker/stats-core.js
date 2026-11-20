@@ -282,8 +282,12 @@
   /** Drop diagnoses whose value equals the right answer or an earlier diagnosis. */
   function cleanDiag(f) {
     const seen = [f.target.value].concat((f.alts || []).map((a) => a.target.value));
+    const targets = [f.target].concat((f.alts || []).map((a) => a.target));
     f.diagnose = (f.diagnose || []).filter(function (d) {
       if (!isFinite(d.value) || seen.some((v) => same(v, d.value))) return false;
+      // A mistake the checker would mark right can never be reached.
+      const typed = parseNumber(String(Number(d.value.toFixed(6))));
+      if (targets.some((t) => verdict(typed, t) === 'correct')) return false;
       seen.push(d.value);
       return true;
     });
@@ -1133,12 +1137,847 @@
   }
 
   // ---------------------------------------------------------------------
+  // Margin of error (section 15.4). Every poll has 600 or 1,000 people, the
+  // two sample sizes students meet most often in news coverage.
+  // ---------------------------------------------------------------------
+  /** The book's rule-of-thumb table (95% confidence). 600 is 0.98/sqrt(600), about 4.0. */
+  const MOE = { 400: 4.9, 500: 4.4, 600: 4.0, 1000: 3.1, 1500: 2.5, 2000: 2.2 };
+  const POLL_N = [600, 1000];
+  const r1 = (x) => roundTo(x, 1);
+  const pc = (x) => numStr(r1(x)) + '%';
+  /** Judgments (majority, overlap) never sit exactly on their boundary. */
+  const clearOf = (a, b) => Math.abs(a - b) > 0.05;
+
+  function moeField(n, id, label) {
+    const m = MOE[n];
+    const other = POLL_N.filter((k) => k !== n).map((k) => ({
+      value: MOE[k], msg: 'That is the margin for a sample of ' + numStr(k) + '. This poll asked ' + numStr(n) + ' people.',
+    }));
+    return pctF(id || 'moe', label || 'Margin of error for a sample of ' + numStr(n) + ' (percentage points)', m, {
+      wrongMsg: 'Find ' + numStr(n) + ' in the rule-of-thumb table in the Reference panel.',
+      diagnose: other.concat([{ value: 2 * m, msg: 'That is the width of the whole interval. The margin of error is half of it: the amount added and subtracted.' }]),
+    });
+  }
+
+  function ciFields(prefix, who, est, m) {
+    const lo = r1(est - m); const hi = r1(est + m);
+    return [
+      pctF(prefix + 'low', 'Lower end' + who + ' (%)', lo, {
+        wrongMsg: 'Subtract the margin of error from ' + pc(est) + '.',
+        diagnose: [
+          { value: r1(est - 2 * m), msg: 'Subtract the margin of error once, not twice.' },
+          { value: r1(est - m / 2), msg: 'Subtract the whole margin of error, not half of it.' },
+          { value: hi, msg: 'That is the upper end.' },
+        ],
+      }),
+      pctF(prefix + 'high', 'Upper end' + who + ' (%)', hi, {
+        wrongMsg: 'Add the margin of error to ' + pc(est) + '.',
+        diagnose: [
+          { value: r1(est + 2 * m), msg: 'Add the margin of error once, not twice.' },
+          { value: r1(est + m / 2), msg: 'Add the whole margin of error, not half of it.' },
+          { value: lo, msg: 'That is the lower end.' },
+        ],
+      }),
+    ];
+  }
+
+  /** Level 2 gives a count of people; the student turns it into a percent. */
+  function countField(id, label, count, n, pct) {
+    return pctF(id, label, pct, {
+      wrongMsg: 'Divide ' + numStr(count) + ' by ' + numStr(n) + ', then multiply by 100.',
+      diagnose: [{ value: count, msg: 'That is the number of people. Turn it into a percentage of the ' + numStr(n) + ' polled.' }],
+    });
+  }
+  const countLine = (count, n, pct) => numStr(count) + ' ÷ ' + numStr(n) + ' = ' + numStr(pct / 100) + ', or ' + pct + '%.';
+
+  function pollSetup(ctx, n, est, level) {
+    return level === 1
+      ? 'A random sample of ' + numStr(n) + ' ' + ctx.pop + ' finds that ' + est + '% ' + ctx.phrase + '.'
+      : 'In a random sample of ' + numStr(n) + ' ' + ctx.pop + ', ' + numStr(n * est / 100) + ' ' + ctx.phrase + '.';
+  }
+
+  /** An estimate whose interval is wholly above, wholly below, or across 50%. */
+  function pickEst(rng, n, want) {
+    const m = MOE[n];
+    for (;;) {
+      const e = rng.int(38, 62); const lo = e - m; const hi = e + m;
+      if (!clearOf(lo, 50) || !clearOf(hi, 50)) continue;
+      const cat = lo > 50 ? 'yes' : hi < 50 ? 'no' : 'unclear';
+      if (cat === want) return e;
+    }
+  }
+
+  const MAJORITY = [
+    { value: 'yes', label: 'Yes: the whole interval lies above 50%' },
+    { value: 'no', label: 'No: the whole interval lies below 50%, so this view is held by less than half' },
+    { value: 'unclear', label: 'Cannot tell: the interval includes 50%, so the result is within the margin of error' },
+  ];
+  function majorityField(lo, hi) {
+    const ans = lo > 50 ? 'yes' : hi < 50 ? 'no' : 'unclear';
+    return selF('majority', 'Does the poll show that a majority hold this view?', MAJORITY, ans, {
+      wrong: {
+        yes: 'The interval runs from ' + pc(lo) + ' to ' + pc(hi) + '. For a majority, every value in it must be above 50%.',
+        no: 'The interval runs from ' + pc(lo) + ' to ' + pc(hi) + '. Not all of it is below 50%.',
+        unclear: 'The interval runs from ' + pc(lo) + ' to ' + pc(hi) + '. Does it actually contain 50%?',
+      },
+    });
+  }
+  function majorityLine(lo, hi) {
+    return lo > 50 ? 'Even the lower end, ' + pc(lo) + ', is above 50%, so the poll supports a majority at the 95% confidence level.'
+      : hi < 50 ? 'Even the upper end, ' + pc(hi) + ', is below 50%, so the poll shows that less than half hold this view.'
+        : 'The interval runs from below 50% to above it, so the poll cannot tell whether a majority hold this view. The result is within the margin of error.';
+  }
+
+  function pollBasics(rng, level, est, ctxIn, nIn) {
+    const ctx = ctxIn || rng.pick(BANK.poll);
+    const n = nIn || rng.pick(POLL_N);
+    const m = MOE[n];
+    const steps = []; const solution = [];
+    if (level === 2) {
+      const count = n * est / 100;
+      steps.push({ legend: 'Step 1: Turn the count into a percentage', fields: [countField('pct', 'Percentage who ' + ctx.phrase + ' (%)', count, n, est)] });
+      solution.push(countLine(count, n, est));
+    }
+    steps.push({ legend: 'Step ' + (steps.length + 1) + ': Look up the margin of error', help: 'Use the rule-of-thumb table in the Reference panel.', fields: [moeField(n)] });
+    steps.push({ legend: 'Step ' + (steps.length + 1) + ': Build the confidence interval', fields: ciFields('', '', est, m) });
+    solution.push('A random sample of ' + numStr(n) + ' gives a margin of error of about plus or minus ' + m + ' percentage points at the 95% confidence level.');
+    solution.push('The interval runs from ' + est + ' − ' + m + ' = ' + pc(est - m) + ' to ' + est + ' + ' + m + ' = ' + pc(est + m) + '.');
+    return { ctx, n, m, steps, solution, setup: pollSetup(ctx, n, est, level) };
+  }
+
+  function genInterval(rng, level) {
+    const est = rng.int(25, 75);
+    const b = pollBasics(rng, level, est);
+    return {
+      setup: b.setup, dataLabel: '', data: [],
+      question: 'Give the 95% confidence interval for the percentage of all ' + b.ctx.pop + ' who ' + b.ctx.phrase + '.',
+      steps: b.steps, solution: b.solution,
+    };
+  }
+
+  function genMajority(rng, level) {
+    const n = rng.pick(POLL_N);
+    const est = pickEst(rng, n, rng.pick(['yes', 'no', 'unclear', 'unclear']));
+    const b = pollBasics(rng, level, est, null, n);
+    const lo = est - b.m; const hi = est + b.m;
+    b.steps.push({ legend: 'Step ' + (b.steps.length + 1) + ': Read the interval', fields: [majorityField(lo, hi)] });
+    b.solution.push(majorityLine(lo, hi));
+    return {
+      setup: b.setup + ' A report claims that a majority of all ' + b.ctx.pop + ' ' + b.ctx.phrase + '.', dataLabel: '', data: [],
+      question: 'Does the poll support the claim? Build the interval, then compare it with 50%.',
+      steps: b.steps, solution: b.solution,
+    };
+  }
+
+  const RACE = (A) => [
+    { value: 'ahead', label: 'Yes: the intervals do not overlap, so ' + A + '’s lead is larger than the sampling uncertainty' },
+    { value: 'within', label: 'No: the intervals overlap, so the race is within the margin of error' },
+  ];
+
+  function genRace(rng, level) {
+    const ctx = rng.pick(BANK.race);
+    const n = rng.pick(POLL_N); const m = MOE[n];
+    const wantOverlap = rng.chance(0.55);
+    let a, b;
+    for (;;) {
+      a = rng.int(42, 56); b = rng.int(34, a - 1);
+      if (a + b > 97 || !clearOf(a - b, 2 * m)) continue;
+      if ((a - b < 2 * m) === wantOverlap) break;
+    }
+    const A = ctx.a; const B = ctx.b; const lead = a - b;
+    const aLo = a - m; const bHi = b + m;
+    const steps = []; const solution = [];
+    let setup;
+    if (level === 1) {
+      setup = 'A poll of ' + numStr(n) + ' randomly selected ' + ctx.pop + ' about ' + ctx.office + ' finds that ' + a + '% support ' + A + ' and ' + b + '% support ' + B + '; the rest are undecided.';
+    } else {
+      setup = 'In a poll of ' + numStr(n) + ' randomly selected ' + ctx.pop + ' about ' + ctx.office + ', ' + numStr(n * a / 100) + ' support ' + A + ' and ' + numStr(n * b / 100) + ' support ' + B + '; the rest are undecided.';
+      steps.push({ legend: 'Step 1: Turn the counts into percentages', fields: [
+        countField('a-pct', 'Percentage for ' + A + ' (%)', n * a / 100, n, a),
+        countField('b-pct', 'Percentage for ' + B + ' (%)', n * b / 100, n, b),
+      ] });
+      solution.push(A + ': ' + countLine(n * a / 100, n, a) + ' ' + B + ': ' + countLine(n * b / 100, n, b));
+    }
+    const s = (t) => 'Step ' + (steps.length + 1) + ': ' + t;
+    steps.push({ legend: s('Look up the margin of error'), help: 'Both candidates come from the same poll, so they share one margin of error.', fields: [moeField(n)] });
+    steps.push({ legend: s('Interval for ' + A), fields: ciFields('a-', ' for ' + A, a, m) });
+    steps.push({ legend: s('Interval for ' + B), fields: ciFields('b-', ' for ' + B, b, m) });
+    const ov = aLo < bHi;
+    steps.push({ legend: s('Compare the intervals'), fields: [selF('lead', 'Does the poll show that ' + A + ' is really ahead?', RACE(A), ov ? 'within' : 'ahead', {
+      wrong: {
+        ahead: A + '’s interval reaches down to ' + pc(aLo) + ', and ' + B + '’s reaches up to ' + pc(bHi) + '. Those ranges overlap.',
+        within: A + '’s lowest plausible value, ' + pc(aLo) + ', is still above ' + B + '’s highest, ' + pc(bHi) + '.',
+      },
+    })] });
+    solution.push('A sample of ' + numStr(n) + ' gives a margin of error of about plus or minus ' + m + ' percentage points.');
+    solution.push(A + ': ' + a + '% ± ' + m + ' runs from ' + pc(a - m) + ' to ' + pc(a + m) + '. ' + B + ': ' + b + '% ± ' + m + ' runs from ' + pc(b - m) + ' to ' + pc(b + m) + '.');
+    solution.push(ov
+      ? 'The intervals overlap: ' + A + '’s could be as low as ' + pc(aLo) + ' and ' + B + '’s as high as ' + pc(bHi) + '. It is consistent with the data that ' + B + ' is actually ahead, so the race is within the margin of error.'
+      : A + '’s lowest plausible value, ' + pc(aLo) + ', is above ' + B + '’s highest, ' + pc(bHi) + '. The intervals do not overlap, so the poll supports ' + A + '’s lead at the 95% confidence level.');
+    solution.push('A shortcut: the intervals overlap exactly when the lead (' + lead + ' points) is smaller than twice the margin of error (' + numStr(2 * m) + ' points).');
+    return {
+      setup: setup + ' A news anchor says, “' + A + ' is ahead.”', dataLabel: '', data: [],
+      question: 'Does the poll show that ' + A + ' is really ahead?',
+      steps, solution,
+    };
+  }
+
+  const CHANGE = [
+    { value: 'real', label: 'Yes: the intervals do not overlap, so the change is larger than the sampling uncertainty' },
+    { value: 'noise', label: 'No: the intervals overlap, so the change could be sampling variation' },
+  ];
+
+  function genChange(rng, level) {
+    const ctx = rng.pick(BANK.poll);
+    const months = rng.pick([['March', 'May'], ['January', 'April'], ['September', 'October'], ['June', 'August']]);
+    const wantReal = rng.chance(0.45);
+    let n1, n2, p1, p2;
+    for (;;) {
+      n1 = rng.pick(POLL_N); n2 = rng.pick(POLL_N);
+      p1 = rng.int(35, 65); p2 = p1 + rng.int(2, 12) * (rng.chance(0.5) ? 1 : -1);
+      if (p2 < 30 || p2 > 70) continue;
+      const lim = MOE[n1] + MOE[n2];
+      if (!clearOf(Math.abs(p2 - p1), lim)) continue;
+      if ((Math.abs(p2 - p1) > lim) === wantReal) break;
+    }
+    const m1 = MOE[n1]; const m2 = MOE[n2]; const d = p2 - p1;
+    const dirWord = d > 0 ? 'risen' : 'fallen';
+    const steps = []; const solution = [];
+    let setup;
+    if (level === 1) {
+      setup = 'In ' + months[0] + ', a random sample of ' + numStr(n1) + ' ' + ctx.pop + ' found that ' + p1 + '% ' + ctx.phrase + '. In ' + months[1] + ', a new random sample of ' + numStr(n2) + ' found ' + p2 + '%.';
+    } else {
+      setup = 'In ' + months[0] + ', ' + numStr(n1 * p1 / 100) + ' of ' + numStr(n1) + ' randomly sampled ' + ctx.pop + ' said they ' + ctx.phrase.replace(/^(say|says) they /, '') + '. In ' + months[1] + ', ' + numStr(n2 * p2 / 100) + ' of a new random sample of ' + numStr(n2) + ' said so.';
+      steps.push({ legend: 'Step 1: Turn the counts into percentages', fields: [
+        countField('p1', months[0] + ' percentage (%)', n1 * p1 / 100, n1, p1),
+        countField('p2', months[1] + ' percentage (%)', n2 * p2 / 100, n2, p2),
+      ] });
+      solution.push(months[0] + ': ' + countLine(n1 * p1 / 100, n1, p1) + ' ' + months[1] + ': ' + countLine(n2 * p2 / 100, n2, p2));
+    }
+    const s = (t) => 'Step ' + (steps.length + 1) + ': ' + t;
+    steps.push({ legend: s('Look up both margins of error'), help: n1 === n2 ? 'Both polls are the same size.' : 'The two polls are different sizes, so their margins differ.', fields: [
+      moeField(n1, 'moe1', months[0] + ' poll (' + numStr(n1) + ' people): margin of error (percentage points)'),
+      moeField(n2, 'moe2', months[1] + ' poll (' + numStr(n2) + ' people): margin of error (percentage points)'),
+    ] });
+    steps.push({ legend: s(months[0] + ' interval'), fields: ciFields('a-', ' (' + months[0] + ')', p1, m1) });
+    steps.push({ legend: s(months[1] + ' interval'), fields: ciFields('b-', ' (' + months[1] + ')', p2, m2) });
+    const real = Math.abs(d) > m1 + m2;
+    steps.push({ legend: s('Compare the intervals'), fields: [selF('change', 'Do the polls show a real change?', CHANGE, real ? 'real' : 'noise', {
+      wrong: {
+        real: 'Look for a value that lies inside both intervals. If there is one, the true percentage could be the same in both months.',
+        noise: 'The ' + (d > 0 ? 'lower end of the ' + months[1] : 'lower end of the ' + months[0]) + ' interval is above the upper end of the other one.',
+      },
+    })] });
+    solution.push('Margins of error: ' + months[0] + ' (' + numStr(n1) + ' people), ±' + m1 + '; ' + months[1] + ' (' + numStr(n2) + ' people), ±' + m2 + '.');
+    solution.push(months[0] + ': ' + pc(p1 - m1) + ' to ' + pc(p1 + m1) + '. ' + months[1] + ': ' + pc(p2 - m2) + ' to ' + pc(p2 + m2) + '.');
+    solution.push(real
+      ? 'The intervals do not overlap, so the ' + Math.abs(d) + '-point change is larger than sampling alone would explain. The share has really ' + dirWord + '.'
+      : 'The intervals overlap, so the true percentage could be the same in both months. The ' + Math.abs(d) + '-point change could be nothing more than the difference between two random samples.');
+    return {
+      setup: setup + ' A headline says the share has ' + dirWord + ' ' + Math.abs(d) + ' points.', dataLabel: '', data: [],
+      question: 'Do the two polls show that the share who ' + ctx.phrase + ' has really ' + dirWord + '?',
+      steps, solution,
+    };
+  }
+
+  const SIZES = Object.keys(MOE).map((k) => ({ value: k, label: numStr(Number(k)) + ' people (± ' + MOE[k] + ')' }));
+
+  function genReported(rng, level) {
+    const ctx = rng.pick(BANK.poll);
+    const n = rng.pick(POLL_N); const m = MOE[n];
+    const est = pickEst(rng, n, rng.pick(['yes', 'no', 'unclear']));
+    const lo = r1(est - m); const hi = r1(est + m);
+    const steps = []; const solution = [];
+    let setup;
+    if (level === 1) {
+      setup = 'A news story reports that ' + est + '% of ' + ctx.pop + ' ' + ctx.phrase + ', with a 95% confidence interval from ' + pc(lo) + ' to ' + pc(hi) + '. The story does not say how many people were polled.';
+      steps.push({ legend: 'Step 1: Find the margin of error', fields: [pctF('moe', 'Margin of error (percentage points)', m, {
+        wrongMsg: 'The margin is the distance from the estimate to either end: ' + pc(hi) + ' − ' + pc(est) + '.',
+        diagnose: [{ value: r1(hi - lo), msg: 'That is the width of the whole interval. The margin of error is half of it.' }],
+      })] });
+      solution.push('The margin of error is the distance from the estimate to either end: ' + numStr(hi) + ' − ' + est + ' = ' + numStr(m) + ' percentage points.');
+    } else {
+      setup = 'A news story reports that, at the 95% confidence level, between ' + pc(lo) + ' and ' + pc(hi) + ' of ' + ctx.pop + ' ' + ctx.phrase + '. It gives neither the poll’s estimate nor how many people were polled.';
+      steps.push({ legend: 'Step 1: Find the estimate and the margin', fields: [
+        pctF('est', 'The poll’s estimate: the middle of the interval (%)', est, {
+          wrongMsg: 'Average the two ends: (' + pc(lo) + ' + ' + pc(hi) + ') ÷ 2.',
+          diagnose: [{ value: r1(hi - lo), msg: 'That is the width of the interval. The estimate is its middle.' }],
+        }),
+        pctF('moe', 'Margin of error (percentage points)', m, {
+          wrongMsg: 'Half the width of the interval: (' + pc(hi) + ' − ' + pc(lo) + ') ÷ 2.',
+          diagnose: [{ value: r1(hi - lo), msg: 'That is the width of the whole interval. The margin of error is half of it.' }],
+        }),
+      ] });
+      solution.push('The estimate is the middle of the interval: (' + numStr(lo) + ' + ' + numStr(hi) + ') ÷ 2 = ' + est + '%.');
+      solution.push('The margin of error is half the width: (' + numStr(hi) + ' − ' + numStr(lo) + ') ÷ 2 = ' + numStr(m) + ' percentage points.');
+    }
+    steps.push({ legend: 'Step 2: Work back to the sample size', help: 'Use the rule-of-thumb table.', fields: [selF('n', 'About how many people were polled?', SIZES, String(n), {
+      wrongMsg: 'Find the sample size whose margin of error is ± ' + m + '.',
+    })] });
+    steps.push({ legend: 'Step 3: Read the interval', fields: [majorityField(lo, hi)] });
+    solution.push('In the rule-of-thumb table, a margin of ± ' + m + ' goes with a sample of about ' + numStr(n) + ' people.');
+    solution.push(majorityLine(lo, hi));
+    return {
+      setup, dataLabel: '', data: [],
+      question: 'Work out the margin of error and the sample size, then say whether the poll shows a majority.',
+      steps, solution,
+    };
+  }
+
+  // ---------------------------------------------------------------------
+  // Diagnostic thresholds (section 15.5)
+  // ---------------------------------------------------------------------
+  const DIR = [{ value: 'increase', label: 'Increase' }, { value: 'decrease', label: 'Decrease' }];
+  const STAKES = [
+    { value: 'sens', label: 'High sensitivity: catch as many true cases as possible' },
+    { value: 'spec', label: 'High specificity: avoid false alarms' },
+  ];
+  const BAYES_NOTE = 'For the probability that a single positive result is correct, use the Bayes problems in the Chapter 14 probability tool.';
+
+  function rateFields(ctx, sens, spec) {
+    return [
+      pctF('fnr', 'False-negative rate: the share of ' + ctx.items + ' that ' + ctx.cond + ' but test negative (%)', 100 - sens, {
+        wrongMsg: 'False-negative rate = 100% − sensitivity.',
+        diagnose: [
+          { value: sens, msg: 'That is the sensitivity, the share caught. The false-negative rate is the share missed.' },
+          { value: 100 - spec, msg: 'That comes from the specificity, which is about ' + ctx.items + ' that ' + ctx.neg + '. False negatives are cases that are really there.' },
+        ],
+      }),
+      pctF('fpr', 'False-positive rate: the share of ' + ctx.items + ' that ' + ctx.neg + ' but test positive (%)', 100 - spec, {
+        wrongMsg: 'False-positive rate = 100% − specificity.',
+        diagnose: [
+          { value: spec, msg: 'That is the specificity, the share correctly cleared. The false-positive rate is the share wrongly flagged.' },
+          { value: 100 - sens, msg: 'That comes from the sensitivity, which is about ' + ctx.items + ' that ' + ctx.cond + '. False positives come from the others.' },
+        ],
+      }),
+    ];
+  }
+
+  function genRates(rng, level) {
+    const ctx = rng.pick(BANK.test);
+    const sens = rng.pick([80, 85, 90, 92, 95, 98, 99]);
+    const spec = rng.pick([75, 80, 85, 90, 95, 97, 98, 99]);
+    const intro = ctx.name + ' has a sensitivity of ' + sens + '% and a specificity of ' + spec + '%.';
+    if (level === 1) {
+      const stake = rng.pick(['sens', 'spec']);
+      return {
+        setup: intro + (stake === 'sens'
+          ? ' In this setting, missing a true case would be far more costly than a false alarm.'
+          : ' In this setting, a false alarm would be far more costly than a missed case.'),
+        dataLabel: '', data: [],
+        question: 'What are the false-negative and false-positive rates? Given the stakes, which should the test favor?',
+        steps: [
+          { legend: 'Step 1: Turn sensitivity and specificity into error rates', fields: rateFields(ctx, sens, spec) },
+          { legend: 'Step 2: Weigh the stakes', fields: [selF('stakes', 'Which should this test favor?', STAKES, stake, {
+            wrongMsg: stake === 'sens' ? 'Missing a true case is the costly error here. Which property guards against misses?' : 'A false alarm is the costly error here. Which property guards against false alarms?',
+          })] },
+        ],
+        solution: [
+          'False-negative rate = 100% − ' + sens + '% = ' + (100 - sens) + '%: of the ' + ctx.items + ' that ' + ctx.cond + ', that share is missed.',
+          'False-positive rate = 100% − ' + spec + '% = ' + (100 - spec) + '%: of the ' + ctx.items + ' that ' + ctx.neg + ', that share is wrongly flagged.',
+          stake === 'sens'
+            ? 'Misses are the costly error, so the test should favor high sensitivity, even at the price of more false alarms.'
+            : 'False alarms are the costly error, so the test should favor high specificity, even at the price of more missed cases.',
+        ],
+      };
+    }
+    let N, br, P, TP, FP;
+    for (;;) {
+      N = rng.pick([1000, 2000, 5000, 10000, 20000]); br = rng.pick([1, 2, 5, 10, 20, 30]);
+      P = N * br / 100; TP = P * sens / 100; FP = (N - P) * (100 - spec) / 100;
+      if (terminates(TP, 0) && terminates(FP, 0) && TP !== FP) break;
+    }
+    const FN = P - TP;
+    const most = TP > FP ? 'true' : 'false';
+    return {
+      setup: intro + ' It is used on ' + numStr(N) + ' ' + ctx.items + ', and ' + br + '% of them ' + ctx.cond + '.',
+      dataLabel: '', data: [], note: BAYES_NOTE,
+      question: 'How many true positives, false negatives, and false positives should we expect? Are most positive results right or wrong?',
+      steps: [
+        { legend: 'Step 1: Turn sensitivity and specificity into error rates', fields: rateFields(ctx, sens, spec) },
+        { legend: 'Step 2: Split the group', fields: [cleanDiag(numF('p', 'Number of ' + ctx.items + ' that ' + ctx.cond, exactT(P), {
+          wrongMsg: br + '% of ' + numStr(N) + '.', diagnose: [{ value: N - P, msg: 'That is the number that ' + ctx.neg + '.' }],
+        }))] },
+        { legend: 'Step 3: Count each kind of result', fields: [
+          cleanDiag(numF('tp', 'True positives: ' + ctx.items + ' that ' + ctx.cond + ' and test positive', exactT(TP), {
+            wrongMsg: 'Sensitivity × the number that ' + ctx.cond + ': ' + sens + '% of ' + numStr(P) + '.',
+            diagnose: [{ value: N * sens / 100, msg: 'Apply the sensitivity only to the ' + numStr(P) + ' that ' + ctx.cond + ', not to everyone.' }],
+          })),
+          cleanDiag(numF('fn', 'False negatives: ' + ctx.items + ' that ' + ctx.cond + ' but test negative', exactT(FN), {
+            wrongMsg: 'The ' + numStr(P) + ' that ' + ctx.cond + ', minus the true positives.',
+          })),
+          cleanDiag(numF('fp', 'False positives: ' + ctx.items + ' that ' + ctx.neg + ' but test positive', exactT(FP), {
+            wrongMsg: 'False-positive rate × the number that ' + ctx.neg + ': ' + (100 - spec) + '% of ' + numStr(N - P) + '.',
+            diagnose: [
+              { value: N * (100 - spec) / 100, msg: 'Apply the false-positive rate only to the ' + numStr(N - P) + ' that ' + ctx.neg + '.' },
+              { value: (N - P) * spec / 100, msg: 'That is the number correctly cleared. Use the false-positive rate, ' + (100 - spec) + '%.' },
+            ],
+          })),
+        ] },
+        { legend: 'Step 4: Compare', fields: [selF('most', 'Among all the positive results', [
+          { value: 'true', label: 'Most are true positives' },
+          { value: 'false', label: 'Most are false positives' },
+        ], most, { wrongMsg: 'Compare the true positives (' + numStr(TP) + ') with the false positives (' + numStr(FP) + ').' })] },
+      ],
+      solution: [
+        'False-negative rate = 100% − ' + sens + '% = ' + (100 - sens) + '%. False-positive rate = 100% − ' + spec + '% = ' + (100 - spec) + '%.',
+        br + '% of ' + numStr(N) + ' is ' + numStr(P) + ' ' + ctx.items + ' that ' + ctx.cond + ', leaving ' + numStr(N - P) + ' that ' + ctx.neg + '.',
+        'True positives: ' + sens + '% of ' + numStr(P) + ' = ' + numStr(TP) + '. False negatives: ' + numStr(P) + ' − ' + numStr(TP) + ' = ' + numStr(FN) + '.',
+        'False positives: ' + (100 - spec) + '% of ' + numStr(N - P) + ' = ' + numStr(FP) + '.',
+        most === 'false'
+          ? 'There are more false positives (' + numStr(FP) + ') than true positives (' + numStr(TP) + '), so most positive results are wrong. With only ' + br + '% of ' + ctx.items + ' affected, even a small false-positive rate applied to the large unaffected group swamps the true cases.'
+          : 'There are more true positives (' + numStr(TP) + ') than false positives (' + numStr(FP) + '), so most positive results are right. The condition is common enough here (' + br + '%) that the true cases outnumber the false alarms.',
+      ],
+    };
+  }
+
+  function pickScreen(rng, ks) {
+    for (;;) {
+      const ctx = rng.pick(BANK.screen);
+      const mean = rng.pick(ctx.mean); const sd = rng.pick(ctx.sd);
+      const k = rng.pick(ks);
+      if (mean - 3 * sd > 0) return { ctx, mean, sd, k };
+    }
+  }
+  const sv = (x) => numStr(roundTo(x, 4));
+  const svu = (ctx, x) => sv(x) + ' ' + ctx.unit;
+  function screenIntro(ctx, mean, sd) {
+    return ctx.what + (ctx.who ? ' in ' + ctx.who : '') + ' is approximately normally distributed, with a mean of ' + svu(ctx, mean) + ' and a standard deviation of ' + svu(ctx, sd) + '.';
+  }
+  function cutFields(ctx, mean, sd, k, prefix, what) {
+    const lo = roundTo(mean - k * sd, 4); const hi = roundTo(mean + k * sd, 4);
+    return [
+      cleanDiag(numF(prefix + 'low', cap(what + 'lower cutoff (' + ctx.unit + ')'), exactT(lo), {
+        wrongMsg: 'Mean − ' + sv(k) + ' × standard deviation: ' + sv(mean) + ' − ' + sv(k) + '(' + sv(sd) + ').',
+        diagnose: [{ value: hi, msg: 'That is the upper cutoff.' }, { value: roundTo(mean - sd, 4), msg: 'Go ' + sv(k) + ' standard deviations below the mean, not 1.' }, { value: roundTo(mean - k, 4), msg: 'Multiply ' + sv(k) + ' by the standard deviation before subtracting.' }],
+      })),
+      cleanDiag(numF(prefix + 'high', cap(what + 'upper cutoff (' + ctx.unit + ')'), exactT(hi), {
+        wrongMsg: 'Mean + ' + sv(k) + ' × standard deviation: ' + sv(mean) + ' + ' + sv(k) + '(' + sv(sd) + ').',
+        diagnose: [{ value: lo, msg: 'That is the lower cutoff.' }, { value: roundTo(mean + sd, 4), msg: 'Go ' + sv(k) + ' standard deviations above the mean, not 1.' }, { value: roundTo(mean + k, 4), msg: 'Multiply ' + sv(k) + ' by the standard deviation before adding.' }],
+      })),
+    ];
+  }
+  function flaggedField(id, label, k) {
+    return pctF(id, label, OUTSIDE[k], {
+      wrongMsg: 'About ' + WITHIN[k] + '% fall within ' + sds(k) + '. What share is outside, on both sides?',
+      diagnose: [
+        { value: WITHIN[k], msg: 'That is the share inside the normal range, who are not flagged.' },
+        { value: TAIL[k], msg: 'Readings are flagged on both sides, high and low. Count both tails.' },
+      ],
+    });
+  }
+
+  function genCutoffs(rng, level) {
+    const { ctx, mean, sd, k } = pickScreen(rng, [1, 2, 3]);
+    const lo = mean - k * sd; const hi = mean + k * sd;
+    const steps = [
+      { legend: 'Step 1: Find the cutoffs', fields: cutFields(ctx, mean, sd, k, '', '') },
+      { legend: 'Step 2: Healthy readings that get flagged', help: 'Use the empirical rule. These are all false positives.', fields: [
+        flaggedField('flagged', 'Share of ' + ctx.things + ' flagged as abnormal (%)', k),
+        pctF('spec', 'Specificity: the share of ' + ctx.things + ' correctly passed (%)', WITHIN[k], {
+          wrongMsg: 'Specificity is the share of healthy cases that test negative: here, the share inside the normal range.',
+          diagnose: [{ value: OUTSIDE[k], msg: 'That is the share flagged, the false-positive rate. Specificity is the share passed.' }],
+        }),
+      ] },
+    ];
+    const solution = [
+      'Cutoffs: ' + sv(mean) + ' − ' + sv(k) + '(' + sv(sd) + ') = ' + sv(lo) + ' and ' + sv(mean) + ' + ' + sv(k) + '(' + sv(sd) + ') = ' + svu(ctx, hi) + '.',
+      'About ' + WITHIN[k] + '% of ' + ctx.things + ' fall within ' + sds(k) + ' of the mean, so about ' + OUTSIDE[k] + '% fall outside and are flagged. Every one of them is a false positive.',
+      'Specificity is the share correctly passed: about ' + WITHIN[k] + '%.',
+    ];
+    if (level === 2) {
+      const N = pickN(rng, [OUTSIDE[k], WITHIN[k]]);
+      steps.push({ legend: 'Step 3: Turn the share into a count', fields: [cleanDiag(numF('count', 'Out of ' + numStr(N) + ' ' + ctx.things + ', about how many are flagged?', exactT(N * OUTSIDE[k] / 100), {
+        wrongMsg: 'Multiply ' + numStr(N) + ' by ' + OUTSIDE[k] + '% written as a decimal.',
+        diagnose: [{ value: N * TAIL[k] / 100, msg: 'That counts only one side. Readings are flagged on both sides.' }, { value: N * WITHIN[k] / 100, msg: 'That counts the ones passed, not the ones flagged.' }],
+      }))] });
+      solution.push(numStr(N) + ' × ' + numStr(OUTSIDE[k] / 100) + ' = ' + numStr(N * OUTSIDE[k] / 100) + ' ' + ctx.things + ' flagged.');
+    }
+    return {
+      setup: screenIntro(ctx, mean, sd) + ' ' + ctx.test + ' flags any reading more than ' + sds(k) + ' from the mean as abnormal.',
+      dataLabel: '', data: [],
+      question: 'What are the cutoffs, and how often does the test flag a healthy reading?',
+      steps, solution,
+    };
+  }
+
+  function genMove(rng, level) {
+    let ctx, mean, sd, k1, k2;
+    for (;;) {
+      ({ ctx, mean, sd, k: k1 } = pickScreen(rng, [1, 2, 3]));
+      k2 = level === 1 ? rng.pick([1, 2, 3]) : rng.pick([1.5, 2.5]);
+      if (k2 !== k1) break;
+    }
+    const wider = k2 > k1;
+    const lo1 = mean - k1 * sd; const hi1 = mean + k1 * sd;
+    const steps = [{ legend: 'Step 1: Find the new cutoffs', fields: cutFields(ctx, mean, sd, k2, '', 'New ') }];
+    const solution = ['New cutoffs: ' + sv(mean) + ' − ' + sv(k2) + '(' + sv(sd) + ') = ' + sv(mean - k2 * sd) + ' and ' + sv(mean) + ' + ' + sv(k2) + '(' + sv(sd) + ') = ' + svu(ctx, mean + k2 * sd) + '.'];
+    if (level === 1) {
+      steps.push({ legend: 'Step 2: Healthy readings flagged, before and after', fields: [
+        flaggedField('now', 'Share of ' + ctx.things + ' flagged now, at ' + sds(k1) + ' (%)', k1),
+        flaggedField('after', 'Share flagged after the change, at ' + sds(k2) + ' (%)', k2),
+      ] });
+      solution.push('Healthy readings flagged: about ' + OUTSIDE[k1] + '% now and ' + OUTSIDE[k2] + '% after the change.');
+    }
+    const more = wider ? 'fewer' : 'more';
+    const why = 'A ' + (wider ? 'wider' : 'narrower') + ' normal range flags ' + more + ' readings. ';
+    const sel = (id, label, ans, msg) => selF(id, label, DIR, ans, { wrongMsg: why + msg });
+    steps.push({ legend: 'Step ' + (steps.length + 1) + ': The tradeoff', help: 'Compare the new normal range with the current one, ' + sv(lo1) + ' to ' + svu(ctx, hi1) + '.', fields: [
+      selF('flags', 'The test would flag', [{ value: 'more', label: 'More readings' }, { value: 'fewer', label: 'Fewer readings' }], more, {
+        wrongMsg: 'Is the new normal range wider or narrower than the current one?',
+      }),
+      sel('sens', 'Sensitivity would', wider ? 'decrease' : 'increase', wider ? 'Some real problems now fall inside the range and are missed.' : 'More real problems fall outside the range and are caught.'),
+      sel('spec', 'Specificity would', wider ? 'increase' : 'decrease', wider ? 'More healthy readings fall inside the range and are passed.' : 'More healthy readings fall outside the range and are flagged.'),
+      sel('fp', 'False positives would', wider ? 'decrease' : 'increase', wider ? 'Fewer healthy readings fall outside the range.' : 'More healthy readings fall outside the range.'),
+      sel('fn', 'False negatives would', wider ? 'increase' : 'decrease', wider ? 'More real problems hide inside the range.' : 'Fewer real problems hide inside the range.'),
+    ] });
+    solution.push(wider
+      ? 'Moving from ' + sds(k1) + ' to ' + sds(k2) + ' widens the normal range, so the test flags fewer readings. Fewer healthy readings are flagged: false positives fall and specificity rises. But more real problems fall inside the range: false negatives rise and sensitivity falls.'
+      : 'Moving from ' + sds(k1) + ' to ' + sds(k2) + ' narrows the normal range, so the test flags more readings. More real problems are caught: false negatives fall and sensitivity rises. But more healthy readings are flagged too: false positives rise and specificity falls.');
+    return {
+      setup: screenIntro(ctx, mean, sd) + ' ' + ctx.test + ' currently flags readings more than ' + sds(k1) + ' from the mean (outside ' + sv(lo1) + ' to ' + svu(ctx, hi1) + '). It is considering a threshold of ' + sds(k2) + ' instead.',
+      dataLabel: '', data: [],
+      question: 'What would the new cutoffs be, and how would the change affect the test?',
+      steps, solution,
+    };
+  }
+
+  const FRACS1 = [[1, 2], [1, 4], [3, 4]];
+  const FRACS2 = [[1, 3], [2, 3], [1, 5], [2, 5], [3, 5], [4, 5], [1, 4], [3, 4]];
+  const fracWords = (a, b) => a + ' out of every ' + b;
+
+  function genFlags(rng, level) {
+    const ctx = rng.pick(BANK.flags);
+    let N, f, a, b, F, FP;
+    for (;;) {
+      N = rng.pick(level === 1 ? [400, 500, 800, 1000, 2000] : [1200, 1500, 2400, 3000, 6000]);
+      f = rng.pick([4, 5, 6, 8, 9, 10, 12, 15, 20]);
+      [a, b] = rng.pick(level === 1 ? FRACS1 : FRACS2);
+      F = N * f / 100; FP = F * a / b;
+      if (terminates(F, 0) && terminates(FP, 0) && terminates(f * a / b, 2)) break;
+    }
+    const G = F - FP; const share = f * a / b;
+    const steps = [
+      { legend: 'Step 1: Count the flags', fields: [cleanDiag(numF('flagged', 'Number of ' + ctx.flagged, exactT(F), {
+        wrongMsg: f + '% of ' + numStr(N) + '.', diagnose: [{ value: N * f, msg: 'Write the percentage as a decimal before multiplying.' }],
+      }))] },
+      { legend: 'Step 2: Sort the flags', fields: [
+        cleanDiag(numF('fp', 'False positives: flagged ' + ctx.items + ' that turned out to be ' + ctx.good, exactT(FP), {
+          wrongMsg: a + '/' + b + ' of the ' + numStr(F) + ' flagged.',
+          diagnose: [{ value: G, msg: 'That is the number of ' + ctx.bad + '. False positives are the ones wrongly flagged.' }],
+        })),
+        cleanDiag(numF('genuine', 'Flagged ' + ctx.items + ' that turned out to be ' + ctx.bad, exactT(G), {
+          wrongMsg: 'The flagged total minus the false positives.',
+          diagnose: [{ value: FP, msg: 'That is the number of false positives.' }],
+        })),
+      ] },
+      { legend: 'Step 3: False positives as a share of everything', fields: [pctF('share', 'What percentage of all ' + ctx.items + ' are false positives? (%)', share, {
+        wrongMsg: 'Divide the false positives by all ' + numStr(N) + ' ' + ctx.items + ', or take ' + a + '/' + b + ' of ' + f + '%.',
+        diagnose: [
+          { value: 100 * a / b, msg: 'That is the share of flagged ' + ctx.items + ' that are false positives. The question asks about all ' + ctx.items + '.' },
+          { value: f, msg: 'That is everything flagged, including the ' + ctx.bad + '.' },
+        ],
+      })] },
+    ];
+    const solution = [
+      f + '% of ' + numStr(N) + ' = ' + numStr(F) + ' ' + ctx.flagged + '.',
+      a + '/' + b + ' of ' + numStr(F) + ' = ' + numStr(FP) + ' are ' + ctx.good + ' (false positives); the other ' + numStr(G) + ' are ' + ctx.bad + '.',
+      numStr(FP) + ' ÷ ' + numStr(N) + ' = ' + numStr(share / 100) + ', so ' + numStr(share) + '% of all ' + ctx.items + ' are false positives. (Equivalently, ' + a + '/' + b + ' of ' + f + '%.)',
+    ];
+    if (level === 2) {
+      const mostly = a / b > 0.5 ? 'good' : 'bad';
+      steps.push({ legend: 'Step 4: What a flag tells you', fields: [selF('mostly', 'When this tool flags one of the ' + ctx.items + ', it is', [
+        { value: 'good', label: 'More likely a false alarm than a real case' },
+        { value: 'bad', label: 'More likely a real case than a false alarm' },
+      ], mostly, { wrongMsg: 'Compare the false positives (' + numStr(FP) + ') with the real cases (' + numStr(G) + ').' })] });
+      solution.push(mostly === 'good'
+        ? 'Most flags (' + numStr(FP) + ' of ' + numStr(F) + ') are false alarms, so a flag by itself is weak evidence. Each one needs a person’s review.'
+        : 'Most flags (' + numStr(G) + ' of ' + numStr(F) + ') are real cases, but ' + numStr(FP) + ' are not, so each flag still needs a person’s review.');
+    }
+    return {
+      setup: ctx.tool + ' checked ' + numStr(N) + ' ' + ctx.items + ' and flagged ' + f + '% of them. On review, ' + fracWords(a, b) + ' ' + ctx.flagged + ' turned out to be ' + ctx.good + '; the rest were ' + ctx.bad + '.',
+      dataLabel: '', data: [],
+      question: 'How many ' + ctx.items + ' were flagged, how many of those were false positives, and what percentage of all ' + ctx.items + ' were false positives?',
+      steps, solution,
+    };
+  }
+
+  // ---------------------------------------------------------------------
+  // Lying with statistics (section 15.6)
+  // ---------------------------------------------------------------------
+  function genTruncated(rng, level) {
+    const ctx = rng.pick(BANK.bars);
+    const g = ctx.scale;
+    let r, u, K, pct;
+    for (;;) {
+      r = level === 1 ? rng.pick([2, 3, 4, 5]) : rng.pick([2.5, 3, 4, 5, 6]);
+      u = rng.int(2, 14); K = rng.int(ctx.size[0], ctx.size[1]);
+      if (!terminates((r - 1) * u, 0)) continue;
+      pct = (r - 1) * u / (K + u) * 100;
+      if (pct >= 1.5 && pct <= 30 && terminates(pct, level === 1 ? 0 : 1)) break;
+    }
+    const base = K * g; const B = (K + u) * g; const A = B + (r - 1) * u * g; const top = A + u * g;
+    const bigFirst = rng.chance(0.5);
+    const big = ctx.labels[bigFirst ? 0 : 1]; const small = ctx.labels[bigFirst ? 1 : 0];
+    const cfmt = { money: ctx.money, unit: ctx.unit };
+    const v = (x) => fmt(cfmt, x); const vu = (x) => withUnit(cfmt, x);
+    const bars = bigFirst ? [{ label: big, value: A }, { label: small, value: B }] : [{ label: small, value: B }, { label: big, value: A }];
+    const desc = 'Bar chart titled “' + ctx.title + '.” The vertical axis starts at ' + v(base) + ', not at zero, and runs to ' + v(top) + ', with a break mark at the bottom. ' +
+      bars.map((b) => b.label + '’s bar reaches ' + v(b.value) + '.').join(' ') + ' On the chart, ' + big + '’s bar looks ' + numStr(r) + ' times as tall as ' + small + '’s.';
+    const honest = A / B;
+    return {
+      setup: 'A bar chart compares ' + ctx.measure + ' for ' + bars[0].label + ' and ' + bars[1].label + '. Its vertical axis starts at ' + v(base) + ', not at zero. ' + big + ': ' + vu(A) + '. ' + small + ': ' + vu(B) + '.',
+      dataLabel: '', data: [],
+      chart: {
+        kind: 'bars', title: ctx.title, base, top, desc,
+        ticks: [base, B, A, top].map((t) => ({ value: t, label: v(t) })),
+        bars: bars.map((b) => ({ label: b.label, value: b.value })),
+      },
+      question: 'How big is the real difference, and how big does the chart make it look?',
+      steps: [
+        { legend: 'Step 1: The real difference', fields: [
+          cleanDiag(numF('diff', big + ' − ' + small + (ctx.unit ? ' (' + ctx.unit + ')' : ''), exactT(A - B), { wrongMsg: 'Subtract the smaller value from the larger.' })),
+          pctF('pct', 'How much larger is ' + big + ', as a percent of ' + small + '? (%)', pct, {
+            wrongMsg: 'Divide the difference by ' + small + '’s value, then multiply by 100.',
+            diagnose: [
+              { value: roundTo((A - B) / A * 100, 1), msg: 'Divide by ' + small + '’s value, the one you are comparing against.' },
+              { value: (r - 1) * 100, msg: 'That is what the chart suggests, not what the numbers say.' },
+            ],
+          }),
+        ] },
+        { legend: 'Step 2: What the chart shows', help: 'On the chart, each bar starts at ' + v(base) + ', so its visible height is its value minus ' + v(base) + '.', fields: [
+          cleanDiag(numF('apparent', 'On the chart as drawn, ' + big + '’s bar is how many times as tall as ' + small + '’s?', exactT(r), {
+            wrongMsg: '(' + v(A) + ' − ' + v(base) + ') ÷ (' + v(B) + ' − ' + v(base) + ').',
+            diagnose: [{ value: roundTo(honest, 2), msg: 'That measures the bars from zero. On this chart they start at ' + v(base) + '.' }],
+          })),
+          cleanDiag(numF('honest', 'On an axis that starts at zero, how many times as tall would it be? (two decimal places)', roundT(honest, 2), {
+            wrongMsg: v(A) + ' ÷ ' + v(B) + '.',
+            diagnose: [{ value: r, msg: 'That is the truncated chart. From zero, divide the two values themselves.' }],
+          })),
+        ] },
+      ],
+      solution: [
+        'Difference: ' + v(A) + ' − ' + v(B) + ' = ' + vu(A - B) + '. As a percent of ' + small + ': ' + v(A - B) + ' ÷ ' + v(B) + ' × 100 = ' + numStr(pct) + '%.',
+        'On the chart, the bars rise from ' + v(base) + '. ' + big + '’s visible height is ' + v(A - base) + ' and ' + small + '’s is ' + v(B - base) + ', a ratio of ' + numStr(r) + ' to 1.',
+        'From zero, the ratio is ' + v(A) + ' ÷ ' + v(B) + ' ≈ ' + numStr(roundTo(honest, 2), 2) + ': the bars would be nearly the same height.',
+        'The chart makes a difference of ' + numStr(pct) + '% look like a ratio of ' + numStr(r) + ' to 1. On a zero-based axis the gap is still visible, and it looks as modest as it is.',
+      ],
+    };
+  }
+
+  function genArea(rng, level) {
+    const ctx = rng.pick(BANK.icon);
+    const cf = { money: true };
+    const step = ctx.cents ? (level === 1 ? 0.1 : 0.01) : (ctx.range[1] > 5000 ? 500 : 50);
+    const [lo, hi] = [Math.ceil(ctx.range[0] / step), Math.floor(ctx.range[1] / step)];
+    let v1, v2, k;
+    for (;;) {
+      const a = rng.int(lo, Math.floor((lo + hi) / 2));
+      v1 = roundTo(a * step, 2);
+      if (level === 1) {
+        k = rng.pick([1.2, 1.3, 1.4, 1.5, 1.6, 1.8, 2, 2.5]);
+        v2 = roundTo(v1 * k, 2);
+        if (!same(v2, v1 * k) || !terminates(v2 / step, 0)) continue;
+        break;
+      }
+      v2 = roundTo(rng.int(Math.round(v1 * 1.15 / step), Math.round(v1 * 2.1 / step)) * step, 2);
+      k = v2 / v1;
+      if (!terminates(k, 1)) break;
+    }
+    const money = (x) => fmt(cf, x, ctx.cents ? 2 : 0);
+    const kR = level === 1 ? k : roundTo(k, 2);
+    const ratioT = level === 1 ? exactT(k) : roundT(k, 2);
+    const areaT = level === 1 ? exactT(roundTo(k * k, 2)) : roundT(k * k, 2);
+    const realT = level === 1 ? exactT(roundTo((k - 1) * 100, 2)) : roundT((k - 1) * 100, 0);
+    const picT = level === 1 ? exactT(roundTo((k * k - 1) * 100, 2)) : roundT((k * k - 1) * 100, 0);
+    const altArea = level === 2 ? [{ target: roundT(kR * kR, 2), msg: 'Correct, working from the rounded ratio.' }] : [];
+    const altPic = level === 2 ? [{ target: roundT((kR * kR - 1) * 100, 0), msg: 'Correct, working from the rounded ratio.' }] : [];
+    return {
+      setup: ctx.what + ' rose from ' + money(v1) + ' to ' + money(v2) + '. An infographic shows each value as a picture of ' + ctx.icon + ', with the later picture drawn taller in proportion to the value and its width scaled up to match.',
+      dataLabel: '', data: [],
+      question: 'How much did the value actually rise, and how much bigger does the later picture look?',
+      steps: [
+        { legend: 'Step 1: The ratio in the data', fields: [
+          cleanDiag(numF('ratio', 'Later value ÷ earlier value' + (level === 2 ? ' (two decimal places)' : ''), ratioT, {
+            wrongMsg: 'Divide ' + money(v2) + ' by ' + money(v1) + '.',
+            diagnose: [{ value: roundTo(v1 / v2, 2), msg: 'Divide the later value by the earlier one.' }, { value: roundTo(k - 1, 2), msg: 'That is the increase as a fraction. The ratio is later ÷ earlier.' }],
+          })),
+          pctF('real', 'Percent increase in the value (%)', realT.value, {
+            target: realT,
+            wrongMsg: '(ratio − 1) × 100.',
+            diagnose: [{ value: roundTo(k * 100, 0), msg: 'That is the later value as a percent of the earlier one. Subtract 100 to get the increase.' }],
+          }),
+        ] },
+        { legend: 'Step 2: The picture', help: 'When height and width both grow by the ratio, the area grows by the ratio times itself.', fields: [
+          cleanDiag(numF('area', 'The later picture’s area is how many times the earlier one’s?' + (level === 2 ? ' (two decimal places)' : ''), areaT, {
+            alts: altArea,
+            wrongMsg: 'Multiply the ratio by itself.',
+            diagnose: [{ value: kR, msg: 'That is the height ratio. The width grows too, so the area grows by the ratio squared.' }, { value: roundTo(2 * kR, 2), msg: 'Multiply the ratio by itself, not by 2.' }],
+          })),
+          pctF('pic', 'Percent increase the picture’s area suggests (%)', picT.value, {
+            target: picT,
+            alts: altPic,
+            wrongMsg: '(area ratio − 1) × 100.',
+            diagnose: [{ value: roundTo(k * k * 100, 0), msg: 'That is the later area as a percent of the earlier one. Subtract 100.' }],
+          }),
+        ] },
+      ],
+      solution: [
+        'Ratio: ' + money(v2) + ' ÷ ' + money(v1) + (level === 1 ? ' = ' + numStr(k) : ' ≈ ' + numStr(kR, 2)) + '. The value rose about ' + numStr(roundTo((kR - 1) * 100, 0)) + '%.',
+        'Drawn ' + numStr(kR) + ' times as tall and ' + numStr(kR) + ' times as wide, the later picture covers ' + numStr(kR) + ' × ' + numStr(kR) + (level === 1 ? ' = ' : ' ≈ ') + numStr(roundTo(kR * kR, 2)) + ' times the area.',
+        'The eye reads area, so the picture suggests an increase of about ' + numStr(roundTo((kR * kR - 1) * 100, 0)) + '%, not ' + numStr(roundTo((kR - 1) * 100, 0)) + '%. A bar chart with fixed-width bars would show the real ratio.',
+      ],
+    };
+  }
+
+  const FRAME = [
+    { value: 'rel', label: 'The relative risk reduction' },
+    { value: 'abs', label: 'The absolute risk reduction' },
+  ];
+
+  function genRisk(rng, level) {
+    const ctx = rng.pick(BANK.risk);
+    let c, t, rel;
+    for (;;) {
+      if (level === 1) { c = rng.int(2, 30); t = rng.int(1, c - 1); }
+      else { c = rng.int(10, 80) / 10; t = rng.int(5, Math.round(c * 10) - 1) / 10; }
+      rel = (c - t) / c * 100;
+      if (rel >= 20 && rel <= 75) break;
+    }
+    const absV = roundTo(c - t, 1);
+    const frame = rng.pick(['rel', 'abs']);
+    const relShown = Math.round(rel);
+    const Tr = cap(ctx.treatment);
+    const headline = frame === 'rel'
+      ? Tr + ' cuts the risk of ' + ctx.outcome + ' by ' + relShown + '%'
+      : Tr + ' cuts the risk of ' + ctx.outcome + ' by ' + numStr(absV) + ' percentage point' + (absV === 1 ? '' : 's');
+    const steps = [
+      { legend: 'Step 1: Absolute risk reduction', fields: [cleanDiag(numF('abs', 'Absolute risk reduction (percentage points)', exactT(absV), {
+        percent: true,
+        wrongMsg: 'Subtract the treatment group’s rate from the control group’s: ' + numStr(c) + '% − ' + numStr(t) + '%.',
+        diagnose: [{ value: roundTo(rel, 0), msg: 'That is the relative reduction. The absolute reduction is the plain difference between the two rates.' }],
+      }))] },
+      { legend: 'Step 2: Relative risk reduction', fields: [cleanDiag(numF('rel', 'Relative risk reduction (%)', roundT(rel, 0), {
+        percent: true,
+        wrongMsg: 'Divide the absolute reduction by the control group’s rate, then multiply by 100.',
+        diagnose: [
+          { value: absV, msg: 'That is the absolute reduction. Divide it by the control group’s rate, ' + numStr(c) + '%.' },
+          { value: roundTo(t / c * 100, 0), msg: 'That is the treatment group’s risk as a percent of the control group’s. The reduction is 100% minus that.' },
+          { value: roundTo((c - t) / t * 100, 0), msg: 'Divide by the control group’s rate, the starting point, not the treatment group’s.' },
+        ],
+      }))] },
+    ];
+    const solution = [
+      'Absolute reduction: ' + numStr(c) + '% − ' + numStr(t) + '% = ' + numStr(absV) + ' percentage point' + (absV === 1 ? '' : 's') + '.',
+      'Relative reduction: ' + numStr(absV) + ' ÷ ' + numStr(c) + ' × 100 ≈ ' + numStr(roundTo(rel, 1)) + '%. The treatment removes about that share of the risk the control group faced.',
+    ];
+    if (level === 2) {
+      const N = terminates(1000 * absV / 100, 0) ? 1000 : 10000;
+      steps.push({ legend: 'Step 3: In people', fields: [cleanDiag(numF('people', 'Out of ' + numStr(N) + ' ' + ctx.group + ' like those in the trial, how many fewer would have ' + ctx.outcome + '?', exactT(roundTo(N * absV / 100, 2)), {
+        wrongMsg: numStr(absV) + '% of ' + numStr(N) + ': use the absolute reduction.',
+        diagnose: [{ value: roundTo(N * rel / 100, 0), msg: 'That uses the relative reduction. A count of people comes from the absolute reduction.' }, { value: N * absV, msg: 'Write the percentage as a decimal before multiplying.' }],
+      }))] });
+      solution.push('Out of ' + numStr(N) + ', ' + numStr(N * c / 100) + ' in the control group versus ' + numStr(N * t / 100) + ' with the treatment: ' + numStr(N * absV / 100) + ' fewer.');
+    }
+    steps.push({ legend: 'Step ' + (steps.length + 1) + ': The headline', fields: [selF('frame', 'The headline’s number is', FRAME, frame, {
+      wrongMsg: frame === 'rel' ? relShown + '% matches the relative reduction you found.' : numStr(absV) + ' percentage points is the plain difference between the two rates.',
+    })] });
+    solution.push(frame === 'rel'
+      ? 'The headline reports the relative reduction, ' + relShown + '%. It is the larger, more impressive number; the absolute reduction of ' + numStr(absV) + ' point' + (absV === 1 ? '' : 's') + ' is what matters to someone deciding whether to use it.'
+      : 'The headline reports the absolute reduction, ' + numStr(absV) + ' percentage point' + (absV === 1 ? '' : 's') + '. The same result could be reported as a ' + relShown + '% relative reduction, which sounds much larger.');
+    return {
+      setup: 'In a trial of ' + ctx.treatment + ', ' + numStr(c) + '% of ' + ctx.group + ' in the control group had ' + ctx.outcome + ' ' + ctx.period + ', compared with ' + numStr(t) + '% of those who received the treatment. A headline reads: “' + headline + '.”',
+      dataLabel: '', data: [],
+      question: 'Find the absolute and relative risk reductions. Which one does the headline report?',
+      steps, solution,
+    };
+  }
+
+  /** Starting values that make every percent change a short decimal. */
+  const FRIENDLY = [20, 25, 40, 50, 80, 100, 125, 200, 250, 400, 500];
+
+  function genBaseline(rng, level) {
+    const ctx = rng.pick(BANK.trend);
+    const n = level === 1 ? 9 : 12;
+    const last = 2025; const first = last - n + 1;
+    const pattern = rng.pick(['peak', 'trough']);
+    let ys, j, S0, Sj, E;
+    for (let tries = 0; ; tries++) {
+      j = rng.int(2, n - 4);
+      if (pattern === 'peak') {
+        S0 = rng.pick(FRIENDLY.slice(0, 8)); Sj = rng.pick(FRIENDLY.filter((x) => x >= S0 * 1.5));
+        if (!Sj) continue;
+        E = rng.int(Math.ceil(S0 * 1.08), Math.floor(Sj * 0.85));
+      } else {
+        S0 = rng.pick(FRIENDLY.slice(3)); Sj = rng.pick(FRIENDLY.filter((x) => x <= S0 * 0.65));
+        if (!Sj) continue;
+        E = rng.int(Math.ceil(Sj * 1.3), Math.floor(S0 * 0.93));
+      }
+      if (!(E > 0)) continue;
+      ys = [];
+      for (let i = 0; i < n; i++) {
+        let y;
+        if (i === 0) y = S0; else if (i === j) y = Sj; else if (i === n - 1) y = E;
+        else if (i < j) y = S0 + (Sj - S0) * i / j;
+        else y = Sj + (E - Sj) * (i - j) / (n - 1 - j);
+        if (i !== 0 && i !== j && i !== n - 1) y = y * (1 + (rng.next() - 0.5) * 0.08);
+        ys.push(Math.round(y));
+      }
+      const others = ys.filter((_, i) => i !== j);
+      const ok = pattern === 'peak' ? others.every((y) => y < Sj) : others.every((y) => y > Sj);
+      const pcts = [(E - Sj) / Sj * 100, (E - S0) / S0 * 100];
+      if (ok && pcts.every((p) => terminates(p, 2) && Math.abs(p) >= 3)) break;
+      if (tries > 500) throw new Error('baseline generator stuck');
+    }
+    const g = ctx.scale;
+    const show = (y) => numStr(y * g);
+    const yj = first + j;
+    const pres = roundTo((E - Sj) / Sj * 100, 2); const full = roundTo((E - S0) / S0 * 100, 2);
+    const word = (p) => (p > 0 ? 'risen' : 'fallen');
+    const lc = ctx.what.charAt(0).toLowerCase() + ctx.what.slice(1);
+    const pctField = (id, from, S, p) => cleanDiag(numF(id, 'Percent change from ' + from + ' to ' + last + ' (%)', exactT(p), {
+      percent: true,
+      alts: [{ target: exactT(-p), msg: 'Right size. Write a decrease with a minus sign: ' + numStr(-Math.abs(p)) + '%.' }].filter(() => p < 0),
+      wrongMsg: '(' + last + ' value − ' + from + ' value) ÷ ' + from + ' value × 100.',
+      diagnose: [
+        { value: roundTo((E - S) / E * 100, 2), msg: 'Divide by the ' + from + ' value, the starting point.' },
+        { value: (E - S) * g, msg: 'That is the change in ' + ctx.unit + '. Divide it by the ' + from + ' value and multiply by 100.' },
+        { value: roundTo(E / S * 100, 2), msg: 'That is the ' + last + ' value as a percent of the ' + from + ' value. Subtract 100.' },
+      ],
+    }));
+    return {
+      setup: ctx.presenter + ' says that ' + lc + ' has ' + word(pres) + ' ' + numStr(Math.abs(pres)) + '% since ' + yj + '. Here are the figures for every year from ' + first + ' to ' + last + '.',
+      dataLabel: ctx.what + ' (' + ctx.unit + ')', data: ys.map((y, i) => (first + i) + ': ' + show(y)),
+      question: 'Check the claim. Then find the change over the whole period, and say what the choice of starting year does.',
+      steps: [
+        { legend: 'Step 1: Check the claim', fields: [pctField('pres', String(yj), Sj, pres)] },
+        { legend: 'Step 2: The whole period', fields: [
+          pctField('full', String(first), S0, full),
+          selF('overall', 'From ' + first + ' to ' + last + ', the value has', [{ value: 'risen', label: 'Risen' }, { value: 'fallen', label: 'Fallen' }], word(full), { wrongMsg: 'Compare the first year with the last.' }),
+        ] },
+        { legend: 'Step 3: The starting year', fields: [selF('start', 'The claim starts in ' + yj + '. That year was', [
+          { value: 'peak', label: 'A peak: higher than every other year shown' },
+          { value: 'trough', label: 'A low point: lower than every other year shown' },
+          { value: 'typical', label: 'A typical year' },
+        ], pattern, { wrongMsg: 'Compare ' + yj + '’s figure, ' + show(Sj) + ', with the other years.' })] },
+      ],
+      solution: [
+        'From ' + yj + ' to ' + last + ': (' + show(E) + ' − ' + show(Sj) + ') ÷ ' + show(Sj) + ' × 100 = ' + numStr(pres) + '%. The claim’s arithmetic is right.',
+        'From ' + first + ' to ' + last + ': (' + show(E) + ' − ' + show(S0) + ') ÷ ' + show(S0) + ' × 100 = ' + numStr(full) + '%.',
+        pattern === 'peak'
+          ? yj + ' was the highest year shown. Starting there makes a ' + (full > 0 ? 'value that is still higher than in ' + first : 'modest overall change') + ' look like a steep decline.'
+          : yj + ' was the lowest year shown. Starting there turns a ' + (full < 0 ? 'value that is still below its ' + first + ' level' : 'modest overall change') + ' into an impressive-sounding gain.',
+        'An honest presentation shows the longer history, or explains why the window starts where it does.',
+      ],
+    };
+  }
+
+  // ---------------------------------------------------------------------
   // From the book: the odd-numbered exercises answered in the Selected
   // Solutions appendix, numeric parts only. Data and wording follow
   // ch-statistical-reasoning.ptx; answers are computed, and logic-tests.js
   // checks them against appendix-solutions.ptx.
   // ---------------------------------------------------------------------
-  const MOE = { 400: 4.9, 500: 4.4, 600: 4.1, 1000: 3.1, 1500: 2.5, 2000: 2.2 };
   const WRITTEN = 'The written parts of this exercise are answered in the Selected Solutions appendix.';
 
   function bookEx1() {
@@ -1353,12 +2192,34 @@
       { id: 'boundary', label: 'Value that marks a boundary', make: genBoundary },
       { id: 'unusual', label: 'Is this value unusual?', make: genUnusual, levels: [1] },
     ],
+    moe: [
+      { id: 'interval', label: 'Confidence interval from a poll', make: genInterval },
+      { id: 'majority', label: 'Does the poll show a majority?', make: genMajority },
+      { id: 'race', label: 'Is the leader really ahead?', make: genRace },
+      { id: 'change', label: 'Did opinion really change?', make: genChange },
+      { id: 'reported', label: 'Reported interval: margin and sample size', make: genReported },
+    ],
+    thresholds: [
+      { id: 'rates', label: 'Error rates from sensitivity and specificity', make: genRates },
+      { id: 'cutoffs', label: 'Cutoffs and healthy readings flagged', make: genCutoffs },
+      { id: 'move', label: 'Moving the threshold', make: genMove },
+      { id: 'flags', label: 'Flags that turn out wrong', make: genFlags },
+    ],
+    distort: [
+      { id: 'truncated', label: 'Truncated axis', make: genTruncated },
+      { id: 'area', label: 'Picture scaled by height', make: genArea },
+      { id: 'risk', label: 'Relative vs. absolute risk', make: genRisk },
+      { id: 'baseline', label: 'Choosing the starting year', make: genBaseline },
+    ],
     book: BOOK,
   };
   const MODES = [
     { id: 'center', label: 'Center', section: '15.1' },
     { id: 'spread', label: 'Spread', section: '15.2' },
     { id: 'normal', label: 'Normal', section: '15.3' },
+    { id: 'moe', label: 'Margin of Error', section: '15.4' },
+    { id: 'thresholds', label: 'Thresholds', section: '15.5' },
+    { id: 'distort', label: 'Distortions', section: '15.6' },
     { id: 'book', label: 'From the Book', section: null, fixed: true },
   ];
 

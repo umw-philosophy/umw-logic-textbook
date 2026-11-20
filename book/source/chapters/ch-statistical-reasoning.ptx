@@ -751,7 +751,7 @@
       <ul>
         <li><p>400 people: about plus or minus 4.9%.</p></li>
         <li><p>500 people: about plus or minus 4.4%.</p></li>
-        <li><p>600 people: about plus or minus 4.1%.</p></li>
+        <li><p>600 people: about plus or minus 4.0%.</p></li>
         <li><p>1,000 people: about plus or minus 3.1%.</p></li>
         <li><p>1,500 people: about plus or minus 2.5%.</p></li>
         <li><p>2,000 people: about plus or minus 2.2%.</p></li>
@@ -1756,7 +1756,7 @@
           Use the rule-of-thumb approximations from §15.4. At the 95%
           confidence level, samples of 400, 500, 600, 1,000, 1,500, and
           2,000 have margins of error of about plus or minus 4.9%,
-          plus or minus 4.4%, plus or minus 4.1%, plus or minus 3.1%,
+          plus or minus 4.4%, plus or minus 4.0%, plus or minus 3.1%,
           plus or minus 2.5%, and plus or minus 2.2%, respectively.
         </p>
       </introduction>

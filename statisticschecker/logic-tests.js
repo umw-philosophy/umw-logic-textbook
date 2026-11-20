@@ -173,6 +173,118 @@ for (const m of core.MODES) {
   }
 }
 
+// ---------------------------------------------------------------- sections 15.4 to 15.6
+// The rule-of-thumb table is 0.98 / sqrt(n), as a percent to one decimal place.
+for (const n of Object.keys(core.MOE)) {
+  assert.equal(core.MOE[n], I.roundTo(98 / Math.sqrt(Number(n)), 1), 'margin of error table at ' + n);
+}
+const F = (p, id) => p.fields.find((f) => f.id === id);
+const val = (p, id) => F(p, id).target.value;
+const seen = {};
+const note = (key, v) => { seen[key] = seen[key] || new Set(); seen[key].add(v); };
+for (let seed = 1; seed <= 600; seed++) {
+  for (const level of [1, 2]) {
+    const w = (k) => k + '/L' + level + '/#' + seed;
+    // Margin of error: only 600 and 1,000; judgments follow from the intervals and never sit on a boundary.
+    for (const k of ['interval', 'majority', 'race', 'change', 'reported']) {
+      const p = core.makeProblem('moe', k, level, seed);
+      p.fields.filter((f) => /^moe/.test(f.id)).forEach((f) => assert.ok([4, 3.1].includes(f.target.value), w(k) + ': margin not from 600 or 1,000'));
+      if (k === 'majority' || k === 'reported') {
+        const lo = k === 'majority' ? val(p, 'low') : null;
+        const ans = F(p, 'majority').answer;
+        if (lo !== null) {
+          const hi = val(p, 'high');
+          assert.ok(Math.abs(lo - 50) > 0.05 && Math.abs(hi - 50) > 0.05, w(k) + ': interval ends on 50%');
+          assert.equal(ans, lo > 50 ? 'yes' : hi < 50 ? 'no' : 'unclear', w(k) + ': majority');
+        }
+        note(k, ans);
+      }
+      if (k === 'race') {
+        const ov = val(p, 'a-low') < val(p, 'b-high');
+        assert.ok(Math.abs(val(p, 'a-low') - val(p, 'b-high')) > 0.05, w(k) + ': intervals just touch');
+        assert.equal(F(p, 'lead').answer, ov ? 'within' : 'ahead', w(k));
+        note(k, F(p, 'lead').answer);
+      }
+      if (k === 'change') {
+        const ov = val(p, 'a-low') < val(p, 'b-high') && val(p, 'b-low') < val(p, 'a-high');
+        assert.equal(F(p, 'change').answer, ov ? 'noise' : 'real', w(k));
+        note(k, F(p, 'change').answer);
+      }
+      if (k === 'reported') {
+        assert.ok(['600', '1000'].includes(F(p, 'n').answer), w(k));
+        note('reported-n', F(p, 'n').answer);
+      }
+    }
+    // Thresholds
+    const r = core.makeProblem('thresholds', 'rates', level, seed);
+    if (level === 2) {
+      assert.equal(val(r, 'tp') + val(r, 'fn'), val(r, 'p'), w('rates'));
+      assert.equal(F(r, 'most').answer, val(r, 'tp') > val(r, 'fp') ? 'true' : 'false', w('rates'));
+      note('rates-most', F(r, 'most').answer);
+    }
+    const mv = core.makeProblem('thresholds', 'move', level, seed);
+    const fewer = F(mv, 'flags').answer === 'fewer';
+    assert.deepEqual(['sens', 'spec', 'fp', 'fn'].map((id) => F(mv, id).answer),
+      fewer ? ['decrease', 'increase', 'decrease', 'increase'] : ['increase', 'decrease', 'increase', 'decrease'], w('move'));
+    if (level === 1) assert.equal(val(mv, 'after') < val(mv, 'now'), fewer, w('move') + ': flagged shares');
+    note('move', F(mv, 'flags').answer);
+    const cu = core.makeProblem('thresholds', 'cutoffs', level, seed);
+    assert.ok(val(cu, 'low') > 0 && val(cu, 'low') < val(cu, 'high'), w('cutoffs'));
+    assert.equal(val(cu, 'flagged') + val(cu, 'spec'), 100, w('cutoffs'));
+    const fl = core.makeProblem('thresholds', 'flags', level, seed);
+    assert.equal(val(fl, 'fp') + val(fl, 'genuine'), val(fl, 'flagged'), w('flags'));
+    // Distortions
+    const t = core.makeProblem('distort', 'truncated', level, seed);
+    const [b0, b1] = t.chart.bars.map((b) => b.value);
+    const A = Math.max(b0, b1); const B = Math.min(b0, b1); const base = t.chart.base;
+    assert.ok(base > 0 && base < B && t.chart.top > A, w('truncated') + ': axis');
+    assert.ok(close(val(t, 'apparent'), (A - base) / (B - base)), w('truncated') + ': apparent ratio');
+    assert.ok(close(val(t, 'diff'), A - B), w('truncated'));
+    assert.ok(close(val(t, 'pct'), (A - B) / B * 100, 1e-6), w('truncated') + ': percent');
+    t.chart.ticks.forEach((tk) => assert.ok(t.chart.desc.includes(tk.label), w('truncated') + ': text equivalent lacks ' + tk.label));
+    const ar = core.makeProblem('distort', 'area', level, seed);
+    assert.ok(close(val(ar, 'area'), val(ar, 'ratio') * val(ar, 'ratio'), 1e-6), w('area'));
+    assert.ok(val(ar, 'ratio') > 1.1, w('area') + ': ratio');
+    const rk = core.makeProblem('distort', 'risk', level, seed);
+    assert.ok(val(rk, 'rel') > val(rk, 'abs'), w('risk') + ': relative should be the larger number');
+    note('risk', F(rk, 'frame').answer);
+    const bl = core.makeProblem('distort', 'baseline', level, seed);
+    const ys = bl.data.map((d) => Number(d.split(': ')[1].replace(/,/g, '')));
+    const yrs = bl.data.map((d) => Number(d.split(':')[0]));
+    const startYear = Number(bl.setup.match(/since (\d{4})/)[1]);
+    const sv = ys[yrs.indexOf(startYear)];
+    const others = ys.filter((_, i) => yrs[i] !== startYear);
+    assert.equal(F(bl, 'start').answer, others.every((y) => y < sv) ? 'peak' : others.every((y) => y > sv) ? 'trough' : 'typical', w('baseline'));
+    assert.ok(close(val(bl, 'pres'), (ys[ys.length - 1] - sv) / sv * 100, 1e-6), w('baseline') + ': claim');
+    assert.ok(close(val(bl, 'full'), (ys[ys.length - 1] - ys[0]) / ys[0] * 100, 1e-6), w('baseline') + ': full period');
+    assert.equal(F(bl, 'overall').answer, ys[ys.length - 1] > ys[0] ? 'risen' : 'fallen', w('baseline'));
+    note('baseline', F(bl, 'start').answer);
+  }
+}
+// Every judgment comes out each way often enough to matter.
+const expectAll = { majority: ['yes', 'no', 'unclear'], race: ['ahead', 'within'], change: ['real', 'noise'], 'reported-n': ['600', '1000'],
+  'rates-most': ['true', 'false'], move: ['more', 'fewer'], risk: ['rel', 'abs'], baseline: ['peak', 'trough'] };
+for (const k of Object.keys(expectAll)) for (const v of expectAll[k]) assert.ok(seen[k] && seen[k].has(v), k + ' never gives ' + v);
+
+// The margin-of-error table in the Reference panel and in the chapter matches the one the app uses.
+{
+  const fs0 = require('node:fs'); const path0 = require('node:path');
+  const html = fs0.readFileSync(path0.join(__dirname, 'index.html'), 'utf8');
+  for (const n of Object.keys(core.MOE)) {
+    const m = core.MOE[n].toFixed(1);
+    assert.ok(new RegExp('<td>' + Number(n).toLocaleString('en-US') + '</td><td>&plusmn; ' + m.replace('.', '\\.') + '%</td>').test(html), 'Reference panel margin for ' + n);
+  }
+  const chPath = path0.join(__dirname, '..', 'book', 'source', 'chapters', 'ch-statistical-reasoning.ptx');
+  if (fs0.existsSync(chPath)) {
+    const ch = fs0.readFileSync(chPath, 'utf8');
+    for (const n of Object.keys(core.MOE)) {
+      const m = core.MOE[n].toFixed(1).replace('.', '\\.');
+      assert.ok(new RegExp(Number(n).toLocaleString('en-US') + ' people: about plus or minus ' + m + '%').test(ch), 'Chapter 15 table margin for ' + n);
+    }
+    assert.ok(!/plus or minus 4\.1%/.test(ch), 'Chapter 15 still says plus or minus 4.1%');
+  }
+}
+
 // ---------------------------------------------------------------- From the book vs. the appendix
 // Every From the Book answer must agree with appendix-solutions.ptx. When the
 // tool is copied somewhere without the book, this part is skipped.
